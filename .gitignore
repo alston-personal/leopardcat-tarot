@@ -1,0 +1,6 @@
+STATUS.md
+memory/
+.env
+.env.*
+__pycache__/
+*.pyc
