@@ -5,3 +5,5 @@ memory/
 .env.*
 __pycache__/
 *.pyc
+generator/render_service.log
+art/renders/*-direct-service.png
