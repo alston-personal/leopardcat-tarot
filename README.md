@@ -12,6 +12,7 @@ The project treats each card as both:
 - `art/`: visual direction and per-card image briefs
 - `copy/`: descriptive writing, guidebook text, and narrative copy
 - `design/`: design summary, product direction, and system-level decisions
+- `generator/`: internal card-generator subproject with a future extraction boundary
 - `research/`: audience notes, symbolic mapping, and supporting references
 
 ## Local Agent Bridge
@@ -28,3 +29,4 @@ These local bridge paths are intentionally ignored by git and should not be trea
 - establish the deck's visual and narrative baseline
 - refine major arcana starting with `The Fool`, `The Magician`, and `The High Priestess`
 - keep conservation meaning and mystical resonance in balance
+- build a reusable card composition tool inside the repo before deciding whether to spin it out

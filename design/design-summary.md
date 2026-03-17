@@ -47,3 +47,4 @@ Preferred direction at this stage:
 - define consistent card frame / typography / numbering system
 - lock palette families for day, dusk, and nocturnal cards
 - define how conservation text appears without crowding the illustration
+- keep the card generator modular so it can later become a standalone tool if reuse expands
