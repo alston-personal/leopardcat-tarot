@@ -1,0 +1,72 @@
+{
+  "id": "card-02-the-high-priestess",
+  "arcana": "major",
+  "number": "II",
+  "title": "THE HIGH PRIESTESS",
+  "subtitle": "Intuition / Silence / Hidden Waters",
+  "slug": "the-high-priestess",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [14, 21, 40],
+    "bottom": [64, 86, 102],
+    "frame": [219, 203, 156],
+    "frame_inner": [171, 149, 102],
+    "panel": [18, 24, 31],
+    "text_primary": [243, 233, 201],
+    "text_secondary": [198, 186, 151]
+  },
+  "scene": {
+    "theme": "streamside-intuition",
+    "forest": true,
+    "road": false,
+    "grass": false,
+    "headlights": false,
+    "subject": "streamside-leopard-cat"
+  },
+  "main_image": null,
+  "generation": {
+    "model": "gemini-2.5-flash-image",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Create a tarot card main illustration with no text, no borders, and no frame. A Taiwan leopard cat stands beside a quiet forest stream at night, half veiled by mist and reflected moonlight. Arching trees, hidden water, and subtle phosphorescent wood create a sacred, secret atmosphere. The scene should feel silent, intuitive, and protective, with the leopard cat as a guardian of hidden habitat. Painterly mystical realism, cool blue-green palette, vertical composition, elegant negative space for later tarot title panels."
+  },
+  "ornaments": [
+    "stream-reflection",
+    "mist",
+    "arch-trees",
+    "glowing-wood"
+  ],
+  "output": "art/renders/card-02-the-high-priestess.png",
+  "meanings": {
+    "upright": "Intuition, restraint, inner knowledge, and perception that moves beneath surface noise.",
+    "reversed": "Blocked intuition, disconnection from instinct, hidden disturbance, or mistrust of inner knowing.",
+    "keywords": [
+      "intuition",
+      "silence",
+      "subconscious",
+      "hidden-habitat"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "stream margin and low-disturbance forest edge",
+    "risk_theme": "dependence on intact water systems and hidden refuge",
+    "mapping_note": "The High Priestess becomes a guardian of quiet habitat, where water, shadow, and instinct preserve survival."
+  },
+  "website": {
+    "excerpt": "At the stream edge, the leopard cat becomes a figure of nocturnal intuition, stillness, and hidden ecological memory.",
+    "seo_title": "The High Priestess - LeopardCat Tarot",
+    "seo_description": "The High Priestess reimagined through streamside habitat, lunar stillness, and the hidden intelligence of the leopard cat.",
+    "tags": [
+      "major-arcana",
+      "streamside",
+      "intuition",
+      "leopard-cat"
+    ]
+  }
+}

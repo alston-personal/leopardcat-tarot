@@ -61,6 +61,57 @@ def draw_grass(draw: ImageDraw.ImageDraw):
         draw.line((base_x - 8, 1950, base_x - 40, 1600), fill=(54, 88, 50), width=3)
 
 
+def draw_reeds(draw: ImageDraw.ImageDraw):
+    for i in range(10):
+        x = 180 + i * 58
+        draw.line((x, 1860, x - 12, 1240), fill=(148, 146, 84), width=5)
+        draw.line((x + 18, 1860, x + 4, 1320), fill=(118, 128, 73), width=4)
+        draw.ellipse((x - 16, 1212, x + 20, 1262), fill=(132, 119, 72))
+
+
+def draw_stream(base: Image.Image):
+    width, height = base.size
+    overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+    draw.polygon(
+        [(180, 1820), (380, 1450), (770, 1360), (1140, 1500), (1280, 1840), (1080, 1930), (760, 1860), (420, 1940)],
+        fill=(116, 146, 170, 160),
+    )
+    draw.polygon(
+        [(230, 1790), (415, 1490), (755, 1428), (1075, 1532), (1192, 1810), (1032, 1868), (748, 1814), (452, 1884)],
+        fill=(191, 218, 229, 100),
+    )
+    overlay = overlay.filter(ImageFilter.GaussianBlur(3))
+    base.alpha_composite(overlay)
+
+
+def draw_mist(base: Image.Image):
+    width, height = base.size
+    overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+    draw.ellipse((120, 1060, 960, 1700), fill=(206, 223, 236, 36))
+    draw.ellipse((280, 1180, 1290, 1810), fill=(186, 206, 220, 28))
+    draw.ellipse((40, 1360, 880, 1980), fill=(219, 229, 237, 24))
+    overlay = overlay.filter(ImageFilter.GaussianBlur(34))
+    base.alpha_composite(overlay)
+
+
+def draw_glowing_wood(base: Image.Image):
+    width, height = base.size
+    overlay = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+    draw.ellipse((520, 1650, 720, 1775), fill=(182, 230, 175, 110))
+    draw.ellipse((560, 1680, 760, 1805), fill=(214, 249, 205, 72))
+    overlay = overlay.filter(ImageFilter.GaussianBlur(18))
+    base.alpha_composite(overlay)
+
+
+def draw_arch_trees(draw: ImageDraw.ImageDraw, width: int, height: int):
+    for x in (145, 1120):
+        draw.rectangle((x, 360, x + 46, height - 520), fill=(34, 42, 40))
+    draw.arc((120, 250, width - 120, 1320), start=194, end=346, fill=(52, 72, 66), width=24)
+
+
 def draw_headlights(base: Image.Image, width: int, height: int):
     glow = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     gdraw = ImageDraw.Draw(glow)
@@ -103,6 +154,50 @@ def draw_leopard_cat(draw: ImageDraw.ImageDraw):
         draw.ellipse((spot_x, spot_y, spot_x + 26, spot_y + 18), fill=(74, 52, 42))
 
 
+def draw_adult_leopard_cat(draw: ImageDraw.ImageDraw):
+    body = [(380, 1490), (560, 1410), (760, 1438), (860, 1538), (760, 1650), (510, 1668)]
+    draw.polygon(body, fill=(176, 133, 78))
+    chest = [(680, 1450), (842, 1406), (940, 1496), (860, 1612), (720, 1624)]
+    draw.polygon(chest, fill=(221, 189, 144))
+    head = (820, 1328, 995, 1488)
+    draw.ellipse(head, fill=(189, 144, 90))
+    draw.polygon([(846, 1336), (884, 1260), (916, 1350)], fill=(91, 59, 42))
+    draw.polygon([(920, 1348), (965, 1268), (991, 1376)], fill=(91, 59, 42))
+    draw.ellipse((864, 1312, 888, 1338), fill=(245, 239, 223))
+    draw.ellipse((944, 1322, 968, 1348), fill=(245, 239, 223))
+    draw.ellipse((905, 1392, 918, 1404), fill=(33, 27, 22))
+    draw.line((911, 1404, 904, 1420), fill=(33, 27, 22), width=3)
+    draw.line((916, 1404, 924, 1420), fill=(33, 27, 22), width=3)
+    for leg in [(492, 1620, 530, 1928), (590, 1608, 628, 1888), (720, 1600, 756, 1848)]:
+        draw.rectangle(leg, fill=(168, 126, 75))
+    draw.polygon([(828, 1596), (866, 1584), (892, 1862), (852, 1872)], fill=(172, 129, 78))
+    draw.line([(360, 1550), (270, 1592), (188, 1696), (160, 1798)], fill=(162, 120, 74), width=32, joint="curve")
+    for spot_x, spot_y in [
+        (472, 1492), (540, 1516), (620, 1502), (694, 1510), (575, 1582),
+        (676, 1588), (858, 1424), (914, 1430), (526, 1684), (610, 1682)
+    ]:
+        draw.ellipse((spot_x, spot_y, spot_x + 30, spot_y + 20), fill=(70, 48, 37))
+
+
+def draw_streamside_cat(draw: ImageDraw.ImageDraw):
+    body = [(470, 1508), (620, 1450), (760, 1462), (840, 1540), (770, 1616), (586, 1632)]
+    draw.polygon(body, fill=(180, 139, 90))
+    chest = [(674, 1488), (808, 1460), (872, 1518), (822, 1596), (706, 1608)]
+    draw.polygon(chest, fill=(225, 194, 151))
+    head = (782, 1366, 930, 1498)
+    draw.ellipse(head, fill=(190, 149, 95))
+    draw.polygon([(806, 1372), (842, 1306), (878, 1382)], fill=(93, 61, 43))
+    draw.polygon([(872, 1380), (918, 1308), (934, 1418)], fill=(93, 61, 43))
+    draw.ellipse((824, 1350, 844, 1372), fill=(242, 238, 228))
+    draw.ellipse((892, 1358, 912, 1380), fill=(242, 238, 228))
+    draw.ellipse((860, 1420, 872, 1430), fill=(35, 28, 23))
+    for leg in [(560, 1608, 592, 1830), (646, 1602, 680, 1802)]:
+        draw.rectangle(leg, fill=(171, 131, 80))
+    draw.line([(450, 1566), (376, 1610), (320, 1700), (308, 1802)], fill=(167, 126, 79), width=26, joint="curve")
+    for spot_x, spot_y in [(544, 1518), (604, 1538), (672, 1528), (744, 1520), (834, 1438), (588, 1590)]:
+        draw.ellipse((spot_x, spot_y, spot_x + 24, spot_y + 16), fill=(74, 51, 41))
+
+
 def draw_main_image(base: Image.Image, config: dict):
     main_image = config.get("main_image")
     width, height = base.size
@@ -119,14 +214,26 @@ def draw_main_image(base: Image.Image, config: dict):
     draw = ImageDraw.Draw(base)
     if scene.get("forest"):
         draw_forest(draw, height)
+    if scene.get("theme") == "field-edge-adaptation":
+        draw_reeds(draw)
+    if scene.get("theme") == "streamside-intuition":
+        draw_arch_trees(draw, width, height)
+        draw_stream(base)
+        draw_mist(base)
     if scene.get("road"):
         draw_road(draw)
     if scene.get("grass"):
         draw_grass(draw)
     if scene.get("subject") == "juvenile-leopard-cat":
         draw_leopard_cat(draw)
+    elif scene.get("subject") == "adult-leopard-cat":
+        draw_adult_leopard_cat(draw)
+    elif scene.get("subject") == "streamside-leopard-cat":
+        draw_streamside_cat(draw)
     if scene.get("headlights"):
         draw_headlights(base, width, height)
+    if scene.get("theme") == "streamside-intuition":
+        draw_glowing_wood(base)
 
 
 def draw_frame(draw: ImageDraw.ImageDraw, width: int, height: int, palette: dict):

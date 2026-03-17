@@ -15,6 +15,16 @@ The project treats each card as both:
 - `generator/`: internal card-generator subproject with a future extraction boundary
 - `research/`: audience notes, symbolic mapping, and supporting references
 
+## Product Shape
+
+This repository currently holds three connected product domains:
+
+- `card-design`: the deck's visual and symbolic source material
+- `card-generator`: the rendering toolchain for PNG card outputs
+- `reading-website`: a future consumer-facing interpretation product
+
+See [project-map.md](/home/ubuntu/leopardcat-tarot/design/project-map.md) for the boundary between them.
+
 ## Local Agent Bridge
 
 This project uses the Antigravity logic/data separation model locally:
@@ -30,3 +40,4 @@ These local bridge paths are intentionally ignored by git and should not be trea
 - refine major arcana starting with `The Fool`, `The Magician`, and `The High Priestess`
 - keep conservation meaning and mystical resonance in balance
 - build a reusable card composition tool inside the repo before deciding whether to spin it out
+- stabilize a shared card data model that can later feed both the generator and a reading website

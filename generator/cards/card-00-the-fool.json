@@ -1,8 +1,11 @@
 {
   "id": "card-00-the-fool",
+  "arcana": "major",
   "number": "0",
   "title": "THE FOOL",
   "subtitle": "Threshold / Curiosity / Risk",
+  "slug": "the-fool",
+  "status": "draft",
   "size": {
     "width": 1400,
     "height": 2420
@@ -25,6 +28,40 @@
     "subject": "juvenile-leopard-cat"
   },
   "main_image": null,
+  "generation": {
+    "model": "gemini-2.5-flash-image",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Create a richly detailed tarot card main illustration with no text, no borders, and no frame. A juvenile Taiwan leopard cat pauses at the forest-road threshold at night. Headlights bloom in the distance, warm amber light cutting across wet roadside grass while deep blue forest shadows press in behind the cat. The leopard cat should feel vulnerable yet curious, caught between instinct and danger. Painterly, atmospheric, mystical realism, vertical composition, center-weighted subject, room above and below for later tarot title panels."
+  },
   "ornaments": [],
-  "output": "art/renders/card-00-the-fool-v1.png"
+  "output": "art/renders/card-00-the-fool-v1.png",
+  "meanings": {
+    "upright": "New beginnings, openness, instinctive trust, and a willingness to step toward the unknown.",
+    "reversed": "Naivety, poor risk reading, and preventable danger at the edge of a transition.",
+    "keywords": [
+      "beginnings",
+      "curiosity",
+      "threshold",
+      "risk"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "juvenile",
+    "habitat_fragment": "forest edge and roadside grass",
+    "risk_theme": "road mortality during dispersal",
+    "mapping_note": "The Fool's leap of faith becomes a young leopard cat crossing the line between cover and asphalt."
+  },
+  "website": {
+    "excerpt": "A juvenile leopard cat pauses at the roadside threshold where innocence meets human-made danger.",
+    "seo_title": "The Fool - LeopardCat Tarot",
+    "seo_description": "The Fool reimagined as juvenile leopard cat dispersal at the forest-road edge.",
+    "tags": [
+      "major-arcana",
+      "leopard-cat",
+      "road-ecology",
+      "threshold"
+    ]
+  }
 }
