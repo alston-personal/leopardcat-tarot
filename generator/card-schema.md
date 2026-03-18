@@ -47,7 +47,7 @@ This means card JSON is not only a render config. It is the shared product data 
 
 ```json
 "generation": {
-  "model": "gemini-2.5-flash-image",
+  "model": "gemini-2.5-flash",
   "image_size": "1K",
   "aspect_ratio": "2:3",
   "image_prompt": "A Taiwan leopard cat at a forest-road threshold..."
@@ -94,20 +94,21 @@ This means card JSON is not only a render config. It is the shared product data 
 - website fields should not dictate generator internals
 - image paths should stay repo-relative
 
+## 🧠 Prompt Architecture (Dual-Layer Memory)
+
+To ensure consistency and allow for future "re-skinning" (e.g., converting Tarot to Poker cards), prompts are split into two layers:
+
+### Layer 1: Style/Canvas Layer (Project Level)
+This layer defines "How" the card looks. It is managed by Antigravity in the specific service configuration.
+- **Constraints**: 2:3 vertical ratio, bold ink outlines, 1900s lithography style.
+- **Rules**: Upright anthropomorphic posture, specific biological markers (ear spots, forehead stripes).
+
+### Layer 2: Narrative/Content Layer (Card Level)
+This layer defines "What" is on the card. It is stored in the `generation` field of each JSON.
+- **Components**: The specific scene, tarot archetypal behavior, and ecological symbolisms.
+
+---
+
 ## Evolution Path
-
-Stage 1:
-
-- use card JSON for generator only
-
-Stage 2:
-
-- enrich card JSON with meanings and ecology
-
-Stage 3:
-
-- use the same JSON as website content input
-
-Stage 4:
-
-- add automated prompt generation and analysis from the same data source
+... (existing stages)
+Stage 5: Implement dynamic style swapping by decoupling style prompts from card-specific descriptions.

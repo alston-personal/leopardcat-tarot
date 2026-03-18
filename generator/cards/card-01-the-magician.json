@@ -29,10 +29,11 @@
   },
   "main_image": null,
   "generation": {
-    "model": "gemini-2.5-flash-image",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Create a tarot card main illustration with no text, no borders, and no frame. An adult Taiwan leopard cat moves through an agricultural field edge at dusk with focused intelligence. Dry reeds, field ridges, rodent traces, and shallow pooled water become symbolic tools of survival. The cat should look poised, alert, and tactically aware, embodying mastery of fragmented habitat. Painterly, luminous realism, earthy greens and ochres, vertical composition, strong central figure, open space above and below for later tarot typography."
+    "image_prompt": null,
+    "narrative": "An adult anthropomorphic Taiwan leopard cat standing at an agricultural field edge with focused tactical intelligence. It masters its environment with symbolic tools: a dry reed (wand), a footprint pool (cup), a blade of grass (sword), and a burrow (disk). Classic magical mastery pose."
   },
   "ornaments": [
     "dry-reed",

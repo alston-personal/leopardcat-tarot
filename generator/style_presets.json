@@ -1,0 +1,19 @@
+{
+  "active_preset": "classic-tarot-v1",
+  "presets": {
+    "classic-tarot-v1": {
+      "description": "1900s mystical lithography with bold ink outlines and anthropomorphic leopard cat characters.",
+      "technical_prefix": "[TECHNICAL: Aspect Ratio 2:3 Vertical, Single Unified Scene]",
+      "style_baseline": "Traditional mystical tarot card illustration in the style of 1900s lithography, with clean bold black ink outlines and Art Nouveau accents.",
+      "character_baseline": "The subject is an anthropomorphic Taiwan leopard cat standing upright on two legs. Essential features: prominent white spots on the back of rounded black ears, two white forehead stripes, and intricate leopard cat rosette spots on its fur.",
+      "composition_baseline": "Center-weighted character. Ensure significant empty atmospheric background at the top 15% and bottom 15% for title and text overlays."
+    },
+    "poker-card-v1": {
+      "description": "Modern flat comic style for playing cards (Future placeholder).",
+      "technical_prefix": "[TECHNICAL: Aspect Ratio 2.5:3.5]",
+      "style_baseline": "Modern flat vector art style...",
+      "character_baseline": "Four-legged realistic leopard cat...",
+      "composition_baseline": "Tight focus on character..."
+    }
+  }
+}

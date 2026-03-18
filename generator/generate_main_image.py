@@ -8,7 +8,7 @@ from urllib import error, request
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_MODEL = "gemini-2.5-flash-image"
+DEFAULT_MODEL = "gemini-2.5-flash"
 DEFAULT_IMAGE_SIZE = "1K"
 DEFAULT_ASPECT_RATIO = "2:3"
 ENV_FALLBACK_FILES = [
@@ -63,7 +63,7 @@ def generate_main_image(
         raise RuntimeError("missing_gemini_api_key")
 
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
-    body = {
+    base_body = {
         "contents": [
             {
                 "parts": [
@@ -75,27 +75,56 @@ def generate_main_image(
         ],
         "generationConfig": {
             "responseModalities": ["TEXT", "IMAGE"],
-            "imageConfig": {
-                "imageSize": image_size,
-                "aspectRatio": aspect_ratio,
-            },
         },
     }
-    req = request.Request(
-        url,
-        data=json.dumps(body).encode("utf-8"),
-        headers={"Content-Type": "application/json; charset=utf-8"},
-        method="POST",
-    )
 
-    try:
-        with request.urlopen(req, timeout=120) as resp:
-            payload = json.loads(resp.read().decode("utf-8"))
-    except error.HTTPError as exc:
-        detail = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"gemini_http_error:{exc.code}:{detail}") from exc
-    except error.URLError as exc:
-        raise RuntimeError(f"gemini_network_error:{exc.reason}") from exc
+    bodies = [
+        {
+            **base_body,
+            "generationConfig": {
+                **base_body["generationConfig"],
+                "imageConfig": {
+                    "imageSize": image_size,
+                    "aspectRatio": aspect_ratio,
+                },
+            },
+        },
+        {
+            **base_body,
+            "generationConfig": {
+                **base_body["generationConfig"],
+                "imageConfig": {
+                    "imageSize": image_size,
+                },
+            },
+        },
+        base_body,
+    ]
+
+    last_error = None
+    payload = None
+    for body in bodies:
+        req = request.Request(
+            url,
+            data=json.dumps(body).encode("utf-8"),
+            headers={"Content-Type": "application/json; charset=utf-8"},
+            method="POST",
+        )
+        try:
+            with request.urlopen(req, timeout=120) as resp:
+                payload = json.loads(resp.read().decode("utf-8"))
+                break
+        except error.HTTPError as exc:
+            detail = exc.read().decode("utf-8", errors="replace")
+            last_error = f"gemini_http_error:{exc.code}:{detail}"
+            if exc.code == 400:
+                continue
+            raise RuntimeError(last_error) from exc
+        except error.URLError as exc:
+            raise RuntimeError(f"gemini_network_error:{exc.reason}") from exc
+
+    if payload is None:
+        raise RuntimeError(last_error or "gemini_request_failed")
 
     image_bytes = extract_inline_image(payload)
     output_path = ROOT / output_rel

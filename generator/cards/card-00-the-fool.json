@@ -29,10 +29,11 @@
   },
   "main_image": null,
   "generation": {
-    "model": "gemini-2.5-flash-image",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Create a richly detailed tarot card main illustration with no text, no borders, and no frame. A juvenile Taiwan leopard cat pauses at the forest-road threshold at night. Headlights bloom in the distance, warm amber light cutting across wet roadside grass while deep blue forest shadows press in behind the cat. The leopard cat should feel vulnerable yet curious, caught between instinct and danger. Painterly, atmospheric, mystical realism, vertical composition, center-weighted subject, room above and below for later tarot title panels."
+    "image_prompt": null,
+    "narrative": "A juvenile anthropomorphic Taiwan leopard cat dressed as a humble traveler with a small knapsack on a stick. It steps forward from a dark forest towards the edge of a moonlit road where distant warm headlights glow."
   },
   "ornaments": [],
   "output": "art/renders/card-00-the-fool-v1.png",

@@ -144,7 +144,7 @@ class RenderHandler(BaseHTTPRequestHandler):
             timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
             output_rel = f"art/generated/{config_abs.stem}-main-{timestamp}.png"
 
-        model = payload.get("model") or generation.get("model") or "gemini-2.5-flash-image"
+        model = payload.get("model") or generation.get("model") or "gemini-2.5-flash"
         aspect_ratio = payload.get("aspect_ratio") or generation.get("aspect_ratio") or "2:3"
         image_size = payload.get("image_size") or generation.get("image_size") or "1K"
 

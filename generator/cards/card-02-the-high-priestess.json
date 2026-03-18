@@ -29,10 +29,11 @@
   },
   "main_image": null,
   "generation": {
-    "model": "gemini-2.5-flash-image",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Create a tarot card main illustration with no text, no borders, and no frame. A Taiwan leopard cat stands beside a quiet forest stream at night, half veiled by mist and reflected moonlight. Arching trees, hidden water, and subtle phosphorescent wood create a sacred, secret atmosphere. The scene should feel silent, intuitive, and protective, with the leopard cat as a guardian of hidden habitat. Painterly mystical realism, cool blue-green palette, vertical composition, elegant negative space for later tarot title panels."
+    "image_prompt": null,
+    "narrative": "An elegant anthropomorphic Taiwan leopard cat standing in a misty sacred stream at night under a silver moon. It is the guardian of the hidden habitat, flanked by two stylized trees forming a gateway. Ethereal lunar colors and mysterious stillness."
   },
   "ornaments": [
     "stream-reflection",
