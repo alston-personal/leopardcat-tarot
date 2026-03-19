@@ -11,13 +11,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [14, 21, 40],
-    "bottom": [64, 86, 102],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [18, 24, 31],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      14,
+      21,
+      40
+    ],
+    "bottom": [
+      64,
+      86,
+      102
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      18,
+      24,
+      31
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "streamside-intuition",
@@ -27,12 +55,12 @@
     "headlights": false,
     "subject": "streamside-leopard-cat"
   },
-  "main_image": null,
+  "main_image": "art/generated/card-02-the-high-priestess.png",
   "generation": {
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
+    "image_prompt": "[CLEAN_V2_NO_BORDER]...",
     "narrative": "An elegant anthropomorphic Taiwan leopard cat standing in a misty sacred stream at night under a silver moon. It is the guardian of the hidden habitat, flanked by two stylized trees forming a gateway. Ethereal lunar colors and mysterious stillness."
   },
   "ornaments": [

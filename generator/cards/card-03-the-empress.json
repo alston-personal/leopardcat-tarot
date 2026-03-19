@@ -1,0 +1,98 @@
+{
+  "id": "card-03-the-empress",
+  "arcana": "major",
+  "number": "III",
+  "title": "THE EMPRESS",
+  "subtitle": "Abundance / Motherhood / Earth",
+  "slug": "the-empress",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      46,
+      82,
+      43
+    ],
+    "bottom": [
+      168,
+      142,
+      85
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      54,
+      42,
+      28
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "lush-hillside-motherhood",
+    "forest": true,
+    "flowers": true,
+    "subject": "mother-leopard-cat"
+  },
+  "main_image": "art/generated/card-03-the-empress.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "[CLEAN_V3_NO_BORDER]...",
+    "narrative": "An adult female anthropomorphic Taiwan leopard cat reclining in a lush, verdant hillside surrounded by dense ferns and wildflowers. She exudes maternal authority and fertility. In the soft shadows of a nearby hollow, two small leopard cat kittens peek out safely. The scene is abundant and life-giving."
+  },
+  "ornaments": [
+    "fern-patterns",
+    "wildflowers",
+    "den-hollow"
+  ],
+  "output": "art/renders/card-03-the-empress.png",
+  "meanings": {
+    "upright": "Abundance, nurturing, fertility, and the flourishing of life within a supportive environment.",
+    "reversed": "Smothering care, creative blocks, or the degradation of habitat that supports life.",
+    "keywords": [
+      "abundance",
+      "motherhood",
+      "nature",
+      "fertility"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult female with kittens",
+    "habitat_fragment": "dense shrublands and hills near water",
+    "risk_theme": "reproductive success and safe denning sites",
+    "mapping_note": "The Empress represents the core of legal reproduction\u2014safe habitat where kittens can be raised without threat."
+  },
+  "website": {
+    "excerpt": "In the lush hills, the Empress embodies the nurturing power of a healthy habitat supporting the next generation.",
+    "seo_title": "The Empress - LeopardCat Tarot",
+    "seo_description": "The Empress tarot card reimagined through leopard cat motherhood and habitat abundance.",
+    "tags": [
+      "major-arcana",
+      "motherhood",
+      "abundance",
+      "leopard-cat"
+    ]
+  }
+}

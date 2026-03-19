@@ -1,0 +1,70 @@
+{
+  "id": "card-06-the-lovers",
+  "arcana": "major",
+  "number": "VI",
+  "title": "THE LOVERS",
+  "subtitle": "Attraction / Choice / Breeding Season",
+  "slug": "06-the-lovers",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      204,
+      131,
+      149
+    ],
+    "bottom": [
+      46,
+      82,
+      43
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      64,
+      24,
+      42
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "breeding-season-encounter",
+    "subject": "pair-of-leopard-cats"
+  },
+  "main_image": "art/generated/card-06-the-lovers.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "A pair of anthropomorphic Taiwan leopard cats\u2014one male, one female\u2014standing at a scenic crossroads in a flowering forest glade. They wear elegant traditional attire, looking at each other with deep mutual respect. Above them, the canopy forms a heart-like arch through the sunbeams. Meaning: Choice, partnership, and the seasonal biological drive to continue the lineage."
+  },
+  "output": "art/renders/card-06-the-lovers.png",
+  "meanings": {
+    "upright": "TBD",
+    "reversed": "TBD"
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat"
+  }
+}

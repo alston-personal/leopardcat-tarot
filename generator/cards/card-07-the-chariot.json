@@ -1,0 +1,70 @@
+{
+  "id": "card-07-the-chariot",
+  "arcana": "major",
+  "number": "VII",
+  "title": "THE CHARIOT",
+  "subtitle": "Willpower / Victory / Determined Crossing",
+  "slug": "07-the-chariot",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      85,
+      120,
+      168
+    ],
+    "bottom": [
+      54,
+      54,
+      54
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      24,
+      42,
+      64
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "determined-corridor-crossing",
+    "subject": "strong-male-leopard-cat"
+  },
+  "main_image": "art/generated/card-07-the-chariot.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "A powerful anthropomorphic male Taiwan leopard cat standing heroically upon a high rock formation, holding a spear. He points forward toward a distant forest patch, ignoring the dangerous light-filled valley below. His expression is one of unbreakable focus. Meaning: Overcoming obstacles, willpower, and the successful navigation through fragmented human landscapes."
+  },
+  "output": "art/renders/card-07-the-chariot.png",
+  "meanings": {
+    "upright": "TBD",
+    "reversed": "TBD"
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat"
+  }
+}

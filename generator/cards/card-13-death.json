@@ -1,0 +1,63 @@
+{
+  "id": "card-13-death",
+  "arcana": "major",
+  "number": "XIII",
+  "title": "DEATH",
+  "subtitle": "Ending / Transformation / Warning",
+  "slug": "13-death",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      54,
+      54,
+      54
+    ],
+    "bottom": [
+      26,
+      26,
+      26
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      42,
+      24,
+      24
+    ],
+    "text_primary": [
+      241,
+      196,
+      15
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "harsh-reality-transition",
+    "subject": "skeleton-leopard-cat-warrior"
+  },
+  "main_image": "art/generated/card-13-death.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "A skeletal anthropomorphic Taiwan leopard cat wearing black iron armor, riding a pale skeletal steed across a field of withered autumn grass. He holds a banner with a white rosette pattern. In the background, the shadows of broken highway fences are visible under a blood-red sky. Meaning: Transition, the end of old habits, and the stark reality of survival on the brink."
+  },
+  "output": "art/renders/card-13-death.png"
+}

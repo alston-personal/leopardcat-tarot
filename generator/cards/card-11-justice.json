@@ -1,0 +1,63 @@
+{
+  "id": "card-11-justice",
+  "arcana": "major",
+  "number": "XI",
+  "title": "JUSTICE",
+  "subtitle": "Balance / Law / Ecological Integrity",
+  "slug": "11-justice",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      44,
+      62,
+      80
+    ],
+    "bottom": [
+      189,
+      195,
+      199
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      34,
+      48,
+      74
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "ecological-balance-scales",
+    "subject": "judicial-leopard-cat"
+  },
+  "main_image": "art/generated/card-11-justice.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "A dignified anthropomorphic Taiwan leopard cat wearing formal judicial robes, sitting upon a mossy stone chair at a forest boundary. He holds a sword in one hand and a gold scale in the other. On the scales, a healthy forest patch balances against a cluster of rural houses. Meaning: Fairness, natural laws, and the complex balance between wildlife habitat and human development."
+  },
+  "output": "art/renders/card-11-justice.png"
+}

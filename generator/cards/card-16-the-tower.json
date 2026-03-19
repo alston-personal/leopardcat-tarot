@@ -1,0 +1,62 @@
+{
+  "id": "card-16-the-tower",
+  "arcana": "major",
+  "number": "XVI",
+  "title": "THE TOWER",
+  "subtitle": "Crisis / Destruction / Habitat Loss",
+  "slug": "16-the-tower",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      20,
+      20,
+      20
+    ],
+    "bottom": [
+      120,
+      40,
+      31
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      54,
+      24,
+      24
+    ],
+    "text_primary": [
+      255,
+      255,
+      255
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "major-arcana-finale"
+  },
+  "main_image": "art/generated/card-16-the-tower.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "A massive ancient redwood-like tree is being struck by a devastating purple lightning bolt during a violent storm. The tree is splitting apart, and stone bird-houses are falling from its branches. A terrified anthropomorphic Taiwan leopard cat leaps from a crumbling cliff nearby. Meaning: Sudden upheaval, the collapse of a safe territory, and the chaotic destruction of old structures."
+  },
+  "output": "art/renders/card-16-16-the-tower.png"
+}

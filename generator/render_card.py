@@ -9,10 +9,6 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def load_font(size: int, bold: bool = False):
-    path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-    return ImageFont.truetype(path, size=size)
-
 
 def vertical_gradient(size, top_color, bottom_color):
     width, height = size
@@ -206,9 +202,37 @@ def draw_main_image(base: Image.Image, config: dict):
         image_path = ROOT / main_image
         if image_path.exists():
             art = Image.open(image_path).convert("RGBA")
-            art = art.resize((width - 220, height - 700))
+            
+            # --- Safe Trim (Remove AI-generated margins/borders) ---
+            SAFE_TRIM = 20
+            img_w, img_h = art.size
+            if img_w > SAFE_TRIM * 2 and img_h > SAFE_TRIM * 2:
+                art = art.crop((SAFE_TRIM, SAFE_TRIM, img_w - SAFE_TRIM, img_h - SAFE_TRIM))
+                img_w, img_h = art.size # Update dimensions after trim
+
+            # --- Aspect Ratio Cover (Center Crop) Logic ---
+            target_w = width - 220
+            target_h = height - 700
+            
+            img_ratio = img_w / img_h
+            target_ratio = target_w / target_h
+            
+            if img_ratio > target_ratio:
+                # Image is relatively wider than target - crop left/right
+                crop_w = int(target_ratio * img_h)
+                offset = (img_w - crop_w) // 2
+                art = art.crop((offset, 0, offset + crop_w, img_h))
+            else:
+                # Image is relatively taller than target - crop top/bottom
+                crop_h = int(img_w / target_ratio)
+                offset = (img_h - crop_h) // 2
+                art = art.crop((0, offset, img_w, offset + crop_h))
+            
+            art = art.resize((target_w, target_h), Image.Resampling.LANCZOS)
             base.alpha_composite(art, (110, 360))
             return
+        else:
+            raise FileNotFoundError(f"Main image not found at {image_path}")
 
     scene = config.get("scene", {})
     draw = ImageDraw.Draw(base)
@@ -243,23 +267,70 @@ def draw_frame(draw: ImageDraw.ImageDraw, width: int, height: int, palette: dict
     draw.rounded_rectangle((240, height - 340, width - 240, height - 160), radius=22, fill=tuple(palette["panel"]), outline=tuple(palette["frame"]), width=3)
 
 
+def load_font(size: int, bold: bool = False):
+    # Switching to Serif for 1900s lithographic historical feel
+    path = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf" if bold else "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"
+    if not Path(path).exists():
+        path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+    return ImageFont.truetype(path, size=size)
+
+
 def draw_text(draw: ImageDraw.ImageDraw, width: int, height: int, config: dict, palette: dict):
-    title_font = load_font(84, bold=True)
-    subtitle_font = load_font(42)
-    numeral_font = load_font(64, bold=True)
+    # Width constraints (Panel width - absolute padding)
+    title_max_w = (width - 300) - 80 
+    subtitle_max_w = (width - 480) - 60
+    numeral_max_w = (width - 480) - 60
+
+    def draw_spaced_text(draw, text, y, font_size, is_bold, fill, max_w, letter_spacing=10):
+        # Local recursive optimization to fit text
+        current_spacing = letter_spacing
+        current_font_size = font_size
+        
+        while True:
+            font = load_font(current_font_size, bold=is_bold)
+            char_widths = [draw.textlength(c, font=font) for c in text]
+            total_w = sum(char_widths) + (len(text)-1)*current_spacing
+            
+            if total_w <= max_w or (current_font_size <= 24 and current_spacing <= 2):
+                break
+            
+            # Step 1: Reduce spacing first
+            if current_spacing > 2:
+                current_spacing -= 1
+            else:
+                # Step 2: Reduce font size
+                current_font_size -= 2
+
+        current_x = (width - total_w) / 2
+        for char in text:
+            draw.text((current_x, y), char, font=font, fill=fill)
+            current_x += draw.textlength(char, font=font) + current_spacing
 
     title = config["title"]
     numeral = config["number"]
     subtitle = config["subtitle"]
 
-    title_w = draw.textlength(title, font=title_font)
-    draw.text(((width - title_w) / 2, 168), title, font=title_font, fill=tuple(palette["text_primary"]))
+    # Top Panel
+    draw_spaced_text(draw, title, 168, 84, False, tuple(palette["text_primary"]), title_max_w, letter_spacing=12)
+    # Bottom Panel (Numeral & Subtitle)
+    draw_spaced_text(draw, numeral, height - 315, 64, True, tuple(palette["text_primary"]), numeral_max_w, letter_spacing=8)
+    draw_spaced_text(draw, subtitle, height - 235, 42, False, tuple(palette["text_secondary"]), subtitle_max_w, letter_spacing=4)
 
-    numeral_w = draw.textlength(numeral, font=numeral_font)
-    draw.text(((width - numeral_w) / 2, height - 315), numeral, font=numeral_font, fill=tuple(palette["text_primary"]))
 
-    subtitle_w = draw.textlength(subtitle, font=subtitle_font)
-    draw.text(((width - subtitle_w) / 2, height - 235), subtitle, font=subtitle_font, fill=tuple(palette["text_secondary"]))
+def apply_paper_grain(image: Image.Image, intensity: int = 15):
+    import random
+    width, height = image.size
+    pixels = image.load()
+    for y in range(height):
+        for x in range(width):
+            noise = random.randint(-intensity, intensity)
+            r, g, b = pixels[x, y]
+            pixels[x, y] = (
+                max(0, min(255, r + noise)),
+                max(0, min(255, g + noise)),
+                max(0, min(255, b + noise))
+            )
+    return image
 
 
 def render_card(config: dict, output_override: str | None = None):
@@ -275,10 +346,14 @@ def render_card(config: dict, output_override: str | None = None):
     draw_frame(draw, width, height, palette)
     draw_text(draw, width, height, config, palette)
 
+    # FINAL FINISHING: Apply paper grain to the whole card to merge AI and UI layers
+    final_img = base.convert("RGB")
+    final_img = apply_paper_grain(final_img, intensity=8)
+    
     output_rel = output_override or config["output"]
     output_path = ROOT / output_rel
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    base.convert("RGB").save(output_path, quality=95)
+    final_img.save(output_path, quality=95)
     return output_path
 
 

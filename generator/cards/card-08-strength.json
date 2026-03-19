@@ -1,0 +1,70 @@
+{
+  "id": "card-08-strength",
+  "arcana": "major",
+  "number": "VIII",
+  "title": "STRENGTH",
+  "subtitle": "Grace / Fortitude / Inner Power",
+  "slug": "08-strength",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      241,
+      196,
+      15
+    ],
+    "bottom": [
+      39,
+      174,
+      96
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      123,
+      75,
+      42
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "calm-predatory-mastery",
+    "subject": "serene-female-leopard-cat"
+  },
+  "main_image": "art/generated/card-08-strength.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "A graceful female anthropomorphic Taiwan leopard cat kneeling calmly in a sun-dappled bamboo grove. She exerts gentle control over a wild, untamed hawk perched on her arm, looking the raptor in the eye with calm authority. Meaning: Taming the wild within, persistent quiet strength, and the delicate balance of predatory nature and self-control."
+  },
+  "output": "art/renders/card-08-strength.png",
+  "meanings": {
+    "upright": "TBD",
+    "reversed": "TBD"
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat"
+  }
+}

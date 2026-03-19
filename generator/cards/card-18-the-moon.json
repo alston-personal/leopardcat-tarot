@@ -1,0 +1,62 @@
+{
+  "id": "card-18-the-moon",
+  "arcana": "major",
+  "number": "XVIII",
+  "title": "THE MOON",
+  "subtitle": "Illusion / Fear / Nocturnal Instinct",
+  "slug": "18-the-moon",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      44,
+      62,
+      80
+    ],
+    "bottom": [
+      22,
+      160,
+      133
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      24,
+      42,
+      64
+    ],
+    "text_primary": [
+      149,
+      165,
+      166
+    ],
+    "text_secondary": [
+      127,
+      140,
+      141
+    ]
+  },
+  "scene": {
+    "theme": "major-arcana-finale"
+  },
+  "main_image": "art/generated/card-18-the-moon.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "A large, pale moon hangs between two high jagged mountain peaks. A wild dog and a leopard cat are howling/hissing at the moon, while a crayfish emerges from a stream in the foreground. Meaning: Hidden enemies, the confusing path of night survival, and the primal instincts of the wild."
+  },
+  "output": "art/renders/card-18-18-the-moon.png"
+}

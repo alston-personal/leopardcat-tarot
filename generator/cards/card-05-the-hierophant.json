@@ -1,0 +1,72 @@
+{
+  "id": "card-05-the-hierophant",
+  "arcana": "major",
+  "number": "V",
+  "title": "THE HIEROPHANT",
+  "subtitle": "Tradition / Wisdom / Ancient Trails",
+  "slug": "the-hierophant",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      34,
+      48,
+      74
+    ],
+    "bottom": [
+      74,
+      62,
+      48
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      28,
+      38,
+      54
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "ancient-trail-wisdom",
+    "forest": true,
+    "stone_marker": true,
+    "subject": "elder-wise-leopard-cat"
+  },
+  "main_image": "art/generated/card-05-the-hierophant.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "An elderly, wise anthropomorphic Taiwan leopard cat wearing ornate traditional tribal-patterned robes. He stands solemnly before a massive moss-covered ancient tree that marks an old boundary trail. He holds a staff made of polished hardwood. His expression is one of calm, ancestral wisdom, teaching the importance of following the safe, ancient paths of the forest. Deep indigo and dark walnut color palette."
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "elderly adult",
+    "habitat_fragment": "stable, low-disturbance mature forest and animal runs (trails)",
+    "risk_theme": "disruption of traditional migration corridors and home ranges",
+    "mapping_note": "The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations\u2014following the safe trails that have existed for centuries."
+  },
+  "output": "art/renders/card-05-the-hierophant.png"
+}

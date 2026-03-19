@@ -1,0 +1,62 @@
+{
+  "id": "card-20-judgement",
+  "arcana": "major",
+  "number": "XX",
+  "title": "JUDGEMENT",
+  "subtitle": "Rebirth / Calling / Conservation Law",
+  "slug": "20-judgement",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      52,
+      152,
+      219
+    ],
+    "bottom": [
+      189,
+      195,
+      199
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      42,
+      54,
+      74
+    ],
+    "text_primary": [
+      255,
+      255,
+      255
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "major-arcana-finale"
+  },
+  "main_image": "art/generated/card-20-judgement.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "An angelic anthropomorphic Taiwan leopard cat in the sky blows a golden trumpet. Below, leopard cat families emerge from stone-like dens with open arms, looking up toward the light. Meaning: A call to action, the collective awakening for conservation, and the evaluation of past ecological choices."
+  },
+  "output": "art/renders/card-20-20-judgement.png"
+}

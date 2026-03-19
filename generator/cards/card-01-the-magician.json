@@ -11,13 +11,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [28, 36, 28],
-    "bottom": [108, 104, 63],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [24, 28, 23],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      28,
+      36,
+      28
+    ],
+    "bottom": [
+      108,
+      104,
+      63
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      24,
+      28,
+      23
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "field-edge-adaptation",
@@ -27,12 +55,12 @@
     "headlights": false,
     "subject": "adult-leopard-cat"
   },
-  "main_image": null,
+  "main_image": "art/generated/card-01-the-magician.png",
   "generation": {
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
+    "image_prompt": "[CLEAN_V2_NO_BORDER]...",
     "narrative": "An adult anthropomorphic Taiwan leopard cat standing at an agricultural field edge with focused tactical intelligence. It masters its environment with symbolic tools: a dry reed (wand), a footprint pool (cup), a blade of grass (sword), and a burrow (disk). Classic magical mastery pose."
   },
   "ornaments": [

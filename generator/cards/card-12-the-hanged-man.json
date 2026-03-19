@@ -1,0 +1,63 @@
+{
+  "id": "card-12-the-hanged-man",
+  "arcana": "major",
+  "number": "XII",
+  "title": "THE HANGED MAN",
+  "subtitle": "Pause / Perspective / Sacrifice",
+  "slug": "12-the-hanged-man",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      22,
+      160,
+      133
+    ],
+    "bottom": [
+      44,
+      62,
+      80
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      24,
+      64,
+      54
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "upside-down-vigilance",
+    "subject": "hanging-leopard-cat"
+  },
+  "main_image": "art/generated/card-12-the-hanged-man.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "An anthropomorphic Taiwan leopard cat hanging upside down by one leg from a horizontal tree branch in a high forest canopy. He looks calm and contemplative, ignoring the world below. A faint halo of moonlight glows behind his head. Meaning: New perspective, the necessary waiting period in a fragmented habitat, and finding peace in suspension."
+  },
+  "output": "art/renders/card-12-the-hanged-man.png"
+}

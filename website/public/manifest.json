@@ -1,0 +1,178 @@
+[
+  {
+    "id": "card-00-the-fool",
+    "number": 0,
+    "title": "THE FOOL",
+    "image": "art/renders/card-00-the-fool.png",
+    "meaning": "New beginnings, openness, instinctive trust, and a willingness to step toward the unknown.",
+    "ecology": "The Fool's leap of faith becomes a young leopard cat crossing the line between cover and asphalt."
+  },
+  {
+    "id": "card-01-the-magician",
+    "number": 1,
+    "title": "THE MAGICIAN",
+    "image": "art/renders/card-01-the-magician.png",
+    "meaning": "Focused skill, resourcefulness, environmental intelligence, and the power to act with precision.",
+    "ecology": "The Magician's elemental mastery becomes a leopard cat's ability to read and use edge habitat with tactical intelligence."
+  },
+  {
+    "id": "card-02-the-high-priestess",
+    "number": 2,
+    "title": "THE HIGH PRIESTESS",
+    "image": "art/renders/card-02-the-high-priestess.png",
+    "meaning": "Intuition, restraint, inner knowledge, and perception that moves beneath surface noise.",
+    "ecology": "The High Priestess becomes a guardian of quiet habitat, where water, shadow, and instinct preserve survival."
+  },
+  {
+    "id": "card-03-the-empress",
+    "number": 3,
+    "title": "THE EMPRESS",
+    "image": "art/renders/card-03-the-empress.png",
+    "meaning": "Abundance, nurturing, fertility, and the flourishing of life within a supportive environment.",
+    "ecology": "The Empress represents the core of legal reproduction\u2014safe habitat where kittens can be raised without threat."
+  },
+  {
+    "id": "card-04-the-emperor",
+    "number": 4,
+    "title": "THE EMPEROR",
+    "image": "art/renders/card-04-the-emperor.png",
+    "meaning": "Authority, establishment, foundation, protection of territory, and structured leadership.",
+    "ecology": "The Emperor is the dominant male securing a massive home range, needing large patches of safe forest to sustain his law over the land."
+  },
+  {
+    "id": "card-05-the-hierophant",
+    "number": 5,
+    "title": "THE HIEROPHANT",
+    "image": "art/renders/card-05-the-hierophant.png",
+    "meaning": "Traditional wisdom, established systems, and the passing of ancestral knowledge.",
+    "ecology": "The Hierophant follows the 'Traditional Trails'—ancient pathways through the hills that generations of ancestors have used to avoid human conflict."
+  },
+  {
+    "id": "card-06-the-lovers",
+    "number": 6,
+    "title": "THE LOVERS",
+    "image": "art/renders/card-06-the-lovers.png",
+    "meaning": "Partnership, union, and the choice of alignment with nature's rhythms.",
+    "ecology": "The Lovers represents the precarious balance of the mating season, where deep instinct overrides the usual solitary caution of the leopard cat."
+  },
+  {
+    "id": "card-07-the-chariot",
+    "number": 7,
+    "title": "THE CHARIOT",
+    "image": "art/renders/card-07-the-chariot.png",
+    "meaning": "Willpower, victory, and the disciplined control of opposing forces.",
+    "ecology": "The Chariot is the determined expansion into new territory, overcoming mountain barriers and human encroachment through sheer adaptability."
+  },
+  {
+    "id": "card-08-strength",
+    "number": 8,
+    "title": "STRENGTH",
+    "image": "art/renders/card-08-strength.png",
+    "meaning": "Inner courage, compassion, and the quiet mastery of feral instincts.",
+    "ecology": "Strength is the mother leopard cat's resilience in nursing her litter in a shrinking forest, protecting them with fierce but quiet devotion."
+  },
+  {
+    "id": "card-09-the-hermit",
+    "number": 9,
+    "title": "THE HERMIT",
+    "image": "art/renders/card-09-the-hermit.png",
+    "meaning": "Soul-searching, introspection, and the pursuit of truth in solitude.",
+    "ecology": "The Hermit represents the deep-mountain individualist, a ghost of the high peaks who avoids all human gaze to preserve original wildness."
+  },
+  {
+    "id": "card-10-wheel-of-fortune",
+    "number": 10,
+    "title": "WHEEL OF FORTUNE",
+    "image": "art/renders/card-10-wheel-of-fortune.png",
+    "meaning": "Cycles of change, destiny, and the unpredictable nature of luck.",
+    "ecology": "The Wheel is the ecological cycle of boom and bust—from seasons of drought to the abundance of a successful harvest year."
+  },
+  {
+    "id": "card-11-justice",
+    "number": 11,
+    "title": "JUSTICE",
+    "image": "art/renders/card-11-justice.png",
+    "meaning": "Fairness, truth, and the legal structures that govern the land.",
+    "ecology": "Justice is the landmark environmental legislation that balances human progress with the survival rights of the leopard cat."
+  },
+  {
+    "id": "card-12-the-hanged-man",
+    "number": 12,
+    "title": "THE HANGED MAN",
+    "image": "art/renders/card-12-the-hanged-man.png",
+    "meaning": "Surrender, new perspective, and the sacrifice for a greater evolution.",
+    "ecology": "The Hanged Man is the period of 'stillness' after a major habitat change, where the survivor waits in suspension for a new niche to open."
+  },
+  {
+    "id": "card-13-death",
+    "number": 13,
+    "title": "DEATH",
+    "image": "art/renders/card-13-death.png",
+    "meaning": "Transformation, ending, and the clearing away of the old for new growth.",
+    "ecology": "Death is the roadkill incident that ends an individual life but sparks community awareness and the birth of new protective corridors."
+  },
+  {
+    "id": "card-14-temperance",
+    "number": 14,
+    "title": "TEMPERANCE",
+    "image": "art/renders/card-14-temperance.png",
+    "meaning": "Alchemical balance, patience, and the moderation of extremes.",
+    "ecology": "Temperance is the 'Stream Sanctuary' where mountain waters blend with valley forests, creating the perfect middle-ground for survival."
+  },
+  {
+    "id": "card-15-the-devil",
+    "number": 15,
+    "title": "THE DEVIL",
+    "image": "art/renders/card-15-the-devil.png",
+    "meaning": "Bondage, addiction to surface comforts, and the trap of perceived power.",
+    "ecology": "The Devil is the chicken coop trap and the poisoned bait—the tempting lure of easy food that leads to tragic confinement."
+  },
+  {
+    "id": "card-16-the-tower",
+    "number": 16,
+    "title": "THE TOWER",
+    "image": "art/renders/card-16-the-tower.png",
+    "meaning": "Sudden upheaval, revelation, and the collapse of false foundations.",
+    "ecology": "The Tower is the forest clearing and the earth-shaking development that shatters the old world, forcing a chaotic leap into a new reality."
+  },
+  {
+    "id": "card-17-the-star",
+    "number": 17,
+    "title": "THE STAR",
+    "image": "art/renders/card-17-the-star.png",
+    "meaning": "Hope, inspiration, and the guiding light after a dark storm.",
+    "ecology": "The Star is the first kitten born in a restored habitat—a tiny beacon of light signaling that the land is once again whole."
+  },
+  {
+    "id": "card-18-the-moon",
+    "number": 18,
+    "title": "THE MOON",
+    "image": "art/renders/card-18-the-moon.png",
+    "meaning": "Illusion, hidden danger, and the navigating of deep darkness.",
+    "ecology": "The Moon is the nocturnal world of the leopard cat, where shadows hide predators and the ghost-white moonlight guides the hunt."
+  },
+  {
+    "id": "card-19-the-sun",
+    "number": 19,
+    "title": "THE SUN",
+    "image": "art/renders/card-19-the-sun.png",
+    "meaning": "Success, vitality, and the celebration of life in the open light.",
+    "ecology": "The Sun is the abundant valley in spring, where safe sunshine allows for the joyful growth of a new generation."
+  },
+  {
+    "id": "card-20-judgement",
+    "number": 20,
+    "title": "JUDGEMENT",
+    "image": "art/renders/card-20-judgement.png",
+    "meaning": "Awakening, reckoning, and the final crossing of a threshold.",
+    "ecology": "Judgement is the survival record of the species—the moment where human collective action decides if the leopard cat rises or falls."
+  },
+  {
+    "id": "card-21-the-world",
+    "number": 21,
+    "title": "THE WORLD",
+    "image": "art/renders/card-21-the-world.png",
+    "meaning": "Completion, integration, and the cosmic harmony of a balanced system.",
+    "ecology": "The World is the Satoyama dream—an integrated landscape where humans and wildlife coexist in a perfect, eternal circle of life."
+  }
+]

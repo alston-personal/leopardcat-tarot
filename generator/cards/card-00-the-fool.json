@@ -11,13 +11,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [12, 22, 36],
-    "bottom": [42, 69, 51],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [20, 26, 24],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      12,
+      22,
+      36
+    ],
+    "bottom": [
+      42,
+      69,
+      51
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      20,
+      26,
+      24
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "forest-road-threshold",
@@ -27,16 +55,16 @@
     "headlights": true,
     "subject": "juvenile-leopard-cat"
   },
-  "main_image": null,
+  "main_image": "art/generated/card-00-the-fool.png",
   "generation": {
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
+    "image_prompt": "[CLEAN_V2_NO_BORDER]...",
     "narrative": "A juvenile anthropomorphic Taiwan leopard cat dressed as a humble traveler with a small knapsack on a stick. It steps forward from a dark forest towards the edge of a moonlit road where distant warm headlights glow."
   },
   "ornaments": [],
-  "output": "art/renders/card-00-the-fool-v1.png",
+  "output": "art/renders/card-00-the-fool.png",
   "meanings": {
     "upright": "New beginnings, openness, instinctive trust, and a willingness to step toward the unknown.",
     "reversed": "Naivety, poor risk reading, and preventable danger at the edge of a transition.",

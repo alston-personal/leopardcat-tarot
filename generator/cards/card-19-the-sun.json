@@ -1,0 +1,62 @@
+{
+  "id": "card-19-the-sun",
+  "arcana": "major",
+  "number": "XIX",
+  "title": "THE SUN",
+  "subtitle": "Success / Vitality / Safe Haven",
+  "slug": "19-the-sun",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      241,
+      196,
+      15
+    ],
+    "bottom": [
+      230,
+      126,
+      34
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      102,
+      64,
+      24
+    ],
+    "text_primary": [
+      255,
+      255,
+      255
+    ],
+    "text_secondary": [
+      243,
+      233,
+      201
+    ]
+  },
+  "scene": {
+    "theme": "major-arcana-finale"
+  },
+  "main_image": "art/generated/card-19-the-sun.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "A giant golden sun with human-like features shines over a lush field of sunflowers. A cheerful young anthropomorphic leopard cat kitten rides a white horse, holding a bright red banner. Meaning: Abundance, flourishing populations, and the ultimate warmth of a secure and healthy environment."
+  },
+  "output": "art/renders/card-19-19-the-sun.png"
+}

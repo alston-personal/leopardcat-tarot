@@ -1,0 +1,70 @@
+{
+  "id": "card-10-wheel-of-fortune",
+  "arcana": "major",
+  "number": "X",
+  "title": "WHEEL OF FORTUNE",
+  "subtitle": "Cycles / Fate / Environmental Change",
+  "slug": "10-wheel-of-fortune",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      142,
+      68,
+      173
+    ],
+    "bottom": [
+      230,
+      126,
+      34
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      54,
+      42,
+      28
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "seasonal-ecological-wheel",
+    "subject": "no-subject-center"
+  },
+  "main_image": "art/generated/card-10-wheel-of-fortune.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "A large mystical wooden wheel constructed from woven vines and stones, suspended between two huge forest trees. Various forest creatures (cricket, rat, hare, bird) are depicted in the quadrants representing seasons. An anthropomorphic Taiwan leopard cat mask sits at the very center, eyes closed in meditation of the cosmic cycle."
+  },
+  "output": "art/renders/card-10-wheel-of-fortune.png",
+  "meanings": {
+    "upright": "TBD",
+    "reversed": "TBD"
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat"
+  }
+}
