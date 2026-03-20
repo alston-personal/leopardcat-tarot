@@ -1,0 +1,62 @@
+{
+  "id": "card-17-the-star",
+  "arcana": "major",
+  "number": "XVII",
+  "title": "THE STAR",
+  "subtitle": "Hope / Guidance / Ecological Recovery",
+  "slug": "17-the-star",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      43,
+      62,
+      80
+    ],
+    "bottom": [
+      52,
+      152,
+      219
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      34,
+      48,
+      74
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "major-arcana-finale"
+  },
+  "main_image": "art/generated/card-17-the-star.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "A beautiful, serene anthropomorphic Taiwan leopard cat stands by a mountain pool at night. Above her, one giant bright star and seven smaller stars shine brilliantly. She pours clear water from two silver jars\u2014one into the pool, one onto the dry mossy ground. Meaning: Inspiration, renewal of the species, and the guiding hope of conservation efforts."
+  },
+  "output": "art/renders/card-17-17-the-star.png"
+}

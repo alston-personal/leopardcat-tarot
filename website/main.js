@@ -1,24 +1,12 @@
-// Global observer instance
-let revealObserver;
-
 async function initWebsite() {
-    const debugEl = document.getElementById('debug-log');
-    
     try {
-        logDebug('Fetching content... (UA: ' + navigator.userAgent + ')');
-        
-        // Use absolute-style paths for robustness in different environments
         const [contentRes, manifestRes] = await Promise.all([
-            fetch('content.json').catch(e => { throw new Error('Fetch content.json failed: ' + e.message); }),
-            fetch('manifest.json').catch(e => { throw new Error('Fetch manifest.json failed: ' + e.message); })
+            fetch('content.json'),
+            fetch('manifest.json')
         ]);
-        
-        logDebug('Content fetched. Processing JSON...');
         
         const content = await contentRes.json();
         const cards = await manifestRes.json();
-
-        logDebug('Loaded ' + cards.length + ' cards. Starting render...');
 
         initScrollReveal(); 
         
@@ -27,25 +15,8 @@ async function initWebsite() {
         renderConservation(content.conservation);
         renderGallery(content.groups, cards);
         
-        logDebug('Sanctuary Ready.');
-        if (debugEl) setTimeout(() => debugEl.style.display = 'none', 3000); // Hide if successful
-        
     } catch (err) {
         console.error('Failed to load website content:', err);
-        logDebug('❌ ERROR: ' + err.message, true);
-        if (debugEl) debugEl.style.display = 'block';
-    }
-}
-
-function logDebug(msg, isError = false) {
-    const debugEl = document.getElementById('debug-log');
-    if (debugEl) {
-        const line = document.createElement('div');
-        line.style.color = isError ? '#ff4444' : '#00ff00';
-        line.style.fontSize = '12px';
-        line.style.marginBottom = '4px';
-        line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
-        debugEl.appendChild(line);
     }
 }
 

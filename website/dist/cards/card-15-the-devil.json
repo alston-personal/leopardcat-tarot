@@ -1,0 +1,63 @@
+{
+  "id": "card-15-the-devil",
+  "arcana": "major",
+  "number": "XV",
+  "title": "THE DEVIL",
+  "subtitle": "Shadow / Entrapment / Baited Cage",
+  "slug": "15-the-devil",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      100,
+      30,
+      22
+    ],
+    "bottom": [
+      26,
+      26,
+      26
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      54,
+      28,
+      28
+    ],
+    "text_primary": [
+      231,
+      76,
+      60
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "shadowed-temptation-cage",
+    "subject": "horned-leopard-cat-demon"
+  },
+  "main_image": "art/generated/card-15-the-devil.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": null,
+    "narrative": "A muscular, menacing anthropomorphic Taiwan leopard cat with ram-like horns, sitting upon a concrete block under a dark highway bridge. Two smaller cats are chained to the base of his throne by their instincts. A baited cage with a dead chicken glows in the dark nearby. Meaning: Enslavement to greed, the shadow side of urbanization, and the traps (both physical and mental) that bind the wild."
+  },
+  "output": "art/renders/card-15-the-devil.png"
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>石虎塔羅 LeopardCat Tarot | 數位展廳</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Noto+Serif+TC:wght@300;600;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Premium Metallic SVG Filter -->
+    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true" focusable="false">
+      <filter id="metallic-bevel" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur"/>
+        <feSpecularLighting in="blur" surfaceScale="5" specularConstant="1.2" specularExponent="40" lighting-color="#fff9e3" result="specular">
+          <fePointLight x="-5000" y="-10000" z="20000"/>
+        </feSpecularLighting>
+        <feComposite in="specular" in2="SourceAlpha" operator="in" result="composite"/>
+        <feMerge>
+          <feMergeNode in="SourceGraphic"/>
+          <feMergeNode in="composite"/>
+        </feMerge>
+      </filter>
+    </svg>
+  <script type="module" crossorigin src="/assets/index-DgvlN09k.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CMdjZPoi.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">靈山靈貓 | 石虎計畫</div>
+        <div class="nav-links">
+            <a href="#intro">生態靈魂</a>
+            <a href="#chronicle">生命紀事</a>
+            <a href="#gallery">大阿爾克那</a>
+        </div>
+    </nav>
+
+    <div id="bg-overlay"></div>
+    
+    <div id="app">
+        <section id="hero" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="glint-text">靈山靈貓</h1>
+                <p class="subtitle">Leopard Cat Sanctuary: An Ecological Journey</p>
+                <div class="hero-cta">
+                    <a href="#intro" class="btn btn-gold">進入山林</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="intro" class="section intro-section">
+            <div class="container">
+                <div class="section-title">
+                    <span class="label">Introduction</span>
+                    <h2>森與靈的守護者</h2>
+                </div>
+                <div class="intro-grid">
+                    <div class="intro-text">
+                        <p id="intro-desc"></p>
+                        <div id="intro-stats" class="stats-grid"></div>
+                    </div>
+                    <div class="intro-gallery">
+                        <img src="./art/documentary/forest-peek.png" alt="野生石虎：林間窺視" class="doc-img">
+                        <img src="./art/documentary/road-threshold.png" alt="生存考驗：橫越道路" class="doc-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="chronicle" class="section chronicle-section">
+            <div class="container">
+                <div class="section-title">
+                    <span class="label">History</span>
+                    <h2>環境生命紀事</h2>
+                </div>
+                <div id="events-list" class="timeline"></div>
+                <div class="section-cta">
+                    <a href="#gallery" class="btn btn-gold-outline">進入大阿爾克那展廳</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section gallery-section">
+            <div class="container">
+                <div class="section-title">
+                    <span class="label">The Tarot Gallery</span>
+                    <h2>大阿爾克那：石虎的生命旅程</h2>
+                </div>
+                
+                <div id="gallery-container">
+                    <!-- Groups will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="conservation" class="section conservation-section">
+            <div class="container">
+                <div class="section-title">
+                    <span class="label">Call to Action</span>
+                    <h2 id="cons-title"></h2>
+                </div>
+                <div class="cons-content">
+                    <p id="cons-desc" class="content-text"></p>
+                    <div id="cons-links" class="cons-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="support" class="section support-section">
+            <div class="container">
+                <div class="support-card">
+                    <span class="label">Support the Sanctuary</span>
+                    <h2>支持與贊助</h2>
+                    <p class="content-text">如果您認同我們的理念，歡迎透過以下方式支持計畫持續運作，讓石虎的靈魂故事能繼續傳承。</p>
+                    <div class="support-actions">
+                        <a href="https://buymeacoffee.com/registerc" target="_blank" class="btn btn-coffee">Buy me a Coffee</a>
+                        <a href="https://www.paypal.com/paypalme/alstonhuang" target="_blank" class="btn btn-paypal">PayPal</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2026 LeopardCat Tarot Project. All rights reserved.</p>
+        </footer>
+    </div>
+    
+</body>
+</html>
