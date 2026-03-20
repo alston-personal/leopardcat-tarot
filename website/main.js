@@ -1,3 +1,6 @@
+// Global observer instance
+let revealObserver;
+
 async function initWebsite() {
     try {
         const [contentRes, manifestRes] = await Promise.all([
