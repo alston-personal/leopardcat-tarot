@@ -34,10 +34,15 @@ function applyLanguage() {
 
     const data = siteData[currentLang];
     
-    // Update Nav
+    // Update all elements with data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (data.nav[key]) el.textContent = data.nav[key];
+        // Look through all sections in content.json
+        for (const section in data) {
+            if (typeof data[section] === 'object' && data[section][key]) {
+                el.textContent = data[section][key];
+            }
+        }
     });
 
     // Update Lang Switcher UI

@@ -260,11 +260,40 @@ def draw_main_image(base: Image.Image, config: dict):
         draw_glowing_wood(base)
 
 
-def draw_frame(draw: ImageDraw.ImageDraw, width: int, height: int, palette: dict):
+def draw_frame(base: Image.Image, width: int, height: int, palette: dict):
+    draw = ImageDraw.Draw(base)
+    
+    # Outer Frames
     draw.rounded_rectangle((36, 36, width - 36, height - 36), radius=36, outline=tuple(palette["frame"]), width=8)
     draw.rounded_rectangle((90, 90, width - 90, height - 90), radius=26, outline=tuple(palette["frame_inner"]), width=3)
-    draw.rounded_rectangle((150, 120, width - 150, 320), radius=24, fill=tuple(palette["panel"]), outline=tuple(palette["frame"]), width=3)
-    draw.rounded_rectangle((240, height - 340, width - 240, height - 160), radius=22, fill=tuple(palette["panel"]), outline=tuple(palette["frame"]), width=3)
+    
+    # --- GLASS PANELS LOGIC ---
+    panels = [
+        (150, 120, width - 150, 320), # Top Title Panel
+        (240, height - 340, width - 240, height - 160) # Bottom Info Panel
+    ]
+    
+    for box in panels:
+        # 1. Extract the area to blur
+        crop = base.crop(box)
+        # 2. Apply a heavy blur for the glass effect
+        blurred = crop.filter(ImageFilter.GaussianBlur(radius=25))
+        # 3. Create a mask for rounded corners
+        mask = Image.new("L", (box[2] - box[0], box[3] - box[1]), 0)
+        mask_draw = ImageDraw.Draw(mask)
+        radius = 24 if box[1] < 500 else 22
+        mask_draw.rounded_rectangle((0, 0, mask.size[0], mask.size[1]), radius=radius, fill=255)
+        # 4. Composite the blurred background back
+        base.paste(blurred, box, mask=mask)
+        
+        # 5. Draw the semi-transparent overlay and outline
+        panel_fill = list(palette["panel"])
+        if len(panel_fill) == 3: panel_fill.append(128) # 50% Opacity for Glass
+        draw.rounded_rectangle(box, radius=radius, fill=tuple(panel_fill), outline=tuple(palette["frame"]), width=3)
+        
+        # 6. Subtle Top Highlight (Inner Glow feel)
+        highlight_color = (255, 255, 255, 40)
+        draw.line((box[0] + radius, box[1] + 2, box[2] - radius, box[1] + 2), fill=highlight_color, width=2)
 
 
 def load_font(size: int, bold: bool = False):
@@ -343,7 +372,7 @@ def render_card(config: dict, output_override: str | None = None):
 
     draw_main_image(base, config)
     draw = ImageDraw.Draw(base)
-    draw_frame(draw, width, height, palette)
+    draw_frame(base, width, height, palette)
     draw_text(draw, width, height, config, palette)
 
     # FINAL FINISHING: Apply paper grain to the whole card to merge AI and UI layers
