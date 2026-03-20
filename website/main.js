@@ -1,5 +1,8 @@
-// Global observer instance
+// Global state
 let revealObserver;
+let currentLang = localStorage.getItem('leopard-lang') || 'zh';
+let siteData = null;
+let cardData = null;
 
 async function initWebsite() {
     try {
@@ -8,19 +11,45 @@ async function initWebsite() {
             fetch('manifest.json')
         ]);
         
-        const content = await contentRes.json();
-        const cards = await manifestRes.json();
+        siteData = await contentRes.json();
+        cardData = await manifestRes.json();
 
         initScrollReveal(); 
-        
-        renderIntro(content.introduction);
-        renderEvents(content.events);
-        renderConservation(content.conservation);
-        renderGallery(content.groups, cards);
+        applyLanguage();
         
     } catch (err) {
         console.error('Failed to load website content:', err);
     }
+}
+
+function setLanguage(lang) {
+    if (lang === currentLang) return;
+    currentLang = lang;
+    localStorage.setItem('leopard-lang', lang);
+    applyLanguage();
+}
+
+function applyLanguage() {
+    if (!siteData || !cardData) return;
+
+    const data = siteData[currentLang];
+    
+    // Update Nav
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (data.nav[key]) el.textContent = data.nav[key];
+    });
+
+    // Update Lang Switcher UI
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.getElementById(`btn-${currentLang}`);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    // Render localized sections
+    renderIntro(data.introduction);
+    renderEvents(data.events);
+    renderConservation(data.conservation);
+    renderGallery(data.groups, cardData);
 }
 
 function renderIntro(intro) {
@@ -43,6 +72,7 @@ function renderEvents(events) {
             <div class="date">${e.date} | ${e.tag}</div>
             <h3>${e.title}</h3>
             <p class="content-text">${e.description}</p>
+            ${e.attribution ? `<div class="attribution" style="font-size:0.7rem; opacity:0.5; margin-top:1rem; font-style:italic;">${e.attribution}</div>` : ''}
         </div>
     `).join('');
     
@@ -86,35 +116,41 @@ function renderGallery(groups, cards) {
         else if (group.id === 'cosmic') filtered = cards.filter(c => c.number >= 15 && c.number <= 21);
 
         filtered.forEach(card => {
-            const cardEl = createCardElement(card);
+            const cardEl = createCardElement(card, group.id);
             grid.appendChild(cardEl);
             revealObserver?.observe(cardEl); 
         });
     });
 }
 
-function createCardElement(card) {
+function createCardElement(card, groupId) {
     const wrapper = document.createElement('div');
-    wrapper.className = 'card-wrapper reveal-on-scroll';
+    wrapper.className = `card-wrapper reveal-on-scroll theme-${groupId}`;
     
+    const title = card.title[currentLang];
+    const meaning = card.meaning[currentLang];
+    const ecology = card.ecology[currentLang];
+    const labelMeaning = currentLang === 'zh' ? '塔羅牌義' : 'Tarot Meaning';
+    const labelEcology = currentLang === 'zh' ? '石虎生態' : 'Eco-Connection';
+
     wrapper.innerHTML = `
         <div class="card" id="${card.id}">
             <div class="card-front">
                 <div class="shimmer"></div>
-                <img src="art/renders/${card.id}.png" alt="${card.title}" loading="lazy" 
+                <img src="art/renders/${card.id}.png" alt="${title}" loading="lazy" 
                      onload="this.parentElement.classList.add('loaded')"
-                     onerror="this.src='https://placehold.co/1400x2420/0a110e/d4af37?text=${card.title}'">
+                     onerror="this.src='https://placehold.co/1400x2420/0a110e/d4af37?text=${title}'">
             </div>
             <div class="card-back">
                 <div class="back-content">
-                    <h3>${card.number}. ${card.title}</h3>
+                    <h3>${title}</h3>
                     <div class="meaning-box">
-                        <span class="label">塔羅牌義</span>
-                        <p class="content-text">${card.meaning}</p>
+                        <span class="label">${labelMeaning}</span>
+                        <p class="content-text">${meaning}</p>
                     </div>
                     <div class="ecology-box">
-                        <span class="label">石虎生態</span>
-                        <p class="content-text">${card.ecology}</p>
+                        <span class="label">${labelEcology}</span>
+                        <p class="content-text">${ecology}</p>
                     </div>
                 </div>
             </div>
@@ -174,3 +210,8 @@ function initScrollReveal() {
 document.addEventListener('DOMContentLoaded', () => {
     initWebsite();
 });
+
+// Expose to global scope for HTML onclick handlers
+window.setLanguage = setLanguage;
+window.initWebsite = initWebsite;
+window.applyLanguage = applyLanguage;

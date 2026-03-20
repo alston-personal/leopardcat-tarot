@@ -2,177 +2,309 @@
   {
     "id": "card-00-the-fool",
     "number": 0,
-    "title": "THE FOOL",
+    "title": { "zh": "0. 愚者", "en": "0. THE FOOL" },
     "image": "art/renders/card-00-the-fool.png",
-    "meaning": "New beginnings, openness, instinctive trust, and a willingness to step toward the unknown.",
-    "ecology": "The Fool's leap of faith becomes a young leopard cat crossing the line between cover and asphalt."
+    "meaning": {
+      "zh": "新的開始、開放、本能的信任，以及邁向未知的勇氣。",
+      "en": "New beginnings, openness, instinctive trust, and a willingness to step toward the unknown."
+    },
+    "ecology": {
+      "zh": "愚者的冒險跳躍，成為幼年石虎越過掩體與柏油路邊界的危險瞬間。",
+      "en": "The Fool's leap of faith becomes a young leopard cat crossing the line between cover and asphalt."
+    }
   },
   {
     "id": "card-01-the-magician",
     "number": 1,
-    "title": "THE MAGICIAN",
+    "title": { "zh": "1. 魔術師", "en": "1. THE MAGICIAN" },
     "image": "art/renders/card-01-the-magician.png",
-    "meaning": "Focused skill, resourcefulness, environmental intelligence, and the power to act with precision.",
-    "ecology": "The Magician's elemental mastery becomes a leopard cat's ability to read and use edge habitat with tactical intelligence."
+    "meaning": {
+      "zh": "專注的技巧、資源豐富、環境智慧，以及精準行動的力量。",
+      "en": "Focused skill, resourcefulness, environmental intelligence, and the power to act with precision."
+    },
+    "ecology": {
+      "zh": "魔術師的元素掌控，轉化為石虎讀取並利用邊際棲地進行戰術布局的智慧。",
+      "en": "The Magician's elemental mastery becomes a leopard cat's ability to read and use edge habitat with tactical intelligence."
+    }
   },
   {
     "id": "card-02-the-high-priestess",
     "number": 2,
-    "title": "THE HIGH PRIESTESS",
+    "title": { "zh": "2. 女祭司", "en": "2. THE HIGH PRIESTESS" },
     "image": "art/renders/card-02-the-high-priestess.png",
-    "meaning": "Intuition, restraint, inner knowledge, and perception that moves beneath surface noise.",
-    "ecology": "The High Priestess becomes a guardian of quiet habitat, where water, shadow, and instinct preserve survival."
+    "meaning": {
+      "zh": "直覺、自制、內在知識，以及超越表面嘈雜的洞察力。",
+      "en": "Intuition, restraint, inner knowledge, and perception that moves beneath surface noise."
+    },
+    "ecology": {
+      "zh": "女祭司成為靜謐棲地的守護者，在水岸、陰影與本能交織中保存生存火種。",
+      "en": "The High Priestess becomes a guardian of quiet habitat, where water, shadow, and instinct preserve survival."
+    }
   },
   {
     "id": "card-03-the-empress",
     "number": 3,
-    "title": "THE EMPRESS",
+    "title": { "zh": "3. 皇后", "en": "3. THE EMPRESS" },
     "image": "art/renders/card-03-the-empress.png",
-    "meaning": "Abundance, nurturing, fertility, and the flourishing of life within a supportive environment.",
-    "ecology": "The Empress represents the core of legal reproduction\u2014safe habitat where kittens can be raised without threat."
+    "meaning": {
+      "zh": "豐盛、滋養、多產，以及生命在支持性環境中的蓬勃發展。",
+      "en": "Abundance, nurturing, fertility, and the flourishing of life within a supportive environment."
+    },
+    "ecology": {
+      "zh": "皇后象徵繁衍的核心——安全的棲地，在那裡石虎寶寶能遠離威脅健康成長。",
+      "en": "The Empress represents the core of legal reproduction—safe habitat where kittens can be raised without threat."
+    }
   },
   {
     "id": "card-04-the-emperor",
     "number": 4,
-    "title": "THE EMPEROR",
+    "title": { "zh": "4. 皇帝", "en": "4. THE EMPEROR" },
     "image": "art/renders/card-04-the-emperor.png",
-    "meaning": "Authority, establishment, foundation, protection of territory, and structured leadership.",
-    "ecology": "The Emperor is the dominant male securing a massive home range, needing large patches of safe forest to sustain his law over the land."
+    "meaning": {
+      "zh": "權威、建立、基礎、領土保護，以及結構化的領導力。",
+      "en": "Authority, establishment, foundation, protection of territory, and structured leadership."
+    },
+    "ecology": {
+      "zh": "皇帝是守護龐大家域的優勢雄性，他需要大片完整的森林來維持其領地秩序。",
+      "en": "The Emperor is the dominant male securing a massive home range, needing large patches of safe forest to sustain his law over the land."
+    }
   },
   {
     "id": "card-05-the-hierophant",
     "number": 5,
-    "title": "THE HIEROPHANT",
+    "title": { "zh": "5. 教皇", "en": "5. THE HIEROPHANT" },
     "image": "art/renders/card-05-the-hierophant.png",
-    "meaning": "Traditional wisdom, established systems, and the passing of ancestral knowledge.",
-    "ecology": "The Hierophant follows the 'Traditional Trails'—ancient pathways through the hills that generations of ancestors have used to avoid human conflict."
+    "meaning": {
+      "zh": "傳統智慧、既有系統，以及祖傳知識的傳遞。",
+      "en": "Traditional wisdom, established systems, and the passing of ancestral knowledge."
+    },
+    "ecology": {
+      "zh": "教皇遵循「古老路徑」——那些穿梭山丘、世代相傳用於避開人類衝突的秘密通道。",
+      "en": "The Hierophant follows the 'Traditional Trails'—ancient pathways through the hills that generations of ancestors have used to avoid human conflict."
+    }
   },
   {
     "id": "card-06-the-lovers",
     "number": 6,
-    "title": "THE LOVERS",
+    "title": { "zh": "6. 戀人", "en": "6. THE LOVERS" },
     "image": "art/renders/card-06-the-lovers.png",
-    "meaning": "Partnership, union, and the choice of alignment with nature's rhythms.",
-    "ecology": "The Lovers represents the precarious balance of the mating season, where deep instinct overrides the usual solitary caution of the leopard cat."
+    "meaning": {
+      "zh": "夥伴關係、結合，以及選擇與自然韻律調和的一致性。",
+      "en": "Partnership, union, and the choice of alignment with nature's rhythms."
+    },
+    "ecology": {
+      "zh": "戀人象徵繁殖季節脆弱的平衡，此時深沉的本能將超越石虎平時的孤獨與謹慎。",
+      "en": "The Lovers represents the precarious balance of the mating season, where deep instinct overrides the usual solitary caution of the leopard cat."
+    }
   },
   {
     "id": "card-07-the-chariot",
     "number": 7,
-    "title": "THE CHARIOT",
+    "title": { "zh": "7. 戰車", "en": "7. THE CHARIOT" },
     "image": "art/renders/card-07-the-chariot.png",
-    "meaning": "Willpower, victory, and the disciplined control of opposing forces.",
-    "ecology": "The Chariot is the determined expansion into new territory, overcoming mountain barriers and human encroachment through sheer adaptability."
+    "meaning": {
+      "zh": "意志力、勝利，以及對對立力量的有紀律掌控。",
+      "en": "Willpower, victory, and the disciplined control of opposing forces."
+    },
+    "ecology": {
+      "zh": "戰車是向新領地推進的毅力，藉由絕佳的適應力克服山巒屏障與人類擴張的侵擾。",
+      "en": "The Chariot is the determined expansion into new territory, overcoming mountain barriers and human encroachment through sheer adaptability."
+    }
   },
   {
     "id": "card-08-strength",
     "number": 8,
-    "title": "STRENGTH",
+    "title": { "zh": "8. 力量", "en": "8. STRENGTH" },
     "image": "art/renders/card-08-strength.png",
-    "meaning": "Inner courage, compassion, and the quiet mastery of feral instincts.",
-    "ecology": "Strength is the mother leopard cat's resilience in nursing her litter in a shrinking forest, protecting them with fierce but quiet devotion."
+    "meaning": {
+      "zh": "內在勇氣、慈悲，以及對野性本能的柔性掌控。",
+      "en": "Inner courage, compassion, and the quiet mastery of feral instincts."
+    },
+    "ecology": {
+      "zh": "力量是石虎媽媽在破碎森林中育雛的韌性，以勇猛卻沉靜的奉獻保護她的下一代。",
+      "en": "Strength is the mother leopard cat's resilience in nursing her litter in a shrinking forest, protecting them with fierce but quiet devotion."
+    }
   },
   {
     "id": "card-09-the-hermit",
     "number": 9,
-    "title": "THE HERMIT",
+    "title": { "zh": "9. 隱者", "en": "9. THE HERMIT" },
     "image": "art/renders/card-09-the-hermit.png",
-    "meaning": "Soul-searching, introspection, and the pursuit of truth in solitude.",
-    "ecology": "The Hermit represents the deep-mountain individualist, a ghost of the high peaks who avoids all human gaze to preserve original wildness."
+    "meaning": {
+      "zh": "探索靈魂、內省，以及在孤獨中對真理的追求。",
+      "en": "Soul-searching, introspection, and the pursuit of truth in solitude."
+    },
+    "ecology": {
+      "zh": "隱者象徵深山的隱士，那些避開所有人類目光以保存原始野性的高山幽靈。",
+      "en": "The Hermit represents the deep-mountain individualist, a ghost of the high peaks who avoids all human gaze to preserve original wildness."
+    }
   },
   {
     "id": "card-10-wheel-of-fortune",
     "number": 10,
-    "title": "WHEEL OF FORTUNE",
+    "title": { "zh": "10. 命運之輪", "en": "10. WHEEL OF FORTUNE" },
     "image": "art/renders/card-10-wheel-of-fortune.png",
-    "meaning": "Cycles of change, destiny, and the unpredictable nature of luck.",
-    "ecology": "The Wheel is the ecological cycle of boom and bust—from seasons of drought to the abundance of a successful harvest year."
+    "meaning": {
+      "zh": "變動循環、命運，以及不可預測的運氣本質。",
+      "en": "Cycles of change, destiny, and the unpredictable nature of luck."
+    },
+    "ecology": {
+      "zh": "輪轉是生態系的繁榮與蕭條循環——從乾旱季節到豐收年度的生命交替。",
+      "en": "The Wheel is the ecological cycle of boom and bust—from seasons of drought to the abundance of a successful harvest year."
+    }
   },
   {
     "id": "card-11-justice",
     "number": 11,
-    "title": "JUSTICE",
+    "title": { "zh": "11. 正義", "en": "11. JUSTICE" },
     "image": "art/renders/card-11-justice.png",
-    "meaning": "Fairness, truth, and the legal structures that govern the land.",
-    "ecology": "Justice is the landmark environmental legislation that balances human progress with the survival rights of the leopard cat."
+    "meaning": {
+      "zh": "公平、真理，以及治理大地的法律結構。",
+      "en": "Fairness, truth, and the legal structures that govern the land."
+    },
+    "ecology": {
+      "zh": "正義是環境法規的基石，在人類進步與石虎生存權之間尋求平衡的里程碑。",
+      "en": "Justice is the landmark environmental legislation that balances human progress with the survival rights of the leopard cat."
+    }
   },
   {
     "id": "card-12-the-hanged-man",
     "number": 12,
-    "title": "THE HANGED MAN",
+    "title": { "zh": "12. 吊人", "en": "12. THE HANGED MAN" },
     "image": "art/renders/card-12-the-hanged-man.png",
-    "meaning": "Surrender, new perspective, and the sacrifice for a greater evolution.",
-    "ecology": "The Hanged Man is the period of 'stillness' after a major habitat change, where the survivor waits in suspension for a new niche to open."
+    "meaning": {
+      "zh": "臣服、新視角，以及為更宏大的進化所做的犧牲。",
+      "en": "Surrender, new perspective, and the sacrifice for a greater evolution."
+    },
+    "ecology": {
+      "zh": "吊人是在重大棲地變遷後的「停滯期」，生存者在等待新的生態位階出現。",
+      "en": "The Hanged Man is the period of 'stillness' after a major habitat change, where the survivor waits in suspension for a new niche to open."
+    }
   },
   {
     "id": "card-13-death",
     "number": 13,
-    "title": "DEATH",
+    "title": { "zh": "13. 死神", "en": "13. DEATH" },
     "image": "art/renders/card-13-death.png",
-    "meaning": "Transformation, ending, and the clearing away of the old for new growth.",
-    "ecology": "Death is the roadkill incident that ends an individual life but sparks community awareness and the birth of new protective corridors."
+    "meaning": {
+      "zh": "轉化、終結，以及為新生命清空舊秩序的過程。",
+      "en": "Transformation, ending, and the clearing away of the old for new growth."
+    },
+    "ecology": {
+      "zh": "死神是終結個體生命的路殺悲劇，卻也是喚起族群保護意識與生態廊道誕生的契機。",
+      "en": "Death is the roadkill incident that ends an individual life but sparks community awareness and the birth of new protective corridors."
+    }
   },
   {
     "id": "card-14-temperance",
     "number": 14,
-    "title": "TEMPERANCE",
+    "title": { "zh": "14. 節制", "en": "14. TEMPERANCE" },
     "image": "art/renders/card-14-temperance.png",
-    "meaning": "Alchemical balance, patience, and the moderation of extremes.",
-    "ecology": "Temperance is the 'Stream Sanctuary' where mountain waters blend with valley forests, creating the perfect middle-ground for survival."
+    "meaning": {
+      "zh": "平衡、耐性，以及極端力量之間的調和。",
+      "en": "Alchemical balance, patience, and the moderation of extremes."
+    },
+    "ecology": {
+      "zh": "節制是山泉與山谷森林交會的「溪流避難所」，創造出完美的中庸生存空間。",
+      "en": "Temperance is the 'Stream Sanctuary' where mountain waters blend with valley forests, creating the perfect middle-ground for survival."
+    }
   },
   {
     "id": "card-15-the-devil",
     "number": 15,
-    "title": "THE DEVIL",
+    "title": { "zh": "15. 惡魔", "en": "15. THE DEVIL" },
     "image": "art/renders/card-15-the-devil.png",
-    "meaning": "Bondage, addiction to surface comforts, and the trap of perceived power.",
-    "ecology": "The Devil is the chicken coop trap and the poisoned bait—the tempting lure of easy food that leads to tragic confinement."
+    "meaning": {
+      "zh": "束縛、對表象偏好的成癮，以及對權力錯覺的陷阱。",
+      "en": "Bondage, addiction to surface comforts, and the trap of perceived power."
+    },
+    "ecology": {
+      "zh": "惡魔是雞舍的陷阱與毒餌——那些看似容易取得卻導致致命囚禁的誘惑。",
+      "en": "The Devil is the chicken coop trap and the poisoned bait—the tempting lure of easy food that leads to tragic confinement."
+    }
   },
   {
     "id": "card-16-the-tower",
     "number": 16,
-    "title": "THE TOWER",
+    "title": { "zh": "16. 高塔", "en": "16. THE TOWER" },
     "image": "art/renders/card-16-the-tower.png",
-    "meaning": "Sudden upheaval, revelation, and the collapse of false foundations.",
-    "ecology": "The Tower is the forest clearing and the earth-shaking development that shatters the old world, forcing a chaotic leap into a new reality."
+    "meaning": {
+      "zh": "突如其來的劇變、啟示，以及虛假基礎的瓦解。",
+      "en": "Sudden upheaval, revelation, and the collapse of false foundations."
+    },
+    "ecology": {
+      "zh": "高塔是森林砍伐與撼動大地的開發，粉碎了舊有的世界並逼迫族群躍入混亂的新現實。",
+      "en": "The Tower is the forest clearing and the earth-shaking development that shatters the old world, forcing a chaotic leap into a new reality."
+    }
   },
   {
     "id": "card-17-the-star",
     "number": 17,
-    "title": "THE STAR",
+    "title": { "zh": "17. 星星", "en": "17. THE STAR" },
     "image": "art/renders/card-17-the-star.png",
-    "meaning": "Hope, inspiration, and the guiding light after a dark storm.",
-    "ecology": "The Star is the first kitten born in a restored habitat—a tiny beacon of light signaling that the land is once again whole."
+    "meaning": {
+      "zh": "希望、啟發，以及在黑暗風暴後的指引之光。",
+      "en": "Hope, inspiration, and the guiding light after a dark storm."
+    },
+    "ecology": {
+      "zh": "星星是在修復棲地中誕生的第一隻小石虎——預示大地重新合一的微小光芒。",
+      "en": "The Star is the first kitten born in a restored habitat—a tiny beacon of light signaling that the land is once again whole."
+    }
   },
   {
     "id": "card-18-the-moon",
     "number": 18,
-    "title": "THE MOON",
+    "title": { "zh": "18. 月亮", "en": "18. THE MOON" },
     "image": "art/renders/card-18-the-moon.png",
-    "meaning": "Illusion, hidden danger, and the navigating of deep darkness.",
-    "ecology": "The Moon is the nocturnal world of the leopard cat, where shadows hide predators and the ghost-white moonlight guides the hunt."
+    "meaning": {
+      "zh": "幻覺、隱藏的危險，以及穿梭深沉黑暗的導航。",
+      "en": "Illusion, hidden danger, and the navigating of deep darkness."
+    },
+    "ecology": {
+      "zh": "月亮是石虎的夜行世界，陰影潛伏著天敵，而乳白的月光指引著原始的狩獵。",
+      "en": "The Moon is the nocturnal world of the leopard cat, where shadows hide predators and the ghost-white moonlight guides the hunt."
+    }
   },
   {
     "id": "card-19-the-sun",
     "number": 19,
-    "title": "THE SUN",
+    "title": { "zh": "19. 太陽", "en": "19. THE SUN" },
     "image": "art/renders/card-19-the-sun.png",
-    "meaning": "Success, vitality, and the celebration of life in the open light.",
-    "ecology": "The Sun is the abundant valley in spring, where safe sunshine allows for the joyful growth of a new generation."
+    "meaning": {
+      "zh": "成功、生命力，以及在開闊光明中慶祝生命。",
+      "en": "Success, vitality, and the celebration of life in the open light."
+    },
+    "ecology": {
+      "zh": "太陽是春暖花開的豐饒山谷，安全的陽光讓新一代族群得以歡愉成長。",
+      "en": "The Sun is the abundant valley in spring, where safe sunshine allows for the joyful growth of a new generation."
+    }
   },
   {
     "id": "card-20-judgement",
     "number": 20,
-    "title": "JUDGEMENT",
+    "title": { "zh": "20. 審判", "en": "20. JUDGEMENT" },
     "image": "art/renders/card-20-judgement.png",
-    "meaning": "Awakening, reckoning, and the final crossing of a threshold.",
-    "ecology": "Judgement is the survival record of the species—the moment where human collective action decides if the leopard cat rises or falls."
+    "meaning": {
+      "zh": "覺醒、清算，以及跨越門檻的最終選擇。",
+      "en": "Awakening, reckoning, and the final crossing of a threshold."
+    },
+    "ecology": {
+      "zh": "審判是物種生存的紀錄表——人類集體行動決定石虎族群興衰的關鍵時刻。",
+      "en": "Judgement is the survival record of the species—the moment where human collective action decides if the leopard cat rises or falls."
+    }
   },
   {
     "id": "card-21-the-world",
     "number": 21,
-    "title": "THE WORLD",
+    "title": { "zh": "21. 世界", "en": "21. THE WORLD" },
     "image": "art/renders/card-21-the-world.png",
-    "meaning": "Completion, integration, and the cosmic harmony of a balanced system.",
-    "ecology": "The World is the Satoyama dream—an integrated landscape where humans and wildlife coexist in a perfect, eternal circle of life."
+    "meaning": {
+      "zh": "完成、整合，以及平衡系統中的宇宙和諧。",
+      "en": "Completion, integration, and the cosmic harmony of a balanced system."
+    },
+    "ecology": {
+      "zh": "世界是「里山」的夢想藍圖——一個人與野生動物在完美循環中共和永續的境地。",
+      "en": "The World is the Satoyama dream—an integrated landscape where humans and wildlife coexist in a perfect, eternal circle of life."
+    }
   }
 ]

@@ -1,51 +1,124 @@
 {
-  "introduction": {
-    "title": "森與靈的守護者",
-    "subtitle": "台灣石虎 (Prionailurus bengalensis)",
-    "description": "石虎不是台灣特有種，但卻是台灣現存唯一的本土原生貓科動物。牠們廣泛分布於亞洲，但在台灣僅剩不到 1,000 隻，正面臨極大的生存挑戰。每一張塔羅牌，都是牠們在棲地中求生存的真實縮影。",
-    "stats": [
-      {"label": "估計數量", "value": "少於 1,000 隻"},
-      {"label": "保育等級", "value": "第 I 級瀕危野生動物"},
-      {"label": "分布熱點", "value": "苗栗、台中、南投"}
+  "zh": {
+    "nav": {
+      "home": "首頁",
+      "intro": "生態靈魂",
+      "events": "生命紀事",
+      "gallery": "大阿爾克那"
+    },
+    "introduction": {
+      "title": "森與靈的守護者",
+      "subtitle": "台灣石虎 (Prionailurus bengalensis)",
+      "description": "石虎不是台灣特有種，但卻是台灣現存唯一的本土原生貓科動物。牠們廣泛分布於亞洲，但在台灣僅剩不到 1,000 隻，正面臨極大的生存挑戰。每一張塔羅牌，都是牠們在棲地中求生存的真實縮影。",
+      "stats": [
+        {"label": "估計數量", "value": "少於 1,000 隻"},
+        {"label": "保育等級", "value": "第 I 級瀕危野生動物"},
+        {"label": "分布熱點", "value": "苗栗、台中、南投"}
+      ]
+    },
+    "events": [
+      {
+        "date": "2019 - 苗栗",
+        "title": "首座路殺防護圍籬系統",
+        "description": "在台 13 甲線建立防護網，並設置生態廊道，監測顯示石虎已開始頻繁利用。",
+        "tag": "Conservation",
+        "attribution": "影像來源：公路局第一區養護工程處"
+      },
+      {
+        "date": "2024 - 台中",
+        "title": "棲地海拔紀錄突破",
+        "description": "於海拔 1050 公尺發現蹤跡，顯示石虎活動範圍受友善農法影響而擴張。",
+        "tag": "Discovery",
+        "attribution": "報導出處：林業及自然保育署台中分署"
+      },
+      {
+        "date": "2025 - 彰化",
+        "title": "首次確認石虎族群繁衍",
+        "description": "在溪州鄉拍到石虎寶寶與家族活動，證實石虎族群在新棲地成功扎根。",
+        "tag": "Ecology",
+        "attribution": "紀錄片：彰化縣政府自然生態教育中心"
+      },
+      {
+        "date": "2024 - 創作",
+        "title": "AI 石虎塔羅計畫啟動",
+        "description": "本網站專案開始，結合 生成式 AI 藝術與神祕學，為台灣生態保育注入全新的數位創意能量。",
+        "tag": "Digital-Art",
+        "attribution": "創作團隊：石虎聖所數位工作室"
+      }
+    ],
+    "conservation": {
+      "title": "加入保育行動",
+      "description": "守護石虎需要您的關注與支持，請訪問相關保育團體了解更多。",
+      "links": [
+        {"name": "台灣石虎保育協會", "url": "https://www.twlcat.org/"},
+        {"name": "特有生物研究保育中心", "url": "https://www.tesri.gov.tw/"}
+      ]
+    },
+    "groups": [
+      {"id": "material", "title": "第一階段：物質與生存 (0-7)", "description": "探索石虎在現實世界中的初次闖蕩與社會連結。"},
+      {"id": "inner", "title": "第二階段：內在與考驗 (8-14)", "description": "進入深山幽谷，面對孤獨與生命循環的深度洗禮。"},
+      {"id": "cosmic", "title": "第三階段：覺醒與和諧 (15-21)", "description": "超越災難與夢境，達成與人類文明的最終和諧。"}
     ]
   },
-  "events": [
-    {
-      "date": "2019 - 苗栗",
-      "title": "首座路殺防護圍籬系統",
-      "description": "在台 13 甲線建立防護網，並設置生態廊道，監測顯示石虎已開始頻繁利用。",
-      "tag": "Conservation"
+  "en": {
+    "nav": {
+      "home": "Home",
+      "intro": "Ecological Soul",
+      "events": "Chronicles",
+      "gallery": "Major Arcana"
     },
-    {
-      "date": "2024 - 台中",
-      "title": "棲地海拔紀錄突破",
-      "description": "於海拔 1050 公尺發現蹤跡，顯示石虎活動範圍受友善農法影響而擴張。",
-      "tag": "Discovery"
+    "introduction": {
+      "title": "Guardian of Forest & Spirit",
+      "subtitle": "Taiwan Leopard Cat (Prionailurus bengalensis)",
+      "description": "The Leopard Cat is the only extant native wild cat species in Taiwan. Widely distributed across Asia, fewer than 1,000 remain in Taiwan, facing severe survival challenges. Every Tarot card captures a moment of their struggle for survival.",
+      "stats": [
+        {"label": "Estimated Population", "value": "Less than 1,000"},
+        {"label": "Status", "value": "Category I Endangered"},
+        {"label": "Distribution Hotspots", "value": "Miaoli, Taichung, Nantou"}
+      ]
     },
-    {
-      "date": "2025 - 彰化",
-      "title": "首次確認石虎族群繁衍",
-      "description": "在溪州鄉拍到石虎寶寶與家族活動，證實石虎族群在新棲地成功扎根。",
-      "tag": "Ecology"
+    "events": [
+      {
+        "date": "2019 - Miaoli",
+        "title": "First Roadkill Prevention Fencing",
+        "description": "Established protection nets and ecological corridors on Route 13A. Monitoring shows frequent use by leopard cats.",
+        "tag": "Conservation",
+        "attribution": "Source: Directorate General of Highways"
+      },
+      {
+        "date": "2024 - Taichung",
+        "title": "Elevation Record Breakthrough",
+        "description": "Traces found at 1,050m elevation, showing habitat expansion influenced by eco-friendly farming practices.",
+        "tag": "Discovery",
+        "attribution": "Source: Forestry and Nature Conservation Agency"
+      },
+      {
+        "date": "2025 - Changhua",
+        "title": "Breeding Population Confirmed",
+        "description": "Footage of leopard cat kittens and families in Xizhou confirms successful colonization of new habitats.",
+        "tag": "Ecology",
+        "attribution": "Documentary: Changhua Nature Center"
+      },
+      {
+        "date": "2024 - Project",
+        "title": "AI Leopard Cat Tarot Launch",
+        "description": "The project begins, blending Generative AI art with mysticism to inject new digital creative energy into Taiwan's conservation.",
+        "tag": "Digital-Art",
+        "attribution": "Team: Leopard Cat Sanctuary Studio"
+      }
+    ],
+    "conservation": {
+      "title": "Join the Movement",
+      "description": "Leopard Cat survival needs your attention. Visit these organizations to learn more and support their mission.",
+      "links": [
+        {"name": "Leopard Cat Association", "url": "https://www.twlcat.org/"},
+        {"name": "Endemic Species Research", "url": "https://www.tesri.gov.tw/"}
+      ]
     },
-    {
-      "date": "2024 - 創作",
-      "title": "AI 石虎塔羅計畫啟動",
-      "description": "本網站專案開始，結合 生成式 AI 藝術與神祕學，為台灣生態保育注入全新的數位創意能量。",
-      "tag": "Digital-Art"
-    }
-  ],
-  "conservation": {
-    "title": "加入保育行動",
-    "description": "守護石虎需要您的關注與支持，請訪問相關保育團體了解更多。",
-    "links": [
-      {"name": "台灣石虎保育協會", "url": "https://www.twlcat.org/"},
-      {"name": "特有生物研究保育中心", "url": "https://www.tesri.gov.tw/"}
+    "groups": [
+      {"id": "material", "title": "Phase I: Material & Survival (0-7)", "description": "Exploring the first encounters and social bonds of leopard cats in the physical world."},
+      {"id": "inner", "title": "Phase II: Inner Trials (8-14)", "description": "Descending into deep valleys to face solitude and the profound cycles of life."},
+      {"id": "cosmic", "title": "Phase III: Awakening & Harmony (15-21)", "description": "Transcending disasters and dreams to reach final harmony with human civilization."}
     ]
-  },
-  "groups": [
-    {"id": "material", "title": "第一階段：物質與生存 (0-7)", "description": "探索石虎在現實世界中的初次闖蕩與社會連結。"},
-    {"id": "inner", "title": "第二階段：內在與考驗 (8-14)", "description": "進入深山幽谷，面對孤獨與生命循環的深度洗禮。"},
-    {"id": "cosmic", "title": "第三階段：覺醒與和諧 (15-21)", "description": "超越災難與夢境，達成與人類文明的最終和諧。"}
-  ]
+  }
 }
