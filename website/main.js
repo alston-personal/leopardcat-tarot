@@ -2,45 +2,69 @@
 let revealObserver;
 
 async function initWebsite() {
+    const debugEl = document.getElementById('debug-log');
+    
     try {
+        logDebug('Fetching content... (UA: ' + navigator.userAgent + ')');
+        
         // Use absolute-style paths for robustness in different environments
         const [contentRes, manifestRes] = await Promise.all([
-            fetch('content.json'),
-            fetch('manifest.json')
+            fetch('content.json').catch(e => { throw new Error('Fetch content.json failed: ' + e.message); }),
+            fetch('manifest.json').catch(e => { throw new Error('Fetch manifest.json failed: ' + e.message); })
         ]);
+        
+        logDebug('Content fetched. Processing JSON...');
         
         const content = await contentRes.json();
         const cards = await manifestRes.json();
 
-        initScrollReveal(); // Initialize observer before rendering
+        logDebug('Loaded ' + cards.length + ' cards. Starting render...');
+
+        initScrollReveal(); 
         
         renderIntro(content.introduction);
         renderEvents(content.events);
         renderConservation(content.conservation);
         renderGallery(content.groups, cards);
         
+        logDebug('Sanctuary Ready.');
+        if (debugEl) setTimeout(() => debugEl.style.display = 'none', 3000); // Hide if successful
+        
     } catch (err) {
         console.error('Failed to load website content:', err);
+        logDebug('❌ ERROR: ' + err.message, true);
+        if (debugEl) debugEl.style.display = 'block';
+    }
+}
+
+function logDebug(msg, isError = false) {
+    const debugEl = document.getElementById('debug-log');
+    if (debugEl) {
+        const line = document.createElement('div');
+        line.style.color = isError ? '#ff4444' : '#00ff00';
+        line.style.fontSize = '12px';
+        line.style.marginBottom = '4px';
+        line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+        debugEl.appendChild(line);
     }
 }
 
 function renderIntro(intro) {
     document.getElementById('intro-desc').textContent = intro.description;
     const statsContainer = document.getElementById('intro-stats');
-    statsContainer.innerHTML = intro.stats.map(s => `
+    statsContainer.innerHTML = (intro.stats || []).map(s => `
         <div class="stat-item reveal-on-scroll">
             <div class="stat-val">${s.value}</div>
             <div class="stat-lbl">${s.label}</div>
         </div>
     `).join('');
     
-    // Observe new stats
     statsContainer.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver?.observe(el));
 }
 
 function renderEvents(events) {
     const eventsList = document.getElementById('events-list');
-    eventsList.innerHTML = events.map(e => `
+    eventsList.innerHTML = (events || []).map(e => `
         <div class="event-card reveal-on-scroll">
             <div class="date">${e.date} | ${e.tag}</div>
             <h3>${e.title}</h3>
@@ -48,7 +72,6 @@ function renderEvents(events) {
         </div>
     `).join('');
     
-    // Observe new events
     eventsList.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver?.observe(el));
 }
 
@@ -56,19 +79,19 @@ function renderConservation(cons) {
     document.getElementById('cons-title').textContent = cons.title;
     document.getElementById('cons-desc').textContent = cons.description;
     const linksContainer = document.getElementById('cons-links');
-    linksContainer.innerHTML = cons.links.map(l => `
+    linksContainer.innerHTML = (cons.links || []).map(l => `
         <a href="${l.url}" target="_blank" class="btn btn-gold-outline reveal-on-scroll" style="margin-top:0">${l.name}</a>
     `).join('');
     
-    // Observe links
     linksContainer.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver?.observe(el));
 }
 
 function renderGallery(groups, cards) {
     const container = document.getElementById('gallery-container');
+    if (!container) return;
     container.innerHTML = '';
 
-    groups.forEach(group => {
+    (groups || []).forEach(group => {
         const groupEl = document.createElement('div');
         groupEl.className = 'group-section section';
         groupEl.innerHTML = `
@@ -91,7 +114,7 @@ function renderGallery(groups, cards) {
         filtered.forEach(card => {
             const cardEl = createCardElement(card);
             grid.appendChild(cardEl);
-            revealObserver?.observe(cardEl); // Register card immediately
+            revealObserver?.observe(cardEl); 
         });
     });
 }
@@ -105,6 +128,7 @@ function createCardElement(card) {
             <div class="card-front">
                 <div class="shimmer"></div>
                 <img src="art/renders/${card.id}.png" alt="${card.title}" loading="lazy" 
+                     onload="this.parentElement.classList.add('loaded')"
                      onerror="this.src='https://placehold.co/1400x2420/0a110e/d4af37?text=${card.title}'">
             </div>
             <div class="card-back">
@@ -127,8 +151,9 @@ function createCardElement(card) {
         wrapper.querySelector('.card').classList.toggle('is-flipped');
     });
 
-    // Add mouse tilt effect
+    // Add mouse tilt effect (Desktop only optimized)
     wrapper.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 1024) return;
         const card = wrapper.querySelector('.card');
         const rect = wrapper.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -155,7 +180,6 @@ function createCardElement(card) {
 
 function initScrollReveal() {
     if (!window.IntersectionObserver) {
-        // Fallback for very old browsers: just show everything
         console.warn('IntersectionObserver not supported. Enabling fallback.');
         document.body.classList.add('no-observer');
         return;
@@ -165,12 +189,11 @@ function initScrollReveal() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target); // Performance: stop observing once shown
+                revealObserver.unobserve(entry.target); 
             }
         });
-    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.01, rootMargin: '0px 0px 100px 0px' });
 
-    // Initial pass for static sections
     document.querySelectorAll('.section').forEach(el => revealObserver.observe(el));
 }
 

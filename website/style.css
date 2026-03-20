@@ -261,7 +261,13 @@ body {
 }
 
 /* Card Styling */
-.card-wrapper { perspective: 1200px; cursor: pointer; }
+.card-wrapper {
+  perspective: 1500px;
+  min-height: 250px; /* Ensure physical presence even if image fails */
+  background: rgba(212, 175, 55, 0.02);
+  border-radius: 12px;
+  cursor: pointer;
+}
 .card {
   position: relative; width: 100%; aspect-ratio: 1400 / 2420;
   transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
