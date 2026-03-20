@@ -1,13 +1,19 @@
+// Global observer instance
+let revealObserver;
+
 async function initWebsite() {
     try {
+        // Use absolute-style paths for robustness in different environments
         const [contentRes, manifestRes] = await Promise.all([
-            fetch('./content.json'),
-            fetch('./manifest.json')
+            fetch('content.json'),
+            fetch('manifest.json')
         ]);
         
         const content = await contentRes.json();
         const cards = await manifestRes.json();
 
+        initScrollReveal(); // Initialize observer before rendering
+        
         renderIntro(content.introduction);
         renderEvents(content.events);
         renderConservation(content.conservation);
@@ -22,22 +28,28 @@ function renderIntro(intro) {
     document.getElementById('intro-desc').textContent = intro.description;
     const statsContainer = document.getElementById('intro-stats');
     statsContainer.innerHTML = intro.stats.map(s => `
-        <div class="stat-item">
+        <div class="stat-item reveal-on-scroll">
             <div class="stat-val">${s.value}</div>
             <div class="stat-lbl">${s.label}</div>
         </div>
     `).join('');
+    
+    // Observe new stats
+    statsContainer.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver?.observe(el));
 }
 
 function renderEvents(events) {
     const eventsList = document.getElementById('events-list');
     eventsList.innerHTML = events.map(e => `
-        <div class="event-card">
+        <div class="event-card reveal-on-scroll">
             <div class="date">${e.date} | ${e.tag}</div>
             <h3>${e.title}</h3>
             <p class="content-text">${e.description}</p>
         </div>
     `).join('');
+    
+    // Observe new events
+    eventsList.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver?.observe(el));
 }
 
 function renderConservation(cons) {
@@ -45,8 +57,11 @@ function renderConservation(cons) {
     document.getElementById('cons-desc').textContent = cons.description;
     const linksContainer = document.getElementById('cons-links');
     linksContainer.innerHTML = cons.links.map(l => `
-        <a href="${l.url}" target="_blank" class="btn btn-gold-outline" style="margin-top:0">${l.name}</a>
+        <a href="${l.url}" target="_blank" class="btn btn-gold-outline reveal-on-scroll" style="margin-top:0">${l.name}</a>
     `).join('');
+    
+    // Observe links
+    linksContainer.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver?.observe(el));
 }
 
 function renderGallery(groups, cards) {
@@ -55,7 +70,7 @@ function renderGallery(groups, cards) {
 
     groups.forEach(group => {
         const groupEl = document.createElement('div');
-        groupEl.className = 'group-section';
+        groupEl.className = 'group-section section';
         groupEl.innerHTML = `
             <div class="group-info">
                 <h3>${group.title}</h3>
@@ -64,17 +79,19 @@ function renderGallery(groups, cards) {
             <div class="gallery-grid" id="grid-${group.id}"></div>
         `;
         container.appendChild(groupEl);
+        revealObserver?.observe(groupEl);
 
         const grid = groupEl.querySelector('.gallery-grid');
         
-        // Filter cards for this group
-        let filtered;
+        let filtered = [];
         if (group.id === 'material') filtered = cards.filter(c => c.number >= 0 && c.number <= 7);
         else if (group.id === 'inner') filtered = cards.filter(c => c.number >= 8 && c.number <= 14);
         else if (group.id === 'cosmic') filtered = cards.filter(c => c.number >= 15 && c.number <= 21);
 
         filtered.forEach(card => {
-            grid.appendChild(createCardElement(card));
+            const cardEl = createCardElement(card);
+            grid.appendChild(cardEl);
+            revealObserver?.observe(cardEl); // Register card immediately
         });
     });
 }
@@ -87,7 +104,7 @@ function createCardElement(card) {
         <div class="card" id="${card.id}">
             <div class="card-front">
                 <div class="shimmer"></div>
-                <img src="./art/renders/${card.id}.png" alt="${card.title}" loading="lazy" 
+                <img src="art/renders/${card.id}.png" alt="${card.title}" loading="lazy" 
                      onerror="this.src='https://placehold.co/1400x2420/0a110e/d4af37?text=${card.title}'">
             </div>
             <div class="card-back">
@@ -137,17 +154,26 @@ function createCardElement(card) {
 }
 
 function initScrollReveal() {
-    const observer = new IntersectionObserver((entries) => {
+    if (!window.IntersectionObserver) {
+        // Fallback for very old browsers: just show everything
+        console.warn('IntersectionObserver not supported. Enabling fallback.');
+        document.body.classList.add('no-observer');
+        return;
+    }
+
+    revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target); // Performance: stop observing once shown
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll('.reveal-on-scroll, .section').forEach(el => observer.observe(el));
+    // Initial pass for static sections
+    document.querySelectorAll('.section').forEach(el => revealObserver.observe(el));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    initWebsite().then(initScrollReveal);
+    initWebsite();
 });
