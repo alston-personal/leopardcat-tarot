@@ -1,0 +1,58 @@
+{
+  "id": "card-wa-03-three-of-wands",
+  "arcana": "minor",
+  "suit": "wands",
+  "number": "III",
+  "title": "THREE OF WANDS",
+  "subtitle": "Progress / Waiting / Species Expansion",
+  "slug": "three-of-wands",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [60, 40, 30],
+    "bottom": [120, 100, 60],
+    "frame": [219, 203, 156],
+    "frame_inner": [171, 149, 102],
+    "panel": [50, 40, 25],
+    "text_primary": [243, 233, 201],
+    "text_secondary": [198, 186, 151]
+  },
+  "scene": {
+    "theme": "expansion-horizon",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "adult-leopard-cat"
+  },
+  "main_image": "art/generated/card-wa-03-three-of-wands.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. An anthropomorphic Taiwan leopard cat standing on a headland overlooking a vast valley and river system. It holds three wooden wands planted in the ground, supporting itself. It looks out towards the horizon where small shapes (representing other leopard cats) move into the distance. High detail on rosettes and white ear spots. 1900s lithograph feel. No borders. Full bleed.",
+    "narrative": "A leopard cat stands with three wands, watching the expansion of its territory and the departure of its progeny toward the horizon. It represents the successful wait and the results of earlier planning."
+  },
+  "ornaments": ["distant-horizon"],
+  "output": "art/renders/card-wa-03-three-of-wands.png",
+  "meanings": {
+    "upright": "Progress, expansion, looking toward the long-term, and successful growth of the population range.",
+    "reversed": "Disrupted expansion, short-sightedness, or a failure to watch the horizon for opportunities/threats.",
+    "keywords": ["expansion", "progress", "foresight", "reach"]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "valley overlook",
+    "risk_theme": "range expansion and connectivity",
+    "mapping_note": "Three of Wands becomes the successful expansion of the species into restored corridors, where the 'ships on the horizon' are leopard cats moving into new safe-zones."
+  },
+  "website": {
+    "excerpt": "Standing on a headland, the leopard cat watches the fruits of its labor—the expansion of its species towards the horizon.",
+    "seo_title": "Three of Wands - LeopardCat Tarot",
+    "seo_description": "Three of Wands reimagined as leopard cat species expansion and successful dispersal.",
+    "tags": ["minor-arcana", "wands", "leopard-cat", "expansion"]
+  }
+}

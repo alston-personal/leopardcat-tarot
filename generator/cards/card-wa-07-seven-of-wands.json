@@ -1,0 +1,58 @@
+{
+  "id": "card-wa-07-seven-of-wands",
+  "arcana": "minor",
+  "suit": "wands",
+  "number": "VII",
+  "title": "SEVEN OF WANDS",
+  "subtitle": "Defensive Stance / Boundary Protection",
+  "slug": "seven-of-wands",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [70, 40, 30],
+    "bottom": [140, 100, 60],
+    "frame": [219, 203, 156],
+    "frame_inner": [171, 149, 102],
+    "panel": [50, 35, 25],
+    "text_primary": [243, 233, 201],
+    "text_secondary": [198, 186, 151]
+  },
+  "scene": {
+    "theme": "defensive-ridge",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "adult-male-leopard-cat"
+  },
+  "main_image": "art/generated/card-wa-07-seven-of-wands.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. An anthropomorphic leopard cat standing defiantly on a rocky cliff edge, holding one large wooden wand horizontally as if to block a path. Six other wands are pointing UP toward it from below (unseen attackers). It looks fierce and determined. rosettes and white ear spots are clearly visible. Full bleed. No text. No borders.",
+    "narrative": "A leopard cat defends its hard-won territory. Even when outnumbered by development and pressure, it stands its ground to protect the core habitat."
+  },
+  "ornaments": ["rocky-ledge"],
+  "output": "art/renders/card-wa-07-seven-of-wands.png",
+  "meanings": {
+    "upright": "Defensiveness, standing ground, protection of assets/territory, and the courage to face overwhelming odds.",
+    "reversed": "Giving up, being overwhelmed by pressure, or failing to maintain boundaries.",
+    "keywords": ["defense", "boundaries", "protection", "courage"]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "contested territory boundary",
+    "risk_theme": "the struggle to hold shrinking habitat patches",
+    "mapping_note": "Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones from constant external pressure."
+  },
+  "website": {
+    "excerpt": "Standing firm against the tide of development, the leopard cat defends its territory from a position of strength.",
+    "seo_title": "Seven of Wands - LeopardCat Tarot",
+    "seo_description": "Seven of Wands reimagined as leopard cat boundary defense and territorial protection.",
+    "tags": ["minor-arcana", "wands", "leopard-cat", "defense"]
+  }
+}

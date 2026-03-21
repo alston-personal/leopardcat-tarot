@@ -1,0 +1,58 @@
+{
+  "id": "card-wa-11-page-of-wands",
+  "arcana": "minor",
+  "suit": "wands",
+  "number": "Page",
+  "title": "PAGE OF WANDS",
+  "subtitle": "Discoverer / New Trail / Curiosity",
+  "slug": "page-of-wands",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [120, 180, 80],
+    "bottom": [80, 120, 50],
+    "frame": [219, 203, 156],
+    "frame_inner": [171, 149, 102],
+    "panel": [30, 45, 20],
+    "text_primary": [243, 233, 201],
+    "text_secondary": [198, 186, 151]
+  },
+  "scene": {
+    "theme": "youthful-discovery",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "juvenile-leopard-cat"
+  },
+  "main_image": "art/generated/card-wa-11-page-of-wands.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A youthful, wide-eyed anthropomorphic leopard cat (juvenile/Page) standing in a lush meadow, curiously holding a slender wooden wand that is slightly taller than it. Butterflies and bright wildflowers surround it. It looks ready for adventure. rosettes and white ear spots. vibrant, hopeful colors. Full bleed. No borders.",
+    "narrative": "The Page of Wands is the 'Young Explorer'—a juvenile leopard cat discovering the boundaries of its world with enthusiasm and innocence."
+  },
+  "ornaments": ["butterflies"],
+  "output": "art/renders/card-wa-11-page-of-wands.png",
+  "meanings": {
+    "upright": "Discovery, enthusiasm, new trails, messages of growth, and the excitement of a young spirit.",
+    "reversed": "Immaturity, lack of follow-through, or a wasted opportunity for discovery.",
+    "keywords": ["discovery", "youth", "enthusiasm", "possibility"]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "juvenile",
+    "habitat_fragment": "edge forest meadow",
+    "risk_theme": "curiosity vs safety",
+    "mapping_note": "Page of Wands represents the 'First Foray'—the stage where a juvenile begins to explore beyond the den, full of wonder but vulnerable."
+  },
+  "website": {
+    "excerpt": "Curious and brave, the young leopard cat discovers new trails and wonders in the forest edge.",
+    "seo_title": "Page of Wands - LeopardCat Tarot",
+    "seo_description": "Page of Wands reimagined as a curious juvenile leopard cat explorer.",
+    "tags": ["minor-arcana", "wands", "leopard-cat", "youth"]
+  }
+}

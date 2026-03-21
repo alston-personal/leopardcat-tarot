@@ -1,0 +1,58 @@
+{
+  "id": "card-wa-02-two-of-wands",
+  "arcana": "minor",
+  "suit": "wands",
+  "number": "II",
+  "title": "TWO OF WANDS",
+  "subtitle": "Planning / Horizon / Fragment Evaluation",
+  "slug": "two-of-wands",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [30, 45, 60],
+    "bottom": [80, 100, 60],
+    "frame": [219, 203, 156],
+    "frame_inner": [171, 149, 102],
+    "panel": [25, 35, 45],
+    "text_primary": [243, 233, 201],
+    "text_secondary": [198, 186, 151]
+  },
+  "scene": {
+    "theme": "future-planning",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "adult-leopard-cat"
+  },
+  "main_image": "art/generated/card-wa-02-two-of-wands.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. An anthropomorphic Taiwan leopard cat standing on a high cliff overlook. It holds a wooden wand in one hand and a small, glowing world-globe-like orb (representing territorial vision) in the other. It looks out over a fragmented forest landscape with distant ridges. High detailed rosettes and white ear spots. 1900s lithograph feel. No borders. Full bleed.",
+    "narrative": "A leopard cat stands at a vantage point, holding its territory in its hand while evaluating the distant fragments of forest. It represents the crucial planning stage before moving into new habitat."
+  },
+  "ornaments": ["glowing-orb"],
+  "output": "art/renders/card-wa-02-two-of-wands.png",
+  "meanings": {
+    "upright": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments.",
+    "reversed": "Indecision, fear of the unknown, or poor evaluation of landscape safety.",
+    "keywords": ["planning", "vision", "foresight", "territory"]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "high mountain ridge",
+    "risk_theme": "connectivity evaluation",
+    "mapping_note": "Two of Wands becomes the decision to move between distant forest patches—a calculated risk based on environmental reading."
+  },
+  "website": {
+    "excerpt": "Evaluating the landscape from a high ridge, the leopard cat plans its next move between forest fragments.",
+    "seo_title": "Two of Wands - LeopardCat Tarot",
+    "seo_description": "Two of Wands reimagined as leopard cat landscape evaluation and planning.",
+    "tags": ["minor-arcana", "wands", "leopard-cat", "planning"]
+  }
+}
