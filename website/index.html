@@ -28,10 +28,10 @@
     <nav class="navbar">
         <div class="nav-logo" data-i18n="logo">靈山靈貓 | 石虎計畫</div>
         <div class="nav-links">
-            <a href="#home" data-i18n="home">首頁</a>
-            <a href="#intro" data-i18n="intro">生態靈魂</a>
-            <a href="#events" data-i18n="events">生命紀事</a>
-            <a href="#gallery" data-i18n="gallery">大阿爾克那</a>
+            <a href="#hero" data-i18n="nav_home">Home</a>
+            <a href="#intro" data-i18n="nav_intro">Intro</a>
+            <a href="#chronicle" data-i18n="nav_events">Events</a>
+            <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
         </div>
         <div class="lang-switcher">
             <button onclick="setLanguage('zh')" class="lang-btn active" id="btn-zh">中</button>
@@ -49,6 +49,24 @@
                 <p class="subtitle" data-i18n="hero_subtitle">Leopard Cat Sanctuary: An Ecological Journey</p>
                 <div class="hero-cta">
                     <a href="#intro" class="btn btn-gold" data-i18n="hero_cta">進入山林</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="fortune" class="section fortune-section">
+            <div class="container">
+                <div class="section-title">
+                    <span class="label" data-i18n="label_fortune">Wishing Well</span>
+                    <h2 data-i18n="title_fortune">靈山仙貓大師：塔羅占卜</h2>
+                </div>
+                <div class="fortune-container" style="text-align: center; max-width: 600px; margin: 0 auto; background: rgba(0,0,0,0.4); padding: 30px; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.3);">
+                    <div class="fortune-input-area">
+                        <textarea id="fortune-question" placeholder="請問大師，我心中的疑惑是..." style="width: 100%; height: 100px; background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(212,175,55,0.5); border-radius: 8px; padding: 15px; margin-bottom: 20px; font-family: inherit; font-size: 1rem; resize: none;"></textarea>
+                        <button id="btn-draw" class="btn btn-gold" onclick="drawFortune()">祈請大師開牌</button>
+                    </div>
+                    <div id="fortune-result" class="fortune-result hidden" style="margin-top: 30px; text-align: left; padding-top: 20px; border-top: 1px solid rgba(212,175,55,0.2);">
+                        <!-- Result injected here -->
+                    </div>
                 </div>
             </div>
         </section>
