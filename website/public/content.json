@@ -5,12 +5,14 @@
       "intro": "生態靈魂",
       "events": "生命紀事",
       "gallery": "大阿爾克那",
+      "fortune": "大師占卜",
       "logo": "靈山靈貓 | 石虎計畫"
     },
     "hero": {
       "hero_title": "靈山靈貓",
       "hero_subtitle": "靈魂深處的棲地之旅：石虎保育計畫",
-      "hero_cta": "進入山林"
+      "hero_cta": "進入山林",
+      "hero_cta_fortune": "詢問大師"
     },
     "labels": {
       "label_intro": "前言導引",
@@ -68,13 +70,16 @@
       "description": "守護石虎需要您的關注與支持，請訪問相關保育團體了解更多。",
       "links": [
         {"name": "台灣石虎保育協會", "url": "https://www.twlcat.org/"},
-        {"name": "特有生物研究保育中心", "url": "https://www.tesri.gov.tw/"}
+        {"name": "農業部生物多樣性研究所", "url": "https://www.biodiv.tw/"},
+        {"name": "野灣野生動物救援協會", "url": "https://www.wildone.org.tw/"}
       ]
     },
     "groups": [
       {"id": "material", "title": "第一階段：物質與生存 (0-7)", "description": "探索石虎在現實世界中的初次闖蕩與社會連結。"},
       {"id": "inner", "title": "第二階段：內在與考驗 (8-14)", "description": "進入深山幽谷，面對孤獨與生命循環的深度洗禮。"},
-      {"id": "cosmic", "title": "第三階段：覺醒與和諧 (15-21)", "description": "超越災難與夢境，達成與人類文明的最終和諧。"}
+      {"id": "cosmic", "title": "第三階段：覺醒與和諧 (15-21)", "description": "超越災難與夢境，達成與人類文明的最終和諧。"},
+      {"id": "wands", "title": "權杖組：行動與領地佈局", "description": "象徵族群開拓與新棲地的探索過程，每一次播遷都是生存的契機。"},
+      {"id": "cups", "title": "聖杯組：水源與直覺連結", "description": "象徵石虎與溪流生境的命脈關係，代表情感、親性與內在直覺。"}
     ],
     "support": {
       "label_support": "贊助支持",
@@ -91,12 +96,14 @@
       "intro": "Ecological Soul",
       "events": "Chronicles",
       "gallery": "Major Arcana",
+      "fortune": "Fortune",
       "logo": "Leopard Cat | The Sanctuary"
     },
     "hero": {
       "hero_title": "Spirit of the Hill",
       "hero_subtitle": "A Journey into the Soul of the Leopard Cat",
-      "hero_cta": "Enter the Woods"
+      "hero_cta": "Enter the Woods",
+      "hero_cta_fortune": "Ask the Master"
     },
     "labels": {
       "label_intro": "Introduction",
@@ -154,13 +161,16 @@
       "description": "Leopard Cat survival needs your attention. Visit these organizations to learn more and support their mission.",
       "links": [
         {"name": "Leopard Cat Association", "url": "https://www.twlcat.org/"},
-        {"name": "Endemic Species Research", "url": "https://www.tesri.gov.tw/"}
+        {"name": "Bio-Diversity Research Institute", "url": "https://www.biodiv.tw/"},
+        {"name": "WildOne Wildlife Rescue", "url": "https://www.wildone.org.tw/"}
       ]
     },
     "groups": [
       {"id": "material", "title": "Phase I: Material & Survival (0-7)", "description": "Exploring the first encounters and social bonds of leopard cats in the physical world."},
       {"id": "inner", "title": "Phase II: Inner Trials (8-14)", "description": "Descending into deep valleys to face solitude and the profound cycles of life."},
-      {"id": "cosmic", "title": "Phase III: Awakening & Harmony (15-21)", "description": "Transcending disasters and dreams to reach final harmony with human civilization."}
+      {"id": "cosmic", "title": "Phase III: Awakening & Harmony (15-21)", "description": "Transcending disasters and dreams to reach final harmony with human civilization."},
+      {"id": "wands", "title": "Suit of Wands: Action & Territory", "description": "Symbolizing the expansion of the population and the search for new habitats. Every dispersal is a spark of survival."},
+      {"id": "cups", "title": "Suit of Cups: Water & Intuition", "description": "Symbolizing the bond with water habitats, representing emotion, healing, and inner vision."}
     ],
     "support": {
       "label_support": "Support the Project",
