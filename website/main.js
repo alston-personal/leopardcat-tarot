@@ -229,7 +229,7 @@ window.applyLanguage = applyLanguage;
 
 let chatQuota = 3;
 
-window.drawFortune = function() {
+window.drawFortune = async function() {
     if (chatQuota <= 0) {
         document.getElementById('fortune-result').innerHTML = `
             <div class="master-response">
@@ -255,8 +255,8 @@ window.drawFortune = function() {
     btn.innerText = loadingText;
     btn.disabled = true;
 
-    // Simulate AI loading delay
-    setTimeout(() => {
+    // Actual AI Call
+    try {
         // RNG Logic
         if (!cardData || cardData.length === 0) {
             const errorText = currentLang === 'zh' ? "牌組讀取中，請稍後" : "Deck is loading, please wait...";
@@ -275,10 +275,26 @@ window.drawFortune = function() {
         const masterTitle = currentLang === 'zh' ? '靈山仙貓大師：' : 'The AI Oracle:';
         const queryPrefix = currentLang === 'zh' ? '「關於你所詢問的：『' : '"Regarding your query: \'';
         const querySuffix = currentLang === 'zh' ? '』...」' : '\'..."';
-        const drawText = currentLang === 'zh' ? '大師在黑暗中為你抽出了' : 'The Oracle reveals the card';
-        const meaningTitle = currentLang === 'zh' ? '🔮 牌面解析：' : '🔮 Insight:';
-        const energyText = currentLang === 'zh' ? '本次解密消耗 1 點靈氣。剩餘: ⚡' : 'This reading consumed 1 Quote. Remaining: ⚡';
+        const drawText = currentLang === 'zh' ? '大師經過元神冥想，在黑暗中抽出了' : 'The Oracle meditated, and reveals the card';
+        const meaningTitle = currentLang === 'zh' ? '🔮 牌面真實解析 (AI)：' : '🔮 AI Deep Insight:';
+        const energyText = currentLang === 'zh' ? '本次元神連線消耗 1 點靈氣。剩餘: ⚡' : 'This deep reading consumed 1 Quote. Remaining: ⚡';
         
+        // Let user know drawing is finished, now generating text
+        btn.innerText = currentLang === 'zh' ? "大師解籤中..." : "Oracle is channeling...";
+        
+        // Fetch real answer
+        const apiResp = await fetch('/api/fortune', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question: questionText, cardTitle: title, cardMeaning: meaning, lang: currentLang })
+        });
+        
+        let finalMeaning = meaning; // fallback to basic meaning
+        if (apiResp.ok) {
+            const apiData = await apiResp.json();
+            if (apiData.reading) finalMeaning = apiData.reading.replace(/\n/g, '<br>');
+        }
+
         document.getElementById('fortune-result').innerHTML = `
             <div class="master-response">
                 <p>🔮 <strong>${masterTitle}</strong></p>
@@ -287,16 +303,21 @@ window.drawFortune = function() {
                 <div class="card-reveal" style="text-align: center; margin: 20px 0;">
                     <img src="art/renders/${card.id}.png" style="max-width: 250px; border-radius: 12px; box-shadow: 0 10px 30px rgba(212,175,55,0.2);" onerror="this.src='https://placehold.co/1400x2420/0a110e/d4af37?text=${title}'">
                 </div>
-                <p style="margin-bottom: 20px; line-height: 1.8;"><strong>${meaningTitle}</strong><br>${meaning}</p>
+                <p style="margin-bottom: 20px; line-height: 1.8; font-size: 1.05rem;"><strong>${meaningTitle}</strong><br>${finalMeaning}</p>
                 <hr style="border: none; border-top: 1px dashed rgba(255,255,255,0.2); margin: 20px 0;">
                 <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5); text-align: center;">${energyText} ${chatQuota}</p>
             </div>
         `;
         document.getElementById('fortune-result').classList.remove('hidden');
         
-        btn.innerText = "祈請大師開牌";
-        btn.disabled = false;
-    }, 1500);
+    } catch (e) {
+        console.error(e);
+        const errText = currentLang === 'zh' ? "大師閉關中 (網路連線錯誤)" : "Oracle is resting (Network Error)";
+        alert(errText);
+    }
+    
+    btn.innerText = resetText;
+    btn.disabled = false;
 }
 
 window.topUp = function() {
