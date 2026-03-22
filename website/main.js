@@ -37,10 +37,13 @@ function applyLanguage() {
     // Update all elements with data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        // Look through all sections in content.json
         for (const section in data) {
             if (typeof data[section] === 'object' && data[section][key]) {
-                el.textContent = data[section][key];
+                if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') {
+                    el.placeholder = data[section][key];
+                } else {
+                    el.textContent = data[section][key];
+                }
             }
         }
     });
@@ -242,18 +245,23 @@ window.drawFortune = function() {
     }
 
     const questionText = document.getElementById('fortune-question').value;
-    if (!questionText.trim()) return alert("大師需要聽見你心中的疑惑！");
+    const alertEmpty = currentLang === 'zh' ? "大師需要聽見你心中的疑惑！" : "The Oracle needs to hear your question!";
+    if (!questionText.trim()) return alert(alertEmpty);
 
     const btn = document.getElementById('btn-draw');
-    btn.innerText = "大師元神感應中...";
+    const loadingText = currentLang === 'zh' ? "大師元神感應中..." : "Oracle is meditating...";
+    const resetText = currentLang === 'zh' ? "祈請大師開牌" : "Draw Your Destiny";
+    
+    btn.innerText = loadingText;
     btn.disabled = true;
 
     // Simulate AI loading delay
     setTimeout(() => {
         // RNG Logic
         if (!cardData || cardData.length === 0) {
-            alert("牌組讀取中，請稍後");
-            btn.innerText = "祈請大師開牌";
+            const errorText = currentLang === 'zh' ? "牌組讀取中，請稍後" : "Deck is loading, please wait...";
+            alert(errorText);
+            btn.innerText = resetText;
             btn.disabled = false;
             return;
         }
@@ -264,18 +272,24 @@ window.drawFortune = function() {
         
         const title = currentLang === 'zh' ? card.title['zh'] : card.title['en'];
         const meaning = currentLang === 'zh' ? card.meaning['zh'] : card.meaning['en'];
+        const masterTitle = currentLang === 'zh' ? '靈山仙貓大師：' : 'The AI Oracle:';
+        const queryPrefix = currentLang === 'zh' ? '「關於你所詢問的：『' : '"Regarding your query: \'';
+        const querySuffix = currentLang === 'zh' ? '』...」' : '\'..."';
+        const drawText = currentLang === 'zh' ? '大師在黑暗中為你抽出了' : 'The Oracle reveals the card';
+        const meaningTitle = currentLang === 'zh' ? '🔮 牌面解析：' : '🔮 Insight:';
+        const energyText = currentLang === 'zh' ? '本次解密消耗 1 點靈氣。剩餘: ⚡' : 'This reading consumed 1 Quote. Remaining: ⚡';
         
         document.getElementById('fortune-result').innerHTML = `
             <div class="master-response">
-                <p>🔮 <strong>靈山仙貓大師：</strong></p>
-                <p style="font-style: italic; opacity: 0.8;">「關於你所詢問的：『${questionText}』...」</p>
-                <p>大師在黑暗中為你抽出了 <strong>【${title}】</strong>。</p>
+                <p>🔮 <strong>${masterTitle}</strong></p>
+                <p style="font-style: italic; opacity: 0.8;">${queryPrefix}${questionText}${querySuffix}</p>
+                <p>${drawText} <strong>【${title}】</strong>。</p>
                 <div class="card-reveal" style="text-align: center; margin: 20px 0;">
                     <img src="art/renders/${card.id}.png" style="max-width: 250px; border-radius: 12px; box-shadow: 0 10px 30px rgba(212,175,55,0.2);" onerror="this.src='https://placehold.co/1400x2420/0a110e/d4af37?text=${title}'">
                 </div>
-                <p style="margin-bottom: 20px; line-height: 1.8;"><strong>🔮 牌面解析：</strong><br>${meaning}</p>
+                <p style="margin-bottom: 20px; line-height: 1.8;"><strong>${meaningTitle}</strong><br>${meaning}</p>
                 <hr style="border: none; border-top: 1px dashed rgba(255,255,255,0.2); margin: 20px 0;">
-                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5); text-align: center;">本次解密消耗 1 點靈氣。剩餘: ⚡ ${chatQuota} 點</p>
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5); text-align: center;">${energyText} ${chatQuota}</p>
             </div>
         `;
         document.getElementById('fortune-result').classList.remove('hidden');

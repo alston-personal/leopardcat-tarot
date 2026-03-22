@@ -22,6 +22,10 @@
       "btn_gallery": "進入大阿爾克那展廳",
       "label_gallery": "展示藝廊",
       "title_gallery": "大阿爾克那：石虎的生命旅程",
+      "label_fortune": "許願池",
+      "title_fortune": "靈山仙貓大師：塔羅占卜",
+      "placeholder_fortune": "請問大師，我心中的疑惑是...",
+      "btn_fortune_draw": "祈請大師開牌",
       "label_cta": "行動呼籲",
       "title_cons": "加入保育行動"
     },
@@ -113,6 +117,10 @@
       "btn_gallery": "Enter the Tarot Gallery",
       "label_gallery": "The Tarot Gallery",
       "title_gallery": "Major Arcana: The Life Journey",
+      "label_fortune": "Wishing Well",
+      "title_fortune": "LeopardCat Oracle: Tarot Reading",
+      "placeholder_fortune": "Ask the AI Oracle your question...",
+      "btn_fortune_draw": "Draw Your Destiny",
       "label_cta": "Call to Action",
       "title_cons": "Join the Movement"
     },
