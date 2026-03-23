@@ -2,8 +2,11 @@
   "id": "card-wa-12-knight-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "Knight",
-  "title": "KNIGHT OF WANDS",
+  "number": "KNIGHT",
+  "title": {
+    "zh": "KNIGHT OF WANDS",
+    "en": "KNIGHT OF WANDS"
+  },
   "subtitle": "Spirited / Bold / Action Hero",
   "slug": "knight-of-wands",
   "status": "draft",
@@ -12,13 +15,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [180, 80, 30],
-    "bottom": [100, 50, 20],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [40, 25, 15],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      180,
+      80,
+      30
+    ],
+    "bottom": [
+      100,
+      50,
+      20
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      40,
+      25,
+      15
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "bold-charge",
@@ -32,15 +63,22 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A spirited, sub-adult anthropomorphic leopard cat in action, charging through tall golden grass. It holds a sturdy wooden wand in its hand like a lance. It looks forward with intense focus and determination. rosettes and white ear spots are dynamic. Full bleed. No borders.",
+    "image_prompt": "A spirited, sub-adult humanoid leopard cat in action, charging through tall golden grass. It holds a sturdy wooden wand in its hand like a lance. It looks forward with intense focus and determination. It wears fire-themed medieval leather armor and a flowing cape.",
     "narrative": "The Knight of Wands is the 'Brave Disperser'—a sub-adult leopard cat charging into the unknown, driven by impulse and courage."
   },
-  "ornaments": ["golden-grass"],
+  "ornaments": [
+    "golden-grass"
+  ],
   "output": "art/renders/card-wa-12-knight-of-wands.png",
   "meanings": {
     "upright": "Action, adventure, impulsiveness, rapid energy, and the drive to conquer the road ahead.",
     "reversed": "Impulsiveness leading to danger, frustration, or a journey that is cut short by recklessness.",
-    "keywords": ["action", "adventure", "energy", "impulse"]
+    "keywords": [
+      "action",
+      "adventure",
+      "energy",
+      "impulse"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
@@ -53,6 +91,15 @@
     "excerpt": "Charging through the unknown with bold energy, the spirited disperser seeks his new kingdom.",
     "seo_title": "Knight of Wands - LeopardCat Tarot",
     "seo_description": "Knight of Wands reimagined as a bold sub-adult leopard cat disperser.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "courage"]
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "courage"
+    ]
+  },
+  "meaning": {
+    "zh": "Action, adventure, impulsiveness, rapid energy, and the drive to conquer the road ahead.",
+    "en": "Action, adventure, impulsiveness, rapid energy, and the drive to conquer the road ahead."
   }
 }

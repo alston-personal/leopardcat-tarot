@@ -267,7 +267,7 @@ def draw_frame(base: Image.Image, width: int, height: int, palette: dict):
     draw.rounded_rectangle((36, 36, width - 36, height - 36), radius=36, outline=tuple(palette["frame"]), width=8)
     draw.rounded_rectangle((90, 90, width - 90, height - 90), radius=26, outline=tuple(palette["frame_inner"]), width=3)
     
-    # --- GLASS PANELS LOGIC ---
+    # --- GLASS PANELS LOGIC (REFINED for MUSEUM-GRADE HARMONY) ---
     panels = [
         (150, 120, width - 150, 320), # Top Title Panel
         (240, height - 340, width - 240, height - 160) # Bottom Info Panel
@@ -276,8 +276,8 @@ def draw_frame(base: Image.Image, width: int, height: int, palette: dict):
     for box in panels:
         # 1. Extract the area to blur
         crop = base.crop(box)
-        # 2. Apply a heavy blur for the glass effect
-        blurred = crop.filter(ImageFilter.GaussianBlur(radius=25))
+        # 2. Apply a heavy blur for the glass effect (increase radius to 30 for deeper integration)
+        blurred = crop.filter(ImageFilter.GaussianBlur(radius=30))
         # 3. Create a mask for rounded corners
         mask = Image.new("L", (box[2] - box[0], box[3] - box[1]), 0)
         mask_draw = ImageDraw.Draw(mask)
@@ -286,14 +286,19 @@ def draw_frame(base: Image.Image, width: int, height: int, palette: dict):
         # 4. Composite the blurred background back
         base.paste(blurred, box, mask=mask)
         
-        # 5. Draw the semi-transparent overlay and outline
+        # 5. Draw the semi-transparent overlay (reduced opacity for better harmony: 100/255)
         panel_fill = list(palette["panel"])
-        if len(panel_fill) == 3: panel_fill.append(128) # 50% Opacity for Glass
+        if len(panel_fill) == 3: panel_fill.append(100) # Slightly more translucent
         draw.rounded_rectangle(box, radius=radius, fill=tuple(panel_fill), outline=tuple(palette["frame"]), width=3)
         
-        # 6. Subtle Top Highlight (Inner Glow feel)
-        highlight_color = (255, 255, 255, 40)
-        draw.line((box[0] + radius, box[1] + 2, box[2] - radius, box[1] + 2), fill=highlight_color, width=2)
+        # 6. Subtle Inset Shadow feel (Darken top/left slightly)
+        draw.rounded_rectangle(box, radius=radius, outline=(0, 0, 0, 60), width=1)
+        
+        # 7. Polished Top-Left Highlight (Beveled feel)
+        highlight_color = (255, 255, 255, 65)
+        draw.arc((box[0]+2, box[1]+2, box[0]+radius*2, box[1]+radius*2), start=180, end=270, fill=highlight_color, width=3)
+        draw.line((box[0] + radius, box[1] + 2, box[2] - radius, box[1] + 2), fill=highlight_color, width=3)
+        draw.line((box[0] + 2, box[1] + radius, box[0] + 2, box[3] - radius), fill=highlight_color, width=3)
 
 
 def load_font(size: int, bold: bool = False):
@@ -336,13 +341,16 @@ def draw_text(draw: ImageDraw.ImageDraw, width: int, height: int, config: dict, 
             current_x += draw.textlength(char, font=font) + current_spacing
 
     title = config["title"]
-    numeral = config["number"]
-    subtitle = config["subtitle"]
+    if isinstance(title, dict):
+        title = title.get("en", "")
+    
+    numeral = str(config["number"])
+    subtitle = str(config["subtitle"])
 
     # Top Panel
     draw_spaced_text(draw, title, 168, 84, False, tuple(palette["text_primary"]), title_max_w, letter_spacing=12)
     # Bottom Panel (Numeral & Subtitle)
-    draw_spaced_text(draw, numeral, height - 315, 64, True, tuple(palette["text_primary"]), numeral_max_w, letter_spacing=8)
+    draw_spaced_text(draw, numeral, height - 320, 80, True, tuple(palette["text_primary"]), numeral_max_w, letter_spacing=10)
     draw_spaced_text(draw, subtitle, height - 235, 42, False, tuple(palette["text_secondary"]), subtitle_max_w, letter_spacing=4)
 
 

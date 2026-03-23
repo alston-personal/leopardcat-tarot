@@ -2,8 +2,11 @@
   "id": "card-wa-11-page-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "Page",
-  "title": "PAGE OF WANDS",
+  "number": "PAGE",
+  "title": {
+    "zh": "PAGE OF WANDS",
+    "en": "PAGE OF WANDS"
+  },
   "subtitle": "Discoverer / New Trail / Curiosity",
   "slug": "page-of-wands",
   "status": "draft",
@@ -12,13 +15,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [120, 180, 80],
-    "bottom": [80, 120, 50],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [30, 45, 20],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      120,
+      180,
+      80
+    ],
+    "bottom": [
+      80,
+      120,
+      50
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      30,
+      45,
+      20
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "youthful-discovery",
@@ -32,15 +63,22 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A youthful, wide-eyed anthropomorphic leopard cat (juvenile/Page) standing in a lush meadow, curiously holding a slender wooden wand that is slightly taller than it. Butterflies and bright wildflowers surround it. It looks ready for adventure. rosettes and white ear spots. vibrant, hopeful colors. Full bleed. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A youthful, wide-eyed anthropomorphic leopard cat (juvenile/Page) standing in a lush meadow, curiously holding a slender wooden wand that is slightly taller than it. Butterflies and bright wildflowers surround it. It looks ready for adventure. rosettes and white ear spots. vibrant, hopeful colors. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "The Page of Wands is the 'Young Explorer'—a juvenile leopard cat discovering the boundaries of its world with enthusiasm and innocence."
   },
-  "ornaments": ["butterflies"],
+  "ornaments": [
+    "butterflies"
+  ],
   "output": "art/renders/card-wa-11-page-of-wands.png",
   "meanings": {
     "upright": "Discovery, enthusiasm, new trails, messages of growth, and the excitement of a young spirit.",
     "reversed": "Immaturity, lack of follow-through, or a wasted opportunity for discovery.",
-    "keywords": ["discovery", "youth", "enthusiasm", "possibility"]
+    "keywords": [
+      "discovery",
+      "youth",
+      "enthusiasm",
+      "possibility"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
@@ -53,6 +91,15 @@
     "excerpt": "Curious and brave, the young leopard cat discovers new trails and wonders in the forest edge.",
     "seo_title": "Page of Wands - LeopardCat Tarot",
     "seo_description": "Page of Wands reimagined as a curious juvenile leopard cat explorer.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "youth"]
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "youth"
+    ]
+  },
+  "meaning": {
+    "zh": "Discovery, enthusiasm, new trails, messages of growth, and the excitement of a young spirit.",
+    "en": "Discovery, enthusiasm, new trails, messages of growth, and the excitement of a young spirit."
   }
 }

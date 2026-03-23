@@ -2,8 +2,11 @@
   "id": "card-wa-13-queen-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "Queen",
-  "title": "QUEEN OF WANDS",
+  "number": "QUEEN",
+  "title": {
+    "zh": "QUEEN OF WANDS",
+    "en": "QUEEN OF WANDS"
+  },
   "subtitle": "Confident Matriarch / Radiant / Nurturer",
   "slug": "queen-of-wands",
   "status": "draft",
@@ -12,13 +15,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [220, 180, 50],
-    "bottom": [120, 100, 30],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [50, 40, 15],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      220,
+      180,
+      50
+    ],
+    "bottom": [
+      120,
+      100,
+      30
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      50,
+      40,
+      15
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "radiant-matriarch",
@@ -32,15 +63,22 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A confident and regal anthropomorphic mother leopard cat (Queen) sitting gracefully on a sunlit log in a forest glade. She holds a wooden wand blooming with yellow sunflowers. She looks out with warmth and hidden strength. rosettes and white ear spots are luminous. Full bleed. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A confident and regal anthropomorphic mother leopard cat (Queen) sitting gracefully on a sunlit log in a forest glade. She holds a wooden wand blooming with yellow sunflowers. She looks out with warmth and hidden strength. rosettes and white ear spots are luminous. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "The Queen of Wands is the 'Luminous Matriarch'—the experienced mother leopard cat who manages her territory with warmth, confidence, and quiet authority."
   },
-  "ornaments": ["sunflowers"],
+  "ornaments": [
+    "sunflowers"
+  ],
   "output": "art/renders/card-wa-13-queen-of-wands.png",
   "meanings": {
     "upright": "Confidence, warmth, social influence, fertility, and a spirited approach to life and territory.",
     "reversed": "Self-doubt, manipulation, jealousy, or a loss of influence over one's range.",
-    "keywords": ["confidence", "warmth", "vitality", "social structure"]
+    "keywords": [
+      "confidence",
+      "warmth",
+      "vitality",
+      "social structure"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
@@ -53,6 +91,15 @@
     "excerpt": "A radiant and confident matriarch, the Queen ensures the vitality and future of her forest kingdom.",
     "seo_title": "Queen of Wands - LeopardCat Tarot",
     "seo_description": "Queen of Wands reimagined as a confident leopard cat matriarch and nurturer.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "feminine-energy"]
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "feminine-energy"
+    ]
+  },
+  "meaning": {
+    "zh": "Confidence, warmth, social influence, fertility, and a spirited approach to life and territory.",
+    "en": "Confidence, warmth, social influence, fertility, and a spirited approach to life and territory."
   }
 }

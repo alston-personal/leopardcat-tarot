@@ -2,8 +2,11 @@
   "id": "card-wa-10-ten-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "X",
-  "title": "TEN OF WANDS",
+  "number": 110,
+  "title": {
+    "zh": "TEN OF WANDS",
+    "en": "TEN OF WANDS"
+  },
   "subtitle": "Burden / Carrying the Future / Overwhelmed",
   "slug": "ten-of-wands",
   "status": "draft",
@@ -12,13 +15,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [20, 15, 10],
-    "bottom": [60, 45, 30],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [15, 12, 10],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      20,
+      15,
+      10
+    ],
+    "bottom": [
+      60,
+      45,
+      30
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      15,
+      12,
+      10
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "carrying-the-burden",
@@ -32,15 +63,22 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. An anthropomorphic leopard cat bent over, carrying a massive bundle of ten wooden wands on its back as it walks towards a distant town/village at twilight. It is laboring heavily. rosettes and white ear spots are clearly visible. Its head is down, focusing on the path. Atmospheric, heavy feel. Full bleed. No text. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. An anthropomorphic leopard cat bent over, carrying a massive bundle of ten wooden wands on its back as it walks towards a distant town/village at twilight. It is laboring heavily. rosettes and white ear spots are clearly visible. Its head is down, focusing on the path. Atmospheric, heavy feel. Full bleed. No text. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "A leopard cat carries the weight of its entire disappearing species. Each wand represents a habitat fragment it must navigate to reach the distant 'village' of coexistence."
   },
-  "ornaments": ["heavy-bundle"],
+  "ornaments": [
+    "heavy-bundle"
+  ],
   "output": "art/renders/card-wa-10-ten-of-wands.png",
   "meanings": {
     "upright": "Burden, overextension, carrying too much responsibility, and the struggle of local conservationists and the cats themselves.",
     "reversed": "Release of burden, collapse from overwork, or avoiding responsibility for the species' future.",
-    "keywords": ["burden", "responsibility", "overextension", "labor"]
+    "keywords": [
+      "burden",
+      "responsibility",
+      "overextension",
+      "labor"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
@@ -53,6 +91,15 @@
     "excerpt": "Under the weight of ten wands, the leopard cat carries the burden of survival through a shrinking world.",
     "seo_title": "Ten of Wands - LeopardCat Tarot",
     "seo_description": "Ten of Wands reimagined as the burden of leopard cat extinction risk and habitat loss.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "burden"]
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "burden"
+    ]
+  },
+  "meaning": {
+    "zh": "Burden, overextension, carrying too much responsibility, and the struggle of local conservationists and the cats themselves.",
+    "en": "Burden, overextension, carrying too much responsibility, and the struggle of local conservationists and the cats themselves."
   }
 }

@@ -35,5 +35,9 @@ Every image generation MUST combine two distinct layers to maintain style consis
 
 ---
 
+
+
+---
+
 ## 🛡️ 4. Agent Execution Rule
-Whenever an Agent works on this project, it **MUST** read this `PROTOCOL.md` first to avoid "style drift" or "context forgetting".
+Whenever an Agent works on this project, it **MUST** use the global [tarot_architect](file:///home/ubuntu/agentmanager/.agent/skills/tarot_architect/SKILL.md) skill to ensure style and technical consistency.

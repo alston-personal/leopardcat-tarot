@@ -2,8 +2,11 @@
   "id": "card-wa-14-king-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "King",
-  "title": "KING OF WANDS",
+  "number": "KING",
+  "title": {
+    "zh": "KING OF WANDS",
+    "en": "KING OF WANDS"
+  },
   "subtitle": "Visionary Leader / Territorial Master",
   "slug": "king-of-wands",
   "status": "draft",
@@ -12,13 +15,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [200, 140, 30],
-    "bottom": [80, 60, 20],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [40, 30, 10],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      200,
+      140,
+      30
+    ],
+    "bottom": [
+      80,
+      60,
+      20
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      40,
+      30,
+      10
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "territorial-master",
@@ -32,15 +63,22 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A powerful, regal anthropomorphic alpha male leopard cat (King) sitting on a high rocky throne overlooking a vast, secure forest and river valley. He holds a massive wooden wand (a gnarled branch) like a scepter. He looks out with intense vision and mastery of his domain. rosettes and white ear spots are prominent. Full bleed. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A powerful, regal anthropomorphic alpha male leopard cat (King) sitting on a high rocky throne overlooking a vast, secure forest and river valley. He holds a massive wooden wand (a gnarled branch) like a scepter. He looks out with intense vision and mastery of his domain. rosettes and white ear spots are prominent. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "The King of Wands is the 'Old Master of the Land'—the alpha male who has successfully claimed and secured his territory against all odds."
   },
-  "ornaments": ["rocky-throne"],
+  "ornaments": [
+    "rocky-throne"
+  ],
   "output": "art/renders/card-wa-14-king-of-wands.png",
   "meanings": {
     "upright": "Vision, leadership, entrepreneurship, mastery of one's environment, and the power to command a stable territory.",
     "reversed": "Tyranny, overreach, loss of vision, or being a ruler without a land (homeless).",
-    "keywords": ["leadership", "vision", "mastery", "protection"]
+    "keywords": [
+      "leadership",
+      "vision",
+      "mastery",
+      "protection"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
@@ -53,6 +91,15 @@
     "excerpt": "A powerful and visionary leader, the King masterfully protects his vast and secure forest domain.",
     "seo_title": "King of Wands - LeopardCat Tarot",
     "seo_description": "King of Wands reimagined as a powerful leopard cat alpha in his secure territory.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "leadership"]
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "leadership"
+    ]
+  },
+  "meaning": {
+    "zh": "Vision, leadership, entrepreneurship, mastery of one's environment, and the power to command a stable territory.",
+    "en": "Vision, leadership, entrepreneurship, mastery of one's environment, and the power to command a stable territory."
   }
 }

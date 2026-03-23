@@ -2,8 +2,11 @@
   "id": "card-wa-06-six-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "VI",
-  "title": "SIX OF WANDS",
+  "number": 106,
+  "title": {
+    "zh": "SIX OF WANDS",
+    "en": "SIX OF WANDS"
+  },
   "subtitle": "Victory / Public Success / Survival Hero",
   "slug": "six-of-wands",
   "status": "draft",
@@ -12,13 +15,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [200, 160, 50],
-    "bottom": [100, 80, 20],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [40, 30, 10],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      200,
+      160,
+      50
+    ],
+    "bottom": [
+      100,
+      80,
+      20
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      40,
+      30,
+      10
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "victorious-survivor",
@@ -32,15 +63,22 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A victorious anthropomorphic leopard cat riding a magnificent large deer or standing on a high platform above a cheering crowd of smaller forest animals. It holds a wand with a laurel wreath attached to the top. Five other wands are held by others below. Bright, triumphant colors. rosettes and white ear spots prominent. Full bleed. No text. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A victorious anthropomorphic leopard cat riding a magnificent large deer or standing on a high platform above a cheering crowd of smaller forest animals. It holds a wand with a laurel wreath attached to the top. Five other wands are held by others below. Bright, triumphant colors. rosettes and white ear spots prominent. Full bleed. No text. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "A leopard cat that has managed to survive multiple road crossings and farm traps is celebrated as a survivor. Its victory represents the hard-won success of a species that refuses to vanish."
   },
-  "ornaments": ["laurel-wreath"],
+  "ornaments": [
+    "laurel-wreath"
+  ],
   "output": "art/renders/card-wa-06-six-of-wands.png",
   "meanings": {
     "upright": "Victory, public recognition, success after a hard journey, and being held up as a model of survival.",
     "reversed": "Falling from grace, lack of recognition, or the 'hollow' victory of a survivor whose habitat was still lost.",
-    "keywords": ["victory", "success", "recognition", "survival"]
+    "keywords": [
+      "victory",
+      "success",
+      "recognition",
+      "survival"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
@@ -53,6 +91,15 @@
     "excerpt": "A triumphant survivor, the leopard cat is celebrated for its resilience in the face of modern challenges.",
     "seo_title": "Six of Wands - LeopardCat Tarot",
     "seo_description": "Six of Wands reimagined as leopard cat conservation success and victory.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "victory"]
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "victory"
+    ]
+  },
+  "meaning": {
+    "zh": "Victory, public recognition, success after a hard journey, and being held up as a model of survival.",
+    "en": "Victory, public recognition, success after a hard journey, and being held up as a model of survival."
   }
 }

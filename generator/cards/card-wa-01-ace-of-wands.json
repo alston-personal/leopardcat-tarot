@@ -2,8 +2,11 @@
   "id": "card-wa-01-ace-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "ACE",
-  "title": "ACE OF WANDS",
+  "number": 999,
+  "title": {
+    "zh": "ACE OF WANDS",
+    "en": "ACE OF WANDS"
+  },
   "subtitle": "New Territories / Dispersal Spark",
   "slug": "ace-of-wands",
   "status": "draft",
@@ -12,13 +15,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [45, 60, 40],
-    "bottom": [120, 90, 50],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [34, 42, 30],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      45,
+      60,
+      40
+    ],
+    "bottom": [
+      120,
+      90,
+      50
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      34,
+      42,
+      30
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "territorial-expansion",
@@ -32,15 +63,22 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V2_NO_BORDER] Classic 1900s mystical lithography. A focused anthropomorphic juvenile Taiwan leopard cat standing upright on a forest ridge. It holds a single, thick wooden branch (the Wand) which is sprouting fresh green buds and small leaves. The character wears simple, earthy-colored robes suitable for a traveler. Background is a dawn forest with light rays filtering through the canopy. High detail on leopard cat rosette patterns. No text. Full bleed.",
+    "image_prompt": "[CLEAN_V2_NO_BORDER] Classic 1900s mystical lithography. A focused anthropomorphic juvenile Taiwan leopard cat standing upright on a forest ridge. It holds a single, thick wooden branch (the Wand) which is sprouting fresh green buds and small leaves. The character wears simple, earthy-colored robes suitable for a traveler. Background is a dawn forest with light rays filtering through the canopy. High detail on leopard cat rosette patterns. No text. Full bleed. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "A juvenile leopard cat stands at the edge of a new territory, holding a sprouting branch that symbolizes the potential of a new home range. The dawn light signifies a new beginning in its dispersal journey."
   },
-  "ornaments": ["sprouting-buds"],
+  "ornaments": [
+    "sprouting-buds"
+  ],
   "output": "art/renders/card-wa-01-ace-of-wands.png",
   "meanings": {
     "upright": "A new opportunity, territorial expansion, inspiration, and the creative drive to establish oneself in new terrain.",
     "reversed": "Delayed dispersal, lack of direction, or an inability to claim one's own space.",
-    "keywords": ["inspiration", "territory", "action", "new home"]
+    "keywords": [
+      "inspiration",
+      "territory",
+      "action",
+      "new home"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
@@ -53,6 +91,15 @@
     "excerpt": "A young leopard cat grasps a budding branch, marking the start of its journey to find a territory of its own.",
     "seo_title": "Ace of Wands - LeopardCat Tarot",
     "seo_description": "Ace of Wands reimagined as leopard cat dispersal and territorial potential.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "territory"]
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "territory"
+    ]
+  },
+  "meaning": {
+    "zh": "A new opportunity, territorial expansion, inspiration, and the creative drive to establish oneself in new terrain.",
+    "en": "A new opportunity, territorial expansion, inspiration, and the creative drive to establish oneself in new terrain."
   }
 }

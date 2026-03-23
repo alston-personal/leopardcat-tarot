@@ -2,8 +2,11 @@
   "id": "card-wa-08-eight-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "VIII",
-  "title": "EIGHT OF WANDS",
+  "number": 108,
+  "title": {
+    "zh": "EIGHT OF WANDS",
+    "en": "EIGHT OF WANDS"
+  },
   "subtitle": "Rapid Movement / Corridor Transit",
   "slug": "eight-of-wands",
   "status": "draft",
@@ -12,13 +15,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [30, 80, 120],
-    "bottom": [50, 100, 60],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [20, 30, 40],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      30,
+      80,
+      120
+    ],
+    "bottom": [
+      50,
+      100,
+      60
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      20,
+      30,
+      40
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "rapid-transit",
@@ -32,15 +63,22 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. Dynamic scene! Eight wooden wands (branches) are flying through the air parallel across a forest landscape towards the distance. A blurry, high-speed anthropomorphic leopard cat is running beneath them. The direction is toward a distant, moonlit opening (a safe corridor). High sense of motion. rosettes and white ear spots trail behind. Full bleed. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. Dynamic scene! Eight wooden wands (branches) are flying through the air parallel across a forest landscape towards the distance. A blurry, high-speed anthropomorphic leopard cat is running beneath them. The direction is toward a distant, moonlit opening (a safe corridor). High sense of motion. rosettes and white ear spots trail behind. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "Eight wands fly through the sky as a leopard cat moves with incredible speed through a newly opened ecological corridor. Everything is in motion, and the destination is close."
   },
-  "ornaments": ["flying-wands"],
+  "ornaments": [
+    "flying-wands"
+  ],
   "output": "art/renders/card-wa-08-eight-of-wands.png",
   "meanings": {
     "upright": "Speed, rapid movement, travel, sudden progress, and the swift use of open paths/corridors.",
     "reversed": "Delays, roadblocks, interrupted travel, or a movement that is too fast and results in a crash/risk.",
-    "keywords": ["speed", "movement", "travel", "action"]
+    "keywords": [
+      "speed",
+      "movement",
+      "travel",
+      "action"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
@@ -53,6 +91,15 @@
     "excerpt": "Swift and sure, the leopard cat sprints through the ecological corridor, with the goal in sight.",
     "seo_title": "Eight of Wands - LeopardCat Tarot",
     "seo_description": "Eight of Wands reimagined as rapid leopard cat movement through habitat corridors.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "speed"]
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "speed"
+    ]
+  },
+  "meaning": {
+    "zh": "Speed, rapid movement, travel, sudden progress, and the swift use of open paths/corridors.",
+    "en": "Speed, rapid movement, travel, sudden progress, and the swift use of open paths/corridors."
   }
 }

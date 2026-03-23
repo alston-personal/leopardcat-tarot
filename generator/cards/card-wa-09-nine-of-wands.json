@@ -2,8 +2,11 @@
   "id": "card-wa-09-nine-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "IX",
-  "title": "NINE OF WANDS",
+  "number": 109,
+  "title": {
+    "zh": "NINE OF WANDS",
+    "en": "NINE OF WANDS"
+  },
   "subtitle": "Resilience / The Scarred Survivor / Resilience",
   "slug": "nine-of-wands",
   "status": "draft",
@@ -12,13 +15,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [60, 40, 20],
-    "bottom": [100, 80, 50],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [30, 25, 20],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      60,
+      40,
+      20
+    ],
+    "bottom": [
+      100,
+      80,
+      50
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      30,
+      25,
+      20
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "scarred-survivor",
@@ -32,15 +63,23 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A weather-beaten, anthropomorphic leopard cat standing inside a wall of eight wooden wands. It is leaning on a NINTH wand (a sturdy branch) as a staff. It is an old, wise, and scarred survivor. One ear is slightly notched. It has a bandage on its leg. It looks directly at the viewer with eyes of deep experience and fatigue. rosettes and white ear spots are clearly visible. Full bleed. No text. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A weather-beaten, anthropomorphic leopard cat standing inside a wall of eight wooden wands. It is leaning on a NINTH wand (a sturdy branch) as a staff. It is an old, wise, and scarred survivor. One ear is slightly notched. It has a bandage on its leg. It looks directly at the viewer with eyes of deep experience and fatigue. rosettes and white ear spots are clearly visible. Full bleed. No text. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "An old leopard cat survivor, scarred by traps and roads, leans on its staff as a final wall of eight wands protects its core territory. It is the face of species resilience."
   },
-  "ornaments": ["scars", "wall-of-wands"],
+  "ornaments": [
+    "scars",
+    "wall-of-wands"
+  ],
   "output": "art/renders/card-wa-09-nine-of-wands.png",
   "meanings": {
     "upright": "Resilience, stamina, persistence, being nearing the end of a battle but still standing, and defensive strength.",
     "reversed": "Exhaustion, giving up, being too tired to defend any longer, or a system that has finally collapsed from fatigue.",
-    "keywords": ["resilience", "stamina", "persistence", "strength"]
+    "keywords": [
+      "resilience",
+      "stamina",
+      "persistence",
+      "strength"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
@@ -53,6 +92,15 @@
     "excerpt": "Scarred but unbowed, the old survivor stands his ground, leaning on his staff of experience.",
     "seo_title": "Nine of Wands - LeopardCat Tarot",
     "seo_description": "Nine of Wands reimagined as leopard cat resilience and the wisdom of the scarred survivor.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "resilience"]
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "resilience"
+    ]
+  },
+  "meaning": {
+    "zh": "Resilience, stamina, persistence, being nearing the end of a battle but still standing, and defensive strength.",
+    "en": "Resilience, stamina, persistence, being nearing the end of a battle but still standing, and defensive strength."
   }
 }
