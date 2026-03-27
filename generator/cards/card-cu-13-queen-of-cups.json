@@ -1,0 +1,27 @@
+{
+  "id": "card-cu-13-queen-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 13,
+  "title": {
+    "zh": "聖杯皇后",
+    "en": "QUEEN OF CUPS"
+  },
+  "meaning": {
+    "zh": "慈悲、直覺、情感的豐沛與深刻的同理心。",
+    "en": "Compassion, intuition, emotional depth, and deep empathy."
+  },
+  "ecology": {
+    "zh": "成年雌性石虎，守護著育幼區的生態平衡，充滿生存智慧。",
+    "en": "A mature female leopard cat maintaining balance in nursery areas with wisdom."
+  },
+  "image": "art/renders/card-cu-13-queen-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A soulful and compassionate anthropomorphic Taiwan leopard cat (Queen) sitting on a shell-decorated throne by a crystal stream. She gazes into an ornate golden cup. High-fidelity biological markers: narrow small-cat facial structure, white forehead stripes, white eye-liner, and large white spots behind ears. Reflective deep-water blues. 2:3 vertical. Full bleed. No borders.",
+    "narrative": "The Queen of Cups embodies the intuitive protector—the mother leopard cat who masters the wisdom of the forest waters."
+  },
+  "status": "rework_needed"
+}

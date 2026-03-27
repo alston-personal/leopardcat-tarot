@@ -1,0 +1,58 @@
+{
+  "id": "card-cu-11-page-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": "PAGE",
+  "title": "PAGE OF CUPS",
+  "subtitle": "The Curiosity / Messenger / Intuition",
+  "slug": "page-of-cups",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [180, 220, 255],
+    "bottom": [100, 150, 180],
+    "frame": [219, 203, 156],
+    "frame_inner": [171, 149, 102],
+    "panel": [30, 45, 55],
+    "text_primary": [243, 233, 201],
+    "text_secondary": [198, 186, 151]
+  },
+  "scene": {
+    "theme": "curious-river-bank",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "youthful-leopard-cat"
+  },
+  "main_image": "art/generated/card-cu-11-page-of-cups.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A youthful anthropomorphic leopard cat kneeling by a forest river, looking in surprise at a small fish that pops its head out of the golden cup the cat is holding. Soft, pastel magical atmosphere. High-fidelity Taiwan leopard cat features (forehead stripes, ear spots). Full bleed. No borders.",
+    "narrative": "The Page of Cups is 'The Young Investigator'—a juvenile leopard cat learning the secrets of the forest waters."
+  },
+  "ornaments": ["curious-fish", "river-flowers"],
+  "output": "art/renders/card-cu-11-page-of-cups.png",
+  "meanings": {
+    "upright": "Curiosity, a messenger of emotions, creative beginnings, and intuitive dreams.",
+    "reversed": "Immaturity, escaping reality, emotional vulnerability, or a creative block.",
+    "keywords": ["curiosity", "messenger", "imagination", "beginnings"]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "juvenile",
+    "habitat_fragment": "protected forest edge",
+    "risk_theme": "ecosystem discovery and learning",
+    "mapping_note": "Page of Cups represents 'The Explorer'—the juvenile phase of learning how to navigate the complex world before leaving the maternal range."
+  },
+  "website": {
+    "excerpt": "A surprise from the golden cup speaks of secret messages hidden within the forest waters.",
+    "seo_title": "Page of Cups - LeopardCat Tarot",
+    "seo_description": "Page of Cups reimagined as a curious juvenile leopard cat discovering the secrets of the water.",
+    "tags": ["minor-arcana", "cups", "leopard-cat", "curiosity"]
+  }
+}

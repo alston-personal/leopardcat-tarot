@@ -2,9 +2,9 @@
   "id": "card-wa-12-knight-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "KNIGHT",
+  "number": 12,
   "title": {
-    "zh": "KNIGHT OF WANDS",
+    "zh": "權杖騎士",
     "en": "KNIGHT OF WANDS"
   },
   "subtitle": "Spirited / Bold / Action Hero",

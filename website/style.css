@@ -121,55 +121,85 @@ body {
 
 .hero-content { position: relative; z-index: 10; }
 
+/* Premium Static Gold Text - "The Etched Oracle" Style */
 .glint-text {
   font-family: var(--font-header);
-  font-size: clamp(3rem, 12vw, 6.5rem); /* Responsive scaling */
-  font-weight: 950;
-  letter-spacing: 0.15em;
-  position: relative;
+  font-size: clamp(2.2rem, 10vw, 4rem);
+  font-weight: 900;
+  letter-spacing: 0.1em;
   color: #fff;
-  line-height: 1.1;
-  margin-bottom: 0.2em;
-
-  /* Deep & Polished 3D Extrusion (Refined for SVG compatibility) */
-  text-shadow: 
-    1px 1px 0px #8a6d1a,
-    2px 2px 0px #a68523,
-    3px 3px 0px #b38f26,
-    4px 4px 0px #bf9929,
-    5px 5px 0px #cca32b,
-    6px 6px 0px #d4af37,
-    10px 10px 30px rgba(0,0,0,0.8);
+  line-height: 1.2;
+  margin-bottom: 0.5em;
   
-  /* High-Fidelity Multi-stop Metallic Gradient */
-  background: linear-gradient(
-    90deg,
-    #cfb53b 0%,    /* Old Gold */
-    #fff9e3 20%,   /* Highlight */
-    #d4af37 40%,   /* Gold */
-    #f4f1ea 50%,   /* White Gold Glint */
-    #d4af37 60%,   /* Gold */
-    #fff9e3 80%,   /* Highlight */
-    #cfb53b 100%   /* Old Gold */
-  );
-  background-size: 200% auto;
+  /* Static 3D Layering - NO MORE FLASHING */
+  background: linear-gradient(135deg, #cfb53b 0%, #fff9e3 45%, #d4af37 50%, #b8932c 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: url(#metallic-bevel); /* Applying the SVG Filter for physical depth */
-  animation: shine 4s ease-in-out infinite;
+  
+  text-shadow: 
+    0 10px 20px rgba(0,0,0,0.5),
+    0 2px 2px rgba(212,175,55,0.3);
+  filter: drop-shadow(0 0 1px rgba(212,175,55,0.5));
 }
 
-@keyframes shine {
-  0% { background-position: -100% center; }
-  100% { background-position: 100% center; }
+/* Chat UI Refinement - The "Sacred Panel" style */
+#fortune-chat-area {
+  background: rgba(10, 17, 14, 0.4) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  padding: 10px;
+  border-radius: 15px;
 }
 
-@keyframes shine {
-  to {
-    background-position: 200% center;
-  }
+#chat-history {
+  padding-right: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold) transparent;
 }
+
+#chat-history::-webkit-scrollbar { width: 5px; }
+#chat-history::-webkit-scrollbar-thumb { background: var(--color-gold); border-radius: 10px; }
+
+.chat-bubble {
+  margin-bottom: 20px;
+  padding: 18px 25px;
+  border-radius: 12px;
+  max-width: 90%;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.chat-bubble.assistant {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e0e0e0;
+  border-left: 2px solid var(--color-gold);
+}
+
+.chat-bubble.user {
+  background: rgba(212, 175, 55, 0.06);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: #fff;
+  margin-left: auto;
+  font-style: italic;
+}
+
+.chat-bubble .quota-badge {
+  position: absolute;
+  bottom: -10px;
+  right: 15px;
+  font-size: 0.75rem;
+  color: var(--color-gold);
+  background: var(--color-bg);
+  padding: 2px 8px;
+  border: 1px solid var(--color-gold-glow);
+  border-radius: 4px;
+  opacity: 0.8;
+}
+
 
 .btn {
   display: inline-block;
@@ -395,6 +425,111 @@ body {
   transform: rotateY(180deg); padding: 25px; display: flex; flex-direction: column;
   border: 1px solid var(--color-gold);
 }
+
+/* Card Back Content Polish - DEFINITIVE FIX for Readability and Hierarchy */
+.back-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold) transparent;
+}
+
+.card-back h3 {
+  font-family: var(--font-header);
+  font-size: 1.85rem;
+  color: var(--color-gold);
+  margin-bottom: 5px;
+  text-align: center;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 900;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+.meaning-box, .ecology-box {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 18px;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.08);
+  border-left: 3px solid var(--color-gold);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.card-back .label {
+  display: block;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: var(--color-gold);
+  margin-bottom: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding-bottom: 4px;
+}
+
+.card-back .content-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #e0e0e0;
+  text-align: left;
+  font-family: var(--font-body);
+}
+
+/* Thematic Glass-Morphism (Enhanced Harmony) */
+.theme-material .card-back {
+  background: linear-gradient(135deg, rgba(14, 25, 18, 0.95) 0%, rgba(5, 12, 8, 0.98) 100%);
+  border-color: #3e6d3a;
+  box-shadow: inset 0 0 30px rgba(62, 109, 58, 0.2);
+}
+.theme-material .card-back h3 { color: #a8e6a3; text-shadow: 0 2px 10px rgba(62, 109, 58, 0.5); }
+.theme-material .meaning-box, .theme-material .ecology-box { border-left-color: #a8e6a3; }
+
+.theme-inner .card-back {
+  background: linear-gradient(135deg, rgba(14, 18, 35, 0.95) 0%, rgba(5, 7, 18, 0.98) 100%);
+  border-color: #3a5b6d;
+  box-shadow: inset 0 0 30px rgba(58, 91, 109, 0.2);
+}
+.theme-inner .card-back h3 { color: #a3ccff; text-shadow: 0 2px 10px rgba(58, 91, 109, 0.5); }
+.theme-inner .meaning-box, .theme-inner .ecology-box { border-left-color: #a3ccff; }
+
+.theme-cosmic .card-back {
+  background: linear-gradient(135deg, rgba(25, 14, 35, 0.95) 0%, rgba(12, 5, 18, 0.98) 100%);
+  border-color: #6d3a6d;
+  box-shadow: inset 0 0 30px rgba(109, 58, 109, 0.2);
+}
+.theme-cosmic .card-back h3 { color: #e6a3e6; text-shadow: 0 2px 10px rgba(109, 58, 109, 0.5); }
+.theme-cosmic .meaning-box, .theme-cosmic .ecology-box { border-left-color: #e6a3e6; }
+
+.theme-wands .card-back {
+  background: linear-gradient(135deg, rgba(35, 25, 14, 0.95) 0%, rgba(18, 12, 5, 0.98) 100%);
+  border-color: #d2a679;
+  box-shadow: inset 0 0 30px rgba(210, 166, 121, 0.2);
+}
+.theme-wands .card-back h3 { color: #f4d4a8; text-shadow: 0 2px 10px rgba(210, 166, 121, 0.5); }
+.theme-wands .meaning-box, .theme-wands .ecology-box { border-left-color: #f4d4a8; }
+ 
+.theme-cups .card-back {
+  background: linear-gradient(135deg, rgba(14, 25, 45, 0.95) 0%, rgba(5, 10, 20, 0.98) 100%);
+  border-color: #3a5b6d;
+  box-shadow: inset 0 0 30px rgba(58, 91, 109, 0.3);
+}
+.theme-cups .card-back h3 { color: #a3ccff; text-shadow: 0 2px 10px rgba(58, 91, 109, 0.5); }
+.theme-cups .meaning-box, .theme-cups .ecology-box { border-left-color: #a3ccff; }
+
+.theme-swords .card-back {
+  background: linear-gradient(135deg, rgba(20, 20, 25, 0.95) 0%, rgba(10, 10, 15, 0.98) 100%);
+  border-color: #708090;
+  box-shadow: inset 0 0 30px rgba(112, 128, 144, 0.2);
+}
+.theme-swords .card-back h3 { color: #dcdcdc; text-shadow: 0 2px 10px rgba(112, 128, 144, 0.5); }
+.theme-swords .meaning-box, .theme-swords .ecology-box { border-left-color: #dcdcdc; }
+
 .shimmer {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;

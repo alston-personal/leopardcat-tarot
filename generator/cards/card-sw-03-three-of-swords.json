@@ -1,0 +1,106 @@
+{
+  "id": "card-sw-03-three-of-swords",
+  "arcana": "minor",
+  "suit": "swords",
+  "number": 3,
+  "title": {
+    "zh": "寶劍三",
+    "en": "THREE OF SWORDS"
+  },
+  "subtitle": "The Grief / Loss / Heartbreak",
+  "slug": "three-of-swords",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      50,
+      60,
+      80
+    ],
+    "bottom": [
+      20,
+      25,
+      40
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      10,
+      15,
+      25
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "rainy-stormy-sky",
+    "forest": false,
+    "road": true,
+    "grass": true,
+    "subject": "grieving-leopard-cat"
+  },
+  "main_image": "art/generated/card-sw-03-three-of-swords.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card. A stormy rainy day. Three sharp silver swords are piercing a single leopard-spotted shield or heart-shape emblem. Heavy, dark clouds and lightning in the sky. Symbolic representation of deep grief and emotional pain. Heavy black ink outlines. Woodcut aesthetic. Full bleed. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "narrative": "The Three of Swords is 'The Grief'—the painful reality of the loss of core population members."
+  },
+  "ornaments": [
+    "rainy-storm",
+    "three-swords"
+  ],
+  "output": "art/renders/card-sw-03-three-of-swords.png",
+  "meanings": {
+    "upright": "Grief, heartbreak, emotional pain, sorrow, and betrayal.",
+    "reversed": "Recovery, release, healing after pain, or repressing grief.",
+    "keywords": [
+      "grief",
+      "heartbreak",
+      "sorrow",
+      "pain"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "N/A",
+    "habitat_fragment": "roadkill/human-disturbed boundary",
+    "risk_theme": "population loss and habitat instability",
+    "mapping_note": "Three of Swords represents 'The Toll of Progress'—the emotional and demographic impact of losing breeding adults to roadkill."
+  },
+  "website": {
+    "excerpt": "Under the stormy sky, the heart of the forest is pierced by three cold blades, mourning the fallen.",
+    "seo_title": "Three of Swords - LeopardCat Tarot",
+    "seo_description": "Three of Swords reimagined as the grief of losing leopard cats in our modern landscape.",
+    "tags": [
+      "minor-arcana",
+      "swords",
+      "leopard-cat",
+      "grief"
+    ]
+  },
+  "meaning": {
+    "zh": "Grief, heartbreak, emotional pain, sorrow, and betrayal.",
+    "en": "Grief, heartbreak, emotional pain, sorrow, and betrayal."
+  }
+}

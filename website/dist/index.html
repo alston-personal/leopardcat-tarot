@@ -22,17 +22,18 @@
         </feMerge>
       </filter>
     </svg>
-  <script type="module" crossorigin src="/assets/index-CIhIrta8.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DjsdlqDl.css">
+  <script type="module" crossorigin src="/assets/index-CxAdza55.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DLQShXqz.css">
 </head>
 <body>
     <nav class="navbar">
-        <div class="nav-logo">靈山靈貓 | 石虎計畫</div>
+        <div class="nav-logo" data-i18n="logo">靈山靈貓 | 石虎計畫</div>
         <div class="nav-links">
-            <a href="#home" data-i18n="home">首頁</a>
-            <a href="#intro" data-i18n="intro">生態靈魂</a>
-            <a href="#events" data-i18n="events">生命紀事</a>
-            <a href="#gallery" data-i18n="gallery">大阿爾克那</a>
+            <a href="#hero" data-i18n="nav_home">Home</a>
+            <a href="#fortune" data-i18n="nav_fortune">Fortune</a>
+            <a href="#intro" data-i18n="nav_intro">Intro</a>
+            <a href="#chronicle" data-i18n="nav_events">Events</a>
+            <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
         </div>
         <div class="lang-switcher">
             <button onclick="setLanguage('zh')" class="lang-btn active" id="btn-zh">中</button>
@@ -46,10 +47,46 @@
         <section id="hero" class="hero">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="glint-text">靈山靈貓</h1>
-                <p class="subtitle">Leopard Cat Sanctuary: An Ecological Journey</p>
+                <h1 class="glint-text" data-i18n="hero_title">靈山靈貓</h1>
+                <p class="subtitle" data-i18n="hero_subtitle">Leopard Cat Sanctuary: An Ecological Journey</p>
                 <div class="hero-cta">
-                    <a href="#intro" class="btn btn-gold">進入山林</a>
+                    <a href="#fortune" class="btn btn-gold" data-i18n="hero_cta_fortune">詢問大師</a>
+                    <a href="#intro" class="btn btn-gold-outline" data-i18n="hero_cta">進入山林</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="fortune" class="section fortune-section">
+            <div class="container">
+                <div class="section-title">
+                    <span class="label" data-i18n="label_fortune">Wishing Well</span>
+                    <h2 class="glint-text" data-i18n="title_fortune">靈山仙貓大師：塔羅占卜</h2>
+                </div>
+                <div id="fortune-panel" class="fortune-container" style="text-align: center; max-width: 700px; margin: 0 auto; background: rgba(0,0,0,0.4); padding: 30px; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.3); min-height: 400px; position: relative;">
+                    
+                    <!-- 初始狀態：儀式輸入區 -->
+                    <div id="fortune-ritual-area">
+                        <div class="fortune-input-area">
+                            <textarea id="fortune-question" data-i18n="placeholder_fortune" placeholder="請問大師，我心中的疑惑是..." style="width: 100%; height: 120px; background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(212,175,55,0.5); border-radius: 8px; padding: 15px; margin-bottom: 20px; font-family: inherit; font-size: 1.1rem; resize: none;"></textarea>
+                            <button id="btn-draw" class="btn btn-gold" onclick="drawFortune()" data-i18n="btn_fortune_draw">祈請大師開牌</button>
+                        </div>
+                    </div>
+
+                    <!-- 進行狀態：對話諮商區 (Initial hidden) -->
+                    <div id="fortune-chat-area" class="hidden" style="display: flex; flex-direction: column; height: 500px; text-align: left;">
+                        <div id="chat-history" style="flex: 1; overflow-y: auto; padding: 10px; margin-bottom: 20px; border-bottom: 1px solid rgba(212,175,55,0.2); scroll-behavior: smooth;">
+                            <!-- 聊天氣泡會動態注入於此 -->
+                        </div>
+                        <div id="chat-input-bar" style="display: flex; gap: 10px;">
+                            <input type="text" id="chat-input" placeholder="進一步詢問大師..." style="flex: 1; background: rgba(255,255,255,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 10px 20px; color: #fff; outline: none;">
+                            <button class="btn btn-gold" onclick="sendChatMessage()" style="border-radius: 20px; padding: 10px 25px;">提問</button>
+                        </div>
+                        <div style="margin-top: 15px; text-align: center;">
+                             <button class="btn btn-gold-outline" onclick="mintHistoryNFT()" style="font-size: 0.8rem; padding: 5px 15px;">永久鑄造成紀念 NFT</button>
+                             <button class="btn btn-gold-outline" onclick="resetRitual()" style="font-size: 0.8rem; padding: 5px 15px; margin-left: 10px; opacity: 0.6;">重新祈願</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -57,8 +94,8 @@
         <section id="intro" class="section intro-section">
             <div class="container">
                 <div class="section-title">
-                    <span class="label">Introduction</span>
-                    <h2>森與靈的守護者</h2>
+                    <span class="label" data-i18n="label_intro">Introduction</span>
+                    <h2 data-i18n="title_intro">森與靈的守護者</h2>
                 </div>
                 <div class="intro-grid">
                     <div class="intro-text">
@@ -76,12 +113,12 @@
         <section id="chronicle" class="section chronicle-section">
             <div class="container">
                 <div class="section-title">
-                    <span class="label">History</span>
-                    <h2>環境生命紀事</h2>
+                    <span class="label" data-i18n="label_history">History</span>
+                    <h2 data-i18n="title_history">環境生命紀事</h2>
                 </div>
                 <div id="events-list" class="timeline"></div>
                 <div class="section-cta">
-                    <a href="#gallery" class="btn btn-gold-outline">進入大阿爾克那展廳</a>
+                    <a href="#gallery" class="btn btn-gold-outline" data-i18n="btn_gallery">進入大阿爾克那展廳</a>
                 </div>
             </div>
         </section>
@@ -89,8 +126,8 @@
         <section id="gallery" class="section gallery-section">
             <div class="container">
                 <div class="section-title">
-                    <span class="label">The Tarot Gallery</span>
-                    <h2>大阿爾克那：石虎的生命旅程</h2>
+                    <span class="label" data-i18n="label_gallery">The Tarot Gallery</span>
+                    <h2 data-i18n="title_gallery">大阿爾克那：石虎的生命旅程</h2>
                 </div>
                 
                 <div id="gallery-container">
@@ -102,8 +139,8 @@
         <section id="conservation" class="section conservation-section">
             <div class="container">
                 <div class="section-title">
-                    <span class="label">Call to Action</span>
-                    <h2 id="cons-title"></h2>
+                    <span class="label" data-i18n="label_cta">Call to Action</span>
+                    <h2 id="cons-title" data-i18n="title_cons"></h2>
                 </div>
                 <div class="cons-content">
                     <p id="cons-desc" class="content-text"></p>
@@ -115,9 +152,9 @@
         <section id="support" class="section support-section">
             <div class="container">
                 <div class="support-card">
-                    <span class="label">Support the Sanctuary</span>
-                    <h2>支持與贊助</h2>
-                    <p class="content-text">如果您認同我們的理念，歡迎透過以下方式支持計畫持續運作，讓石虎的靈魂故事能繼續傳承。</p>
+                    <span class="label" data-i18n="label_support">Support the Sanctuary</span>
+                    <h2 data-i18n="title_support">支持與贊助</h2>
+                    <p class="content-text" data-i18n="desc_support">如果您認同我們的理念，歡迎透過以下方式支持計畫持續運作，讓石虎的靈魂故事能繼續傳承。</p>
                     <div class="support-actions">
                         <a href="https://buymeacoffee.com/registerc" target="_blank" class="btn btn-coffee">Buy me a Coffee</a>
                         <a href="https://www.paypal.com/paypalme/alstonhuang" target="_blank" class="btn btn-paypal">PayPal</a>
@@ -127,7 +164,7 @@
         </section>
 
         <footer class="footer">
-            <p>&copy; 2026 LeopardCat Tarot Project. All rights reserved.</p>
+            <p data-i18n="copyright">&copy; 2026 LeopardCat Tarot Project. All rights reserved.</p>
         </footer>
     </div>
     

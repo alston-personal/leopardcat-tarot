@@ -1,0 +1,106 @@
+{
+  "id": "card-cu-02-two-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 2,
+  "title": {
+    "zh": "聖杯二",
+    "en": "TWO OF CUPS"
+  },
+  "subtitle": "The Meeting / Partnership / Mutual Trust",
+  "slug": "two-of-cups",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      80,
+      150,
+      120
+    ],
+    "bottom": [
+      40,
+      80,
+      60
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      20,
+      35,
+      30
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "moonlit-stream-meeting",
+    "forest": true,
+    "road": false,
+    "grass": false,
+    "subject": "two-leopard-cats"
+  },
+  "main_image": "art/generated/card-cu-02-two-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. Two anthropomorphic leopard cats (male and female) facing each other across a narrow, glass-clear moonlit stream. They gently toast each other with two ornate golden cups. A Caduceus with a lion head floats above them in the mist. Symmetry, trust, and deep connection. Cool blue-green atmosphere. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "narrative": "The Two of Cups is the 'Meeting of Souls'—when two usually solitary leopard cats find a rare, profound connection through mutual trust."
+  },
+  "ornaments": [
+    "caduceus-in-mist",
+    "moonlit-stream"
+  ],
+  "output": "art/renders/card-cu-02-two-of-cups.png",
+  "meanings": {
+    "upright": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony.",
+    "reversed": "Disharmony, distrust, or a temporary separation from a partner.",
+    "keywords": [
+      "union",
+      "trust",
+      "harmony",
+      "attraction"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "breeding-adults",
+    "habitat_fragment": "protected forest creek edge",
+    "risk_theme": "trust as survival strategy",
+    "mapping_note": "Two of Cups represents the 'Trust of the Breed'—the rare moment when solitary instincts give way to mating season cooperation."
+  },
+  "website": {
+    "excerpt": "A rare and trust-filled meeting at the moonlit stream, where two solitary hearts become one.",
+    "seo_title": "Two of Cups - LeopardCat Tarot",
+    "seo_description": "Two of Cups reimagined as a trust-filled meeting between two leopard cats.",
+    "tags": [
+      "minor-arcana",
+      "cups",
+      "leopard-cat",
+      "partnership"
+    ]
+  },
+  "meaning": {
+    "zh": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony.",
+    "en": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony."
+  }
+}

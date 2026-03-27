@@ -1,0 +1,106 @@
+{
+  "id": "card-cu-03-three-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 3,
+  "title": {
+    "zh": "聖杯三",
+    "en": "THREE OF CUPS"
+  },
+  "subtitle": "The Gathering / Joyful Play / Communal Harmony",
+  "slug": "three-of-cups",
+  "status": "rework_needed",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      100,
+      200,
+      180
+    ],
+    "bottom": [
+      50,
+      100,
+      90
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      25,
+      50,
+      45
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "joyful-river-play",
+    "forest": true,
+    "road": false,
+    "grass": false,
+    "subject": "three-young-leopard-cats"
+  },
+  "main_image": "art/generated/card-cu-03-three-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. Three young anthropomorphic leopard cats playing in a shallow, sparkling forest river. They hold golden cups up in celebration. Joyful splashes and ripples in the water. Lush greenery and overhanging branches create a safe canopy. Vibrant and harmonious scene. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "narrative": "The Three of Cups is the 'Celebration of the Litter'—a group of adolescents playing in the safety of their home territory before dispersal."
+  },
+  "ornaments": [
+    "splashing-water",
+    "overhanging-canopy"
+  ],
+  "output": "art/renders/card-cu-03-three-of-cups.png",
+  "meanings": {
+    "upright": "Celebration, community support, friendship, group harmony, and shared joy.",
+    "reversed": "Gossip, isolation, or a excess that leads to a breakdown in group harmony.",
+    "keywords": [
+      "celebration",
+      "community",
+      "joy",
+      "harmony"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adolescent-young-adults",
+    "habitat_fragment": "protected riparian forest",
+    "risk_theme": "social stability in high-quality habitat",
+    "mapping_note": "Three of Cups represents 'The Safety of the Pack'—rare group play moments in high-quality habitats where resources are overflowing."
+  },
+  "website": {
+    "excerpt": "A joyful gathering in the crystal river, celebrating the abundance and harmony of the forest life.",
+    "seo_title": "Three of Cups - LeopardCat Tarot",
+    "seo_description": "Three of Cups reimagined as a joyful group of leopard cats playing in a safe riverbed.",
+    "tags": [
+      "minor-arcana",
+      "cups",
+      "leopard-cat",
+      "celebration"
+    ]
+  },
+  "meaning": {
+    "zh": "Celebration, community support, friendship, group harmony, and shared joy.",
+    "en": "Celebration, community support, friendship, group harmony, and shared joy."
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "id": "card-cu-09-nine-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 9,
+  "title": {
+    "zh": "聖杯九",
+    "en": "NINE OF CUPS"
+  },
+  "subtitle": "The Contentment / Success / Satisfaction",
+  "slug": "nine-of-cups",
+  "status": "rework_needed",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      220,
+      180,
+      100
+    ],
+    "bottom": [
+      120,
+      80,
+      40
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      50,
+      40,
+      20
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "resource-rich-habitat",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "satisfied-leopard-cat"
+  },
+  "main_image": "art/generated/card-cu-09-nine-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A satisfied anthropomorphic leopard cat sitting with arms crossed, nine golden cups arranged behind it in a semi-circle. Warm, rich forest textures. Rich golds and ambers. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "narrative": "The Nine of Cups is 'The Satisfaction'—a successful adult cat that has claimed a resource-rich, safe core habitat."
+  },
+  "ornaments": [
+    "semi-circle-cups",
+    "warm-forest"
+  ],
+  "output": "art/renders/card-cu-09-nine-of-cups.png",
+  "meanings": {
+    "upright": "Contentment, satisfaction, success, wishes fulfilled, and physical well-being.",
+    "reversed": "Greed, excess, dissatisfaction, or a realization that physical wealth is not enough.",
+    "keywords": [
+      "satisfaction",
+      "contentment",
+      "success",
+      "wishes"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "protected forest sanctuary",
+    "risk_theme": "ecosystem abundance",
+    "mapping_note": "Nine of Cups represents 'The Resource Sanctuary'—the ideal state of high-quality habitat where all the needs of the leopard cat are met."
+  },
+  "website": {
+    "excerpt": "With nine cups of golden life behind, the leopard cat enjoys the fruits of a protected world.",
+    "seo_title": "Nine of Cups - LeopardCat Tarot",
+    "seo_description": "Nine of Cups reimagined as a successful leopard cat in a lush sanctuary.",
+    "tags": [
+      "minor-arcana",
+      "cups",
+      "leopard-cat",
+      "abundance"
+    ]
+  },
+  "meaning": {
+    "zh": "Contentment, satisfaction, success, wishes fulfilled, and physical well-being.",
+    "en": "Contentment, satisfaction, success, wishes fulfilled, and physical well-being."
+  }
+}

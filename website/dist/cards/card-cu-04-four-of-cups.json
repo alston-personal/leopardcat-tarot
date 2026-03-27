@@ -1,0 +1,58 @@
+{
+  "id": "card-cu-04-four-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": "IV",
+  "title": "FOUR OF CUPS",
+  "subtitle": "The Insularity / Discontent / Missed Opportunity",
+  "slug": "four-of-cups",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [80, 100, 120],
+    "bottom": [40, 50, 60],
+    "frame": [219, 203, 156],
+    "frame_inner": [171, 149, 102],
+    "panel": [20, 25, 30],
+    "text_primary": [243, 233, 201],
+    "text_secondary": [198, 186, 151]
+  },
+  "scene": {
+    "theme": "pensive-forest-shade",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "solitary-leopard-cat"
+  },
+  "main_image": "art/generated/card-cu-04-four-of-cups.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A pensive anthropomorphic leopard cat sitting under a gnarled tree, arms crossed, looking down at three golden cups on the grass with a look of dissatisfaction. A fourth cup is being offered from a cloud in the air, but the cat ignores it. Somber, shaded forest atmosphere. Muted blues and greens. Full bleed. No borders.",
+    "narrative": "The Four of Cups is 'The Insularity'—a leopard cat fixated on its current territory, ignoring a potential new corridor being offered by the landscape."
+  },
+  "ornaments": ["gnarled-tree", "mysterious-cloud"],
+  "output": "art/renders/card-cu-04-four-of-cups.png",
+  "meanings": {
+    "upright": "Meditation, contemplation, apathy, re-evaluation, and being withdrawn.",
+    "reversed": "New goals, end of stagnation, internal motivation, and seizing opportunities.",
+    "keywords": ["contemplation", "apathy", "insularity", "re-evaluation"]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "isolated forest patch",
+    "risk_theme": "lack of dispersal courage",
+    "mapping_note": "Four of Cups represents 'The Trap of the Familiar'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor."
+  },
+  "website": {
+    "excerpt": "Under the shade of the old tree, the leopard cat contemplates the world, unaware of the gift appearing in the mist.",
+    "seo_title": "Four of Cups - LeopardCat Tarot",
+    "seo_description": "Four of Cups reimagined as a leopard cat in deep contemplation within an isolated forest patch.",
+    "tags": ["minor-arcana", "cups", "leopard-cat", "contemplation"]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "card-cu-11-page-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 11,
+  "title": {
+    "zh": "聖杯侍者",
+    "en": "PAGE OF CUPS"
+  },
+  "meaning": {
+    "zh": "靈感的湧現、純真、情感的種子與驚喜。",
+    "en": "New inspiration, innocence, emotional beginnings, and surprises."
+  },
+  "ecology": {
+    "zh": "初出茅廬的小石虎，帶著好奇心探索溪流與水岸。",
+    "en": "A young leopard cat exploring streams and riverbanks with curiosity."
+  },
+  "image": "art/renders/card-cu-11-page-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A curious and innocent young anthropomorphic Taiwan leopard cat (Page) standing by a stream bank, looking up as a dream-fish pops out of a golden cup. High-fidelity biological markers: juvenile narrow head, distinct white forehead lines, large white ear-patches, rosette patterns. 2:3 vertical. Full bleed. No borders.",
+    "narrative": "The Page of Cups represents the spark of discovery—the first time a kitten explores the wonders of the water edge."
+  },
+  "status": "rework_needed"
+}

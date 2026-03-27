@@ -2,309 +2,919 @@
   {
     "id": "card-00-the-fool",
     "number": 0,
-    "title": { "zh": "0. 愚者", "en": "0. THE FOOL" },
+    "title": {
+      "zh": "THE FOOL",
+      "en": "THE FOOL"
+    },
     "image": "art/renders/card-00-the-fool.png",
     "meaning": {
-      "zh": "新的開始、開放、本能的信任，以及邁向未知的勇氣。",
+      "zh": "New beginnings, openness, instinctive trust, and a willingness to step toward the unknown.",
       "en": "New beginnings, openness, instinctive trust, and a willingness to step toward the unknown."
     },
     "ecology": {
-      "zh": "愚者的冒險跳躍，成為幼年石虎越過掩體與柏油路邊界的危險瞬間。",
+      "zh": "The Fool's leap of faith becomes a young leopard cat crossing the line between cover and asphalt.",
       "en": "The Fool's leap of faith becomes a young leopard cat crossing the line between cover and asphalt."
     }
   },
   {
     "id": "card-01-the-magician",
     "number": 1,
-    "title": { "zh": "1. 魔術師", "en": "1. THE MAGICIAN" },
+    "title": {
+      "zh": "THE MAGICIAN",
+      "en": "THE MAGICIAN"
+    },
     "image": "art/renders/card-01-the-magician.png",
     "meaning": {
-      "zh": "專注的技巧、資源豐富、環境智慧，以及精準行動的力量。",
+      "zh": "Focused skill, resourcefulness, environmental intelligence, and the power to act with precision.",
       "en": "Focused skill, resourcefulness, environmental intelligence, and the power to act with precision."
     },
     "ecology": {
-      "zh": "魔術師的元素掌控，轉化為石虎讀取並利用邊際棲地進行戰術布局的智慧。",
+      "zh": "The Magician's elemental mastery becomes a leopard cat's ability to read and use edge habitat with tactical intelligence.",
       "en": "The Magician's elemental mastery becomes a leopard cat's ability to read and use edge habitat with tactical intelligence."
     }
   },
   {
     "id": "card-02-the-high-priestess",
     "number": 2,
-    "title": { "zh": "2. 女祭司", "en": "2. THE HIGH PRIESTESS" },
+    "title": {
+      "zh": "THE HIGH PRIESTESS",
+      "en": "THE HIGH PRIESTESS"
+    },
     "image": "art/renders/card-02-the-high-priestess.png",
     "meaning": {
-      "zh": "直覺、自制、內在知識，以及超越表面嘈雜的洞察力。",
+      "zh": "Intuition, restraint, inner knowledge, and perception that moves beneath surface noise.",
       "en": "Intuition, restraint, inner knowledge, and perception that moves beneath surface noise."
     },
     "ecology": {
-      "zh": "女祭司成為靜謐棲地的守護者，在水岸、陰影與本能交織中保存生存火種。",
+      "zh": "The High Priestess becomes a guardian of quiet habitat, where water, shadow, and instinct preserve survival.",
       "en": "The High Priestess becomes a guardian of quiet habitat, where water, shadow, and instinct preserve survival."
     }
   },
   {
     "id": "card-03-the-empress",
     "number": 3,
-    "title": { "zh": "3. 皇后", "en": "3. THE EMPRESS" },
+    "title": {
+      "zh": "THE EMPRESS",
+      "en": "THE EMPRESS"
+    },
     "image": "art/renders/card-03-the-empress.png",
     "meaning": {
-      "zh": "豐盛、滋養、多產，以及生命在支持性環境中的蓬勃發展。",
+      "zh": "Abundance, nurturing, fertility, and the flourishing of life within a supportive environment.",
       "en": "Abundance, nurturing, fertility, and the flourishing of life within a supportive environment."
     },
     "ecology": {
-      "zh": "皇后象徵繁衍的核心——安全的棲地，在那裡石虎寶寶能遠離威脅健康成長。",
+      "zh": "The Empress represents the core of legal reproduction—safe habitat where kittens can be raised without threat.",
       "en": "The Empress represents the core of legal reproduction—safe habitat where kittens can be raised without threat."
     }
   },
   {
     "id": "card-04-the-emperor",
     "number": 4,
-    "title": { "zh": "4. 皇帝", "en": "4. THE EMPEROR" },
+    "title": {
+      "zh": "THE EMPEROR",
+      "en": "THE EMPEROR"
+    },
     "image": "art/renders/card-04-the-emperor.png",
     "meaning": {
-      "zh": "權威、建立、基礎、領土保護，以及結構化的領導力。",
+      "zh": "Authority, establishment, foundation, protection of territory, and structured leadership.",
       "en": "Authority, establishment, foundation, protection of territory, and structured leadership."
     },
     "ecology": {
-      "zh": "皇帝是守護龐大家域的優勢雄性，他需要大片完整的森林來維持其領地秩序。",
+      "zh": "The Emperor is the dominant male securing a massive home range, needing large patches of safe forest to sustain his law over the land.",
       "en": "The Emperor is the dominant male securing a massive home range, needing large patches of safe forest to sustain his law over the land."
     }
   },
   {
     "id": "card-05-the-hierophant",
     "number": 5,
-    "title": { "zh": "5. 教皇", "en": "5. THE HIEROPHANT" },
+    "title": {
+      "zh": "THE HIEROPHANT",
+      "en": "THE HIEROPHANT"
+    },
     "image": "art/renders/card-05-the-hierophant.png",
     "meaning": {
-      "zh": "傳統智慧、既有系統，以及祖傳知識的傳遞。",
-      "en": "Traditional wisdom, established systems, and the passing of ancestral knowledge."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "教皇遵循「古老路徑」——那些穿梭山丘、世代相傳用於避開人類衝突的秘密通道。",
-      "en": "The Hierophant follows the 'Traditional Trails'—ancient pathways through the hills that generations of ancestors have used to avoid human conflict."
+      "zh": "The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries.",
+      "en": "The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries."
     }
   },
   {
     "id": "card-06-the-lovers",
     "number": 6,
-    "title": { "zh": "6. 戀人", "en": "6. THE LOVERS" },
+    "title": {
+      "zh": "THE LOVERS",
+      "en": "THE LOVERS"
+    },
     "image": "art/renders/card-06-the-lovers.png",
     "meaning": {
-      "zh": "夥伴關係、結合，以及選擇與自然韻律調和的一致性。",
-      "en": "Partnership, union, and the choice of alignment with nature's rhythms."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "戀人象徵繁殖季節脆弱的平衡，此時深沉的本能將超越石虎平時的孤獨與謹慎。",
-      "en": "The Lovers represents the precarious balance of the mating season, where deep instinct overrides the usual solitary caution of the leopard cat."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-07-the-chariot",
     "number": 7,
-    "title": { "zh": "7. 戰車", "en": "7. THE CHARIOT" },
+    "title": {
+      "zh": "THE CHARIOT",
+      "en": "THE CHARIOT"
+    },
     "image": "art/renders/card-07-the-chariot.png",
     "meaning": {
-      "zh": "意志力、勝利，以及對對立力量的有紀律掌控。",
-      "en": "Willpower, victory, and the disciplined control of opposing forces."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "戰車是向新領地推進的毅力，藉由絕佳的適應力克服山巒屏障與人類擴張的侵擾。",
-      "en": "The Chariot is the determined expansion into new territory, overcoming mountain barriers and human encroachment through sheer adaptability."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-08-strength",
     "number": 8,
-    "title": { "zh": "8. 力量", "en": "8. STRENGTH" },
+    "title": {
+      "zh": "STRENGTH",
+      "en": "STRENGTH"
+    },
     "image": "art/renders/card-08-strength.png",
     "meaning": {
-      "zh": "內在勇氣、慈悲，以及對野性本能的柔性掌控。",
-      "en": "Inner courage, compassion, and the quiet mastery of feral instincts."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "力量是石虎媽媽在破碎森林中育雛的韌性，以勇猛卻沉靜的奉獻保護她的下一代。",
-      "en": "Strength is the mother leopard cat's resilience in nursing her litter in a shrinking forest, protecting them with fierce but quiet devotion."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-09-the-hermit",
     "number": 9,
-    "title": { "zh": "9. 隱者", "en": "9. THE HERMIT" },
+    "title": {
+      "zh": "THE HERMIT",
+      "en": "THE HERMIT"
+    },
     "image": "art/renders/card-09-the-hermit.png",
     "meaning": {
-      "zh": "探索靈魂、內省，以及在孤獨中對真理的追求。",
-      "en": "Soul-searching, introspection, and the pursuit of truth in solitude."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "隱者象徵深山的隱士，那些避開所有人類目光以保存原始野性的高山幽靈。",
-      "en": "The Hermit represents the deep-mountain individualist, a ghost of the high peaks who avoids all human gaze to preserve original wildness."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-10-wheel-of-fortune",
     "number": 10,
-    "title": { "zh": "10. 命運之輪", "en": "10. WHEEL OF FORTUNE" },
+    "title": {
+      "zh": "WHEEL OF FORTUNE",
+      "en": "WHEEL OF FORTUNE"
+    },
     "image": "art/renders/card-10-wheel-of-fortune.png",
     "meaning": {
-      "zh": "變動循環、命運，以及不可預測的運氣本質。",
-      "en": "Cycles of change, destiny, and the unpredictable nature of luck."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "輪轉是生態系的繁榮與蕭條循環——從乾旱季節到豐收年度的生命交替。",
-      "en": "The Wheel is the ecological cycle of boom and bust—from seasons of drought to the abundance of a successful harvest year."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-11-justice",
     "number": 11,
-    "title": { "zh": "11. 正義", "en": "11. JUSTICE" },
+    "title": {
+      "zh": "JUSTICE",
+      "en": "JUSTICE"
+    },
     "image": "art/renders/card-11-justice.png",
     "meaning": {
-      "zh": "公平、真理，以及治理大地的法律結構。",
-      "en": "Fairness, truth, and the legal structures that govern the land."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "正義是環境法規的基石，在人類進步與石虎生存權之間尋求平衡的里程碑。",
-      "en": "Justice is the landmark environmental legislation that balances human progress with the survival rights of the leopard cat."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-12-the-hanged-man",
     "number": 12,
-    "title": { "zh": "12. 吊人", "en": "12. THE HANGED MAN" },
+    "title": {
+      "zh": "THE HANGED MAN",
+      "en": "THE HANGED MAN"
+    },
     "image": "art/renders/card-12-the-hanged-man.png",
     "meaning": {
-      "zh": "臣服、新視角，以及為更宏大的進化所做的犧牲。",
-      "en": "Surrender, new perspective, and the sacrifice for a greater evolution."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "吊人是在重大棲地變遷後的「停滯期」，生存者在等待新的生態位階出現。",
-      "en": "The Hanged Man is the period of 'stillness' after a major habitat change, where the survivor waits in suspension for a new niche to open."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-13-death",
     "number": 13,
-    "title": { "zh": "13. 死神", "en": "13. DEATH" },
+    "title": {
+      "zh": "DEATH",
+      "en": "DEATH"
+    },
     "image": "art/renders/card-13-death.png",
     "meaning": {
-      "zh": "轉化、終結，以及為新生命清空舊秩序的過程。",
-      "en": "Transformation, ending, and the clearing away of the old for new growth."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "死神是終結個體生命的路殺悲劇，卻也是喚起族群保護意識與生態廊道誕生的契機。",
-      "en": "Death is the roadkill incident that ends an individual life but sparks community awareness and the birth of new protective corridors."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-14-temperance",
     "number": 14,
-    "title": { "zh": "14. 節制", "en": "14. TEMPERANCE" },
+    "title": {
+      "zh": "TEMPERANCE",
+      "en": "TEMPERANCE"
+    },
     "image": "art/renders/card-14-temperance.png",
     "meaning": {
-      "zh": "平衡、耐性，以及極端力量之間的調和。",
-      "en": "Alchemical balance, patience, and the moderation of extremes."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "節制是山泉與山谷森林交會的「溪流避難所」，創造出完美的中庸生存空間。",
-      "en": "Temperance is the 'Stream Sanctuary' where mountain waters blend with valley forests, creating the perfect middle-ground for survival."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-15-the-devil",
     "number": 15,
-    "title": { "zh": "15. 惡魔", "en": "15. THE DEVIL" },
+    "title": {
+      "zh": "THE DEVIL",
+      "en": "THE DEVIL"
+    },
     "image": "art/renders/card-15-the-devil.png",
     "meaning": {
-      "zh": "束縛、對表象偏好的成癮，以及對權力錯覺的陷阱。",
-      "en": "Bondage, addiction to surface comforts, and the trap of perceived power."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "惡魔是雞舍的陷阱與毒餌——那些看似容易取得卻導致致命囚禁的誘惑。",
-      "en": "The Devil is the chicken coop trap and the poisoned bait—the tempting lure of easy food that leads to tragic confinement."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-16-the-tower",
     "number": 16,
-    "title": { "zh": "16. 高塔", "en": "16. THE TOWER" },
+    "title": {
+      "zh": "THE TOWER",
+      "en": "THE TOWER"
+    },
     "image": "art/renders/card-16-the-tower.png",
     "meaning": {
-      "zh": "突如其來的劇變、啟示，以及虛假基礎的瓦解。",
-      "en": "Sudden upheaval, revelation, and the collapse of false foundations."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "高塔是森林砍伐與撼動大地的開發，粉碎了舊有的世界並逼迫族群躍入混亂的新現實。",
-      "en": "The Tower is the forest clearing and the earth-shaking development that shatters the old world, forcing a chaotic leap into a new reality."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-17-the-star",
     "number": 17,
-    "title": { "zh": "17. 星星", "en": "17. THE STAR" },
+    "title": {
+      "zh": "THE STAR",
+      "en": "THE STAR"
+    },
     "image": "art/renders/card-17-the-star.png",
     "meaning": {
-      "zh": "希望、啟發，以及在黑暗風暴後的指引之光。",
-      "en": "Hope, inspiration, and the guiding light after a dark storm."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "星星是在修復棲地中誕生的第一隻小石虎——預示大地重新合一的微小光芒。",
-      "en": "The Star is the first kitten born in a restored habitat—a tiny beacon of light signaling that the land is once again whole."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-18-the-moon",
     "number": 18,
-    "title": { "zh": "18. 月亮", "en": "18. THE MOON" },
+    "title": {
+      "zh": "THE MOON",
+      "en": "THE MOON"
+    },
     "image": "art/renders/card-18-the-moon.png",
     "meaning": {
-      "zh": "幻覺、隱藏的危險，以及穿梭深沉黑暗的導航。",
-      "en": "Illusion, hidden danger, and the navigating of deep darkness."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "月亮是石虎的夜行世界，陰影潛伏著天敵，而乳白的月光指引著原始的狩獵。",
-      "en": "The Moon is the nocturnal world of the leopard cat, where shadows hide predators and the ghost-white moonlight guides the hunt."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-19-the-sun",
     "number": 19,
-    "title": { "zh": "19. 太陽", "en": "19. THE SUN" },
+    "title": {
+      "zh": "THE SUN",
+      "en": "THE SUN"
+    },
     "image": "art/renders/card-19-the-sun.png",
     "meaning": {
-      "zh": "成功、生命力，以及在開闊光明中慶祝生命。",
-      "en": "Success, vitality, and the celebration of life in the open light."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "太陽是春暖花開的豐饒山谷，安全的陽光讓新一代族群得以歡愉成長。",
-      "en": "The Sun is the abundant valley in spring, where safe sunshine allows for the joyful growth of a new generation."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-20-judgement",
     "number": 20,
-    "title": { "zh": "20. 審判", "en": "20. JUDGEMENT" },
+    "title": {
+      "zh": "JUDGEMENT",
+      "en": "JUDGEMENT"
+    },
     "image": "art/renders/card-20-judgement.png",
     "meaning": {
-      "zh": "覺醒、清算，以及跨越門檻的最終選擇。",
-      "en": "Awakening, reckoning, and the final crossing of a threshold."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "審判是物種生存的紀錄表——人類集體行動決定石虎族群興衰的關鍵時刻。",
-      "en": "Judgement is the survival record of the species—the moment where human collective action decides if the leopard cat rises or falls."
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-21-the-world",
     "number": 21,
-    "title": { "zh": "21. 世界", "en": "21. THE WORLD" },
+    "title": {
+      "zh": "THE WORLD",
+      "en": "THE WORLD"
+    },
     "image": "art/renders/card-21-the-world.png",
     "meaning": {
-      "zh": "完成、整合，以及平衡系統中的宇宙和諧。",
-      "en": "Completion, integration, and the cosmic harmony of a balanced system."
+      "zh": "TBD",
+      "en": "TBD"
     },
     "ecology": {
-      "zh": "世界是「里山」的夢想藍圖——一個人與野生動物在完美循環中共和永續的境地。",
-      "en": "The World is the Satoyama dream—an integrated landscape where humans and wildlife coexist in a perfect, eternal circle of life."
+      "zh": "TBD",
+      "en": "TBD"
+    }
+  },
+  {
+    "id": "card-wa-01-ace-of-wands",
+    "number": 101,
+    "title": {
+      "zh": "ACE OF WANDS",
+      "en": "ACE OF WANDS"
+    },
+    "image": "art/renders/card-wa-01-ace-of-wands.png",
+    "meaning": {
+      "zh": "A new opportunity, territorial expansion, inspiration, and the creative drive to establish oneself in new terrain.",
+      "en": "A new opportunity, territorial expansion, inspiration, and the creative drive to establish oneself in new terrain."
+    },
+    "ecology": {
+      "zh": "Ace of Wands becomes the 'Dispersal Spark'—the biological drive for a young leopard cat to find its own range.",
+      "en": "Ace of Wands becomes the 'Dispersal Spark'—the biological drive for a young leopard cat to find its own range."
+    }
+  },
+  {
+    "id": "card-wa-02-two-of-wands",
+    "number": 102,
+    "title": {
+      "zh": "TWO OF WANDS",
+      "en": "TWO OF WANDS"
+    },
+    "image": "art/renders/card-wa-02-two-of-wands.png",
+    "meaning": {
+      "zh": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments.",
+      "en": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments."
+    },
+    "ecology": {
+      "zh": "Two of Wands becomes the decision to move between distant forest patches—a calculated risk based on environmental reading.",
+      "en": "Two of Wands becomes the decision to move between distant forest patches—a calculated risk based on environmental reading."
+    }
+  },
+  {
+    "id": "card-wa-03-three-of-wands",
+    "number": 103,
+    "title": {
+      "zh": "THREE OF WANDS",
+      "en": "THREE OF WANDS"
+    },
+    "image": "art/renders/card-wa-03-three-of-wands.png",
+    "meaning": {
+      "zh": "Progress, expansion, looking toward the long-term, and successful growth of the population range.",
+      "en": "Progress, expansion, looking toward the long-term, and successful growth of the population range."
+    },
+    "ecology": {
+      "zh": "Three of Wands becomes the successful expansion of the species into restored corridors, where the 'ships on the horizon' are leopard cats moving into new safe-zones.",
+      "en": "Three of Wands becomes the successful expansion of the species into restored corridors, where the 'ships on the horizon' are leopard cats moving into new safe-zones."
+    }
+  },
+  {
+    "id": "card-wa-04-four-of-wands",
+    "number": 104,
+    "title": {
+      "zh": "FOUR OF WANDS",
+      "en": "FOUR OF WANDS"
+    },
+    "image": "art/renders/card-wa-04-four-of-wands.png",
+    "meaning": {
+      "zh": "Celebration, harmony, a sense of belonging, and the establishment of a safe home base within the territory.",
+      "en": "Celebration, harmony, a sense of belonging, and the establishment of a safe home base within the territory."
+    },
+    "ecology": {
+      "zh": "Four of Wands becomes the 'Core Sanctuary'—a habitat patch large and stable enough to support a breeding population and communal peace.",
+      "en": "Four of Wands becomes the 'Core Sanctuary'—a habitat patch large and stable enough to support a breeding population and communal peace."
+    }
+  },
+  {
+    "id": "card-wa-05-five-of-wands",
+    "number": 105,
+    "title": {
+      "zh": "FIVE OF WANDS",
+      "en": "FIVE OF WANDS"
+    },
+    "image": "art/renders/card-wa-05-five-of-wands.png",
+    "meaning": {
+      "zh": "Competition, conflict, struggle for space, and the internal friction of a population in a shrinking range.",
+      "en": "Competition, conflict, struggle for space, and the internal friction of a population in a shrinking range."
+    },
+    "ecology": {
+      "zh": "Five of Wands represents the 'Range Compression' struggle—the increased friction when too many individuals are forced into too small a space.",
+      "en": "Five of Wands represents the 'Range Compression' struggle—the increased friction when too many individuals are forced into too small a space."
+    }
+  },
+  {
+    "id": "card-wa-06-six-of-wands",
+    "number": 106,
+    "title": {
+      "zh": "SIX OF WANDS",
+      "en": "SIX OF WANDS"
+    },
+    "image": "art/renders/card-wa-06-six-of-wands.png",
+    "meaning": {
+      "zh": "Victory, public recognition, success after a hard journey, and being held up as a model of survival.",
+      "en": "Victory, public recognition, success after a hard journey, and being held up as a model of survival."
+    },
+    "ecology": {
+      "zh": "Six of Wands is the 'Conservation Success Story'—the individual that becomes the face of the movement and thrives despite all odds.",
+      "en": "Six of Wands is the 'Conservation Success Story'—the individual that becomes the face of the movement and thrives despite all odds."
+    }
+  },
+  {
+    "id": "card-wa-07-seven-of-wands",
+    "number": 107,
+    "title": {
+      "zh": "SEVEN OF WANDS",
+      "en": "SEVEN OF WANDS"
+    },
+    "image": "art/renders/card-wa-07-seven-of-wands.png",
+    "meaning": {
+      "zh": "Defensiveness, standing ground, protection of assets/territory, and the courage to face overwhelming odds.",
+      "en": "Defensiveness, standing ground, protection of assets/territory, and the courage to face overwhelming odds."
+    },
+    "ecology": {
+      "zh": "Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones from constant external pressure.",
+      "en": "Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones from constant external pressure."
+    }
+  },
+  {
+    "id": "card-wa-08-eight-of-wands",
+    "number": 108,
+    "title": {
+      "zh": "EIGHT OF WANDS",
+      "en": "EIGHT OF WANDS"
+    },
+    "image": "art/renders/card-wa-08-eight-of-wands.png",
+    "meaning": {
+      "zh": "Speed, rapid movement, travel, sudden progress, and the swift use of open paths/corridors.",
+      "en": "Speed, rapid movement, travel, sudden progress, and the swift use of open paths/corridors."
+    },
+    "ecology": {
+      "zh": "Eight of Wands represents the 'Corridor Sprint'—the vital speed at which a leopard cat must cross vulnerable areas to reach safety.",
+      "en": "Eight of Wands represents the 'Corridor Sprint'—the vital speed at which a leopard cat must cross vulnerable areas to reach safety."
+    }
+  },
+  {
+    "id": "card-wa-09-nine-of-wands",
+    "number": 109,
+    "title": {
+      "zh": "NINE OF WANDS",
+      "en": "NINE OF WANDS"
+    },
+    "image": "art/renders/card-wa-09-nine-of-wands.png",
+    "meaning": {
+      "zh": "Resilience, stamina, persistence, being nearing the end of a battle but still standing, and defensive strength.",
+      "en": "Resilience, stamina, persistence, being nearing the end of a battle but still standing, and defensive strength."
+    },
+    "ecology": {
+      "zh": "Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, embodying the survival spirit.",
+      "en": "Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, embodying the survival spirit."
+    }
+  },
+  {
+    "id": "card-wa-10-ten-of-wands",
+    "number": 110,
+    "title": {
+      "zh": "TEN OF WANDS",
+      "en": "TEN OF WANDS"
+    },
+    "image": "art/renders/card-wa-10-ten-of-wands.png",
+    "meaning": {
+      "zh": "Burden, overextension, carrying too much responsibility, and the struggle of local conservationists and the cats themselves.",
+      "en": "Burden, overextension, carrying too much responsibility, and the struggle of local conservationists and the cats themselves."
+    },
+    "ecology": {
+      "zh": "Ten of Wands is the 'Conservation Burden'—the overwhelming weight of habitat loss and human expansion that a single survivor must carry.",
+      "en": "Ten of Wands is the 'Conservation Burden'—the overwhelming weight of habitat loss and human expansion that a single survivor must carry."
+    }
+  },
+  {
+    "id": "card-wa-11-page-of-wands",
+    "number": "PAGE",
+    "title": {
+      "zh": "PAGE OF WANDS",
+      "en": "PAGE OF WANDS"
+    },
+    "image": "art/renders/card-wa-11-page-of-wands.png",
+    "meaning": {
+      "zh": "Discovery, enthusiasm, new trails, messages of growth, and the excitement of a young spirit.",
+      "en": "Discovery, enthusiasm, new trails, messages of growth, and the excitement of a young spirit."
+    },
+    "ecology": {
+      "zh": "Page of Wands represents the 'First Foray'—the stage where a juvenile begins to explore beyond the den, full of wonder but vulnerable.",
+      "en": "Page of Wands represents the 'First Foray'—the stage where a juvenile begins to explore beyond the den, full of wonder but vulnerable."
+    }
+  },
+  {
+    "id": "card-wa-12-knight-of-wands",
+    "number": "KNIGHT",
+    "title": {
+      "zh": "KNIGHT OF WANDS",
+      "en": "KNIGHT OF WANDS"
+    },
+    "image": "art/renders/card-wa-12-knight-of-wands.png",
+    "meaning": {
+      "zh": "Action, adventure, impulsiveness, rapid energy, and the drive to conquer the road ahead.",
+      "en": "Action, adventure, impulsiveness, rapid energy, and the drive to conquer the road ahead."
+    },
+    "ecology": {
+      "zh": "Knight of Wands represents the 'Dispersal Peak'—when a sub-adult must move fast and far, a time of both great opportunity and high mortality risk.",
+      "en": "Knight of Wands represents the 'Dispersal Peak'—when a sub-adult must move fast and far, a time of both great opportunity and high mortality risk."
+    }
+  },
+  {
+    "id": "card-wa-13-queen-of-wands",
+    "number": "QUEEN",
+    "title": {
+      "zh": "QUEEN OF WANDS",
+      "en": "QUEEN OF WANDS"
+    },
+    "image": "art/renders/card-wa-13-queen-of-wands.png",
+    "meaning": {
+      "zh": "Confidence, warmth, social influence, fertility, and a spirited approach to life and territory.",
+      "en": "Confidence, warmth, social influence, fertility, and a spirited approach to life and territory."
+    },
+    "ecology": {
+      "zh": "Queen of Wands represents the 'Core Motherhood'—the stable, long-lived females that form the reproductive backbone of the population.",
+      "en": "Queen of Wands represents the 'Core Motherhood'—the stable, long-lived females that form the reproductive backbone of the population."
+    }
+  },
+  {
+    "id": "card-wa-14-king-of-wands",
+    "number": "KING",
+    "title": {
+      "zh": "KING OF WANDS",
+      "en": "KING OF WANDS"
+    },
+    "image": "art/renders/card-wa-14-king-of-wands.png",
+    "meaning": {
+      "zh": "Vision, leadership, entrepreneurship, mastery of one's environment, and the power to command a stable territory.",
+      "en": "Vision, leadership, entrepreneurship, mastery of one's environment, and the power to command a stable territory."
+    },
+    "ecology": {
+      "zh": "King of Wands is the 'Landscape Master'—the individuals that manage to secure massive home ranges and ensure the survival of their entire sub-population.",
+      "en": "King of Wands is the 'Landscape Master'—the individuals that manage to secure massive home ranges and ensure the survival of their entire sub-population."
+    }
+  },
+  {
+    "id": "card-cu-01-ace-of-cups",
+    "number": 201,
+    "title": {
+      "zh": "ACE OF CUPS",
+      "en": "ACE OF CUPS"
+    },
+    "image": "art/renders/card-cu-01-ace-of-cups.png",
+    "meaning": {
+      "zh": "Love, potential, emotional abundance, spiritual intuition, and new beginnings in the realm of the heart.",
+      "en": "Love, potential, emotional abundance, spiritual intuition, and new beginnings in the realm of the heart."
+    },
+    "ecology": {
+      "zh": "Ace of Cups represents the 'Source'—the critical importance of high-altitude unpolluted streams that feed the entire ecosystem.",
+      "en": "Ace of Cups represents the 'Source'—the critical importance of high-altitude unpolluted streams that feed the entire ecosystem."
+    }
+  },
+  {
+    "id": "card-cu-02-two-of-cups",
+    "number": 202,
+    "title": {
+      "zh": "TWO OF CUPS",
+      "en": "TWO OF CUPS"
+    },
+    "image": "art/renders/card-cu-02-two-of-cups.png",
+    "meaning": {
+      "zh": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony.",
+      "en": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony."
+    },
+    "ecology": {
+      "zh": "Two of Cups represents the 'Trust of the Breed'—the rare moment when solitary instincts give way to mating season cooperation.",
+      "en": "Two of Cups represents the 'Trust of the Breed'—the rare moment when solitary instincts give way to mating season cooperation."
+    }
+  },
+  {
+    "id": "card-cu-03-three-of-cups",
+    "number": 203,
+    "title": {
+      "zh": "THREE OF CUPS",
+      "en": "THREE OF CUPS"
+    },
+    "image": "art/renders/card-cu-03-three-of-cups.png",
+    "meaning": {
+      "zh": "Celebration, community support, friendship, group harmony, and shared joy.",
+      "en": "Celebration, community support, friendship, group harmony, and shared joy."
+    },
+    "ecology": {
+      "zh": "Three of Cups represents 'The Safety of the Pack'—rare group play moments in high-quality habitats where resources are overflowing.",
+      "en": "Three of Cups represents 'The Safety of the Pack'—rare group play moments in high-quality habitats where resources are overflowing."
+    }
+  },
+  {
+    "id": "card-cu-04-four-of-cups",
+    "number": 204,
+    "title": {
+      "zh": "FOUR OF CUPS",
+      "en": "FOUR OF CUPS"
+    },
+    "image": "art/renders/card-cu-04-four-of-cups.png",
+    "meaning": {
+      "zh": "Meditation, contemplation, apathy, re-evaluation, and being withdrawn.",
+      "en": "Meditation, contemplation, apathy, re-evaluation, and being withdrawn."
+    },
+    "ecology": {
+      "zh": "Four of Cups represents 'The Trap of the Familiar'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor.",
+      "en": "Four of Cups represents 'The Trap of the Familiar'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor."
+    }
+  },
+  {
+    "id": "card-cu-05-five-of-cups",
+    "number": 205,
+    "title": {
+      "zh": "FIVE OF CUPS",
+      "en": "FIVE OF CUPS"
+    },
+    "image": "art/renders/card-cu-05-five-of-cups.png",
+    "meaning": {
+      "zh": "Loss, grief, regret, disappointment, and focuses on the negative.",
+      "en": "Loss, grief, regret, disappointment, and focuses on the negative."
+    },
+    "ecology": {
+      "zh": "Five of Cups represents 'The Price of Disturbance'—the grief of losing breeding territory to human development, while still having hope in remaining remote forests.",
+      "en": "Five of Cups represents 'The Price of Disturbance'—the grief of losing breeding territory to human development, while still having hope in remaining remote forests."
+    }
+  },
+  {
+    "id": "card-cu-06-six-of-cups",
+    "number": 206,
+    "title": {
+      "zh": "SIX OF CUPS",
+      "en": "SIX OF CUPS"
+    },
+    "image": "art/renders/card-cu-06-six-of-cups.png",
+    "meaning": {
+      "zh": "Nostalgia, childhood memories, innocence, sharing, and kindness.",
+      "en": "Nostalgia, childhood memories, innocence, sharing, and kindness."
+    },
+    "ecology": {
+      "zh": "Six of Cups represents 'The Safe Haven'—the importance of undisturbed core habitats where leopard cats can raise young without human interference.",
+      "en": "Six of Cups represents 'The Safe Haven'—the importance of undisturbed core habitats where leopard cats can raise young without human interference."
+    }
+  },
+  {
+    "id": "card-cu-07-seven-of-cups",
+    "number": 207,
+    "title": {
+      "zh": "SEVEN OF CUPS",
+      "en": "SEVEN OF CUPS"
+    },
+    "image": "art/renders/card-cu-07-seven-of-cups.png",
+    "meaning": {
+      "zh": "Illusions, daydreaming, wishful thinking, choices, and too many options.",
+      "en": "Illusions, daydreaming, wishful thinking, choices, and too many options."
+    },
+    "ecology": {
+      "zh": "Seven of Cups represents 'The Dispersal Dilemma'—the many choices a leopard cat faces when crossing between habitat fragments.",
+      "en": "Seven of Cups represents 'The Dispersal Dilemma'—the many choices a leopard cat faces when crossing between habitat fragments."
+    }
+  },
+  {
+    "id": "card-cu-08-eight-of-cups",
+    "number": 208,
+    "title": {
+      "zh": "EIGHT OF CUPS",
+      "en": "EIGHT OF CUPS"
+    },
+    "image": "art/renders/card-cu-08-eight-of-cups.png",
+    "meaning": {
+      "zh": "Abandonment, withdrawal, seeking deeper truth, and leaving the past behind.",
+      "en": "Abandonment, withdrawal, seeking deeper truth, and leaving the past behind."
+    },
+    "ecology": {
+      "zh": "Eight of Cups represents 'The Long Dispersal'—the difficult decision to leave a sub-optimal home range to find a high-quality territory elsewhere.",
+      "en": "Eight of Cups represents 'The Long Dispersal'—the difficult decision to leave a sub-optimal home range to find a high-quality territory elsewhere."
+    }
+  },
+  {
+    "id": "card-cu-09-nine-of-cups",
+    "number": 209,
+    "title": {
+      "zh": "NINE OF CUPS",
+      "en": "NINE OF CUPS"
+    },
+    "image": "art/renders/card-cu-09-nine-of-cups.png",
+    "meaning": {
+      "zh": "Contentment, satisfaction, success, wishes fulfilled, and physical well-being.",
+      "en": "Contentment, satisfaction, success, wishes fulfilled, and physical well-being."
+    },
+    "ecology": {
+      "zh": "Nine of Cups represents 'The Resource Sanctuary'—the ideal state of high-quality habitat where all the needs of the leopard cat are met.",
+      "en": "Nine of Cups represents 'The Resource Sanctuary'—the ideal state of high-quality habitat where all the needs of the leopard cat are met."
+    }
+  },
+  {
+    "id": "card-cu-10-ten-of-cups",
+    "number": 210,
+    "title": {
+      "zh": "TEN OF CUPS",
+      "en": "TEN OF CUPS"
+    },
+    "image": "art/renders/card-cu-10-ten-of-cups.png",
+    "meaning": {
+      "zh": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+      "en": "Happiness, emotional harmony, family, reunion, and a high sense of community."
+    },
+    "ecology": {
+      "zh": "Ten of Cups represents 'The Ideal Population'—thriving family units in safe, large habitat complexes.",
+      "en": "Ten of Cups represents 'The Ideal Population'—thriving family units in safe, large habitat complexes."
+    }
+  },
+  {
+    "id": "card-cu-11-page-of-cups",
+    "number": "PAGE",
+    "title": {
+      "zh": "PAGE OF CUPS",
+      "en": "PAGE OF CUPS"
+    },
+    "image": "art/renders/card-cu-11-page-of-cups.png",
+    "meaning": {
+      "zh": "Curiosity, a messenger of emotions, creative beginnings, and intuitive dreams.",
+      "en": "Curiosity, a messenger of emotions, creative beginnings, and intuitive dreams."
+    },
+    "ecology": {
+      "zh": "Page of Cups represents 'The Explorer'—the juvenile phase of learning how to navigate the complex world before leaving the maternal range.",
+      "en": "Page of Cups represents 'The Explorer'—the juvenile phase of learning how to navigate the complex world before leaving the maternal range."
+    }
+  },
+  {
+    "id": "card-cu-12-knight-of-cups",
+    "number": "KNIGHT",
+    "title": {
+      "zh": "KNIGHT OF CUPS",
+      "en": "KNIGHT OF CUPS"
+    },
+    "image": "art/renders/card-cu-12-knight-of-cups.png",
+    "meaning": {
+      "zh": "Romance, imagination, proposal, pursuit of an ideal, and following your heart.",
+      "en": "Romance, imagination, proposal, pursuit of an ideal, and following your heart."
+    },
+    "ecology": {
+      "zh": "Knight of Cups represents 'The Peaceable Walker'—the rare but critical long-distance migrant that maintains genetic diversity between meta-populations.",
+      "en": "Knight of Cups represents 'The Peaceable Walker'—the rare but critical long-distance migrant that maintains genetic diversity between meta-populations."
+    }
+  },
+  {
+    "id": "card-cu-13-queen-of-cups",
+    "number": "QUEEN",
+    "title": {
+      "zh": "QUEEN OF CUPS",
+      "en": "QUEEN OF CUPS"
+    },
+    "image": "art/renders/card-cu-13-queen-of-cups.png",
+    "meaning": {
+      "zh": "Compassion, emotional stability, intuition, a caring nature, and spiritual insight.",
+      "en": "Compassion, emotional stability, intuition, a caring nature, and spiritual insight."
+    },
+    "ecology": {
+      "zh": "Queen of Cups represents 'The Maternal Core'—the crucial survival instincts of a mother leopard cat that has mastered the safe navigation of the landscape.",
+      "en": "Queen of Cups represents 'The Maternal Core'—the crucial survival instincts of a mother leopard cat that has mastered the safe navigation of the landscape."
+    }
+  },
+  {
+    "id": "card-cu-14-king-of-cups",
+    "number": "KING",
+    "title": {
+      "zh": "KING OF CUPS",
+      "en": "KING OF CUPS"
+    },
+    "image": "art/renders/card-cu-14-king-of-cups.png",
+    "meaning": {
+      "zh": "Emotional balance, emotional control, generosity, wisdom, and compassionate leadership.",
+      "en": "Emotional balance, emotional control, generosity, wisdom, and compassionate leadership."
+    },
+    "ecology": {
+      "zh": "King of Cups represents 'The Long-Range Vision'—the ability of an alpha male to navigate and protect territory across large, potentially disconnected landscapes.",
+      "en": "King of Cups represents 'The Long-Range Vision'—the ability of an alpha male to navigate and protect territory across large, potentially disconnected landscapes."
+    }
+  },
+  {
+    "id": "card-sw-01-ace-of-swords",
+    "number": 301,
+    "title": {
+      "zh": "ACE OF SWORDS",
+      "en": "ACE OF SWORDS"
+    },
+    "image": "art/renders/card-sw-01-ace-of-swords.png",
+    "meaning": {
+      "zh": "Clarity, breakthrough, power, mental strength, and success through logic.",
+      "en": "Clarity, breakthrough, power, mental strength, and success through logic."
+    },
+    "ecology": {
+      "zh": "Ace of Swords represents 'The Moment of Clarity'—when a leopard cat identifies the exact second to cross a road safely to reach a new patch.",
+      "en": "Ace of Swords represents 'The Moment of Clarity'—when a leopard cat identifies the exact second to cross a road safely to reach a new patch."
+    }
+  },
+  {
+    "id": "card-sw-02-two-of-swords",
+    "number": 302,
+    "title": {
+      "zh": "TWO OF SWORDS",
+      "en": "TWO OF SWORDS"
+    },
+    "image": "art/renders/card-sw-02-two-of-swords.png",
+    "meaning": {
+      "zh": "Indecision, choice, stalemate, blocked emotions, and being at a crossroads.",
+      "en": "Indecision, choice, stalemate, blocked emotions, and being at a crossroads."
+    },
+    "ecology": {
+      "zh": "Two of Swords represents 'The Crossroads Trap'—a Behavioral phenomenon where animals freeze at a junction between two human habitats.",
+      "en": "Two of Swords represents 'The Crossroads Trap'—a Behavioral phenomenon where animals freeze at a junction between two human habitats."
+    }
+  },
+  {
+    "id": "card-sw-03-three-of-swords",
+    "number": 303,
+    "title": {
+      "zh": "THREE OF SWORDS",
+      "en": "THREE OF SWORDS"
+    },
+    "image": "art/renders/card-sw-03-three-of-swords.png",
+    "meaning": {
+      "zh": "Grief, heartbreak, emotional pain, sorrow, and betrayal.",
+      "en": "Grief, heartbreak, emotional pain, sorrow, and betrayal."
+    },
+    "ecology": {
+      "zh": "Three of Swords represents 'The Toll of Progress'—the emotional and demographic impact of losing breeding adults to roadkill.",
+      "en": "Three of Swords represents 'The Toll of Progress'—the emotional and demographic impact of losing breeding adults to roadkill."
+    }
+  },
+  {
+    "id": "card-sw-04-four-of-swords",
+    "number": 304,
+    "title": {
+      "zh": "FOUR OF SWORDS",
+      "en": "FOUR OF SWORDS"
+    },
+    "image": "art/renders/card-sw-04-four-of-swords.png",
+    "meaning": {
+      "zh": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "en": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength."
+    },
+    "ecology": {
+      "zh": "Four of Swords represents 'The Healing Hollow'—undisturbed areas where cats can escape the high-stress environment of road-bordered territories.",
+      "en": "Four of Swords represents 'The Healing Hollow'—undisturbed areas where cats can escape the high-stress environment of road-bordered territories."
     }
   }
 ]

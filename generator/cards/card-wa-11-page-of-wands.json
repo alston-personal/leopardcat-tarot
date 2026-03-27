@@ -2,9 +2,9 @@
   "id": "card-wa-11-page-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "PAGE",
+  "number": 11,
   "title": {
-    "zh": "PAGE OF WANDS",
+    "zh": "權杖侍者",
     "en": "PAGE OF WANDS"
   },
   "subtitle": "Discoverer / New Trail / Curiosity",

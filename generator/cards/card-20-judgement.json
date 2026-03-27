@@ -1,8 +1,11 @@
 {
   "id": "card-20-judgement",
   "arcana": "major",
-  "number": "XX",
-  "title": "JUDGEMENT",
+  "number": 20,
+  "title": {
+    "zh": "審判",
+    "en": "JUDGEMENT"
+  },
   "subtitle": "Rebirth / Calling / Conservation Law",
   "slug": "20-judgement",
   "status": "draft",
@@ -55,8 +58,16 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
+    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. An angelic anthropomorphic Taiwan leopard cat in the sky blows a golden trumpet. Below, leopard cat families emerge from stone-like dens with open arms, looking up toward the light. Meaning: A call to action, the collective awakening for conservation, and the evaluation of past ecological choices.",
     "narrative": "An angelic anthropomorphic Taiwan leopard cat in the sky blows a golden trumpet. Below, leopard cat families emerge from stone-like dens with open arms, looking up toward the light. Meaning: A call to action, the collective awakening for conservation, and the evaluation of past ecological choices."
   },
-  "output": "art/renders/card-20-20-judgement.png"
+  "output": "art/renders/card-20-20-judgement.png",
+  "meaning": {
+    "zh": "TBD",
+    "en": "TBD"
+  },
+  "ecology": {
+    "zh": "TBD",
+    "en": "TBD"
+  }
 }

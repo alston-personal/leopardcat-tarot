@@ -1,0 +1,27 @@
+{
+  "id": "card-cu-12-knight-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 12,
+  "title": {
+    "zh": "聖杯騎士",
+    "en": "KNIGHT OF CUPS"
+  },
+  "meaning": {
+    "zh": "優雅的追求、浪漫、情感的使者、直覺的引導。",
+    "en": "Elegant pursuit, romance, messenger of emotions, intuitive guidance."
+  },
+  "ecology": {
+    "zh": "石虎少年在領地邊緣穿梭，尋找屬於自己的水源與家園。",
+    "en": "A juvenile leopard cat traversing territory edges searching for home."
+  },
+  "image": "art/renders/card-cu-12-knight-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. An elegant and introspective anthropomorphic Taiwan leopard cat (Knight) riding a mystical feline-steed across a shallow river. He holds a golden cup forward. High-fidelity biological markers: narrow small-cat face, distinct white stripes from nose to forehead, white spots behind ears, slender build. soft teal and morning mist colors. 2:3 vertical. Full bleed. No borders.",
+    "narrative": "The Knight of Cups is the Messenger of Instinct—the young leopard cat exploring new territory with grace."
+  },
+  "status": "rework_needed"
+}

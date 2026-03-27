@@ -1,0 +1,58 @@
+{
+  "id": "card-wa-04-four-of-wands",
+  "arcana": "minor",
+  "suit": "wands",
+  "number": "IV",
+  "title": "FOUR OF WANDS",
+  "subtitle": "Community / Celebration / Habitat Home",
+  "slug": "four-of-wands",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [100, 120, 60],
+    "bottom": [200, 180, 100],
+    "frame": [219, 203, 156],
+    "frame_inner": [171, 149, 102],
+    "panel": [40, 60, 30],
+    "text_primary": [243, 233, 201],
+    "text_secondary": [198, 186, 151]
+  },
+  "scene": {
+    "theme": "community-home",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "leopard-cat-family"
+  },
+  "main_image": "art/generated/card-wa-04-four-of-wands.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. An anthropomorphic leopard cat couple standing beneath a floral archway made of four large, blooming wooden wands. They are celebrating the discovery of a safe, undisturbed forest patch. Other small animals (birds, butterflies) are present. Vibrant but earthy colors. High detail on rosettes. 1900s lithograph feel. No borders. Full bleed.",
+    "narrative": "A moment of peace and celebration as a leopard cat community finds a stable, safe core habitat. The four wands form an arch of protection over their home."
+  },
+  "ornaments": ["floral-arch"],
+  "output": "art/renders/card-wa-04-four-of-wands.png",
+  "meanings": {
+    "upright": "Celebration, harmony, a sense of belonging, and the establishment of a safe home base within the territory.",
+    "reversed": "Instability at home, lack of community support, or a temporary 'safe' zone that is actually under threat.",
+    "keywords": ["celebration", "home", "harmony", "foundation"]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult-pair",
+    "habitat_fragment": "stable core forest",
+    "risk_theme": "the importance of long-term safe zones",
+    "mapping_note": "Four of Wands becomes the 'Core Sanctuary'—a habitat patch large and stable enough to support a breeding population and communal peace."
+  },
+  "website": {
+    "excerpt": "Celebrating the safety of a permanent home, the leopard cats find peace under the shelter of the four wands.",
+    "seo_title": "Four of Wands - LeopardCat Tarot",
+    "seo_description": "Four of Wands reimagined as stable leopard cat core habitat and community.",
+    "tags": ["minor-arcana", "wands", "leopard-cat", "home"]
+  }
+}

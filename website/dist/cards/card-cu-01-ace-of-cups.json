@@ -1,0 +1,58 @@
+{
+  "id": "card-cu-01-ace-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": "ACE",
+  "title": "ACE OF CUPS",
+  "subtitle": "The Source / Overflowing Life / Purity",
+  "slug": "ace-of-cups",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [50, 120, 200],
+    "bottom": [20, 50, 100],
+    "frame": [219, 203, 156],
+    "frame_inner": [171, 149, 102],
+    "panel": [10, 20, 40],
+    "text_primary": [243, 233, 201],
+    "text_secondary": [198, 186, 151]
+  },
+  "scene": {
+    "theme": "mystical-spring",
+    "forest": true,
+    "road": false,
+    "grass": false,
+    "subject": "adult-leopard-cat"
+  },
+  "main_image": "art/generated/card-cu-01-ace-of-cups.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A graceful anthropomorphic leopard cat discovering a glowing, spiritual mountain spring. It holds a single ornate golden cup overflowing with clear sparkling water. Five streams of water pour from the cup into a pond filled with lotuses. Cool, atmospheric moonlit sanctuary. Deep teals and soft silvers. Full bleed. No borders.",
+    "narrative": "The Ace of Cups is the 'Source of Life'—the discovery of the pure headwaters where the leopard cat's soul finds true emotional resonance."
+  },
+  "ornaments": ["lotuses", "sparkling-water"],
+  "output": "art/renders/card-cu-01-ace-of-cups.png",
+  "meanings": {
+    "upright": "Love, potential, emotional abundance, spiritual intuition, and new beginnings in the realm of the heart.",
+    "reversed": "Blocked emotions, suppressed intuition, or a period of emotional drought.",
+    "keywords": ["purity", "abundance", "intuition", "blessing"]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "unpolluted mountain headwaters",
+    "risk_theme": "water quality and habitat sanity",
+    "mapping_note": "Ace of Cups represents the 'Source'—the critical importance of high-altitude unpolluted streams that feed the entire ecosystem."
+  },
+  "website": {
+    "excerpt": "Discovering the glowing spring at the heart of the forest, the leopard cat finds the source of all life.",
+    "seo_title": "Ace of Cups - LeopardCat Tarot",
+    "seo_description": "Ace of Cups reimagined as a leopard cat finding the mystical source of life.",
+    "tags": ["minor-arcana", "cups", "leopard-cat", "water"]
+  }
+}

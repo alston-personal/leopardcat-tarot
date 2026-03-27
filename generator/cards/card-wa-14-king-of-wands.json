@@ -2,9 +2,9 @@
   "id": "card-wa-14-king-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "KING",
+  "number": 14,
   "title": {
-    "zh": "KING OF WANDS",
+    "zh": "權杖國王",
     "en": "KING OF WANDS"
   },
   "subtitle": "Visionary Leader / Territorial Master",

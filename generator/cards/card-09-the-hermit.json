@@ -1,8 +1,11 @@
 {
   "id": "card-09-the-hermit",
   "arcana": "major",
-  "number": "IX",
-  "title": "THE HERMIT",
+  "number": 9,
+  "title": {
+    "zh": "隱者",
+    "en": "THE HERMIT"
+  },
   "subtitle": "Solitude / Reflection / Deep Mountain",
   "slug": "09-the-hermit",
   "status": "draft",
@@ -56,7 +59,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
+    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A solitary old anthropomorphic Taiwan leopard cat wearing tattered grey robes, holding a lantern with a glowing firefly inside. He stands atop a cold, foggy mountain peak under a dark moon. Meaning: Introspection, seeking truth, and the extreme isolation required for survival in the deep, undisturbed primeval mountains.",
     "narrative": "A solitary old anthropomorphic Taiwan leopard cat wearing tattered grey robes, holding a lantern with a glowing firefly inside. He stands atop a cold, foggy mountain peak under a dark moon. Meaning: Introspection, seeking truth, and the extreme isolation required for survival in the deep, undisturbed primeval mountains."
   },
   "output": "art/renders/card-09-the-hermit.png",
@@ -66,5 +69,9 @@
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat"
+  },
+  "meaning": {
+    "zh": "TBD",
+    "en": "TBD"
   }
 }

@@ -1,0 +1,58 @@
+{
+  "id": "card-wa-05-five-of-wands",
+  "arcana": "minor",
+  "suit": "wands",
+  "number": "V",
+  "title": "FIVE OF WANDS",
+  "subtitle": "Competition / Territorial Struggle / Chaos",
+  "slug": "five-of-wands",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [90, 30, 20],
+    "bottom": [160, 60, 40],
+    "frame": [219, 203, 156],
+    "frame_inner": [171, 149, 102],
+    "panel": [40, 20, 15],
+    "text_primary": [243, 233, 201],
+    "text_secondary": [198, 186, 151]
+  },
+  "scene": {
+    "theme": "territorial-conflict",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "leopard-cats-sparring"
+  },
+  "main_image": "art/generated/card-wa-05-five-of-wands.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. Dynamic action scene! Five anthropomorphic leopard cats are sparring and clashing with five wooden wands in a forest clearing. Dust rises, fur flies. This is not a fight to the death, but a intense territorial play/struggle for dominance. Vivid, energetic colors. rosettes and white ear spots are clearly visible. Full bleed. No text. No borders.",
+    "narrative": "Five leopard cats engage in a chaotic but necessary struggle for dominance and space within a crowded habitat fragment. Each wand represents a claimed boundary line."
+  },
+  "ornaments": ["flying-fur"],
+  "output": "art/renders/card-wa-05-five-of-wands.png",
+  "meanings": {
+    "upright": "Competition, conflict, struggle for space, and the internal friction of a population in a shrinking range.",
+    "reversed": "Avoiding conflict, internal harmony after a struggle, or a failure to defend one's boundaries.",
+    "keywords": ["conflict", "struggle", "competition", "chaos"]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult-males",
+    "habitat_fragment": "contested territory",
+    "risk_theme": "high density and range compression",
+    "mapping_note": "Five of Wands represents the 'Range Compression' struggle—the increased friction when too many individuals are forced into too small a space."
+  },
+  "website": {
+    "excerpt": "A chaotic spar for dominance and space, the five leopard cats test each other's boundaries with their wands.",
+    "seo_title": "Five of Wands - LeopardCat Tarot",
+    "seo_description": "Five of Wands reimagined as leopard cat territorial competition and crowded habitats.",
+    "tags": ["minor-arcana", "wands", "leopard-cat", "competition"]
+  }
+}

@@ -1,8 +1,11 @@
 {
   "id": "card-12-the-hanged-man",
   "arcana": "major",
-  "number": "XII",
-  "title": "THE HANGED MAN",
+  "number": 12,
+  "title": {
+    "zh": "倒吊人",
+    "en": "THE HANGED MAN"
+  },
   "subtitle": "Pause / Perspective / Sacrifice",
   "slug": "12-the-hanged-man",
   "status": "draft",
@@ -56,8 +59,16 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
+    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. An anthropomorphic Taiwan leopard cat hanging upside down by one leg from a horizontal tree branch in a high forest canopy. He looks calm and contemplative, ignoring the world below. A faint halo of moonlight glows behind his head. Meaning: New perspective, the necessary waiting period in a fragmented habitat, and finding peace in suspension.",
     "narrative": "An anthropomorphic Taiwan leopard cat hanging upside down by one leg from a horizontal tree branch in a high forest canopy. He looks calm and contemplative, ignoring the world below. A faint halo of moonlight glows behind his head. Meaning: New perspective, the necessary waiting period in a fragmented habitat, and finding peace in suspension."
   },
-  "output": "art/renders/card-12-the-hanged-man.png"
+  "output": "art/renders/card-12-the-hanged-man.png",
+  "meaning": {
+    "zh": "TBD",
+    "en": "TBD"
+  },
+  "ecology": {
+    "zh": "TBD",
+    "en": "TBD"
+  }
 }

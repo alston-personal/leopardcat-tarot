@@ -1,0 +1,58 @@
+{
+  "id": "card-cu-08-eight-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": "VIII",
+  "title": "EIGHT OF CUPS",
+  "subtitle": "The Departure / Abandoning / Searching",
+  "slug": "eight-of-cups",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [30, 40, 60],
+    "bottom": [10, 15, 20],
+    "frame": [219, 203, 156],
+    "frame_inner": [171, 149, 102],
+    "panel": [5, 10, 20],
+    "text_primary": [243, 233, 202],
+    "text_secondary": [198, 186, 151]
+  },
+  "scene": {
+    "theme": "moonlit-departure",
+    "forest": false,
+    "road": false,
+    "grass": false,
+    "subject": "departing-leopard-cat"
+  },
+  "main_image": "art/generated/card-cu-08-eight-of-cups.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A somber anthropomorphic leopard cat walking away from a stack of eight golden cups, heading toward steep, dark mountains under a crescent moon. Atmospheric night scene. Muted deep blues. Full bleed. No borders.",
+    "narrative": "The Eight of Cups is 'The Departure'—a leopard cat leaving a familiar but emotionally empty fragment to search for a deeper, safer core habitat."
+  },
+  "ornaments": ["crescent-moon", "steep-mountains"],
+  "output": "art/renders/card-cu-08-eight-of-cups.png",
+  "meanings": {
+    "upright": "Abandonment, withdrawal, seeking deeper truth, and leaving the past behind.",
+    "reversed": "Fear of moving on, stagnation, or returning to a situation that was previously abandoned.",
+    "keywords": ["departure", "abandonment", "searching", "withdrawal"]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "young-adult",
+    "habitat_fragment": "depleted habitat boundary",
+    "risk_theme": "long-distance dispersal courage",
+    "mapping_note": "Eight of Cups represents 'The Long Dispersal'—the difficult decision to leave a sub-optimal home range to find a high-quality territory elsewhere."
+  },
+  "website": {
+    "excerpt": "Under the pale moon, the leopard cat leaves the familiar behind, seeking a higher truth hidden in the distant peaks.",
+    "seo_title": "Eight of Cups - LeopardCat Tarot",
+    "seo_description": "Eight of Cups reimagined as a leopard cat embarking on a long-distance dispersal journey.",
+    "tags": ["minor-arcana", "cups", "leopard-cat", "journey"]
+  }
+}

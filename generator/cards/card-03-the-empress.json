@@ -1,8 +1,11 @@
 {
   "id": "card-03-the-empress",
   "arcana": "major",
-  "number": "III",
-  "title": "THE EMPRESS",
+  "number": 3,
+  "title": {
+    "zh": "皇后",
+    "en": "THE EMPRESS"
+  },
   "subtitle": "Abundance / Motherhood / Earth",
   "slug": "the-empress",
   "status": "draft",
@@ -58,7 +61,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V3_NO_BORDER]...",
+    "image_prompt": "[CLEAN_V3_NO_BORDER]... High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "An adult female anthropomorphic Taiwan leopard cat reclining in a lush, verdant hillside surrounded by dense ferns and wildflowers. She exudes maternal authority and fertility. In the soft shadows of a nearby hollow, two small leopard cat kittens peek out safely. The scene is abundant and life-giving."
   },
   "ornaments": [
@@ -82,7 +85,7 @@
     "life_stage": "adult female with kittens",
     "habitat_fragment": "dense shrublands and hills near water",
     "risk_theme": "reproductive success and safe denning sites",
-    "mapping_note": "The Empress represents the core of legal reproduction\u2014safe habitat where kittens can be raised without threat."
+    "mapping_note": "The Empress represents the core of legal reproduction—safe habitat where kittens can be raised without threat."
   },
   "website": {
     "excerpt": "In the lush hills, the Empress embodies the nurturing power of a healthy habitat supporting the next generation.",
@@ -94,5 +97,9 @@
       "abundance",
       "leopard-cat"
     ]
+  },
+  "meaning": {
+    "zh": "Abundance, nurturing, fertility, and the flourishing of life within a supportive environment.",
+    "en": "Abundance, nurturing, fertility, and the flourishing of life within a supportive environment."
   }
 }

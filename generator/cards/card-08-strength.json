@@ -1,8 +1,11 @@
 {
   "id": "card-08-strength",
   "arcana": "major",
-  "number": "VIII",
-  "title": "STRENGTH",
+  "number": 8,
+  "title": {
+    "zh": "力量",
+    "en": "STRENGTH"
+  },
   "subtitle": "Grace / Fortitude / Inner Power",
   "slug": "08-strength",
   "status": "draft",
@@ -56,7 +59,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
+    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A graceful female anthropomorphic Taiwan leopard cat kneeling calmly in a sun-dappled bamboo grove. She exerts gentle control over a wild, untamed hawk perched on her arm, looking the raptor in the eye with calm authority. Meaning: Taming the wild within, persistent quiet strength, and the delicate balance of predatory nature and self-control.",
     "narrative": "A graceful female anthropomorphic Taiwan leopard cat kneeling calmly in a sun-dappled bamboo grove. She exerts gentle control over a wild, untamed hawk perched on her arm, looking the raptor in the eye with calm authority. Meaning: Taming the wild within, persistent quiet strength, and the delicate balance of predatory nature and self-control."
   },
   "output": "art/renders/card-08-strength.png",
@@ -66,5 +69,9 @@
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat"
+  },
+  "meaning": {
+    "zh": "TBD",
+    "en": "TBD"
   }
 }

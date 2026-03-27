@@ -1,8 +1,11 @@
 {
   "id": "card-15-the-devil",
   "arcana": "major",
-  "number": "XV",
-  "title": "THE DEVIL",
+  "number": 15,
+  "title": {
+    "zh": "惡魔",
+    "en": "THE DEVIL"
+  },
   "subtitle": "Shadow / Entrapment / Baited Cage",
   "slug": "15-the-devil",
   "status": "draft",
@@ -56,8 +59,16 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
+    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A muscular, menacing anthropomorphic Taiwan leopard cat with ram-like horns, sitting upon a concrete block under a dark highway bridge. Two smaller cats are chained to the base of his throne by their instincts. A baited cage with a dead chicken glows in the dark nearby. Meaning: Enslavement to greed, the shadow side of urbanization, and the traps (both physical and mental) that bind the wild.",
     "narrative": "A muscular, menacing anthropomorphic Taiwan leopard cat with ram-like horns, sitting upon a concrete block under a dark highway bridge. Two smaller cats are chained to the base of his throne by their instincts. A baited cage with a dead chicken glows in the dark nearby. Meaning: Enslavement to greed, the shadow side of urbanization, and the traps (both physical and mental) that bind the wild."
   },
-  "output": "art/renders/card-15-the-devil.png"
+  "output": "art/renders/card-15-the-devil.png",
+  "meaning": {
+    "zh": "TBD",
+    "en": "TBD"
+  },
+  "ecology": {
+    "zh": "TBD",
+    "en": "TBD"
+  }
 }

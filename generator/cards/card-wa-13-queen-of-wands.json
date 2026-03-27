@@ -2,9 +2,9 @@
   "id": "card-wa-13-queen-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "QUEEN",
+  "number": 13,
   "title": {
-    "zh": "QUEEN OF WANDS",
+    "zh": "權杖皇后",
     "en": "QUEEN OF WANDS"
   },
   "subtitle": "Confident Matriarch / Radiant / Nurturer",

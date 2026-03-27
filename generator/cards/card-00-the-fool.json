@@ -1,8 +1,11 @@
 {
   "id": "card-00-the-fool",
   "arcana": "major",
-  "number": "0",
-  "title": "THE FOOL",
+  "number": 0,
+  "title": {
+    "zh": "愚者",
+    "en": "THE FOOL"
+  },
   "subtitle": "Threshold / Curiosity / Risk",
   "slug": "the-fool",
   "status": "draft",
@@ -60,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V2_NO_BORDER]...",
+    "image_prompt": "[CLEAN_V2_NO_BORDER]... High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "A juvenile anthropomorphic Taiwan leopard cat dressed as a humble traveler with a small knapsack on a stick. It steps forward from a dark forest towards the edge of a moonlit road where distant warm headlights glow."
   },
   "ornaments": [],
@@ -92,5 +95,9 @@
       "road-ecology",
       "threshold"
     ]
+  },
+  "meaning": {
+    "zh": "New beginnings, openness, instinctive trust, and a willingness to step toward the unknown.",
+    "en": "New beginnings, openness, instinctive trust, and a willingness to step toward the unknown."
   }
 }
