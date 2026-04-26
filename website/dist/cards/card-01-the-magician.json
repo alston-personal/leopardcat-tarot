@@ -1,8 +1,11 @@
 {
   "id": "card-01-the-magician",
   "arcana": "major",
-  "number": "I",
-  "title": "THE MAGICIAN",
+  "number": 1,
+  "title": {
+    "zh": "魔術師",
+    "en": "THE MAGICIAN"
+  },
   "subtitle": "Skill / Focus / Adaptation",
   "slug": "the-magician",
   "status": "draft",
@@ -60,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V2_NO_BORDER]...",
+    "image_prompt": "[CLEAN_V2_NO_BORDER]... High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "An adult anthropomorphic Taiwan leopard cat standing at an agricultural field edge with focused tactical intelligence. It masters its environment with symbolic tools: a dry reed (wand), a footprint pool (cup), a blade of grass (sword), and a burrow (disk). Classic magical mastery pose."
   },
   "ornaments": [
@@ -97,5 +100,9 @@
       "adaptation",
       "leopard-cat"
     ]
+  },
+  "meaning": {
+    "zh": "Focused skill, resourcefulness, environmental intelligence, and the power to act with precision.",
+    "en": "Focused skill, resourcefulness, environmental intelligence, and the power to act with precision."
   }
 }

@@ -2,14 +2,14 @@
   "id": "card-wa-12-knight-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": 12,
+  "number": 112,
   "title": {
     "zh": "權杖騎士",
     "en": "KNIGHT OF WANDS"
   },
-  "subtitle": "Passion & Adventure",
+  "subtitle": "The Champion of Connectivity / Bold Dispersal",
   "slug": "knight-of-wands",
-  "status": "draft",
+  "status": "rework_needed",
   "size": {
     "width": 1400,
     "height": 2420
@@ -60,46 +60,46 @@
   },
   "main_image": "art/generated/card-wa-12-knight-of-wands.png",
   "generation": {
-    "model": "gemini-3.1-flash",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A spirited, sub-adult humanoid leopard cat in action, charging through tall golden grass. It holds a sturdy wooden wand in its hand like a lance. It looks forward with intense focus and determination. It wears fire-themed medieval leather armor and a flowing cape.",
-    "narrative": "The Knight of Wands is the 'Brave Disperser'—a sub-adult leopard cat charging into the unknown, driven by impulse and courage."
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A spirited sub-adult Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS, charging through tall golden grass, wearing light leather ranger armor and a flowing forest-green cloak. He holds a sturdy wooden wand forward FIRMLY WITH ITS PAWS. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "narrative": "A sub-adult leopard cat disperses through a newly established corridor, representing the bold action required to reconnect fragmented populations."
   },
   "ornaments": [
     "golden-grass"
   ],
   "output": "art/renders/card-wa-12-knight-of-wands.png",
   "meanings": {
-    "upright": "Action, adventure, impulsiveness, rapid energy, and the drive to conquer the road ahead.",
-    "reversed": "Impulsiveness leading to danger, frustration, or a journey that is cut short by recklessness.",
+    "upright": "Action, connectivity, adventure, rapid energy, and the drive to establish new paths.",
+    "reversed": "Impulsiveness leading to danger, interrupted journeys, or a failure to successfully connect with new areas.",
     "keywords": [
       "action",
-      "adventure",
+      "connectivity",
       "energy",
-      "impulse"
+      "dispersal"
     ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
     "life_stage": "sub-adult",
-    "habitat_fragment": "open grassland/scrub",
-    "risk_theme": "the danger of fast dispersal",
-    "mapping_note": "Knight of Wands represents the 'Dispersal Peak'—when a sub-adult must move fast and far, a time of both great opportunity and high mortality risk."
+    "habitat_fragment": "newly established corridor",
+    "risk_theme": "successful dispersal and gene flow",
+    "mapping_note": "Knight of Wands represents the 'Champion of Connectivity'—the vital role of dispersing individuals in maintaining genetic health and linking isolated habitat patches."
   },
   "website": {
-    "excerpt": "Charging through the unknown with bold energy, the spirited disperser seeks his new kingdom.",
+    "excerpt": "Boldly charging toward new horizons, the knight embodies the spirit of connectivity and survival.",
     "seo_title": "Knight of Wands - LeopardCat Tarot",
-    "seo_description": "Knight of Wands reimagined as a bold sub-adult leopard cat disperser.",
+    "seo_description": "Knight of Wands reimagined as a bold sub-adult leopard cat champion of habitat connectivity.",
     "tags": [
       "minor-arcana",
       "wands",
       "leopard-cat",
-      "courage"
+      "connectivity"
     ]
   },
   "meaning": {
-    "zh": "Action, adventure, impulsiveness, rapid energy, and the drive to conquer the road ahead.",
-    "en": "Action, adventure, impulsiveness, rapid energy, and the drive to conquer the road ahead."
+    "zh": "行動、連通性、冒險、快速能量，以及建立新路徑的衝勁。",
+    "en": "Action, connectivity, adventure, rapid energy, and the drive to establish new paths."
   }
 }

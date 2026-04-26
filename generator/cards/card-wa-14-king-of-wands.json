@@ -2,12 +2,12 @@
   "id": "card-wa-14-king-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": 14,
+  "number": 114,
   "title": {
     "zh": "權杖國王",
     "en": "KING OF WANDS"
   },
-  "subtitle": "Leadership & Innovation",
+  "subtitle": "The Master of the Landscape / Visionary Leader",
   "slug": "king-of-wands",
   "status": "rework_needed",
   "size": {
@@ -60,24 +60,24 @@
   },
   "main_image": "art/generated/card-wa-14-king-of-wands.png",
   "generation": {
-    "model": "gemini-3.1-flash",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A majestic Taiwan leopard cat king standing upright on two legs, sitting on a throne carved with rosettes. He holds a large wooden wand blooming with fire. Slender build (small cat, not a lion), sharp facial structure, white ear spots, forehead stripes. No baked-in text. High-fidelity biological markers.",
-    "narrative": "The King of Wands is the 'Old Master of the Land'—the alpha male who has successfully claimed and secured his territory against all odds."
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A majestic Taiwan leopard cat king STRICTLY STANDING UPRIGHT ON TWO LEGS, sitting on a throne of stone carved with salamander motifs. He wears a heavy robe patterned with rosettes and holds a large wooden wand FIRMLY WITH ITS PAWS. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "narrative": "The king of the landscape has secured a vast and healthy territory, representing the ultimate visionary goal of large-scale ecological integration and species healing."
   },
   "ornaments": [
     "rocky-throne"
   ],
   "output": "art/renders/card-wa-14-king-of-wands.png",
   "meanings": {
-    "upright": "Vision, leadership, entrepreneurship, mastery of one's environment, and the power to command a stable territory.",
-    "reversed": "Tyranny, overreach, loss of vision, or being a ruler without a land (homeless).",
+    "upright": "Vision, landscape integration, leadership, mastery, and the successful protection of a vast ecosystem.",
+    "reversed": "Overreach, loss of vision, or the failure to see the landscape as a whole, leading to fragmentation.",
     "keywords": [
-      "leadership",
       "vision",
+      "leadership",
       "mastery",
-      "protection"
+      "integration"
     ]
   },
   "ecology": {
@@ -85,21 +85,21 @@
     "life_stage": "alpha-male",
     "habitat_fragment": "vast interconnected core forest",
     "risk_theme": "the ultimate goal of large-scale conservation",
-    "mapping_note": "King of Wands is the 'Landscape Master'—the individuals that manage to secure massive home ranges and ensure the survival of their entire sub-population."
+    "mapping_note": "King of Wands is the 'Landscape Master'—the individuals that manage to secure massive home ranges within a fully integrated and healthy landscape, embodying the success of visionary conservation."
   },
   "website": {
-    "excerpt": "A powerful and visionary leader, the King masterfully protects his vast and secure forest domain.",
+    "excerpt": "A powerful and visionary leader, the King masterfully integrates his vast and secure forest domain into the wider landscape.",
     "seo_title": "King of Wands - LeopardCat Tarot",
-    "seo_description": "King of Wands reimagined as a powerful leopard cat alpha in his secure territory.",
+    "seo_description": "King of Wands reimagined as a visionary leopard cat alpha master of the integrated landscape.",
     "tags": [
       "minor-arcana",
       "wands",
       "leopard-cat",
-      "leadership"
+      "vision"
     ]
   },
   "meaning": {
-    "zh": "Vision, leadership, entrepreneurship, mastery of one's environment, and the power to command a stable territory.",
-    "en": "Vision, leadership, entrepreneurship, mastery of one's environment, and the power to command a stable territory."
+    "zh": "遠見、地景整合、領導力、精通，以及對廣大生態系統的成功保護。",
+    "en": "Vision, landscape integration, leadership, mastery, and the successful protection of a vast ecosystem."
   }
 }

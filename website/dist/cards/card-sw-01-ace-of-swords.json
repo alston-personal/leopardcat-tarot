@@ -1,0 +1,106 @@
+{
+  "id": "card-sw-01-ace-of-swords",
+  "arcana": "minor",
+  "suit": "swords",
+  "number": 301,
+  "title": {
+    "zh": "寶劍王牌",
+    "en": "ACE OF SWORDS"
+  },
+  "subtitle": "The Insight / Breakthrough / Survival Logic",
+  "slug": "ace-of-swords",
+  "status": "draft",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      200,
+      220,
+      240
+    ],
+    "bottom": [
+      80,
+      100,
+      120
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      20,
+      40,
+      60
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "cold-mountain-air",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "vigilant-leopard-cat"
+  },
+  "main_image": "art/generated/card-sw-01-ace-of-swords.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card. A noble anthropomorphic leopard cat holding a single shining silver sword upright. A crown encircles the tip of the sword. Sharp, cold mountain air in the background. High-fidelity leopard cat traits (forehead stripes, ear spots). Woodcut aesthetic. Full bleed. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "narrative": "The Ace of Swords is 'The Breakthrough'—a leopard cat achieving absolute mental clarity to navigate a dangerous landscape."
+  },
+  "ornaments": [
+    "silver-sword",
+    "floating-crown"
+  ],
+  "output": "art/renders/card-sw-01-ace-of-swords.png",
+  "meanings": {
+    "upright": "Clarity, breakthrough, power, mental strength, and success through logic.",
+    "reversed": "Confusion, misunderstanding, or a power that is misdirected and destructive.",
+    "keywords": [
+      "clarity",
+      "breakthrough",
+      "logic",
+      "power"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "dangerous road/habitat boundary",
+    "risk_theme": "decision-making under pressure",
+    "mapping_note": "Ace of Swords represents 'The Moment of Clarity'—when a leopard cat identifies the exact second to cross a road safely to reach a new patch."
+  },
+  "website": {
+    "excerpt": "With a mind as sharp as the silver blade, the leopard cat navigates the most dangerous of paths.",
+    "seo_title": "Ace of Swords - LeopardCat Tarot",
+    "seo_description": "Ace of Swords reimagined as a leopard cat achieving survival clarity.",
+    "tags": [
+      "minor-arcana",
+      "swords",
+      "leopard-cat",
+      "logic"
+    ]
+  },
+  "meaning": {
+    "zh": "Clarity, breakthrough, power, mental strength, and success through logic.",
+    "en": "Clarity, breakthrough, power, mental strength, and success through logic."
+  }
+}

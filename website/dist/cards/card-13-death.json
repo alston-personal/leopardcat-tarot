@@ -1,8 +1,11 @@
 {
   "id": "card-13-death",
   "arcana": "major",
-  "number": "XIII",
-  "title": "DEATH",
+  "number": 13,
+  "title": {
+    "zh": "死亡",
+    "en": "DEATH"
+  },
   "subtitle": "Ending / Transformation / Warning",
   "slug": "13-death",
   "status": "draft",
@@ -56,8 +59,16 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
+    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A skeletal anthropomorphic Taiwan leopard cat wearing black iron armor, riding a pale skeletal steed across a field of withered autumn grass. He holds a banner with a white rosette pattern. In the background, the shadows of broken highway fences are visible under a blood-red sky. Meaning: Transition, the end of old habits, and the stark reality of survival on the brink.",
     "narrative": "A skeletal anthropomorphic Taiwan leopard cat wearing black iron armor, riding a pale skeletal steed across a field of withered autumn grass. He holds a banner with a white rosette pattern. In the background, the shadows of broken highway fences are visible under a blood-red sky. Meaning: Transition, the end of old habits, and the stark reality of survival on the brink."
   },
-  "output": "art/renders/card-13-death.png"
+  "output": "art/renders/card-13-death.png",
+  "meaning": {
+    "zh": "TBD",
+    "en": "TBD"
+  },
+  "ecology": {
+    "zh": "TBD",
+    "en": "TBD"
+  }
 }

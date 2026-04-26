@@ -2,12 +2,12 @@
   "id": "card-wa-08-eight-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": 8,
+  "number": 108,
   "title": {
     "zh": "權杖八",
     "en": "EIGHT OF WANDS"
   },
-  "subtitle": "Swiftness & Alignment",
+  "subtitle": "The Efficient Passage / Corridor Flow",
   "slug": "eight-of-wands",
   "status": "rework_needed",
   "size": {
@@ -60,24 +60,24 @@
   },
   "main_image": "art/generated/card-wa-08-eight-of-wands.png",
   "generation": {
-    "model": "gemini-3.1-flash",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs, pointing toward the sky as EXACTLY EIGHT wooden wands fly through the air in a narrow parallel formation. The cat must be standing upright on two legs (not on four legs). Slender build, sharp facial structure, white ear spots, forehead stripes. High-fidelity biological markers.",
-    "narrative": "Eight wands fly through the sky as a leopard cat moves with incredible speed through a newly opened ecological corridor. Everything is in motion, and the destination is close."
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS, pointing toward the sky with ITS PAW as EXACTLY EIGHT wooden wands fly through the air in a narrow parallel formation. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "narrative": "Eight wands fly through the sky as a leopard cat moves with incredible speed through a newly opened ecological corridor, symbolizing the efficiency of habitat restoration."
   },
   "ornaments": [
     "flying-wands"
   ],
   "output": "art/renders/card-wa-08-eight-of-wands.png",
   "meanings": {
-    "upright": "Speed, rapid movement, travel, sudden progress, and the swift use of open paths/corridors.",
-    "reversed": "Delays, roadblocks, interrupted travel, or a movement that is too fast and results in a crash/risk.",
+    "upright": "Speed, rapid movement, travel, sudden progress, and the success of open corridors.",
+    "reversed": "Delays, roadblocks, interrupted progress, or a movement that is too fast and lacks safety.",
     "keywords": [
       "speed",
       "movement",
-      "travel",
-      "action"
+      "passage",
+      "flow"
     ]
   },
   "ecology": {
@@ -85,21 +85,21 @@
     "life_stage": "adult",
     "habitat_fragment": "ecological corridor",
     "risk_theme": "speed and crossing safety",
-    "mapping_note": "Eight of Wands represents the 'Corridor Sprint'—the vital speed at which a leopard cat must cross vulnerable areas to reach safety."
+    "mapping_note": "Eight of Wands represents the 'Corridor Flow'—the vital speed and efficiency at which restoration efforts allow leopard cats to safely cross vulnerable areas to reach new habitats."
   },
   "website": {
-    "excerpt": "Swift and sure, the leopard cat sprints through the ecological corridor, with the goal in sight.",
+    "excerpt": "Swift and sure, the leopard cat utilizes the newly opened corridor, a testament to effective restoration planning.",
     "seo_title": "Eight of Wands - LeopardCat Tarot",
-    "seo_description": "Eight of Wands reimagined as rapid leopard cat movement through habitat corridors.",
+    "seo_description": "Eight of Wands reimagined as rapid leopard cat movement through restored habitat corridors.",
     "tags": [
       "minor-arcana",
       "wands",
       "leopard-cat",
-      "speed"
+      "flow"
     ]
   },
   "meaning": {
-    "zh": "Speed, rapid movement, travel, sudden progress, and the swift use of open paths/corridors.",
-    "en": "Speed, rapid movement, travel, sudden progress, and the swift use of open paths/corridors."
+    "zh": "速度、快速移動、順暢通行、突飛猛進，以及生態廊道的成功串聯。",
+    "en": "Speed, rapid movement, travel, sudden progress, and the success of open corridors."
   }
 }

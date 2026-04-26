@@ -2,23 +2,54 @@
   "id": "card-wa-03-three-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "III",
-  "title": "THREE OF WANDS",
-  "subtitle": "Progress / Waiting / Species Expansion",
+  "number": 103,
+  "title": {
+    "zh": "權杖三",
+    "en": "THREE OF WANDS"
+  },
+  "subtitle": "Expansion & Foresight",
   "slug": "three-of-wands",
-  "status": "draft",
+  "status": "rework_needed",
   "size": {
     "width": 1400,
     "height": 2420
   },
   "palette": {
-    "top": [60, 40, 30],
-    "bottom": [120, 100, 60],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [50, 40, 25],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      60,
+      40,
+      30
+    ],
+    "bottom": [
+      120,
+      100,
+      60
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      50,
+      40,
+      25
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "expansion-horizon",
@@ -32,15 +63,22 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. An anthropomorphic Taiwan leopard cat standing on a headland overlooking a vast valley and river system. It holds three wooden wands planted in the ground, supporting itself. It looks out towards the horizon where small shapes (representing other leopard cats) move into the distance. High detail on rosettes and white ear spots. 1900s lithograph feel. No borders. Full bleed.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs, back to the viewer, looking out over the sea from a ridge. He stands between EXACTLY THREE wooden wands that are planted firmly in the ground close together in a narrow arrangement. All three wands must be fully visible and centered. Slender build, sharp facial structure, white ear spots, forehead stripes. High-fidelity biological markers.",
     "narrative": "A leopard cat stands with three wands, watching the expansion of its territory and the departure of its progeny toward the horizon. It represents the successful wait and the results of earlier planning."
   },
-  "ornaments": ["distant-horizon"],
+  "ornaments": [
+    "distant-horizon"
+  ],
   "output": "art/renders/card-wa-03-three-of-wands.png",
   "meanings": {
     "upright": "Progress, expansion, looking toward the long-term, and successful growth of the population range.",
     "reversed": "Disrupted expansion, short-sightedness, or a failure to watch the horizon for opportunities/threats.",
-    "keywords": ["expansion", "progress", "foresight", "reach"]
+    "keywords": [
+      "expansion",
+      "progress",
+      "foresight",
+      "reach"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
@@ -53,6 +91,15 @@
     "excerpt": "Standing on a headland, the leopard cat watches the fruits of its labor—the expansion of its species towards the horizon.",
     "seo_title": "Three of Wands - LeopardCat Tarot",
     "seo_description": "Three of Wands reimagined as leopard cat species expansion and successful dispersal.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "expansion"]
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "expansion"
+    ]
+  },
+  "meaning": {
+    "zh": "Progress, expansion, looking toward the long-term, and successful growth of the population range.",
+    "en": "Progress, expansion, looking toward the long-term, and successful growth of the population range."
   }
 }

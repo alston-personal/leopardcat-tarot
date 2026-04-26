@@ -1,8 +1,11 @@
 {
   "id": "card-21-the-world",
   "arcana": "major",
-  "number": "XXI",
-  "title": "THE WORLD",
+  "number": 21,
+  "title": {
+    "zh": "世界",
+    "en": "THE WORLD"
+  },
   "subtitle": "Completion / Integration / Harmony",
   "slug": "21-the-world",
   "status": "draft",
@@ -55,8 +58,16 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
+    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A majestic anthropomorphic Taiwan leopard cat dancing within a giant green wreath made of vines, flowers, and wheat. Around the wreath are the four elemental guardians (cloud, mountain, stream, field). Meaning: Success, the complete integration of wildlife into the modern world, and the ultimate harmony of coexistence.",
     "narrative": "A majestic anthropomorphic Taiwan leopard cat dancing within a giant green wreath made of vines, flowers, and wheat. Around the wreath are the four elemental guardians (cloud, mountain, stream, field). Meaning: Success, the complete integration of wildlife into the modern world, and the ultimate harmony of coexistence."
   },
-  "output": "art/renders/card-21-21-the-world.png"
+  "output": "art/renders/card-21-21-the-world.png",
+  "meaning": {
+    "zh": "TBD",
+    "en": "TBD"
+  },
+  "ecology": {
+    "zh": "TBD",
+    "en": "TBD"
+  }
 }

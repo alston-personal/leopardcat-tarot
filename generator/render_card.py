@@ -309,6 +309,20 @@ def load_font(size: int, bold: bool = False):
     return ImageFont.truetype(path, size=size)
 
 
+def to_roman(n):
+    if n <= 0: return str(n)
+    val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+    syb = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
+    roman_num = ''
+    i = 0
+    while n > 0:
+        for _ in range(n // val[i]):
+            roman_num += syb[i]
+            n -= val[i]
+        i += 1
+    return roman_num
+
+
 def draw_text(draw: ImageDraw.ImageDraw, width: int, height: int, config: dict, palette: dict):
     # Width constraints (Panel width - absolute padding)
     title_max_w = (width - 300) - 80 
@@ -316,6 +330,7 @@ def draw_text(draw: ImageDraw.ImageDraw, width: int, height: int, config: dict, 
     numeral_max_w = (width - 480) - 60
 
     def draw_spaced_text(draw, text, y, font_size, is_bold, fill, max_w, letter_spacing=10):
+        if not text: return
         # Local recursive optimization to fit text
         current_spacing = letter_spacing
         current_font_size = font_size
@@ -339,13 +354,31 @@ def draw_text(draw: ImageDraw.ImageDraw, width: int, height: int, config: dict, 
         for char in text:
             draw.text((current_x, y), char, font=font, fill=fill)
             current_x += draw.textlength(char, font=font) + current_spacing
-
+            
     title = config["title"]
     if isinstance(title, dict):
         title = title.get("en", "")
     
-    numeral = str(config["number"])
-    subtitle = str(config["subtitle"])
+    # --- Numeral Logic (Roman for Major/Minor) ---
+    num = config["number"]
+    numeral = ""
+    
+    if config.get("arcana") == "major":
+        if num == 0:
+            numeral = "0"
+        else:
+            numeral = to_roman(num)
+    else:
+        # Minor Arcana: 101-110, 201-210, etc.
+        rank = num % 100
+        if 1 <= rank <= 10:
+            numeral = to_roman(rank)
+        else:
+            # Page, Knight, Queen, King usually don't have numbers in footer
+            # They use their title instead
+            numeral = ""
+
+    subtitle = str(config.get("subtitle", ""))
 
     # Top Panel
     draw_spaced_text(draw, title, 168, 84, False, tuple(palette["text_primary"]), title_max_w, letter_spacing=12)

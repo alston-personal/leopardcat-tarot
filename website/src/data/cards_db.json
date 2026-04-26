@@ -1,8 +1,12 @@
 [
   {
     "id": "card-00-the-fool",
-    "number": "0",
-    "title": "THE FOOL",
+    "arcana": "major",
+    "number": 0,
+    "title": {
+      "zh": "愚者",
+      "en": "THE FOOL"
+    },
     "subtitle": "Threshold / Curiosity / Risk",
     "slug": "the-fool",
     "image": "art/renders/card-00-the-fool.png",
@@ -59,12 +63,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "New beginnings, openness, instinctive trust, and a willingness to step toward the unknown.",
+      "en": "New beginnings, openness, instinctive trust, and a willingness to step toward the unknown."
     }
   },
   {
     "id": "card-01-the-magician",
-    "number": "I",
-    "title": "THE MAGICIAN",
+    "arcana": "major",
+    "number": 1,
+    "title": {
+      "zh": "魔術師",
+      "en": "THE MAGICIAN"
+    },
     "subtitle": "Skill / Focus / Adaptation",
     "slug": "the-magician",
     "image": "art/renders/card-01-the-magician.png",
@@ -121,12 +133,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Focused skill, resourcefulness, environmental intelligence, and the power to act with precision.",
+      "en": "Focused skill, resourcefulness, environmental intelligence, and the power to act with precision."
     }
   },
   {
     "id": "card-02-the-high-priestess",
-    "number": "II",
-    "title": "THE HIGH PRIESTESS",
+    "arcana": "major",
+    "number": 2,
+    "title": {
+      "zh": "女祭司",
+      "en": "THE HIGH PRIESTESS"
+    },
     "subtitle": "Intuition / Silence / Hidden Waters",
     "slug": "the-high-priestess",
     "image": "art/renders/card-02-the-high-priestess.png",
@@ -183,12 +203,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Intuition, restraint, inner knowledge, and perception that moves beneath surface noise.",
+      "en": "Intuition, restraint, inner knowledge, and perception that moves beneath surface noise."
     }
   },
   {
     "id": "card-03-the-empress",
-    "number": "III",
-    "title": "THE EMPRESS",
+    "arcana": "major",
+    "number": 3,
+    "title": {
+      "zh": "皇后",
+      "en": "THE EMPRESS"
+    },
     "subtitle": "Abundance / Motherhood / Earth",
     "slug": "the-empress",
     "image": "art/renders/card-03-the-empress.png",
@@ -245,12 +273,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Abundance, nurturing, fertility, and the flourishing of life within a supportive environment.",
+      "en": "Abundance, nurturing, fertility, and the flourishing of life within a supportive environment."
     }
   },
   {
     "id": "card-04-the-emperor",
-    "number": "IV",
-    "title": "THE EMPEROR",
+    "arcana": "major",
+    "number": 4,
+    "title": {
+      "zh": "皇帝",
+      "en": "THE EMPEROR"
+    },
     "subtitle": "Structure / Territory / Authority",
     "slug": "the-emperor",
     "image": "art/renders/card-04-the-emperor.png",
@@ -307,12 +343,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Authority, establishment, foundation, protection of territory, and structured leadership.",
+      "en": "Authority, establishment, foundation, protection of territory, and structured leadership."
     }
   },
   {
     "id": "card-05-the-hierophant",
-    "number": "V",
-    "title": "THE HIEROPHANT",
+    "arcana": "major",
+    "number": 5,
+    "title": {
+      "zh": "教皇",
+      "en": "THE HIEROPHANT"
+    },
     "subtitle": "Tradition / Wisdom / Ancient Trails",
     "slug": "the-hierophant",
     "image": "art/renders/card-05-the-hierophant.png",
@@ -360,12 +404,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-06-the-lovers",
-    "number": "VI",
-    "title": "THE LOVERS",
+    "arcana": "major",
+    "number": 6,
+    "title": {
+      "zh": "戀人",
+      "en": "THE LOVERS"
+    },
     "subtitle": "Attraction / Choice / Breeding Season",
     "slug": "06-the-lovers",
     "image": "art/renders/card-06-the-lovers.png",
@@ -412,12 +464,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-07-the-chariot",
-    "number": "VII",
-    "title": "THE CHARIOT",
+    "arcana": "major",
+    "number": 7,
+    "title": {
+      "zh": "戰車",
+      "en": "THE CHARIOT"
+    },
     "subtitle": "Willpower / Victory / Determined Crossing",
     "slug": "07-the-chariot",
     "image": "art/renders/card-07-the-chariot.png",
@@ -464,12 +524,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-08-strength",
-    "number": "VIII",
-    "title": "STRENGTH",
+    "arcana": "major",
+    "number": 8,
+    "title": {
+      "zh": "力量",
+      "en": "STRENGTH"
+    },
     "subtitle": "Grace / Fortitude / Inner Power",
     "slug": "08-strength",
     "image": "art/renders/card-08-strength.png",
@@ -516,12 +584,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-09-the-hermit",
-    "number": "IX",
-    "title": "THE HERMIT",
+    "arcana": "major",
+    "number": 9,
+    "title": {
+      "zh": "隱者",
+      "en": "THE HERMIT"
+    },
     "subtitle": "Solitude / Reflection / Deep Mountain",
     "slug": "09-the-hermit",
     "image": "art/renders/card-09-the-hermit.png",
@@ -568,12 +644,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-10-wheel-of-fortune",
-    "number": "X",
-    "title": "WHEEL OF FORTUNE",
+    "arcana": "major",
+    "number": 10,
+    "title": {
+      "zh": "命運之輪",
+      "en": "WHEEL OF FORTUNE"
+    },
     "subtitle": "Cycles / Fate / Environmental Change",
     "slug": "10-wheel-of-fortune",
     "image": "art/renders/card-10-wheel-of-fortune.png",
@@ -620,16 +704,27 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-11-justice",
-    "number": "XI",
-    "title": "JUSTICE",
+    "arcana": "major",
+    "number": 11,
+    "title": {
+      "zh": "正義",
+      "en": "JUSTICE"
+    },
     "subtitle": "Balance / Law / Ecological Integrity",
     "slug": "11-justice",
     "image": "art/renders/card-11-justice.png",
-    "ecology": {},
+    "ecology": {
+      "zh": "TBD",
+      "en": "TBD"
+    },
     "meanings": {},
     "palette": {
       "top": [
@@ -667,16 +762,27 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-12-the-hanged-man",
-    "number": "XII",
-    "title": "THE HANGED MAN",
+    "arcana": "major",
+    "number": 12,
+    "title": {
+      "zh": "倒吊人",
+      "en": "THE HANGED MAN"
+    },
     "subtitle": "Pause / Perspective / Sacrifice",
     "slug": "12-the-hanged-man",
     "image": "art/renders/card-12-the-hanged-man.png",
-    "ecology": {},
+    "ecology": {
+      "zh": "TBD",
+      "en": "TBD"
+    },
     "meanings": {},
     "palette": {
       "top": [
@@ -714,16 +820,27 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-13-death",
-    "number": "XIII",
-    "title": "DEATH",
+    "arcana": "major",
+    "number": 13,
+    "title": {
+      "zh": "死亡",
+      "en": "DEATH"
+    },
     "subtitle": "Ending / Transformation / Warning",
     "slug": "13-death",
     "image": "art/renders/card-13-death.png",
-    "ecology": {},
+    "ecology": {
+      "zh": "TBD",
+      "en": "TBD"
+    },
     "meanings": {},
     "palette": {
       "top": [
@@ -761,16 +878,27 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-14-temperance",
-    "number": "XIV",
-    "title": "TEMPERANCE",
+    "arcana": "major",
+    "number": 14,
+    "title": {
+      "zh": "節制",
+      "en": "TEMPERANCE"
+    },
     "subtitle": "Alchemy / Flow / Coexistence",
     "slug": "14-temperance",
     "image": "art/renders/card-14-temperance.png",
-    "ecology": {},
+    "ecology": {
+      "zh": "TBD",
+      "en": "TBD"
+    },
     "meanings": {},
     "palette": {
       "top": [
@@ -808,16 +936,27 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-15-the-devil",
-    "number": "XV",
-    "title": "THE DEVIL",
+    "arcana": "major",
+    "number": 15,
+    "title": {
+      "zh": "惡魔",
+      "en": "THE DEVIL"
+    },
     "subtitle": "Shadow / Entrapment / Baited Cage",
     "slug": "15-the-devil",
     "image": "art/renders/card-15-the-devil.png",
-    "ecology": {},
+    "ecology": {
+      "zh": "TBD",
+      "en": "TBD"
+    },
     "meanings": {},
     "palette": {
       "top": [
@@ -855,16 +994,27 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-16-the-tower",
-    "number": "XVI",
-    "title": "THE TOWER",
+    "arcana": "major",
+    "number": 16,
+    "title": {
+      "zh": "塔",
+      "en": "THE TOWER"
+    },
     "subtitle": "Crisis / Destruction / Habitat Loss",
     "slug": "16-the-tower",
     "image": "art/renders/card-16-the-tower.png",
-    "ecology": {},
+    "ecology": {
+      "zh": "TBD",
+      "en": "TBD"
+    },
     "meanings": {},
     "palette": {
       "top": [
@@ -902,16 +1052,27 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-17-the-star",
-    "number": "XVII",
-    "title": "THE STAR",
+    "arcana": "major",
+    "number": 17,
+    "title": {
+      "zh": "星星",
+      "en": "THE STAR"
+    },
     "subtitle": "Hope / Guidance / Ecological Recovery",
     "slug": "17-the-star",
     "image": "art/renders/card-17-the-star.png",
-    "ecology": {},
+    "ecology": {
+      "zh": "TBD",
+      "en": "TBD"
+    },
     "meanings": {},
     "palette": {
       "top": [
@@ -949,16 +1110,27 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-18-the-moon",
-    "number": "XVIII",
-    "title": "THE MOON",
+    "arcana": "major",
+    "number": 18,
+    "title": {
+      "zh": "月亮",
+      "en": "THE MOON"
+    },
     "subtitle": "Illusion / Fear / Nocturnal Instinct",
     "slug": "18-the-moon",
     "image": "art/renders/card-18-the-moon.png",
-    "ecology": {},
+    "ecology": {
+      "zh": "TBD",
+      "en": "TBD"
+    },
     "meanings": {},
     "palette": {
       "top": [
@@ -996,16 +1168,27 @@
         140,
         141
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-19-the-sun",
-    "number": "XIX",
-    "title": "THE SUN",
+    "arcana": "major",
+    "number": 19,
+    "title": {
+      "zh": "太陽",
+      "en": "THE SUN"
+    },
     "subtitle": "Success / Vitality / Safe Haven",
     "slug": "19-the-sun",
     "image": "art/renders/card-19-the-sun.png",
-    "ecology": {},
+    "ecology": {
+      "zh": "TBD",
+      "en": "TBD"
+    },
     "meanings": {},
     "palette": {
       "top": [
@@ -1043,16 +1226,27 @@
         233,
         201
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-20-judgement",
-    "number": "XX",
-    "title": "JUDGEMENT",
+    "arcana": "major",
+    "number": 20,
+    "title": {
+      "zh": "審判",
+      "en": "JUDGEMENT"
+    },
     "subtitle": "Rebirth / Calling / Conservation Law",
     "slug": "20-judgement",
     "image": "art/renders/card-20-judgement.png",
-    "ecology": {},
+    "ecology": {
+      "zh": "TBD",
+      "en": "TBD"
+    },
     "meanings": {},
     "palette": {
       "top": [
@@ -1090,16 +1284,27 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-21-the-world",
-    "number": "XXI",
-    "title": "THE WORLD",
+    "arcana": "major",
+    "number": 21,
+    "title": {
+      "zh": "世界",
+      "en": "THE WORLD"
+    },
     "subtitle": "Completion / Integration / Harmony",
     "slug": "21-the-world",
     "image": "art/renders/card-21-the-world.png",
-    "ecology": {},
+    "ecology": {
+      "zh": "TBD",
+      "en": "TBD"
+    },
     "meanings": {},
     "palette": {
       "top": [
@@ -1137,12 +1342,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "TBD",
+      "en": "TBD"
     }
   },
   {
     "id": "card-cu-01-ace-of-cups",
-    "number": "ACE",
-    "title": "ACE OF CUPS",
+    "arcana": "minor",
+    "number": 201,
+    "title": {
+      "zh": "聖杯王牌",
+      "en": "ACE OF CUPS"
+    },
     "subtitle": "The Source / Overflowing Life / Purity",
     "slug": "ace-of-cups",
     "image": "art/renders/card-cu-01-ace-of-cups.png",
@@ -1199,12 +1412,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Love, potential, emotional abundance, spiritual intuition, and new beginnings in the realm of the heart.",
+      "en": "Love, potential, emotional abundance, spiritual intuition, and new beginnings in the realm of the heart."
     }
   },
   {
     "id": "card-cu-02-two-of-cups",
-    "number": "II",
-    "title": "TWO OF CUPS",
+    "arcana": "minor",
+    "number": 202,
+    "title": {
+      "zh": "聖杯二",
+      "en": "TWO OF CUPS"
+    },
     "subtitle": "The Meeting / Partnership / Mutual Trust",
     "slug": "two-of-cups",
     "image": "art/renders/card-cu-02-two-of-cups.png",
@@ -1261,12 +1482,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony.",
+      "en": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony."
     }
   },
   {
     "id": "card-cu-03-three-of-cups",
-    "number": "III",
-    "title": "THREE OF CUPS",
+    "arcana": "minor",
+    "number": 203,
+    "title": {
+      "zh": "聖杯三",
+      "en": "THREE OF CUPS"
+    },
     "subtitle": "The Gathering / Joyful Play / Communal Harmony",
     "slug": "three-of-cups",
     "image": "art/renders/card-cu-03-three-of-cups.png",
@@ -1323,12 +1552,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Celebration, community support, friendship, group harmony, and shared joy.",
+      "en": "Celebration, community support, friendship, group harmony, and shared joy."
     }
   },
   {
     "id": "card-cu-04-four-of-cups",
-    "number": "IV",
-    "title": "FOUR OF CUPS",
+    "arcana": "minor",
+    "number": 204,
+    "title": {
+      "zh": "聖杯四",
+      "en": "FOUR OF CUPS"
+    },
     "subtitle": "The Insularity / Discontent / Missed Opportunity",
     "slug": "four-of-cups",
     "image": "art/renders/card-cu-04-four-of-cups.png",
@@ -1385,12 +1622,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Meditation, contemplation, apathy, re-evaluation, and being withdrawn.",
+      "en": "Meditation, contemplation, apathy, re-evaluation, and being withdrawn."
     }
   },
   {
     "id": "card-cu-05-five-of-cups",
-    "number": "V",
-    "title": "FIVE OF CUPS",
+    "arcana": "minor",
+    "number": 205,
+    "title": {
+      "zh": "聖杯五",
+      "en": "FIVE OF CUPS"
+    },
     "subtitle": "The Spillage / Loss / Regret",
     "slug": "five-of-cups",
     "image": "art/renders/card-cu-05-five-of-cups.png",
@@ -1447,12 +1692,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Loss, grief, regret, disappointment, and focuses on the negative.",
+      "en": "Loss, grief, regret, disappointment, and focuses on the negative."
     }
   },
   {
     "id": "card-cu-06-six-of-cups",
-    "number": "VI",
-    "title": "SIX OF CUPS",
+    "arcana": "minor",
+    "number": 206,
+    "title": {
+      "zh": "聖杯六",
+      "en": "SIX OF CUPS"
+    },
     "subtitle": "The Heritage / Nostalgia / Sharing",
     "slug": "six-of-cups",
     "image": "art/renders/card-cu-06-six-of-cups.png",
@@ -1509,12 +1762,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Nostalgia, childhood memories, innocence, sharing, and kindness.",
+      "en": "Nostalgia, childhood memories, innocence, sharing, and kindness."
     }
   },
   {
     "id": "card-cu-07-seven-of-cups",
-    "number": "VII",
-    "title": "SEVEN OF CUPS",
+    "arcana": "minor",
+    "number": 207,
+    "title": {
+      "zh": "聖杯七",
+      "en": "SEVEN OF CUPS"
+    },
     "subtitle": "The Illusion / Dreams / Choices",
     "slug": "seven-of-cups",
     "image": "art/renders/card-cu-07-seven-of-cups.png",
@@ -1571,12 +1832,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Illusions, daydreaming, wishful thinking, choices, and too many options.",
+      "en": "Illusions, daydreaming, wishful thinking, choices, and too many options."
     }
   },
   {
     "id": "card-cu-08-eight-of-cups",
-    "number": "VIII",
-    "title": "EIGHT OF CUPS",
+    "arcana": "minor",
+    "number": 208,
+    "title": {
+      "zh": "聖杯八",
+      "en": "EIGHT OF CUPS"
+    },
     "subtitle": "The Departure / Abandoning / Searching",
     "slug": "eight-of-cups",
     "image": "art/renders/card-cu-08-eight-of-cups.png",
@@ -1633,12 +1902,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Abandonment, withdrawal, seeking deeper truth, and leaving the past behind.",
+      "en": "Abandonment, withdrawal, seeking deeper truth, and leaving the past behind."
     }
   },
   {
     "id": "card-cu-09-nine-of-cups",
-    "number": "IX",
-    "title": "NINE OF CUPS",
+    "arcana": "minor",
+    "number": 209,
+    "title": {
+      "zh": "聖杯九",
+      "en": "NINE OF CUPS"
+    },
     "subtitle": "The Contentment / Success / Satisfaction",
     "slug": "nine-of-cups",
     "image": "art/renders/card-cu-09-nine-of-cups.png",
@@ -1695,12 +1972,20 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Contentment, satisfaction, success, wishes fulfilled, and physical well-being.",
+      "en": "Contentment, satisfaction, success, wishes fulfilled, and physical well-being."
     }
   },
   {
     "id": "card-cu-10-ten-of-cups",
-    "number": "X",
-    "title": "TEN OF CUPS",
+    "arcana": "minor",
+    "number": 210,
+    "title": {
+      "zh": "聖杯十",
+      "en": "TEN OF CUPS"
+    },
     "subtitle": "The Fulfillment / Family / Harmony",
     "slug": "ten-of-cups",
     "image": "art/renders/card-cu-10-ten-of-cups.png",
@@ -1757,42 +2042,47 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+      "en": "Happiness, emotional harmony, family, reunion, and a high sense of community."
     }
   },
   {
     "id": "card-cu-11-page-of-cups",
-    "number": "PAGE",
-    "title": "PAGE OF CUPS",
-    "subtitle": "The Curiosity / Messenger / Intuition",
-    "slug": "page-of-cups",
+    "arcana": "minor",
+    "number": 211,
+    "title": {
+      "zh": "聖杯侍者",
+      "en": "PAGE OF CUPS"
+    },
+    "subtitle": "Curiosity & Discovery",
+    "slug": "ten-of-cups",
     "image": "art/renders/card-cu-11-page-of-cups.png",
     "ecology": {
-      "species_focus": "Taiwan leopard cat",
-      "life_stage": "juvenile",
-      "habitat_fragment": "protected forest edge",
-      "risk_theme": "ecosystem discovery and learning",
-      "mapping_note": "Page of Cups represents 'The Explorer'—the juvenile phase of learning how to navigate the complex world before leaving the maternal range."
+      "zh": "初出茅廬的小石虎，帶著好奇心探索溪流與水岸。",
+      "en": "A young leopard cat exploring streams and riverbanks with curiosity."
     },
     "meanings": {
-      "upright": "Curiosity, a messenger of emotions, creative beginnings, and intuitive dreams.",
-      "reversed": "Immaturity, escaping reality, emotional vulnerability, or a creative block.",
+      "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+      "reversed": "Conflict in relationships, family disagreements, or a disconnection from a group.",
       "keywords": [
-        "curiosity",
-        "messenger",
-        "imagination",
-        "beginnings"
+        "happiness",
+        "family",
+        "harmony",
+        "reunion"
       ]
     },
     "palette": {
       "top": [
-        180,
-        220,
-        255
+        255,
+        230,
+        150
       ],
       "bottom": [
         100,
-        150,
-        180
+        200,
+        220
       ],
       "frame": [
         219,
@@ -1805,9 +2095,9 @@
         102
       ],
       "panel": [
-        30,
-        45,
-        55
+        40,
+        70,
+        80
       ],
       "text_primary": [
         243,
@@ -1819,30 +2109,239 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "靈感的湧現、純真、情感的種子與驚喜。",
+      "en": "New inspiration, innocence, emotional beginnings, and surprises."
     }
   },
   {
     "id": "card-cu-12-knight-of-cups",
-    "number": "KNIGHT",
-    "title": "KNIGHT OF CUPS",
-    "subtitle": "The Romantic / Quest / Idealism",
-    "slug": "knight-of-cups",
+    "arcana": "minor",
+    "number": 212,
+    "title": {
+      "zh": "聖杯騎士",
+      "en": "KNIGHT OF CUPS"
+    },
+    "subtitle": "The Romantic Messenger",
+    "slug": "ten-of-cups",
     "image": "art/renders/card-cu-12-knight-of-cups.png",
     "ecology": {
-      "species_focus": "Taiwan leopard cat",
-      "life_stage": "young-adult-male",
-      "habitat_fragment": "safe river corridors",
-      "risk_theme": "long-distance dispersal with noble goals",
-      "mapping_note": "Knight of Cups represents 'The Peaceable Walker'—the rare but critical long-distance migrant that maintains genetic diversity between meta-populations."
+      "zh": "石虎少年在領地邊緣穿梭，尋找屬於自己的水源與家園。",
+      "en": "A juvenile leopard cat traversing territory edges searching for home."
     },
     "meanings": {
-      "upright": "Romance, imagination, proposal, pursuit of an ideal, and following your heart.",
-      "reversed": "Moodiness, unrealistic expectations, or a creative person who is too sensitive/passive.",
+      "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+      "reversed": "Conflict in relationships, family disagreements, or a disconnection from a group.",
       "keywords": [
-        "romance",
-        "ideals",
-        "following-heart",
-        "pursuit"
+        "happiness",
+        "family",
+        "harmony",
+        "reunion"
+      ]
+    },
+    "palette": {
+      "top": [
+        255,
+        230,
+        150
+      ],
+      "bottom": [
+        100,
+        200,
+        220
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        40,
+        70,
+        80
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "優雅的追求、浪漫、情感的使者、直覺的引導。",
+      "en": "Elegant pursuit, romance, messenger of emotions, intuitive guidance."
+    }
+  },
+  {
+    "id": "card-cu-13-queen-of-cups",
+    "arcana": "minor",
+    "number": 213,
+    "title": {
+      "zh": "聖杯皇后",
+      "en": "QUEEN OF CUPS"
+    },
+    "subtitle": "Intuition & Compassion",
+    "slug": "ten-of-cups",
+    "image": "art/renders/card-cu-13-queen-of-cups.png",
+    "ecology": {
+      "zh": "成年雌性石虎，守護著育幼區的生態平衡，充滿生存智慧。",
+      "en": "A mature female leopard cat maintaining balance in nursery areas with wisdom."
+    },
+    "meanings": {
+      "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+      "reversed": "Conflict in relationships, family disagreements, or a disconnection from a group.",
+      "keywords": [
+        "happiness",
+        "family",
+        "harmony",
+        "reunion"
+      ]
+    },
+    "palette": {
+      "top": [
+        255,
+        230,
+        150
+      ],
+      "bottom": [
+        100,
+        200,
+        220
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        40,
+        70,
+        80
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "慈悲、直覺、情感的豐沛與深刻的同理心。",
+      "en": "Compassion, intuition, emotional depth, and deep empathy."
+    }
+  },
+  {
+    "id": "card-cu-14-king-of-cups",
+    "arcana": "minor",
+    "number": 214,
+    "title": {
+      "zh": "聖杯國王",
+      "en": "KING OF CUPS"
+    },
+    "subtitle": "Stability & Wisdom",
+    "slug": "king-of-cups",
+    "image": "art/renders/card-cu-14-king-of-cups.png",
+    "ecology": {
+      "zh": "成年雄性石虎展現出極強的領地掌控力。牠們能在大規模的環境變遷中，憑藉智慧與耐力守護族群邊界。",
+      "en": "Mature male leopard cats exhibit strong territorial mastery, protecting their kin through large-scale ecosystem changes with wisdom and resilience."
+    },
+    "meanings": {
+      "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+      "reversed": "Conflict in relationships, family disagreements, or a disconnection from a group.",
+      "keywords": [
+        "happiness",
+        "family",
+        "harmony",
+        "reunion"
+      ]
+    },
+    "palette": {
+      "top": [
+        255,
+        230,
+        150
+      ],
+      "bottom": [
+        100,
+        200,
+        220
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        40,
+        70,
+        80
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "情感的平衡、自律、智者的慈悲、穩定的領導力。在大風大浪中依然保持內心的寧靜。",
+      "en": "Emotional balance, self-control, wise compassion, and stable leadership. Calmness amidst the storms of the soul."
+    }
+  },
+  {
+    "id": "card-sw-01-ace-of-swords",
+    "arcana": "minor",
+    "number": 301,
+    "title": {
+      "zh": "寶劍王牌",
+      "en": "ACE OF SWORDS"
+    },
+    "subtitle": "The Insight / Breakthrough / Survival Logic",
+    "slug": "ace-of-swords",
+    "image": "art/renders/card-sw-01-ace-of-swords.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "dangerous road/habitat boundary",
+      "risk_theme": "decision-making under pressure",
+      "mapping_note": "Ace of Swords represents 'The Moment of Clarity'—when a leopard cat identifies the exact second to cross a road safely to reach a new patch."
+    },
+    "meanings": {
+      "upright": "Clarity, breakthrough, power, mental strength, and success through logic.",
+      "reversed": "Confusion, misunderstanding, or a power that is misdirected and destructive.",
+      "keywords": [
+        "clarity",
+        "breakthrough",
+        "logic",
+        "power"
       ]
     },
     "palette": {
@@ -1854,7 +2353,7 @@
       "bottom": [
         80,
         100,
-        140
+        120
       ],
       "frame": [
         219,
@@ -1868,8 +2367,8 @@
       ],
       "panel": [
         20,
-        30,
-        50
+        40,
+        60
       ],
       "text_primary": [
         243,
@@ -1881,40 +2380,48 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Clarity, breakthrough, power, mental strength, and success through logic.",
+      "en": "Clarity, breakthrough, power, mental strength, and success through logic."
     }
   },
   {
-    "id": "card-cu-13-queen-of-cups",
-    "number": "QUEEN",
-    "title": "QUEEN OF CUPS",
-    "subtitle": "The Compassion / Intuition / Soul Reader",
-    "slug": "queen-of-cups",
-    "image": "art/renders/card-cu-13-queen-of-cups.png",
+    "id": "card-sw-02-two-of-swords",
+    "arcana": "minor",
+    "number": 302,
+    "title": {
+      "zh": "寶劍二",
+      "en": "TWO OF SWORDS"
+    },
+    "subtitle": "The Stalemate / Indecision / Blocked Path",
+    "slug": "two-of-swords",
+    "image": "art/renders/card-sw-02-two-of-swords.png",
     "ecology": {
       "species_focus": "Taiwan leopard cat",
-      "life_stage": "mature-female",
-      "habitat_fragment": "undisturbed forest riverbank",
-      "risk_theme": "the deep wisdom of local survival",
-      "mapping_note": "Queen of Cups represents 'The Maternal Core'—the crucial survival instincts of a mother leopard cat that has mastered the safe navigation of the landscape."
+      "life_stage": "adult",
+      "habitat_fragment": "road T-junction",
+      "risk_theme": "behavioral freezing and indecision",
+      "mapping_note": "Two of Swords represents 'The Crossroads Trap'—a Behavioral phenomenon where animals freeze at a junction between two human habitats."
     },
     "meanings": {
-      "upright": "Compassion, emotional stability, intuition, a caring nature, and spiritual insight.",
-      "reversed": "Emotional insecurity, martyrdom, dependence, or a disconnection from intuition.",
+      "upright": "Indecision, choice, stalemate, blocked emotions, and being at a crossroads.",
+      "reversed": "Confusion, information overload, or a decision that is finally made under pressure.",
       "keywords": [
-        "compassion",
-        "intuition",
-        "stability",
-        "care"
+        "indecision",
+        "choice",
+        "stalemate",
+        "crossroads"
       ]
     },
     "palette": {
       "top": [
         100,
-        150,
-        200
+        100,
+        120
       ],
       "bottom": [
-        20,
+        40,
         40,
         60
       ],
@@ -1929,9 +2436,9 @@
         102
       ],
       "panel": [
-        10,
-        15,
-        30
+        20,
+        20,
+        40
       ],
       "text_primary": [
         243,
@@ -1943,42 +2450,50 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Indecision, choice, stalemate, blocked emotions, and being at a crossroads.",
+      "en": "Indecision, choice, stalemate, blocked emotions, and being at a crossroads."
     }
   },
   {
-    "id": "card-cu-14-king-of-cups",
-    "number": "KING",
-    "title": "KING OF CUPS",
-    "subtitle": "The Balance / Emotional Mastery / Wisdom",
-    "slug": "king-of-cups",
-    "image": "art/renders/card-cu-14-king-of-cups.png",
+    "id": "card-sw-03-three-of-swords",
+    "arcana": "minor",
+    "number": 303,
+    "title": {
+      "zh": "寶劍三",
+      "en": "THREE OF SWORDS"
+    },
+    "subtitle": "The Grief / Loss / Heartbreak",
+    "slug": "three-of-swords",
+    "image": "art/renders/card-sw-03-three-of-swords.png",
     "ecology": {
       "species_focus": "Taiwan leopard cat",
-      "life_stage": "mature-male",
-      "habitat_fragment": "vast sea-bordering forest",
-      "risk_theme": "mastery over large-scale ecosystem changes",
-      "mapping_note": "King of Cups represents 'The Long-Range Vision'—the ability of an alpha male to navigate and protect territory across large, potentially disconnected landscapes."
+      "life_stage": "N/A",
+      "habitat_fragment": "roadkill/human-disturbed boundary",
+      "risk_theme": "population loss and habitat instability",
+      "mapping_note": "Three of Swords represents 'The Toll of Progress'—the emotional and demographic impact of losing breeding adults to roadkill."
     },
     "meanings": {
-      "upright": "Emotional balance, emotional control, generosity, wisdom, and compassionate leadership.",
-      "reversed": "Emotional instability, manipulation, moody behavior, or a lack of self-control.",
+      "upright": "Grief, heartbreak, emotional pain, sorrow, and betrayal.",
+      "reversed": "Recovery, release, healing after pain, or repressing grief.",
       "keywords": [
-        "balance",
-        "wisdom",
-        "compassion",
-        "control"
+        "grief",
+        "heartbreak",
+        "sorrow",
+        "pain"
       ]
     },
     "palette": {
       "top": [
-        30,
-        80,
-        150
+        50,
+        60,
+        80
       ],
       "bottom": [
-        10,
-        30,
-        70
+        20,
+        25,
+        40
       ],
       "frame": [
         219,
@@ -1991,9 +2506,9 @@
         102
       ],
       "panel": [
-        5,
+        10,
         15,
-        35
+        25
       ],
       "text_primary": [
         243,
@@ -2005,12 +2520,90 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Grief, heartbreak, emotional pain, sorrow, and betrayal.",
+      "en": "Grief, heartbreak, emotional pain, sorrow, and betrayal."
+    }
+  },
+  {
+    "id": "card-sw-04-four-of-swords",
+    "arcana": "minor",
+    "number": 304,
+    "title": {
+      "zh": "寶劍四",
+      "en": "FOUR OF SWORDS"
+    },
+    "subtitle": "The Rest / Recovery / Sanctuary",
+    "slug": "four-of-swords",
+    "image": "art/renders/card-sw-04-four-of-swords.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Four of Swords represents 'The Healing Hollow'—undisturbed areas where cats can escape the high-stress environment of road-bordered territories."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "en": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength."
     }
   },
   {
     "id": "card-wa-01-ace-of-wands",
-    "number": "ACE",
-    "title": "ACE OF WANDS",
+    "arcana": "minor",
+    "number": 101,
+    "title": {
+      "zh": "權杖王牌",
+      "en": "ACE OF WANDS"
+    },
     "subtitle": "New Territories / Dispersal Spark",
     "slug": "ace-of-wands",
     "image": "art/renders/card-wa-01-ace-of-wands.png",
@@ -2067,13 +2660,21 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "A new opportunity, territorial expansion, inspiration, and the creative drive to establish oneself in new terrain.",
+      "en": "A new opportunity, territorial expansion, inspiration, and the creative drive to establish oneself in new terrain."
     }
   },
   {
     "id": "card-wa-02-two-of-wands",
-    "number": "II",
-    "title": "TWO OF WANDS",
-    "subtitle": "Planning / Horizon / Fragment Evaluation",
+    "arcana": "minor",
+    "number": 102,
+    "title": {
+      "zh": "權杖二",
+      "en": "TWO OF WANDS"
+    },
+    "subtitle": "Planning & Evaluation",
     "slug": "two-of-wands",
     "image": "art/renders/card-wa-02-two-of-wands.png",
     "ecology": {
@@ -2129,13 +2730,21 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments.",
+      "en": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments."
     }
   },
   {
     "id": "card-wa-03-three-of-wands",
-    "number": "III",
-    "title": "THREE OF WANDS",
-    "subtitle": "Progress / Waiting / Species Expansion",
+    "arcana": "minor",
+    "number": 103,
+    "title": {
+      "zh": "權杖三",
+      "en": "THREE OF WANDS"
+    },
+    "subtitle": "Expansion & Foresight",
     "slug": "three-of-wands",
     "image": "art/renders/card-wa-03-three-of-wands.png",
     "ecology": {
@@ -2191,13 +2800,21 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Progress, expansion, looking toward the long-term, and successful growth of the population range.",
+      "en": "Progress, expansion, looking toward the long-term, and successful growth of the population range."
     }
   },
   {
     "id": "card-wa-04-four-of-wands",
-    "number": "IV",
-    "title": "FOUR OF WANDS",
-    "subtitle": "Community / Celebration / Habitat Home",
+    "arcana": "minor",
+    "number": 104,
+    "title": {
+      "zh": "權杖四",
+      "en": "FOUR OF WANDS"
+    },
+    "subtitle": "Celebration & Harmony",
     "slug": "four-of-wands",
     "image": "art/renders/card-wa-04-four-of-wands.png",
     "ecology": {
@@ -2253,30 +2870,38 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "Celebration, harmony, a sense of belonging, and the establishment of a safe home base within the territory.",
+      "en": "Celebration, harmony, a sense of belonging, and the establishment of a safe home base within the territory."
     }
   },
   {
     "id": "card-wa-05-five-of-wands",
-    "number": "V",
-    "title": "FIVE OF WANDS",
-    "subtitle": "Competition / Territorial Struggle / Chaos",
+    "arcana": "minor",
+    "number": 105,
+    "title": {
+      "zh": "權杖五",
+      "en": "FIVE OF WANDS"
+    },
+    "subtitle": "The Integration Struggle / Habitat Friction",
     "slug": "five-of-wands",
     "image": "art/renders/card-wa-05-five-of-wands.png",
     "ecology": {
       "species_focus": "Taiwan leopard cat",
       "life_stage": "adult-males",
-      "habitat_fragment": "contested territory",
-      "risk_theme": "high density and range compression",
-      "mapping_note": "Five of Wands represents the 'Range Compression' struggle—the increased friction when too many individuals are forced into too small a space."
+      "habitat_fragment": "newly connected territory",
+      "risk_theme": "high density during corridor initial phase",
+      "mapping_note": "Five of Wands represents the 'Integration Friction'—the initial competition that occurs when restoration efforts first connect previously isolated populations."
     },
     "meanings": {
-      "upright": "Competition, conflict, struggle for space, and the internal friction of a population in a shrinking range.",
-      "reversed": "Avoiding conflict, internal harmony after a struggle, or a failure to defend one's boundaries.",
+      "upright": "Competition, conflict, habitat friction, the challenge of integrating into new ranges.",
+      "reversed": "Resolution, harmony after struggle, or failing to establish a presence in a new area.",
       "keywords": [
         "conflict",
-        "struggle",
+        "integration",
         "competition",
-        "chaos"
+        "friction"
       ]
     },
     "palette": {
@@ -2315,13 +2940,21 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "競爭、衝突、棲地摩擦，以及進入新環境時的調適挑戰。",
+      "en": "Competition, conflict, habitat friction, and the challenge of integrating into new ranges."
     }
   },
   {
     "id": "card-wa-06-six-of-wands",
-    "number": "VI",
-    "title": "SIX OF WANDS",
-    "subtitle": "Victory / Public Success / Survival Hero",
+    "arcana": "minor",
+    "number": 106,
+    "title": {
+      "zh": "權杖六",
+      "en": "SIX OF WANDS"
+    },
+    "subtitle": "The Conservation Success / Public Hope",
     "slug": "six-of-wands",
     "image": "art/renders/card-wa-06-six-of-wands.png",
     "ecology": {
@@ -2329,89 +2962,27 @@
       "life_stage": "adult-survivor",
       "habitat_fragment": "celebrated safety corridor",
       "risk_theme": "hope through resilience",
-      "mapping_note": "Six of Wands is the 'Conservation Success Story'—the individual that becomes the face of the movement and thrives despite all odds."
+      "mapping_note": "Six of Wands is the 'Conservation Success Story'—the individual that becomes the face of the movement and thrives despite all odds, educating the public about the power of recovery."
     },
     "meanings": {
-      "upright": "Victory, public recognition, success after a hard journey, and being held up as a model of survival.",
-      "reversed": "Falling from grace, lack of recognition, or the 'hollow' victory of a survivor whose habitat was still lost.",
+      "upright": "Victory, public recognition, success in conservation, hope, and reaching a milestone.",
+      "reversed": "Lack of recognition, delayed success, or a hollow victory that lacks ecological depth.",
       "keywords": [
         "victory",
-        "success",
+        "hope",
         "recognition",
-        "survival"
+        "success"
       ]
     },
     "palette": {
       "top": [
-        200,
         160,
-        50
-      ],
-      "bottom": [
         100,
-        80,
         20
       ],
-      "frame": [
-        219,
-        203,
-        156
-      ],
-      "frame_inner": [
-        171,
-        149,
-        102
-      ],
-      "panel": [
-        40,
-        30,
-        10
-      ],
-      "text_primary": [
-        243,
-        233,
-        201
-      ],
-      "text_secondary": [
-        198,
-        186,
-        151
-      ]
-    }
-  },
-  {
-    "id": "card-wa-07-seven-of-wands",
-    "number": "VII",
-    "title": "SEVEN OF WANDS",
-    "subtitle": "Defensive Stance / Boundary Protection",
-    "slug": "seven-of-wands",
-    "image": "art/renders/card-wa-07-seven-of-wands.png",
-    "ecology": {
-      "species_focus": "Taiwan leopard cat",
-      "life_stage": "adult",
-      "habitat_fragment": "contested territory boundary",
-      "risk_theme": "the struggle to hold shrinking habitat patches",
-      "mapping_note": "Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones from constant external pressure."
-    },
-    "meanings": {
-      "upright": "Defensiveness, standing ground, protection of assets/territory, and the courage to face overwhelming odds.",
-      "reversed": "Giving up, being overwhelmed by pressure, or failing to maintain boundaries.",
-      "keywords": [
-        "defense",
-        "boundaries",
-        "protection",
-        "courage"
-      ]
-    },
-    "palette": {
-      "top": [
-        70,
-        40,
-        30
-      ],
       "bottom": [
-        140,
-        100,
+        240,
+        180,
         60
       ],
       "frame": [
@@ -2425,9 +2996,9 @@
         102
       ],
       "panel": [
-        50,
-        35,
-        25
+        60,
+        40,
+        10
       ],
       "text_primary": [
         243,
@@ -2439,13 +3010,91 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "勝利、公眾認可、復育成功、希望，以及達成里程碑的時刻。",
+      "en": "Victory, public recognition, success in conservation, hope, and reaching a milestone."
+    }
+  },
+  {
+    "id": "card-wa-07-seven-of-wands",
+    "arcana": "minor",
+    "number": 107,
+    "title": {
+      "zh": "權杖七",
+      "en": "SEVEN OF WANDS"
+    },
+    "subtitle": "The Core Guardian / Defensive Resilience",
+    "slug": "seven-of-wands",
+    "image": "art/renders/card-wa-07-seven-of-wands.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "contested territory boundary",
+      "risk_theme": "the struggle to hold shrinking habitat patches",
+      "mapping_note": "Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones (Ecological Core) from constant external human and invasive pressure."
+    },
+    "meanings": {
+      "upright": "Defensiveness, resilience, protecting the core, standing one's ground against encroachment.",
+      "reversed": "Feeling overwhelmed, giving up habitat, or a failure to defend the essential core.",
+      "keywords": [
+        "defense",
+        "resilience",
+        "protection",
+        "core-habitat"
+      ]
+    },
+    "palette": {
+      "top": [
+        70,
+        50,
+        10
+      ],
+      "bottom": [
+        140,
+        100,
+        30
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        20,
+        5
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "守護、韌性、保護核心棲地，以及在外部壓力下堅守陣地。",
+      "en": "Defensiveness, resilience, protecting the core, standing one's ground against encroachment."
     }
   },
   {
     "id": "card-wa-08-eight-of-wands",
-    "number": "VIII",
-    "title": "EIGHT OF WANDS",
-    "subtitle": "Rapid Movement / Corridor Transit",
+    "arcana": "minor",
+    "number": 108,
+    "title": {
+      "zh": "權杖八",
+      "en": "EIGHT OF WANDS"
+    },
+    "subtitle": "The Efficient Passage / Corridor Flow",
     "slug": "eight-of-wands",
     "image": "art/renders/card-wa-08-eight-of-wands.png",
     "ecology": {
@@ -2453,16 +3102,16 @@
       "life_stage": "adult",
       "habitat_fragment": "ecological corridor",
       "risk_theme": "speed and crossing safety",
-      "mapping_note": "Eight of Wands represents the 'Corridor Sprint'—the vital speed at which a leopard cat must cross vulnerable areas to reach safety."
+      "mapping_note": "Eight of Wands represents the 'Corridor Flow'—the vital speed and efficiency at which restoration efforts allow leopard cats to safely cross vulnerable areas to reach new habitats."
     },
     "meanings": {
-      "upright": "Speed, rapid movement, travel, sudden progress, and the swift use of open paths/corridors.",
-      "reversed": "Delays, roadblocks, interrupted travel, or a movement that is too fast and results in a crash/risk.",
+      "upright": "Speed, rapid movement, travel, sudden progress, and the success of open corridors.",
+      "reversed": "Delays, roadblocks, interrupted progress, or a movement that is too fast and lacks safety.",
       "keywords": [
         "speed",
         "movement",
-        "travel",
-        "action"
+        "passage",
+        "flow"
       ]
     },
     "palette": {
@@ -2501,13 +3150,21 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "速度、快速移動、順暢通行、突飛猛進，以及生態廊道的成功串聯。",
+      "en": "Speed, rapid movement, travel, sudden progress, and the success of open corridors."
     }
   },
   {
     "id": "card-wa-09-nine-of-wands",
-    "number": "IX",
-    "title": "NINE OF WANDS",
-    "subtitle": "Resilience / The Scarred Survivor / Resilience",
+    "arcana": "minor",
+    "number": 109,
+    "title": {
+      "zh": "權杖九",
+      "en": "NINE OF WANDS"
+    },
+    "subtitle": "The Resilient Survivor / Wisdom of Age",
     "slug": "nine-of-wands",
     "image": "art/renders/card-wa-09-nine-of-wands.png",
     "ecology": {
@@ -2515,16 +3172,16 @@
       "life_stage": "old-survivor",
       "habitat_fragment": "final core territory",
       "risk_theme": "the price of survival in human landscape",
-      "mapping_note": "Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, embodying the survival spirit."
+      "mapping_note": "Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, providing vital educational data on the species' capacity for resilience when given a chance."
     },
     "meanings": {
-      "upright": "Resilience, stamina, persistence, being nearing the end of a battle but still standing, and defensive strength.",
-      "reversed": "Exhaustion, giving up, being too tired to defend any longer, or a system that has finally collapsed from fatigue.",
+      "upright": "Resilience, stamina, survival, persistence, and the wisdom gained through hardship.",
+      "reversed": "Exhaustion, burnout, giving up, or a system that has finally collapsed from cumulative stress.",
       "keywords": [
         "resilience",
         "stamina",
-        "persistence",
-        "strength"
+        "wisdom",
+        "survivor"
       ]
     },
     "palette": {
@@ -2563,29 +3220,37 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "韌性、耐力、生存智慧、堅持不懈，以及在困境中累積的生命深度。",
+      "en": "Resilience, stamina, survival, persistence, and the wisdom gained through hardship."
     }
   },
   {
     "id": "card-wa-10-ten-of-wands",
-    "number": "X",
-    "title": "TEN OF WANDS",
-    "subtitle": "Burden / Carrying the Future / Overwhelmed",
+    "arcana": "minor",
+    "number": 110,
+    "title": {
+      "zh": "權杖十",
+      "en": "TEN OF WANDS"
+    },
+    "subtitle": "The Stewardship Burden / Path to Healing",
     "slug": "ten-of-wands",
     "image": "art/renders/card-wa-10-ten-of-wands.png",
     "ecology": {
       "species_focus": "Taiwan leopard cat",
       "life_stage": "adult",
       "habitat_fragment": "roadside industrial area",
-      "risk_theme": "the weight of extinction risk",
-      "mapping_note": "Ten of Wands is the 'Conservation Burden'—the overwhelming weight of habitat loss and human expansion that a single survivor must carry."
+      "risk_theme": "the weight of extinction risk vs active management",
+      "mapping_note": "Ten of Wands is the 'Stewardship Burden'—the heavy responsibility of active habitat management and the educational labor required to reverse the species' decline."
     },
     "meanings": {
-      "upright": "Burden, overextension, carrying too much responsibility, and the struggle of local conservationists and the cats themselves.",
-      "reversed": "Release of burden, collapse from overwork, or avoiding responsibility for the species' future.",
+      "upright": "Responsibility, stewardship, heavy load, and the hard work of active habitat restoration.",
+      "reversed": "Release of burden, collapse from overwork, or avoiding the necessary work of education and management.",
       "keywords": [
-        "burden",
         "responsibility",
-        "overextension",
+        "stewardship",
+        "burden",
         "labor"
       ]
     },
@@ -2625,30 +3290,38 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "責任、管理重擔、沉重的負荷，以及推動生態復育所必須付出的努力。",
+      "en": "Responsibility, stewardship, heavy load, and the hard work of active habitat restoration."
     }
   },
   {
     "id": "card-wa-11-page-of-wands",
-    "number": "Page",
-    "title": "PAGE OF WANDS",
-    "subtitle": "Discoverer / New Trail / Curiosity",
+    "arcana": "minor",
+    "number": 111,
+    "title": {
+      "zh": "權杖侍者",
+      "en": "PAGE OF WANDS"
+    },
+    "subtitle": "The Scout of Renewal / Youthful Discovery",
     "slug": "page-of-wands",
     "image": "art/renders/card-wa-11-page-of-wands.png",
     "ecology": {
       "species_focus": "Taiwan leopard cat",
       "life_stage": "juvenile",
-      "habitat_fragment": "edge forest meadow",
-      "risk_theme": "curiosity vs safety",
-      "mapping_note": "Page of Wands represents the 'First Foray'—the stage where a juvenile begins to explore beyond the den, full of wonder but vulnerable."
+      "habitat_fragment": "newly restored forest edge",
+      "risk_theme": "curiosity as a tool for recovery",
+      "mapping_note": "Page of Wands represents the 'Scout of Renewal'—the stage where a new generation begins to explore restored habitats, representing the future of the species."
     },
     "meanings": {
-      "upright": "Discovery, enthusiasm, new trails, messages of growth, and the excitement of a young spirit.",
-      "reversed": "Immaturity, lack of follow-through, or a wasted opportunity for discovery.",
+      "upright": "Discovery, renewal, enthusiasm, new trails, and the hopeful message of a recovering population.",
+      "reversed": "Immaturity, lost direction, or a fragile recovery that lacks sustained support.",
       "keywords": [
         "discovery",
         "youth",
-        "enthusiasm",
-        "possibility"
+        "renewal",
+        "hope"
       ]
     },
     "palette": {
@@ -2687,30 +3360,38 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "探索、重生、熱忱、新路徑，以及族群復甦帶來的希望訊息。",
+      "en": "Discovery, renewal, enthusiasm, new trails, and the hopeful message of a recovering population."
     }
   },
   {
     "id": "card-wa-12-knight-of-wands",
-    "number": "Knight",
-    "title": "KNIGHT OF WANDS",
-    "subtitle": "Spirited / Bold / Action Hero",
+    "arcana": "minor",
+    "number": 112,
+    "title": {
+      "zh": "權杖騎士",
+      "en": "KNIGHT OF WANDS"
+    },
+    "subtitle": "The Champion of Connectivity / Bold Dispersal",
     "slug": "knight-of-wands",
     "image": "art/renders/card-wa-12-knight-of-wands.png",
     "ecology": {
       "species_focus": "Taiwan leopard cat",
       "life_stage": "sub-adult",
-      "habitat_fragment": "open grassland/scrub",
-      "risk_theme": "the danger of fast dispersal",
-      "mapping_note": "Knight of Wands represents the 'Dispersal Peak'—when a sub-adult must move fast and far, a time of both great opportunity and high mortality risk."
+      "habitat_fragment": "newly established corridor",
+      "risk_theme": "successful dispersal and gene flow",
+      "mapping_note": "Knight of Wands represents the 'Champion of Connectivity'—the vital role of dispersing individuals in maintaining genetic health and linking isolated habitat patches."
     },
     "meanings": {
-      "upright": "Action, adventure, impulsiveness, rapid energy, and the drive to conquer the road ahead.",
-      "reversed": "Impulsiveness leading to danger, frustration, or a journey that is cut short by recklessness.",
+      "upright": "Action, connectivity, adventure, rapid energy, and the drive to establish new paths.",
+      "reversed": "Impulsiveness leading to danger, interrupted journeys, or a failure to successfully connect with new areas.",
       "keywords": [
         "action",
-        "adventure",
+        "connectivity",
         "energy",
-        "impulse"
+        "dispersal"
       ]
     },
     "palette": {
@@ -2749,13 +3430,21 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "行動、連通性、冒險、快速能量，以及建立新路徑的衝勁。",
+      "en": "Action, connectivity, adventure, rapid energy, and the drive to establish new paths."
     }
   },
   {
     "id": "card-wa-13-queen-of-wands",
-    "number": "Queen",
-    "title": "QUEEN OF WANDS",
-    "subtitle": "Confident Matriarch / Radiant / Nurturer",
+    "arcana": "minor",
+    "number": 113,
+    "title": {
+      "zh": "權杖皇后",
+      "en": "QUEEN OF WANDS"
+    },
+    "subtitle": "The Matriarch of the Core / Vital Nurturer",
     "slug": "queen-of-wands",
     "image": "art/renders/card-wa-13-queen-of-wands.png",
     "ecology": {
@@ -2763,16 +3452,16 @@
       "life_stage": "adult-female-breeder",
       "habitat_fragment": "stable core forest breeding site",
       "risk_theme": "the stability of the female range",
-      "mapping_note": "Queen of Wands represents the 'Core Motherhood'—the stable, long-lived females that form the reproductive backbone of the population."
+      "mapping_note": "Queen of Wands represents the 'Matriarch of the Core'—the stable, long-lived females that form the reproductive backbone and the educational source for new generations."
     },
     "meanings": {
-      "upright": "Confidence, warmth, social influence, fertility, and a spirited approach to life and territory.",
-      "reversed": "Self-doubt, manipulation, jealousy, or a loss of influence over one's range.",
+      "upright": "Confidence, warmth, nurturing authority, core stability, and the vibrant health of a breeding population.",
+      "reversed": "Insecurity, loss of core stability, or a failure to nurture the next generation of recovery.",
       "keywords": [
         "confidence",
-        "warmth",
+        "nurturing",
         "vitality",
-        "social structure"
+        "core-stability"
       ]
     },
     "palette": {
@@ -2811,13 +3500,21 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "自信、溫暖、滋養的權威、核心棲地的穩定，以及育種族群的蓬勃生機。",
+      "en": "Confidence, warmth, nurturing authority, core stability, and the vibrant health of a breeding population."
     }
   },
   {
     "id": "card-wa-14-king-of-wands",
-    "number": "King",
-    "title": "KING OF WANDS",
-    "subtitle": "Visionary Leader / Territorial Master",
+    "arcana": "minor",
+    "number": 114,
+    "title": {
+      "zh": "權杖國王",
+      "en": "KING OF WANDS"
+    },
+    "subtitle": "The Master of the Landscape / Visionary Leader",
     "slug": "king-of-wands",
     "image": "art/renders/card-wa-14-king-of-wands.png",
     "ecology": {
@@ -2825,16 +3522,16 @@
       "life_stage": "alpha-male",
       "habitat_fragment": "vast interconnected core forest",
       "risk_theme": "the ultimate goal of large-scale conservation",
-      "mapping_note": "King of Wands is the 'Landscape Master'—the individuals that manage to secure massive home ranges and ensure the survival of their entire sub-population."
+      "mapping_note": "King of Wands is the 'Landscape Master'—the individuals that manage to secure massive home ranges within a fully integrated and healthy landscape, embodying the success of visionary conservation."
     },
     "meanings": {
-      "upright": "Vision, leadership, entrepreneurship, mastery of one's environment, and the power to command a stable territory.",
-      "reversed": "Tyranny, overreach, loss of vision, or being a ruler without a land (homeless).",
+      "upright": "Vision, landscape integration, leadership, mastery, and the successful protection of a vast ecosystem.",
+      "reversed": "Overreach, loss of vision, or the failure to see the landscape as a whole, leading to fragmentation.",
       "keywords": [
-        "leadership",
         "vision",
+        "leadership",
         "mastery",
-        "protection"
+        "integration"
       ]
     },
     "palette": {
@@ -2873,6 +3570,10 @@
         186,
         151
       ]
+    },
+    "meaning": {
+      "zh": "遠見、地景整合、領導力、精通，以及對廣大生態系統的成功保護。",
+      "en": "Vision, landscape integration, leadership, mastery, and the successful protection of a vast ecosystem."
     }
   }
 ]

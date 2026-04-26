@@ -2,12 +2,12 @@
   "id": "card-wa-09-nine-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": 9,
+  "number": 109,
   "title": {
     "zh": "權杖九",
     "en": "NINE OF WANDS"
   },
-  "subtitle": "Resilience & Persistence",
+  "subtitle": "The Resilient Survivor / Wisdom of Age",
   "slug": "nine-of-wands",
   "status": "rework_needed",
   "size": {
@@ -60,11 +60,11 @@
   },
   "main_image": "art/generated/card-wa-09-nine-of-wands.png",
   "generation": {
-    "model": "gemini-3.1-flash",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs, head bandaged, holding one wooden wand firmly. Behind him, EXACTLY EIGHT more wooden wands are arranged in a narrow, dense semi-circle (Total 9 wands). All wands must be visible and close to the cat to avoid being cut off in vertical crop. Slender build, sharp facial structure, white ear spots, forehead stripes.",
-    "narrative": "An old leopard cat survivor, scarred by traps and roads, leans on its staff as a final wall of eight wands protects its core territory. It is the face of species resilience."
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS, head bandaged with a rustic cloth, wearing a worn traveler's cloak. He holds one wooden wand FIRMLY WITH ITS PAWS as a staff. Behind him, EXACTLY EIGHT more wooden wands are arranged in a dense semi-circle. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "narrative": "An old leopard cat survivor, scarred but resilient, represents the living proof that survival is possible when habitats are protected and respected."
   },
   "ornaments": [
     "scars",
@@ -72,13 +72,13 @@
   ],
   "output": "art/renders/card-wa-09-nine-of-wands.png",
   "meanings": {
-    "upright": "Resilience, stamina, persistence, being nearing the end of a battle but still standing, and defensive strength.",
-    "reversed": "Exhaustion, giving up, being too tired to defend any longer, or a system that has finally collapsed from fatigue.",
+    "upright": "Resilience, stamina, survival, persistence, and the wisdom gained through hardship.",
+    "reversed": "Exhaustion, burnout, giving up, or a system that has finally collapsed from cumulative stress.",
     "keywords": [
       "resilience",
       "stamina",
-      "persistence",
-      "strength"
+      "wisdom",
+      "survivor"
     ]
   },
   "ecology": {
@@ -86,10 +86,10 @@
     "life_stage": "old-survivor",
     "habitat_fragment": "final core territory",
     "risk_theme": "the price of survival in human landscape",
-    "mapping_note": "Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, embodying the survival spirit."
+    "mapping_note": "Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, providing vital educational data on the species' capacity for resilience when given a chance."
   },
   "website": {
-    "excerpt": "Scarred but unbowed, the old survivor stands his ground, leaning on his staff of experience.",
+    "excerpt": "Scarred but unbowed, the old survivor stands as a symbol of the species' incredible will to endure.",
     "seo_title": "Nine of Wands - LeopardCat Tarot",
     "seo_description": "Nine of Wands reimagined as leopard cat resilience and the wisdom of the scarred survivor.",
     "tags": [
@@ -100,7 +100,7 @@
     ]
   },
   "meaning": {
-    "zh": "Resilience, stamina, persistence, being nearing the end of a battle but still standing, and defensive strength.",
-    "en": "Resilience, stamina, persistence, being nearing the end of a battle but still standing, and defensive strength."
+    "zh": "韌性、耐力、生存智慧、堅持不懈，以及在困境中累積的生命深度。",
+    "en": "Resilience, stamina, survival, persistence, and the wisdom gained through hardship."
   }
 }

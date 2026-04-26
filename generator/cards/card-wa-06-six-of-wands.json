@@ -2,12 +2,12 @@
   "id": "card-wa-06-six-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": 6,
+  "number": 106,
   "title": {
     "zh": "權杖六",
     "en": "SIX OF WANDS"
   },
-  "subtitle": "Victory & Recognition",
+  "subtitle": "The Conservation Success / Public Hope",
   "slug": "six-of-wands",
   "status": "rework_needed",
   "size": {
@@ -16,14 +16,14 @@
   },
   "palette": {
     "top": [
-      200,
       160,
-      50
+      100,
+      20
     ],
     "bottom": [
-      100,
-      80,
-      20
+      240,
+      180,
+      60
     ],
     "frame": [
       219,
@@ -36,8 +36,8 @@
       102
     ],
     "panel": [
+      60,
       40,
-      30,
       10
     ],
     "text_primary": [
@@ -52,32 +52,32 @@
     ]
   },
   "scene": {
-    "theme": "victorious-survivor",
+    "theme": "celebration-procession",
     "forest": true,
-    "road": true,
+    "road": false,
     "grass": true,
-    "subject": "leopard-cat-on-ridge"
+    "subject": "triumphant-leopard-cat"
   },
   "main_image": "art/generated/card-wa-06-six-of-wands.png",
   "generation": {
-    "model": "gemini-3.1-flash",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs, triumphantly riding a deer-like animal (sambar deer) through a cheering forest crowd. He holds a golden-crowned wand. Behind him, EXACTLY FIVE other wooden wands are held up by invisible or partially visible cats, making EXACTLY SIX wands total. All wands must be narrow and centered. Slender build, sharp facial structure, white ear spots, forehead stripes.",
-    "narrative": "A leopard cat that has managed to survive multiple road crossings and farm traps is celebrated as a survivor. Its victory represents the hard-won success of a species that refuses to vanish."
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: One noble Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS, riding atop a large friendly wild dog (or walking in a procession). The cat holds a single wooden wand FIRMLY WITH ITS PAWS, adorned with a laurel wreath of green leaves. Other leopard cats cheer in the background. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "narrative": "A leopard cat returns in triumph, symbolizing a successful restoration effort that has become a beacon of hope for the public."
   },
   "ornaments": [
     "laurel-wreath"
   ],
   "output": "art/renders/card-wa-06-six-of-wands.png",
   "meanings": {
-    "upright": "Victory, public recognition, success after a hard journey, and being held up as a model of survival.",
-    "reversed": "Falling from grace, lack of recognition, or the 'hollow' victory of a survivor whose habitat was still lost.",
+    "upright": "Victory, public recognition, success in conservation, hope, and reaching a milestone.",
+    "reversed": "Lack of recognition, delayed success, or a hollow victory that lacks ecological depth.",
     "keywords": [
       "victory",
-      "success",
+      "hope",
       "recognition",
-      "survival"
+      "success"
     ]
   },
   "ecology": {
@@ -85,21 +85,21 @@
     "life_stage": "adult-survivor",
     "habitat_fragment": "celebrated safety corridor",
     "risk_theme": "hope through resilience",
-    "mapping_note": "Six of Wands is the 'Conservation Success Story'—the individual that becomes the face of the movement and thrives despite all odds."
+    "mapping_note": "Six of Wands is the 'Conservation Success Story'—the individual that becomes the face of the movement and thrives despite all odds, educating the public about the power of recovery."
   },
   "website": {
-    "excerpt": "A triumphant survivor, the leopard cat is celebrated for its resilience in the face of modern challenges.",
+    "excerpt": "A triumphant return, celebrating the hard-won victories of habitat restoration and public awareness.",
     "seo_title": "Six of Wands - LeopardCat Tarot",
-    "seo_description": "Six of Wands reimagined as leopard cat conservation success and victory.",
+    "seo_description": "Six of Wands reimagined as a conservation success story and the hope of restoration.",
     "tags": [
       "minor-arcana",
       "wands",
       "leopard-cat",
-      "victory"
+      "hope"
     ]
   },
   "meaning": {
-    "zh": "Victory, public recognition, success after a hard journey, and being held up as a model of survival.",
-    "en": "Victory, public recognition, success after a hard journey, and being held up as a model of survival."
+    "zh": "勝利、公眾認可、復育成功、希望，以及達成里程碑的時刻。",
+    "en": "Victory, public recognition, success in conservation, hope, and reaching a milestone."
   }
 }

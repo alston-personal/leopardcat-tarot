@@ -61,7 +61,7 @@
     "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A massive ancient redwood-like tree is being struck by a devastating purple lightning bolt during a violent storm. The tree is splitting apart, and stone bird-houses are falling from its branches. A terrified anthropomorphic Taiwan leopard cat leaps from a crumbling cliff nearby. Meaning: Sudden upheaval, the collapse of a safe territory, and the chaotic destruction of old structures.",
     "narrative": "A massive ancient redwood-like tree is being struck by a devastating purple lightning bolt during a violent storm. The tree is splitting apart, and stone bird-houses are falling from its branches. A terrified anthropomorphic Taiwan leopard cat leaps from a crumbling cliff nearby. Meaning: Sudden upheaval, the collapse of a safe territory, and the chaotic destruction of old structures."
   },
-  "output": "art/renders/card-16-16-the-tower.png",
+  "output": "art/renders/card-16-the-tower.png",
   "meaning": {
     "zh": "TBD",
     "en": "TBD"

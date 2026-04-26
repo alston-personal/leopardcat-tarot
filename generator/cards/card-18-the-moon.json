@@ -61,7 +61,7 @@
     "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A large, pale moon hangs between two high jagged mountain peaks. A wild dog and a leopard cat are howling/hissing at the moon, while a crayfish emerges from a stream in the foreground. Meaning: Hidden enemies, the confusing path of night survival, and the primal instincts of the wild.",
     "narrative": "A large, pale moon hangs between two high jagged mountain peaks. A wild dog and a leopard cat are howling/hissing at the moon, while a crayfish emerges from a stream in the foreground. Meaning: Hidden enemies, the confusing path of night survival, and the primal instincts of the wild."
   },
-  "output": "art/renders/card-18-18-the-moon.png",
+  "output": "art/renders/card-18-the-moon.png",
   "meaning": {
     "zh": "TBD",
     "en": "TBD"

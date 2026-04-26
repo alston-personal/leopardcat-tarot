@@ -1,8 +1,11 @@
 {
   "id": "card-14-temperance",
   "arcana": "major",
-  "number": "XIV",
-  "title": "TEMPERANCE",
+  "number": 14,
+  "title": {
+    "zh": "節制",
+    "en": "TEMPERANCE"
+  },
   "subtitle": "Alchemy / Flow / Coexistence",
   "slug": "14-temperance",
   "status": "draft",
@@ -56,8 +59,16 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
+    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. An angelic anthropomorphic Taiwan leopard cat with translucent wings, standing with one foot on a forest rock and the other in a clear stream. He pours water between two silver cups, creating a bridge of light. Meaning: Harmony, synthesis, and finding the perfect flow between wild and human-influenced environments.",
     "narrative": "An angelic anthropomorphic Taiwan leopard cat with translucent wings, standing with one foot on a forest rock and the other in a clear stream. He pours water between two silver cups, creating a bridge of light. Meaning: Harmony, synthesis, and finding the perfect flow between wild and human-influenced environments."
   },
-  "output": "art/renders/card-14-temperance.png"
+  "output": "art/renders/card-14-temperance.png",
+  "meaning": {
+    "zh": "TBD",
+    "en": "TBD"
+  },
+  "ecology": {
+    "zh": "TBD",
+    "en": "TBD"
+  }
 }

@@ -1,8 +1,11 @@
 {
   "id": "card-05-the-hierophant",
   "arcana": "major",
-  "number": "V",
-  "title": "THE HIEROPHANT",
+  "number": 5,
+  "title": {
+    "zh": "教皇",
+    "en": "THE HIEROPHANT"
+  },
   "subtitle": "Tradition / Wisdom / Ancient Trails",
   "slug": "the-hierophant",
   "status": "draft",
@@ -58,7 +61,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
+    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. An elderly, wise anthropomorphic Taiwan leopard cat wearing ornate traditional tribal-patterned robes. He stands solemnly before a massive moss-covered ancient tree that marks an old boundary trail. He holds a staff made of polished hardwood. His expression is one of calm, ancestral wisdom, teaching the importance of following the safe, ancient paths of the forest. Deep indigo and dark walnut color palette.",
     "narrative": "An elderly, wise anthropomorphic Taiwan leopard cat wearing ornate traditional tribal-patterned robes. He stands solemnly before a massive moss-covered ancient tree that marks an old boundary trail. He holds a staff made of polished hardwood. His expression is one of calm, ancestral wisdom, teaching the importance of following the safe, ancient paths of the forest. Deep indigo and dark walnut color palette."
   },
   "ecology": {
@@ -66,7 +69,11 @@
     "life_stage": "elderly adult",
     "habitat_fragment": "stable, low-disturbance mature forest and animal runs (trails)",
     "risk_theme": "disruption of traditional migration corridors and home ranges",
-    "mapping_note": "The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations\u2014following the safe trails that have existed for centuries."
+    "mapping_note": "The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries."
   },
-  "output": "art/renders/card-05-the-hierophant.png"
+  "output": "art/renders/card-05-the-hierophant.png",
+  "meaning": {
+    "zh": "TBD",
+    "en": "TBD"
+  }
 }

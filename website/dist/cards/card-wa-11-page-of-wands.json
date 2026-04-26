@@ -2,23 +2,54 @@
   "id": "card-wa-11-page-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "Page",
-  "title": "PAGE OF WANDS",
-  "subtitle": "Discoverer / New Trail / Curiosity",
+  "number": 111,
+  "title": {
+    "zh": "權杖侍者",
+    "en": "PAGE OF WANDS"
+  },
+  "subtitle": "The Scout of Renewal / Youthful Discovery",
   "slug": "page-of-wands",
-  "status": "draft",
+  "status": "rework_needed",
   "size": {
     "width": 1400,
     "height": 2420
   },
   "palette": {
-    "top": [120, 180, 80],
-    "bottom": [80, 120, 50],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [30, 45, 20],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      120,
+      180,
+      80
+    ],
+    "bottom": [
+      80,
+      120,
+      50
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      30,
+      45,
+      20
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "youthful-discovery",
@@ -29,30 +60,46 @@
   },
   "main_image": "art/generated/card-wa-11-page-of-wands.png",
   "generation": {
-    "model": "gemini-3.1-flash",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A youthful, wide-eyed anthropomorphic leopard cat (juvenile/Page) standing in a lush meadow, curiously holding a slender wooden wand that is slightly taller than it. Butterflies and bright wildflowers surround it. It looks ready for adventure. rosettes and white ear spots. vibrant, hopeful colors. Full bleed. No borders.",
-    "narrative": "The Page of Wands is the 'Young Explorer'—a juvenile leopard cat discovering the boundaries of its world with enthusiasm and innocence."
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A youthful Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS in a lush meadow, wearing a small green explorer's vest. Curiously holding a slender wooden wand FIRMLY WITH ITS PAWS. Surrounded by butterflies and wildflowers. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "narrative": "A young leopard cat explores a newly restored safe zone, representing the first generation of hope and the curiosity required for ecological discovery."
   },
-  "ornaments": ["butterflies"],
+  "ornaments": [
+    "butterflies"
+  ],
   "output": "art/renders/card-wa-11-page-of-wands.png",
   "meanings": {
-    "upright": "Discovery, enthusiasm, new trails, messages of growth, and the excitement of a young spirit.",
-    "reversed": "Immaturity, lack of follow-through, or a wasted opportunity for discovery.",
-    "keywords": ["discovery", "youth", "enthusiasm", "possibility"]
+    "upright": "Discovery, renewal, enthusiasm, new trails, and the hopeful message of a recovering population.",
+    "reversed": "Immaturity, lost direction, or a fragile recovery that lacks sustained support.",
+    "keywords": [
+      "discovery",
+      "youth",
+      "renewal",
+      "hope"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
     "life_stage": "juvenile",
-    "habitat_fragment": "edge forest meadow",
-    "risk_theme": "curiosity vs safety",
-    "mapping_note": "Page of Wands represents the 'First Foray'—the stage where a juvenile begins to explore beyond the den, full of wonder but vulnerable."
+    "habitat_fragment": "newly restored forest edge",
+    "risk_theme": "curiosity as a tool for recovery",
+    "mapping_note": "Page of Wands represents the 'Scout of Renewal'—the stage where a new generation begins to explore restored habitats, representing the future of the species."
   },
   "website": {
-    "excerpt": "Curious and brave, the young leopard cat discovers new trails and wonders in the forest edge.",
+    "excerpt": "Curious and brave, the young explorer discovers a world of new possibilities in the restored forest.",
     "seo_title": "Page of Wands - LeopardCat Tarot",
-    "seo_description": "Page of Wands reimagined as a curious juvenile leopard cat explorer.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "youth"]
+    "seo_description": "Page of Wands reimagined as a curious juvenile leopard cat scout of ecological renewal.",
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "youth"
+    ]
+  },
+  "meaning": {
+    "zh": "探索、重生、熱忱、新路徑，以及族群復甦帶來的希望訊息。",
+    "en": "Discovery, renewal, enthusiasm, new trails, and the hopeful message of a recovering population."
   }
 }

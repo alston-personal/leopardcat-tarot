@@ -2,23 +2,54 @@
   "id": "card-wa-12-knight-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "Knight",
-  "title": "KNIGHT OF WANDS",
-  "subtitle": "Spirited / Bold / Action Hero",
+  "number": 112,
+  "title": {
+    "zh": "權杖騎士",
+    "en": "KNIGHT OF WANDS"
+  },
+  "subtitle": "The Champion of Connectivity / Bold Dispersal",
   "slug": "knight-of-wands",
-  "status": "draft",
+  "status": "rework_needed",
   "size": {
     "width": 1400,
     "height": 2420
   },
   "palette": {
-    "top": [180, 80, 30],
-    "bottom": [100, 50, 20],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [40, 25, 15],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      180,
+      80,
+      30
+    ],
+    "bottom": [
+      100,
+      50,
+      20
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      40,
+      25,
+      15
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "bold-charge",
@@ -29,30 +60,46 @@
   },
   "main_image": "art/generated/card-wa-12-knight-of-wands.png",
   "generation": {
-    "model": "gemini-3.1-flash",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A spirited, sub-adult anthropomorphic leopard cat in action, charging through tall golden grass. It holds a sturdy wooden wand in its hand like a lance. It looks forward with intense focus and determination. rosettes and white ear spots are dynamic. Full bleed. No borders.",
-    "narrative": "The Knight of Wands is the 'Brave Disperser'—a sub-adult leopard cat charging into the unknown, driven by impulse and courage."
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A spirited sub-adult Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS, charging through tall golden grass, wearing light leather ranger armor and a flowing forest-green cloak. He holds a sturdy wooden wand forward FIRMLY WITH ITS PAWS. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "narrative": "A sub-adult leopard cat disperses through a newly established corridor, representing the bold action required to reconnect fragmented populations."
   },
-  "ornaments": ["golden-grass"],
+  "ornaments": [
+    "golden-grass"
+  ],
   "output": "art/renders/card-wa-12-knight-of-wands.png",
   "meanings": {
-    "upright": "Action, adventure, impulsiveness, rapid energy, and the drive to conquer the road ahead.",
-    "reversed": "Impulsiveness leading to danger, frustration, or a journey that is cut short by recklessness.",
-    "keywords": ["action", "adventure", "energy", "impulse"]
+    "upright": "Action, connectivity, adventure, rapid energy, and the drive to establish new paths.",
+    "reversed": "Impulsiveness leading to danger, interrupted journeys, or a failure to successfully connect with new areas.",
+    "keywords": [
+      "action",
+      "connectivity",
+      "energy",
+      "dispersal"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
     "life_stage": "sub-adult",
-    "habitat_fragment": "open grassland/scrub",
-    "risk_theme": "the danger of fast dispersal",
-    "mapping_note": "Knight of Wands represents the 'Dispersal Peak'—when a sub-adult must move fast and far, a time of both great opportunity and high mortality risk."
+    "habitat_fragment": "newly established corridor",
+    "risk_theme": "successful dispersal and gene flow",
+    "mapping_note": "Knight of Wands represents the 'Champion of Connectivity'—the vital role of dispersing individuals in maintaining genetic health and linking isolated habitat patches."
   },
   "website": {
-    "excerpt": "Charging through the unknown with bold energy, the spirited disperser seeks his new kingdom.",
+    "excerpt": "Boldly charging toward new horizons, the knight embodies the spirit of connectivity and survival.",
     "seo_title": "Knight of Wands - LeopardCat Tarot",
-    "seo_description": "Knight of Wands reimagined as a bold sub-adult leopard cat disperser.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "courage"]
+    "seo_description": "Knight of Wands reimagined as a bold sub-adult leopard cat champion of habitat connectivity.",
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "connectivity"
+    ]
+  },
+  "meaning": {
+    "zh": "行動、連通性、冒險、快速能量，以及建立新路徑的衝勁。",
+    "en": "Action, connectivity, adventure, rapid energy, and the drive to establish new paths."
   }
 }

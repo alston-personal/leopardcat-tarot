@@ -1,8 +1,11 @@
 {
   "id": "card-15-the-devil",
   "arcana": "major",
-  "number": "XV",
-  "title": "THE DEVIL",
+  "number": 15,
+  "title": {
+    "zh": "惡魔",
+    "en": "THE DEVIL"
+  },
   "subtitle": "Shadow / Entrapment / Baited Cage",
   "slug": "15-the-devil",
   "status": "draft",
@@ -56,8 +59,16 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
-    "narrative": "A muscular, menacing anthropomorphic Taiwan leopard cat with ram-like horns, sitting upon a concrete block under a dark highway bridge. Two smaller cats are chained to the base of his throne by their instincts. A baited cage with a dead chicken glows in the dark nearby. Meaning: Enslavement to greed, the shadow side of urbanization, and the traps (both physical and mental) that bind the wild."
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical aspect ratio. FULL BLEED: Image content must touch all edges. ABSOLUTELY NO BORDERS, NO TEXT, NO LABELS. ANTHROPOMORPHIC: A slender and elegant Taiwan leopard cat standing upright on two legs with human-like posture. He wears dark, tattered robes. He has tall, curved ram-like horns. He sits upon a cold concrete block under a decaying highway overpass. Facial structure must be narrow and sharp (wild small cat), NOT round or muscular. Essential markers: two distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Two smaller leopard cats are chained to the base of the block. Somber, dark atmosphere with deep reds and blacks. Full bleed. No borders.",
+    "narrative": "The Devil is the 'Baited Cage'—the shadow of urbanization where the wild is trapped by instinct and artificial boundaries. The figure is a slender, horned leopard cat standing in a human-like posture under a dark bridge."
   },
-  "output": "art/renders/card-15-the-devil.png"
+  "output": "art/renders/card-15-the-devil.png",
+  "meaning": {
+    "zh": "TBD",
+    "en": "TBD"
+  },
+  "ecology": {
+    "zh": "TBD",
+    "en": "TBD"
+  }
 }

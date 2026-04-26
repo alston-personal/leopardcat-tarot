@@ -1,8 +1,11 @@
 {
   "id": "card-06-the-lovers",
   "arcana": "major",
-  "number": "VI",
-  "title": "THE LOVERS",
+  "number": 6,
+  "title": {
+    "zh": "戀人",
+    "en": "THE LOVERS"
+  },
   "subtitle": "Attraction / Choice / Breeding Season",
   "slug": "06-the-lovers",
   "status": "draft",
@@ -56,8 +59,8 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": null,
-    "narrative": "A pair of anthropomorphic Taiwan leopard cats\u2014one male, one female\u2014standing at a scenic crossroads in a flowering forest glade. They wear elegant traditional attire, looking at each other with deep mutual respect. Above them, the canopy forms a heart-like arch through the sunbeams. Meaning: Choice, partnership, and the seasonal biological drive to continue the lineage."
+    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A pair of anthropomorphic Taiwan leopard cats—one male, one female—standing at a scenic crossroads in a flowering forest glade. They wear elegant traditional attire, looking at each other with deep mutual respect. Above them, the canopy forms a heart-like arch through the sunbeams. Meaning: Choice, partnership, and the seasonal biological drive to continue the lineage.",
+    "narrative": "A pair of anthropomorphic Taiwan leopard cats—one male, one female—standing at a scenic crossroads in a flowering forest glade. They wear elegant traditional attire, looking at each other with deep mutual respect. Above them, the canopy forms a heart-like arch through the sunbeams. Meaning: Choice, partnership, and the seasonal biological drive to continue the lineage."
   },
   "output": "art/renders/card-06-the-lovers.png",
   "meanings": {
@@ -66,5 +69,9 @@
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat"
+  },
+  "meaning": {
+    "zh": "TBD",
+    "en": "TBD"
   }
 }

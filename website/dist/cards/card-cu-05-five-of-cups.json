@@ -2,8 +2,11 @@
   "id": "card-cu-05-five-of-cups",
   "arcana": "minor",
   "suit": "cups",
-  "number": "V",
-  "title": "FIVE OF CUPS",
+  "number": 205,
+  "title": {
+    "zh": "聖杯五",
+    "en": "FIVE OF CUPS"
+  },
   "subtitle": "The Spillage / Loss / Regret",
   "slug": "five-of-cups",
   "status": "draft",
@@ -12,13 +15,41 @@
     "height": 2420
   },
   "palette": {
-    "top": [50, 60, 80],
-    "bottom": [20, 25, 40],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [10, 15, 25],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      50,
+      60,
+      80
+    ],
+    "bottom": [
+      20,
+      25,
+      40
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      10,
+      15,
+      25
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "rainy-dark-valley",
@@ -29,18 +60,26 @@
   },
   "main_image": "art/generated/card-cu-05-five-of-cups.png",
   "generation": {
-    "model": "gemini-3.1-flash",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A somber anthropomorphic leopard cat in a black cloak, standing in a rainy, dark mountain landscape. Three golden cups are overturned, spilling their contents into a puddle. Two cups remain upright behind the cat, but it doesn't see them. Heavy, moody atmosphere. Muted dark tones. Full bleed. No borders.",
+    "image_prompt": "Including exactly five cups in the scene. Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A somber anthropomorphic leopard cat in a black cloak, standing in a rainy, dark mountain landscape. Three golden cups are overturned, spilling their contents into a puddle. Two cups remain upright behind the cat, but it doesn't see them. Heavy, moody atmosphere. Muted dark tones. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
     "narrative": "The Five of Cups is 'The Spillage'—regret over certain lost fragments of habitat, while the path to remaining core area still exists behind."
   },
-  "ornaments": ["rainy-mist", "dark-mountains"],
+  "ornaments": [
+    "rainy-mist",
+    "dark-mountains"
+  ],
   "output": "art/renders/card-cu-05-five-of-cups.png",
   "meanings": {
     "upright": "Loss, grief, regret, disappointment, and focuses on the negative.",
     "reversed": "Acceptance, moving on, recovery, and finding peace after loss.",
-    "keywords": ["loss", "grief", "regret", "disappointment"]
+    "keywords": [
+      "loss",
+      "grief",
+      "regret",
+      "disappointment"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
@@ -53,6 +92,15 @@
     "excerpt": "In the cold rain, the leopard cat mourns what has been lost, unaware of the hope that still stands behind.",
     "seo_title": "Five of Cups - LeopardCat Tarot",
     "seo_description": "Five of Cups reimagined as a grieving leopard cat in a disturbed ecosystem.",
-    "tags": ["minor-arcana", "cups", "leopard-cat", "loss"]
+    "tags": [
+      "minor-arcana",
+      "cups",
+      "leopard-cat",
+      "loss"
+    ]
+  },
+  "meaning": {
+    "zh": "Loss, grief, regret, disappointment, and focuses on the negative.",
+    "en": "Loss, grief, regret, disappointment, and focuses on the negative."
   }
 }

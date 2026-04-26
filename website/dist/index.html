@@ -3,41 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>石虎塔羅 LeopardCat Tarot | 數位展廳</title>
+    <title>石虎塔羅 LeopardCat Tarot | 靈山仙貓大師</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Noto+Serif+TC:wght@300;600;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Serif+TC:wght@700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <!-- Premium Metallic SVG Filter -->
-    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true" focusable="false">
-      <filter id="metallic-bevel" x="-20%" y="-20%" width="140%" height="140%">
+    <svg style="display: none;">
+      <filter id="metallic-bevel">
         <feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur"/>
         <feSpecularLighting in="blur" surfaceScale="5" specularConstant="1.2" specularExponent="40" lighting-color="#fff9e3" result="specular">
           <fePointLight x="-5000" y="-10000" z="20000"/>
         </feSpecularLighting>
         <feComposite in="specular" in2="SourceAlpha" operator="in" result="composite"/>
-        <feMerge>
-          <feMergeNode in="SourceGraphic"/>
-          <feMergeNode in="composite"/>
-        </feMerge>
+        <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="composite"/></feMerge>
       </filter>
     </svg>
-  <script type="module" crossorigin src="/assets/index-CxAdza55.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DLQShXqz.css">
+  <script type="module" crossorigin src="/assets/index-Ba5FgjBi.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DJ3ZIivH.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-logo" data-i18n="logo">靈山靈貓 | 石虎計畫</div>
-        <div class="nav-links">
+    <nav class="navbar" style="padding: 0 20px;">
+        <div class="nav-logo" style="font-size: 1.1rem; min-width: 140px;">靈山靈貓</div>
+        
+        <!-- Navbar Stats (Compact) -->
+        <div id="global-stats" style="display: flex; gap: 12px; font-size: 0.65rem; color: var(--color-gold); letter-spacing: 0.05em; font-weight: bold; border-left: 1px solid rgba(212,175,55,0.2); padding-left: 15px;">
+            <span>V: <span id="stat-visitors" style="color: #fff;">-</span></span>
+            <span>D: <span id="stat-divinations" style="color: #fff;">-</span></span>
+        </div>
+
+        <div class="nav-links" style="gap: 1.5rem; flex: 1; justify-content: flex-end; align-items: center; display: flex;">
+            <!-- User Spirit Badge (Small & Integrated) -->
+            <div id="user-spirit-badge" style="background: rgba(212,175,55,0.1); border: 1px solid var(--color-gold-glow); padding: 4px 10px; border-radius: 12px; display: flex; align-items: center; gap: 8px;">
+                <span id="user-dharma-name" style="font-size: 0.65rem; color: #fff; border-right: 1px solid rgba(212,175,55,0.2); padding-right: 8px;">Seeker</span>
+                <span id="user-mana-display" style="color: var(--color-gold); font-weight: 900; font-size: 0.75rem;">⚡ 5/5</span>
+            </div>
+
             <a href="#hero" data-i18n="nav_home">Home</a>
             <a href="#fortune" data-i18n="nav_fortune">Fortune</a>
-            <a href="#intro" data-i18n="nav_intro">Intro</a>
-            <a href="#chronicle" data-i18n="nav_events">Events</a>
             <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
-        </div>
-        <div class="lang-switcher">
-            <button onclick="setLanguage('zh')" class="lang-btn active" id="btn-zh">中</button>
-            <button onclick="setLanguage('en')" class="lang-btn" id="btn-en">EN</button>
+            
+            <div class="lang-switcher">
+                <button onclick="setLanguage('zh')" class="lang-btn active" id="btn-zh">中</button>
+                <button onclick="setLanguage('en')" class="lang-btn" id="btn-en">EN</button>
+            </div>
         </div>
     </nav>
 
@@ -47,126 +55,81 @@
         <section id="hero" class="hero">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="glint-text" data-i18n="hero_title">靈山靈貓</h1>
-                <p class="subtitle" data-i18n="hero_subtitle">Leopard Cat Sanctuary: An Ecological Journey</p>
+                <h1 class="glint-text">靈山靈貓</h1>
+                <p class="subtitle">Leopard Cat Sanctuary: An Ecological Journey</p>
                 <div class="hero-cta">
-                    <a href="#fortune" class="btn btn-gold" data-i18n="hero_cta_fortune">詢問大師</a>
-                    <a href="#intro" class="btn btn-gold-outline" data-i18n="hero_cta">進入山林</a>
+                    <a href="#fortune" class="btn btn-gold">詢問大師</a>
+                    <a href="#intro" class="btn btn-gold-outline">進入山林</a>
                 </div>
             </div>
         </section>
 
+        <!-- Fortune Section -->
         <section id="fortune" class="section fortune-section">
             <div class="container">
                 <div class="section-title">
-                    <span class="label" data-i18n="label_fortune">Wishing Well</span>
-                    <h2 class="glint-text" data-i18n="title_fortune">靈山仙貓大師：塔羅占卜</h2>
+                    <span class="label">Wishing Well</span>
+                    <h2 class="glint-text">靈山仙貓大師：塔羅占卜</h2>
                 </div>
-                <div id="fortune-panel" class="fortune-container" style="text-align: center; max-width: 700px; margin: 0 auto; background: rgba(0,0,0,0.4); padding: 30px; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.3); min-height: 400px; position: relative;">
-                    
-                    <!-- 初始狀態：儀式輸入區 -->
+                <div id="fortune-panel" class="fortune-container" style="text-align: center; max-width: 750px; margin: 0 auto; background: rgba(5, 10, 8, 0.85); padding: 40px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.15); min-height: 480px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.8); backdrop-filter: blur(20px);">
                     <div id="fortune-ritual-area">
-                        <div class="fortune-input-area">
-                            <textarea id="fortune-question" data-i18n="placeholder_fortune" placeholder="請問大師，我心中的疑惑是..." style="width: 100%; height: 120px; background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(212,175,55,0.5); border-radius: 8px; padding: 15px; margin-bottom: 20px; font-family: inherit; font-size: 1.1rem; resize: none;"></textarea>
-                            <button id="btn-draw" class="btn btn-gold" onclick="drawFortune()" data-i18n="btn_fortune_draw">祈請大師開牌</button>
-                        </div>
+                        <textarea id="fortune-question" placeholder="在此輸入你的困惑，或是屏息靜心..." style="width: 100%; height: 100px; background: rgba(255,255,255,0.03); color: #fff; border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 15px; margin-bottom: 20px; font-size: 1.1rem; resize: none; outline: none;"></textarea>
+                        <button class="btn btn-gold" onclick="drawFortune()">祈請大師開牌</button>
                     </div>
 
-                    <!-- 進行狀態：對話諮商區 (Initial hidden) -->
-                    <div id="fortune-chat-area" class="hidden" style="display: flex; flex-direction: column; height: 500px; text-align: left;">
-                        <div id="chat-history" style="flex: 1; overflow-y: auto; padding: 10px; margin-bottom: 20px; border-bottom: 1px solid rgba(212,175,55,0.2); scroll-behavior: smooth;">
-                            <!-- 聊天氣泡會動態注入於此 -->
+                    <div id="fortune-chat-area" class="hidden">
+                        <div id="chat-history" style="height: 380px; overflow-y: auto; text-align: left; padding: 15px; border-radius: 12px; background: rgba(0,0,0,0.2); margin-bottom: 20px;"></div>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="chat-input" placeholder="進一步詢問..." style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); color: #fff; padding: 12px; border-radius: 10px; outline: none;">
+                            <button onclick="sendChatMessage()" class="btn btn-gold" style="padding: 10px 20px;">提問</button>
                         </div>
-                        <div id="chat-input-bar" style="display: flex; gap: 10px;">
-                            <input type="text" id="chat-input" placeholder="進一步詢問大師..." style="flex: 1; background: rgba(255,255,255,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 20px; padding: 10px 20px; color: #fff; outline: none;">
-                            <button class="btn btn-gold" onclick="sendChatMessage()" style="border-radius: 20px; padding: 10px 25px;">提問</button>
-                        </div>
-                        <div style="margin-top: 15px; text-align: center;">
-                             <button class="btn btn-gold-outline" onclick="mintHistoryNFT()" style="font-size: 0.8rem; padding: 5px 15px;">永久鑄造成紀念 NFT</button>
-                             <button class="btn btn-gold-outline" onclick="resetRitual()" style="font-size: 0.8rem; padding: 5px 15px; margin-left: 10px; opacity: 0.6;">重新祈願</button>
+                        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 15px;">
+                            <button onclick="mintNFT()" class="btn btn-gold-outline" style="font-size: 0.75rem; padding: 6px 15px;">鑄造紀念 NFT</button>
+                            <button onclick="resetRitual()" class="btn btn-gold-outline" style="font-size: 0.75rem; padding: 6px 15px; opacity: 0.6;">重新祈願</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
+        <!-- Restoration of Original Sections -->
         <section id="intro" class="section intro-section">
             <div class="container">
                 <div class="section-title">
-                    <span class="label" data-i18n="label_intro">Introduction</span>
-                    <h2 data-i18n="title_intro">森與靈的守護者</h2>
+                    <span class="label">Introduction</span>
+                    <h2>森與靈的守護者</h2>
                 </div>
                 <div class="intro-grid">
                     <div class="intro-text">
-                        <p id="intro-desc"></p>
+                        <p id="intro-desc">這裡記載著石虎與山林的漫長對話...</p>
                         <div id="intro-stats" class="stats-grid"></div>
                     </div>
                     <div class="intro-gallery">
-                        <img src="./art/documentary/forest-peek.png" alt="野生石虎：林間窺視" class="doc-img">
-                        <img src="./art/documentary/road-threshold.png" alt="生存考驗：橫越道路" class="doc-img">
+                        <img src="./art/documentary/forest-peek.png" class="doc-img">
+                        <img src="./art/documentary/road-threshold.png" class="doc-img">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="chronicle" class="section chronicle-section">
+        <section id="chronicle" class="section">
             <div class="container">
-                <div class="section-title">
-                    <span class="label" data-i18n="label_history">History</span>
-                    <h2 data-i18n="title_history">環境生命紀事</h2>
-                </div>
+                <div class="section-title"><span class="label">History</span><h2>環境生命紀事</h2></div>
                 <div id="events-list" class="timeline"></div>
-                <div class="section-cta">
-                    <a href="#gallery" class="btn btn-gold-outline" data-i18n="btn_gallery">進入大阿爾克那展廳</a>
-                </div>
             </div>
         </section>
 
-        <section id="gallery" class="section gallery-section">
+        <section id="gallery" class="section">
             <div class="container">
-                <div class="section-title">
-                    <span class="label" data-i18n="label_gallery">The Tarot Gallery</span>
-                    <h2 data-i18n="title_gallery">大阿爾克那：石虎的生命旅程</h2>
-                </div>
-                
-                <div id="gallery-container">
-                    <!-- Groups will be injected here -->
-                </div>
-            </div>
-        </section>
-
-        <section id="conservation" class="section conservation-section">
-            <div class="container">
-                <div class="section-title">
-                    <span class="label" data-i18n="label_cta">Call to Action</span>
-                    <h2 id="cons-title" data-i18n="title_cons"></h2>
-                </div>
-                <div class="cons-content">
-                    <p id="cons-desc" class="content-text"></p>
-                    <div id="cons-links" class="cons-grid"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="support" class="section support-section">
-            <div class="container">
-                <div class="support-card">
-                    <span class="label" data-i18n="label_support">Support the Sanctuary</span>
-                    <h2 data-i18n="title_support">支持與贊助</h2>
-                    <p class="content-text" data-i18n="desc_support">如果您認同我們的理念，歡迎透過以下方式支持計畫持續運作，讓石虎的靈魂故事能繼續傳承。</p>
-                    <div class="support-actions">
-                        <a href="https://buymeacoffee.com/registerc" target="_blank" class="btn btn-coffee">Buy me a Coffee</a>
-                        <a href="https://www.paypal.com/paypalme/alstonhuang" target="_blank" class="btn btn-paypal">PayPal</a>
-                    </div>
-                </div>
+                <div class="section-title"><span class="label">Gallery</span><h2>大阿爾克那：石虎的生命旅程</h2></div>
+                <div id="gallery-container"></div>
             </div>
         </section>
 
         <footer class="footer">
-            <p data-i18n="copyright">&copy; 2026 LeopardCat Tarot Project. All rights reserved.</p>
+            <p>&copy; 2026 LeopardCat Tarot Project. All rights reserved.</p>
         </footer>
     </div>
-    
+
 </body>
 </html>

@@ -2,23 +2,54 @@
   "id": "card-wa-10-ten-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "X",
-  "title": "TEN OF WANDS",
-  "subtitle": "Burden / Carrying the Future / Overwhelmed",
+  "number": 110,
+  "title": {
+    "zh": "權杖十",
+    "en": "TEN OF WANDS"
+  },
+  "subtitle": "The Stewardship Burden / Path to Healing",
   "slug": "ten-of-wands",
-  "status": "draft",
+  "status": "rework_needed",
   "size": {
     "width": 1400,
     "height": 2420
   },
   "palette": {
-    "top": [20, 15, 10],
-    "bottom": [60, 45, 30],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [15, 12, 10],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      20,
+      15,
+      10
+    ],
+    "bottom": [
+      60,
+      45,
+      30
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      15,
+      12,
+      10
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "carrying-the-burden",
@@ -29,30 +60,46 @@
   },
   "main_image": "art/generated/card-wa-10-ten-of-wands.png",
   "generation": {
-    "model": "gemini-3.1-flash",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. An anthropomorphic leopard cat bent over, carrying a massive bundle of ten wooden wands on its back as it walks towards a distant town/village at twilight. It is laboring heavily. rosettes and white ear spots are clearly visible. Its head is down, focusing on the path. Atmospheric, heavy feel. Full bleed. No text. No borders.",
-    "narrative": "A leopard cat carries the weight of its entire disappearing species. Each wand represents a habitat fragment it must navigate to reach the distant 'village' of coexistence."
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS but bent over, carrying a heavy bundle of EXACTLY TEN wooden wands on his back. He is holding the bundle WITH ITS PAWS and walking toward a distant ridge at twilight. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "narrative": "The leopard cat carries the heavy weight of habitat management and stewardship, a necessary burden to ensure the path to ecological healing remains open."
   },
-  "ornaments": ["heavy-bundle"],
+  "ornaments": [
+    "heavy-bundle"
+  ],
   "output": "art/renders/card-wa-10-ten-of-wands.png",
   "meanings": {
-    "upright": "Burden, overextension, carrying too much responsibility, and the struggle of local conservationists and the cats themselves.",
-    "reversed": "Release of burden, collapse from overwork, or avoiding responsibility for the species' future.",
-    "keywords": ["burden", "responsibility", "overextension", "labor"]
+    "upright": "Responsibility, stewardship, heavy load, and the hard work of active habitat restoration.",
+    "reversed": "Release of burden, collapse from overwork, or avoiding the necessary work of education and management.",
+    "keywords": [
+      "responsibility",
+      "stewardship",
+      "burden",
+      "labor"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
     "life_stage": "adult",
     "habitat_fragment": "roadside industrial area",
-    "risk_theme": "the weight of extinction risk",
-    "mapping_note": "Ten of Wands is the 'Conservation Burden'—the overwhelming weight of habitat loss and human expansion that a single survivor must carry."
+    "risk_theme": "the weight of extinction risk vs active management",
+    "mapping_note": "Ten of Wands is the 'Stewardship Burden'—the heavy responsibility of active habitat management and the educational labor required to reverse the species' decline."
   },
   "website": {
-    "excerpt": "Under the weight of ten wands, the leopard cat carries the burden of survival through a shrinking world.",
+    "excerpt": "A heavy path toward healing, the leopard cat carries the responsibility of a species' future on its back.",
     "seo_title": "Ten of Wands - LeopardCat Tarot",
-    "seo_description": "Ten of Wands reimagined as the burden of leopard cat extinction risk and habitat loss.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "burden"]
+    "seo_description": "Ten of Wands reimagined as the burden of leopard cat conservation and stewardship.",
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "burden"
+    ]
+  },
+  "meaning": {
+    "zh": "責任、管理重擔、沉重的負荷，以及推動生態復育所必須付出的努力。",
+    "en": "Responsibility, stewardship, heavy load, and the hard work of active habitat restoration."
   }
 }

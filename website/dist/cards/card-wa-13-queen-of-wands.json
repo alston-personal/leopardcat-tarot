@@ -2,23 +2,54 @@
   "id": "card-wa-13-queen-of-wands",
   "arcana": "minor",
   "suit": "wands",
-  "number": "Queen",
-  "title": "QUEEN OF WANDS",
-  "subtitle": "Confident Matriarch / Radiant / Nurturer",
+  "number": 113,
+  "title": {
+    "zh": "權杖皇后",
+    "en": "QUEEN OF WANDS"
+  },
+  "subtitle": "The Matriarch of the Core / Vital Nurturer",
   "slug": "queen-of-wands",
-  "status": "draft",
+  "status": "rework_needed",
   "size": {
     "width": 1400,
     "height": 2420
   },
   "palette": {
-    "top": [220, 180, 50],
-    "bottom": [120, 100, 30],
-    "frame": [219, 203, 156],
-    "frame_inner": [171, 149, 102],
-    "panel": [50, 40, 15],
-    "text_primary": [243, 233, 201],
-    "text_secondary": [198, 186, 151]
+    "top": [
+      220,
+      180,
+      50
+    ],
+    "bottom": [
+      120,
+      100,
+      30
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      50,
+      40,
+      15
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
   },
   "scene": {
     "theme": "radiant-matriarch",
@@ -29,30 +60,46 @@
   },
   "main_image": "art/generated/card-wa-13-queen-of-wands.png",
   "generation": {
-    "model": "gemini-3.1-flash",
+    "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A confident and regal anthropomorphic mother leopard cat (Queen) sitting gracefully on a sunlit log in a forest glade. She holds a wooden wand blooming with yellow sunflowers. She looks out with warmth and hidden strength. rosettes and white ear spots are luminous. Full bleed. No borders.",
-    "narrative": "The Queen of Wands is the 'Luminous Matriarch'—the experienced mother leopard cat who manages her territory with warmth, confidence, and quiet authority."
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A regal Taiwan leopard cat queen STRICTLY STANDING UPRIGHT ON TWO LEGS, sitting on a throne of large golden sunflowers. She wears a rustic cloak adorned with sunflower patterns and holds a wooden wand FIRMLY WITH ITS PAWS. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "narrative": "The matriarch of the core habitat manages her territory with warmth and authority, representing the stable reproductive foundation required for a population's long-term healing."
   },
-  "ornaments": ["sunflowers"],
+  "ornaments": [
+    "sunflowers"
+  ],
   "output": "art/renders/card-wa-13-queen-of-wands.png",
   "meanings": {
-    "upright": "Confidence, warmth, social influence, fertility, and a spirited approach to life and territory.",
-    "reversed": "Self-doubt, manipulation, jealousy, or a loss of influence over one's range.",
-    "keywords": ["confidence", "warmth", "vitality", "social structure"]
+    "upright": "Confidence, warmth, nurturing authority, core stability, and the vibrant health of a breeding population.",
+    "reversed": "Insecurity, loss of core stability, or a failure to nurture the next generation of recovery.",
+    "keywords": [
+      "confidence",
+      "nurturing",
+      "vitality",
+      "core-stability"
+    ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
     "life_stage": "adult-female-breeder",
     "habitat_fragment": "stable core forest breeding site",
     "risk_theme": "the stability of the female range",
-    "mapping_note": "Queen of Wands represents the 'Core Motherhood'—the stable, long-lived females that form the reproductive backbone of the population."
+    "mapping_note": "Queen of Wands represents the 'Matriarch of the Core'—the stable, long-lived females that form the reproductive backbone and the educational source for new generations."
   },
   "website": {
-    "excerpt": "A radiant and confident matriarch, the Queen ensures the vitality and future of her forest kingdom.",
+    "excerpt": "A radiant and confident matriarch, the Queen ensures the vitality and future stability of the core forest kingdom.",
     "seo_title": "Queen of Wands - LeopardCat Tarot",
-    "seo_description": "Queen of Wands reimagined as a confident leopard cat matriarch and nurturer.",
-    "tags": ["minor-arcana", "wands", "leopard-cat", "feminine-energy"]
+    "seo_description": "Queen of Wands reimagined as a confident leopard cat matriarch and nurturer of the core habitat.",
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "feminine-energy"
+    ]
+  },
+  "meaning": {
+    "zh": "自信、溫暖、滋養的權威、核心棲地的穩定，以及育種族群的蓬勃生機。",
+    "en": "Confidence, warmth, nurturing authority, core stability, and the vibrant health of a breeding population."
   }
 }

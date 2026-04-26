@@ -1,8 +1,11 @@
 {
   "id": "card-04-the-emperor",
   "arcana": "major",
-  "number": "IV",
-  "title": "THE EMPEROR",
+  "number": 4,
+  "title": {
+    "zh": "皇帝",
+    "en": "THE EMPEROR"
+  },
   "subtitle": "Structure / Territory / Authority",
   "slug": "the-emperor",
   "status": "draft",
@@ -58,7 +61,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V4_EMPEROR_NO_BORDER]...",
+    "image_prompt": "[CLEAN_V4_EMPEROR_NO_BORDER]... High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "A large, powerful adult male anthropomorphic Taiwan leopard cat standing firmly on a high rocky ridge at night. He has an authoritative, stern gaze, overseeing a sweeping valley of fragmented forests and moonlit hills. His posture is rigid and commanding, representing the structure and protection of a large home territory. Deep earthy red and dark iron-like color palette."
   },
   "ornaments": [
@@ -94,5 +97,9 @@
       "authority",
       "leopard-cat"
     ]
+  },
+  "meaning": {
+    "zh": "Authority, establishment, foundation, protection of territory, and structured leadership.",
+    "en": "Authority, establishment, foundation, protection of territory, and structured leadership."
   }
 }

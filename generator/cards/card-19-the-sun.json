@@ -61,7 +61,7 @@
     "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A giant golden sun with human-like features shines over a lush field of sunflowers. A cheerful young anthropomorphic leopard cat kitten rides a white horse, holding a bright red banner. Meaning: Abundance, flourishing populations, and the ultimate warmth of a secure and healthy environment.",
     "narrative": "A giant golden sun with human-like features shines over a lush field of sunflowers. A cheerful young anthropomorphic leopard cat kitten rides a white horse, holding a bright red banner. Meaning: Abundance, flourishing populations, and the ultimate warmth of a secure and healthy environment."
   },
-  "output": "art/renders/card-19-19-the-sun.png",
+  "output": "art/renders/card-19-the-sun.png",
   "meaning": {
     "zh": "TBD",
     "en": "TBD"

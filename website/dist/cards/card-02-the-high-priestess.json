@@ -1,8 +1,11 @@
 {
   "id": "card-02-the-high-priestess",
   "arcana": "major",
-  "number": "II",
-  "title": "THE HIGH PRIESTESS",
+  "number": 2,
+  "title": {
+    "zh": "女祭司",
+    "en": "THE HIGH PRIESTESS"
+  },
   "subtitle": "Intuition / Silence / Hidden Waters",
   "slug": "the-high-priestess",
   "status": "draft",
@@ -60,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V2_NO_BORDER]...",
+    "image_prompt": "[CLEAN_V2_NO_BORDER]... High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "An elegant anthropomorphic Taiwan leopard cat standing in a misty sacred stream at night under a silver moon. It is the guardian of the hidden habitat, flanked by two stylized trees forming a gateway. Ethereal lunar colors and mysterious stillness."
   },
   "ornaments": [
@@ -97,5 +100,9 @@
       "intuition",
       "leopard-cat"
     ]
+  },
+  "meaning": {
+    "zh": "Intuition, restraint, inner knowledge, and perception that moves beneath surface noise.",
+    "en": "Intuition, restraint, inner knowledge, and perception that moves beneath surface noise."
   }
 }
