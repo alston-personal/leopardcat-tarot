@@ -7,9 +7,9 @@
     "zh": "權杖十",
     "en": "TEN OF WANDS"
   },
-  "subtitle": "Burden / Carrying the Future / Overwhelmed",
+  "subtitle": "Burden & Responsibility",
   "slug": "ten-of-wands",
-  "status": "draft",
+  "status": "rework_needed",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. An anthropomorphic leopard cat bent over, carrying a massive bundle of ten wooden wands on its back as it walks towards a distant town/village at twilight. It is laboring heavily. rosettes and white ear spots are clearly visible. Its head is down, focusing on the path. Atmospheric, heavy feel. Full bleed. No text. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs but bent over, carrying a bundle of EXACTLY TEN wooden wands on his back. The wands must be countable and not a messy blur. Walking toward a distant ridge at twilight. Slender build, sharp facial structure, white ear spots, forehead stripes. High-fidelity biological markers.",
     "narrative": "A leopard cat carries the weight of its entire disappearing species. Each wand represents a habitat fragment it must navigate to reach the distant 'village' of coexistence."
   },
   "ornaments": [

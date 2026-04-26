@@ -7,9 +7,9 @@
     "zh": "權杖八",
     "en": "EIGHT OF WANDS"
   },
-  "subtitle": "Rapid Movement / Corridor Transit",
+  "subtitle": "Swiftness & Alignment",
   "slug": "eight-of-wands",
-  "status": "draft",
+  "status": "rework_needed",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. Dynamic scene! Eight wooden wands (branches) are flying through the air parallel across a forest landscape towards the distance. A blurry, high-speed anthropomorphic leopard cat is running beneath them. The direction is toward a distant, moonlit opening (a safe corridor). High sense of motion. rosettes and white ear spots trail behind. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs, pointing toward the sky as EXACTLY EIGHT wooden wands fly through the air in a narrow parallel formation. The cat must be standing upright on two legs (not on four legs). Slender build, sharp facial structure, white ear spots, forehead stripes. High-fidelity biological markers.",
     "narrative": "Eight wands fly through the sky as a leopard cat moves with incredible speed through a newly opened ecological corridor. Everything is in motion, and the destination is close."
   },
   "ornaments": [

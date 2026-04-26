@@ -7,9 +7,9 @@
     "zh": "權杖九",
     "en": "NINE OF WANDS"
   },
-  "subtitle": "Resilience / The Scarred Survivor / Resilience",
+  "subtitle": "Resilience & Persistence",
   "slug": "nine-of-wands",
-  "status": "draft",
+  "status": "rework_needed",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A weather-beaten, anthropomorphic leopard cat standing inside a wall of eight wooden wands. It is leaning on a NINTH wand (a sturdy branch) as a staff. It is an old, wise, and scarred survivor. One ear is slightly notched. It has a bandage on its leg. It looks directly at the viewer with eyes of deep experience and fatigue. rosettes and white ear spots are clearly visible. Full bleed. No text. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs, head bandaged, holding one wooden wand firmly. Behind him, EXACTLY EIGHT more wooden wands are arranged in a narrow, dense semi-circle (Total 9 wands). All wands must be visible and close to the cat to avoid being cut off in vertical crop. Slender build, sharp facial structure, white ear spots, forehead stripes.",
     "narrative": "An old leopard cat survivor, scarred by traps and roads, leans on its staff as a final wall of eight wands protects its core territory. It is the face of species resilience."
   },
   "ornaments": [

@@ -7,9 +7,9 @@
     "zh": "權杖國王",
     "en": "KING OF WANDS"
   },
-  "subtitle": "Visionary Leader / Territorial Master",
+  "subtitle": "Leadership & Innovation",
   "slug": "king-of-wands",
-  "status": "draft",
+  "status": "rework_needed",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A powerful, regal anthropomorphic alpha male leopard cat (King) sitting on a high rocky throne overlooking a vast, secure forest and river valley. He holds a massive wooden wand (a gnarled branch) like a scepter. He looks out with intense vision and mastery of his domain. rosettes and white ear spots are prominent. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A majestic Taiwan leopard cat king standing upright on two legs, sitting on a throne carved with rosettes. He holds a large wooden wand blooming with fire. Slender build (small cat, not a lion), sharp facial structure, white ear spots, forehead stripes. No baked-in text. High-fidelity biological markers.",
     "narrative": "The King of Wands is the 'Old Master of the Land'—the alpha male who has successfully claimed and secured his territory against all odds."
   },
   "ornaments": [
