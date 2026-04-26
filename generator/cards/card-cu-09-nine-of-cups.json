@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A satisfied anthropomorphic leopard cat sitting with arms crossed, nine golden cups arranged behind it in a semi-circle. Warm, rich forest textures. Rich golds and ambers. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text. ANTHROPOMORPHIC: A satisfied Taiwan leopard cat standing upright on two legs, wearing a rich golden embroidered robe. He stands with arms crossed, nine golden cups arranged clearly behind him in a semi-circle. Slender build, sharp facial structure, white ear spots, forehead stripes. Warm, rich forest textures. Full bleed. No borders.",
     "narrative": "The Nine of Cups is 'The Satisfaction'—a successful adult cat that has claimed a resource-rich, safe core habitat."
   },
   "ornaments": [

@@ -7,22 +7,98 @@
     "zh": "聖杯國王",
     "en": "KING OF CUPS"
   },
+  "subtitle": "The Ruler / Stability / Wisdom",
   "slug": "king-of-cups",
-  "meaning": {
-    "zh": "情感的平衡、自律、智者的慈悲、穩定的領導力。在大風大浪中依然保持內心的寧靜。",
-    "en": "Emotional balance, self-control, wise compassion, and stable leadership. Calmness amidst the storms of the soul."
+  "status": "rework_needed",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      255,
+      230,
+      150
+    ],
+    "bottom": [
+      100,
+      200,
+      220
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      40,
+      70,
+      80
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "rainbow-habitat-harmony",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "family-of-leopard-cats"
+  },
+  "main_image": "art/generated/card-cu-14-king-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text. ANTHROPOMORPHIC: A dignified Taiwan leopard cat king standing upright on two legs, wearing a royal purple robe with a thick collar. He sits on a throne shaped like a shell, holding a golden cup. Slender build (not a lion), sharp small-cat facial structure, white ear spots, forehead stripes. Stormy sea background. Full bleed. No borders.",
+    "narrative": "The King of Cups is the Balanced Master—the noble leopard cat that remains calm even when the world shifts around him."
+  },
+  "ornaments": [
+    "double-rainbow",
+    "hillside-home"
+  ],
+  "output": "art/renders/card-cu-14-king-of-cups.png",
+  "meanings": {
+    "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+    "reversed": "Conflict in relationships, family disagreements, or a disconnection from a group.",
+    "keywords": [
+      "happiness",
+      "family",
+      "harmony",
+      "reunion"
+    ]
   },
   "ecology": {
     "zh": "成年雄性石虎展現出極強的領地掌控力。牠們能在大規模的環境變遷中，憑藉智慧與耐力守護族群邊界。",
     "en": "Mature male leopard cats exhibit strong territorial mastery, protecting their kin through large-scale ecosystem changes with wisdom and resilience."
   },
-  "image": "art/renders/card-cu-14-king-of-cups.png",
-  "generation": {
-    "model": "gemini-2.5-flash",
-    "image_size": "1K",
-    "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A wise and tranquil anthropomorphic Taiwan leopard cat (King) on a throne floating on the open sea waves. He holds a golden chalice with calm mastery. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. Deep oceanic blues. 2:3 vertical. Full bleed. No borders.",
-    "narrative": "The King of Cups is the Balanced Master—the noble leopard cat that remains calm even when the world shifts around him."
+  "website": {
+    "excerpt": "Under the double rainbow, the leopard cat family finds a home where all life flows in harmony.",
+    "seo_title": "Ten of Cups - LeopardCat Tarot",
+    "seo_description": "Ten of Cups reimagined as a thriving leopard cat family in a safe, vibrant ecosystem.",
+    "tags": [
+      "minor-arcana",
+      "cups",
+      "leopard-cat",
+      "harmony"
+    ]
   },
-  "status": "rework_needed"
+  "meaning": {
+    "zh": "情感的平衡、自律、智者的慈悲、穩定的領導力。在大風大浪中依然保持內心的寧靜。",
+    "en": "Emotional balance, self-control, wise compassion, and stable leadership. Calmness amidst the storms of the soul."
+  },
+  "image": "art/renders/card-cu-14-king-of-cups.png"
 }

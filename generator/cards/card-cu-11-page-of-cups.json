@@ -7,21 +7,98 @@
     "zh": "聖杯侍者",
     "en": "PAGE OF CUPS"
   },
-  "meaning": {
-    "zh": "靈感的湧現、純真、情感的種子與驚喜。",
-    "en": "New inspiration, innocence, emotional beginnings, and surprises."
+  "subtitle": "The Explorer / Curiosity / Discovery",
+  "slug": "ten-of-cups",
+  "status": "rework_needed",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      255,
+      230,
+      150
+    ],
+    "bottom": [
+      100,
+      200,
+      220
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      40,
+      70,
+      80
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "rainbow-habitat-harmony",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "family-of-leopard-cats"
+  },
+  "main_image": "art/generated/card-cu-11-page-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text, no labels. ANTHROPOMORPHIC: A curious young Taiwan leopard cat standing upright on two legs, wearing a simple blue tunic. He stands by a stream bank, looking up as a dream-fish pops out of a golden cup he holds. Slender juvenile build, sharp facial structure, white ear spots, forehead stripes. Full bleed. No borders.",
+    "narrative": "The Page of Cups represents the spark of discovery—the first time a kitten explores the wonders of the water edge."
+  },
+  "ornaments": [
+    "double-rainbow",
+    "hillside-home"
+  ],
+  "output": "art/renders/card-cu-11-page-of-cups.png",
+  "meanings": {
+    "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+    "reversed": "Conflict in relationships, family disagreements, or a disconnection from a group.",
+    "keywords": [
+      "happiness",
+      "family",
+      "harmony",
+      "reunion"
+    ]
   },
   "ecology": {
     "zh": "初出茅廬的小石虎，帶著好奇心探索溪流與水岸。",
     "en": "A young leopard cat exploring streams and riverbanks with curiosity."
   },
-  "image": "art/renders/card-cu-11-page-of-cups.png",
-  "generation": {
-    "model": "gemini-2.5-flash",
-    "image_size": "1K",
-    "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A curious and innocent young anthropomorphic Taiwan leopard cat (Page) standing by a stream bank, looking up as a dream-fish pops out of a golden cup. High-fidelity biological markers: juvenile narrow head, distinct white forehead lines, large white ear-patches, rosette patterns. 2:3 vertical. Full bleed. No borders.",
-    "narrative": "The Page of Cups represents the spark of discovery—the first time a kitten explores the wonders of the water edge."
+  "website": {
+    "excerpt": "Under the double rainbow, the leopard cat family finds a home where all life flows in harmony.",
+    "seo_title": "Ten of Cups - LeopardCat Tarot",
+    "seo_description": "Ten of Cups reimagined as a thriving leopard cat family in a safe, vibrant ecosystem.",
+    "tags": [
+      "minor-arcana",
+      "cups",
+      "leopard-cat",
+      "harmony"
+    ]
   },
-  "status": "rework_needed"
+  "meaning": {
+    "zh": "靈感的湧現、純真、情感的種子與驚喜。",
+    "en": "New inspiration, innocence, emotional beginnings, and surprises."
+  },
+  "image": "art/renders/card-cu-11-page-of-cups.png"
 }

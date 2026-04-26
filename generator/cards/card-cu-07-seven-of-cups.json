@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A pensive anthropomorphic leopard cat in a silhouette, standing before seven magical clouds, each containing a different golden cup filled with a symbolic vision: a fat chicken (prey), a shimmering mountain, a strange human trap, a pool of clear water, a mate, a crown, and a snake. Swirling, rainbow-tinted dream mist. Imaginative and surreal. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs, wearing a scholar's robe, looking in wonder at EXACTLY SEVEN golden cups floating in a cloud of mist. CENTERED COMPOSITION: All cups must be fully visible and contained within the image frame, nothing cut off. Slender build, sharp facial structure, white ear spots, forehead stripes. Ethereal atmosphere. Full bleed. No borders.",
     "narrative": "The Seven of Cups is 'The Choice'—the confusing array of potential paths that a dispersing leopard cat must navigate."
   },
   "ornaments": [

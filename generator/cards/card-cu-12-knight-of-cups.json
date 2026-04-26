@@ -7,21 +7,98 @@
     "zh": "聖杯騎士",
     "en": "KNIGHT OF CUPS"
   },
-  "meaning": {
-    "zh": "優雅的追求、浪漫、情感的使者、直覺的引導。",
-    "en": "Elegant pursuit, romance, messenger of emotions, intuitive guidance."
+  "subtitle": "The Messenger / Romance / Pursuit",
+  "slug": "ten-of-cups",
+  "status": "rework_needed",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      255,
+      230,
+      150
+    ],
+    "bottom": [
+      100,
+      200,
+      220
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      40,
+      70,
+      80
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "rainbow-habitat-harmony",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "family-of-leopard-cats"
+  },
+  "main_image": "art/generated/card-cu-12-knight-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text. ANTHROPOMORPHIC: An elegant Taiwan leopard cat standing upright on two legs, wearing a silver knightly tunic and a flowing teal cape. He holds a golden cup forward as if offering a toast. Slender build, sharp facial structure, white ear spots, forehead stripes. Misty morning river background. Full bleed. No borders.",
+    "narrative": "The Knight of Cups is the Messenger of Instinct—the young leopard cat exploring new territory with grace."
+  },
+  "ornaments": [
+    "double-rainbow",
+    "hillside-home"
+  ],
+  "output": "art/renders/card-cu-12-knight-of-cups.png",
+  "meanings": {
+    "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+    "reversed": "Conflict in relationships, family disagreements, or a disconnection from a group.",
+    "keywords": [
+      "happiness",
+      "family",
+      "harmony",
+      "reunion"
+    ]
   },
   "ecology": {
     "zh": "石虎少年在領地邊緣穿梭，尋找屬於自己的水源與家園。",
     "en": "A juvenile leopard cat traversing territory edges searching for home."
   },
-  "image": "art/renders/card-cu-12-knight-of-cups.png",
-  "generation": {
-    "model": "gemini-2.5-flash",
-    "image_size": "1K",
-    "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. An elegant and introspective anthropomorphic Taiwan leopard cat (Knight) riding a mystical feline-steed across a shallow river. He holds a golden cup forward. High-fidelity biological markers: narrow small-cat face, distinct white stripes from nose to forehead, white spots behind ears, slender build. soft teal and morning mist colors. 2:3 vertical. Full bleed. No borders.",
-    "narrative": "The Knight of Cups is the Messenger of Instinct—the young leopard cat exploring new territory with grace."
+  "website": {
+    "excerpt": "Under the double rainbow, the leopard cat family finds a home where all life flows in harmony.",
+    "seo_title": "Ten of Cups - LeopardCat Tarot",
+    "seo_description": "Ten of Cups reimagined as a thriving leopard cat family in a safe, vibrant ecosystem.",
+    "tags": [
+      "minor-arcana",
+      "cups",
+      "leopard-cat",
+      "harmony"
+    ]
   },
-  "status": "rework_needed"
+  "meaning": {
+    "zh": "優雅的追求、浪漫、情感的使者、直覺的引導。",
+    "en": "Elegant pursuit, romance, messenger of emotions, intuitive guidance."
+  },
+  "image": "art/renders/card-cu-12-knight-of-cups.png"
 }

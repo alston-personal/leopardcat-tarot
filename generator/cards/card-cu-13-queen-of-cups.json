@@ -7,21 +7,98 @@
     "zh": "聖杯皇后",
     "en": "QUEEN OF CUPS"
   },
-  "meaning": {
-    "zh": "慈悲、直覺、情感的豐沛與深刻的同理心。",
-    "en": "Compassion, intuition, emotional depth, and deep empathy."
+  "subtitle": "The Nurturer / Compassion / Intuition",
+  "slug": "ten-of-cups",
+  "status": "rework_needed",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      255,
+      230,
+      150
+    ],
+    "bottom": [
+      100,
+      200,
+      220
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      40,
+      70,
+      80
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "rainbow-habitat-harmony",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "family-of-leopard-cats"
+  },
+  "main_image": "art/generated/card-cu-13-queen-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text. ANTHROPOMORPHIC: A serene Taiwan leopard cat queen standing upright on two legs, wearing a flowing gown of sea-foam green and a simple crown. She holds a closed, ornate golden cup. Slender build, sharp facial structure, white ear spots, forehead stripes. Calm seaside background. Full bleed. No borders.",
+    "narrative": "The Queen of Cups embodies the intuitive protector—the mother leopard cat who masters the wisdom of the forest waters."
+  },
+  "ornaments": [
+    "double-rainbow",
+    "hillside-home"
+  ],
+  "output": "art/renders/card-cu-13-queen-of-cups.png",
+  "meanings": {
+    "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+    "reversed": "Conflict in relationships, family disagreements, or a disconnection from a group.",
+    "keywords": [
+      "happiness",
+      "family",
+      "harmony",
+      "reunion"
+    ]
   },
   "ecology": {
     "zh": "成年雌性石虎，守護著育幼區的生態平衡，充滿生存智慧。",
     "en": "A mature female leopard cat maintaining balance in nursery areas with wisdom."
   },
-  "image": "art/renders/card-cu-13-queen-of-cups.png",
-  "generation": {
-    "model": "gemini-2.5-flash",
-    "image_size": "1K",
-    "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. A soulful and compassionate anthropomorphic Taiwan leopard cat (Queen) sitting on a shell-decorated throne by a crystal stream. She gazes into an ornate golden cup. High-fidelity biological markers: narrow small-cat facial structure, white forehead stripes, white eye-liner, and large white spots behind ears. Reflective deep-water blues. 2:3 vertical. Full bleed. No borders.",
-    "narrative": "The Queen of Cups embodies the intuitive protector—the mother leopard cat who masters the wisdom of the forest waters."
+  "website": {
+    "excerpt": "Under the double rainbow, the leopard cat family finds a home where all life flows in harmony.",
+    "seo_title": "Ten of Cups - LeopardCat Tarot",
+    "seo_description": "Ten of Cups reimagined as a thriving leopard cat family in a safe, vibrant ecosystem.",
+    "tags": [
+      "minor-arcana",
+      "cups",
+      "leopard-cat",
+      "harmony"
+    ]
   },
-  "status": "rework_needed"
+  "meaning": {
+    "zh": "慈悲、直覺、情感的豐沛與深刻的同理心。",
+    "en": "Compassion, intuition, emotional depth, and deep empathy."
+  },
+  "image": "art/renders/card-cu-13-queen-of-cups.png"
 }
