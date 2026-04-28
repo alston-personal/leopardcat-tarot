@@ -60,10 +60,10 @@
   },
   "main_image": "art/generated/card-wa-09-nine-of-wands.png",
   "generation": {
-    "model": "gemini-2.5-flash",
+    "model": "gemini-3.1-flash-image",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[TECHNICAL: Aspect Ratio 2:3 Vertical, Edge-to-Edge Continuous, NO TEXT, NO BORDERS, NO FRAMES, NO INNER FRAMES, NO MARGINS] Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content MUST touch all four edges. ABSOLUTELY NO TEXT. STRICTLY ANTHROPOMORPHIC. Taiwan leopard cat with white ear spots, forehead stripes, rosette patterns. SCENE: A wounded Taiwan leopard cat standing defensively. EXACTLY NINE (9) wooden wands total. He holds ONE wand. Behind him are exactly EIGHT (8) wands planted in the ground tightly together in the center. Let's count them: exactly 1,2,3,4,5,6,7,8 wands behind him. Total 9 wands perfectly visible. None are cut off by the edges.",
+    "image_prompt": "[TECHNICAL: Aspect Ratio 2:3 Vertical, Edge-to-Edge Continuous, NO TEXT, NO BORDERS, NO FRAMES, NO INNER FRAMES, NO MARGINS] Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content MUST touch all four edges. ABSOLUTELY NO TEXT. STRICTLY ANTHROPOMORPHIC. Taiwan leopard cat with white ear spots, forehead stripes, rosette patterns. SCENE: A wounded Taiwan leopard cat standing defensively. EXACTLY NINE (9) wooden wands total in the image. The cat holds ONE wand. Behind the cat, there are EXACTLY EIGHT (8) other wands planted vertically. CRITICAL: The wands MUST be very tall, taller than the leopard cat, and clustered CLOSELY together in the center-background (4 on each side of the cat) so they are NOT cut off by the image edges. All 9 wands must be fully visible within the center 70% of the width.",
     "narrative": "A leopard cat stands guard over a restored corridor, representing the resilience required to maintain ecological gains against ongoing threats."
   },
   "ornaments": [
