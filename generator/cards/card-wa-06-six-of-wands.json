@@ -9,7 +9,7 @@
   },
   "subtitle": "The Conservation Success / Public Hope",
   "slug": "six-of-wands",
-  "status": "rework_needed",
+  "status": "completed",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: One noble Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS, riding atop a large friendly wild dog (or walking in a procession). The cat holds a single wooden wand FIRMLY WITH ITS PAWS, adorned with a laurel wreath of green leaves. Other leopard cats cheer in the background. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "image_prompt": "A Taiwan leopard cat standing upright and riding a horse (feline-proportioned horse) in a victory parade. He wears a laurel wreath and a victory cloak. He holds a wooden wand decorated with a wreath. Five other leopard cats in the background hold wooden wands upright (EXACTLY SIX WANDS TOTAL). Triumphant celebratory atmosphere. High-fidelity biological markers: white ear spots, forehead stripes, white muzzle. 2:3 vertical crop compatible composition. No text. Earthy color palette. Full bleed. High detail on leopard cat rosette patterns. No borders.",
     "narrative": "A leopard cat returns in triumph, symbolizing a successful restoration effort that has become a beacon of hope for the public."
   },
   "ornaments": [
