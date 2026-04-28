@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A symbolic illustration of a fallen Taiwan leopard cat lying at the edge of a dark asphalt road. EXACTLY 10 silver swords are pierced through its back. All 10 swords must be clearly visible. The image must fill the entire canvas edge to edge, absolutely no vintage borders, no frames, no white margins.",
+    "image_prompt": "[TECHNICAL: Aspect Ratio 2:3 Vertical, Edge-to-Edge Continuous, NO TEXT, NO BORDERS] Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: No white margins. The subject is an ANTHROPOMORPHIC Taiwan leopard cat lying on its stomach on a dark road under a stormy sky, wearing tattered mystical robes. It has white spots on the back of its ears and white forehead stripes. EXACTLY 10 silver swords are pierced vertically into its back, arranged in two orderly rows of five. Every hilt must have a corresponding point coming through the other side. Exactly 10 hilts and 10 points. No extra hilts. Dark, tragic, and somber mood.",
     "narrative": "The Ten of Swords is 'The Final Toll'—the ultimate tragedy of roadkill, representing the lowest point for a population's survival."
   },
   "ornaments": [
@@ -72,31 +72,31 @@
   ],
   "output": "art/renders/card-sw-10-ten-of-swords.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
-    "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+    "upright": "Tragedy, betrayal, rock bottom, defeat, and painful endings.",
+    "reversed": "Recovery, resisting rock bottom, and the possibility of a new beginning after disaster.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "tragedy",
+      "defeat",
+      "ending",
+      "pain"
     ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
     "life_stage": "adult",
-    "habitat_fragment": "protected forest cave/hollow",
-    "risk_theme": "stress-induced immunosuppression",
+    "habitat_fragment": "roadside",
+    "risk_theme": "roadkill mortality",
     "mapping_note": "Ten of Swords represents 'Roadkill Mortality'—the most severe threat to leopard cats, serving as a powerful warning of the cost of fragmentation."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
+    "excerpt": "When the road cuts through the heart of the forest, the price is paid in blood. A tragic end, but perhaps a lesson for the survivors.",
     "seo_title": "Ten Of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "seo_description": "Ten of Swords reimagined as the tragedy of roadkill mortality for the Taiwan leopard cat.",
     "tags": [
       "minor-arcana",
       "swords",
       "leopard-cat",
-      "rest"
+      "tragedy"
     ]
   },
   "meaning": {

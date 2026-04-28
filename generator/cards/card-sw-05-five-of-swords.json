@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Two Taiwan leopard cats standing upright and engaged in a tense territorial dispute at the edge of a forest. One cat stands triumphantly with three swords, while the other walks away defeated with two swords. Cold, gray sky. Tense atmosphere.",
+    "image_prompt": "[TECHNICAL: Aspect Ratio 2:3 Vertical, Edge-to-Edge Continuous, NO TEXT, NO BORDERS] Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: No white margins. The subject is an ANTHROPOMORPHIC Taiwan leopard cat standing upright on two legs, wearing a worn traveler's tunic and trousers. It has white spots on the back of its ears and white forehead stripes. It stands triumphantly in a cold gray forest. It holds EXACTLY 5 swords in its paws: 3 swords are held together in its right paw, and 2 swords are held in its left paw. Every hilt and every point must be distinct and aligned. Exactly 5 hilts, exactly 5 sword points. In the background, another leopard cat in common clothing walks away into the mist. Dark, tense atmosphere.",
     "narrative": "The Five of Swords is 'The Dispute'—the unfortunate reality of intraspecific competition when habitat fragments become too small to support multiple territories."
   },
   "ornaments": [
@@ -72,31 +72,31 @@
   ],
   "output": "art/renders/card-sw-05-five-of-swords.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
-    "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+    "upright": "Conflict, tension, loss, defeat, winning at all costs, and betrayal.",
+    "reversed": "End of conflict, reconciliation, regret, and learning from past mistakes.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "conflict",
+      "loss",
+      "defeat",
+      "betrayal"
     ]
   },
   "ecology": {
     "species_focus": "Taiwan leopard cat",
     "life_stage": "adult",
-    "habitat_fragment": "protected forest cave/hollow",
-    "risk_theme": "stress-induced immunosuppression",
+    "habitat_fragment": "territory boundary",
+    "risk_theme": "intraspecific competition",
     "mapping_note": "Five of Swords represents 'Territorial Compression'—the friction caused when leopard cats are forced into overlapping ranges due to habitat loss."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
+    "excerpt": "In the shrinking forest, the struggle for territory leaves no room for peace. One wins, but at what cost to the species?",
     "seo_title": "Five Of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "seo_description": "Five of Swords reimagined as territorial conflict among leopard cats in fragmented habitats.",
     "tags": [
       "minor-arcana",
       "swords",
       "leopard-cat",
-      "rest"
+      "conflict"
     ]
   },
   "meaning": {

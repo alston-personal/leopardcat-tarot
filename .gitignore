@@ -8,3 +8,7 @@ __pycache__/
 generator/render_service.log
 art/renders/*-direct-service.png
 website/fortune.log
+website/dist/
+website/node_modules/
+node_modules/
+.DS_Store

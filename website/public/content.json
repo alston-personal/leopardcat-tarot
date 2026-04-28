@@ -84,7 +84,8 @@
       {"id": "cosmic", "title": "第三階段：覺醒與和諧 (15-21)", "description": "超越災難與夢境，達成與人類文明的最終和諧。"},
       {"id": "wands", "title": "權杖組：行動與領地佈局", "description": "象徵族群開拓與新棲地的探索過程，每一次播遷都是生存的契機。"},
       {"id": "cups", "title": "聖杯組：水源與直覺連結", "description": "象徵石虎與溪流生境的命脈關係，代表情感、親性與內在直覺。"},
-      {"id": "swords", "title": "寶劍組：衝突與生存決斷", "description": "象徵石虎在危機四伏的地景中所需的洞察力與決定，面對生存邊緣的智慧。"}
+      {"id": "swords", "title": "寶劍組：衝突與生存決斷", "description": "象徵石虎在危機四伏的地景中所需的洞察力與決定，面對生存邊緣的智慧。"},
+      {"id": "pentacles", "title": "金幣組：物質豐饒與地景資源", "description": "象徵石虎對食物來源、穩定棲地與物質基礎的掌握，代表生存的保障。"}
     ],
     "support": {
       "label_support": "贊助支持",
@@ -180,7 +181,8 @@
       {"id": "cosmic", "title": "Phase III: Awakening & Harmony (15-21)", "description": "Transcending disasters and dreams to reach final harmony with human civilization."},
       {"id": "wands", "title": "Suit of Wands: Action & Territory", "description": "Symbolizing the expansion of the population and the search for new habitats. Every dispersal is a spark of survival."},
       {"id": "cups", "title": "Suit of Cups: Water & Intuition", "description": "Symbolizing the bond with water habitats, representing emotion, healing, and inner vision."},
-      {"id": "swords", "title": "Suit of Swords: Conflict & Survival Logic", "description": "Symbolizing the sharp focus and decision-making required for survival in a dangerous, human-altered landscape."}
+      {"id": "swords", "title": "Suit of Swords: Conflict & Survival Logic", "description": "Symbolizing the sharp focus and decision-making required for survival in a dangerous, human-altered landscape."},
+      {"id": "pentacles", "title": "Suit of Pentacles: Abundance & Resource", "description": "Symbolizing the mastery of food sources and stable habitats, representing the foundation of physical survival."}
     ],
     "support": {
       "label_support": "Support the Project",
