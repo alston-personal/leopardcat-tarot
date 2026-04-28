@@ -9,7 +9,7 @@
   },
   "subtitle": "Planning & Evaluation",
   "slug": "two-of-wands",
-  "status": "rework_needed",
+  "status": "prompt_ready",
   "size": {
     "width": 1400,
     "height": 2420
@@ -60,16 +60,15 @@
   },
   "main_image": "art/generated/card-wa-02-two-of-wands.png",
   "generation": {
-    "model": "gemini-3.1-flash",
+    "model": "gemini-2.0-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs on a cliff overlook. He holds EXACTLY TWO wooden wands: one held firmly in his hand, and another one standing vertically beside him on the ground. In his other hand, he holds a small, glowing world-globe orb. Slender build, sharp facial structure, white ear spots, forehead stripes. High-fidelity biological markers. 2:3 vertical crop compatible composition.",
+    "image_prompt": "A tall Taiwan leopard cat standing upright on a cliff overlook. He holds EXACTLY TWO wooden wands: one held firmly in his hand, and another one standing vertically beside him on the ground. In his other hand, he holds a small, glowing world-globe orb. Wearing a traveler's hooded cloak. Looking out over a vast coastline at sunset.",
     "narrative": "A leopard cat stands at a vantage point, holding its territory in its hand while evaluating the distant fragments of forest. It represents the crucial planning stage before moving into new habitat."
   },
   "ornaments": [
     "glowing-orb"
   ],
-  "output": "art/renders/card-wa-02-two-of-wands.png",
   "meanings": {
     "upright": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments.",
     "reversed": "Indecision, fear of the unknown, or poor evaluation of landscape safety.",
@@ -99,7 +98,7 @@
     ]
   },
   "meaning": {
-    "zh": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments.",
+    "zh": "規劃、決策、目光遠大，並評估不同棲地碎片之間的潛在路徑。",
     "en": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments."
   }
 }

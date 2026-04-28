@@ -9,7 +9,7 @@
   },
   "subtitle": "The Scout of Renewal / Youthful Discovery",
   "slug": "page-of-wands",
-  "status": "rework_needed",
+  "status": "prompt_ready",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A youthful Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS in a lush meadow, wearing a small green explorer's vest. Curiously holding a slender wooden wand FIRMLY WITH ITS PAWS. Surrounded by butterflies and wildflowers. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "image_prompt": "A young Taiwan leopard cat standing upright in a desert-like landscape. He wears a brightly colored tunic and a hat with a feather. He holds a single tall wooden wand with both hands and looks at it with curiosity and inspiration. Youthful and enthusiastic energy.",
     "narrative": "A young leopard cat explores a newly restored safe zone, representing the first generation of hope and the curiosity required for ecological discovery."
   },
   "ornaments": [

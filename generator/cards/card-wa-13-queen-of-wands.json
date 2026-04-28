@@ -9,7 +9,7 @@
   },
   "subtitle": "The Matriarch of the Core / Vital Nurturer",
   "slug": "queen-of-wands",
-  "status": "rework_needed",
+  "status": "prompt_ready",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,8 +63,8 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A regal Taiwan leopard cat queen STRICTLY STANDING UPRIGHT ON TWO LEGS, sitting on a throne of large golden sunflowers. She wears a rustic cloak adorned with sunflower patterns and holds a wooden wand FIRMLY WITH ITS PAWS. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
-    "narrative": "The matriarch of the core habitat manages her territory with warmth and authority, representing the stable reproductive foundation required for a population's long-term healing."
+    "image_prompt": "A regal female Taiwan leopard cat standing upright, seated on a throne decorated with sunflowers. She wears flowing yellow robes and a crown. She holds a single wooden wand in one hand and a sunflower in the other. A small black domestic cat sits at her feet. Confident and warm energy, with leopard cat rosette patterns, forehead stripes, and white muzzle. 2:3 vertical composition. Earthy color palette. High detail. No text.",
+    "narrative": "The Queen of Wands represents the nurturing but fierce protection of the habitat, embodying the balance of power and compassion in conservation."
   },
   "ornaments": [
     "sunflowers"

@@ -9,7 +9,7 @@
   },
   "subtitle": "The Master of the Landscape / Visionary Leader",
   "slug": "king-of-wands",
-  "status": "rework_needed",
+  "status": "prompt_ready",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,8 +63,8 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A majestic Taiwan leopard cat king STRICTLY STANDING UPRIGHT ON TWO LEGS, sitting on a throne of stone carved with salamander motifs. He wears a heavy robe patterned with rosettes and holds a large wooden wand FIRMLY WITH ITS PAWS. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
-    "narrative": "The king of the landscape has secured a vast and healthy territory, representing the ultimate visionary goal of large-scale ecological integration and species healing."
+    "image_prompt": "A powerful male Taiwan leopard cat seated on a throne decorated with lions. He wears high-status royal robes and sturdy leather boots (no bare feet). He holds a large wooden wand and looks out over a vast integrated landscape. Agile and authoritative posture.",
+    "narrative": "The King of Wands embodies the strategic vision required for landscape-level conservation, ensuring that all pieces of the ecological puzzle fit together for the species' future."
   },
   "ornaments": [
     "rocky-throne"

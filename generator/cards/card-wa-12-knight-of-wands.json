@@ -9,7 +9,7 @@
   },
   "subtitle": "The Champion of Connectivity / Bold Dispersal",
   "slug": "knight-of-wands",
-  "status": "rework_needed",
+  "status": "prompt_ready",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,8 +63,8 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A spirited sub-adult Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS, charging through tall golden grass, wearing light leather ranger armor and a flowing forest-green cloak. He holds a sturdy wooden wand forward FIRMLY WITH ITS PAWS. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
-    "narrative": "A sub-adult leopard cat disperses through a newly established corridor, representing the bold action required to reconnect fragmented populations."
+    "image_prompt": "A Taiwan leopard cat knight standing upright and riding a charging horse (feline-proportioned). He wears a suit of armor with a plume of fire on his helmet. He holds a single wooden wand like a lance. The background shows desert hills. High energy and momentum.",
+    "narrative": "A courageous leopard cat moves with determination to secure a new territory, representing the active protection required for species survival."
   },
   "ornaments": [
     "golden-grass"
