@@ -69,7 +69,8 @@
     "life_stage": "elderly adult",
     "habitat_fragment": "stable, low-disturbance mature forest and animal runs (trails)",
     "risk_theme": "disruption of traditional migration corridors and home ranges",
-    "mapping_note": "The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries."
+    "mapping_note": "The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries.",
+    "zh": "棲地樣貌：stable, low-disturbance mature forest and animal runs (trails) 。 生存威脅：disruption of traditional migration corridors and home ranges 。 牌義關聯：The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries. 。 石虎特徵：台灣石虎 。 生命階段：elderly adult"
   },
   "output": "art/renders/card-05-the-hierophant.png",
   "meanings": {
