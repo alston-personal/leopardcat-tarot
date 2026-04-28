@@ -1,5 +1,5 @@
 {
-  "id": "card-pe-10-tenof-ofof-pentacles",
+  "id": "card-pe-10-ten-of-pentacles",
   "arcana": "minor",
   "suit": "pentacles",
   "number": 410,
@@ -7,7 +7,7 @@
     "zh": "錢幣十",
     "en": "TEN OF PENTACLES"
   },
-  "subtitle": "Legacy & Wealth",
+  "subtitle": "Legacy / Inheritance",
   "slug": "ten-of-pentacles",
   "status": "prompt_ready",
   "size": {
@@ -63,22 +63,20 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A multi-generational scene with several Taiwan leopard cats (old and young) gathered in a large, ancient forest courtyard decorated with ten golden pentacles. They look healthy and secure. Sense of family, heritage, and long-term stability.",
+    "image_prompt": "A large multi-generational group of Taiwan leopard cats (adults and kittens) gathered in a stable, old-growth forest. Symbols of wealth and legacy surround them.",
     "narrative": "The Ten of Pentacles is 'The Lasting Legacy'—the vision of a stable, thriving multi-generational population in a large, interconnected landscape."
   },
   "ornaments": [
-    "stone-effigy",
-    "hanging-swords"
+    "golden-coins",
+    "lush-vegetation"
   ],
-  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "output": "art/renders/card-pe-10-ten-of-pentacles.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "upright": "Legacy, family inheritance, long-term stability, and the establishment of permanent nature reserves.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "legacy",
+      "inheritance"
     ]
   },
   "ecology": {
@@ -86,21 +84,21 @@
     "life_stage": "adult",
     "habitat_fragment": "protected forest cave/hollow",
     "risk_theme": "stress-induced immunosuppression",
-    "mapping_note": "Ten of Pentacles represents 'Metapopulation Persistence'—the ultimate conservation goal of a self-sustaining population across generations."
+    "mapping_note": "Ten of Pentacles represents 'Generational Persistence'—the long-term survival of a leopard cat population across multiple generations in a protected landscape."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
-    "seo_title": "Four of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "excerpt": "The TEN OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
+    "seo_title": "TEN OF PENTACLES - LeopardCat Tarot",
+    "seo_description": "Legacy, family inheritance, long-term stability, and the establishment of permanent nature reserves.",
     "tags": [
       "minor-arcana",
-      "swords",
+      "pentacles",
       "leopard-cat",
-      "rest"
+      "abundance"
     ]
   },
   "meaning": {
-    "zh": "財富、傳統、家庭、長久的成功，以及族群代代相傳的繁榮。",
-    "en": "Wealth, tradition, family, long-term success, and the prosperity of a population across generations."
+    "zh": "遺產、家族傳承、長遠穩定，以及建立永久的自然保護區。",
+    "en": "Legacy, family inheritance, long-term stability, and the establishment of permanent nature reserves."
   }
 }

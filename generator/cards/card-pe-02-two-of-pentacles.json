@@ -1,5 +1,5 @@
 {
-  "id": "card-pe-02-twoof-ofof-pentacles",
+  "id": "card-pe-02-two-of-pentacles",
   "arcana": "minor",
   "suit": "pentacles",
   "number": 402,
@@ -7,7 +7,7 @@
     "zh": "錢幣二",
     "en": "TWO OF PENTACLES"
   },
-  "subtitle": "Balance & Resource Management",
+  "subtitle": "Balance / Adaptability",
   "slug": "two-of-pentacles",
   "status": "prompt_ready",
   "size": {
@@ -63,22 +63,20 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A Taiwan leopard cat standing upright and skillfully juggling two golden circular emblems (pentacles). Background shows a landscape transitioning between a farm and a forest. The cat looks agile and focused, managing its time between two habitat types.",
+    "image_prompt": "An upright Taiwan leopard cat balancing two large golden coins (marked with paw prints) while standing on a fallen log across a stream. Agile and focused.",
     "narrative": "The Two of Pentacles is 'The Habitat Balance'—the ability of an individual to manage its time and energy between different hunting and resting patches."
   },
   "ornaments": [
-    "stone-effigy",
-    "hanging-swords"
+    "golden-coins",
+    "lush-vegetation"
   ],
-  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "output": "art/renders/card-pe-02-two-of-pentacles.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "upright": "Balance, adaptability, managing multiple priorities, and moving between fragmented habitats.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "balance",
+      "adaptability"
     ]
   },
   "ecology": {
@@ -86,21 +84,21 @@
     "life_stage": "adult",
     "habitat_fragment": "protected forest cave/hollow",
     "risk_theme": "stress-induced immunosuppression",
-    "mapping_note": "Two of Pentacles represents 'Temporal Activity Mapping'—how leopard cats adjust their behavior to exploit different resources throughout the day."
+    "mapping_note": "Two of Pentacles represents 'Fragment Management'—the need for leopard cats to balance hunting across disconnected habitat patches."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
-    "seo_title": "Four of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "excerpt": "The TWO OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
+    "seo_title": "TWO OF PENTACLES - LeopardCat Tarot",
+    "seo_description": "Balance, adaptability, managing multiple priorities, and moving between fragmented habitats.",
     "tags": [
       "minor-arcana",
-      "swords",
+      "pentacles",
       "leopard-cat",
-      "rest"
+      "abundance"
     ]
   },
   "meaning": {
-    "zh": "平衡、多任務處理、適應變化，以及在不同棲地間分配生存能量。",
-    "en": "Balance, multitasking, adaptability, and managing energy across different habitat patches."
+    "zh": "平衡、適應力、管理多個任務，以及在破碎棲地間的移動。",
+    "en": "Balance, adaptability, managing multiple priorities, and moving between fragmented habitats."
   }
 }

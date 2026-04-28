@@ -1,5 +1,5 @@
 {
-  "id": "card-pe-12-knightof-ofof-pentacles",
+  "id": "card-pe-12-knight-of-pentacles",
   "arcana": "minor",
   "suit": "pentacles",
   "number": 412,
@@ -7,7 +7,7 @@
     "zh": "錢幣騎士",
     "en": "KNIGHT OF PENTACLES"
   },
-  "subtitle": "Responsibility / Routine",
+  "subtitle": "The Guardian / Steady Progress",
   "slug": "knight-of-pentacles",
   "status": "prompt_ready",
   "size": {
@@ -63,22 +63,20 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A Taiwan leopard cat knight standing upright and riding a slow, powerful feline-proportioned horse through a fertile field. He holds a single golden pentacle. The background shows a well-managed farm-forest mosaic. Methodical and reliable energy.",
+    "image_prompt": "A sturdy Taiwan leopard cat standing firm in a ploughed field, looking out across its territory with a calm, steady gaze. Strong and dependable.",
     "narrative": "The Knight of Pentacles is 'The Steady Patrol'—the patient and methodical monitoring of a territory to ensure its resources remain secure."
   },
   "ornaments": [
-    "stone-effigy",
-    "hanging-swords"
+    "golden-coins",
+    "lush-vegetation"
   ],
-  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "output": "art/renders/card-pe-12-knight-of-pentacles.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "upright": "Reliable, steady, hard-working, and systematically executing conservation plans.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "the guardian",
+      "steady progress"
     ]
   },
   "ecology": {
@@ -86,21 +84,21 @@
     "life_stage": "adult",
     "habitat_fragment": "protected forest cave/hollow",
     "risk_theme": "stress-induced immunosuppression",
-    "mapping_note": "Knight of Pentacles represents 'Resource Monitoring'—the routine patrolling behavior used by resident cats to manage their home ranges."
+    "mapping_note": "Knight of Pentacles represents 'Routine Patrol'—the consistent, day-by-day guarding of a territory by a mature male leopard cat."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
-    "seo_title": "Four of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "excerpt": "The 錢幣騎士 reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
+    "seo_title": "錢幣騎士 - LeopardCat Tarot",
+    "seo_description": "Reliable, steady, hard-working, and systematically executing conservation plans.",
     "tags": [
       "minor-arcana",
-      "swords",
+      "pentacles",
       "leopard-cat",
-      "rest"
+      "abundance"
     ]
   },
   "meaning": {
-    "zh": "勤奮、可靠、保守、循序漸進，以及對生存領域的穩定巡護。",
-    "en": "Diligence, reliability, routine, and the steady patrolling of a survival territory."
+    "zh": "可靠、穩重、勤勉工作，以及有條不紊地執行保育計劃。",
+    "en": "Reliable, steady, hard-working, and systematically executing conservation plans."
   }
 }

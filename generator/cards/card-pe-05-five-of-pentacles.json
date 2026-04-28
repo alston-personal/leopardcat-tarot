@@ -1,5 +1,5 @@
 {
-  "id": "card-pe-05-fiveof-ofof-pentacles",
+  "id": "card-pe-05-five-of-pentacles",
   "arcana": "minor",
   "suit": "pentacles",
   "number": 405,
@@ -7,7 +7,7 @@
     "zh": "錢幣五",
     "en": "FIVE OF PENTACLES"
   },
-  "subtitle": "Scarcity & Hardship",
+  "subtitle": "Hardship / Scarcity",
   "slug": "five-of-pentacles",
   "status": "prompt_ready",
   "size": {
@@ -63,22 +63,20 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Two Taiwan leopard cats standing upright and walking through a cold, barren landscape with dry, cracked earth and leafless trees. They look weary and hungry. In the background, a warm, brightly lit building (human dwelling) is visible but unreachable. Somber and cold atmosphere.",
+    "image_prompt": "Two thin, weary Taiwan leopard cats walking through a cold, rainy, and desolate wasteland near a construction site. Dark and somber atmosphere.",
     "narrative": "The Five of Pentacles is 'The Lean Season'—the struggle for survival during drought or winter when prey is scarce and habitat quality is poor."
   },
   "ornaments": [
-    "stone-effigy",
-    "hanging-swords"
+    "golden-coins",
+    "lush-vegetation"
   ],
-  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "output": "art/renders/card-pe-05-five-of-pentacles.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "upright": "Material hardship, struggle, isolation, and survival crisis due to habitat loss.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "hardship",
+      "scarcity"
     ]
   },
   "ecology": {
@@ -86,21 +84,21 @@
     "life_stage": "adult",
     "habitat_fragment": "protected forest cave/hollow",
     "risk_theme": "stress-induced immunosuppression",
-    "mapping_note": "Five of Pentacles represents 'Environmental Stress'—the impact of climate change and habitat degradation on resource availability."
+    "mapping_note": "Five of Pentacles represents 'Ecological Isolation'—leopard cats struggling in degraded habitats with insufficient prey and harsh conditions."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
-    "seo_title": "Four of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "excerpt": "The FIVE OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
+    "seo_title": "FIVE OF PENTACLES - LeopardCat Tarot",
+    "seo_description": "Material hardship, struggle, isolation, and survival crisis due to habitat loss.",
     "tags": [
       "minor-arcana",
-      "swords",
+      "pentacles",
       "leopard-cat",
-      "rest"
+      "abundance"
     ]
   },
   "meaning": {
-    "zh": "貧困、疾病、疏離、以及在極端環境下對生存資源的艱難尋求。",
-    "en": "Poverty, illness, isolation, and the difficult search for resources in extreme environments."
+    "zh": "物質貧乏、困境、被孤立，以及因棲地喪失導致的生存危機。",
+    "en": "Material hardship, struggle, isolation, and survival crisis due to habitat loss."
   }
 }

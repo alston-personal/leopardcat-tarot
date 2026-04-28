@@ -1,5 +1,5 @@
 {
-  "id": "card-pe-13-queenof-ofof-pentacles",
+  "id": "card-pe-13-queen-of-pentacles",
   "arcana": "minor",
   "suit": "pentacles",
   "number": 413,
@@ -7,7 +7,7 @@
     "zh": "錢幣皇后",
     "en": "QUEEN OF PENTACLES"
   },
-  "subtitle": "Nurturing / Practicality",
+  "subtitle": "The Provider / Nurturing",
   "slug": "queen-of-pentacles",
   "status": "prompt_ready",
   "size": {
@@ -63,22 +63,20 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A regal female Taiwan leopard cat seated upright on a throne decorated with carvings of various forest animals and fruits. She holds a golden pentacle and looks down with nurturing care. Around her is a lush, vibrant forest full of life.",
+    "image_prompt": "A regal and motherly Taiwan leopard cat sitting on a throne of woven vines and moss, surrounded by fruits and small animals. Warm and nurturing aura.",
     "narrative": "The Queen of Pentacles is 'The Nurturer of the Land'—the female whose presence and health are the ultimate indicators of a thriving ecosystem."
   },
   "ornaments": [
-    "stone-effigy",
-    "hanging-swords"
+    "golden-coins",
+    "lush-vegetation"
   ],
-  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "output": "art/renders/card-pe-13-queen-of-pentacles.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "upright": "Abundance, nurturing, sensory pleasure, and the earth mother providing sanctuary for all living beings.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "the provider",
+      "nurturing"
     ]
   },
   "ecology": {
@@ -86,21 +84,21 @@
     "life_stage": "adult",
     "habitat_fragment": "protected forest cave/hollow",
     "risk_theme": "stress-induced immunosuppression",
-    "mapping_note": "Queen of Pentacles represents 'Habitat Suitability'—the ideal conditions that allow for high reproductive success and population health."
+    "mapping_note": "Queen of Pentacles represents 'Habitat Productivity'—a highly fertile and safe breeding area that supports high biodiversity."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
-    "seo_title": "Four of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "excerpt": "The 錢幣皇后 reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
+    "seo_title": "錢幣皇后 - LeopardCat Tarot",
+    "seo_description": "Abundance, nurturing, sensory pleasure, and the earth mother providing sanctuary for all living beings.",
     "tags": [
       "minor-arcana",
-      "swords",
+      "pentacles",
       "leopard-cat",
-      "rest"
+      "abundance"
     ]
   },
   "meaning": {
-    "zh": "養育、務實、慷慨、穩定，以及守護大地的母性力量與繁榮。",
-    "en": "Nurturing, practicality, generosity, stability, and the maternal power that guards the land's prosperity."
+    "zh": "豐饒、母性、感官享受，以及為所有生物提供庇護的大地母親。",
+    "en": "Abundance, nurturing, sensory pleasure, and the earth mother providing sanctuary for all living beings."
   }
 }

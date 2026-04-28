@@ -7,7 +7,7 @@
     "zh": "錢幣八",
     "en": "EIGHT OF PENTACLES"
   },
-  "subtitle": "Diligence & Skill",
+  "subtitle": "Diligence / Mastery",
   "slug": "eight-of-pentacles",
   "status": "prompt_ready",
   "size": {
@@ -63,22 +63,20 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A young Taiwan leopard cat standing upright and carefully carving a wooden pentacle at a workbench in the forest. Seven other finished pentacles are lined up on the wall. It looks focused and dedicated to its craft. Mastery of skill.",
+    "image_prompt": "A young Taiwan leopard cat intensely focused on carving a series of golden coins from stone. It is surrounded by its work, showing great dedication.",
     "narrative": "The Eight of Pentacles is 'The Skilled Hunter'—the dedication of a young cat practicing its hunting techniques until they become second nature."
   },
   "ornaments": [
-    "stone-effigy",
-    "hanging-swords"
+    "golden-coins",
+    "lush-vegetation"
   ],
-  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "output": "art/renders/card-pe-08-eight-of-pentacles.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "upright": "Diligence, craftsmanship, focus, and honing survival and hunting skills.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "diligence",
+      "mastery"
     ]
   },
   "ecology": {
@@ -86,21 +84,21 @@
     "life_stage": "adult",
     "habitat_fragment": "protected forest cave/hollow",
     "risk_theme": "stress-induced immunosuppression",
-    "mapping_note": "Eight of Pentacles represents 'Ontogenetic Development'—the learning process by which juveniles acquire the skills needed for independent survival."
+    "mapping_note": "Eight of Pentacles represents 'Skill Acquisition'—a juvenile leopard cat practicing its pouncing and stalking techniques through repetition."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
-    "seo_title": "Four of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "excerpt": "The EIGHT OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
+    "seo_title": "EIGHT OF PENTACLES - LeopardCat Tarot",
+    "seo_description": "Diligence, craftsmanship, focus, and honing survival and hunting skills.",
     "tags": [
       "minor-arcana",
-      "swords",
+      "pentacles",
       "leopard-cat",
-      "rest"
+      "abundance"
     ]
   },
   "meaning": {
-    "zh": "勤奮、學徒期、技能提升、以及對生存技術的不斷磨練。",
-    "en": "Diligence, apprenticeship, skill development, and the constant refinement of survival techniques."
+    "zh": "勤勉、工藝、專注，以及磨練生存與狩獵技巧。",
+    "en": "Diligence, craftsmanship, focus, and honing survival and hunting skills."
   }
 }

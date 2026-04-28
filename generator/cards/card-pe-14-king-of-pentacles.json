@@ -1,5 +1,5 @@
 {
-  "id": "card-pe-14-kingof-ofof-pentacles",
+  "id": "card-pe-14-king-of-pentacles",
   "arcana": "minor",
   "suit": "pentacles",
   "number": 414,
@@ -7,7 +7,7 @@
     "zh": "錢幣國王",
     "en": "KING OF PENTACLES"
   },
-  "subtitle": "Mastery / Success",
+  "subtitle": "The Master / Prosperity",
   "slug": "king-of-pentacles",
   "status": "prompt_ready",
   "size": {
@@ -63,22 +63,20 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A powerful male Taiwan leopard cat seated upright on a throne decorated with bulls. He holds a large golden pentacle and a scepter. He looks out over a vast, rich valley filled with wildlife and healthy forests. Authoritative and prosperous posture.",
+    "image_prompt": "An elderly, powerful Taiwan leopard cat sitting on a stone throne in a mountain cave filled with treasures of the forest. Authoritative and wealthy.",
     "narrative": "The King of Pentacles is 'The Master of the Forest'—the ultimate alpha who has secured a prey-rich, stable territory and rules it with wisdom."
   },
   "ornaments": [
-    "stone-effigy",
-    "hanging-swords"
+    "golden-coins",
+    "lush-vegetation"
   ],
-  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "output": "art/renders/card-pe-14-king-of-pentacles.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "upright": "Success, wealth, discipline, and the efficient management and protection of natural resources.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "the master",
+      "prosperity"
     ]
   },
   "ecology": {
@@ -86,21 +84,21 @@
     "life_stage": "adult",
     "habitat_fragment": "protected forest cave/hollow",
     "risk_theme": "stress-induced immunosuppression",
-    "mapping_note": "King of Pentacles represents 'Carrying Capacity'—the state of an ecosystem that has reached its peak potential to support a healthy apex population."
+    "mapping_note": "King of Pentacles represents 'The Territory Master'—a powerful elder leopard cat who dominates a prime, resource-rich landscape."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
-    "seo_title": "Four of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "excerpt": "The 錢幣國王 reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
+    "seo_title": "錢幣國王 - LeopardCat Tarot",
+    "seo_description": "Success, wealth, discipline, and the efficient management and protection of natural resources.",
     "tags": [
       "minor-arcana",
-      "swords",
+      "pentacles",
       "leopard-cat",
-      "rest"
+      "abundance"
     ]
   },
   "meaning": {
-    "zh": "成功、安全、商業頭腦、紀律，以及對土地資源的最終掌握與富足。",
-    "en": "Success, security, mastery, discipline, and the ultimate abundance of land resources."
+    "zh": "成功、財富、紀律，以及對自然資源的高效管理與保護。",
+    "en": "Success, wealth, discipline, and the efficient management and protection of natural resources."
   }
 }

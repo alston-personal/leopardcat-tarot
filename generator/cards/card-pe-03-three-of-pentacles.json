@@ -1,5 +1,5 @@
 {
-  "id": "card-pe-03-threeof-ofof-pentacles",
+  "id": "card-pe-03-three-of-pentacles",
   "arcana": "minor",
   "suit": "pentacles",
   "number": 403,
@@ -7,7 +7,7 @@
     "zh": "錢幣三",
     "en": "THREE OF PENTACLES"
   },
-  "subtitle": "Collaboration / Teamwork",
+  "subtitle": "Teamwork / Craftsmanship",
   "slug": "three-of-pentacles",
   "status": "prompt_ready",
   "size": {
@@ -63,22 +63,20 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Three Taiwan leopard cats standing upright and looking at a large ecological map or blueprint on a wooden table. They are in a forest workshop. One holds a compass, another a drafting tool. Symbolizes the collaboration between different conservation stakeholders.",
+    "image_prompt": "Three Taiwan leopard cats gathered around a detailed stone-carved map of a forest corridor. They appear to be discussing and planning. Mystical temple background.",
     "narrative": "The Three of Pentacles is 'The Collaborative Effort'—the successful synergy between local communities, researchers, and government agencies to restore habitat."
   },
   "ornaments": [
-    "stone-effigy",
-    "hanging-swords"
+    "golden-coins",
+    "lush-vegetation"
   ],
-  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "output": "art/renders/card-pe-03-three-of-pentacles.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "upright": "Teamwork, learning, skill mastery, and collective efforts in conservation.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "teamwork",
+      "craftsmanship"
     ]
   },
   "ecology": {
@@ -86,21 +84,21 @@
     "life_stage": "adult",
     "habitat_fragment": "protected forest cave/hollow",
     "risk_theme": "stress-induced immunosuppression",
-    "mapping_note": "Three of Pentacles represents 'Stakeholder Integration'—the multi-disciplinary cooperation required for large-scale conservation success."
+    "mapping_note": "Three of Pentacles represents 'Collaborative Recovery'—scientists, farmers, and local communities working together to restore corridors."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
-    "seo_title": "Four of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "excerpt": "The THREE OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
+    "seo_title": "THREE OF PENTACLES - LeopardCat Tarot",
+    "seo_description": "Teamwork, learning, skill mastery, and collective efforts in conservation.",
     "tags": [
       "minor-arcana",
-      "swords",
+      "pentacles",
       "leopard-cat",
-      "rest"
+      "abundance"
     ]
   },
   "meaning": {
-    "zh": "團隊合作、專業技能、認可，以及跨領域合作帶來的生態復育成果。",
-    "en": "Teamwork, collaboration, mastery, and the results of multi-disciplinary conservation efforts."
+    "zh": "團隊合作、學習、技能提升，以及保育工作的共同努力。",
+    "en": "Teamwork, learning, skill mastery, and collective efforts in conservation."
   }
 }

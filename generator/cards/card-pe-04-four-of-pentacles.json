@@ -1,5 +1,5 @@
 {
-  "id": "card-pe-04-fourof-ofof-pentacles",
+  "id": "card-pe-04-four-of-pentacles",
   "arcana": "minor",
   "suit": "pentacles",
   "number": 404,
@@ -7,7 +7,7 @@
     "zh": "錢幣四",
     "en": "FOUR OF PENTACLES"
   },
-  "subtitle": "Security & Conservation",
+  "subtitle": "Security / Stability",
   "slug": "four-of-pentacles",
   "status": "prompt_ready",
   "size": {
@@ -63,22 +63,20 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A Taiwan leopard cat standing upright and holding one large golden pentacle tightly against its chest, with two others under its feet and one on its head. It stands on the boundary of a protected core forest. Protective and possessive posture.",
+    "image_prompt": "A Taiwan leopard cat sitting firmly on a large golden coin, with three other coins surrounding it. It looks defensive and protective of its spot in a small grove.",
     "narrative": "The Four of Pentacles is 'The Territory Guard'—the impulse to fiercely protect and hold onto a secure core habitat, preventing any encroachment."
   },
   "ornaments": [
-    "stone-effigy",
-    "hanging-swords"
+    "golden-coins",
+    "lush-vegetation"
   ],
-  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "output": "art/renders/card-pe-04-four-of-pentacles.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "upright": "Security, stability, control, and the strict protection of core habitat.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "security",
+      "stability"
     ]
   },
   "ecology": {
@@ -86,21 +84,21 @@
     "life_stage": "adult",
     "habitat_fragment": "protected forest cave/hollow",
     "risk_theme": "stress-induced immunosuppression",
-    "mapping_note": "Four of Pentacles represents 'Territorial Fidelity'—the strong attachment to high-quality core areas that provide safety and food."
+    "mapping_note": "Four of Pentacles represents 'Territorial Attachment'—a leopard cat refusing to leave its small core range even as surroundings are developed."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
-    "seo_title": "Four of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "excerpt": "The FOUR OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
+    "seo_title": "FOUR OF PENTACLES - LeopardCat Tarot",
+    "seo_description": "Security, stability, control, and the strict protection of core habitat.",
     "tags": [
       "minor-arcana",
-      "swords",
+      "pentacles",
       "leopard-cat",
-      "rest"
+      "abundance"
     ]
   },
   "meaning": {
-    "zh": "控制、穩定、安全感、以及對核心資源與領地的堅定守護。",
-    "en": "Control, stability, security, and the steadfast protection of core resources and territory."
+    "zh": "安全感、穩定、控制欲，以及對核心棲地的嚴格守護。",
+    "en": "Security, stability, control, and the strict protection of core habitat."
   }
 }

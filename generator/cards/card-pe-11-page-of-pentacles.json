@@ -1,5 +1,5 @@
 {
-  "id": "card-pe-11-pageof-ofof-pentacles",
+  "id": "card-pe-11-page-of-pentacles",
   "arcana": "minor",
   "suit": "pentacles",
   "number": 411,
@@ -7,7 +7,7 @@
     "zh": "錢幣侍者",
     "en": "PAGE OF PENTACLES"
   },
-  "subtitle": "Exploration / Discovery",
+  "subtitle": "The Student / New Beginning",
   "slug": "page-of-pentacles",
   "status": "prompt_ready",
   "size": {
@@ -63,22 +63,20 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A young Taiwan leopard cat standing upright in a sunlit forest clearing, holding a single golden pentacle and examining a small frog or beetle with great focus. It looks like a young scholar of nature. Fresh and studious energy.",
+    "image_prompt": "A curious juvenile Taiwan leopard cat carefully examining a single golden coin on the forest floor. Wide-eyed and eager to learn.",
     "narrative": "The Page of Pentacles is 'The Young Naturalist'—the beginning of learning about the environment and identifying the resources needed for life."
   },
   "ornaments": [
-    "stone-effigy",
-    "hanging-swords"
+    "golden-coins",
+    "lush-vegetation"
   ],
-  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "output": "art/renders/card-pe-11-page-of-pentacles.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "upright": "A diligent student, new opportunities, learning new skills, and exploring natural resources.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "the student",
+      "new beginning"
     ]
   },
   "ecology": {
@@ -86,21 +84,21 @@
     "life_stage": "adult",
     "habitat_fragment": "protected forest cave/hollow",
     "risk_theme": "stress-induced immunosuppression",
-    "mapping_note": "Page of Pentacles represents 'Environmental Learning'—the early stages of a leopard cat's development where it learns to identify prey and safe areas."
+    "mapping_note": "Page of Pentacles represents 'The Colonizer'—a young leopard cat dispersing into a new, unfamiliar but promising territory."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
-    "seo_title": "Four of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "excerpt": "The PAGE OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
+    "seo_title": "PAGE OF PENTACLES - LeopardCat Tarot",
+    "seo_description": "A diligent student, new opportunities, learning new skills, and exploring natural resources.",
     "tags": [
       "minor-arcana",
-      "swords",
+      "pentacles",
       "leopard-cat",
-      "rest"
+      "abundance"
     ]
   },
   "meaning": {
-    "zh": "學習、新機會、踏實、以及對自然界生存法則的初步探索。",
-    "en": "Learning, new opportunity, groundedness, and the initial exploration of survival laws."
+    "zh": "勤奮的學生、新的機會、學習新技能，以及對自然資源的探索。",
+    "en": "A diligent student, new opportunities, learning new skills, and exploring natural resources."
   }
 }

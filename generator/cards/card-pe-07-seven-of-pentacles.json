@@ -1,5 +1,5 @@
 {
-  "id": "card-pe-07-sevenof-ofof-pentacles",
+  "id": "card-pe-07-seven-of-pentacles",
   "arcana": "minor",
   "suit": "pentacles",
   "number": 407,
@@ -7,7 +7,7 @@
     "zh": "錢幣七",
     "en": "SEVEN OF PENTACLES"
   },
-  "subtitle": "Patience & Evaluation",
+  "subtitle": "Patience / Investment",
   "slug": "seven-of-pentacles",
   "status": "prompt_ready",
   "size": {
@@ -63,22 +63,20 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A Taiwan leopard cat standing upright and leaning on a wooden staff, looking thoughtfully at a vine growing on a wall with seven golden pentacles ripening like fruit. It looks patient and evaluative. Background shows a newly restored habitat.",
+    "image_prompt": "A Taiwan leopard cat standing in a field of young saplings, looking at a small pile of golden coins on the ground. Reflective and patient expression.",
     "narrative": "The Seven of Pentacles is 'The Long Game'—the patience required after habitat restoration, waiting for the ecosystem to mature and the population to grow."
   },
   "ornaments": [
-    "stone-effigy",
-    "hanging-swords"
+    "golden-coins",
+    "lush-vegetation"
   ],
-  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "output": "art/renders/card-pe-07-seven-of-pentacles.png",
   "meanings": {
-    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "upright": "Patience, long-term planning, waiting for rewards, and observing the results of habitat restoration.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",
     "keywords": [
-      "rest",
-      "recovery",
-      "meditation",
-      "sanctuary"
+      "patience",
+      "investment"
     ]
   },
   "ecology": {
@@ -86,21 +84,21 @@
     "life_stage": "adult",
     "habitat_fragment": "protected forest cave/hollow",
     "risk_theme": "stress-induced immunosuppression",
-    "mapping_note": "Seven of Pentacles represents 'Ecological Succession'—the time-lag between restoration actions and the measurable recovery of biodiversity."
+    "mapping_note": "Seven of Pentacles represents 'Successional Growth'—waiting years for a replanted forest to mature enough to support leopard cat prey."
   },
   "website": {
-    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
-    "seo_title": "Four of Swords - LeopardCat Tarot",
-    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "excerpt": "The SEVEN OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
+    "seo_title": "SEVEN OF PENTACLES - LeopardCat Tarot",
+    "seo_description": "Patience, long-term planning, waiting for rewards, and observing the results of habitat restoration.",
     "tags": [
       "minor-arcana",
-      "swords",
+      "pentacles",
       "leopard-cat",
-      "rest"
+      "abundance"
     ]
   },
   "meaning": {
-    "zh": "耐心、評估、長遠的回報，以及對復育成果的細心觀察與等待。",
-    "en": "Patience, evaluation, long-term reward, and waiting for the fruits of restoration efforts."
+    "zh": "耐心、長遠考量、等待回報，以及對棲地復育成果的期待。",
+    "en": "Patience, long-term planning, waiting for rewards, and observing the results of habitat restoration."
   }
 }
