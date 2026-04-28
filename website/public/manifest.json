@@ -3774,7 +3774,7 @@
   {
     "id": "card-sw-05-five-of-swords",
     "arcana": "minor",
-    "number": 205,
+    "number": 305,
     "title": {
       "zh": "寶劍五",
       "en": "FIVE OF SWORDS"
@@ -3844,7 +3844,7 @@
   {
     "id": "card-sw-06-six-of-swords",
     "arcana": "minor",
-    "number": 206,
+    "number": 306,
     "title": {
       "zh": "寶劍六",
       "en": "SIX OF SWORDS"
@@ -3914,7 +3914,7 @@
   {
     "id": "card-sw-07-seven-of-swords",
     "arcana": "minor",
-    "number": 207,
+    "number": 307,
     "title": {
       "zh": "寶劍七",
       "en": "SEVEN OF SWORDS"
@@ -3984,7 +3984,7 @@
   {
     "id": "card-sw-08-eight-of-swords",
     "arcana": "minor",
-    "number": 208,
+    "number": 308,
     "title": {
       "zh": "寶劍八",
       "en": "EIGHT OF SWORDS"
@@ -4054,7 +4054,7 @@
   {
     "id": "card-sw-09-nine-of-swords",
     "arcana": "minor",
-    "number": 209,
+    "number": 309,
     "title": {
       "zh": "寶劍九",
       "en": "NINE OF SWORDS"
@@ -4124,7 +4124,7 @@
   {
     "id": "card-sw-10-ten-of-swords",
     "arcana": "minor",
-    "number": 210,
+    "number": 310,
     "title": {
       "zh": "寶劍十",
       "en": "TEN OF SWORDS"
@@ -4194,7 +4194,7 @@
   {
     "id": "card-sw-11-page-of-swords",
     "arcana": "minor",
-    "number": 211,
+    "number": 311,
     "title": {
       "zh": "寶劍侍者",
       "en": "PAGE OF SWORDS"
@@ -4264,7 +4264,7 @@
   {
     "id": "card-sw-12-knight-of-swords",
     "arcana": "minor",
-    "number": 212,
+    "number": 312,
     "title": {
       "zh": "寶劍騎士",
       "en": "KNIGHT OF SWORDS"
@@ -4334,7 +4334,7 @@
   {
     "id": "card-sw-13-queen-of-swords",
     "arcana": "minor",
-    "number": 213,
+    "number": 313,
     "title": {
       "zh": "寶劍皇后",
       "en": "QUEEN OF SWORDS"
@@ -4404,7 +4404,7 @@
   {
     "id": "card-sw-14-king-of-swords",
     "arcana": "minor",
-    "number": 214,
+    "number": 314,
     "title": {
       "zh": "寶劍國王",
       "en": "KING OF SWORDS"
