@@ -82,9 +82,10 @@
   "ecology": {
     "species_focus": "Taiwan leopard cat",
     "life_stage": "adult",
-    "habitat_fragment": "protected forest cave/hollow",
-    "risk_theme": "stress-induced immunosuppression",
-    "mapping_note": "Two of Pentacles represents 'Fragment Management'—the need for leopard cats to balance hunting across disconnected habitat patches."
+    "habitat_fragment": "受保護的森林洞穴/樹洞",
+    "risk_theme": "壓力導致的免疫力下降",
+    "mapping_note": "Two of Pentacles represents 'Fragment Management'—the need for leopard cats to balance hunting across disconnected habitat patches.",
+    "zh": "棲地樣貌：低海拔林緣。生存威脅：跨越道路時的路殺風險。牌義關聯：「金幣二」代表「適應性流動」——石虎在不同森林碎片與人類道路間穿梭。"
   },
   "website": {
     "excerpt": "The TWO OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
