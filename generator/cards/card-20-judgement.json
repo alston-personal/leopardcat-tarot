@@ -8,7 +8,7 @@
   },
   "subtitle": "Rebirth / Calling / Conservation Law",
   "slug": "20-judgement",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,11 +63,35 @@
   },
   "output": "art/renders/card-20-judgement.png",
   "meaning": {
-    "zh": "TBD",
-    "en": "TBD"
+    "zh": "審判、重生、內在的呼喚、赦免、覺醒，以及對生態保育的最終決斷。",
+    "en": "Judgement, rebirth, inner calling, absolution, and awakening."
   },
   "ecology": {
-    "zh": "TBD",
-    "en": "TBD"
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "awakened population",
+    "habitat_fragment": "a recovering ecosystem",
+    "risk_theme": "the ultimate human decision to either save or forsake the species",
+    "mapping_note": "Judgement is the final awakening—the collective human decision to hear the call of the wild and resurrect the leopard cat from the brink of extinction, offering the ecosystem a second chance."
+  },
+  "meanings": {
+    "upright": "Judgement, rebirth, inner calling, absolution, and awakening.",
+    "reversed": "Self-doubt, inner critic, ignoring the call, or refusing to learn from the past.",
+    "keywords": [
+      "rebirth",
+      "awakening",
+      "calling",
+      "absolution"
+    ]
+  },
+  "website": {
+    "excerpt": "Answering the ultimate call, Judgement represents the collective awakening required to pull a species back from the brink.",
+    "seo_title": "Judgement - LeopardCat Tarot",
+    "seo_description": "The Judgement tarot card reimagined as the ecological awakening and the decision to save the leopard cat.",
+    "tags": [
+      "major-arcana",
+      "judgement",
+      "leopard-cat",
+      "awakening"
+    ]
   }
 }

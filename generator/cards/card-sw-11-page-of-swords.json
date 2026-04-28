@@ -1,0 +1,106 @@
+{
+  "id": "card-sw-11-page-of-swords",
+  "arcana": "minor",
+  "suit": "swords",
+  "number": 211,
+  "title": {
+    "zh": "寶劍侍者",
+    "en": "PAGE OF SWORDS"
+  },
+  "subtitle": "Vigilance & Curiosity",
+  "slug": "page-of-swords",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      120,
+      140,
+      160
+    ],
+    "bottom": [
+      60,
+      80,
+      100
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      30,
+      40,
+      50
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "stone-hollow-rest",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "resting-leopard-cat"
+  },
+  "main_image": "art/generated/card-sw-11-page-of-swords.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "A young Taiwan leopard cat standing upright in a grassy field, holding a single silver sword and curiously sniffing a scientific camera trap mounted on a tree. Alert ears and wide eyes.",
+    "narrative": "The Page of Swords is 'The Young Watcher'—the curiosity of the next generation as they learn to navigate a landscape monitored by humans."
+  },
+  "ornaments": [
+    "stone-effigy",
+    "hanging-swords"
+  ],
+  "output": "art/renders/card-sw-11-page-of-swords.png",
+  "meanings": {
+    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+    "keywords": [
+      "rest",
+      "recovery",
+      "meditation",
+      "sanctuary"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "protected forest cave/hollow",
+    "risk_theme": "stress-induced immunosuppression",
+    "mapping_note": "Page of Swords represents 'Ecological Monitoring'—the interaction between wildlife and the tools used to study and protect them."
+  },
+  "website": {
+    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
+    "seo_title": "Page Of Swords - LeopardCat Tarot",
+    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "tags": [
+      "minor-arcana",
+      "swords",
+      "leopard-cat",
+      "rest"
+    ]
+  },
+  "meaning": {
+    "zh": "警覺、好奇、消息靈通，以及新一代個體對環境監測設施的探索。",
+    "en": "Vigilance, curiosity, mental agility, and the exploration of monitoring tools."
+  }
+}

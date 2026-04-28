@@ -1,0 +1,106 @@
+{
+  "id": "card-pe-14-kingof-ofof-pentacles",
+  "arcana": "minor",
+  "suit": "pentacles",
+  "number": 414,
+  "title": {
+    "zh": "錢幣國王",
+    "en": "KING OF PENTACLES"
+  },
+  "subtitle": "Mastery / Success",
+  "slug": "king-of-pentacles",
+  "status": "prompt_ready",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      120,
+      140,
+      160
+    ],
+    "bottom": [
+      60,
+      80,
+      100
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      30,
+      40,
+      50
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "stone-hollow-rest",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "resting-leopard-cat"
+  },
+  "main_image": "art/generated/card-pe-14-king-of-pentacles.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "A powerful male Taiwan leopard cat seated upright on a throne decorated with bulls. He holds a large golden pentacle and a scepter. He looks out over a vast, rich valley filled with wildlife and healthy forests. Authoritative and prosperous posture.",
+    "narrative": "The King of Pentacles is 'The Master of the Forest'—the ultimate alpha who has secured a prey-rich, stable territory and rules it with wisdom."
+  },
+  "ornaments": [
+    "stone-effigy",
+    "hanging-swords"
+  ],
+  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "meanings": {
+    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+    "keywords": [
+      "rest",
+      "recovery",
+      "meditation",
+      "sanctuary"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "protected forest cave/hollow",
+    "risk_theme": "stress-induced immunosuppression",
+    "mapping_note": "King of Pentacles represents 'Carrying Capacity'—the state of an ecosystem that has reached its peak potential to support a healthy apex population."
+  },
+  "website": {
+    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
+    "seo_title": "Four of Swords - LeopardCat Tarot",
+    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "tags": [
+      "minor-arcana",
+      "swords",
+      "leopard-cat",
+      "rest"
+    ]
+  },
+  "meaning": {
+    "zh": "成功、安全、商業頭腦、紀律，以及對土地資源的最終掌握與富足。",
+    "en": "Success, security, mastery, discipline, and the ultimate abundance of land resources."
+  }
+}

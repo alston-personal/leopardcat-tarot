@@ -1,0 +1,106 @@
+{
+  "id": "card-pe-01-aceof-ofof-pentacles",
+  "arcana": "minor",
+  "suit": "pentacles",
+  "number": 401,
+  "title": {
+    "zh": "錢幣一",
+    "en": "ACE OF PENTACLES"
+  },
+  "subtitle": "Material Gift / Abundance",
+  "slug": "ace-of-pentacles",
+  "status": "prompt_ready",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      120,
+      140,
+      160
+    ],
+    "bottom": [
+      60,
+      80,
+      100
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      30,
+      40,
+      50
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "stone-hollow-rest",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "resting-leopard-cat"
+  },
+  "main_image": "art/generated/card-pe-01-ace-of-pentacles.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "A plump Taiwan leopard cat standing upright in a lush, grassy field. It holds a large, golden-brown vole (prey) in its paws with care. The background shows a healthy secondary forest. Sunlight filters through the leaves. Grounded and prosperous atmosphere.",
+    "narrative": "The Ace of Pentacles is 'The Gift of the Land'—the discovery of a prey-rich habitat that provides the material basis for survival."
+  },
+  "ornaments": [
+    "stone-effigy",
+    "hanging-swords"
+  ],
+  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "meanings": {
+    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+    "keywords": [
+      "rest",
+      "recovery",
+      "meditation",
+      "sanctuary"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "protected forest cave/hollow",
+    "risk_theme": "stress-induced immunosuppression",
+    "mapping_note": "Ace of Pentacles represents 'Resource Availability'—the fundamental ecological requirement of a healthy prey base for leopard cat persistence."
+  },
+  "website": {
+    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
+    "seo_title": "Four of Swords - LeopardCat Tarot",
+    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "tags": [
+      "minor-arcana",
+      "swords",
+      "leopard-cat",
+      "rest"
+    ]
+  },
+  "meaning": {
+    "zh": "新的財務機會、繁榮、健康、以及大地帶來的生存資源。",
+    "en": "A new material opportunity, prosperity, health, and the abundance of survival resources."
+  }
+}

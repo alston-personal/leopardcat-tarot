@@ -9,7 +9,7 @@
   },
   "subtitle": "The Stewardship Burden / Path to Healing",
   "slug": "ten-of-wands",
-  "status": "rework_needed",
+  "status": "prompt_ready",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,8 +63,8 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS but bent over, carrying a heavy bundle of EXACTLY TEN wooden wands on his back. He is holding the bundle WITH ITS PAWS and walking toward a distant ridge at twilight. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
-    "narrative": "The leopard cat carries the heavy weight of habitat management and stewardship, a necessary burden to ensure the path to ecological healing remains open."
+    "image_prompt": "[TECHNICAL: Aspect Ratio 2:3 Vertical, Edge-to-Edge Continuous, NO TEXT, NO BORDERS, NO FRAMES, NO INNER FRAMES, NO MARGINS] Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content MUST touch all four edges. ABSOLUTELY NO TEXT. STRICTLY ANTHROPOMORPHIC. Taiwan leopard cat with white ear spots, forehead stripes, rosette patterns. SCENE: A Taiwan leopard cat standing. He wears a simple tunic. He carries a heavy load on his back. The load consists of EXACTLY TEN distinct thick wooden logs stacked neatly. The stack is arranged as 4 logs on the bottom row, 3 logs on the middle row, 3 logs on the top row. 4+3+3 = exactly 10 logs. No more, no less.",
+    "narrative": "A leopard cat carries the weight of stewardship, representing the massive effort and individual burden involved in the long-term protection of a species."
   },
   "ornaments": [
     "heavy-bundle"

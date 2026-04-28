@@ -367,7 +367,16 @@
       "risk_theme": "disruption of traditional migration corridors and home ranges",
       "mapping_note": "The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries."
     },
-    "meanings": {},
+    "meanings": {
+      "upright": "Tradition, ancestral wisdom, following established paths, education, and spiritual guidance.",
+      "reversed": "Challenging tradition, losing connection to ancestry, wandering off the safe path, or outdated rigid rules.",
+      "keywords": [
+        "tradition",
+        "wisdom",
+        "guidance",
+        "heritage"
+      ]
+    },
     "palette": {
       "top": [
         34,
@@ -406,8 +415,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "傳統、祖先的智慧、遵循既定的安全路徑、教育與指引。",
+      "en": "Tradition, ancestral wisdom, following established paths, education, and spiritual guidance."
     }
   },
   {
@@ -422,11 +431,21 @@
     "slug": "06-the-lovers",
     "image": "art/renders/card-06-the-lovers.png",
     "ecology": {
-      "species_focus": "Taiwan leopard cat"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "young adult pair",
+      "habitat_fragment": "connected forest glade",
+      "risk_theme": "genetic isolation and the need for safe corridors for breeding",
+      "mapping_note": "The Lovers represent the biological drive for connection and breeding, highlighting the critical need for habitat corridors so isolated populations can safely meet and mate."
     },
     "meanings": {
-      "upright": "TBD",
-      "reversed": "TBD"
+      "upright": "Love, harmony, partnerships, choices, and the alignment of values.",
+      "reversed": "Disharmony, imbalance, bad choices, or forced separation due to external barriers.",
+      "keywords": [
+        "attraction",
+        "choice",
+        "partnership",
+        "harmony"
+      ]
     },
     "palette": {
       "top": [
@@ -466,8 +485,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "愛、和諧、伴侶關係、人生抉擇，以及價值觀的契合。",
+      "en": "Love, harmony, partnerships, choices, and the alignment of values."
     }
   },
   {
@@ -482,11 +501,21 @@
     "slug": "07-the-chariot",
     "image": "art/renders/card-07-the-chariot.png",
     "ecology": {
-      "species_focus": "Taiwan leopard cat"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "prime adult male",
+      "habitat_fragment": "high ridge overlooking fragmented valley",
+      "risk_theme": "navigating dangerous human landscapes to reach new territory",
+      "mapping_note": "The Chariot represents the sheer willpower and determination required for a leopard cat to successfully cross hostile, human-dominated landscapes to reach safe habitat."
     },
     "meanings": {
-      "upright": "TBD",
-      "reversed": "TBD"
+      "upright": "Willpower, determination, victory, overcoming obstacles, and maintaining focus.",
+      "reversed": "Lack of direction, aggression, losing control, or being overwhelmed by external obstacles.",
+      "keywords": [
+        "willpower",
+        "victory",
+        "determination",
+        "focus"
+      ]
     },
     "palette": {
       "top": [
@@ -526,8 +555,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "意志力、決心、勝利、克服眼前的障礙，以及保持高度的專注。",
+      "en": "Willpower, determination, victory, overcoming obstacles, and maintaining focus."
     }
   },
   {
@@ -542,11 +571,21 @@
     "slug": "08-strength",
     "image": "art/renders/card-08-strength.png",
     "ecology": {
-      "species_focus": "Taiwan leopard cat"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "serene adult female",
+      "habitat_fragment": "sun-dappled bamboo grove",
+      "risk_theme": "balancing predatory instincts with the need for silent survival",
+      "mapping_note": "Strength represents the calm, quiet mastery of the leopard cat as an apex predator in its micro-habitat, maintaining ecological balance without relying on brute force."
     },
     "meanings": {
-      "upright": "TBD",
-      "reversed": "TBD"
+      "upright": "Taming the wild within, persistent quiet strength, grace under pressure, and the delicate balance of nature.",
+      "reversed": "Brute force, losing control of instincts, weakness, or ecological imbalance.",
+      "keywords": [
+        "grace",
+        "fortitude",
+        "inner-power",
+        "balance"
+      ]
     },
     "palette": {
       "top": [
@@ -586,8 +625,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "馴服內在的野性、持久而平靜的力量、壓力下的優雅，以及自然界的微妙平衡。",
+      "en": "Taming the wild within, persistent quiet strength, grace under pressure, and the delicate balance of nature."
     }
   },
   {
@@ -602,11 +641,21 @@
     "slug": "09-the-hermit",
     "image": "art/renders/card-09-the-hermit.png",
     "ecology": {
-      "species_focus": "Taiwan leopard cat"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "elder adult",
+      "habitat_fragment": "undisturbed primeval mountain peak",
+      "risk_theme": "the extreme isolation required for survival in shrinking deep-mountain refuges",
+      "mapping_note": "The Hermit represents the absolute necessity of undisturbed, deep-core habitats where leopard cats can retreat from human interference and find absolute refuge."
     },
     "meanings": {
-      "upright": "TBD",
-      "reversed": "TBD"
+      "upright": "Introspection, seeking truth, inner guidance, solitude, and retreating to find answers.",
+      "reversed": "Isolation, extreme loneliness, losing the way, or being forced out of safe refuge.",
+      "keywords": [
+        "solitude",
+        "reflection",
+        "guidance",
+        "refuge"
+      ]
     },
     "palette": {
       "top": [
@@ -646,8 +695,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "內省、尋求真理、內在指引、獨處，以及退居避難所以尋找答案。",
+      "en": "Introspection, seeking truth, inner guidance, solitude, and retreating to find answers."
     }
   },
   {
@@ -662,11 +711,21 @@
     "slug": "10-wheel-of-fortune",
     "image": "art/renders/card-10-wheel-of-fortune.png",
     "ecology": {
-      "species_focus": "Taiwan leopard cat"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "all life stages",
+      "habitat_fragment": "the grand ecological cycle",
+      "risk_theme": "climate shifts and the disruption of natural seasonal prey cycles",
+      "mapping_note": "The Wheel of Fortune symbolizes the grand cosmic and ecological cycle—the changing seasons, the food web, and the delicate fate of the leopard cat intertwined with all forest creatures."
     },
     "meanings": {
-      "upright": "TBD",
-      "reversed": "TBD"
+      "upright": "Cycles of change, fate, turning points, seasons, and the interconnectedness of all life.",
+      "reversed": "Bad luck, negative external forces, broken cycles, or ecological collapse.",
+      "keywords": [
+        "cycles",
+        "change",
+        "fate",
+        "seasons"
+      ]
     },
     "palette": {
       "top": [
@@ -706,8 +765,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "命運的循環、改變、轉捩點、季節交替，以及所有生命相互交織的命運。",
+      "en": "Cycles of change, fate, turning points, seasons, and the interconnectedness of all life."
     }
   },
   {
@@ -722,10 +781,22 @@
     "slug": "11-justice",
     "image": "art/renders/card-11-justice.png",
     "ecology": {
-      "zh": "TBD",
-      "en": "TBD"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "forest border where human law meets natural law",
+      "risk_theme": "legal protection, conservation laws, and the consequences of human actions on wildlife",
+      "mapping_note": "Justice represents the absolute law of cause and effect in ecology: destroying habitats has consequences, and protecting them restores balance. It also directly maps to the legal conservation status protecting the leopard cat."
     },
-    "meanings": {},
+    "meanings": {
+      "upright": "Fairness, truth, cause and effect, the law, and taking responsibility for actions.",
+      "reversed": "Injustice, unfairness, dishonesty, or avoiding accountability for environmental damage.",
+      "keywords": [
+        "justice",
+        "truth",
+        "balance",
+        "consequence"
+      ]
+    },
     "palette": {
       "top": [
         44,
@@ -764,8 +835,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "公平、真理、因果關係、法律，以及為破壞環境的行為負起責任。",
+      "en": "Fairness, truth, cause and effect, the law, and taking responsibility for actions."
     }
   },
   {
@@ -780,10 +851,22 @@
     "slug": "12-the-hanged-man",
     "image": "art/renders/card-12-the-hanged-man.png",
     "ecology": {
-      "zh": "TBD",
-      "en": "TBD"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "resting adult",
+      "habitat_fragment": "high canopy tree branch",
+      "risk_theme": "waiting out human activity, adjusting to new rhythms",
+      "mapping_note": "The Hanged Man represents the leopard cat's behavioral shift: waiting out the daylight and human activity by resting high in the trees, shifting its perspective to survive in a human-dominated landscape."
     },
-    "meanings": {},
+    "meanings": {
+      "upright": "Pause, surrender, letting go, new perspectives, and waiting for the right moment.",
+      "reversed": "Stalling, needless sacrifice, fear of sacrifice, or feeling trapped without purpose.",
+      "keywords": [
+        "pause",
+        "surrender",
+        "perspective",
+        "sacrifice"
+      ]
+    },
     "palette": {
       "top": [
         22,
@@ -822,8 +905,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "暫停、臣服、放下、嶄新的視角，以及等待合適的時機。",
+      "en": "Pause, surrender, letting go, new perspectives, and waiting for the right moment."
     }
   },
   {
@@ -838,10 +921,22 @@
     "slug": "13-death",
     "image": "art/renders/card-13-death.png",
     "ecology": {
-      "zh": "TBD",
-      "en": "TBD"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "the end of the cycle",
+      "habitat_fragment": "a clearing after a forest fire or heavy clearance",
+      "risk_theme": "the reality of mortality and the cycle of ecosystem renewal",
+      "mapping_note": "Death represents the harsh reality of mortality in the wild—but also the deep ecological truth that death feeds the forest, making way for new life and ecosystem regeneration."
     },
-    "meanings": {},
+    "meanings": {
+      "upright": "Endings, profound change, transition, letting go of the old to make way for the new.",
+      "reversed": "Fear of change, holding on, stagnation, or refusing to accept a necessary transition.",
+      "keywords": [
+        "endings",
+        "change",
+        "transition",
+        "rebirth"
+      ]
+    },
     "palette": {
       "top": [
         54,
@@ -880,8 +975,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "結束、深刻的改變、過渡期、放下過去以迎接新生。",
+      "en": "Endings, profound change, transition, letting go of the old to make way for the new."
     }
   },
   {
@@ -896,10 +991,22 @@
     "slug": "14-temperance",
     "image": "art/renders/card-14-temperance.png",
     "ecology": {
-      "zh": "TBD",
-      "en": "TBD"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "mixed agroforestry landscape",
+      "risk_theme": "the delicate balance between agriculture and wildlife survival",
+      "mapping_note": "Temperance represents the harmonious blending of human land use and natural habitat—such as eco-friendly farming—where both humans and leopard cats can thrive in balance."
     },
-    "meanings": {},
+    "meanings": {
+      "upright": "Balance, moderation, patience, purpose, and harmonious blending.",
+      "reversed": "Imbalance, excess, clashing interests, or lack of long-term vision.",
+      "keywords": [
+        "balance",
+        "moderation",
+        "harmony",
+        "patience"
+      ]
+    },
     "palette": {
       "top": [
         52,
@@ -938,8 +1045,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "平衡、節制、耐心、目標，以及和諧的融合（如生態友善農業）。",
+      "en": "Balance, moderation, patience, purpose, and harmonious blending."
     }
   },
   {
@@ -954,10 +1061,22 @@
     "slug": "15-the-devil",
     "image": "art/renders/card-15-the-devil.png",
     "ecology": {
-      "zh": "TBD",
-      "en": "TBD"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "trapped individual",
+      "habitat_fragment": "illegal traps or highly polluted industrial edge",
+      "risk_theme": "physical entrapment by snares, poison, or artificial borders",
+      "mapping_note": "The Devil represents the literal and metaphorical traps laid by human development—poisons, snares, and the false allure of easy prey near deadly roads that chain the leopard cat to its doom."
     },
-    "meanings": {},
+    "meanings": {
+      "upright": "Addiction, materialism, entrapment, restriction, and unhealthy attachments.",
+      "reversed": "Release, breaking free, reclaiming power, or escaping a toxic situation.",
+      "keywords": [
+        "entrapment",
+        "restriction",
+        "materialism",
+        "illusion"
+      ]
+    },
     "palette": {
       "top": [
         100,
@@ -996,8 +1115,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "成癮、物質主義、受困、限制，以及不健康的依附關係（如人造陷阱與毒餌）。",
+      "en": "Addiction, materialism, entrapment, restriction, and unhealthy attachments."
     }
   },
   {
@@ -1012,10 +1131,22 @@
     "slug": "16-the-tower",
     "image": "art/renders/card-16-the-tower.png",
     "ecology": {
-      "zh": "TBD",
-      "en": "TBD"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "displaced population",
+      "habitat_fragment": "bulldozed hillside or flooded corridor",
+      "risk_theme": "sudden catastrophic habitat destruction",
+      "mapping_note": "The Tower is the sudden, catastrophic destruction of a core habitat—a hillside bulldozed overnight, forcing the leopard cat to flee the collapse of its once-safe home."
     },
-    "meanings": {},
+    "meanings": {
+      "upright": "Sudden upheaval, broken pride, disaster, revelation, and the collapse of unstable foundations.",
+      "reversed": "Averting disaster, delaying the inevitable, or fearing necessary change.",
+      "keywords": [
+        "upheaval",
+        "disaster",
+        "collapse",
+        "revelation"
+      ]
+    },
     "palette": {
       "top": [
         20,
@@ -1054,8 +1185,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "突如其來的劇變、災難、啟示，以及不穩固基礎的崩塌（如棲地瞬間破壞）。",
+      "en": "Sudden upheaval, broken pride, disaster, revelation, and the collapse of unstable foundations."
     }
   },
   {
@@ -1070,10 +1201,22 @@
     "slug": "17-the-star",
     "image": "art/renders/card-17-the-star.png",
     "ecology": {
-      "zh": "TBD",
-      "en": "TBD"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "recovering population",
+      "habitat_fragment": "a newly planted ecological corridor",
+      "risk_theme": "the slow process of habitat restoration and species recovery",
+      "mapping_note": "The Star represents conservation hope—the slow but beautiful process of habitat restoration, where pure water and newly planted trees guide the leopard cat toward a safer future."
     },
-    "meanings": {},
+    "meanings": {
+      "upright": "Hope, faith, purpose, renewal, spirituality, and healing after destruction.",
+      "reversed": "Despair, lack of faith, disconnection, or loss of hope.",
+      "keywords": [
+        "hope",
+        "renewal",
+        "healing",
+        "inspiration"
+      ]
+    },
     "palette": {
       "top": [
         43,
@@ -1112,8 +1255,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "希望、信念、目標、復甦、靈性，以及災難後的療癒與重生。",
+      "en": "Hope, faith, purpose, renewal, spirituality, and healing after destruction."
     }
   },
   {
@@ -1128,10 +1271,22 @@
     "slug": "18-the-moon",
     "image": "art/renders/card-18-the-moon.png",
     "ecology": {
-      "zh": "TBD",
-      "en": "TBD"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "night hunting adult",
+      "habitat_fragment": "moonlit rural edge",
+      "risk_theme": "nocturnal dangers, free-roaming dogs, and the unknown",
+      "mapping_note": "The Moon represents the primal fears and nocturnal intuition of the leopard cat. The night is their domain, but it is also filled with hidden illusions and the looming threat of feral predators."
     },
-    "meanings": {},
+    "meanings": {
+      "upright": "Illusion, fear, anxiety, the subconscious, and navigating by intuition.",
+      "reversed": "Release of fear, repressed emotion, or uncovering hidden truths.",
+      "keywords": [
+        "illusion",
+        "fear",
+        "intuition",
+        "subconscious"
+      ]
+    },
     "palette": {
       "top": [
         44,
@@ -1170,8 +1325,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "幻象、恐懼、焦慮、潛意識，以及依靠直覺在未知的黑暗中導航。",
+      "en": "Illusion, fear, anxiety, the subconscious, and navigating by intuition."
     }
   },
   {
@@ -1186,10 +1341,22 @@
     "slug": "19-the-sun",
     "image": "art/renders/card-19-the-sun.png",
     "ecology": {
-      "zh": "TBD",
-      "en": "TBD"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "playful kittens",
+      "habitat_fragment": "safe, sunlit clearing",
+      "risk_theme": "the joy of a secure environment free from immediate threats",
+      "mapping_note": "The Sun represents absolute vitality and success—the rare, joyful sight of leopard cat kittens playing safely in the daylight, signifying a truly secure and thriving habitat."
     },
-    "meanings": {},
+    "meanings": {
+      "upright": "Positivity, fun, warmth, success, vitality, and clear visibility.",
+      "reversed": "Temporary depression, lack of success, or hidden complications.",
+      "keywords": [
+        "positivity",
+        "vitality",
+        "success",
+        "joy"
+      ]
+    },
     "palette": {
       "top": [
         241,
@@ -1228,8 +1395,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "積極、樂趣、溫暖、成功、生命力，以及清晰可見的美好未來。",
+      "en": "Positivity, fun, warmth, success, vitality, and clear visibility."
     }
   },
   {
@@ -1244,10 +1411,22 @@
     "slug": "20-judgement",
     "image": "art/renders/card-20-judgement.png",
     "ecology": {
-      "zh": "TBD",
-      "en": "TBD"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "awakened population",
+      "habitat_fragment": "a recovering ecosystem",
+      "risk_theme": "the ultimate human decision to either save or forsake the species",
+      "mapping_note": "Judgement is the final awakening—the collective human decision to hear the call of the wild and resurrect the leopard cat from the brink of extinction, offering the ecosystem a second chance."
     },
-    "meanings": {},
+    "meanings": {
+      "upright": "Judgement, rebirth, inner calling, absolution, and awakening.",
+      "reversed": "Self-doubt, inner critic, ignoring the call, or refusing to learn from the past.",
+      "keywords": [
+        "rebirth",
+        "awakening",
+        "calling",
+        "absolution"
+      ]
+    },
     "palette": {
       "top": [
         52,
@@ -1286,8 +1465,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "審判、重生、內在的呼喚、赦免、覺醒，以及對生態保育的最終決斷。",
+      "en": "Judgement, rebirth, inner calling, absolution, and awakening."
     }
   },
   {
@@ -1302,10 +1481,22 @@
     "slug": "21-the-world",
     "image": "art/renders/card-21-the-world.png",
     "ecology": {
-      "zh": "TBD",
-      "en": "TBD"
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "integrated ecosystem",
+      "habitat_fragment": "a fully realized continuous habitat spanning the island",
+      "risk_theme": "the ultimate goal of continuous, unfragmented wilderness",
+      "mapping_note": "The World represents the ultimate completion of the conservation journey: a fully integrated, unfragmented landscape where the leopard cat moves freely as part of a whole, healthy ecosystem."
     },
-    "meanings": {},
+    "meanings": {
+      "upright": "Completion, integration, accomplishment, travel, and perfect harmony.",
+      "reversed": "Seeking closure, shortcuts, delays, or an incomplete cycle.",
+      "keywords": [
+        "completion",
+        "integration",
+        "harmony",
+        "accomplishment"
+      ]
+    },
     "palette": {
       "top": [
         39,
@@ -1344,8 +1535,8 @@
       ]
     },
     "meaning": {
-      "zh": "TBD",
-      "en": "TBD"
+      "zh": "完成、整合、成就、完美的和諧，以及一個完整無缺的健康生態系。",
+      "en": "Completion, integration, accomplishment, travel, and perfect harmony."
     }
   },
   {
@@ -2317,6 +2508,986 @@
     }
   },
   {
+    "id": "card-pe-01-aceof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 401,
+    "title": {
+      "zh": "錢幣一",
+      "en": "ACE OF PENTACLES"
+    },
+    "subtitle": "Material Gift / Abundance",
+    "slug": "ace-of-pentacles",
+    "image": "art/renders/card-pe-01-ace-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Ace of Pentacles represents 'Resource Availability'—the fundamental ecological requirement of a healthy prey base for leopard cat persistence."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "新的財務機會、繁榮、健康、以及大地帶來的生存資源。",
+      "en": "A new material opportunity, prosperity, health, and the abundance of survival resources."
+    }
+  },
+  {
+    "id": "card-pe-02-twoof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 402,
+    "title": {
+      "zh": "錢幣二",
+      "en": "TWO OF PENTACLES"
+    },
+    "subtitle": "Balance & Resource Management",
+    "slug": "two-of-pentacles",
+    "image": "art/renders/card-pe-02-two-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Two of Pentacles represents 'Temporal Activity Mapping'—how leopard cats adjust their behavior to exploit different resources throughout the day."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "平衡、多任務處理、適應變化，以及在不同棲地間分配生存能量。",
+      "en": "Balance, multitasking, adaptability, and managing energy across different habitat patches."
+    }
+  },
+  {
+    "id": "card-pe-03-threeof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 403,
+    "title": {
+      "zh": "錢幣三",
+      "en": "THREE OF PENTACLES"
+    },
+    "subtitle": "Collaboration / Teamwork",
+    "slug": "three-of-pentacles",
+    "image": "art/renders/card-pe-03-three-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Three of Pentacles represents 'Stakeholder Integration'—the multi-disciplinary cooperation required for large-scale conservation success."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "團隊合作、專業技能、認可，以及跨領域合作帶來的生態復育成果。",
+      "en": "Teamwork, collaboration, mastery, and the results of multi-disciplinary conservation efforts."
+    }
+  },
+  {
+    "id": "card-pe-04-fourof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 404,
+    "title": {
+      "zh": "錢幣四",
+      "en": "FOUR OF PENTACLES"
+    },
+    "subtitle": "Security & Conservation",
+    "slug": "four-of-pentacles",
+    "image": "art/renders/card-pe-04-four-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Four of Pentacles represents 'Territorial Fidelity'—the strong attachment to high-quality core areas that provide safety and food."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "控制、穩定、安全感、以及對核心資源與領地的堅定守護。",
+      "en": "Control, stability, security, and the steadfast protection of core resources and territory."
+    }
+  },
+  {
+    "id": "card-pe-05-fiveof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 405,
+    "title": {
+      "zh": "錢幣五",
+      "en": "FIVE OF PENTACLES"
+    },
+    "subtitle": "Scarcity & Hardship",
+    "slug": "five-of-pentacles",
+    "image": "art/renders/card-pe-05-five-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Five of Pentacles represents 'Environmental Stress'—the impact of climate change and habitat degradation on resource availability."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "貧困、疾病、疏離、以及在極端環境下對生存資源的艱難尋求。",
+      "en": "Poverty, illness, isolation, and the difficult search for resources in extreme environments."
+    }
+  },
+  {
+    "id": "card-pe-06-sixof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 406,
+    "title": {
+      "zh": "錢幣六",
+      "en": "SIX OF PENTACLES"
+    },
+    "subtitle": "Generosity & Balance",
+    "slug": "six-of-pentacles",
+    "image": "art/renders/card-pe-06-six-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Six of Pentacles represents 'Altruistic Provisioning'—maternal investment and the sharing of resources to ensure the survival of the next generation."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "慷慨、分享、慈善、以及族群內部與世代間的資源互助。",
+      "en": "Generosity, sharing, charity, and the mutual aid of resources within a population."
+    }
+  },
+  {
+    "id": "card-pe-07-sevenof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 407,
+    "title": {
+      "zh": "錢幣七",
+      "en": "SEVEN OF PENTACLES"
+    },
+    "subtitle": "Patience & Evaluation",
+    "slug": "seven-of-pentacles",
+    "image": "art/renders/card-pe-07-seven-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Seven of Pentacles represents 'Ecological Succession'—the time-lag between restoration actions and the measurable recovery of biodiversity."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "耐心、評估、長遠的回報，以及對復育成果的細心觀察與等待。",
+      "en": "Patience, evaluation, long-term reward, and waiting for the fruits of restoration efforts."
+    }
+  },
+  {
+    "id": "card-pe-08-eight-of-pentacles",
+    "arcana": "minor",
+    "number": 408,
+    "title": {
+      "zh": "錢幣八",
+      "en": "EIGHT OF PENTACLES"
+    },
+    "subtitle": "Diligence & Skill",
+    "slug": "eight-of-pentacles",
+    "image": "art/renders/card-pe-08-eight-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Eight of Pentacles represents 'Ontogenetic Development'—the learning process by which juveniles acquire the skills needed for independent survival."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "勤奮、學徒期、技能提升、以及對生存技術的不斷磨練。",
+      "en": "Diligence, apprenticeship, skill development, and the constant refinement of survival techniques."
+    }
+  },
+  {
+    "id": "card-pe-09-nineof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 409,
+    "title": {
+      "zh": "錢幣九",
+      "en": "NINE OF PENTACLES"
+    },
+    "subtitle": "Luxury & Self-Sufficiency",
+    "slug": "nine-of-pentacles",
+    "image": "art/renders/card-pe-09-nine-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Nine of Pentacles represents 'Optimal Habitat Choice'—the ecological success of an individual occupying a top-tier, low-risk territory."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "自給自足、獨立、優雅、以及在高品質棲地中享受的安全與豐饒。",
+      "en": "Self-sufficiency, independence, luxury, and the security and abundance found in optimal habitats."
+    }
+  },
+  {
+    "id": "card-pe-10-tenof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 410,
+    "title": {
+      "zh": "錢幣十",
+      "en": "TEN OF PENTACLES"
+    },
+    "subtitle": "Legacy & Wealth",
+    "slug": "ten-of-pentacles",
+    "image": "art/renders/card-pe-10-ten-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Ten of Pentacles represents 'Metapopulation Persistence'—the ultimate conservation goal of a self-sustaining population across generations."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "財富、傳統、家庭、長久的成功，以及族群代代相傳的繁榮。",
+      "en": "Wealth, tradition, family, long-term success, and the prosperity of a population across generations."
+    }
+  },
+  {
+    "id": "card-pe-11-pageof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 411,
+    "title": {
+      "zh": "錢幣侍者",
+      "en": "PAGE OF PENTACLES"
+    },
+    "subtitle": "Exploration / Discovery",
+    "slug": "page-of-pentacles",
+    "image": "art/renders/card-pe-11-page-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Page of Pentacles represents 'Environmental Learning'—the early stages of a leopard cat's development where it learns to identify prey and safe areas."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "學習、新機會、踏實、以及對自然界生存法則的初步探索。",
+      "en": "Learning, new opportunity, groundedness, and the initial exploration of survival laws."
+    }
+  },
+  {
+    "id": "card-pe-12-knightof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 412,
+    "title": {
+      "zh": "錢幣騎士",
+      "en": "KNIGHT OF PENTACLES"
+    },
+    "subtitle": "Responsibility / Routine",
+    "slug": "knight-of-pentacles",
+    "image": "art/renders/card-pe-12-knight-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Knight of Pentacles represents 'Resource Monitoring'—the routine patrolling behavior used by resident cats to manage their home ranges."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "勤奮、可靠、保守、循序漸進，以及對生存領域的穩定巡護。",
+      "en": "Diligence, reliability, routine, and the steady patrolling of a survival territory."
+    }
+  },
+  {
+    "id": "card-pe-13-queenof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 413,
+    "title": {
+      "zh": "錢幣皇后",
+      "en": "QUEEN OF PENTACLES"
+    },
+    "subtitle": "Nurturing / Practicality",
+    "slug": "queen-of-pentacles",
+    "image": "art/renders/card-pe-13-queen-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Queen of Pentacles represents 'Habitat Suitability'—the ideal conditions that allow for high reproductive success and population health."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "養育、務實、慷慨、穩定，以及守護大地的母性力量與繁榮。",
+      "en": "Nurturing, practicality, generosity, stability, and the maternal power that guards the land's prosperity."
+    }
+  },
+  {
+    "id": "card-pe-14-kingof-ofof-pentacles",
+    "arcana": "minor",
+    "number": 414,
+    "title": {
+      "zh": "錢幣國王",
+      "en": "KING OF PENTACLES"
+    },
+    "subtitle": "Mastery / Success",
+    "slug": "king-of-pentacles",
+    "image": "art/renders/card-pe-14-king-of-pentacles.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "King of Pentacles represents 'Carrying Capacity'—the state of an ecosystem that has reached its peak potential to support a healthy apex population."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "成功、安全、商業頭腦、紀律，以及對土地資源的最終掌握與富足。",
+      "en": "Success, security, mastery, discipline, and the ultimate abundance of land resources."
+    }
+  },
+  {
     "id": "card-sw-01-ace-of-swords",
     "arcana": "minor",
     "number": 301,
@@ -2597,6 +3768,706 @@
     }
   },
   {
+    "id": "card-sw-05-five-of-swords",
+    "arcana": "minor",
+    "number": 205,
+    "title": {
+      "zh": "寶劍五",
+      "en": "FIVE OF SWORDS"
+    },
+    "subtitle": "Conflict & Loss",
+    "slug": "five-of-swords",
+    "image": "art/renders/card-sw-05-five-of-swords.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Five of Swords represents 'Territorial Compression'—the friction caused when leopard cats are forced into overlapping ranges due to habitat loss."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "衝突、背叛、不名譽的勝利，以及在破碎棲地中的資源爭奪。",
+      "en": "Conflict, betrayal, winning at a cost, and the struggle for resources in fragmented habitats."
+    }
+  },
+  {
+    "id": "card-sw-06-six-of-swords",
+    "arcana": "minor",
+    "number": 206,
+    "title": {
+      "zh": "寶劍六",
+      "en": "SIX OF SWORDS"
+    },
+    "subtitle": "Transition & Passage",
+    "slug": "six-of-swords",
+    "image": "art/renders/card-sw-06-six-of-swords.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Six of Swords represents 'Corridor Connectivity'—the vital movement of individuals through safe passages to reach sustainable population patches."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "遠行、渡過難關、療癒，以及透過生態廊道前往安全棲地的旅程。",
+      "en": "Transition, moving on, healing, and the journey to safer habitats via ecological corridors."
+    }
+  },
+  {
+    "id": "card-sw-07-seven-of-swords",
+    "arcana": "minor",
+    "number": 207,
+    "title": {
+      "zh": "寶劍七",
+      "en": "SEVEN OF SWORDS"
+    },
+    "subtitle": "Strategy & Stealth",
+    "slug": "seven-of-swords",
+    "image": "art/renders/card-sw-07-seven-of-swords.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Seven of Swords represents 'Border Risk'—the opportunistic behavior of raiding domestic livestock when natural prey is scarce."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "逃避、策略、不誠實，以及在人類聚落邊緣尋找生存機會的冒險。",
+      "en": "Deception, strategy, stealth, and taking risks at the human-animal interface."
+    }
+  },
+  {
+    "id": "card-sw-08-eight-of-swords",
+    "arcana": "minor",
+    "number": 208,
+    "title": {
+      "zh": "寶劍八",
+      "en": "EIGHT OF SWORDS"
+    },
+    "subtitle": "Interference & Trap",
+    "slug": "eight-of-swords",
+    "image": "art/renders/card-sw-08-eight-of-swords.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Eight of Swords represents 'Anthropogenic Pressure'—the psychological and physical restrictions placed on wildlife by roads and traps."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "受困、孤立、自我限制，以及被人類設施與獸夾圍困的真實威脅。",
+      "en": "Imprisonment, isolation, restriction, and the physical threat of traps and development."
+    }
+  },
+  {
+    "id": "card-sw-09-nine-of-swords",
+    "arcana": "minor",
+    "number": 209,
+    "title": {
+      "zh": "寶劍九",
+      "en": "NINE OF SWORDS"
+    },
+    "subtitle": "Anxiety & Nightmares",
+    "slug": "nine-of-swords",
+    "image": "art/renders/card-sw-09-nine-of-swords.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Nine of Swords represents 'Sensory Overload'—the impact of light pollution and road noise on the mental well-being of nocturnal predators."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "憂慮、噩夢、絕望，以及環境噪音與光害造成的長期生存壓力。",
+      "en": "Anxiety, nightmares, despair, and the chronic stress caused by urban light and noise."
+    }
+  },
+  {
+    "id": "card-sw-10-ten-of-swords",
+    "arcana": "minor",
+    "number": 210,
+    "title": {
+      "zh": "寶劍十",
+      "en": "TEN OF SWORDS"
+    },
+    "subtitle": "The Tragic End",
+    "slug": "ten-of-swords",
+    "image": "art/renders/card-sw-10-ten-of-swords.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Ten of Swords represents 'Roadkill Mortality'—the most severe threat to leopard cats, serving as a powerful warning of the cost of fragmentation."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "慘敗、背叛、痛苦的終結，以及路殺與中毒帶來的族群存續危機。",
+      "en": "Backstabbing, defeat, a painful ending, and the population crisis caused by roadkill."
+    }
+  },
+  {
+    "id": "card-sw-11-page-of-swords",
+    "arcana": "minor",
+    "number": 211,
+    "title": {
+      "zh": "寶劍侍者",
+      "en": "PAGE OF SWORDS"
+    },
+    "subtitle": "Vigilance & Curiosity",
+    "slug": "page-of-swords",
+    "image": "art/renders/card-sw-11-page-of-swords.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Page of Swords represents 'Ecological Monitoring'—the interaction between wildlife and the tools used to study and protect them."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "警覺、好奇、消息靈通，以及新一代個體對環境監測設施的探索。",
+      "en": "Vigilance, curiosity, mental agility, and the exploration of monitoring tools."
+    }
+  },
+  {
+    "id": "card-sw-12-knight-of-swords",
+    "arcana": "minor",
+    "number": 212,
+    "title": {
+      "zh": "寶劍騎士",
+      "en": "KNIGHT OF SWORDS"
+    },
+    "subtitle": "Swift Action",
+    "slug": "knight-of-swords",
+    "image": "art/renders/card-sw-12-knight-of-swords.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Knight of Swords represents 'Adaptive Movement'—the swift use of drainage culverts as safe underpasses to navigate roads."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "急躁、衝動、迅速行動，以及在危險設施中快速穿梭的適應力。",
+      "en": "Haste, impulsiveness, swift action, and adaptive navigation through dangerous infrastructure."
+    }
+  },
+  {
+    "id": "card-sw-13-queen-of-swords",
+    "arcana": "minor",
+    "number": 213,
+    "title": {
+      "zh": "寶劍皇后",
+      "en": "QUEEN OF SWORDS"
+    },
+    "subtitle": "Independence & Insight",
+    "slug": "queen-of-swords",
+    "image": "art/renders/card-sw-13-queen-of-swords.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Queen of Swords represents 'Female Philopatry'—the strong territorial bonds and independent survival of female leopard cats."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "獨立、清晰的思考、判斷力，以及守護領地的堅定意志。",
+      "en": "Independence, clear thinking, judgment, and the fierce protection of territory."
+    }
+  },
+  {
+    "id": "card-sw-14-king-of-swords",
+    "arcana": "minor",
+    "number": 214,
+    "title": {
+      "zh": "寶劍國王",
+      "en": "KING OF SWORDS"
+    },
+    "subtitle": "Authority & Strategy",
+    "slug": "king-of-swords",
+    "image": "art/renders/card-sw-14-king-of-swords.png",
+    "ecology": {
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "King of Swords represents 'Territorial Mastery'—the strategic management of large ranges across complex, human-modified landscapes."
+    },
+    "meanings": {
+      "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+      "keywords": [
+        "rest",
+        "recovery",
+        "meditation",
+        "sanctuary"
+      ]
+    },
+    "palette": {
+      "top": [
+        120,
+        140,
+        160
+      ],
+      "bottom": [
+        60,
+        80,
+        100
+      ],
+      "frame": [
+        219,
+        203,
+        156
+      ],
+      "frame_inner": [
+        171,
+        149,
+        102
+      ],
+      "panel": [
+        30,
+        40,
+        50
+      ],
+      "text_primary": [
+        243,
+        233,
+        201
+      ],
+      "text_secondary": [
+        198,
+        186,
+        151
+      ]
+    },
+    "meaning": {
+      "zh": "權威、邏輯、戰略家，以及對複雜地景邊界的精確掌握。",
+      "en": "Authority, logic, strategic thinking, and mastery over complex landscape boundaries."
+    }
+  },
+  {
     "id": "card-wa-01-ace-of-wands",
     "arcana": "minor",
     "number": 101,
@@ -2662,7 +4533,7 @@
       ]
     },
     "meaning": {
-      "zh": "A new opportunity, territorial expansion, inspiration, and the creative drive to establish oneself in new terrain.",
+      "zh": "全新的機會、棲地擴張的契機、靈感的泉源，以及在全新領域建立領地的生命衝勁。",
       "en": "A new opportunity, territorial expansion, inspiration, and the creative drive to establish oneself in new terrain."
     }
   },
@@ -2732,7 +4603,7 @@
       ]
     },
     "meaning": {
-      "zh": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments.",
+      "zh": "規劃、決策、目光遠大，並評估不同棲地碎片之間的潛在路徑。",
       "en": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments."
     }
   },

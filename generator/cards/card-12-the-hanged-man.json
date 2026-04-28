@@ -8,7 +8,7 @@
   },
   "subtitle": "Pause / Perspective / Sacrifice",
   "slug": "12-the-hanged-man",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,12 +63,36 @@
     "narrative": "An anthropomorphic Taiwan leopard cat hanging upside down by one leg from a horizontal tree branch in a high forest canopy. He looks calm and contemplative, ignoring the world below. A faint halo of moonlight glows behind his head. Meaning: New perspective, the necessary waiting period in a fragmented habitat, and finding peace in suspension."
   },
   "output": "art/renders/card-12-the-hanged-man.png",
-  "meaning": {
-    "zh": "TBD",
-    "en": "TBD"
+  "meanings": {
+    "upright": "Pause, surrender, letting go, new perspectives, and waiting for the right moment.",
+    "reversed": "Stalling, needless sacrifice, fear of sacrifice, or feeling trapped without purpose.",
+    "keywords": [
+      "pause",
+      "surrender",
+      "perspective",
+      "sacrifice"
+    ]
   },
   "ecology": {
-    "zh": "TBD",
-    "en": "TBD"
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "resting adult",
+    "habitat_fragment": "high canopy tree branch",
+    "risk_theme": "waiting out human activity, adjusting to new rhythms",
+    "mapping_note": "The Hanged Man represents the leopard cat's behavioral shift: waiting out the daylight and human activity by resting high in the trees, shifting its perspective to survive in a human-dominated landscape."
+  },
+  "website": {
+    "excerpt": "Resting in the high canopy, The Hanged Man waits out the busy world, finding survival through a shift in perspective.",
+    "seo_title": "The Hanged Man - LeopardCat Tarot",
+    "seo_description": "The Hanged Man tarot card reimagined as a leopard cat resting and adapting to human activity rhythms.",
+    "tags": [
+      "major-arcana",
+      "hanged-man",
+      "leopard-cat",
+      "perspective"
+    ]
+  },
+  "meaning": {
+    "zh": "暫停、臣服、放下、嶄新的視角，以及等待合適的時機。",
+    "en": "Pause, surrender, letting go, new perspectives, and waiting for the right moment."
   }
 }

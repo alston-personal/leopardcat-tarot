@@ -8,7 +8,7 @@
   },
   "subtitle": "Ending / Transformation / Warning",
   "slug": "13-death",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,12 +63,36 @@
     "narrative": "A skeletal anthropomorphic Taiwan leopard cat wearing black iron armor, riding a pale skeletal steed across a field of withered autumn grass. He holds a banner with a white rosette pattern. In the background, the shadows of broken highway fences are visible under a blood-red sky. Meaning: Transition, the end of old habits, and the stark reality of survival on the brink."
   },
   "output": "art/renders/card-13-death.png",
-  "meaning": {
-    "zh": "TBD",
-    "en": "TBD"
+  "meanings": {
+    "upright": "Endings, profound change, transition, letting go of the old to make way for the new.",
+    "reversed": "Fear of change, holding on, stagnation, or refusing to accept a necessary transition.",
+    "keywords": [
+      "endings",
+      "change",
+      "transition",
+      "rebirth"
+    ]
   },
   "ecology": {
-    "zh": "TBD",
-    "en": "TBD"
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "the end of the cycle",
+    "habitat_fragment": "a clearing after a forest fire or heavy clearance",
+    "risk_theme": "the reality of mortality and the cycle of ecosystem renewal",
+    "mapping_note": "Death represents the harsh reality of mortality in the wild—but also the deep ecological truth that death feeds the forest, making way for new life and ecosystem regeneration."
+  },
+  "website": {
+    "excerpt": "A profound transition, Death reminds us of the stark mortality in the wild and the inevitable cycle of renewal.",
+    "seo_title": "Death - LeopardCat Tarot",
+    "seo_description": "The Death tarot card reimagined as the stark reality of mortality and the ecological cycle of renewal.",
+    "tags": [
+      "major-arcana",
+      "death",
+      "leopard-cat",
+      "transition"
+    ]
+  },
+  "meaning": {
+    "zh": "結束、深刻的改變、過渡期、放下過去以迎接新生。",
+    "en": "Endings, profound change, transition, letting go of the old to make way for the new."
   }
 }

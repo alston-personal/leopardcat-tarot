@@ -1,0 +1,106 @@
+{
+  "id": "card-pe-09-nineof-ofof-pentacles",
+  "arcana": "minor",
+  "suit": "pentacles",
+  "number": 409,
+  "title": {
+    "zh": "錢幣九",
+    "en": "NINE OF PENTACLES"
+  },
+  "subtitle": "Luxury & Self-Sufficiency",
+  "slug": "nine-of-pentacles",
+  "status": "prompt_ready",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      120,
+      140,
+      160
+    ],
+    "bottom": [
+      60,
+      80,
+      100
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      30,
+      40,
+      50
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "stone-hollow-rest",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "resting-leopard-cat"
+  },
+  "main_image": "art/generated/card-pe-09-nine-of-pentacles.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "A beautiful female Taiwan leopard cat standing upright in a magnificent, predator-free garden forest filled with ripe fruit and butterflies. She wears a rich silk robe and has a bird (prey) perched calmly on her gloved hand. Sense of peace, independence, and abundance.",
+    "narrative": "The Nine of Pentacles is 'The Protected Sanctuary'—a high-quality, secure habitat where an individual can thrive in peace and self-sufficiency."
+  },
+  "ornaments": [
+    "stone-effigy",
+    "hanging-swords"
+  ],
+  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "meanings": {
+    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+    "keywords": [
+      "rest",
+      "recovery",
+      "meditation",
+      "sanctuary"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "protected forest cave/hollow",
+    "risk_theme": "stress-induced immunosuppression",
+    "mapping_note": "Nine of Pentacles represents 'Optimal Habitat Choice'—the ecological success of an individual occupying a top-tier, low-risk territory."
+  },
+  "website": {
+    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
+    "seo_title": "Four of Swords - LeopardCat Tarot",
+    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "tags": [
+      "minor-arcana",
+      "swords",
+      "leopard-cat",
+      "rest"
+    ]
+  },
+  "meaning": {
+    "zh": "自給自足、獨立、優雅、以及在高品質棲地中享受的安全與豐饒。",
+    "en": "Self-sufficiency, independence, luxury, and the security and abundance found in optimal habitats."
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "id": "card-pe-06-sixof-ofof-pentacles",
+  "arcana": "minor",
+  "suit": "pentacles",
+  "number": 406,
+  "title": {
+    "zh": "錢幣六",
+    "en": "SIX OF PENTACLES"
+  },
+  "subtitle": "Generosity & Balance",
+  "slug": "six-of-pentacles",
+  "status": "prompt_ready",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      120,
+      140,
+      160
+    ],
+    "bottom": [
+      60,
+      80,
+      100
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      30,
+      40,
+      50
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "stone-hollow-rest",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "resting-leopard-cat"
+  },
+  "main_image": "art/generated/card-pe-06-six-of-pentacles.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "A Taiwan leopard cat standing upright and distributing small pieces of prey (or golden coins) to two younger leopard cats. It holds a pair of scales in the other hand. Setting is a peaceful, sun-dappled forest floor. Balanced and benevolent energy.",
+    "narrative": "The Six of Pentacles is 'The Shared Bounty'—the equitable distribution of resources within a population, or the maternal care of sharing food with offspring."
+  },
+  "ornaments": [
+    "stone-effigy",
+    "hanging-swords"
+  ],
+  "output": "art/renders/card-sw-04-four-of-swords.png",
+  "meanings": {
+    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+    "keywords": [
+      "rest",
+      "recovery",
+      "meditation",
+      "sanctuary"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "protected forest cave/hollow",
+    "risk_theme": "stress-induced immunosuppression",
+    "mapping_note": "Six of Pentacles represents 'Altruistic Provisioning'—maternal investment and the sharing of resources to ensure the survival of the next generation."
+  },
+  "website": {
+    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
+    "seo_title": "Four of Swords - LeopardCat Tarot",
+    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "tags": [
+      "minor-arcana",
+      "swords",
+      "leopard-cat",
+      "rest"
+    ]
+  },
+  "meaning": {
+    "zh": "慷慨、分享、慈善、以及族群內部與世代間的資源互助。",
+    "en": "Generosity, sharing, charity, and the mutual aid of resources within a population."
+  }
+}

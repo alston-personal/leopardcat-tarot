@@ -9,7 +9,7 @@
   },
   "subtitle": "The Resilient Survivor / Wisdom of Age",
   "slug": "nine-of-wands",
-  "status": "rework_needed",
+  "status": "prompt_ready",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,8 +63,8 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS, head bandaged with a rustic cloth, wearing a worn traveler's cloak. He holds one wooden wand FIRMLY WITH ITS PAWS as a staff. Behind him, EXACTLY EIGHT more wooden wands are arranged in a dense semi-circle. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
-    "narrative": "An old leopard cat survivor, scarred but resilient, represents the living proof that survival is possible when habitats are protected and respected."
+    "image_prompt": "[TECHNICAL: Aspect Ratio 2:3 Vertical, Edge-to-Edge Continuous, NO TEXT, NO BORDERS, NO FRAMES, NO INNER FRAMES, NO MARGINS] Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content MUST touch all four edges. ABSOLUTELY NO TEXT. STRICTLY ANTHROPOMORPHIC. Taiwan leopard cat with white ear spots, forehead stripes, rosette patterns. SCENE: A wounded Taiwan leopard cat standing defensively. EXACTLY NINE (9) wooden wands total. He holds ONE wand. Behind him are exactly EIGHT (8) wands planted in the ground tightly together in the center. Let's count them: exactly 1,2,3,4,5,6,7,8 wands behind him. Total 9 wands perfectly visible. None are cut off by the edges.",
+    "narrative": "A leopard cat stands guard over a restored corridor, representing the resilience required to maintain ecological gains against ongoing threats."
   },
   "ornaments": [
     "scars",

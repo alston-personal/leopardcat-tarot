@@ -8,7 +8,7 @@
   },
   "subtitle": "Tradition / Wisdom / Ancient Trails",
   "slug": "the-hierophant",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -72,8 +72,29 @@
     "mapping_note": "The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries."
   },
   "output": "art/renders/card-05-the-hierophant.png",
+  "meanings": {
+    "upright": "Tradition, ancestral wisdom, following established paths, education, and spiritual guidance.",
+    "reversed": "Challenging tradition, losing connection to ancestry, wandering off the safe path, or outdated rigid rules.",
+    "keywords": [
+      "tradition",
+      "wisdom",
+      "guidance",
+      "heritage"
+    ]
+  },
+  "website": {
+    "excerpt": "Standing before the ancient boundary tree, the Hierophant passes down the survival knowledge of generations.",
+    "seo_title": "The Hierophant - LeopardCat Tarot",
+    "seo_description": "The Hierophant reimagined through the leopard cat's ancestral wisdom and traditional safe trails.",
+    "tags": [
+      "major-arcana",
+      "hierophant",
+      "leopard-cat",
+      "wisdom"
+    ]
+  },
   "meaning": {
-    "zh": "TBD",
-    "en": "TBD"
+    "zh": "傳統、祖先的智慧、遵循既定的安全路徑、教育與指引。",
+    "en": "Tradition, ancestral wisdom, following established paths, education, and spiritual guidance."
   }
 }

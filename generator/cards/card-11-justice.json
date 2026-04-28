@@ -8,7 +8,7 @@
   },
   "subtitle": "Balance / Law / Ecological Integrity",
   "slug": "11-justice",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,12 +63,36 @@
     "narrative": "A dignified anthropomorphic Taiwan leopard cat wearing formal judicial robes, sitting upon a mossy stone chair at a forest boundary. He holds a sword in one hand and a gold scale in the other. On the scales, a healthy forest patch balances against a cluster of rural houses. Meaning: Fairness, natural laws, and the complex balance between wildlife habitat and human development."
   },
   "output": "art/renders/card-11-justice.png",
-  "meaning": {
-    "zh": "TBD",
-    "en": "TBD"
+  "meanings": {
+    "upright": "Fairness, truth, cause and effect, the law, and taking responsibility for actions.",
+    "reversed": "Injustice, unfairness, dishonesty, or avoiding accountability for environmental damage.",
+    "keywords": [
+      "justice",
+      "truth",
+      "balance",
+      "consequence"
+    ]
   },
   "ecology": {
-    "zh": "TBD",
-    "en": "TBD"
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "forest border where human law meets natural law",
+    "risk_theme": "legal protection, conservation laws, and the consequences of human actions on wildlife",
+    "mapping_note": "Justice represents the absolute law of cause and effect in ecology: destroying habitats has consequences, and protecting them restores balance. It also directly maps to the legal conservation status protecting the leopard cat."
+  },
+  "website": {
+    "excerpt": "Holding the scales of balance, Justice demands accountability for the ecological choices we make.",
+    "seo_title": "Justice - LeopardCat Tarot",
+    "seo_description": "The Justice tarot card reimagined as ecological balance and the law of cause and effect.",
+    "tags": [
+      "major-arcana",
+      "justice",
+      "leopard-cat",
+      "balance"
+    ]
+  },
+  "meaning": {
+    "zh": "公平、真理、因果關係、法律，以及為破壞環境的行為負起責任。",
+    "en": "Fairness, truth, cause and effect, the law, and taking responsibility for actions."
   }
 }

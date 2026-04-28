@@ -8,7 +8,7 @@
   },
   "subtitle": "Alchemy / Flow / Coexistence",
   "slug": "14-temperance",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -64,11 +64,35 @@
   },
   "output": "art/renders/card-14-temperance.png",
   "meaning": {
-    "zh": "TBD",
-    "en": "TBD"
+    "zh": "平衡、節制、耐心、目標，以及和諧的融合（如生態友善農業）。",
+    "en": "Balance, moderation, patience, purpose, and harmonious blending."
   },
   "ecology": {
-    "zh": "TBD",
-    "en": "TBD"
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "mixed agroforestry landscape",
+    "risk_theme": "the delicate balance between agriculture and wildlife survival",
+    "mapping_note": "Temperance represents the harmonious blending of human land use and natural habitat—such as eco-friendly farming—where both humans and leopard cats can thrive in balance."
+  },
+  "meanings": {
+    "upright": "Balance, moderation, patience, purpose, and harmonious blending.",
+    "reversed": "Imbalance, excess, clashing interests, or lack of long-term vision.",
+    "keywords": [
+      "balance",
+      "moderation",
+      "harmony",
+      "patience"
+    ]
+  },
+  "website": {
+    "excerpt": "Blending the boundaries between farm and forest, Temperance shows the vital balance of coexistence.",
+    "seo_title": "Temperance - LeopardCat Tarot",
+    "seo_description": "The Temperance tarot card reimagined as the harmonious balance between human agriculture and leopard cat habitat.",
+    "tags": [
+      "major-arcana",
+      "temperance",
+      "leopard-cat",
+      "balance"
+    ]
   }
 }

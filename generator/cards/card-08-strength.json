@@ -8,7 +8,7 @@
   },
   "subtitle": "Grace / Fortitude / Inner Power",
   "slug": "08-strength",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -64,14 +64,35 @@
   },
   "output": "art/renders/card-08-strength.png",
   "meanings": {
-    "upright": "TBD",
-    "reversed": "TBD"
+    "upright": "Taming the wild within, persistent quiet strength, grace under pressure, and the delicate balance of nature.",
+    "reversed": "Brute force, losing control of instincts, weakness, or ecological imbalance.",
+    "keywords": [
+      "grace",
+      "fortitude",
+      "inner-power",
+      "balance"
+    ]
   },
   "ecology": {
-    "species_focus": "Taiwan leopard cat"
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "serene adult female",
+    "habitat_fragment": "sun-dappled bamboo grove",
+    "risk_theme": "balancing predatory instincts with the need for silent survival",
+    "mapping_note": "Strength represents the calm, quiet mastery of the leopard cat as an apex predator in its micro-habitat, maintaining ecological balance without relying on brute force."
+  },
+  "website": {
+    "excerpt": "In the quiet bamboo grove, Strength reveals the delicate balance between wild predatory instincts and profound inner calm.",
+    "seo_title": "Strength - LeopardCat Tarot",
+    "seo_description": "The Strength tarot card reimagined through the leopard cat's quiet mastery and ecological balance.",
+    "tags": [
+      "major-arcana",
+      "strength",
+      "leopard-cat",
+      "balance"
+    ]
   },
   "meaning": {
-    "zh": "TBD",
-    "en": "TBD"
+    "zh": "馴服內在的野性、持久而平靜的力量、壓力下的優雅，以及自然界的微妙平衡。",
+    "en": "Taming the wild within, persistent quiet strength, grace under pressure, and the delicate balance of nature."
   }
 }
