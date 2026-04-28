@@ -1605,7 +1605,7 @@
       ]
     },
     "meaning": {
-      "zh": "Love, potential, emotional abundance, spiritual intuition, and new beginnings in the realm of the heart.",
+      "zh": "愛、潛力、情感的豐盛、靈性直覺，以及心靈層面的全新開始。",
       "en": "Love, potential, emotional abundance, spiritual intuition, and new beginnings in the realm of the heart."
     }
   },
@@ -1675,7 +1675,7 @@
       ]
     },
     "meaning": {
-      "zh": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony.",
+      "zh": "相互信任、伴侶關係、吸引力、浪漫，以及和諧的雙邊平衡。",
       "en": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony."
     }
   },
@@ -1745,7 +1745,7 @@
       ]
     },
     "meaning": {
-      "zh": "Celebration, community support, friendship, group harmony, and shared joy.",
+      "zh": "慶祝、社群支持、友誼、團隊和諧，以及共享的喜悅。",
       "en": "Celebration, community support, friendship, group harmony, and shared joy."
     }
   },
@@ -1815,7 +1815,7 @@
       ]
     },
     "meaning": {
-      "zh": "Meditation, contemplation, apathy, re-evaluation, and being withdrawn.",
+      "zh": "冥想、沉思、冷漠、重新評估，以及自我退縮。",
       "en": "Meditation, contemplation, apathy, re-evaluation, and being withdrawn."
     }
   },
@@ -1885,7 +1885,7 @@
       ]
     },
     "meaning": {
-      "zh": "Loss, grief, regret, disappointment, and focuses on the negative.",
+      "zh": "失去、悲傷、悔恨、失望，以及過度關注負面事物。",
       "en": "Loss, grief, regret, disappointment, and focuses on the negative."
     }
   },
@@ -1955,7 +1955,7 @@
       ]
     },
     "meaning": {
-      "zh": "Nostalgia, childhood memories, innocence, sharing, and kindness.",
+      "zh": "懷舊、童年回憶、純真、分享，以及純粹的善意。",
       "en": "Nostalgia, childhood memories, innocence, sharing, and kindness."
     }
   },
@@ -2025,7 +2025,7 @@
       ]
     },
     "meaning": {
-      "zh": "Illusions, daydreaming, wishful thinking, choices, and too many options.",
+      "zh": "幻象、白日夢、一廂情願、抉擇，以及過多且虛幻的選擇。",
       "en": "Illusions, daydreaming, wishful thinking, choices, and too many options."
     }
   },
@@ -2095,7 +2095,7 @@
       ]
     },
     "meaning": {
-      "zh": "Abandonment, withdrawal, seeking deeper truth, and leaving the past behind.",
+      "zh": "拋棄、退縮、追尋更深的真理，以及將過去拋在腦後。",
       "en": "Abandonment, withdrawal, seeking deeper truth, and leaving the past behind."
     }
   },
@@ -2165,7 +2165,7 @@
       ]
     },
     "meaning": {
-      "zh": "Contentment, satisfaction, success, wishes fulfilled, and physical well-being.",
+      "zh": "滿足、如意、成功、願望實現，以及物質上的幸福感。",
       "en": "Contentment, satisfaction, success, wishes fulfilled, and physical well-being."
     }
   },
@@ -2235,7 +2235,7 @@
       ]
     },
     "meaning": {
-      "zh": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+      "zh": "幸福、情感的和諧、家庭、團聚，以及強烈的社群歸屬感。",
       "en": "Happiness, emotional harmony, family, reunion, and a high sense of community."
     }
   },
@@ -2252,7 +2252,8 @@
     "image": "art/renders/card-cu-11-page-of-cups.png",
     "ecology": {
       "zh": "初出茅廬的小石虎，帶著好奇心探索溪流與水岸。",
-      "en": "A young leopard cat exploring streams and riverbanks with curiosity."
+      "en": "A young leopard cat exploring streams and riverbanks with curiosity.",
+      "mapping_note": "Page of Cups represents 'Aquatic Exploration'—the early stages where young leopard cats discover clean streams and begin hunting aquatic prey."
     },
     "meanings": {
       "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
@@ -2319,7 +2320,8 @@
     "image": "art/renders/card-cu-12-knight-of-cups.png",
     "ecology": {
       "zh": "石虎少年在領地邊緣穿梭，尋找屬於自己的水源與家園。",
-      "en": "A juvenile leopard cat traversing territory edges searching for home."
+      "en": "A juvenile leopard cat traversing territory edges searching for home.",
+      "mapping_note": "Knight of Cups represents 'Riparian Navigation'—the movement of leopard cats along river corridors, using streams as safe navigation routes and rich hunting grounds."
     },
     "meanings": {
       "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
@@ -2386,7 +2388,8 @@
     "image": "art/renders/card-cu-13-queen-of-cups.png",
     "ecology": {
       "zh": "成年雌性石虎，守護著育幼區的生態平衡，充滿生存智慧。",
-      "en": "A mature female leopard cat maintaining balance in nursery areas with wisdom."
+      "en": "A mature female leopard cat maintaining balance in nursery areas with wisdom.",
+      "mapping_note": "Queen of Cups represents 'Water Security'—the stable, unpolluted water sources that are critical for nursing mothers to sustain themselves and their kittens."
     },
     "meanings": {
       "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
@@ -2453,7 +2456,8 @@
     "image": "art/renders/card-cu-14-king-of-cups.png",
     "ecology": {
       "zh": "成年雄性石虎展現出極強的領地掌控力。牠們能在大規模的環境變遷中，憑藉智慧與耐力守護族群邊界。",
-      "en": "Mature male leopard cats exhibit strong territorial mastery, protecting their kin through large-scale ecosystem changes with wisdom and resilience."
+      "en": "Mature male leopard cats exhibit strong territorial mastery, protecting their kin through large-scale ecosystem changes with wisdom and resilience.",
+      "mapping_note": "King of Cups represents 'Watershed Master'—the successful survival of a leopard cat in a complex, multi-source watershed, demonstrating resilience even in fluctuating environments."
     },
     "meanings": {
       "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
@@ -3553,7 +3557,7 @@
       ]
     },
     "meaning": {
-      "zh": "Clarity, breakthrough, power, mental strength, and success through logic.",
+      "zh": "清晰、突破、力量、心智的堅韌，以及透過邏輯獲得的成功。",
       "en": "Clarity, breakthrough, power, mental strength, and success through logic."
     }
   },
@@ -3623,7 +3627,7 @@
       ]
     },
     "meaning": {
-      "zh": "Indecision, choice, stalemate, blocked emotions, and being at a crossroads.",
+      "zh": "猶豫不決、抉擇、僵局、情感的封閉，以及站在十字路口。",
       "en": "Indecision, choice, stalemate, blocked emotions, and being at a crossroads."
     }
   },
@@ -3693,7 +3697,7 @@
       ]
     },
     "meaning": {
-      "zh": "Grief, heartbreak, emotional pain, sorrow, and betrayal.",
+      "zh": "悲傷、心碎、情感上的痛苦、哀悼，以及背叛。",
       "en": "Grief, heartbreak, emotional pain, sorrow, and betrayal."
     }
   },
@@ -3763,7 +3767,7 @@
       ]
     },
     "meaning": {
-      "zh": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+      "zh": "休息、恢復、冥想、獨處，以及從衝突中退卻以重獲力量。",
       "en": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength."
     }
   },
@@ -4673,7 +4677,7 @@
       ]
     },
     "meaning": {
-      "zh": "Progress, expansion, looking toward the long-term, and successful growth of the population range.",
+      "zh": "進展、擴張、放眼長遠的未來，以及族群領域的成功成長。",
       "en": "Progress, expansion, looking toward the long-term, and successful growth of the population range."
     }
   },
@@ -4743,7 +4747,7 @@
       ]
     },
     "meaning": {
-      "zh": "Celebration, harmony, a sense of belonging, and the establishment of a safe home base within the territory.",
+      "zh": "慶祝、和諧、歸屬感，以及在領地內建立起安全的家園。",
       "en": "Celebration, harmony, a sense of belonging, and the establishment of a safe home base within the territory."
     }
   },
