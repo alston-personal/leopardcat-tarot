@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Two thin, weary Taiwan leopard cats walking through a cold, rainy, and desolate wasteland near a construction site. Dark and somber atmosphere.",
+    "image_prompt": "Including exactly five golden pentacles on a stained glass window. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. Two weary anthropomorphic leopard cats in tattered clothes walk through a dark, rainy valley past a stone structure with a glowing window containing 5 pentacles. Muted somber tones. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
     "narrative": "The Five of Pentacles is 'The Lean Season'—the struggle for survival during drought or winter when prey is scarce and habitat quality is poor."
   },
   "ornaments": [

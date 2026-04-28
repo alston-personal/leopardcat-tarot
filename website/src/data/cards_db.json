@@ -80,8 +80,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：forest edge and roadside grass。風險：road mortality during dispersal。 The Fool's leap of faith becomes a young leopard cat crossing the line between cover and asphalt.",
-      "en": "Habitat: forest edge and roadside grass. Risk: road mortality during dispersal. The Fool's leap of faith becomes a young leopard cat crossing the line between cover and asphalt."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "juvenile",
+      "habitat_fragment": "forest edge and roadside grass",
+      "risk_theme": "road mortality during dispersal",
+      "mapping_note": "The Fool's leap of faith becomes a young leopard cat crossing the line between cover and asphalt.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：juvenile 。 棲地樣貌：forest edge and roadside grass 。 生存威脅：road mortality during dispersal 。 牌義關聯：The Fool's leap of faith becomes a young leopard cat crossing the line between cover and asphalt.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: juvenile | Habitat Fragment: forest edge and roadside grass | Risk Theme: road mortality during dispersal | Mapping Note: The Fool's leap of faith becomes a young leopard cat crossing the line between cover and asphalt."
     },
     "website": {
       "excerpt": "A juvenile leopard cat pauses at the roadside threshold where innocence meets human-made danger.",
@@ -186,8 +191,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：agricultural edge and field ridges。風險：survival in fragmented habitat through precision and adaptive behavior。 The Magician's elemental mastery becomes a leopard cat's ability to read and use edge habitat with tactical intelligence.",
-      "en": "Habitat: agricultural edge and field ridges. Risk: survival in fragmented habitat through precision and adaptive behavior. The Magician's elemental mastery becomes a leopard cat's ability to read and use edge habitat with tactical intelligence."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult male",
+      "habitat_fragment": "agricultural edge and field ridges",
+      "risk_theme": "survival in fragmented habitat through precision and adaptive behavior",
+      "mapping_note": "The Magician's elemental mastery becomes a leopard cat's ability to read and use edge habitat with tactical intelligence.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult male 。 棲地樣貌：agricultural edge and field ridges 。 生存威脅：survival in fragmented habitat through precision and adaptive behavior 。 牌義關聯：The Magician's elemental mastery becomes a leopard cat's ability to read and use edge habitat with tactical intelligence.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult male | Habitat Fragment: agricultural edge and field ridges | Risk Theme: survival in fragmented habitat through precision and adaptive behavior | Mapping Note: The Magician's elemental mastery becomes a leopard cat's ability to read and use edge habitat with tactical intelligence."
     },
     "website": {
       "excerpt": "An adult leopard cat moves through the agricultural edge with focused intelligence, turning habitat fragments into tools of survival.",
@@ -292,8 +302,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：stream margin and low-disturbance forest edge。風險：dependence on intact water systems and hidden refuge。 The High Priestess becomes a guardian of quiet habitat, where water, shadow, and instinct preserve survival.",
-      "en": "Habitat: stream margin and low-disturbance forest edge. Risk: dependence on intact water systems and hidden refuge. The High Priestess becomes a guardian of quiet habitat, where water, shadow, and instinct preserve survival."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "stream margin and low-disturbance forest edge",
+      "risk_theme": "dependence on intact water systems and hidden refuge",
+      "mapping_note": "The High Priestess becomes a guardian of quiet habitat, where water, shadow, and instinct preserve survival.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：stream margin and low-disturbance forest edge 。 生存威脅：dependence on intact water systems and hidden refuge 。 牌義關聯：The High Priestess becomes a guardian of quiet habitat, where water, shadow, and instinct preserve survival.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: stream margin and low-disturbance forest edge | Risk Theme: dependence on intact water systems and hidden refuge | Mapping Note: The High Priestess becomes a guardian of quiet habitat, where water, shadow, and instinct preserve survival."
     },
     "website": {
       "excerpt": "At the stream edge, the leopard cat becomes a figure of nocturnal intuition, stillness, and hidden ecological memory.",
@@ -395,8 +410,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：dense shrublands and hills near water。風險：reproductive success and safe denning sites。 The Empress represents the core of legal reproduction—safe habitat where kittens can be raised without threat.",
-      "en": "Habitat: dense shrublands and hills near water. Risk: reproductive success and safe denning sites. The Empress represents the core of legal reproduction—safe habitat where kittens can be raised without threat."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult female with kittens",
+      "habitat_fragment": "dense shrublands and hills near water",
+      "risk_theme": "reproductive success and safe denning sites",
+      "mapping_note": "The Empress represents the core of legal reproduction—safe habitat where kittens can be raised without threat.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult female with kittens 。 棲地樣貌：dense shrublands and hills near water 。 生存威脅：reproductive success and safe denning sites 。 牌義關聯：The Empress represents the core of legal reproduction—safe habitat where kittens can be raised without threat.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult female with kittens | Habitat Fragment: dense shrublands and hills near water | Risk Theme: reproductive success and safe denning sites | Mapping Note: The Empress represents the core of legal reproduction—safe habitat where kittens can be raised without threat."
     },
     "website": {
       "excerpt": "In the lush hills, the Empress embodies the nurturing power of a healthy habitat supporting the next generation.",
@@ -498,8 +518,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：large interconnected territorial hillsides。風險：territory loss and internal competition of males。 The Emperor is the dominant male securing a massive home range, needing large patches of safe forest to sustain his law over the land.",
-      "en": "Habitat: large interconnected territorial hillsides. Risk: territory loss and internal competition of males. The Emperor is the dominant male securing a massive home range, needing large patches of safe forest to sustain his law over the land."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "dominant adult male",
+      "habitat_fragment": "large interconnected territorial hillsides",
+      "risk_theme": "territory loss and internal competition of males",
+      "mapping_note": "The Emperor is the dominant male securing a massive home range, needing large patches of safe forest to sustain his law over the land.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：dominant adult male 。 棲地樣貌：large interconnected territorial hillsides 。 生存威脅：territory loss and internal competition of males 。 牌義關聯：The Emperor is the dominant male securing a massive home range, needing large patches of safe forest to sustain his law over the land.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: dominant adult male | Habitat Fragment: large interconnected territorial hillsides | Risk Theme: territory loss and internal competition of males | Mapping Note: The Emperor is the dominant male securing a massive home range, needing large patches of safe forest to sustain his law over the land."
     },
     "website": {
       "excerpt": "Standing upon the high ridge, the Emperor represents the structural strength required to protect a leopard cat's vast kingdom.",
@@ -585,8 +610,13 @@
       "narrative": "An elderly, wise anthropomorphic Taiwan leopard cat wearing ornate traditional tribal-patterned robes. He stands solemnly before a massive moss-covered ancient tree that marks an old boundary trail. He holds a staff made of polished hardwood. His expression is one of calm, ancestral wisdom, teaching the importance of following the safe, ancient paths of the forest. Deep indigo and dark walnut color palette."
     },
     "ecology": {
-      "zh": "棲地：stable, low-disturbance mature forest and animal runs (trails)。風險：disruption of traditional migration corridors and home ranges。 The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries.",
-      "en": "Habitat: stable, low-disturbance mature forest and animal runs (trails). Risk: disruption of traditional migration corridors and home ranges. The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "elderly adult",
+      "habitat_fragment": "stable, low-disturbance mature forest and animal runs (trails)",
+      "risk_theme": "disruption of traditional migration corridors and home ranges",
+      "mapping_note": "The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：elderly adult 。 棲地樣貌：stable, low-disturbance mature forest and animal runs (trails) 。 生存威脅：disruption of traditional migration corridors and home ranges 。 牌義關聯：The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: elderly adult | Habitat Fragment: stable, low-disturbance mature forest and animal runs (trails) | Risk Theme: disruption of traditional migration corridors and home ranges | Mapping Note: The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries."
     },
     "output": "art/renders/card-05-the-hierophant.png",
     "meanings": {
@@ -692,8 +722,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：connected forest glade。風險：genetic isolation and the need for safe corridors for breeding。 The Lovers represent the biological drive for connection and breeding, highlighting the critical need for habitat corridors so isolated populations can safely meet and mate.",
-      "en": "Habitat: connected forest glade. Risk: genetic isolation and the need for safe corridors for breeding. The Lovers represent the biological drive for connection and breeding, highlighting the critical need for habitat corridors so isolated populations can safely meet and mate."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "young adult pair",
+      "habitat_fragment": "connected forest glade",
+      "risk_theme": "genetic isolation and the need for safe corridors for breeding",
+      "mapping_note": "The Lovers represent the biological drive for connection and breeding, highlighting the critical need for habitat corridors so isolated populations can safely meet and mate.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：young adult pair 。 棲地樣貌：connected forest glade 。 生存威脅：genetic isolation and the need for safe corridors for breeding 。 牌義關聯：The Lovers represent the biological drive for connection and breeding, highlighting the critical need for habitat corridors so isolated populations can safely meet and mate.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: young adult pair | Habitat Fragment: connected forest glade | Risk Theme: genetic isolation and the need for safe corridors for breeding | Mapping Note: The Lovers represent the biological drive for connection and breeding, highlighting the critical need for habitat corridors so isolated populations can safely meet and mate."
     },
     "website": {
       "excerpt": "Meeting at the forest crossroads, The Lovers symbolize the vital connections and choices that sustain life.",
@@ -788,8 +823,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：high ridge overlooking fragmented valley。風險：navigating dangerous human landscapes to reach new territory。 The Chariot represents the sheer willpower and determination required for a leopard cat to successfully cross hostile, human-dominated landscapes to reach safe habitat.",
-      "en": "Habitat: high ridge overlooking fragmented valley. Risk: navigating dangerous human landscapes to reach new territory. The Chariot represents the sheer willpower and determination required for a leopard cat to successfully cross hostile, human-dominated landscapes to reach safe habitat."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "prime adult male",
+      "habitat_fragment": "high ridge overlooking fragmented valley",
+      "risk_theme": "navigating dangerous human landscapes to reach new territory",
+      "mapping_note": "The Chariot represents the sheer willpower and determination required for a leopard cat to successfully cross hostile, human-dominated landscapes to reach safe habitat.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：prime adult male 。 棲地樣貌：high ridge overlooking fragmented valley 。 生存威脅：navigating dangerous human landscapes to reach new territory 。 牌義關聯：The Chariot represents the sheer willpower and determination required for a leopard cat to successfully cross hostile, human-dominated landscapes to reach safe habitat.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: prime adult male | Habitat Fragment: high ridge overlooking fragmented valley | Risk Theme: navigating dangerous human landscapes to reach new territory | Mapping Note: The Chariot represents the sheer willpower and determination required for a leopard cat to successfully cross hostile, human-dominated landscapes to reach safe habitat."
     },
     "website": {
       "excerpt": "Overlooking a dangerous valley, The Chariot charges forward with unbreakable focus and sheer willpower.",
@@ -884,8 +924,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：sun-dappled bamboo grove。風險：balancing predatory instincts with the need for silent survival。 Strength represents the calm, quiet mastery of the leopard cat as an apex predator in its micro-habitat, maintaining ecological balance without relying on brute force.",
-      "en": "Habitat: sun-dappled bamboo grove. Risk: balancing predatory instincts with the need for silent survival. Strength represents the calm, quiet mastery of the leopard cat as an apex predator in its micro-habitat, maintaining ecological balance without relying on brute force."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "serene adult female",
+      "habitat_fragment": "sun-dappled bamboo grove",
+      "risk_theme": "balancing predatory instincts with the need for silent survival",
+      "mapping_note": "Strength represents the calm, quiet mastery of the leopard cat as an apex predator in its micro-habitat, maintaining ecological balance without relying on brute force.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：serene adult female 。 棲地樣貌：sun-dappled bamboo grove 。 生存威脅：balancing predatory instincts with the need for silent survival 。 牌義關聯：Strength represents the calm, quiet mastery of the leopard cat as an apex predator in its micro-habitat, maintaining ecological balance without relying on brute force.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: serene adult female | Habitat Fragment: sun-dappled bamboo grove | Risk Theme: balancing predatory instincts with the need for silent survival | Mapping Note: Strength represents the calm, quiet mastery of the leopard cat as an apex predator in its micro-habitat, maintaining ecological balance without relying on brute force."
     },
     "website": {
       "excerpt": "In the quiet bamboo grove, Strength reveals the delicate balance between wild predatory instincts and profound inner calm.",
@@ -980,8 +1025,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：undisturbed primeval mountain peak。風險：the extreme isolation required for survival in shrinking deep-mountain refuges。 The Hermit represents the absolute necessity of undisturbed, deep-core habitats where leopard cats can retreat from human interference and find absolute refuge.",
-      "en": "Habitat: undisturbed primeval mountain peak. Risk: the extreme isolation required for survival in shrinking deep-mountain refuges. The Hermit represents the absolute necessity of undisturbed, deep-core habitats where leopard cats can retreat from human interference and find absolute refuge."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "elder adult",
+      "habitat_fragment": "undisturbed primeval mountain peak",
+      "risk_theme": "the extreme isolation required for survival in shrinking deep-mountain refuges",
+      "mapping_note": "The Hermit represents the absolute necessity of undisturbed, deep-core habitats where leopard cats can retreat from human interference and find absolute refuge.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：elder adult 。 棲地樣貌：undisturbed primeval mountain peak 。 生存威脅：the extreme isolation required for survival in shrinking deep-mountain refuges 。 牌義關聯：The Hermit represents the absolute necessity of undisturbed, deep-core habitats where leopard cats can retreat from human interference and find absolute refuge.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: elder adult | Habitat Fragment: undisturbed primeval mountain peak | Risk Theme: the extreme isolation required for survival in shrinking deep-mountain refuges | Mapping Note: The Hermit represents the absolute necessity of undisturbed, deep-core habitats where leopard cats can retreat from human interference and find absolute refuge."
     },
     "website": {
       "excerpt": "High on the foggy mountain, the Hermit retreats to the deepest, undisturbed core of the forest to seek truth.",
@@ -1076,8 +1126,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：the grand ecological cycle。風險：climate shifts and the disruption of natural seasonal prey cycles。 The Wheel of Fortune symbolizes the grand cosmic and ecological cycle—the changing seasons, the food web, and the delicate fate of the leopard cat intertwined with all forest creatures.",
-      "en": "Habitat: the grand ecological cycle. Risk: climate shifts and the disruption of natural seasonal prey cycles. The Wheel of Fortune symbolizes the grand cosmic and ecological cycle—the changing seasons, the food web, and the delicate fate of the leopard cat intertwined with all forest creatures."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "all life stages",
+      "habitat_fragment": "the grand ecological cycle",
+      "risk_theme": "climate shifts and the disruption of natural seasonal prey cycles",
+      "mapping_note": "The Wheel of Fortune symbolizes the grand cosmic and ecological cycle—the changing seasons, the food web, and the delicate fate of the leopard cat intertwined with all forest creatures.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：all life stages 。 棲地樣貌：the grand ecological cycle 。 生存威脅：climate shifts and the disruption of natural seasonal prey cycles 。 牌義關聯：The Wheel of Fortune symbolizes the grand cosmic and ecological cycle—the changing seasons, the food web, and the delicate fate of the leopard cat intertwined with all forest creatures.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: all life stages | Habitat Fragment: the grand ecological cycle | Risk Theme: climate shifts and the disruption of natural seasonal prey cycles | Mapping Note: The Wheel of Fortune symbolizes the grand cosmic and ecological cycle—the changing seasons, the food web, and the delicate fate of the leopard cat intertwined with all forest creatures."
     },
     "website": {
       "excerpt": "The great wheel turns, weaving the fate of the leopard cat into the eternal, changing cycles of the forest ecosystem.",
@@ -1172,8 +1227,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：forest border where human law meets natural law。風險：legal protection, conservation laws, and the consequences of human actions on wildlife。 Justice represents the absolute law of cause and effect in ecology: destroying habitats has consequences, and protecting them restores balance. It also directly maps to the legal conservation status protecting the leopard cat.",
-      "en": "Habitat: forest border where human law meets natural law. Risk: legal protection, conservation laws, and the consequences of human actions on wildlife. Justice represents the absolute law of cause and effect in ecology: destroying habitats has consequences, and protecting them restores balance. It also directly maps to the legal conservation status protecting the leopard cat."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "forest border where human law meets natural law",
+      "risk_theme": "legal protection, conservation laws, and the consequences of human actions on wildlife",
+      "mapping_note": "Justice represents the absolute law of cause and effect in ecology: destroying habitats has consequences, and protecting them restores balance. It also directly maps to the legal conservation status protecting the leopard cat.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：forest border where human law meets natural law 。 生存威脅：legal protection, conservation laws, and the consequences of human actions on wildlife 。 牌義關聯：Justice represents the absolute law of cause and effect in ecology: destroying habitats has consequences, and protecting them restores balance. It also directly maps to the legal conservation status protecting the leopard cat.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: forest border where human law meets natural law | Risk Theme: legal protection, conservation laws, and the consequences of human actions on wildlife | Mapping Note: Justice represents the absolute law of cause and effect in ecology: destroying habitats has consequences, and protecting them restores balance. It also directly maps to the legal conservation status protecting the leopard cat."
     },
     "website": {
       "excerpt": "Holding the scales of balance, Justice demands accountability for the ecological choices we make.",
@@ -1268,8 +1328,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：high canopy tree branch。風險：waiting out human activity, adjusting to new rhythms。 The Hanged Man represents the leopard cat's behavioral shift: waiting out the daylight and human activity by resting high in the trees, shifting its perspective to survive in a human-dominated landscape.",
-      "en": "Habitat: high canopy tree branch. Risk: waiting out human activity, adjusting to new rhythms. The Hanged Man represents the leopard cat's behavioral shift: waiting out the daylight and human activity by resting high in the trees, shifting its perspective to survive in a human-dominated landscape."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "resting adult",
+      "habitat_fragment": "high canopy tree branch",
+      "risk_theme": "waiting out human activity, adjusting to new rhythms",
+      "mapping_note": "The Hanged Man represents the leopard cat's behavioral shift: waiting out the daylight and human activity by resting high in the trees, shifting its perspective to survive in a human-dominated landscape.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：resting adult 。 棲地樣貌：high canopy tree branch 。 生存威脅：waiting out human activity, adjusting to new rhythms 。 牌義關聯：The Hanged Man represents the leopard cat's behavioral shift: waiting out the daylight and human activity by resting high in the trees, shifting its perspective to survive in a human-dominated landscape.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: resting adult | Habitat Fragment: high canopy tree branch | Risk Theme: waiting out human activity, adjusting to new rhythms | Mapping Note: The Hanged Man represents the leopard cat's behavioral shift: waiting out the daylight and human activity by resting high in the trees, shifting its perspective to survive in a human-dominated landscape."
     },
     "website": {
       "excerpt": "Resting in the high canopy, The Hanged Man waits out the busy world, finding survival through a shift in perspective.",
@@ -1364,8 +1429,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：a clearing after a forest fire or heavy clearance。風險：the reality of mortality and the cycle of ecosystem renewal。 Death represents the harsh reality of mortality in the wild—but also the deep ecological truth that death feeds the forest, making way for new life and ecosystem regeneration.",
-      "en": "Habitat: a clearing after a forest fire or heavy clearance. Risk: the reality of mortality and the cycle of ecosystem renewal. Death represents the harsh reality of mortality in the wild—but also the deep ecological truth that death feeds the forest, making way for new life and ecosystem regeneration."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "the end of the cycle",
+      "habitat_fragment": "a clearing after a forest fire or heavy clearance",
+      "risk_theme": "the reality of mortality and the cycle of ecosystem renewal",
+      "mapping_note": "Death represents the harsh reality of mortality in the wild—but also the deep ecological truth that death feeds the forest, making way for new life and ecosystem regeneration.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：the end of the cycle 。 棲地樣貌：a clearing after a forest fire or heavy clearance 。 生存威脅：the reality of mortality and the cycle of ecosystem renewal 。 牌義關聯：Death represents the harsh reality of mortality in the wild—but also the deep ecological truth that death feeds the forest, making way for new life and ecosystem regeneration.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: the end of the cycle | Habitat Fragment: a clearing after a forest fire or heavy clearance | Risk Theme: the reality of mortality and the cycle of ecosystem renewal | Mapping Note: Death represents the harsh reality of mortality in the wild—but also the deep ecological truth that death feeds the forest, making way for new life and ecosystem regeneration."
     },
     "website": {
       "excerpt": "A profound transition, Death reminds us of the stark mortality in the wild and the inevitable cycle of renewal.",
@@ -1454,8 +1524,13 @@
       "en": "Balance, moderation, patience, purpose, and harmonious blending."
     },
     "ecology": {
-      "zh": "棲地：mixed agroforestry landscape。風險：the delicate balance between agriculture and wildlife survival。 Temperance represents the harmonious blending of human land use and natural habitat—such as eco-friendly farming—where both humans and leopard cats can thrive in balance.",
-      "en": "Habitat: mixed agroforestry landscape. Risk: the delicate balance between agriculture and wildlife survival. Temperance represents the harmonious blending of human land use and natural habitat—such as eco-friendly farming—where both humans and leopard cats can thrive in balance."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "mixed agroforestry landscape",
+      "risk_theme": "the delicate balance between agriculture and wildlife survival",
+      "mapping_note": "Temperance represents the harmonious blending of human land use and natural habitat—such as eco-friendly farming—where both humans and leopard cats can thrive in balance.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：mixed agroforestry landscape 。 生存威脅：the delicate balance between agriculture and wildlife survival 。 牌義關聯：Temperance represents the harmonious blending of human land use and natural habitat—such as eco-friendly farming—where both humans and leopard cats can thrive in balance.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: mixed agroforestry landscape | Risk Theme: the delicate balance between agriculture and wildlife survival | Mapping Note: Temperance represents the harmonious blending of human land use and natural habitat—such as eco-friendly farming—where both humans and leopard cats can thrive in balance."
     },
     "meanings": {
       "upright": "Balance, moderation, patience, purpose, and harmonious blending.",
@@ -1550,8 +1625,13 @@
       "en": "Addiction, materialism, entrapment, restriction, and unhealthy attachments."
     },
     "ecology": {
-      "zh": "棲地：illegal traps or highly polluted industrial edge。風險：physical entrapment by snares, poison, or artificial borders。 The Devil represents the literal and metaphorical traps laid by human development—poisons, snares, and the false allure of easy prey near deadly roads that chain the leopard cat to its doom.",
-      "en": "Habitat: illegal traps or highly polluted industrial edge. Risk: physical entrapment by snares, poison, or artificial borders. The Devil represents the literal and metaphorical traps laid by human development—poisons, snares, and the false allure of easy prey near deadly roads that chain the leopard cat to its doom."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "trapped individual",
+      "habitat_fragment": "illegal traps or highly polluted industrial edge",
+      "risk_theme": "physical entrapment by snares, poison, or artificial borders",
+      "mapping_note": "The Devil represents the literal and metaphorical traps laid by human development—poisons, snares, and the false allure of easy prey near deadly roads that chain the leopard cat to its doom.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：trapped individual 。 棲地樣貌：illegal traps or highly polluted industrial edge 。 生存威脅：physical entrapment by snares, poison, or artificial borders 。 牌義關聯：The Devil represents the literal and metaphorical traps laid by human development—poisons, snares, and the false allure of easy prey near deadly roads that chain the leopard cat to its doom.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: trapped individual | Habitat Fragment: illegal traps or highly polluted industrial edge | Risk Theme: physical entrapment by snares, poison, or artificial borders | Mapping Note: The Devil represents the literal and metaphorical traps laid by human development—poisons, snares, and the false allure of easy prey near deadly roads that chain the leopard cat to its doom."
     },
     "meanings": {
       "upright": "Addiction, materialism, entrapment, restriction, and unhealthy attachments.",
@@ -1645,8 +1725,13 @@
       "en": "Sudden upheaval, broken pride, disaster, revelation, and the collapse of unstable foundations."
     },
     "ecology": {
-      "zh": "棲地：bulldozed hillside or flooded corridor。風險：sudden catastrophic habitat destruction。 The Tower is the sudden, catastrophic destruction of a core habitat—a hillside bulldozed overnight, forcing the leopard cat to flee the collapse of its once-safe home.",
-      "en": "Habitat: bulldozed hillside or flooded corridor. Risk: sudden catastrophic habitat destruction. The Tower is the sudden, catastrophic destruction of a core habitat—a hillside bulldozed overnight, forcing the leopard cat to flee the collapse of its once-safe home."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "displaced population",
+      "habitat_fragment": "bulldozed hillside or flooded corridor",
+      "risk_theme": "sudden catastrophic habitat destruction",
+      "mapping_note": "The Tower is the sudden, catastrophic destruction of a core habitat—a hillside bulldozed overnight, forcing the leopard cat to flee the collapse of its once-safe home.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：displaced population 。 棲地樣貌：bulldozed hillside or flooded corridor 。 生存威脅：sudden catastrophic habitat destruction 。 牌義關聯：The Tower is the sudden, catastrophic destruction of a core habitat—a hillside bulldozed overnight, forcing the leopard cat to flee the collapse of its once-safe home.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: displaced population | Habitat Fragment: bulldozed hillside or flooded corridor | Risk Theme: sudden catastrophic habitat destruction | Mapping Note: The Tower is the sudden, catastrophic destruction of a core habitat—a hillside bulldozed overnight, forcing the leopard cat to flee the collapse of its once-safe home."
     },
     "meanings": {
       "upright": "Sudden upheaval, broken pride, disaster, revelation, and the collapse of unstable foundations.",
@@ -1740,8 +1825,13 @@
       "en": "Hope, faith, purpose, renewal, spirituality, and healing after destruction."
     },
     "ecology": {
-      "zh": "棲地：a newly planted ecological corridor。風險：the slow process of habitat restoration and species recovery。 The Star represents conservation hope—the slow but beautiful process of habitat restoration, where pure water and newly planted trees guide the leopard cat toward a safer future.",
-      "en": "Habitat: a newly planted ecological corridor. Risk: the slow process of habitat restoration and species recovery. The Star represents conservation hope—the slow but beautiful process of habitat restoration, where pure water and newly planted trees guide the leopard cat toward a safer future."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "recovering population",
+      "habitat_fragment": "a newly planted ecological corridor",
+      "risk_theme": "the slow process of habitat restoration and species recovery",
+      "mapping_note": "The Star represents conservation hope—the slow but beautiful process of habitat restoration, where pure water and newly planted trees guide the leopard cat toward a safer future.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：recovering population 。 棲地樣貌：a newly planted ecological corridor 。 生存威脅：the slow process of habitat restoration and species recovery 。 牌義關聯：The Star represents conservation hope—the slow but beautiful process of habitat restoration, where pure water and newly planted trees guide the leopard cat toward a safer future.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: recovering population | Habitat Fragment: a newly planted ecological corridor | Risk Theme: the slow process of habitat restoration and species recovery | Mapping Note: The Star represents conservation hope—the slow but beautiful process of habitat restoration, where pure water and newly planted trees guide the leopard cat toward a safer future."
     },
     "meanings": {
       "upright": "Hope, faith, purpose, renewal, spirituality, and healing after destruction.",
@@ -1835,8 +1925,13 @@
       "en": "Illusion, fear, anxiety, the subconscious, and navigating by intuition."
     },
     "ecology": {
-      "zh": "棲地：moonlit rural edge。風險：nocturnal dangers, free-roaming dogs, and the unknown。 The Moon represents the primal fears and nocturnal intuition of the leopard cat. The night is their domain, but it is also filled with hidden illusions and the looming threat of feral predators.",
-      "en": "Habitat: moonlit rural edge. Risk: nocturnal dangers, free-roaming dogs, and the unknown. The Moon represents the primal fears and nocturnal intuition of the leopard cat. The night is their domain, but it is also filled with hidden illusions and the looming threat of feral predators."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "night hunting adult",
+      "habitat_fragment": "moonlit rural edge",
+      "risk_theme": "nocturnal dangers, free-roaming dogs, and the unknown",
+      "mapping_note": "The Moon represents the primal fears and nocturnal intuition of the leopard cat. The night is their domain, but it is also filled with hidden illusions and the looming threat of feral predators.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：night hunting adult 。 棲地樣貌：moonlit rural edge 。 生存威脅：nocturnal dangers, free-roaming dogs, and the unknown 。 牌義關聯：The Moon represents the primal fears and nocturnal intuition of the leopard cat. The night is their domain, but it is also filled with hidden illusions and the looming threat of feral predators.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: night hunting adult | Habitat Fragment: moonlit rural edge | Risk Theme: nocturnal dangers, free-roaming dogs, and the unknown | Mapping Note: The Moon represents the primal fears and nocturnal intuition of the leopard cat. The night is their domain, but it is also filled with hidden illusions and the looming threat of feral predators."
     },
     "meanings": {
       "upright": "Illusion, fear, anxiety, the subconscious, and navigating by intuition.",
@@ -1930,8 +2025,13 @@
       "en": "Positivity, fun, warmth, success, vitality, and clear visibility."
     },
     "ecology": {
-      "zh": "棲地：safe, sunlit clearing。風險：the joy of a secure environment free from immediate threats。 The Sun represents absolute vitality and success—the rare, joyful sight of leopard cat kittens playing safely in the daylight, signifying a truly secure and thriving habitat.",
-      "en": "Habitat: safe, sunlit clearing. Risk: the joy of a secure environment free from immediate threats. The Sun represents absolute vitality and success—the rare, joyful sight of leopard cat kittens playing safely in the daylight, signifying a truly secure and thriving habitat."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "playful kittens",
+      "habitat_fragment": "safe, sunlit clearing",
+      "risk_theme": "the joy of a secure environment free from immediate threats",
+      "mapping_note": "The Sun represents absolute vitality and success—the rare, joyful sight of leopard cat kittens playing safely in the daylight, signifying a truly secure and thriving habitat.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：playful kittens 。 棲地樣貌：safe, sunlit clearing 。 生存威脅：the joy of a secure environment free from immediate threats 。 牌義關聯：The Sun represents absolute vitality and success—the rare, joyful sight of leopard cat kittens playing safely in the daylight, signifying a truly secure and thriving habitat.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: playful kittens | Habitat Fragment: safe, sunlit clearing | Risk Theme: the joy of a secure environment free from immediate threats | Mapping Note: The Sun represents absolute vitality and success—the rare, joyful sight of leopard cat kittens playing safely in the daylight, signifying a truly secure and thriving habitat."
     },
     "meanings": {
       "upright": "Positivity, fun, warmth, success, vitality, and clear visibility.",
@@ -2025,8 +2125,13 @@
       "en": "Judgement, rebirth, inner calling, absolution, and awakening."
     },
     "ecology": {
-      "zh": "棲地：a recovering ecosystem。風險：the ultimate human decision to either save or forsake the species。 Judgement is the final awakening—the collective human decision to hear the call of the wild and resurrect the leopard cat from the brink of extinction, offering the ecosystem a second chance.",
-      "en": "Habitat: a recovering ecosystem. Risk: the ultimate human decision to either save or forsake the species. Judgement is the final awakening—the collective human decision to hear the call of the wild and resurrect the leopard cat from the brink of extinction, offering the ecosystem a second chance."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "awakened population",
+      "habitat_fragment": "a recovering ecosystem",
+      "risk_theme": "the ultimate human decision to either save or forsake the species",
+      "mapping_note": "Judgement is the final awakening—the collective human decision to hear the call of the wild and resurrect the leopard cat from the brink of extinction, offering the ecosystem a second chance.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：awakened population 。 棲地樣貌：a recovering ecosystem 。 生存威脅：the ultimate human decision to either save or forsake the species 。 牌義關聯：Judgement is the final awakening—the collective human decision to hear the call of the wild and resurrect the leopard cat from the brink of extinction, offering the ecosystem a second chance.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: awakened population | Habitat Fragment: a recovering ecosystem | Risk Theme: the ultimate human decision to either save or forsake the species | Mapping Note: Judgement is the final awakening—the collective human decision to hear the call of the wild and resurrect the leopard cat from the brink of extinction, offering the ecosystem a second chance."
     },
     "meanings": {
       "upright": "Judgement, rebirth, inner calling, absolution, and awakening.",
@@ -2120,8 +2225,13 @@
       "en": "Completion, integration, accomplishment, travel, and perfect harmony."
     },
     "ecology": {
-      "zh": "棲地：a fully realized continuous habitat spanning the island。風險：the ultimate goal of continuous, unfragmented wilderness。 The World represents the ultimate completion of the conservation journey: a fully integrated, unfragmented landscape where the leopard cat moves freely as part of a whole, healthy ecosystem.",
-      "en": "Habitat: a fully realized continuous habitat spanning the island. Risk: the ultimate goal of continuous, unfragmented wilderness. The World represents the ultimate completion of the conservation journey: a fully integrated, unfragmented landscape where the leopard cat moves freely as part of a whole, healthy ecosystem."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "integrated ecosystem",
+      "habitat_fragment": "a fully realized continuous habitat spanning the island",
+      "risk_theme": "the ultimate goal of continuous, unfragmented wilderness",
+      "mapping_note": "The World represents the ultimate completion of the conservation journey: a fully integrated, unfragmented landscape where the leopard cat moves freely as part of a whole, healthy ecosystem.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：integrated ecosystem 。 棲地樣貌：a fully realized continuous habitat spanning the island 。 生存威脅：the ultimate goal of continuous, unfragmented wilderness 。 牌義關聯：The World represents the ultimate completion of the conservation journey: a fully integrated, unfragmented landscape where the leopard cat moves freely as part of a whole, healthy ecosystem.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: integrated ecosystem | Habitat Fragment: a fully realized continuous habitat spanning the island | Risk Theme: the ultimate goal of continuous, unfragmented wilderness | Mapping Note: The World represents the ultimate completion of the conservation journey: a fully integrated, unfragmented landscape where the leopard cat moves freely as part of a whole, healthy ecosystem."
     },
     "meanings": {
       "upright": "Completion, integration, accomplishment, travel, and perfect harmony.",
@@ -2229,8 +2339,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：new forest expansion。風險：the search for unexplored territory。 Ace of Wands becomes the 'Dispersal Spark'—the biological drive for a young leopard cat to find its own range.",
-      "en": "Habitat: new forest expansion. Risk: the search for unexplored territory. Ace of Wands becomes the 'Dispersal Spark'—the biological drive for a young leopard cat to find its own range."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "juvenile",
+      "habitat_fragment": "new forest expansion",
+      "risk_theme": "the search for unexplored territory",
+      "mapping_note": "Ace of Wands becomes the 'Dispersal Spark'—the biological drive for a young leopard cat to find its own range.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：juvenile 。 棲地樣貌：new forest expansion 。 生存威脅：the search for unexplored territory 。 牌義關聯：Ace of Wands becomes the 'Dispersal Spark'—the biological drive for a young leopard cat to find its own range.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: juvenile | Habitat Fragment: new forest expansion | Risk Theme: the search for unexplored territory | Mapping Note: Ace of Wands becomes the 'Dispersal Spark'—the biological drive for a young leopard cat to find its own range."
     },
     "website": {
       "excerpt": "A young leopard cat grasps a budding branch, marking the start of its journey to find a territory of its own.",
@@ -2331,8 +2446,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：high mountain ridge。風險：connectivity evaluation。 Two of Wands becomes the decision to move between distant forest patches—a calculated risk based on environmental reading.",
-      "en": "Habitat: high mountain ridge. Risk: connectivity evaluation. Two of Wands becomes the decision to move between distant forest patches—a calculated risk based on environmental reading."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "high mountain ridge",
+      "risk_theme": "connectivity evaluation",
+      "mapping_note": "Two of Wands becomes the decision to move between distant forest patches—a calculated risk based on environmental reading.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：high mountain ridge 。 生存威脅：connectivity evaluation 。 牌義關聯：Two of Wands becomes the decision to move between distant forest patches—a calculated risk based on environmental reading.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: high mountain ridge | Risk Theme: connectivity evaluation | Mapping Note: Two of Wands becomes the decision to move between distant forest patches—a calculated risk based on environmental reading."
     },
     "website": {
       "excerpt": "Evaluating the landscape from a high ridge, the leopard cat plans its next move between forest fragments.",
@@ -2434,8 +2554,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：valley overlook。風險：range expansion and connectivity。 Three of Wands becomes the successful expansion of the species into restored corridors, where the 'ships on the horizon' are leopard cats moving into new safe-zones.",
-      "en": "Habitat: valley overlook. Risk: range expansion and connectivity. Three of Wands becomes the successful expansion of the species into restored corridors, where the 'ships on the horizon' are leopard cats moving into new safe-zones."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "valley overlook",
+      "risk_theme": "range expansion and connectivity",
+      "mapping_note": "Three of Wands becomes the successful expansion of the species into restored corridors, where the 'ships on the horizon' are leopard cats moving into new safe-zones.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：valley overlook 。 生存威脅：range expansion and connectivity 。 牌義關聯：Three of Wands becomes the successful expansion of the species into restored corridors, where the 'ships on the horizon' are leopard cats moving into new safe-zones.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: valley overlook | Risk Theme: range expansion and connectivity | Mapping Note: Three of Wands becomes the successful expansion of the species into restored corridors, where the 'ships on the horizon' are leopard cats moving into new safe-zones."
     },
     "website": {
       "excerpt": "Standing on a headland, the leopard cat watches the fruits of its labor—the expansion of its species towards the horizon.",
@@ -2537,8 +2662,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：stable core forest。風險：the importance of long-term safe zones。 Four of Wands becomes the 'Core Sanctuary'—a habitat patch large and stable enough to support a breeding population and communal peace.",
-      "en": "Habitat: stable core forest. Risk: the importance of long-term safe zones. Four of Wands becomes the 'Core Sanctuary'—a habitat patch large and stable enough to support a breeding population and communal peace."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult-pair",
+      "habitat_fragment": "stable core forest",
+      "risk_theme": "the importance of long-term safe zones",
+      "mapping_note": "Four of Wands becomes the 'Core Sanctuary'—a habitat patch large and stable enough to support a breeding population and communal peace.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult-pair 。 棲地樣貌：stable core forest 。 生存威脅：the importance of long-term safe zones 。 牌義關聯：Four of Wands becomes the 'Core Sanctuary'—a habitat patch large and stable enough to support a breeding population and communal peace.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult-pair | Habitat Fragment: stable core forest | Risk Theme: the importance of long-term safe zones | Mapping Note: Four of Wands becomes the 'Core Sanctuary'—a habitat patch large and stable enough to support a breeding population and communal peace."
     },
     "website": {
       "excerpt": "Celebrating the safety of a permanent home, the leopard cats find peace under the shelter of the four wands.",
@@ -2640,8 +2770,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：newly connected territory。風險：high density during corridor initial phase。 Five of Wands represents the 'Integration Friction'—the initial competition that occurs when restoration efforts first connect previously isolated populations.",
-      "en": "Habitat: newly connected territory. Risk: high density during corridor initial phase. Five of Wands represents the 'Integration Friction'—the initial competition that occurs when restoration efforts first connect previously isolated populations."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult-males",
+      "habitat_fragment": "newly connected territory",
+      "risk_theme": "high density during corridor initial phase",
+      "mapping_note": "Five of Wands represents the 'Integration Friction'—the initial competition that occurs when restoration efforts first connect previously isolated populations.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult-males 。 棲地樣貌：newly connected territory 。 生存威脅：high density during corridor initial phase 。 牌義關聯：Five of Wands represents the 'Integration Friction'—the initial competition that occurs when restoration efforts first connect previously isolated populations.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult-males | Habitat Fragment: newly connected territory | Risk Theme: high density during corridor initial phase | Mapping Note: Five of Wands represents the 'Integration Friction'—the initial competition that occurs when restoration efforts first connect previously isolated populations."
     },
     "website": {
       "excerpt": "A chaotic spar for space, representing the challenges of population integration in restored landscapes.",
@@ -2743,8 +2878,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：celebrated safety corridor。風險：hope through resilience。 Six of Wands is the 'Conservation Success Story'—the individual that becomes the face of the movement and thrives despite all odds, educating the public about the power of recovery.",
-      "en": "Habitat: celebrated safety corridor. Risk: hope through resilience. Six of Wands is the 'Conservation Success Story'—the individual that becomes the face of the movement and thrives despite all odds, educating the public about the power of recovery."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult-survivor",
+      "habitat_fragment": "celebrated safety corridor",
+      "risk_theme": "hope through resilience",
+      "mapping_note": "Six of Wands is the 'Conservation Success Story'—the individual that becomes the face of the movement and thrives despite all odds, educating the public about the power of recovery.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult-survivor 。 棲地樣貌：celebrated safety corridor 。 生存威脅：hope through resilience 。 牌義關聯：Six of Wands is the 'Conservation Success Story'—the individual that becomes the face of the movement and thrives despite all odds, educating the public about the power of recovery.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult-survivor | Habitat Fragment: celebrated safety corridor | Risk Theme: hope through resilience | Mapping Note: Six of Wands is the 'Conservation Success Story'—the individual that becomes the face of the movement and thrives despite all odds, educating the public about the power of recovery."
     },
     "website": {
       "excerpt": "A triumphant return, celebrating the hard-won victories of habitat restoration and public awareness.",
@@ -2846,8 +2986,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：contested territory boundary。風險：the struggle to hold shrinking habitat patches。 Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones (Ecological Core) from constant external human and invasive pressure.",
-      "en": "Habitat: contested territory boundary. Risk: the struggle to hold shrinking habitat patches. Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones (Ecological Core) from constant external human and invasive pressure."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "contested territory boundary",
+      "risk_theme": "the struggle to hold shrinking habitat patches",
+      "mapping_note": "Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones (Ecological Core) from constant external human and invasive pressure.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：contested territory boundary 。 生存威脅：the struggle to hold shrinking habitat patches 。 牌義關聯：Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones (Ecological Core) from constant external human and invasive pressure.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: contested territory boundary | Risk Theme: the struggle to hold shrinking habitat patches | Mapping Note: Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones (Ecological Core) from constant external human and invasive pressure."
     },
     "website": {
       "excerpt": "Standing firm against the tide of encroachment, the leopard cat defends the sanctity of the core habitat.",
@@ -2949,8 +3094,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：ecological corridor。風險：speed and crossing safety。 Eight of Wands represents the 'Corridor Flow'—the vital speed and efficiency at which restoration efforts allow leopard cats to safely cross vulnerable areas to reach new habitats.",
-      "en": "Habitat: ecological corridor. Risk: speed and crossing safety. Eight of Wands represents the 'Corridor Flow'—the vital speed and efficiency at which restoration efforts allow leopard cats to safely cross vulnerable areas to reach new habitats."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "ecological corridor",
+      "risk_theme": "speed and crossing safety",
+      "mapping_note": "Eight of Wands represents the 'Corridor Flow'—the vital speed and efficiency at which restoration efforts allow leopard cats to safely cross vulnerable areas to reach new habitats.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：ecological corridor 。 生存威脅：speed and crossing safety 。 牌義關聯：Eight of Wands represents the 'Corridor Flow'—the vital speed and efficiency at which restoration efforts allow leopard cats to safely cross vulnerable areas to reach new habitats.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: ecological corridor | Risk Theme: speed and crossing safety | Mapping Note: Eight of Wands represents the 'Corridor Flow'—the vital speed and efficiency at which restoration efforts allow leopard cats to safely cross vulnerable areas to reach new habitats."
     },
     "website": {
       "excerpt": "Swift and sure, the leopard cat utilizes the newly opened corridor, a testament to effective restoration planning.",
@@ -3053,8 +3203,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：final core territory。風險：the price of survival in human landscape。 Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, providing vital educational data on the species' capacity for resilience when given a chance.",
-      "en": "Habitat: final core territory. Risk: the price of survival in human landscape. Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, providing vital educational data on the species' capacity for resilience when given a chance."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "old-survivor",
+      "habitat_fragment": "final core territory",
+      "risk_theme": "the price of survival in human landscape",
+      "mapping_note": "Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, providing vital educational data on the species' capacity for resilience when given a chance.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：old-survivor 。 棲地樣貌：final core territory 。 生存威脅：the price of survival in human landscape 。 牌義關聯：Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, providing vital educational data on the species' capacity for resilience when given a chance.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: old-survivor | Habitat Fragment: final core territory | Risk Theme: the price of survival in human landscape | Mapping Note: Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, providing vital educational data on the species' capacity for resilience when given a chance."
     },
     "website": {
       "excerpt": "Scarred but unbowed, the old survivor stands as a symbol of the species' incredible will to endure.",
@@ -3156,8 +3311,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：roadside industrial area。風險：the weight of extinction risk vs active management。 Ten of Wands is the 'Stewardship Burden'—the heavy responsibility of active habitat management and the educational labor required to reverse the species' decline.",
-      "en": "Habitat: roadside industrial area. Risk: the weight of extinction risk vs active management. Ten of Wands is the 'Stewardship Burden'—the heavy responsibility of active habitat management and the educational labor required to reverse the species' decline."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "roadside industrial area",
+      "risk_theme": "the weight of extinction risk vs active management",
+      "mapping_note": "Ten of Wands is the 'Stewardship Burden'—the heavy responsibility of active habitat management and the educational labor required to reverse the species' decline.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：roadside industrial area 。 生存威脅：the weight of extinction risk vs active management 。 牌義關聯：Ten of Wands is the 'Stewardship Burden'—the heavy responsibility of active habitat management and the educational labor required to reverse the species' decline.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: roadside industrial area | Risk Theme: the weight of extinction risk vs active management | Mapping Note: Ten of Wands is the 'Stewardship Burden'—the heavy responsibility of active habitat management and the educational labor required to reverse the species' decline."
     },
     "website": {
       "excerpt": "A heavy path toward healing, the leopard cat carries the responsibility of a species' future on its back.",
@@ -3259,8 +3419,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：newly restored forest edge。風險：curiosity as a tool for recovery。 Page of Wands represents the 'Scout of Renewal'—the stage where a new generation begins to explore restored habitats, representing the future of the species.",
-      "en": "Habitat: newly restored forest edge. Risk: curiosity as a tool for recovery. Page of Wands represents the 'Scout of Renewal'—the stage where a new generation begins to explore restored habitats, representing the future of the species."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "juvenile",
+      "habitat_fragment": "newly restored forest edge",
+      "risk_theme": "curiosity as a tool for recovery",
+      "mapping_note": "Page of Wands represents the 'Scout of Renewal'—the stage where a new generation begins to explore restored habitats, representing the future of the species.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：juvenile 。 棲地樣貌：newly restored forest edge 。 生存威脅：curiosity as a tool for recovery 。 牌義關聯：Page of Wands represents the 'Scout of Renewal'—the stage where a new generation begins to explore restored habitats, representing the future of the species.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: juvenile | Habitat Fragment: newly restored forest edge | Risk Theme: curiosity as a tool for recovery | Mapping Note: Page of Wands represents the 'Scout of Renewal'—the stage where a new generation begins to explore restored habitats, representing the future of the species."
     },
     "website": {
       "excerpt": "Curious and brave, the young explorer discovers a world of new possibilities in the restored forest.",
@@ -3362,8 +3527,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：newly established corridor。風險：successful dispersal and gene flow。 Knight of Wands represents the 'Champion of Connectivity'—the vital role of dispersing individuals in maintaining genetic health and linking isolated habitat patches.",
-      "en": "Habitat: newly established corridor. Risk: successful dispersal and gene flow. Knight of Wands represents the 'Champion of Connectivity'—the vital role of dispersing individuals in maintaining genetic health and linking isolated habitat patches."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "sub-adult",
+      "habitat_fragment": "newly established corridor",
+      "risk_theme": "successful dispersal and gene flow",
+      "mapping_note": "Knight of Wands represents the 'Champion of Connectivity'—the vital role of dispersing individuals in maintaining genetic health and linking isolated habitat patches.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：sub-adult 。 棲地樣貌：newly established corridor 。 生存威脅：successful dispersal and gene flow 。 牌義關聯：Knight of Wands represents the 'Champion of Connectivity'—the vital role of dispersing individuals in maintaining genetic health and linking isolated habitat patches.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: sub-adult | Habitat Fragment: newly established corridor | Risk Theme: successful dispersal and gene flow | Mapping Note: Knight of Wands represents the 'Champion of Connectivity'—the vital role of dispersing individuals in maintaining genetic health and linking isolated habitat patches."
     },
     "website": {
       "excerpt": "Boldly charging toward new horizons, the knight embodies the spirit of connectivity and survival.",
@@ -3465,8 +3635,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：stable core forest breeding site。風險：the stability of the female range。 Queen of Wands represents the 'Matriarch of the Core'—the stable, long-lived females that form the reproductive backbone and the educational source for new generations.",
-      "en": "Habitat: stable core forest breeding site. Risk: the stability of the female range. Queen of Wands represents the 'Matriarch of the Core'—the stable, long-lived females that form the reproductive backbone and the educational source for new generations."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult-female-breeder",
+      "habitat_fragment": "stable core forest breeding site",
+      "risk_theme": "the stability of the female range",
+      "mapping_note": "Queen of Wands represents the 'Matriarch of the Core'—the stable, long-lived females that form the reproductive backbone and the educational source for new generations.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult-female-breeder 。 棲地樣貌：stable core forest breeding site 。 生存威脅：the stability of the female range 。 牌義關聯：Queen of Wands represents the 'Matriarch of the Core'—the stable, long-lived females that form the reproductive backbone and the educational source for new generations.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult-female-breeder | Habitat Fragment: stable core forest breeding site | Risk Theme: the stability of the female range | Mapping Note: Queen of Wands represents the 'Matriarch of the Core'—the stable, long-lived females that form the reproductive backbone and the educational source for new generations."
     },
     "website": {
       "excerpt": "A radiant and confident matriarch, the Queen ensures the vitality and future stability of the core forest kingdom.",
@@ -3568,8 +3743,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：vast interconnected core forest。風險：the ultimate goal of large-scale conservation。 King of Wands is the 'Landscape Master'—the individuals that manage to secure massive home ranges within a fully integrated and healthy landscape, embodying the success of visionary conservation.",
-      "en": "Habitat: vast interconnected core forest. Risk: the ultimate goal of large-scale conservation. King of Wands is the 'Landscape Master'—the individuals that manage to secure massive home ranges within a fully integrated and healthy landscape, embodying the success of visionary conservation."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "alpha-male",
+      "habitat_fragment": "vast interconnected core forest",
+      "risk_theme": "the ultimate goal of large-scale conservation",
+      "mapping_note": "King of Wands is the 'Landscape Master'—the individuals that manage to secure massive home ranges within a fully integrated and healthy landscape, embodying the success of visionary conservation.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：alpha-male 。 棲地樣貌：vast interconnected core forest 。 生存威脅：the ultimate goal of large-scale conservation 。 牌義關聯：King of Wands is the 'Landscape Master'—the individuals that manage to secure massive home ranges within a fully integrated and healthy landscape, embodying the success of visionary conservation.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: alpha-male | Habitat Fragment: vast interconnected core forest | Risk Theme: the ultimate goal of large-scale conservation | Mapping Note: King of Wands is the 'Landscape Master'—the individuals that manage to secure massive home ranges within a fully integrated and healthy landscape, embodying the success of visionary conservation."
     },
     "website": {
       "excerpt": "A powerful and visionary leader, the King masterfully integrates his vast and secure forest domain into the wider landscape.",
@@ -3672,8 +3852,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：unpolluted mountain headwaters。風險：water quality and habitat sanity。 Ace of Cups represents the 'Source'—the critical importance of high-altitude unpolluted streams that feed the entire ecosystem.",
-      "en": "Habitat: unpolluted mountain headwaters. Risk: water quality and habitat sanity. Ace of Cups represents the 'Source'—the critical importance of high-altitude unpolluted streams that feed the entire ecosystem."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "unpolluted mountain headwaters",
+      "risk_theme": "water quality and habitat sanity",
+      "mapping_note": "Ace of Cups represents the 'Source'—the critical importance of high-altitude unpolluted streams that feed the entire ecosystem.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：unpolluted mountain headwaters 。 生存威脅：water quality and habitat sanity 。 牌義關聯：Ace of Cups represents the 'Source'—the critical importance of high-altitude unpolluted streams that feed the entire ecosystem.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: unpolluted mountain headwaters | Risk Theme: water quality and habitat sanity | Mapping Note: Ace of Cups represents the 'Source'—the critical importance of high-altitude unpolluted streams that feed the entire ecosystem."
     },
     "website": {
       "excerpt": "Discovering the glowing spring at the heart of the forest, the leopard cat finds the source of all life.",
@@ -3776,8 +3961,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest creek edge。風險：trust as survival strategy。 Two of Cups represents the 'Trust of the Breed'—the rare moment when solitary instincts give way to mating season cooperation.",
-      "en": "Habitat: protected forest creek edge. Risk: trust as survival strategy. Two of Cups represents the 'Trust of the Breed'—the rare moment when solitary instincts give way to mating season cooperation."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "breeding-adults",
+      "habitat_fragment": "protected forest creek edge",
+      "risk_theme": "trust as survival strategy",
+      "mapping_note": "Two of Cups represents the 'Trust of the Breed'—the rare moment when solitary instincts give way to mating season cooperation.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：breeding-adults 。 棲地樣貌：protected forest creek edge 。 生存威脅：trust as survival strategy 。 牌義關聯：Two of Cups represents the 'Trust of the Breed'—the rare moment when solitary instincts give way to mating season cooperation.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: breeding-adults | Habitat Fragment: protected forest creek edge | Risk Theme: trust as survival strategy | Mapping Note: Two of Cups represents the 'Trust of the Breed'—the rare moment when solitary instincts give way to mating season cooperation."
     },
     "website": {
       "excerpt": "A rare and trust-filled meeting at the moonlit stream, where two solitary hearts become one.",
@@ -3880,8 +4070,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected riparian forest。風險：social stability in high-quality habitat。 Three of Cups represents 'The Safety of the Pack'—rare group play moments in high-quality habitats where resources are overflowing.",
-      "en": "Habitat: protected riparian forest. Risk: social stability in high-quality habitat. Three of Cups represents 'The Safety of the Pack'—rare group play moments in high-quality habitats where resources are overflowing."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adolescent-young-adults",
+      "habitat_fragment": "protected riparian forest",
+      "risk_theme": "social stability in high-quality habitat",
+      "mapping_note": "Three of Cups represents 'The Safety of the Pack'—rare group play moments in high-quality habitats where resources are overflowing.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adolescent-young-adults 。 棲地樣貌：protected riparian forest 。 生存威脅：social stability in high-quality habitat 。 牌義關聯：Three of Cups represents 'The Safety of the Pack'—rare group play moments in high-quality habitats where resources are overflowing.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adolescent-young-adults | Habitat Fragment: protected riparian forest | Risk Theme: social stability in high-quality habitat | Mapping Note: Three of Cups represents 'The Safety of the Pack'—rare group play moments in high-quality habitats where resources are overflowing."
     },
     "website": {
       "excerpt": "A joyful gathering in the crystal river, celebrating the abundance and harmony of the forest life.",
@@ -3984,8 +4179,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：isolated forest patch。風險：lack of dispersal courage。 Four of Cups represents 'The Trap of the Familiar'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor.",
-      "en": "Habitat: isolated forest patch. Risk: lack of dispersal courage. Four of Cups represents 'The Trap of the Familiar'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "isolated forest patch",
+      "risk_theme": "lack of dispersal courage",
+      "mapping_note": "Four of Cups represents 'The Trap of the Familiar'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：isolated forest patch 。 生存威脅：lack of dispersal courage 。 牌義關聯：Four of Cups represents 'The Trap of the Familiar'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: isolated forest patch | Risk Theme: lack of dispersal courage | Mapping Note: Four of Cups represents 'The Trap of the Familiar'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor."
     },
     "website": {
       "excerpt": "Under the shade of the old tree, the leopard cat contemplates the world, unaware of the gift appearing in the mist.",
@@ -4088,8 +4288,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：disturbed river valley。風險：flooding and territory loss。 Five of Cups represents 'The Price of Disturbance'—the grief of losing breeding territory to human development, while still having hope in remaining remote forests.",
-      "en": "Habitat: disturbed river valley. Risk: flooding and territory loss. Five of Cups represents 'The Price of Disturbance'—the grief of losing breeding territory to human development, while still having hope in remaining remote forests."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "disturbed river valley",
+      "risk_theme": "flooding and territory loss",
+      "mapping_note": "Five of Cups represents 'The Price of Disturbance'—the grief of losing breeding territory to human development, while still having hope in remaining remote forests.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：disturbed river valley 。 生存威脅：flooding and territory loss 。 牌義關聯：Five of Cups represents 'The Price of Disturbance'—the grief of losing breeding territory to human development, while still having hope in remaining remote forests.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: disturbed river valley | Risk Theme: flooding and territory loss | Mapping Note: Five of Cups represents 'The Price of Disturbance'—the grief of losing breeding territory to human development, while still having hope in remaining remote forests."
     },
     "website": {
       "excerpt": "In the cold rain, the leopard cat mourns what has been lost, unaware of the hope that still stands behind.",
@@ -4192,8 +4397,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：pristine core habitat。風險：knowledge transfer and security。 Six of Cups represents 'The Safe Haven'—the importance of undisturbed core habitats where leopard cats can raise young without human interference.",
-      "en": "Habitat: pristine core habitat. Risk: knowledge transfer and security. Six of Cups represents 'The Safe Haven'—the importance of undisturbed core habitats where leopard cats can raise young without human interference."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "kitten-and-elder",
+      "habitat_fragment": "pristine core habitat",
+      "risk_theme": "knowledge transfer and security",
+      "mapping_note": "Six of Cups represents 'The Safe Haven'—the importance of undisturbed core habitats where leopard cats can raise young without human interference.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：kitten-and-elder 。 棲地樣貌：pristine core habitat 。 生存威脅：knowledge transfer and security 。 牌義關聯：Six of Cups represents 'The Safe Haven'—the importance of undisturbed core habitats where leopard cats can raise young without human interference.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: kitten-and-elder | Habitat Fragment: pristine core habitat | Risk Theme: knowledge transfer and security | Mapping Note: Six of Cups represents 'The Safe Haven'—the importance of undisturbed core habitats where leopard cats can raise young without human interference."
     },
     "website": {
       "excerpt": "In the safety of the white-flower garden, the leopard cat shares the gift of life with the next generation.",
@@ -4296,8 +4506,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：unfamiliar transition zone。風險：decision-making in new territory。 Seven of Cups represents 'The Dispersal Dilemma'—the many choices a leopard cat faces when crossing between habitat fragments.",
-      "en": "Habitat: unfamiliar transition zone. Risk: decision-making in new territory. Seven of Cups represents 'The Dispersal Dilemma'—the many choices a leopard cat faces when crossing between habitat fragments."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "young-adult",
+      "habitat_fragment": "unfamiliar transition zone",
+      "risk_theme": "decision-making in new territory",
+      "mapping_note": "Seven of Cups represents 'The Dispersal Dilemma'—the many choices a leopard cat faces when crossing between habitat fragments.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：young-adult 。 棲地樣貌：unfamiliar transition zone 。 生存威脅：decision-making in new territory 。 牌義關聯：Seven of Cups represents 'The Dispersal Dilemma'—the many choices a leopard cat faces when crossing between habitat fragments.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: young-adult | Habitat Fragment: unfamiliar transition zone | Risk Theme: decision-making in new territory | Mapping Note: Seven of Cups represents 'The Dispersal Dilemma'—the many choices a leopard cat faces when crossing between habitat fragments."
     },
     "website": {
       "excerpt": "In the mist of possibilities, which path is real, and which is a dangerous trap?",
@@ -4400,8 +4615,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：depleted habitat boundary。風險：long-distance dispersal courage。 Eight of Cups represents 'The Long Dispersal'—the difficult decision to leave a sub-optimal home range to find a high-quality territory elsewhere.",
-      "en": "Habitat: depleted habitat boundary. Risk: long-distance dispersal courage. Eight of Cups represents 'The Long Dispersal'—the difficult decision to leave a sub-optimal home range to find a high-quality territory elsewhere."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "young-adult",
+      "habitat_fragment": "depleted habitat boundary",
+      "risk_theme": "long-distance dispersal courage",
+      "mapping_note": "Eight of Cups represents 'The Long Dispersal'—the difficult decision to leave a sub-optimal home range to find a high-quality territory elsewhere.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：young-adult 。 棲地樣貌：depleted habitat boundary 。 生存威脅：long-distance dispersal courage 。 牌義關聯：Eight of Cups represents 'The Long Dispersal'—the difficult decision to leave a sub-optimal home range to find a high-quality territory elsewhere.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: young-adult | Habitat Fragment: depleted habitat boundary | Risk Theme: long-distance dispersal courage | Mapping Note: Eight of Cups represents 'The Long Dispersal'—the difficult decision to leave a sub-optimal home range to find a high-quality territory elsewhere."
     },
     "website": {
       "excerpt": "Under the pale moon, the leopard cat leaves the familiar behind, seeking a higher truth hidden in the distant peaks.",
@@ -4504,8 +4724,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest sanctuary。風險：ecosystem abundance。 Nine of Cups represents 'The Resource Sanctuary'—the ideal state of high-quality habitat where all the needs of the leopard cat are met.",
-      "en": "Habitat: protected forest sanctuary. Risk: ecosystem abundance. Nine of Cups represents 'The Resource Sanctuary'—the ideal state of high-quality habitat where all the needs of the leopard cat are met."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest sanctuary",
+      "risk_theme": "ecosystem abundance",
+      "mapping_note": "Nine of Cups represents 'The Resource Sanctuary'—the ideal state of high-quality habitat where all the needs of the leopard cat are met.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest sanctuary 。 生存威脅：ecosystem abundance 。 牌義關聯：Nine of Cups represents 'The Resource Sanctuary'—the ideal state of high-quality habitat where all the needs of the leopard cat are met.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest sanctuary | Risk Theme: ecosystem abundance | Mapping Note: Nine of Cups represents 'The Resource Sanctuary'—the ideal state of high-quality habitat where all the needs of the leopard cat are met."
     },
     "website": {
       "excerpt": "With nine cups of golden life behind, the leopard cat enjoys the fruits of a protected world.",
@@ -4608,8 +4833,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest and grassland。風險：population stability and connectivity。 Ten of Cups represents 'The Ideal Population'—thriving family units in safe, large habitat complexes.",
-      "en": "Habitat: protected forest and grassland. Risk: population stability and connectivity. Ten of Cups represents 'The Ideal Population'—thriving family units in safe, large habitat complexes."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "family-unit",
+      "habitat_fragment": "protected forest and grassland",
+      "risk_theme": "population stability and connectivity",
+      "mapping_note": "Ten of Cups represents 'The Ideal Population'—thriving family units in safe, large habitat complexes.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：family-unit 。 棲地樣貌：protected forest and grassland 。 生存威脅：population stability and connectivity 。 牌義關聯：Ten of Cups represents 'The Ideal Population'—thriving family units in safe, large habitat complexes.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: family-unit | Habitat Fragment: protected forest and grassland | Risk Theme: population stability and connectivity | Mapping Note: Ten of Cups represents 'The Ideal Population'—thriving family units in safe, large habitat complexes."
     },
     "website": {
       "excerpt": "Under the double rainbow, the leopard cat family finds a home where all life flows in harmony.",
@@ -4638,7 +4868,7 @@
       "en": "PAGE OF CUPS"
     },
     "subtitle": "Curiosity & Discovery",
-    "slug": "ten-of-cups",
+    "slug": "page-of-cups",
     "status": "finalized",
     "size": {
       "width": 1400,
@@ -4702,13 +4932,13 @@
     ],
     "output": "art/renders/card-cu-11-page-of-cups.png",
     "meanings": {
-      "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
-      "reversed": "Conflict in relationships, family disagreements, or a disconnection from a group.",
+      "upright": "New inspiration, intuition, emotional opportunity, and creative curiosity.",
+      "reversed": "Emotional immaturity, insecurity, creative blocks, or ignored intuition.",
       "keywords": [
-        "happiness",
-        "family",
-        "harmony",
-        "reunion"
+        "inspiration",
+        "intuition",
+        "discovery",
+        "curiosity"
       ]
     },
     "ecology": {
@@ -4717,14 +4947,14 @@
       "mapping_note": "Page of Cups represents 'Aquatic Exploration'—the early stages where young leopard cats discover clean streams and begin hunting aquatic prey."
     },
     "website": {
-      "excerpt": "Under the double rainbow, the leopard cat family finds a home where all life flows in harmony.",
-      "seo_title": "Ten of Cups - LeopardCat Tarot",
-      "seo_description": "Ten of Cups reimagined as a thriving leopard cat family in a safe, vibrant ecosystem.",
+      "excerpt": "A spark of curiosity at the water's edge, where the young leopard cat discovers the magic of the wild.",
+      "seo_title": "Page of Cups - LeopardCat Tarot",
+      "seo_description": "Page of Cups reimagined as a young leopard cat exploring the aquatic wonders of its territory.",
       "tags": [
         "minor-arcana",
         "cups",
         "leopard-cat",
-        "harmony"
+        "discovery"
       ]
     },
     "meaning": {
@@ -5132,8 +5362,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：dangerous road/habitat boundary。風險：decision-making under pressure。 Ace of Swords represents 'The Moment of Clarity'—when a leopard cat identifies the exact second to cross a road safely to reach a new patch.",
-      "en": "Habitat: dangerous road/habitat boundary. Risk: decision-making under pressure. Ace of Swords represents 'The Moment of Clarity'—when a leopard cat identifies the exact second to cross a road safely to reach a new patch."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "dangerous road/habitat boundary",
+      "risk_theme": "decision-making under pressure",
+      "mapping_note": "Ace of Swords represents 'The Moment of Clarity'—when a leopard cat identifies the exact second to cross a road safely to reach a new patch.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：dangerous road/habitat boundary 。 生存威脅：decision-making under pressure 。 牌義關聯：Ace of Swords represents 'The Moment of Clarity'—when a leopard cat identifies the exact second to cross a road safely to reach a new patch.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: dangerous road/habitat boundary | Risk Theme: decision-making under pressure | Mapping Note: Ace of Swords represents 'The Moment of Clarity'—when a leopard cat identifies the exact second to cross a road safely to reach a new patch."
     },
     "website": {
       "excerpt": "With a mind as sharp as the silver blade, the leopard cat navigates the most dangerous of paths.",
@@ -5236,8 +5471,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：road T-junction。風險：behavioral freezing and indecision。 Two of Swords represents 'The Crossroads Trap'—a Behavioral phenomenon where animals freeze at a junction between two human habitats.",
-      "en": "Habitat: road T-junction. Risk: behavioral freezing and indecision. Two of Swords represents 'The Crossroads Trap'—a Behavioral phenomenon where animals freeze at a junction between two human habitats."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "road T-junction",
+      "risk_theme": "behavioral freezing and indecision",
+      "mapping_note": "Two of Swords represents 'The Crossroads Trap'—a Behavioral phenomenon where animals freeze at a junction between two human habitats.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：road T-junction 。 生存威脅：behavioral freezing and indecision 。 牌義關聯：Two of Swords represents 'The Crossroads Trap'—a Behavioral phenomenon where animals freeze at a junction between two human habitats.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: road T-junction | Risk Theme: behavioral freezing and indecision | Mapping Note: Two of Swords represents 'The Crossroads Trap'—a Behavioral phenomenon where animals freeze at a junction between two human habitats."
     },
     "website": {
       "excerpt": "At the dark crossroads, the leopard cat sits in silence, two swords held in tension between life and death.",
@@ -5340,8 +5580,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：roadkill/human-disturbed boundary。風險：population loss and habitat instability。 Three of Swords represents 'The Toll of Progress'—the emotional and demographic impact of losing breeding adults to roadkill.",
-      "en": "Habitat: roadkill/human-disturbed boundary. Risk: population loss and habitat instability. Three of Swords represents 'The Toll of Progress'—the emotional and demographic impact of losing breeding adults to roadkill."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "N/A",
+      "habitat_fragment": "roadkill/human-disturbed boundary",
+      "risk_theme": "population loss and habitat instability",
+      "mapping_note": "Three of Swords represents 'The Toll of Progress'—the emotional and demographic impact of losing breeding adults to roadkill.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：N/A 。 棲地樣貌：roadkill/human-disturbed boundary 。 生存威脅：population loss and habitat instability 。 牌義關聯：Three of Swords represents 'The Toll of Progress'—the emotional and demographic impact of losing breeding adults to roadkill.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: N/A | Habitat Fragment: roadkill/human-disturbed boundary | Risk Theme: population loss and habitat instability | Mapping Note: Three of Swords represents 'The Toll of Progress'—the emotional and demographic impact of losing breeding adults to roadkill."
     },
     "website": {
       "excerpt": "Under the stormy sky, the heart of the forest is pierced by three cold blades, mourning the fallen.",
@@ -5444,8 +5689,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Four of Swords represents 'The Healing Hollow'—undisturbed areas where cats can escape the high-stress environment of road-bordered territories.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Four of Swords represents 'The Healing Hollow'—undisturbed areas where cats can escape the high-stress environment of road-bordered territories."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Four of Swords represents 'The Healing Hollow'—undisturbed areas where cats can escape the high-stress environment of road-bordered territories.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Four of Swords represents 'The Healing Hollow'—undisturbed areas where cats can escape the high-stress environment of road-bordered territories.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Four of Swords represents 'The Healing Hollow'—undisturbed areas where cats can escape the high-stress environment of road-bordered territories."
     },
     "website": {
       "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
@@ -5548,8 +5798,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：territory boundary。風險：intraspecific competition。 Five of Swords represents 'Territorial Compression'—the friction caused when leopard cats are forced into overlapping ranges due to habitat loss.",
-      "en": "Habitat: territory boundary. Risk: intraspecific competition. Five of Swords represents 'Territorial Compression'—the friction caused when leopard cats are forced into overlapping ranges due to habitat loss."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "territory boundary",
+      "risk_theme": "intraspecific competition",
+      "mapping_note": "Five of Swords represents 'Territorial Compression'—the friction caused when leopard cats are forced into overlapping ranges due to habitat loss.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：territory boundary 。 生存威脅：intraspecific competition 。 牌義關聯：Five of Swords represents 'Territorial Compression'—the friction caused when leopard cats are forced into overlapping ranges due to habitat loss.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: territory boundary | Risk Theme: intraspecific competition | Mapping Note: Five of Swords represents 'Territorial Compression'—the friction caused when leopard cats are forced into overlapping ranges due to habitat loss."
     },
     "website": {
       "excerpt": "In the shrinking forest, the struggle for territory leaves no room for peace. One wins, but at what cost to the species?",
@@ -5652,8 +5907,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Six of Swords represents 'Corridor Connectivity'—the vital movement of individuals through safe passages to reach sustainable population patches.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Six of Swords represents 'Corridor Connectivity'—the vital movement of individuals through safe passages to reach sustainable population patches."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Six of Swords represents 'Corridor Connectivity'—the vital movement of individuals through safe passages to reach sustainable population patches.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Six of Swords represents 'Corridor Connectivity'—the vital movement of individuals through safe passages to reach sustainable population patches.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Six of Swords represents 'Corridor Connectivity'—the vital movement of individuals through safe passages to reach sustainable population patches."
     },
     "website": {
       "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
@@ -5756,8 +6016,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Seven of Swords represents 'Border Risk'—the opportunistic behavior of raiding domestic livestock when natural prey is scarce.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Seven of Swords represents 'Border Risk'—the opportunistic behavior of raiding domestic livestock when natural prey is scarce."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Seven of Swords represents 'Border Risk'—the opportunistic behavior of raiding domestic livestock when natural prey is scarce.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Seven of Swords represents 'Border Risk'—the opportunistic behavior of raiding domestic livestock when natural prey is scarce.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Seven of Swords represents 'Border Risk'—the opportunistic behavior of raiding domestic livestock when natural prey is scarce."
     },
     "website": {
       "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
@@ -5860,8 +6125,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Eight of Swords represents 'Anthropogenic Pressure'—the psychological and physical restrictions placed on wildlife by roads and traps.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Eight of Swords represents 'Anthropogenic Pressure'—the psychological and physical restrictions placed on wildlife by roads and traps."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Eight of Swords represents 'Anthropogenic Pressure'—the psychological and physical restrictions placed on wildlife by roads and traps.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Eight of Swords represents 'Anthropogenic Pressure'—the psychological and physical restrictions placed on wildlife by roads and traps.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Eight of Swords represents 'Anthropogenic Pressure'—the psychological and physical restrictions placed on wildlife by roads and traps."
     },
     "website": {
       "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
@@ -5964,8 +6234,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Nine of Swords represents 'Sensory Overload'—the impact of light pollution and road noise on the mental well-being of nocturnal predators.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Nine of Swords represents 'Sensory Overload'—the impact of light pollution and road noise on the mental well-being of nocturnal predators."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Nine of Swords represents 'Sensory Overload'—the impact of light pollution and road noise on the mental well-being of nocturnal predators.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Nine of Swords represents 'Sensory Overload'—the impact of light pollution and road noise on the mental well-being of nocturnal predators.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Nine of Swords represents 'Sensory Overload'—the impact of light pollution and road noise on the mental well-being of nocturnal predators."
     },
     "website": {
       "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
@@ -6068,8 +6343,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：roadside。風險：roadkill mortality。 Ten of Swords represents 'Roadkill Mortality'—the most severe threat to leopard cats, serving as a powerful warning of the cost of fragmentation.",
-      "en": "Habitat: roadside. Risk: roadkill mortality. Ten of Swords represents 'Roadkill Mortality'—the most severe threat to leopard cats, serving as a powerful warning of the cost of fragmentation."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "roadside",
+      "risk_theme": "roadkill mortality",
+      "mapping_note": "Ten of Swords represents 'Roadkill Mortality'—the most severe threat to leopard cats, serving as a powerful warning of the cost of fragmentation.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：roadside 。 生存威脅：roadkill mortality 。 牌義關聯：Ten of Swords represents 'Roadkill Mortality'—the most severe threat to leopard cats, serving as a powerful warning of the cost of fragmentation.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: roadside | Risk Theme: roadkill mortality | Mapping Note: Ten of Swords represents 'Roadkill Mortality'—the most severe threat to leopard cats, serving as a powerful warning of the cost of fragmentation."
     },
     "website": {
       "excerpt": "When the road cuts through the heart of the forest, the price is paid in blood. A tragic end, but perhaps a lesson for the survivors.",
@@ -6172,8 +6452,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Page of Swords represents 'Ecological Monitoring'—the interaction between wildlife and the tools used to study and protect them.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Page of Swords represents 'Ecological Monitoring'—the interaction between wildlife and the tools used to study and protect them."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Page of Swords represents 'Ecological Monitoring'—the interaction between wildlife and the tools used to study and protect them.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Page of Swords represents 'Ecological Monitoring'—the interaction between wildlife and the tools used to study and protect them.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Page of Swords represents 'Ecological Monitoring'—the interaction between wildlife and the tools used to study and protect them."
     },
     "website": {
       "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
@@ -6276,8 +6561,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Knight of Swords represents 'Adaptive Movement'—the swift use of drainage culverts as safe underpasses to navigate roads.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Knight of Swords represents 'Adaptive Movement'—the swift use of drainage culverts as safe underpasses to navigate roads."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Knight of Swords represents 'Adaptive Movement'—the swift use of drainage culverts as safe underpasses to navigate roads.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Knight of Swords represents 'Adaptive Movement'—the swift use of drainage culverts as safe underpasses to navigate roads.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Knight of Swords represents 'Adaptive Movement'—the swift use of drainage culverts as safe underpasses to navigate roads."
     },
     "website": {
       "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
@@ -6380,8 +6670,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Queen of Swords represents 'Female Philopatry'—the strong territorial bonds and independent survival of female leopard cats.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Queen of Swords represents 'Female Philopatry'—the strong territorial bonds and independent survival of female leopard cats."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Queen of Swords represents 'Female Philopatry'—the strong territorial bonds and independent survival of female leopard cats.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Queen of Swords represents 'Female Philopatry'—the strong territorial bonds and independent survival of female leopard cats.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Queen of Swords represents 'Female Philopatry'—the strong territorial bonds and independent survival of female leopard cats."
     },
     "website": {
       "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
@@ -6484,8 +6779,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 King of Swords represents 'Territorial Mastery'—the strategic management of large ranges across complex, human-modified landscapes.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. King of Swords represents 'Territorial Mastery'—the strategic management of large ranges across complex, human-modified landscapes."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "King of Swords represents 'Territorial Mastery'—the strategic management of large ranges across complex, human-modified landscapes.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：King of Swords represents 'Territorial Mastery'—the strategic management of large ranges across complex, human-modified landscapes.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: King of Swords represents 'Territorial Mastery'—the strategic management of large ranges across complex, human-modified landscapes."
     },
     "website": {
       "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
@@ -6569,7 +6869,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "A Taiwan leopard cat standing in a lush grassy field, holding a large golden-brown vole (prey) in its paws. Sunlight filters through secondary forest.",
+      "image_prompt": "Including exactly one large golden pentacle (coin) held prominently in a leopard cat's paw. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. The pentacle is a flat golden disk with a star engraving. Background: a lush secondary forest clearing. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Ace of Pentacles is 'The Gift of the Land'—the discovery of a prey-rich habitat that provides the material basis for survival."
     },
     "ornaments": [
@@ -6586,8 +6886,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Ace of Pentacles represents 'Resource Availability'—the discovery of a prey-rich habitat.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Ace of Pentacles represents 'Resource Availability'—the discovery of a prey-rich habitat."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Ace of Pentacles represents 'Resource Availability'—the discovery of a prey-rich habitat.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Ace of Pentacles represents 'Resource Availability'—the discovery of a prey-rich habitat.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Ace of Pentacles represents 'Resource Availability'—the discovery of a prey-rich habitat."
     },
     "website": {
       "excerpt": "The ACE OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -6671,7 +6976,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "An upright Taiwan leopard cat balancing two large golden coins (marked with paw prints) while standing on a fallen log across a stream. Agile and focused.",
+      "image_prompt": "Including exactly two golden pentacles being balanced by a standing anthropomorphic leopard cat. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. The cat holds one pentacle in each hand, connected by a looping infinity-shaped green vine. Background: stormy ocean waves in the distance. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Two of Pentacles is 'The Habitat Balance'—the ability of an individual to manage its time and energy between different hunting and resting patches."
     },
     "ornaments": [
@@ -6688,8 +6993,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Two of Pentacles represents 'Fragment Management'—the need for leopard cats to balance hunting across disconnected habitat patches.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Two of Pentacles represents 'Fragment Management'—the need for leopard cats to balance hunting across disconnected habitat patches."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Two of Pentacles represents 'Fragment Management'—the need for leopard cats to balance hunting across disconnected habitat patches.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Two of Pentacles represents 'Fragment Management'—the need for leopard cats to balance hunting across disconnected habitat patches.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Two of Pentacles represents 'Fragment Management'—the need for leopard cats to balance hunting across disconnected habitat patches."
     },
     "website": {
       "excerpt": "The TWO OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -6773,7 +7083,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "Three Taiwan leopard cats gathered around a detailed stone-carved map of a forest corridor. They appear to be discussing and planning. Mystical temple background.",
+      "image_prompt": "Including exactly three golden pentacles visible on the wall of a stone structure. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. Three anthropomorphic leopard cats (a master mason, an architect with a map, and a monk) are discussing plans. The three pentacles are arranged in a triangular pattern above them. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Three of Pentacles is 'The Collaborative Effort'—the successful synergy between local communities, researchers, and government agencies to restore habitat."
     },
     "ornaments": [
@@ -6790,8 +7100,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Three of Pentacles represents 'Collaborative Recovery'—scientists, farmers, and local communities working together to restore corridors.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Three of Pentacles represents 'Collaborative Recovery'—scientists, farmers, and local communities working together to restore corridors."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Three of Pentacles represents 'Collaborative Recovery'—scientists, farmers, and local communities working together to restore corridors.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Three of Pentacles represents 'Collaborative Recovery'—scientists, farmers, and local communities working together to restore corridors.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Three of Pentacles represents 'Collaborative Recovery'—scientists, farmers, and local communities working together to restore corridors."
     },
     "website": {
       "excerpt": "The THREE OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -6875,7 +7190,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "A Taiwan leopard cat sitting firmly on a large golden coin, with three other coins surrounding it. It looks defensive and protective of its spot in a small grove.",
+      "image_prompt": "Including exactly four golden pentacles. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. An anthropomorphic leopard cat in royal robes sits on a stone throne, clutching one pentacle to its chest, two under its feet, and one balanced on its head. Total of 4 pentacles. Background: a distant misty town. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Four of Pentacles is 'The Territory Guard'—the impulse to fiercely protect and hold onto a secure core habitat, preventing any encroachment."
     },
     "ornaments": [
@@ -6892,8 +7207,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Four of Pentacles represents 'Territorial Attachment'—a leopard cat refusing to leave its small core range even as surroundings are developed.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Four of Pentacles represents 'Territorial Attachment'—a leopard cat refusing to leave its small core range even as surroundings are developed."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Four of Pentacles represents 'Territorial Attachment'—a leopard cat refusing to leave its small core range even as surroundings are developed.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Four of Pentacles represents 'Territorial Attachment'—a leopard cat refusing to leave its small core range even as surroundings are developed.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Four of Pentacles represents 'Territorial Attachment'—a leopard cat refusing to leave its small core range even as surroundings are developed."
     },
     "website": {
       "excerpt": "The FOUR OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -6977,7 +7297,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "Two thin, weary Taiwan leopard cats walking through a cold, rainy, and desolate wasteland near a construction site. Dark and somber atmosphere.",
+      "image_prompt": "Including exactly five golden pentacles on a stained glass window. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. Two weary anthropomorphic leopard cats in tattered clothes walk through a dark, rainy valley past a stone structure with a glowing window containing 5 pentacles. Muted somber tones. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Five of Pentacles is 'The Lean Season'—the struggle for survival during drought or winter when prey is scarce and habitat quality is poor."
     },
     "ornaments": [
@@ -6994,8 +7314,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Five of Pentacles represents 'Ecological Isolation'—leopard cats struggling in degraded habitats with insufficient prey and harsh conditions.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Five of Pentacles represents 'Ecological Isolation'—leopard cats struggling in degraded habitats with insufficient prey and harsh conditions."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Five of Pentacles represents 'Ecological Isolation'—leopard cats struggling in degraded habitats with insufficient prey and harsh conditions.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Five of Pentacles represents 'Ecological Isolation'—leopard cats struggling in degraded habitats with insufficient prey and harsh conditions.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Five of Pentacles represents 'Ecological Isolation'—leopard cats struggling in degraded habitats with insufficient prey and harsh conditions."
     },
     "website": {
       "excerpt": "The FIVE OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -7079,7 +7404,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "A dignified Taiwan leopard cat standing in a farm field, sharing its prey with a smaller, younger cat. A farmer's house is visible in the background distance.",
+      "image_prompt": "Including exactly six golden pentacles. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. A wealthy anthropomorphic leopard cat in fine merchant attire holds a set of scales and drops coins into the paws of two smaller cats. Exactly 6 golden coins are visible in the scene. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Six of Pentacles is 'The Shared Bounty'—the equitable distribution of resources within a population, or the maternal care of sharing food with offspring."
     },
     "ornaments": [
@@ -7096,8 +7421,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Six of Pentacles represents 'Supplemental Support'—wildlife-friendly farming and compensation programs that provide resources for coexistence.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Six of Pentacles represents 'Supplemental Support'—wildlife-friendly farming and compensation programs that provide resources for coexistence."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Six of Pentacles represents 'Supplemental Support'—wildlife-friendly farming and compensation programs that provide resources for coexistence.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Six of Pentacles represents 'Supplemental Support'—wildlife-friendly farming and compensation programs that provide resources for coexistence.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Six of Pentacles represents 'Supplemental Support'—wildlife-friendly farming and compensation programs that provide resources for coexistence."
     },
     "website": {
       "excerpt": "The SIX OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -7181,7 +7511,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "A Taiwan leopard cat standing in a field of young saplings, looking at a small pile of golden coins on the ground. Reflective and patient expression.",
+      "image_prompt": "Including exactly seven golden pentacles hanging like fruit on a lush green bush. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. An anthropomorphic leopard cat leans on a wooden staff, looking thoughtfully at the 7 pentacles. Background: a tranquil twilight farm. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Seven of Pentacles is 'The Long Game'—the patience required after habitat restoration, waiting for the ecosystem to mature and the population to grow."
     },
     "ornaments": [
@@ -7198,8 +7528,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Seven of Pentacles represents 'Successional Growth'—waiting years for a replanted forest to mature enough to support leopard cat prey.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Seven of Pentacles represents 'Successional Growth'—waiting years for a replanted forest to mature enough to support leopard cat prey."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Seven of Pentacles represents 'Successional Growth'—waiting years for a replanted forest to mature enough to support leopard cat prey.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Seven of Pentacles represents 'Successional Growth'—waiting years for a replanted forest to mature enough to support leopard cat prey.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Seven of Pentacles represents 'Successional Growth'—waiting years for a replanted forest to mature enough to support leopard cat prey."
     },
     "website": {
       "excerpt": "The SEVEN OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -7283,7 +7618,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "A young Taiwan leopard cat intensely focused on carving a series of golden coins from stone. It is surrounded by its work, showing great dedication.",
+      "image_prompt": "Including exactly eight golden pentacles. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. An anthropomorphic leopard cat artisan sits at a wooden workbench, carefully carving a star into a pentacle. Seven finished pentacles are mounted on a wall behind him, and one is on the bench. Total of 8 pentacles. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Eight of Pentacles is 'The Skilled Hunter'—the dedication of a young cat practicing its hunting techniques until they become second nature."
     },
     "ornaments": [
@@ -7300,8 +7635,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Eight of Pentacles represents 'Skill Acquisition'—a juvenile leopard cat practicing its pouncing and stalking techniques through repetition.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Eight of Pentacles represents 'Skill Acquisition'—a juvenile leopard cat practicing its pouncing and stalking techniques through repetition."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Eight of Pentacles represents 'Skill Acquisition'—a juvenile leopard cat practicing its pouncing and stalking techniques through repetition.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Eight of Pentacles represents 'Skill Acquisition'—a juvenile leopard cat practicing its pouncing and stalking techniques through repetition.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Eight of Pentacles represents 'Skill Acquisition'—a juvenile leopard cat practicing its pouncing and stalking techniques through repetition."
     },
     "website": {
       "excerpt": "The EIGHT OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -7385,7 +7725,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "A beautiful, healthy Taiwan leopard cat standing in a luxurious garden of wild ferns and flowers. It is surrounded by symbols of abundance. Calm and regal.",
+      "image_prompt": "Including exactly nine golden pentacles arranged in a lush garden. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. A noble anthropomorphic leopard cat in a long embroidered robe stands calmly. Nine large golden pentacles are visible among the flowers and vines. A small falcon perches on the cat's hand. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Nine of Pentacles is 'The Protected Sanctuary'—a high-quality, secure habitat where an individual can thrive in peace and self-sufficiency."
     },
     "ornaments": [
@@ -7402,8 +7742,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Nine of Pentacles represents 'The Secure Territory'—a female leopard cat successfully raising offspring in a large, undisturbed core area.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Nine of Pentacles represents 'The Secure Territory'—a female leopard cat successfully raising offspring in a large, undisturbed core area."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Nine of Pentacles represents 'The Secure Territory'—a female leopard cat successfully raising offspring in a large, undisturbed core area.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Nine of Pentacles represents 'The Secure Territory'—a female leopard cat successfully raising offspring in a large, undisturbed core area.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Nine of Pentacles represents 'The Secure Territory'—a female leopard cat successfully raising offspring in a large, undisturbed core area."
     },
     "website": {
       "excerpt": "The NINE OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -7487,7 +7832,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "A large multi-generational group of Taiwan leopard cats (adults and kittens) gathered in a stable, old-growth forest. Symbols of wealth and legacy surround them.",
+      "image_prompt": "Including exactly ten golden pentacles arranged in the shape of the Tree of Life. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. A multi-generational family of anthropomorphic leopard cats (elder, adults, children) are gathered in a stone courtyard. Ten golden pentacles are embedded in the scene's architecture. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Ten of Pentacles is 'The Lasting Legacy'—the vision of a stable, thriving multi-generational population in a large, interconnected landscape."
     },
     "ornaments": [
@@ -7504,8 +7849,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Ten of Pentacles represents 'Generational Persistence'—the long-term survival of a leopard cat population across multiple generations in a protected landscape.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Ten of Pentacles represents 'Generational Persistence'—the long-term survival of a leopard cat population across multiple generations in a protected landscape."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Ten of Pentacles represents 'Generational Persistence'—the long-term survival of a leopard cat population across multiple generations in a protected landscape.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Ten of Pentacles represents 'Generational Persistence'—the long-term survival of a leopard cat population across multiple generations in a protected landscape.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Ten of Pentacles represents 'Generational Persistence'—the long-term survival of a leopard cat population across multiple generations in a protected landscape."
     },
     "website": {
       "excerpt": "The TEN OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -7589,7 +7939,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "A curious juvenile Taiwan leopard cat carefully examining a single golden coin on the forest floor. Wide-eyed and eager to learn.",
+      "image_prompt": "Including exactly one golden pentacle being carefully examined by a young anthropomorphic leopard cat. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. The young cat stands in a lush green meadow, holding the coin with wonder. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Page of Pentacles is 'The Young Naturalist'—the beginning of learning about the environment and identifying the resources needed for life."
     },
     "ornaments": [
@@ -7606,8 +7956,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Page of Pentacles represents 'The Colonizer'—a young leopard cat dispersing into a new, unfamiliar but promising territory.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Page of Pentacles represents 'The Colonizer'—a young leopard cat dispersing into a new, unfamiliar but promising territory."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Page of Pentacles represents 'The Colonizer'—a young leopard cat dispersing into a new, unfamiliar but promising territory.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Page of Pentacles represents 'The Colonizer'—a young leopard cat dispersing into a new, unfamiliar but promising territory.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Page of Pentacles represents 'The Colonizer'—a young leopard cat dispersing into a new, unfamiliar but promising territory."
     },
     "website": {
       "excerpt": "The PAGE OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -7691,7 +8046,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "A sturdy Taiwan leopard cat standing firm in a ploughed field, looking out across its territory with a calm, steady gaze. Strong and dependable.",
+      "image_prompt": "Including exactly one golden pentacle held by a sturdy anthropomorphic leopard cat riding a large, patient animal (like a slow-moving mountain goat). 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. The knight holds the coin steadily as they survey a fertile valley. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Knight of Pentacles is 'The Steady Patrol'—the patient and methodical monitoring of a territory to ensure its resources remain secure."
     },
     "ornaments": [
@@ -7708,8 +8063,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Knight of Pentacles represents 'Routine Patrol'—the consistent, day-by-day guarding of a territory by a mature male leopard cat.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Knight of Pentacles represents 'Routine Patrol'—the consistent, day-by-day guarding of a territory by a mature male leopard cat."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Knight of Pentacles represents 'Routine Patrol'—the consistent, day-by-day guarding of a territory by a mature male leopard cat.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Knight of Pentacles represents 'Routine Patrol'—the consistent, day-by-day guarding of a territory by a mature male leopard cat.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Knight of Pentacles represents 'Routine Patrol'—the consistent, day-by-day guarding of a territory by a mature male leopard cat."
     },
     "website": {
       "excerpt": "The 錢幣騎士 reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -7793,7 +8153,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "A regal and motherly Taiwan leopard cat sitting on a throne of woven vines and moss, surrounded by fruits and small animals. Warm and nurturing aura.",
+      "image_prompt": "Including exactly one golden pentacle held by a regal anthropomorphic leopard cat queen sitting on a stone throne in a blossoming garden. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. Many golden pentacles are carved into the throne and visible in the background flora. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The Queen of Pentacles is 'The Nurturer of the Land'—the female whose presence and health are the ultimate indicators of a thriving ecosystem."
     },
     "ornaments": [
@@ -7810,8 +8170,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 Queen of Pentacles represents 'Habitat Productivity'—a highly fertile and safe breeding area that supports high biodiversity.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. Queen of Pentacles represents 'Habitat Productivity'—a highly fertile and safe breeding area that supports high biodiversity."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "Queen of Pentacles represents 'Habitat Productivity'—a highly fertile and safe breeding area that supports high biodiversity.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：Queen of Pentacles represents 'Habitat Productivity'—a highly fertile and safe breeding area that supports high biodiversity.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: Queen of Pentacles represents 'Habitat Productivity'—a highly fertile and safe breeding area that supports high biodiversity."
     },
     "website": {
       "excerpt": "The 錢幣皇后 reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",
@@ -7895,7 +8260,7 @@
       "model": "gemini-2.5-flash",
       "image_size": "1K",
       "aspect_ratio": "2:3",
-      "image_prompt": "An elderly, powerful Taiwan leopard cat sitting on a stone throne in a mountain cave filled with treasures of the forest. Authoritative and wealthy.",
+      "image_prompt": "Including exactly one golden pentacle held by a powerful anthropomorphic leopard cat king sitting on a throne decorated with stone leopard cat heads. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. The king's castle and a vast, wealthy territory are visible behind him. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
       "narrative": "The King of Pentacles is 'The Master of the Forest'—the ultimate alpha who has secured a prey-rich, stable territory and rules it with wisdom."
     },
     "ornaments": [
@@ -7912,8 +8277,13 @@
       ]
     },
     "ecology": {
-      "zh": "棲地：protected forest cave/hollow。風險：stress-induced immunosuppression。 King of Pentacles represents 'The Territory Master'—a powerful elder leopard cat who dominates a prime, resource-rich landscape.",
-      "en": "Habitat: protected forest cave/hollow. Risk: stress-induced immunosuppression. King of Pentacles represents 'The Territory Master'—a powerful elder leopard cat who dominates a prime, resource-rich landscape."
+      "species_focus": "Taiwan leopard cat",
+      "life_stage": "adult",
+      "habitat_fragment": "protected forest cave/hollow",
+      "risk_theme": "stress-induced immunosuppression",
+      "mapping_note": "King of Pentacles represents 'The Territory Master'—a powerful elder leopard cat who dominates a prime, resource-rich landscape.",
+      "zh": "石虎特徵：Taiwan leopard cat 。 生命階段：adult 。 棲地樣貌：protected forest cave/hollow 。 生存威脅：stress-induced immunosuppression 。 牌義關聯：King of Pentacles represents 'The Territory Master'—a powerful elder leopard cat who dominates a prime, resource-rich landscape.",
+      "en": "Species Focus: Taiwan leopard cat | Life Stage: adult | Habitat Fragment: protected forest cave/hollow | Risk Theme: stress-induced immunosuppression | Mapping Note: King of Pentacles represents 'The Territory Master'—a powerful elder leopard cat who dominates a prime, resource-rich landscape."
     },
     "website": {
       "excerpt": "The 錢幣國王 reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",

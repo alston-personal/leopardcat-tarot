@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A sturdy Taiwan leopard cat standing firm in a ploughed field, looking out across its territory with a calm, steady gaze. Strong and dependable.",
+    "image_prompt": "Including exactly one golden pentacle held by a sturdy anthropomorphic leopard cat riding a large, patient animal (like a slow-moving mountain goat). 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. The knight holds the coin steadily as they survey a fertile valley. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
     "narrative": "The Knight of Pentacles is 'The Steady Patrol'—the patient and methodical monitoring of a territory to ensure its resources remain secure."
   },
   "ornaments": [

@@ -8,7 +8,7 @@
     "en": "PAGE OF CUPS"
   },
   "subtitle": "Curiosity & Discovery",
-  "slug": "ten-of-cups",
+  "slug": "page-of-cups",
   "status": "finalized",
   "size": {
     "width": 1400,
@@ -72,13 +72,13 @@
   ],
   "output": "art/renders/card-cu-11-page-of-cups.png",
   "meanings": {
-    "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
-    "reversed": "Conflict in relationships, family disagreements, or a disconnection from a group.",
+    "upright": "New inspiration, intuition, emotional opportunity, and creative curiosity.",
+    "reversed": "Emotional immaturity, insecurity, creative blocks, or ignored intuition.",
     "keywords": [
-      "happiness",
-      "family",
-      "harmony",
-      "reunion"
+      "inspiration",
+      "intuition",
+      "discovery",
+      "curiosity"
     ]
   },
   "ecology": {
@@ -87,14 +87,14 @@
     "mapping_note": "Page of Cups represents 'Aquatic Exploration'—the early stages where young leopard cats discover clean streams and begin hunting aquatic prey."
   },
   "website": {
-    "excerpt": "Under the double rainbow, the leopard cat family finds a home where all life flows in harmony.",
-    "seo_title": "Ten of Cups - LeopardCat Tarot",
-    "seo_description": "Ten of Cups reimagined as a thriving leopard cat family in a safe, vibrant ecosystem.",
+    "excerpt": "A spark of curiosity at the water's edge, where the young leopard cat discovers the magic of the wild.",
+    "seo_title": "Page of Cups - LeopardCat Tarot",
+    "seo_description": "Page of Cups reimagined as a young leopard cat exploring the aquatic wonders of its territory.",
     "tags": [
       "minor-arcana",
       "cups",
       "leopard-cat",
-      "harmony"
+      "discovery"
     ]
   },
   "meaning": {

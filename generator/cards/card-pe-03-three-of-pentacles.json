@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Three Taiwan leopard cats gathered around a detailed stone-carved map of a forest corridor. They appear to be discussing and planning. Mystical temple background.",
+    "image_prompt": "Including exactly three golden pentacles visible on the wall of a stone structure. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. Three anthropomorphic leopard cats (a master mason, an architect with a map, and a monk) are discussing plans. The three pentacles are arranged in a triangular pattern above them. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
     "narrative": "The Three of Pentacles is 'The Collaborative Effort'—the successful synergy between local communities, researchers, and government agencies to restore habitat."
   },
   "ornaments": [
