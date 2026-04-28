@@ -9,7 +9,7 @@
   },
   "subtitle": "The Stalemate / Indecision / Blocked Path",
   "slug": "two-of-swords",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card. A somber anthropomorphic leopard cat sitting by a night road, eyes blindfolded, holding two long silver swords crossed over its chest. A calm but deep sea is behind. Atmospheric and pensive. High-fidelity leopard cat traits (forehead stripes, ear spots). Woodcut aesthetic. Full bleed. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "image_prompt": "A somber anthropomorphic leopard cat sitting by a night road, eyes blindfolded, holding two long silver swords crossed over its chest. A calm but deep sea is in the background. Atmospheric and pensive mood.",
     "narrative": "The Two of Swords is 'The Indecision'—a leopard cat frozen at a dangerous T-junction, unable to decide which direction leads to safety."
   },
   "ornaments": [
@@ -90,7 +90,7 @@
   },
   "website": {
     "excerpt": "At the dark crossroads, the leopard cat sits in silence, two swords held in tension between life and death.",
-    "seo_title": "Two of Swords - LeopardCat Tarot",
+    "seo_title": "Two Of Swords - LeopardCat Tarot",
     "seo_description": "Two of Swords reimagined as a leopard cat frozen at a dangerous crossroads.",
     "tags": [
       "minor-arcana",

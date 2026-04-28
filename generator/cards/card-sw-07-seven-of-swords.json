@@ -1,0 +1,106 @@
+{
+  "id": "card-sw-07-seven-of-swords",
+  "arcana": "minor",
+  "suit": "swords",
+  "number": 207,
+  "title": {
+    "zh": "寶劍七",
+    "en": "SEVEN OF SWORDS"
+  },
+  "subtitle": "Strategy & Stealth",
+  "slug": "seven-of-swords",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      120,
+      140,
+      160
+    ],
+    "bottom": [
+      60,
+      80,
+      100
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      30,
+      40,
+      50
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "stone-hollow-rest",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "resting-leopard-cat"
+  },
+  "main_image": "art/generated/card-sw-07-seven-of-swords.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "A Taiwan leopard cat standing upright and sneaking away from a farm camp at night. EXACTLY 7 silver swords in total. Five swords are held in its arms, and two swords are left behind on the ground. No other swords. The image must fill the entire canvas edge to edge, absolutely no vintage borders, no frames, no white margins.",
+    "narrative": "The Seven of Swords is 'The Midnight Raid'—the calculated risk of entering human settlements to find food, a major source of human-animal conflict."
+  },
+  "ornaments": [
+    "stone-effigy",
+    "hanging-swords"
+  ],
+  "output": "art/renders/card-sw-07-seven-of-swords.png",
+  "meanings": {
+    "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
+    "reversed": "Restlessness, burnout, or a return to world before full recovery.",
+    "keywords": [
+      "rest",
+      "recovery",
+      "meditation",
+      "sanctuary"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "protected forest cave/hollow",
+    "risk_theme": "stress-induced immunosuppression",
+    "mapping_note": "Seven of Swords represents 'Border Risk'—the opportunistic behavior of raiding domestic livestock when natural prey is scarce."
+  },
+  "website": {
+    "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
+    "seo_title": "Seven Of Swords - LeopardCat Tarot",
+    "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
+    "tags": [
+      "minor-arcana",
+      "swords",
+      "leopard-cat",
+      "rest"
+    ]
+  },
+  "meaning": {
+    "zh": "逃避、策略、不誠實，以及在人類聚落邊緣尋找生存機會的冒險。",
+    "en": "Deception, strategy, stealth, and taking risks at the human-animal interface."
+  }
+}

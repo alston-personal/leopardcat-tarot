@@ -9,7 +9,7 @@
   },
   "subtitle": "The Rest / Recovery / Sanctuary",
   "slug": "four-of-swords",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card. An anthropomorphic leopard cat lying in quiet repose on a stone effigy within an ancient moonlit forest sanctuary. Three silver swords hang vertically on the wall behind, one lies beneath the resting cat. Peaceful, meditative atmosphere. High-fidelity leopard cat traits (forehead stripes, ear spots). Woodcut aesthetic. Full bleed. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "image_prompt": "An anthropomorphic leopard cat lying in quiet repose on a stone effigy within an ancient moonlit forest sanctuary. Three silver swords hang vertically on the wall behind, one lies beneath the resting cat. Peaceful, meditative atmosphere.",
     "narrative": "The Four of Swords is 'The Recovery'—finding a safe, undisturbed hollow to rest and heal from the stresses of survival."
   },
   "ornaments": [
@@ -90,7 +90,7 @@
   },
   "website": {
     "excerpt": "In the silence of the forest temple, the leopard cat rests, four swords promising protection while the soul heals.",
-    "seo_title": "Four of Swords - LeopardCat Tarot",
+    "seo_title": "Four Of Swords - LeopardCat Tarot",
     "seo_description": "Four of Swords reimagined as a safe resting place for a leopard cat in recovery.",
     "tags": [
       "minor-arcana",

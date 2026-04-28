@@ -9,7 +9,7 @@
   },
   "subtitle": "The Insight / Breakthrough / Survival Logic",
   "slug": "ace-of-swords",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card. A noble anthropomorphic leopard cat holding a single shining silver sword upright. A crown encircles the tip of the sword. Sharp, cold mountain air in the background. High-fidelity leopard cat traits (forehead stripes, ear spots). Woodcut aesthetic. Full bleed. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "image_prompt": "An upright, anthropomorphic Taiwan leopard cat holding a single, sharp silver sword vertically. Focused and clear expression. Background is a high mountain peak with sharp rock formations.",
     "narrative": "The Ace of Swords is 'The Breakthrough'—a leopard cat achieving absolute mental clarity to navigate a dangerous landscape."
   },
   "ornaments": [
@@ -90,7 +90,7 @@
   },
   "website": {
     "excerpt": "With a mind as sharp as the silver blade, the leopard cat navigates the most dangerous of paths.",
-    "seo_title": "Ace of Swords - LeopardCat Tarot",
+    "seo_title": "Ace Of Swords - LeopardCat Tarot",
     "seo_description": "Ace of Swords reimagined as a leopard cat achieving survival clarity.",
     "tags": [
       "minor-arcana",
