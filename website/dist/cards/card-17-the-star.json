@@ -8,7 +8,7 @@
   },
   "subtitle": "Hope / Guidance / Ecological Recovery",
   "slug": "17-the-star",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -61,13 +61,38 @@
     "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A beautiful, serene anthropomorphic Taiwan leopard cat stands by a mountain pool at night. Above her, one giant bright star and seven smaller stars shine brilliantly. She pours clear water from two silver jars—one into the pool, one onto the dry mossy ground. Meaning: Inspiration, renewal of the species, and the guiding hope of conservation efforts.",
     "narrative": "A beautiful, serene anthropomorphic Taiwan leopard cat stands by a mountain pool at night. Above her, one giant bright star and seven smaller stars shine brilliantly. She pours clear water from two silver jars—one into the pool, one onto the dry mossy ground. Meaning: Inspiration, renewal of the species, and the guiding hope of conservation efforts."
   },
-  "output": "art/renders/card-17-17-the-star.png",
+  "output": "art/renders/card-17-the-star.png",
   "meaning": {
-    "zh": "TBD",
-    "en": "TBD"
+    "zh": "希望、信念、目標、復甦、靈性，以及災難後的療癒與重生。",
+    "en": "Hope, faith, purpose, renewal, spirituality, and healing after destruction."
   },
   "ecology": {
-    "zh": "TBD",
-    "en": "TBD"
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "recovering population",
+    "habitat_fragment": "a newly planted ecological corridor",
+    "risk_theme": "the slow process of habitat restoration and species recovery",
+    "mapping_note": "The Star represents conservation hope—the slow but beautiful process of habitat restoration, where pure water and newly planted trees guide the leopard cat toward a safer future.",
+    "zh": "棲地樣貌：a newly planted ecological corridor 。 生存威脅：the slow process of habitat restoration and species recovery 。 牌義關聯：The Star represents conservation hope—the slow but beautiful process of habitat restoration, where pure water and newly planted trees guide the leopard cat toward a safer future. 。 石虎特徵：台灣石虎 。 生命階段：recovering population"
+  },
+  "meanings": {
+    "upright": "Hope, faith, purpose, renewal, spirituality, and healing after destruction.",
+    "reversed": "Despair, lack of faith, disconnection, or loss of hope.",
+    "keywords": [
+      "hope",
+      "renewal",
+      "healing",
+      "inspiration"
+    ]
+  },
+  "website": {
+    "excerpt": "Under the pure night sky, The Star brings the healing waters of restoration and the quiet hope of recovery.",
+    "seo_title": "The Star - LeopardCat Tarot",
+    "seo_description": "The Star tarot card reimagined as habitat restoration and hope for the leopard cat's future.",
+    "tags": [
+      "major-arcana",
+      "star",
+      "leopard-cat",
+      "hope"
+    ]
   }
 }

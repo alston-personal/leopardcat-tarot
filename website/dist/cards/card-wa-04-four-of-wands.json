@@ -9,7 +9,7 @@
   },
   "subtitle": "Celebration & Harmony",
   "slug": "four-of-wands",
-  "status": "rework_needed",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: Two Taiwan leopard cats standing upright on two legs, celebrating. They are framed by EXACTLY FOUR wooden wands that are arranged in a narrow, close-packed square/rectangle (two on left, two on right) with a garland of flowers between them. All four wands must be fully visible within the 2:3 center area. Slender build, sharp facial structure, white ear spots, forehead stripes.",
+    "image_prompt": "1900s mystical lithography, bold ink outlines. FULL BLEED IMAGE. NO MARGINS. NO BORDERS. NO TEXT. ANTHROPOMORPHIC: Two Taiwan leopard cats standing upright on two legs in a beautiful forest clearing, celebrating. They are wearing detailed festive 1900s traditional robes and outfits. EXACTLY FOUR wooden wands are planted firmly in the ground around them like pillars, supporting a garland of flowers above their heads. The wands are part of the landscape and do NOT form a border or frame around the edges. The scene fills the entire 2:3 vertical area to the very edges.",
     "narrative": "A moment of peace and celebration as a leopard cat community finds a stable, safe core habitat. The four wands form an arch of protection over their home."
   },
   "ornaments": [
@@ -85,7 +85,8 @@
     "life_stage": "adult-pair",
     "habitat_fragment": "stable core forest",
     "risk_theme": "the importance of long-term safe zones",
-    "mapping_note": "Four of Wands becomes the 'Core Sanctuary'—a habitat patch large and stable enough to support a breeding population and communal peace."
+    "mapping_note": "Four of Wands becomes the 'Core Sanctuary'—a habitat patch large and stable enough to support a breeding population and communal peace.",
+    "zh": "棲地樣貌：stable core forest 。 生存威脅：the importance of long-term safe zones 。 牌義關聯：Four of Wands becomes the 'Core Sanctuary'—a habitat patch large and stable enough to support a breeding population and communal peace. 。 石虎特徵：台灣石虎 。 生命階段：adult-pair"
   },
   "website": {
     "excerpt": "Celebrating the safety of a permanent home, the leopard cats find peace under the shelter of the four wands.",
@@ -99,7 +100,7 @@
     ]
   },
   "meaning": {
-    "zh": "Celebration, harmony, a sense of belonging, and the establishment of a safe home base within the territory.",
+    "zh": "慶祝、和諧、歸屬感，以及在領地內建立起安全的家園。",
     "en": "Celebration, harmony, a sense of belonging, and the establishment of a safe home base within the territory."
   }
 }

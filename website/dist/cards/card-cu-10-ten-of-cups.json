@@ -9,7 +9,7 @@
   },
   "subtitle": "The Fulfillment / Family / Harmony",
   "slug": "ten-of-cups",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -86,7 +86,8 @@
     "life_stage": "family-unit",
     "habitat_fragment": "protected forest and grassland",
     "risk_theme": "population stability and connectivity",
-    "mapping_note": "Ten of Cups represents 'The Ideal Population'—thriving family units in safe, large habitat complexes."
+    "mapping_note": "Ten of Cups represents 'The Ideal Population'—thriving family units in safe, large habitat complexes.",
+    "zh": "棲地樣貌：protected forest and grassland 。 生存威脅：population stability and connectivity 。 牌義關聯：Ten of Cups represents 'The Ideal Population'—thriving family units in safe, large habitat complexes. 。 石虎特徵：台灣石虎 。 生命階段：family-unit"
   },
   "website": {
     "excerpt": "Under the double rainbow, the leopard cat family finds a home where all life flows in harmony.",
@@ -100,7 +101,7 @@
     ]
   },
   "meaning": {
-    "zh": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+    "zh": "幸福、情感的和諧、家庭、團聚，以及強烈的社群歸屬感。",
     "en": "Happiness, emotional harmony, family, reunion, and a high sense of community."
   }
 }

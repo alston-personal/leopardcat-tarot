@@ -9,7 +9,7 @@
   },
   "subtitle": "The Integration Struggle / Habitat Friction",
   "slug": "five-of-wands",
-  "status": "rework_needed",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. ANTHROPOMORPHIC: Five Taiwan leopard cats ALL STRICTLY STANDING UPRIGHT ON TWO LEGS, engaging in a complex but non-violent scramble in a forest corridor. Each cat holds a wooden wand FIRMLY WITH ITS PAWS. No floating objects or ghost hands. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "image_prompt": "A single continuous scene. NO MARGINS. NO BORDERS. NO INSET FRAMES. FULL BLEED IMAGE. 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: Five Taiwan leopard cats standing upright on two legs in a forest corridor, engaging in a symbolic athletic struggle or scramble. They are ALL wearing detailed 1900s festive robes and tunics. Each cat is holding a wooden wand. Total wands in the image must be EXACTLY FIVE. All five cats and their wands must be clustered in the center of the image, safely away from all edges. Earthy color palette. High-fidelity biological markers. NO FLOATING OBJECTS. NO REPEATED IMAGES.",
     "narrative": "Five leopard cats in a newly reconnected corridor engage in a symbolic struggle, representing the healthy friction of a recovering population integrating into new territories."
   },
   "ornaments": [
@@ -85,7 +85,8 @@
     "life_stage": "adult-males",
     "habitat_fragment": "newly connected territory",
     "risk_theme": "high density during corridor initial phase",
-    "mapping_note": "Five of Wands represents the 'Integration Friction'—the initial competition that occurs when restoration efforts first connect previously isolated populations."
+    "mapping_note": "Five of Wands represents the 'Integration Friction'—the initial competition that occurs when restoration efforts first connect previously isolated populations.",
+    "zh": "棲地樣貌：newly connected territory 。 生存威脅：high density during corridor initial phase 。 牌義關聯：Five of Wands represents the 'Integration Friction'—the initial competition that occurs when restoration efforts first connect previously isolated populations. 。 石虎特徵：台灣石虎 。 生命階段：adult-males"
   },
   "website": {
     "excerpt": "A chaotic spar for space, representing the challenges of population integration in restored landscapes.",

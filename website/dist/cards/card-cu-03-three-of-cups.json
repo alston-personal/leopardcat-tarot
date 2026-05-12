@@ -9,7 +9,7 @@
   },
   "subtitle": "The Gathering / Joyful Play / Communal Harmony",
   "slug": "three-of-cups",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -86,7 +86,8 @@
     "life_stage": "adolescent-young-adults",
     "habitat_fragment": "protected riparian forest",
     "risk_theme": "social stability in high-quality habitat",
-    "mapping_note": "Three of Cups represents 'The Safety of the Pack'—rare group play moments in high-quality habitats where resources are overflowing."
+    "mapping_note": "Three of Cups represents '族群的安全感'—rare group play moments in high-quality habitats where resources are overflowing.",
+    "zh": "棲地樣貌：protected riparian forest 。 生存威脅：social stability in high-quality habitat 。 牌義關聯：Three of Cups represents '族群的安全感'—rare group play moments in high-quality habitats where resources are overflowing. 。 石虎特徵：台灣石虎 。 生命階段：adolescent-young-adults"
   },
   "website": {
     "excerpt": "A joyful gathering in the crystal river, celebrating the abundance and harmony of the forest life.",
@@ -100,7 +101,7 @@
     ]
   },
   "meaning": {
-    "zh": "Celebration, community support, friendship, group harmony, and shared joy.",
+    "zh": "慶祝、社群支持、友誼、團隊和諧，以及共享的喜悅。",
     "en": "Celebration, community support, friendship, group harmony, and shared joy."
   }
 }

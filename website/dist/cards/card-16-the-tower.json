@@ -8,7 +8,7 @@
   },
   "subtitle": "Crisis / Destruction / Habitat Loss",
   "slug": "16-the-tower",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -61,13 +61,38 @@
     "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A massive ancient redwood-like tree is being struck by a devastating purple lightning bolt during a violent storm. The tree is splitting apart, and stone bird-houses are falling from its branches. A terrified anthropomorphic Taiwan leopard cat leaps from a crumbling cliff nearby. Meaning: Sudden upheaval, the collapse of a safe territory, and the chaotic destruction of old structures.",
     "narrative": "A massive ancient redwood-like tree is being struck by a devastating purple lightning bolt during a violent storm. The tree is splitting apart, and stone bird-houses are falling from its branches. A terrified anthropomorphic Taiwan leopard cat leaps from a crumbling cliff nearby. Meaning: Sudden upheaval, the collapse of a safe territory, and the chaotic destruction of old structures."
   },
-  "output": "art/renders/card-16-16-the-tower.png",
+  "output": "art/renders/card-16-the-tower.png",
   "meaning": {
-    "zh": "TBD",
-    "en": "TBD"
+    "zh": "突如其來的劇變、災難、啟示，以及不穩固基礎的崩塌（如棲地瞬間破壞）。",
+    "en": "Sudden upheaval, broken pride, disaster, revelation, and the collapse of unstable foundations."
   },
   "ecology": {
-    "zh": "TBD",
-    "en": "TBD"
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "displaced population",
+    "habitat_fragment": "bulldozed hillside or flooded corridor",
+    "risk_theme": "sudden catastrophic habitat destruction",
+    "mapping_note": "The Tower is the sudden, catastrophic destruction of a core habitat—a hillside bulldozed overnight, forcing the leopard cat to flee the collapse of its once-safe home.",
+    "zh": "棲地樣貌：bulldozed hillside or flooded corridor 。 生存威脅：sudden catastrophic habitat destruction 。 牌義關聯：The Tower is the sudden, catastrophic destruction of a core habitat—a hillside bulldozed overnight, forcing the leopard cat to flee the collapse of its once-safe home. 。 石虎特徵：台灣石虎 。 生命階段：displaced population"
+  },
+  "meanings": {
+    "upright": "Sudden upheaval, broken pride, disaster, revelation, and the collapse of unstable foundations.",
+    "reversed": "Averting disaster, delaying the inevitable, or fearing necessary change.",
+    "keywords": [
+      "upheaval",
+      "disaster",
+      "collapse",
+      "revelation"
+    ]
+  },
+  "website": {
+    "excerpt": "A sudden catastrophic collapse of the forest forces a desperate escape, revealing the fragility of habitat.",
+    "seo_title": "The Tower - LeopardCat Tarot",
+    "seo_description": "The Tower tarot card reimagined as the sudden and catastrophic destruction of leopard cat habitat.",
+    "tags": [
+      "major-arcana",
+      "tower",
+      "leopard-cat",
+      "destruction"
+    ]
   }
 }

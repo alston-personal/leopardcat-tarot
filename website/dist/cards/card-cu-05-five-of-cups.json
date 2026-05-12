@@ -9,7 +9,7 @@
   },
   "subtitle": "The Spillage / Loss / Regret",
   "slug": "five-of-cups",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -86,7 +86,8 @@
     "life_stage": "adult",
     "habitat_fragment": "disturbed river valley",
     "risk_theme": "flooding and territory loss",
-    "mapping_note": "Five of Cups represents 'The Price of Disturbance'—the grief of losing breeding territory to human development, while still having hope in remaining remote forests."
+    "mapping_note": "Five of Cups represents 'The Price of Disturbance'—the grief of losing breeding territory to human development, while still having hope in remaining remote forests.",
+    "zh": "棲地樣貌：disturbed river valley 。 生存威脅：flooding and territory loss 。 牌義關聯：Five of Cups represents 'The Price of Disturbance'—the grief of losing breeding territory to human development, while still having hope in remaining remote forests. 。 石虎特徵：台灣石虎 。 生命階段：成年"
   },
   "website": {
     "excerpt": "In the cold rain, the leopard cat mourns what has been lost, unaware of the hope that still stands behind.",
@@ -100,7 +101,7 @@
     ]
   },
   "meaning": {
-    "zh": "Loss, grief, regret, disappointment, and focuses on the negative.",
+    "zh": "失去、悲傷、悔恨、失望，以及過度關注負面事物。",
     "en": "Loss, grief, regret, disappointment, and focuses on the negative."
   }
 }

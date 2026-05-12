@@ -9,7 +9,7 @@
   },
   "subtitle": "The Insularity / Discontent / Missed Opportunity",
   "slug": "four-of-cups",
-  "status": "draft",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -86,7 +86,8 @@
     "life_stage": "adult",
     "habitat_fragment": "isolated forest patch",
     "risk_theme": "lack of dispersal courage",
-    "mapping_note": "Four of Cups represents 'The Trap of the Familiar'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor."
+    "mapping_note": "Four of Cups represents '熟悉的陷阱'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor.",
+    "zh": "棲地樣貌：isolated forest patch 。 生存威脅：lack of dispersal courage 。 牌義關聯：Four of Cups represents '熟悉的陷阱'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor. 。 石虎特徵：台灣石虎 。 生命階段：成年"
   },
   "website": {
     "excerpt": "Under the shade of the old tree, the leopard cat contemplates the world, unaware of the gift appearing in the mist.",
@@ -100,7 +101,7 @@
     ]
   },
   "meaning": {
-    "zh": "Meditation, contemplation, apathy, re-evaluation, and being withdrawn.",
+    "zh": "冥想、沉思、冷漠、重新評估，以及自我退縮。",
     "en": "Meditation, contemplation, apathy, re-evaluation, and being withdrawn."
   }
 }

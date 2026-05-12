@@ -9,7 +9,7 @@
   },
   "subtitle": "The Resilient Survivor / Wisdom of Age",
   "slug": "nine-of-wands",
-  "status": "rework_needed",
+  "status": "prompt_ready",
   "size": {
     "width": 1400,
     "height": 2420
@@ -60,11 +60,11 @@
   },
   "main_image": "art/generated/card-wa-09-nine-of-wands.png",
   "generation": {
-    "model": "gemini-2.5-flash",
+    "model": "gemini-3.1-flash-image",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS, head bandaged with a rustic cloth, wearing a worn traveler's cloak. He holds one wooden wand FIRMLY WITH ITS PAWS as a staff. Behind him, EXACTLY EIGHT more wooden wands are arranged in a dense semi-circle. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
-    "narrative": "An old leopard cat survivor, scarred but resilient, represents the living proof that survival is possible when habitats are protected and respected."
+    "image_prompt": "[TECHNICAL: Aspect Ratio 2:3 Vertical, Edge-to-Edge Continuous, NO TEXT, NO BORDERS, NO FRAMES, NO INNER FRAMES, NO MARGINS] Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content MUST touch all four edges. ABSOLUTELY NO TEXT. STRICTLY ANTHROPOMORPHIC. Taiwan leopard cat with white ear spots, forehead stripes, rosette patterns. SCENE: A wounded Taiwan leopard cat standing defensively. EXACTLY NINE (9) wooden wands total in the image. The cat holds ONE wand. Behind the cat, there are EXACTLY EIGHT (8) other wands planted vertically. CRITICAL: The wands MUST be very tall, taller than the leopard cat, and clustered CLOSELY together in the center-background (4 on each side of the cat) so they are NOT cut off by the image edges. All 9 wands must be fully visible within the center 70% of the width.",
+    "narrative": "A leopard cat stands guard over a restored corridor, representing the resilience required to maintain ecological gains against ongoing threats."
   },
   "ornaments": [
     "scars",
@@ -86,7 +86,8 @@
     "life_stage": "old-survivor",
     "habitat_fragment": "final core territory",
     "risk_theme": "the price of survival in human landscape",
-    "mapping_note": "Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, providing vital educational data on the species' capacity for resilience when given a chance."
+    "mapping_note": "Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, providing vital educational data on the species' capacity for resilience when given a chance.",
+    "zh": "棲地樣貌：final core territory 。 生存威脅：the price of survival in human landscape 。 牌義關聯：Nine of Wands is the 'Old General'—the individuals that manage to reach old age despite incredible habitat pressure, providing vital educational data on the species' capacity for resilience when given a chance. 。 石虎特徵：台灣石虎 。 生命階段：old-survivor"
   },
   "website": {
     "excerpt": "Scarred but unbowed, the old survivor stands as a symbol of the species' incredible will to endure.",

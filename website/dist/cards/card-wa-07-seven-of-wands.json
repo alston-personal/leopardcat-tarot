@@ -9,7 +9,7 @@
   },
   "subtitle": "The Core Guardian / Defensive Resilience",
   "slug": "seven-of-wands",
-  "status": "rework_needed",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: One Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS on a high rocky ledge, holding one wooden wand FIRMLY WITH BOTH PAWS. Six other wands poke up from below as if trying to reach the cat. The cat looks down with determination. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "image_prompt": "A single continuous scene. NO MARGINS. NO BORDERS. NO INSET FRAMES. FULL BLEED IMAGE. 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: One Taiwan leopard cat standing upright on two legs on a high rocky ledge, defending his position. He is wearing a detailed 1900s warrior's tunic and protective robes. He holds ONE wooden wand firmly with both paws. SIX other wooden wands are reaching up toward him from the bottom center of the image. Total wands must be EXACTLY SEVEN. All seven wands and the main cat must be centrally located and safely away from the edges to avoid being cropped. Earthy color palette. High-fidelity biological markers. NO VINTAGE PAPER MARGINS. NO PICTURE-IN-PICTURE.",
     "narrative": "A leopard cat defends the last core habitat patch from external pressures, representing the vital educational need to protect the 'pristine baseline'."
   },
   "ornaments": [
@@ -85,7 +85,8 @@
     "life_stage": "adult",
     "habitat_fragment": "contested territory boundary",
     "risk_theme": "the struggle to hold shrinking habitat patches",
-    "mapping_note": "Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones (Ecological Core) from constant external human and invasive pressure."
+    "mapping_note": "Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones (Ecological Core) from constant external human and invasive pressure.",
+    "zh": "棲地樣貌：contested territory boundary 。 生存威脅：the struggle to hold shrinking habitat patches 。 牌義關聯：Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones (Ecological Core) from constant external human and invasive pressure. 。 石虎特徵：台灣石虎 。 生命階段：成年"
   },
   "website": {
     "excerpt": "Standing firm against the tide of encroachment, the leopard cat defends the sanctity of the core habitat.",
