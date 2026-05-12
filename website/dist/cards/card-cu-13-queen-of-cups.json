@@ -9,7 +9,7 @@
   },
   "subtitle": "Intuition & Compassion",
   "slug": "ten-of-cups",
-  "status": "finalized",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text. ANTHROPOMORPHIC: A serene Taiwan leopard cat queen standing upright on two legs, wearing a flowing gown of sea-foam green and a simple crown. She holds a closed, ornate golden cup. Slender build, sharp facial structure, white ear spots, forehead stripes. Calm seaside background. Full bleed. No borders.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text. ANTHROPOMORPHIC: A serene Taiwan leopard cat queen standing upright on two legs, wearing a flowing gown of sea-foam green and a simple crown. She holds a closed, ornate golden cup. Slender build, sharp facial structure, white ear spots, forehead stripes. Calm seaside background. Full bleed. No borders.",
     "narrative": "The Queen of Cups embodies the intuitive protector—the mother leopard cat who masters the wisdom of the forest waters."
   },
   "ornaments": [

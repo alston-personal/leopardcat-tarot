@@ -8,7 +8,7 @@
   },
   "subtitle": "Willpower / Victory / Determined Crossing",
   "slug": "07-the-chariot",
-  "status": "finalized",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -59,7 +59,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A powerful anthropomorphic male Taiwan leopard cat standing heroically upon a high rock formation, holding a spear. He points forward toward a distant forest patch, ignoring the dangerous light-filled valley below. His expression is one of unbreakable focus. Meaning: Overcoming obstacles, willpower, and the successful navigation through fragmented human landscapes.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A powerful anthropomorphic male Taiwan leopard cat standing heroically upon a high rock formation, holding a spear. He points forward toward a distant forest patch, ignoring the dangerous light-filled valley below. His expression is one of unbreakable focus. Meaning: Overcoming obstacles, willpower, and the successful navigation through fragmented human landscapes.",
     "narrative": "A powerful anthropomorphic male Taiwan leopard cat standing heroically upon a high rock formation, holding a spear. He points forward toward a distant forest patch, ignoring the dangerous light-filled valley below. His expression is one of unbreakable focus. Meaning: Overcoming obstacles, willpower, and the successful navigation through fragmented human landscapes."
   },
   "output": "art/renders/card-07-the-chariot.png",

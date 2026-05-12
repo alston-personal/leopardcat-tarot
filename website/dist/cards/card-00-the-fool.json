@@ -8,7 +8,7 @@
   },
   "subtitle": "Threshold / Curiosity / Risk",
   "slug": "the-fool",
-  "status": "finalized",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V2_NO_BORDER]... High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. ... High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
     "narrative": "A juvenile anthropomorphic Taiwan leopard cat dressed as a humble traveler with a small knapsack on a stick. It steps forward from a dark forest towards the edge of a moonlit road where distant warm headlights glow."
   },
   "ornaments": [],
