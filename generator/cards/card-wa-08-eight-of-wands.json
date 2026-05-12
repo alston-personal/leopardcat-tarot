@@ -9,7 +9,7 @@
   },
   "subtitle": "The Efficient Passage / Corridor Flow",
   "slug": "eight-of-wands",
-  "status": "rework_needed",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Vintage woodcut texture, limited earthy color palette. Clean bold black ink outlines. NO BORDERS. FULL BLEED IMAGE. WIDE FIELD OF VIEW. ANTHROPOMORPHIC: A Taiwan leopard cat STRICTLY STANDING UPRIGHT ON TWO LEGS, pointing toward the sky with ITS PAW as EXACTLY EIGHT wooden wands fly through the air in a narrow parallel formation. Slender and agile feline build. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. No baked-in text.",
+    "image_prompt": "A single continuous scene. NO MARGINS. NO BORDERS. NO INSET FRAMES. NO FLOATING CARDS. 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs in a vast open landscape. He is wearing a detailed 1900s traveling outfit with a patterned tunic, trousers, and a cloak. In the open sky above, EXACTLY EIGHT wooden wands are flying in a neat diagonal line. The count must be EXACTLY EIGHT, no more, no less. The leopard cat's hands are empty. The scene touches all four edges of the image (FULL BLEED). Earthy color palette. High-fidelity biological markers.",
     "narrative": "Eight wands fly through the sky as a leopard cat moves with incredible speed through a newly opened ecological corridor, symbolizing the efficiency of habitat restoration."
   },
   "ornaments": [
