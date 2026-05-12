@@ -9,7 +9,7 @@
   },
   "subtitle": "Curiosity & Discovery",
   "slug": "page-of-cups",
-  "status": "finalized",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text, no labels. ANTHROPOMORPHIC: A curious young Taiwan leopard cat standing upright on two legs, wearing a simple blue tunic. He stands by a stream bank, looking up as a dream-fish pops out of a golden cup he holds. Slender juvenile build, sharp facial structure, white ear spots, forehead stripes. Full bleed. No borders.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text, no labels. ANTHROPOMORPHIC: A curious young Taiwan leopard cat standing upright on two legs, wearing a simple blue tunic. He stands by a stream bank, looking up as a dream-fish pops out of a golden cup he holds. Slender juvenile build, sharp facial structure, white ear spots, forehead stripes. Full bleed. No borders.",
     "narrative": "The Page of Cups represents the spark of discovery—the first time a kitten explores the wonders of the water edge."
   },
   "ornaments": [
