@@ -106,7 +106,7 @@
     "en": "Loss, grief, regret, disappointment, and focuses on the negative."
   },
   "render_config": {
-    "zoom": 1.0,
-    "trim": 50
+    "zoom": 1.05,
+    "trim": 55
   }
 }
