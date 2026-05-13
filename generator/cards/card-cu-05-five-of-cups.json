@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] Including exactly five cups in the scene. Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A somber anthropomorphic leopard cat in a black cloak, standing in a rainy, dark mountain landscape. Three golden cups are overturned, spilling their contents into a puddle. Two cups remain upright behind the cat, but it doesn't see them. Heavy, moody atmosphere. Muted dark tones. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: A somber Taiwan leopard cat in a heavy black traveler's cloak, standing on a rainy mountain cliff. VISUAL FOCUS: Exactly 5 golden cups must be present in total. 3 golden cups are knocked over on the foreground rocks, spilling liquid. Exactly 2 golden cups remain upright behind the leopard cat. The cat looks at the 3 fallen cups with intense regret. Muted rainy atmosphere, dark teal and grey palette. Full bleed. No borders. High-fidelity biological markers: narrow face, white stripes nose-to-forehead, white ear spots. 2:3 vertical. Full bleed. No borders.",
     "narrative": "The Five of Cups is 'The Spillage'—regret over certain lost fragments of habitat, while the path to remaining core area still exists behind."
   },
   "ornaments": [

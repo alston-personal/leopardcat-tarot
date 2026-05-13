@@ -63,7 +63,7 @@
     "model": "gemini-2.0-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "A tall Taiwan leopard cat standing upright on a cliff overlook. He holds EXACTLY TWO wooden wands: one held firmly in his hand, and another one standing vertically beside him on the ground. In his other hand, he holds a small, glowing world-globe orb. Wearing a traveler's hooded cloak. Looking out over a vast coastline at sunset.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: A Taiwan leopard cat in traveler's clothing standing on a cliff overlook. VISUAL FOCUS: Exactly 2 wooden wands must be present in total. One wooden wand is held in his right hand like a staff, and another wooden wand is planted firmly in the ground beside him. He holds a small glowing globe (the world) in his left hand. He looks out over a vast sea. High-fidelity biological markers: narrow face, white stripes nose-to-forehead, white ear spots. 2:3 vertical. Full bleed. No borders.",
     "narrative": "A leopard cat stands at a vantage point, holding its territory in its hand while evaluating the distant fragments of forest. It represents the crucial planning stage before moving into new habitat."
   },
   "ornaments": [
