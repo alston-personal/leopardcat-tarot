@@ -86,7 +86,7 @@ async function initAllSystems() {
         let success = false;
         // ⚡ Cache-busting for JSON files
         const ts = Date.now();
-        let cR = await fetch(`content.json?v=${ts}`, { cache: 'no-cache' });
+        let cR = await fetch(`locales_v10.json?v=${ts}`, { cache: 'no-cache' });
         let mR = await fetch(`manifest.json?v=${ts}`, { cache: 'no-cache' });
         
         if (cR.ok && mR.ok) {
