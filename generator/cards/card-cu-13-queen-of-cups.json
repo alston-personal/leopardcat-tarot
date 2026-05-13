@@ -100,5 +100,11 @@
     "zh": "慈悲、直覺、情感的豐沛與深刻的同理心。",
     "en": "Compassion, intuition, emotional depth, and deep empathy."
   },
-  "image": "art/renders/card-cu-13-queen-of-cups.png"
+  "image": "art/renders/card-cu-13-queen-of-cups.png",
+  "render_config": {
+    "zoom": 1.0,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 30
+  }
 }

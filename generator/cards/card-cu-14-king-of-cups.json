@@ -100,5 +100,11 @@
     "zh": "情感的平衡、自律、智者的慈悲、穩定的領導力。在大風大浪中依然保持內心的寧靜。",
     "en": "Emotional balance, self-control, wise compassion, and stable leadership. Calmness amidst the storms of the soul."
   },
-  "image": "art/renders/card-cu-14-king-of-cups.png"
+  "image": "art/renders/card-cu-14-king-of-cups.png",
+  "render_config": {
+    "zoom": 1.02,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 35
+  }
 }
