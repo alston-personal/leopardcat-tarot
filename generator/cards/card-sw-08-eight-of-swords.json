@@ -70,6 +70,9 @@
     "stone-effigy",
     "hanging-swords"
   ],
+  "render_config": {
+    "zoom": 0.9
+  },
   "output": "art/renders/card-sw-08-eight-of-swords.png",
   "meanings": {
     "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
