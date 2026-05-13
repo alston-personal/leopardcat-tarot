@@ -10,13 +10,18 @@ let currentDrawnCard = null;
 
 // 🔱 Dharma Name Identity System
 function initDharmaIdentity() {
+    if (!siteData) return;
+    const common = siteData[currentLang].common;
     let name = localStorage.getItem('userDharmaName');
-    if (!name) {
-        const prefixes = ["山林", "雲霧", "古剎", "石虎", "冥想", "靜心"];
-        const suffixes = ["行者", "求道貓", "徒兒", "隱士"];
+    
+    // Always regenerate or update name if components are available
+    if (!name || !name.includes("")) { // Simple check to see if we need a fresh name or updated lang
+        const prefixes = common.dharma_prefixes;
+        const suffixes = common.dharma_suffixes;
         name = `${prefixes[Math.floor(Math.random()*prefixes.length)]}${suffixes[Math.floor(Math.random()*suffixes.length)]}`;
         localStorage.setItem('userDharmaName', name);
     }
+    
     const nameElem = document.getElementById('user-dharma-name');
     if (nameElem) nameElem.innerText = name;
 }
@@ -56,24 +61,8 @@ function updateUIQuota() {
 
 // Initialize All Systems
 async function initAllSystems() {
-    console.log("System Initializing...");
     try {
-        initDharmaIdentity();
-        updateTempleStats();
-        startManaRegen();
-        updateUIQuota();
-
-        // Emergency Fallback: If after 3s still invisible, force reveal
-        setTimeout(() => {
-            document.querySelectorAll('.section, .reveal-on-scroll').forEach(el => {
-                if (!el.classList.contains('visible')) {
-                    console.warn("Emergency reveal triggered for:", el);
-                    el.classList.add('visible');
-                }
-            });
-        }, 3000);
-
-        // Load Content (Already moved to root by terminal scripts)
+        // Load Content
         let success = false;
         let cR = await fetch('content.json', { cache: 'no-cache' });
         let mR = await fetch('manifest.json', { cache: 'no-cache' });
@@ -82,28 +71,31 @@ async function initAllSystems() {
             siteData = await cR.json();
             cardData = await mR.json();
             success = true;
-        } else {
-            console.log("Trying fallback to public/...");
-            cR = await fetch('public/content.json', { cache: 'no-cache' });
-            mR = await fetch('public/manifest.json', { cache: 'no-cache' });
-            if (cR.ok && mR.ok) {
-                siteData = await cR.json();
-                cardData = await mR.json();
-                success = true;
-            }
         }
         
         if (!success) throw new Error("Could not load content/manifest JSON.");
 
+        initDharmaIdentity();
+        updateTempleStats();
+        startManaRegen();
+        updateUIQuota();
         applyLanguage();
         initScrollReveal(); 
-        console.log("Systems ready.");
         
+        // Emergency Fallback: If after 3s still invisible, force reveal
+        setTimeout(() => {
+            document.querySelectorAll('.section, .reveal-on-scroll').forEach(el => {
+                if (!el.classList.contains('visible')) {
+                    el.classList.add('visible');
+                }
+            });
+        }, 3000);
+
     } catch (err) {
         console.error('Initialization Failed:', err);
         const errDiv = document.createElement('div');
         errDiv.style = "position:fixed; bottom:0; padding:10px; background:red; color:white; z-index:10000; font-size:10px; width:100%;";
-        errDiv.innerText = "🚨 渲染報錯: " + err.message;
+        errDiv.innerText = "🚨 ERR: " + err.message;
         document.body.appendChild(errDiv);
     }
 }
@@ -114,6 +106,11 @@ function setLanguage(lang) {
     if (lang === currentLang) return;
     currentLang = lang;
     localStorage.setItem('leopard-lang', lang);
+    
+    // Reset Dharma name for new language
+    localStorage.removeItem('userDharmaName');
+    initDharmaIdentity();
+    
     applyLanguage();
 }
 
@@ -121,15 +118,20 @@ function applyLanguage() {
     if (!siteData || !cardData) return;
     const data = siteData[currentLang];
     
+    // New recursive i18n lookup
+    const getI18nValue = (path, obj) => {
+        return path.split('_').reduce((prev, curr) => prev ? prev[curr] : null, obj);
+    };
+
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        for (const section in data) {
-            if (typeof data[section] === 'object' && data[section][key]) {
-                if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') {
-                    el.placeholder = data[section][key];
-                } else {
-                    el.textContent = data[section][key];
-                }
+        const val = getI18nValue(key, data);
+        
+        if (val) {
+            if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') {
+                el.placeholder = val;
+            } else {
+                el.textContent = val;
             }
         }
     });
@@ -175,7 +177,6 @@ function renderGallery(groups, cards) {
     if (!container) return;
     container.innerHTML = '';
 
-    // Master Sort: Absolute Guarantee of Numerical Order (Fixes 1, 10, 2 string sort mess)
     cards.sort((a, b) => {
         const nA = typeof a.number === 'number' ? a.number : parseInt(a.number);
         const nB = typeof b.number === 'number' ? b.number : parseInt(b.number);
@@ -216,13 +217,15 @@ function renderGallery(groups, cards) {
 }
 
 function createCardElement(card, groupId) {
+    const common = siteData[currentLang].common;
     const wrapper = document.createElement('div');
     wrapper.className = `card-wrapper reveal-on-scroll theme-${groupId}`;
     const title = (card.title && typeof card.title === 'object' ? card.title[currentLang] : card.title) || 'TBD';
     const meaning = (card.meaning && typeof card.meaning === 'object' ? card.meaning[currentLang] : card.meaning) || 'TBD';
     const ecology = (card.ecology && typeof card.ecology === 'object' ? card.ecology[currentLang] : card.ecology) || 'TBD';
-    const lM = currentLang === 'zh' ? '塔羅牌義' : 'Tarot Meaning';
-    const lE = currentLang === 'zh' ? '石虎生態' : 'Eco-Connection';
+    
+    const lM = common.label_tarot_meaning;
+    const lE = common.label_eco_connection;
 
     wrapper.innerHTML = `
         <div class="card" id="${card.id}">
@@ -250,7 +253,6 @@ function initScrollReveal() {
             }
         });
     }, { threshold: 0.05 });
-    // Observe all initial sections AND dynamic elements
     document.querySelectorAll('.section, .reveal-on-scroll').forEach(el => revealObserver.observe(el));
 }
 
@@ -267,9 +269,10 @@ function appendBubble(role, text) {
 }
 
 window.drawFortune = async function() {
-    if (chatQuota <= 0) return alert("⚡ 靈氣已耗盡。");
+    const common = siteData[currentLang].common;
+    if (chatQuota <= 0) return alert(common.err_mana_depleted);
     const q = document.getElementById('fortune-question').value;
-    if (!q.trim()) return alert("大師需要聽見你心中的疑惑！");
+    if (!q.trim()) return alert(common.err_empty_question);
     
     try {
         const card = cardData[Math.floor(Math.random() * cardData.length)];
@@ -280,7 +283,7 @@ window.drawFortune = async function() {
         document.getElementById('fortune-chat-area').classList.remove('hidden');
         
         appendBubble('user', q);
-        appendBubble('assistant', "大師正在感應中...");
+        appendBubble('assistant', common.msg_sensing);
 
         const apiResp = await fetch('/api/fortune', {
             method: 'POST',
@@ -289,7 +292,7 @@ window.drawFortune = async function() {
         });
         
         const historyDiv = document.getElementById('chat-history');
-        historyDiv.lastChild.remove(); // Remove loading bubble
+        if (historyDiv.lastChild) historyDiv.lastChild.remove(); 
         
         let reply = card.meaning[currentLang];
         if (apiResp.ok) {
@@ -297,7 +300,7 @@ window.drawFortune = async function() {
             reply = data.reading;
         }
 
-        const replyMsg = `大師為你抽出了 <strong>【${card.title[currentLang]}】</strong>。<br>
+        const replyMsg = `${common.msg_draw_prefix} <strong>【${card.title[currentLang]}】</strong>。<br>
             <img src="art/renders/${card.id}.png" style="width:100%; max-width:240px; margin:15px auto; border-radius:12px; display:block; border:1px solid rgba(212,175,55,0.4); box-shadow:0 0 20px rgba(0,0,0,0.5);">
             ${reply}`;
         
@@ -332,9 +335,11 @@ window.sendChatMessage = async function() {
 
 window.resetRitual = function() {
     currentChatHistory = [];
-    document.getElementById('chat-history').innerHTML = '';
+    const historyDiv = document.getElementById('chat-history');
+    if (historyDiv) historyDiv.innerHTML = '';
     document.getElementById('fortune-chat-area').classList.add('hidden');
     document.getElementById('fortune-ritual-area').classList.remove('hidden');
 };
 
 window.setLanguage = setLanguage;
+window.mintNFT = () => alert(currentLang === 'zh' ? "即將開放" : "Coming Soon");

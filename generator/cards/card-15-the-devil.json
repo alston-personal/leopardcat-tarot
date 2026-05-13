@@ -56,11 +56,11 @@
   },
   "main_image": "art/generated/card-15-the-devil.png",
   "generation": {
-    "model": "gemini-2.5-flash",
+    "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical aspect ratio. FULL BLEED: Image content must touch all edges. ABSOLUTELY NO BORDERS, NO TEXT, NO LABELS. ANTHROPOMORPHIC: A slender and elegant Taiwan leopard cat standing upright on two legs with human-like posture. He wears dark, tattered robes. He has tall, curved ram-like horns. He sits upon a cold concrete block under a decaying highway overpass. Facial structure must be narrow and sharp (wild small cat), NOT round or muscular. Essential markers: two distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Two smaller leopard cats are chained to the base of the block. Somber, dark atmosphere with deep reds and blacks. Full bleed. No borders.",
-    "narrative": "The Devil is the 'Baited Cage'—the shadow of urbanization where the wild is trapped by instinct and artificial boundaries. The figure is a slender, horned leopard cat standing in a human-like posture under a dark bridge."
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, high contrast. NO BORDERS. NO TEXT. A monstrous and powerful anthropomorphic leopard cat as The Devil. He has massive, curved demonic horns and glowing, malevolent amber eyes that pierce the darkness. His facial expression is one of savage dominance. He wears tattered black Victorian robes that look like shadows. His large, sharp black claws are bared. He looms over two smaller leopard cats who are chained by heavy iron collars to a dark stone altar. The background is an oppressive, smoky cavern illuminated by the violent orange glow of infernal flames. The atmosphere is terrifying and violent. Full bleed. No borders. High-fidelity biological leopard cat features mixed with demonic power.",
+    "narrative": "The Devil is the 'Baited Cage'—the shadow of urbanization where the wild is trapped by instinct and artificial boundaries. This reimagined version emphasizes the raw, terrifying power of obsession and the violent traps of the modern landscape."
   },
   "output": "art/renders/card-15-the-devil.png",
   "meaning": {
@@ -96,5 +96,10 @@
       "leopard-cat",
       "entrapment"
     ]
+  },
+  "render_config": {
+    "zoom": 1.0,
+    "trim": 40,
+    "offset_y": 0
   }
 }
