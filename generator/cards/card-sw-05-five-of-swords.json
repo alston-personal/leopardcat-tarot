@@ -70,6 +70,9 @@
     "stone-effigy",
     "hanging-swords"
   ],
+  "render_config": {
+    "trim": 40
+  },
   "output": "art/renders/card-sw-05-five-of-swords.png",
   "meanings": {
     "upright": "Conflict, tension, loss, defeat, winning at all costs, and betrayal.",
