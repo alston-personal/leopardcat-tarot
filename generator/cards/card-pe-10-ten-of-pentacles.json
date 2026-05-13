@@ -102,5 +102,11 @@
   "meaning": {
     "zh": "遺產、家族傳承、長遠穩定，以及建立永久的自然保護區。",
     "en": "Legacy, family inheritance, long-term stability, and the establishment of permanent nature reserves."
+  },
+  "render_config": {
+    "zoom": 1.0,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 20
   }
 }

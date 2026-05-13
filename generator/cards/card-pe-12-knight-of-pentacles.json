@@ -102,5 +102,11 @@
   "meaning": {
     "zh": "可靠、穩重、勤勉工作，以及有條不紊地執行保育計劃。",
     "en": "Reliable, steady, hard-working, and systematically executing conservation plans."
+  },
+  "render_config": {
+    "zoom": 1.0,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 40
   }
 }

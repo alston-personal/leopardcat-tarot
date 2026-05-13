@@ -102,5 +102,11 @@
   "meaning": {
     "zh": "勤奮的學生、新的機會、學習新技能，以及對自然資源的探索。",
     "en": "A diligent student, new opportunities, learning new skills, and exploring natural resources."
+  },
+  "render_config": {
+    "zoom": 0.92,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 20
   }
 }

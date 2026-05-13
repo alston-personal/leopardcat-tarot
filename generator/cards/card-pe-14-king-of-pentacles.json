@@ -102,5 +102,11 @@
   "meaning": {
     "zh": "成功、財富、紀律，以及對自然資源的高效管理與保護。",
     "en": "Success, wealth, discipline, and the efficient management and protection of natural resources."
+  },
+  "render_config": {
+    "zoom": 0.9,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 20
   }
 }
