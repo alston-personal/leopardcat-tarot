@@ -26,15 +26,20 @@ window.setLanguage = (lang) => {
 // 🔱 Dharma Name Identity System
 function initDharmaIdentity() {
     if (!siteData) return;
-    const common = siteData[currentLang].common;
+    const langData = siteData[currentLang] || siteData['zh'] || siteData['en'];
+    if (!langData || !langData.common) return;
+    
+    const common = langData.common;
     let name = localStorage.getItem('userDharmaName');
     
     // Only generate if none exists (prevents constant flickering)
     if (!name) {
-        const prefixes = common.dharma_prefixes;
-        const suffixes = common.dharma_suffixes;
-        name = `${prefixes[Math.floor(Math.random()*prefixes.length)]}${suffixes[Math.floor(Math.random()*suffixes.length)]}`;
-        localStorage.setItem('userDharmaName', name);
+        const prefixes = common.dharma_prefixes || [];
+        const suffixes = common.dharma_suffixes || [];
+        if (prefixes.length > 0 && suffixes.length > 0) {
+            name = `${prefixes[Math.floor(Math.random()*prefixes.length)]}${suffixes[Math.floor(Math.random()*suffixes.length)]}`;
+            localStorage.setItem('userDharmaName', name);
+        }
     }
     
     const nameElem = document.getElementById('user-dharma-name');
