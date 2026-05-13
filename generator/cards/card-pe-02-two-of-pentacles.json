@@ -102,5 +102,11 @@
   "meaning": {
     "zh": "平衡、適應力、管理多個任務，以及在破碎棲地間的移動。",
     "en": "Balance, adaptability, managing multiple priorities, and moving between fragmented habitats."
+  },
+  "render_config": {
+    "zoom": 1.0,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 40
   }
 }

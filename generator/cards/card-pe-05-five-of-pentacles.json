@@ -102,5 +102,11 @@
   "meaning": {
     "zh": "物質貧乏、困境、被孤立，以及因棲地喪失導致的生存危機。",
     "en": "Material hardship, struggle, isolation, and survival crisis due to habitat loss."
+  },
+  "render_config": {
+    "zoom": 1.0,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 20
   }
 }

@@ -102,5 +102,11 @@
   "meaning": {
     "zh": "慷慨、施與受、資源分配，以及生態補償制度。",
     "en": "Generosity, giving and receiving, resource distribution, and ecological compensation."
+  },
+  "render_config": {
+    "zoom": 1.0,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 40
   }
 }
