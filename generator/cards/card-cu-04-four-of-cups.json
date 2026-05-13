@@ -104,5 +104,12 @@
   "meaning": {
     "zh": "冥想、沉思、冷漠、重新評估，以及自我退縮。",
     "en": "Meditation, contemplation, apathy, re-evaluation, and being withdrawn."
+  },
+  "render_config": {
+    "zoom": 0.92,
+    "offset_x": 1.0,
+    "offset_y": 0.5,
+    "trim": 60
+  
   }
 }

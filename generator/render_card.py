@@ -204,28 +204,36 @@ def draw_main_image(base: Image.Image, config: dict):
             art = Image.open(image_path).convert("RGBA")
             
             # --- Safe Trim (Remove AI-generated margins/borders) ---
-            SAFE_TRIM = 20
+            render_cfg = config.get("render_config", {})
+            safe_trim = render_cfg.get("trim", 20)
             img_w, img_h = art.size
-            if img_w > SAFE_TRIM * 2 and img_h > SAFE_TRIM * 2:
-                art = art.crop((SAFE_TRIM, SAFE_TRIM, img_w - SAFE_TRIM, img_h - SAFE_TRIM))
+            if img_w > safe_trim * 2 and img_h > safe_trim * 2:
+                art = art.crop((safe_trim, safe_trim, img_w - safe_trim, img_h - safe_trim))
                 img_w, img_h = art.size # Update dimensions after trim
 
-            # --- Aspect Ratio Cover (Center Crop) Logic ---
+            # --- Enhanced Aspect Ratio & Custom Offset Logic ---
+            render_cfg = config.get("render_config", {})
+            zoom = render_cfg.get("zoom", 1.0)
+            offset_x = render_cfg.get("offset_x", 0.5) # 0.0=left, 0.5=center, 1.0=right
+            offset_y = render_cfg.get("offset_y", 0.5) # 0.0=top, 0.5=center, 1.0=bottom
+
             target_w = width - 220
             target_h = height - 700
             
             img_ratio = img_w / img_h
             target_ratio = target_w / target_h
             
-            if img_ratio > target_ratio:
+            if img_ratio > (target_ratio * zoom):
                 # Image is relatively wider than target - crop left/right
-                crop_w = int(target_ratio * img_h)
-                offset = (img_w - crop_w) // 2
+                crop_w = int((target_ratio * img_h) / zoom)
+                crop_w = min(crop_w, img_w)
+                offset = int((img_w - crop_w) * offset_x)
                 art = art.crop((offset, 0, offset + crop_w, img_h))
             else:
                 # Image is relatively taller than target - crop top/bottom
-                crop_h = int(img_w / target_ratio)
-                offset = (img_h - crop_h) // 2
+                crop_h = int(img_w / (target_ratio * zoom))
+                crop_h = min(crop_h, img_h)
+                offset = int((img_h - crop_h) * offset_y)
                 art = art.crop((0, offset, img_w, offset + crop_h))
             
             art = art.resize((target_w, target_h), Image.Resampling.LANCZOS)
