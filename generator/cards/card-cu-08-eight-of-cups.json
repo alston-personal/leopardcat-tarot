@@ -104,5 +104,11 @@
   "meaning": {
     "zh": "拋棄、退縮、追尋更深的真理，以及將過去拋在腦後。",
     "en": "Abandonment, withdrawal, seeking deeper truth, and leaving the past behind."
+  },
+  "render_config": {
+    "zoom": 1.0,
+    "offset_x": 0.5,
+    "offset_y": 0.2,
+    "trim": 95
   }
 }

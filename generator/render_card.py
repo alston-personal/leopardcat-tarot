@@ -238,34 +238,11 @@ def draw_main_image(base: Image.Image, config: dict):
             
             art = art.resize((target_w, target_h), Image.Resampling.LANCZOS)
             base.alpha_composite(art, (110, 360))
-            return
         else:
             raise FileNotFoundError(f"Main image not found at {image_path}")
 
     scene = config.get("scene", {})
-    draw = ImageDraw.Draw(base)
-    if scene.get("forest"):
-        draw_forest(draw, height)
-    if scene.get("theme") == "field-edge-adaptation":
-        draw_reeds(draw)
-    if scene.get("theme") == "streamside-intuition":
-        draw_arch_trees(draw, width, height)
-        draw_stream(base)
-        draw_mist(base)
-    if scene.get("road"):
-        draw_road(draw)
-    if scene.get("grass"):
-        draw_grass(draw)
-    if scene.get("subject") == "juvenile-leopard-cat":
-        draw_leopard_cat(draw)
-    elif scene.get("subject") == "adult-leopard-cat":
-        draw_adult_leopard_cat(draw)
-    elif scene.get("subject") == "streamside-leopard-cat":
-        draw_streamside_cat(draw)
-    if scene.get("headlights"):
-        draw_headlights(base, width, height)
-    if scene.get("theme") == "streamside-intuition":
-        draw_glowing_wood(base)
+    # Legacy procedural drawing removed to favor full AI-generated imagery
 
 
 def draw_frame(base: Image.Image, width: int, height: int, palette: dict):

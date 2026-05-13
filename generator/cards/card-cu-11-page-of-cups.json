@@ -100,5 +100,11 @@
     "zh": "靈感的湧現、純真、情感的種子與驚喜。",
     "en": "New inspiration, innocence, emotional beginnings, and surprises."
   },
-  "image": "art/renders/card-cu-11-page-of-cups.png"
+  "image": "art/renders/card-cu-11-page-of-cups.png",
+  "render_config": {
+    "zoom": 1.0,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 40
+  }
 }

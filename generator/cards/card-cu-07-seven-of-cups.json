@@ -102,5 +102,11 @@
   "meaning": {
     "zh": "Illusions, daydreaming, wishful thinking, choices, and too many options.",
     "en": "Illusions, daydreaming, wishful thinking, choices, and too many options."
+  },
+  "render_config": {
+    "zoom": 1.1,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 75
   }
 }

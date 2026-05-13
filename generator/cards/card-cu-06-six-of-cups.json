@@ -102,5 +102,11 @@
   "meaning": {
     "zh": "Nostalgia, childhood memories, innocence, sharing, and kindness.",
     "en": "Nostalgia, childhood memories, innocence, sharing, and kindness."
+  },
+  "render_config": {
+    "zoom": 1.02,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 30
   }
 }
