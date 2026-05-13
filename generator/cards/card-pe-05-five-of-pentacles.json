@@ -104,7 +104,7 @@
     "en": "Material hardship, struggle, isolation, and survival crisis due to habitat loss."
   },
   "render_config": {
-    "zoom": 1.0,
+    "zoom": 0.8,
     "offset_x": 0.5,
     "offset_y": 0.5,
     "trim": 20
