@@ -129,7 +129,8 @@ function applyLanguage() {
     
     // Recursive i18n lookup
     const getI18nValue = (path, obj) => {
-        return path.split('_').reduce((prev, curr) => prev ? prev[curr] : null, obj);
+        if (!path || !obj) return null;
+        return path.split('.').reduce((prev, curr) => prev ? prev[curr] : null, obj);
     };
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
