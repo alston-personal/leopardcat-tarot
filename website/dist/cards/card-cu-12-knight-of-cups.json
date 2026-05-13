@@ -100,5 +100,6 @@
     "zh": "優雅的追求、浪漫、情感的使者、直覺的引導。",
     "en": "Elegant pursuit, romance, messenger of emotions, intuitive guidance."
   },
-  "image": "art/renders/card-cu-12-knight-of-cups.png"
+  "image": "art/renders/card-cu-12-knight-of-cups.png",
+  "use_paw_symbol": true
 }

@@ -58,7 +58,7 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A massive ancient redwood-like tree is being struck by a devastating purple lightning bolt during a violent storm. The tree is splitting apart, and stone bird-houses are falling from its branches. A terrified anthropomorphic Taiwan leopard cat leaps from a crumbling cliff nearby. Meaning: Sudden upheaval, the collapse of a safe territory, and the chaotic destruction of old structures.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography. NO BORDERS. NO TEXT. A massive yellow modern excavator (industrial machinery) tearing into a high stone tower and ancient forest. Shattering stones, falling debris, and a collision between modern technology and the sacred wild. Intense chaotic atmosphere. Dark, stormy sky.",
     "narrative": "A massive ancient redwood-like tree is being struck by a devastating purple lightning bolt during a violent storm. The tree is splitting apart, and stone bird-houses are falling from its branches. A terrified anthropomorphic Taiwan leopard cat leaps from a crumbling cliff nearby. Meaning: Sudden upheaval, the collapse of a safe territory, and the chaotic destruction of old structures."
   },
   "output": "art/renders/card-16-the-tower.png",
@@ -95,5 +95,10 @@
       "leopard-cat",
       "destruction"
     ]
+  },
+  "render_config": {
+    "zoom": 1.0,
+    "trim": 40,
+    "offset_y": 0
   }
 }

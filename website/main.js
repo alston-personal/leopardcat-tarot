@@ -84,8 +84,10 @@ async function initAllSystems() {
     console.log("Initializing LeopardCat Tarot Systems...");
     try {
         let success = false;
-        let cR = await fetch('content.json', { cache: 'no-cache' });
-        let mR = await fetch('manifest.json', { cache: 'no-cache' });
+        // ⚡ Cache-busting for JSON files
+        const ts = Date.now();
+        let cR = await fetch(`content.json?v=${ts}`, { cache: 'no-cache' });
+        let mR = await fetch(`manifest.json?v=${ts}`, { cache: 'no-cache' });
         
         if (cR.ok && mR.ok) {
             siteData = await cR.json();
@@ -95,12 +97,18 @@ async function initAllSystems() {
         
         if (!success) throw new Error("Could not load content/manifest JSON.");
 
-        console.log("Content loaded. Applying language:", currentLang);
+        console.log("Content loaded. Current language:", currentLang);
         initDharmaIdentity();
         updateTempleStats();
         startManaRegen();
         updateUIQuota();
+        
+        // ⚡ Immediate apply
         applyLanguage();
+        
+        // ⚡ Delayed retry to catch any race conditions
+        setTimeout(applyLanguage, 500);
+        
         initScrollReveal(); 
         
         setTimeout(() => {
@@ -143,6 +151,8 @@ function applyLanguage() {
             } else {
                 el.textContent = val;
             }
+        } else {
+            console.warn(`i18n key not found: ${key}`);
         }
     });
 

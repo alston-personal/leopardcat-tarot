@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V4_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. SAFE-ZONE COMPOSITION. ANTHROPOMORPHIC: Three graceful Taiwan leopard cats standing upright on two legs in a lush Victorian garden. They are wearing full detailed 1900s Victorian clothing, including matching tunics, vests, trousers, and polished boots for all. They hold three ornate golden cups high in a celebratory toast. Full body visible, centered with ample margin to avoid edge-cropping. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. 2:3 vertical aspect ratio. Full bleed. No borders.",
+    "image_prompt": "[CLEAN_V4_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. SAFE-ZONE COMPOSITION. ANTHROPOMORPHIC: Three graceful Taiwan leopard cats standing upright on two legs in a lush Victorian garden. They are wearing full detailed 1900s dry and elegant dapper Victorian fabrics, including matching tunics, vests, trousers, and polished boots for all. They hold three ornate golden cups high in a celebratory toast. Full body visible, centered with ample margin to avoid edge-cropping. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. 2:3 vertical aspect ratio. Full bleed. No borders.",
     "narrative": "The Three of Cups is the 'Celebration of the Litter'—a group of adolescents playing in the safety of their home territory before dispersal."
   },
   "ornaments": [
@@ -88,7 +88,7 @@
     "risk_theme": "social stability in high-quality habitat",
     "mapping_note": "Three of Cups represents '族群的安全感'—rare group play moments in high-quality habitats where resources are overflowing.",
     "zh": "棲地樣貌：資源豐富的共享棲地。生存威脅：過度開發導致的社交空間縮減。牌義關聯：聖杯三代表著「社群的慶祝」——族群在豐饒的環境中共同成長，分享大自然的恩賜。",
-    "en": "Habitat: protected riparian forest. Risk: social stability in high-quality habitat. Note: Three of Cups represents '族群的安全感'—rare group play moments in high-quality habitats where resources are overflowing."
+    "en": "Habitat Profile: Resource-abundant communal landscapes.\nSurvival Threat: Shrinking social space and territory driven by overdevelopment.\nTarot Correspondence: The Three of Cups symbolizes \"communal celebration\"—representing a population flourishing within a bountiful environment, sharing in the collective grace of nature."
   },
   "website": {
     "excerpt": "A joyful gathering in the crystal river, celebrating the abundance and harmony of the forest life.",
