@@ -9,7 +9,7 @@
   },
   "subtitle": "The Gathering / Joyful Play / Communal Harmony",
   "slug": "three-of-cups",
-  "status": "finalized",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. Three young anthropomorphic leopard cats playing in a shallow, sparkling forest river. They hold golden cups up in celebration. Joyful splashes and ripples in the water. Lush greenery and overhanging branches create a safe canopy. Vibrant and harmonious scene. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: Three Taiwan leopard cats standing upright on two legs in a lush garden. They are wearing detailed 1900s social outfits (tunics, vests, and trousers for all). They hold three golden cups high in a toast. Full body visible. Full bleed. No borders. High-fidelity biological markers. 2:3 vertical. Full bleed. No borders.",
     "narrative": "The Three of Cups is the 'Celebration of the Litter'—a group of adolescents playing in the safety of their home territory before dispersal."
   },
   "ornaments": [
@@ -87,7 +87,8 @@
     "habitat_fragment": "protected riparian forest",
     "risk_theme": "social stability in high-quality habitat",
     "mapping_note": "Three of Cups represents '族群的安全感'—rare group play moments in high-quality habitats where resources are overflowing.",
-    "zh": "棲地樣貌：protected riparian forest 。 生存威脅：social stability in high-quality habitat 。 牌義關聯：Three of Cups represents '族群的安全感'—rare group play moments in high-quality habitats where resources are overflowing. 。 石虎特徵：台灣石虎 。 生命階段：adolescent-young-adults"
+    "zh": "棲地樣貌：資源豐富的共享棲地。生存威脅：過度開發導致的社交空間縮減。牌義關聯：聖杯三代表著「社群的慶祝」——族群在豐饒的環境中共同成長，分享大自然的恩賜。",
+    "en": "Habitat: protected riparian forest. Risk: social stability in high-quality habitat. Note: Three of Cups represents '族群的安全感'—rare group play moments in high-quality habitats where resources are overflowing."
   },
   "website": {
     "excerpt": "A joyful gathering in the crystal river, celebrating the abundance and harmony of the forest life.",

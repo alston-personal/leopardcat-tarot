@@ -9,7 +9,7 @@
   },
   "subtitle": "Legacy / Inheritance",
   "slug": "ten-of-pentacles",
-  "status": "prompt_ready",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Including exactly ten golden pentacles arranged in the shape of the Tree of Life. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. A multi-generational family of anthropomorphic leopard cats (elder, adults, children) are gathered in a stone courtyard. Ten golden pentacles are embedded in the scene's architecture. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] Including exactly ten golden pentacles arranged in the shape of the Tree of Life. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. A multi-generational family of anthropomorphic leopard cats (elder, adults, children) are gathered in a stone courtyard. Ten golden pentacles are embedded in the scene's architecture. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
     "narrative": "The Ten of Pentacles is 'The Lasting Legacy'—the vision of a stable, thriving multi-generational population in a large, interconnected landscape."
   },
   "ornaments": [
@@ -85,7 +85,8 @@
     "habitat_fragment": "受保護的森林洞穴/樹洞",
     "risk_theme": "壓力導致的免疫力下降",
     "mapping_note": "Ten of Pentacles represents 'Generational Persistence'—the long-term survival of a leopard cat population across multiple generations in a protected landscape.",
-    "zh": "棲地樣貌：受保護的森林洞穴/樹洞 。 生存威脅：壓力導致的免疫力下降 。 牌義關聯：Ten of Pentacles represents 'Generational Persistence'—the long-term survival of a leopard cat population across multiple generations in a protected landscape. 。 石虎特徵：台灣石虎 。 生命階段：成年"
+    "zh": "棲地樣貌：世代相傳的健全生態基業。生存威脅：遺產被後代分割的風險。牌義關聯：金幣十代表著「長久的傳承」——建立了一個跨世代的健康棲地網絡，讓後代能安居樂業。",
+    "en": "Habitat: 受保護的森林洞穴/樹洞. Risk: 壓力導致的免疫力下降. Note: Ten of Pentacles represents 'Generational Persistence'—the long-term survival of a leopard cat population across multiple generations in a protected landscape."
   },
   "website": {
     "excerpt": "The TEN OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",

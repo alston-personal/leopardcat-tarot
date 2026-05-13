@@ -8,7 +8,7 @@
   },
   "subtitle": "Ending / Transformation / Warning",
   "slug": "13-death",
-  "status": "finalized",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -59,7 +59,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A skeletal anthropomorphic Taiwan leopard cat wearing black iron armor, riding a pale skeletal steed across a field of withered autumn grass. He holds a banner with a white rosette pattern. In the background, the shadows of broken highway fences are visible under a blood-red sky. Meaning: Transition, the end of old habits, and the stark reality of survival on the brink.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A skeletal anthropomorphic Taiwan leopard cat wearing black iron armor, riding a pale skeletal steed across a field of withered autumn grass. He holds a banner with a white rosette pattern. In the background, the shadows of broken highway fences are visible under a blood-red sky. Meaning: Transition, the end of old habits, and the stark reality of survival on the brink.",
     "narrative": "A skeletal anthropomorphic Taiwan leopard cat wearing black iron armor, riding a pale skeletal steed across a field of withered autumn grass. He holds a banner with a white rosette pattern. In the background, the shadows of broken highway fences are visible under a blood-red sky. Meaning: Transition, the end of old habits, and the stark reality of survival on the brink."
   },
   "output": "art/renders/card-13-death.png",
@@ -79,7 +79,8 @@
     "habitat_fragment": "a clearing after a forest fire or heavy clearance",
     "risk_theme": "the reality of mortality and the cycle of ecosystem renewal",
     "mapping_note": "Death represents the harsh reality of mortality in the wild—but also the deep ecological truth that death feeds the forest, making way for new life and ecosystem regeneration.",
-    "zh": "棲地樣貌：a clearing after a forest fire or heavy clearance 。 生存威脅：the reality of mortality and the cycle of ecosystem renewal 。 牌義關聯：Death represents the harsh reality of mortality in the wild—but also the deep ecological truth that death feeds the forest, making way for new life and ecosystem regeneration. 。 石虎特徵：台灣石虎 。 生命階段：the end of the cycle"
+    "zh": "棲地樣貌：遭受大火或劇烈變動後的演替林。生存威脅：災難性的棲地完全喪失。牌義關聯：死神代表著生態系統的循環，唯有放下舊有的開發模式，新生才得以開始。",
+    "en": "Habitat: a clearing after a forest fire or heavy clearance. Risk: the reality of mortality and the cycle of ecosystem renewal. Note: Death represents the harsh reality of mortality in the wild—but also the deep ecological truth that death feeds the forest, making way for new life and ecosystem regeneration."
   },
   "website": {
     "excerpt": "A profound transition, Death reminds us of the stark mortality in the wild and the inevitable cycle of renewal.",
@@ -93,7 +94,7 @@
     ]
   },
   "meaning": {
-    "zh": "結束、深刻的改變、過渡期、放下過去以迎接新生。",
+    "zh": "結束、變革、過渡，以及舊事物的消亡與新生的萌芽。",
     "en": "Endings, profound change, transition, letting go of the old to make way for the new."
   }
 }

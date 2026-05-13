@@ -9,7 +9,7 @@
   },
   "subtitle": "The Guardian / Steady Progress",
   "slug": "knight-of-pentacles",
-  "status": "prompt_ready",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Including exactly one golden pentacle held by a sturdy anthropomorphic leopard cat riding a large, patient animal (like a slow-moving mountain goat). 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. The knight holds the coin steadily as they survey a fertile valley. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] Including exactly one golden pentacle held by a sturdy anthropomorphic leopard cat riding a large, patient animal (like a slow-moving mountain goat). 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. The knight holds the coin steadily as they survey a fertile valley. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
     "narrative": "The Knight of Pentacles is 'The Steady Patrol'—the patient and methodical monitoring of a territory to ensure its resources remain secure."
   },
   "ornaments": [
@@ -85,7 +85,8 @@
     "habitat_fragment": "受保護的森林洞穴/樹洞",
     "risk_theme": "壓力導致的免疫力下降",
     "mapping_note": "Knight of Pentacles represents 'Routine Patrol'—the consistent, day-by-day guarding of a territory by a mature male leopard cat.",
-    "zh": "棲地樣貌：受保護的森林洞穴/樹洞 。 生存威脅：壓力導致的免疫力下降 。 牌義關聯：Knight of Pentacles represents 'Routine Patrol'—the consistent, day-by-day guarding of a territory by a mature male leopard cat. 。 石虎特徵：台灣石虎 。 生命階段：成年"
+    "zh": "棲地樣貌：勤奮巡視的廣大平原。生存威脅：因緩慢固執錯失了快速變遷的契機。牌義關聯：金幣騎士代表著「勤勉與可靠」——以最務實、最穩定的步調，守護著這片土地上的每一份資源。",
+    "en": "Habitat: 受保護的森林洞穴/樹洞. Risk: 壓力導致的免疫力下降. Note: Knight of Pentacles represents 'Routine Patrol'—the consistent, day-by-day guarding of a territory by a mature male leopard cat."
   },
   "website": {
     "excerpt": "The 錢幣騎士 reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",

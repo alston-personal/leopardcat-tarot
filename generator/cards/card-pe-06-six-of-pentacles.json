@@ -9,7 +9,7 @@
   },
   "subtitle": "Generosity / Sharing",
   "slug": "six-of-pentacles",
-  "status": "prompt_ready",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Including exactly six golden pentacles. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. A wealthy anthropomorphic leopard cat in fine merchant attire holds a set of scales and drops coins into the paws of two smaller cats. Exactly 6 golden coins are visible in the scene. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs, wearing a formal 1900s merchant outfit with a long coat and trousers. He holds a pair of scales. Another leopard cat kneels before him. Six golden pentacles float in the scene. Full bleed. No borders. High-fidelity biological markers. 2:3 vertical. Full bleed. No borders.",
     "narrative": "The Six of Pentacles is 'The Shared Bounty'—the equitable distribution of resources within a population, or the maternal care of sharing food with offspring."
   },
   "ornaments": [
@@ -85,7 +85,8 @@
     "habitat_fragment": "受保護的森林洞穴/樹洞",
     "risk_theme": "壓力導致的免疫力下降",
     "mapping_note": "Six of Pentacles represents 'Supplemental Support'—wildlife-friendly farming and compensation programs that provide resources for coexistence.",
-    "zh": "棲地樣貌：受保護的森林洞穴/樹洞 。 生存威脅：壓力導致的免疫力下降 。 牌義關聯：Six of Pentacles represents 'Supplemental Support'—wildlife-friendly farming and compensation programs that provide resources for coexistence. 。 石虎特徵：台灣石虎 。 生命階段：成年"
+    "zh": "棲地樣貌：接受保育補助的友善社區。生存威脅：對外來資源的過度依賴。牌義關聯：金幣六代表著「施予與獲得」——生態補償金的制度，在人類與石虎之間建立了一種良性的資源分配機制。",
+    "en": "Habitat: 受保護的森林洞穴/樹洞. Risk: 壓力導致的免疫力下降. Note: Six of Pentacles represents 'Supplemental Support'—wildlife-friendly farming and compensation programs that provide resources for coexistence."
   },
   "website": {
     "excerpt": "The SIX OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",

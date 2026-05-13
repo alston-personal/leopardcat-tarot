@@ -8,7 +8,7 @@
   },
   "subtitle": "Alchemy / Flow / Coexistence",
   "slug": "14-temperance",
-  "status": "finalized",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -59,12 +59,12 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. An angelic anthropomorphic Taiwan leopard cat with translucent wings, standing with one foot on a forest rock and the other in a clear stream. He pours water between two silver cups, creating a bridge of light. Meaning: Harmony, synthesis, and finding the perfect flow between wild and human-influenced environments.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. An angelic anthropomorphic Taiwan leopard cat with translucent wings, standing with one foot on a forest rock and the other in a clear stream. He pours water between two silver cups, creating a bridge of light. Meaning: Harmony, synthesis, and finding the perfect flow between wild and human-influenced environments.",
     "narrative": "An angelic anthropomorphic Taiwan leopard cat with translucent wings, standing with one foot on a forest rock and the other in a clear stream. He pours water between two silver cups, creating a bridge of light. Meaning: Harmony, synthesis, and finding the perfect flow between wild and human-influenced environments."
   },
   "output": "art/renders/card-14-temperance.png",
   "meaning": {
-    "zh": "平衡、節制、耐心、目標，以及和諧的融合（如生態友善農業）。",
+    "zh": "平衡、節制、融合，以及在衝突中尋找中間地帶。",
     "en": "Balance, moderation, patience, purpose, and harmonious blending."
   },
   "ecology": {
@@ -73,7 +73,8 @@
     "habitat_fragment": "混和林木與農業景觀",
     "risk_theme": "農業與野生動物生存間的微妙平衡",
     "mapping_note": "「節制」代表人類土地利用與自然棲地間的和諧融合（如生態友善農業），讓人類與石虎能平衡共存。",
-    "zh": "棲地樣貌：混和林木與農業景觀 。 生存威脅：農業與野生動物生存間的微妙平衡 。 牌義關聯：「節制」代表人類土地利用與自然棲地間的和諧融合（如生態友善農業），讓人類與石虎能平衡共存。 。 石虎特徵：台灣石虎 。 生命階段：成年"
+    "zh": "棲地樣貌：人貓共好的友善農地。生存威脅：化學肥料與過度耕作的壓力。牌義關聯：節制代表著永續發展的藝術，是在人類與自然之間尋求和諧的黃金比例。",
+    "en": "Habitat: 混和林木與農業景觀. Risk: 農業與野生動物生存間的微妙平衡. Note: 「節制」代表人類土地利用與自然棲地間的和諧融合（如生態友善農業），讓人類與石虎能平衡共存。"
   },
   "meanings": {
     "upright": "Balance, moderation, patience, purpose, and harmonious blending.",

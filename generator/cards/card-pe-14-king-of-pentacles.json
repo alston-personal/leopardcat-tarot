@@ -9,7 +9,7 @@
   },
   "subtitle": "The Master / Prosperity",
   "slug": "king-of-pentacles",
-  "status": "prompt_ready",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Including exactly one golden pentacle held by a powerful anthropomorphic leopard cat king sitting on a throne decorated with stone leopard cat heads. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. The king's castle and a vast, wealthy territory are visible behind him. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] Including exactly one golden pentacle held by a powerful anthropomorphic leopard cat king sitting on a throne decorated with stone leopard cat heads. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. The king's castle and a vast, wealthy territory are visible behind him. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
     "narrative": "The King of Pentacles is 'The Master of the Forest'—the ultimate alpha who has secured a prey-rich, stable territory and rules it with wisdom."
   },
   "ornaments": [
@@ -85,7 +85,8 @@
     "habitat_fragment": "受保護的森林洞穴/樹洞",
     "risk_theme": "壓力導致的免疫力下降",
     "mapping_note": "King of Pentacles represents 'The Territory Master'—a powerful elder leopard cat who dominates a prime, resource-rich landscape.",
-    "zh": "棲地樣貌：受保護的森林洞穴/樹洞 。 生存威脅：壓力導致的免疫力下降 。 牌義關聯：King of Pentacles represents 'The Territory Master'—a powerful elder leopard cat who dominates a prime, resource-rich landscape. 。 石虎特徵：台灣石虎 。 生命階段：成年"
+    "zh": "棲地樣貌：經營完美的石虎森林王國。生存威脅：領地過大帶來的管理困難。牌義關聯：金幣國王代表著「物質的巔峰」——以卓越的管理智慧，將土地資源轉化為族群永恆的繁榮基業。",
+    "en": "Habitat: 受保護的森林洞穴/樹洞. Risk: 壓力導致的免疫力下降. Note: King of Pentacles represents 'The Territory Master'—a powerful elder leopard cat who dominates a prime, resource-rich landscape."
   },
   "website": {
     "excerpt": "The 錢幣國王 reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",

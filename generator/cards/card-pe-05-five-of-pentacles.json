@@ -9,7 +9,7 @@
   },
   "subtitle": "Hardship / Scarcity",
   "slug": "five-of-pentacles",
-  "status": "prompt_ready",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Including exactly five golden pentacles on a stained glass window. 1900s mystical lithography style. Clean bold black ink outlines. 2:3 vertical. Two weary anthropomorphic leopard cats in tattered clothes walk through a dark, rainy valley past a stone structure with a glowing window containing 5 pentacles. Muted somber tones. High-fidelity biological markers: narrow small-cat face, white ear spots, forehead stripes. No borders. Full bleed.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs in a desolate winter landscape. He is wearing a detailed, worn 1900s traveling outfit with a heavy tattered cloak, tunic, and trousers. He leans on crutches. Five golden pentacles are integrated into a stained-glass window of a stone building in the background. Full bleed. No borders. High-fidelity biological markers. 2:3 vertical. Full bleed. No borders.",
     "narrative": "The Five of Pentacles is 'The Lean Season'—the struggle for survival during drought or winter when prey is scarce and habitat quality is poor."
   },
   "ornaments": [
@@ -85,7 +85,8 @@
     "habitat_fragment": "受保護的森林洞穴/樹洞",
     "risk_theme": "壓力導致的免疫力下降",
     "mapping_note": "Five of Pentacles represents 'Ecological Isolation'—leopard cats struggling in degraded habitats with insufficient prey and harsh conditions.",
-    "zh": "棲地樣貌：受保護的森林洞穴/樹洞 。 生存威脅：壓力導致的免疫力下降 。 牌義關聯：Five of Pentacles represents 'Ecological Isolation'—leopard cats struggling in degraded habitats with insufficient prey and harsh conditions. 。 石虎特徵：台灣石虎 。 生命階段：成年"
+    "zh": "棲地樣貌：遭受災難後荒廢的貧瘠之地。生存威脅：物資匱乏導致的族群饥荒。牌義關聯：金幣五代表著「物質的艱辛」——在寒冷的冬夜或受損的棲地中，石虎族群艱難地互相取暖求生。",
+    "en": "Habitat: 受保護的森林洞穴/樹洞. Risk: 壓力導致的免疫力下降. Note: Five of Pentacles represents 'Ecological Isolation'—leopard cats struggling in degraded habitats with insufficient prey and harsh conditions."
   },
   "website": {
     "excerpt": "The FIVE OF PENTACLES reimagined as a story of survival and material prosperity for the Taiwan leopard cat.",

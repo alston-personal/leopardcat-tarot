@@ -8,7 +8,7 @@
   },
   "subtitle": "Willpower / Victory / Determined Crossing",
   "slug": "07-the-chariot",
-  "status": "finalized",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -59,7 +59,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A powerful anthropomorphic male Taiwan leopard cat standing heroically upon a high rock formation, holding a spear. He points forward toward a distant forest patch, ignoring the dangerous light-filled valley below. His expression is one of unbreakable focus. Meaning: Overcoming obstacles, willpower, and the successful navigation through fragmented human landscapes.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A powerful anthropomorphic male Taiwan leopard cat standing heroically upon a high rock formation, holding a spear. He points forward toward a distant forest patch, ignoring the dangerous light-filled valley below. His expression is one of unbreakable focus. Meaning: Overcoming obstacles, willpower, and the successful navigation through fragmented human landscapes.",
     "narrative": "A powerful anthropomorphic male Taiwan leopard cat standing heroically upon a high rock formation, holding a spear. He points forward toward a distant forest patch, ignoring the dangerous light-filled valley below. His expression is one of unbreakable focus. Meaning: Overcoming obstacles, willpower, and the successful navigation through fragmented human landscapes."
   },
   "output": "art/renders/card-07-the-chariot.png",
@@ -79,7 +79,8 @@
     "habitat_fragment": "high ridge overlooking fragmented valley",
     "risk_theme": "navigating dangerous human landscapes to reach new territory",
     "mapping_note": "The Chariot represents the sheer willpower and determination required for a leopard cat to successfully cross hostile, human-dominated landscapes to reach safe habitat.",
-    "zh": "棲地樣貌：high ridge overlooking fragmented valley 。 生存威脅：navigating dangerous human landscapes to reach new territory 。 牌義關聯：The Chariot represents the sheer willpower and determination required for a leopard cat to successfully cross hostile, human-dominated landscapes to reach safe habitat. 。 石虎特徵：台灣石虎 。 生命階段：prime adult male"
+    "zh": "棲地樣貌：需要長距離穿越的開發區。生存威脅：擴張過程中的各種人為陷阱。牌義關聯：戰車代表著突破困境的動力，是在險峻環境中尋找生路的決心。",
+    "en": "Habitat: high ridge overlooking fragmented valley. Risk: navigating dangerous human landscapes to reach new territory. Note: The Chariot represents the sheer willpower and determination required for a leopard cat to successfully cross hostile, human-dominated landscapes to reach safe habitat."
   },
   "website": {
     "excerpt": "Overlooking a dangerous valley, The Chariot charges forward with unbreakable focus and sheer willpower.",
@@ -93,7 +94,7 @@
     ]
   },
   "meaning": {
-    "zh": "意志力、決心、勝利、克服眼前的障礙，以及保持高度的專注。",
+    "zh": "意志、勝利、克服障礙，以及在控制下的快速前進。",
     "en": "Willpower, determination, victory, overcoming obstacles, and maintaining focus."
   }
 }

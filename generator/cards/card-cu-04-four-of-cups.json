@@ -9,7 +9,7 @@
   },
   "subtitle": "The Insularity / Discontent / Missed Opportunity",
   "slug": "four-of-cups",
-  "status": "finalized",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A pensive anthropomorphic leopard cat sitting under a gnarled tree, arms crossed, looking down at three golden cups on the grass with a look of dissatisfaction. A fourth cup is being offered from a cloud in the air, but the cat ignores it. Somber, shaded forest atmosphere. Muted blues and greens. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A pensive anthropomorphic leopard cat sitting under a gnarled tree, arms crossed, looking down at three golden cups on the grass with a look of dissatisfaction. A fourth cup is being offered from a cloud in the air, but the cat ignores it. Somber, shaded forest atmosphere. Muted blues and greens. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
     "narrative": "The Four of Cups is 'The Insularity'—a leopard cat fixated on its current territory, ignoring a potential new corridor being offered by the landscape."
   },
   "ornaments": [
@@ -87,7 +87,8 @@
     "habitat_fragment": "isolated forest patch",
     "risk_theme": "lack of dispersal courage",
     "mapping_note": "Four of Cups represents '熟悉的陷阱'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor.",
-    "zh": "棲地樣貌：isolated forest patch 。 生存威脅：lack of dispersal courage 。 牌義關聯：Four of Cups represents '熟悉的陷阱'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor. 。 石虎特徵：台灣石虎 。 生命階段：成年"
+    "zh": "棲地樣貌：單調且缺乏變化的林下空間。生存威脅：環境單一化導致的適應力下降。牌義關聯：聖杯四代表著「冷淡與沉思」——對眼前的資源感到倦怠，卻忽略了環境中潛在的新契機。",
+    "en": "Habitat: isolated forest patch. Risk: lack of dispersal courage. Note: Four of Cups represents '熟悉的陷阱'—when a leopard cat is too comfortable in a sub-optimal fragment to notice a safer hidden corridor."
   },
   "website": {
     "excerpt": "Under the shade of the old tree, the leopard cat contemplates the world, unaware of the gift appearing in the mist.",

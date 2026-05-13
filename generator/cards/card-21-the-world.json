@@ -8,7 +8,7 @@
   },
   "subtitle": "Completion / Integration / Harmony",
   "slug": "21-the-world",
-  "status": "finalized",
+  "status": "todo",
   "size": {
     "width": 1400,
     "height": 2420
@@ -58,12 +58,12 @@
     "model": "gemini-3.1-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A majestic anthropomorphic Taiwan leopard cat dancing within a giant green wreath made of vines, flowers, and wheat. Around the wreath are the four elemental guardians (cloud, mountain, stream, field). Meaning: Success, the complete integration of wildlife into the modern world, and the ultimate harmony of coexistence.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A majestic anthropomorphic Taiwan leopard cat dancing within a giant green wreath made of vines, flowers, and wheat. Around the wreath are the four elemental guardians (cloud, mountain, stream, field). Meaning: Success, the complete integration of wildlife into the modern world, and the ultimate harmony of coexistence.",
     "narrative": "A majestic anthropomorphic Taiwan leopard cat dancing within a giant green wreath made of vines, flowers, and wheat. Around the wreath are the four elemental guardians (cloud, mountain, stream, field). Meaning: Success, the complete integration of wildlife into the modern world, and the ultimate harmony of coexistence."
   },
   "output": "art/renders/card-21-the-world.png",
   "meaning": {
-    "zh": "完成、整合、成就、完美的和諧，以及一個完整無缺的健康生態系。",
+    "zh": "完成、整合、旅程的終點，以及宇宙的和諧與圓滿。",
     "en": "Completion, integration, accomplishment, travel, and perfect harmony."
   },
   "ecology": {
@@ -72,7 +72,8 @@
     "habitat_fragment": "a fully realized continuous habitat spanning the island",
     "risk_theme": "the ultimate goal of continuous, unfragmented wilderness",
     "mapping_note": "The World represents the ultimate completion of the conservation journey: a fully integrated, unfragmented landscape where the leopard cat moves freely as part of a whole, healthy ecosystem.",
-    "zh": "棲地樣貌：a fully realized continuous habitat spanning the island 。 生存威脅：the ultimate goal of continuous, unfragmented wilderness 。 牌義關聯：The World represents the ultimate completion of the conservation journey: a fully integrated, unfragmented landscape where the leopard cat moves freely as part of a whole, healthy ecosystem. 。 石虎特徵：台灣石虎 。 生命階段：integrated ecosystem"
+    "zh": "棲地樣貌：完整且健康的島嶼生態網絡。生存威脅：全球性的生態系統崩潰。牌義關聯：世界代表著生態鏈的完美閉環，是石虎與自然共榮的最理想終局。",
+    "en": "Habitat: a fully realized continuous habitat spanning the island. Risk: the ultimate goal of continuous, unfragmented wilderness. Note: The World represents the ultimate completion of the conservation journey: a fully integrated, unfragmented landscape where the leopard cat moves freely as part of a whole, healthy ecosystem."
   },
   "meanings": {
     "upright": "Completion, integration, accomplishment, travel, and perfect harmony.",
