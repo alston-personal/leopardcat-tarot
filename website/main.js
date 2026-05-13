@@ -131,33 +131,59 @@ async function initAllSystems() {
 document.addEventListener('DOMContentLoaded', initAllSystems);
 
 function applyLanguage() {
-    if (!siteData || !cardData) return;
-    console.log("Applying i18n for:", currentLang);
-    const data = siteData[currentLang];
+    if (!siteData || !cardData) {
+        console.warn("[i18n] siteData or cardData not ready");
+        return;
+    }
     
-    // Recursive i18n lookup
+    // Normalize language key
+    let lang = currentLang || 'zh';
+    if (!siteData[lang]) {
+        console.warn(`[i18n] Language '${lang}' not found in siteData, falling back to 'zh'`);
+        lang = 'zh';
+    }
+    
+    const data = siteData[lang];
+    console.log(`[i18n] Applying language: ${lang}`, {
+        available_langs: Object.keys(siteData),
+        data_sample_keys: data ? Object.keys(data) : 'NULL'
+    });
+
+    // Recursive i18n lookup (Supports dot notation)
     const getI18nValue = (path, obj) => {
         if (!path || !obj) return null;
-        return path.split('.').reduce((prev, curr) => prev ? prev[curr] : null, obj);
+        const parts = path.split('.');
+        let current = obj;
+        for (const part of parts) {
+            if (current && typeof current === 'object' && part in current) {
+                current = current[part];
+            } else {
+                return null;
+            }
+        }
+        return current;
     };
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         const val = getI18nValue(key, data);
         
-        if (val) {
+        if (val !== null && val !== undefined) {
             if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') {
                 el.placeholder = val;
             } else {
                 el.textContent = val;
             }
+            // Success log (Optional/Debug)
+            // console.log(`[i18n] Set ${key} -> ${val.toString().substring(0,20)}...`);
         } else {
-            console.warn(`i18n key not found: ${key}`);
+            console.warn(`[i18n] Key not found in '${lang}': ${key}`);
         }
     });
 
+    // Update active button state
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    const activeBtn = document.getElementById(`btn-${currentLang}`);
+    const activeBtn = document.getElementById(`btn-${lang}`);
     if (activeBtn) activeBtn.classList.add('active');
 
     // Update document title
