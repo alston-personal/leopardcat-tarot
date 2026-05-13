@@ -9,7 +9,7 @@
   },
   "subtitle": "Planning & Evaluation",
   "slug": "two-of-wands",
-  "status": "prompt_ready",
+  "status": "rework_required",
   "size": {
     "width": 1400,
     "height": 2420
@@ -69,6 +69,10 @@
   "ornaments": [
     "glowing-orb"
   ],
+  "render_config": {
+    "trim": 35
+  },
+  "output": "art/renders/card-wa-02-two-of-wands.png",
   "meanings": {
     "upright": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments.",
     "reversed": "Indecision, fear of the unknown, or poor evaluation of landscape safety.",

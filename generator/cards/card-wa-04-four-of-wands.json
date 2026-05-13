@@ -69,6 +69,10 @@
   "ornaments": [
     "floral-arch"
   ],
+  "render_config": {
+    "trim": 30,
+    "zoom": 0.85
+  },
   "output": "art/renders/card-wa-04-four-of-wands.png",
   "meanings": {
     "upright": "Celebration, harmony, a sense of belonging, and the establishment of a safe home base within the territory.",

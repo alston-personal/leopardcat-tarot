@@ -211,31 +211,44 @@ def draw_main_image(base: Image.Image, config: dict):
                 art = art.crop((safe_trim, safe_trim, img_w - safe_trim, img_h - safe_trim))
                 img_w, img_h = art.size # Update dimensions after trim
 
-            # --- Enhanced Aspect Ratio & Custom Offset Logic ---
+            # --- Fixed Aspect Ratio & Zoom Logic (Ensures no stretching) ---
             render_cfg = config.get("render_config", {})
             zoom = render_cfg.get("zoom", 1.0)
-            offset_x = render_cfg.get("offset_x", 0.5) # 0.0=left, 0.5=center, 1.0=right
-            offset_y = render_cfg.get("offset_y", 0.5) # 0.0=top, 0.5=center, 1.0=bottom
+            offset_x = render_cfg.get("offset_x", 0.5)
+            offset_y = render_cfg.get("offset_y", 0.5)
 
             target_w = width - 220
             target_h = height - 700
-            
-            img_ratio = img_w / img_h
             target_ratio = target_w / target_h
             
-            if img_ratio > (target_ratio * zoom):
-                # Image is relatively wider than target - crop left/right
-                crop_w = int((target_ratio * img_h) / zoom)
-                crop_w = min(crop_w, img_w)
-                offset = int((img_w - crop_w) * offset_x)
-                art = art.crop((offset, 0, offset + crop_w, img_h))
+            img_w, img_h = art.size
+            img_ratio = img_w / img_h
+
+            # Determine the crop area that matches target_ratio
+            if img_ratio > target_ratio:
+                # Image is wider than target: limiting dimension is height
+                crop_h = img_h / zoom
+                crop_w = crop_h * target_ratio
             else:
-                # Image is relatively taller than target - crop top/bottom
-                crop_h = int(img_w / (target_ratio * zoom))
-                crop_h = min(crop_h, img_h)
-                offset = int((img_h - crop_h) * offset_y)
-                art = art.crop((0, offset, img_w, offset + crop_h))
+                # Image is taller than target: limiting dimension is width
+                crop_w = img_w / zoom
+                crop_h = crop_w / target_ratio
+
+            # Ensure crop area doesn't exceed image boundaries
+            if crop_w > img_w:
+                scale = img_w / crop_w
+                crop_w *= scale
+                crop_h *= scale
+            if crop_h > img_h:
+                scale = img_h / crop_h
+                crop_w *= scale
+                crop_h *= scale
+
+            # Apply offsets within the available image space
+            x_left = int((img_w - crop_w) * offset_x)
+            y_top = int((img_h - crop_h) * offset_y)
             
+            art = art.crop((x_left, y_top, int(x_left + crop_w), int(y_top + crop_h)))
             art = art.resize((target_w, target_h), Image.Resampling.LANCZOS)
             base.alpha_composite(art, (110, 360))
         else:
