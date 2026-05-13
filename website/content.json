@@ -29,18 +29,18 @@
     },
     "hero": {
       "title": "靈山靈貓",
-      "subtitle": "Leopard Cat Sanctuary: An Ecological Journey",
+      "subtitle": "石虎聖所：一場生態心靈之旅",
       "cta_fortune": "詢問大師",
       "cta_intro": "進入山林"
     },
     "labels": {
-      "wishing_well": "Wishing Well",
+      "wishing_well": "許願池",
       "fortune_title": "靈山仙貓大師：塔羅占卜",
-      "intro_label": "Introduction",
+      "intro_label": "前言導覽",
       "intro_title": "森與靈的守護者",
-      "history_label": "History",
+      "history_label": "歷史紀錄",
       "history_title": "環境生命紀事",
-      "gallery_label": "Gallery",
+      "gallery_label": "展示藝廊",
       "gallery_title": "大阿爾克那：石虎的生命旅程"
     },
     "introduction": {
@@ -56,25 +56,25 @@
         "date": "2019 - 苗栗",
         "title": "首座路殺防護圍籬系統",
         "description": "在台 13 甲線建立防護網，並設置生態廊道，監測顯示石虎已開始頻繁利用。",
-        "tag": "Conservation"
+        "tag": "保育"
       },
       {
         "date": "2024 - 台中",
         "title": "棲地海拔紀錄突破",
         "description": "於海拔 1050 公尺發現蹤跡，顯示石虎活動範圍受友善農法影響而擴張。",
-        "tag": "Discovery"
+        "tag": "發現"
       },
       {
         "date": "2025 - 彰化",
         "title": "首次確認石虎族群繁衍",
         "description": "在溪州鄉拍到石虎寶寶與家族活動，證實石虎族群在新棲地成功扎根。",
-        "tag": "Ecology"
+        "tag": "生態"
       },
       {
         "date": "2024 - 創作",
         "title": "AI 石虎塔羅計畫啟動",
         "description": "本網站專案開始，結合 生成式 AI 藝術與神祕學，為台灣生態保育注入全新的數位創意能量。",
-        "tag": "Digital-Art"
+        "tag": "數位藝術"
       }
     ],
     "groups": [
@@ -87,7 +87,7 @@
       {"id": "pentacles", "title": "金幣組：物質豐饒與地景資源", "description": "象徵石虎對食物來源、穩定棲地與物質基礎的掌握，代表生存的保障。"}
     ],
     "footer": {
-      "copyright": "© 2026 LeopardCat Tarot Project. All rights reserved."
+      "copyright": "© 2026 靈山靈貓 | 石虎塔羅計畫。保留所有權利。"
     }
   },
   "en": {

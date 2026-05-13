@@ -9,14 +9,28 @@ let lastManaRegen = parseInt(localStorage.getItem('lastManaRegen')) || Date.now(
 let currentChatHistory = [];
 let currentDrawnCard = null;
 
+// ⚡ Immediate assignment for global access
+window.setLanguage = (lang) => {
+    console.log("Setting language to:", lang);
+    if (lang === currentLang) return;
+    currentLang = lang;
+    localStorage.setItem('leopard-lang', lang);
+    
+    // Reset Dharma name for new language
+    localStorage.removeItem('userDharmaName');
+    initDharmaIdentity();
+    
+    applyLanguage();
+};
+
 // 🔱 Dharma Name Identity System
 function initDharmaIdentity() {
     if (!siteData) return;
     const common = siteData[currentLang].common;
     let name = localStorage.getItem('userDharmaName');
     
-    // Always regenerate or update name if components are available
-    if (!name || !name.includes("")) { // Simple check to see if we need a fresh name or updated lang
+    // Only generate if none exists (prevents constant flickering)
+    if (!name) {
         const prefixes = common.dharma_prefixes;
         const suffixes = common.dharma_suffixes;
         name = `${prefixes[Math.floor(Math.random()*prefixes.length)]}${suffixes[Math.floor(Math.random()*suffixes.length)]}`;
@@ -62,8 +76,8 @@ function updateUIQuota() {
 
 // Initialize All Systems
 async function initAllSystems() {
+    console.log("Initializing LeopardCat Tarot Systems...");
     try {
-        // Load Content
         let success = false;
         let cR = await fetch('content.json', { cache: 'no-cache' });
         let mR = await fetch('manifest.json', { cache: 'no-cache' });
@@ -76,6 +90,7 @@ async function initAllSystems() {
         
         if (!success) throw new Error("Could not load content/manifest JSON.");
 
+        console.log("Content loaded. Applying language:", currentLang);
         initDharmaIdentity();
         updateTempleStats();
         startManaRegen();
@@ -83,7 +98,6 @@ async function initAllSystems() {
         applyLanguage();
         initScrollReveal(); 
         
-        // Emergency Fallback: If after 3s still invisible, force reveal
         setTimeout(() => {
             document.querySelectorAll('.section, .reveal-on-scroll').forEach(el => {
                 if (!el.classList.contains('visible')) {
@@ -103,23 +117,12 @@ async function initAllSystems() {
 
 document.addEventListener('DOMContentLoaded', initAllSystems);
 
-function setLanguage(lang) {
-    if (lang === currentLang) return;
-    currentLang = lang;
-    localStorage.setItem('leopard-lang', lang);
-    
-    // Reset Dharma name for new language
-    localStorage.removeItem('userDharmaName');
-    initDharmaIdentity();
-    
-    applyLanguage();
-}
-
 function applyLanguage() {
     if (!siteData || !cardData) return;
+    console.log("Applying i18n for:", currentLang);
     const data = siteData[currentLang];
     
-    // New recursive i18n lookup
+    // Recursive i18n lookup
     const getI18nValue = (path, obj) => {
         return path.split('_').reduce((prev, curr) => prev ? prev[curr] : null, obj);
     };
@@ -140,6 +143,9 @@ function applyLanguage() {
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     const activeBtn = document.getElementById(`btn-${currentLang}`);
     if (activeBtn) activeBtn.classList.add('active');
+
+    // Update document title
+    document.title = (currentLang === 'zh' ? '靈山靈貓 石虎塔羅 | LeopardCat Tarot' : 'LeopardCat Tarot | Hill Spirit Oracle');
 
     if (data.introduction) renderIntro(data.introduction);
     if (data.events) renderEvents(data.events);
@@ -218,6 +224,7 @@ function renderGallery(groups, cards) {
 }
 
 function createCardElement(card, groupId) {
+    if (!siteData) return document.createElement('div');
     const langData = siteData[currentLang] || siteData['zh'];
     const common = langData.common || {};
     const wrapper = document.createElement('div');
@@ -343,5 +350,4 @@ window.resetRitual = function() {
     document.getElementById('fortune-ritual-area').classList.remove('hidden');
 };
 
-window.setLanguage = setLanguage;
 window.mintNFT = () => alert(currentLang === 'zh' ? "即將開放" : "Coming Soon");
