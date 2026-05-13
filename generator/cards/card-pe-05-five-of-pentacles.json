@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs in a desolate winter landscape. He is wearing a detailed, worn 1900s traveling outfit with a heavy tattered cloak, tunic, and trousers. He leans on crutches. Five golden pentacles are integrated into a stained-glass window of a stone building in the background. Full bleed. No borders. High-fidelity biological markers. 2:3 vertical. Full bleed. No borders.",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs in a desolate winter landscape. He is wearing a detailed, worn 1900s traveling outfit with a heavy tattered cloak, tunic, and trousers. He leans on crutches. Five golden pentacles are integrated into a stained-glass window of a stone building in the background. Full bleed. No borders. High-fidelity biological markers. 2:3 vertical. Full bleed. No borders. A warm golden glow shines from a distant cottage window in the background, representing hope.",
     "narrative": "The Five of Pentacles is 'The Lean Season'—the struggle for survival during drought or winter when prey is scarce and habitat quality is poor."
   },
   "ornaments": [

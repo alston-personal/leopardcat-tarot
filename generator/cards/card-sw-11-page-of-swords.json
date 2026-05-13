@@ -104,5 +104,6 @@
   "meaning": {
     "zh": "警覺、好奇、消息靈通，以及新一代個體對環境監測設施的探索。",
     "en": "Vigilance, curiosity, mental agility, and the exploration of monitoring tools."
-  }
+  },
+  "use_paw_symbol": true
 }

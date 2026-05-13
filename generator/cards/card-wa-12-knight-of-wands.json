@@ -103,5 +103,6 @@
   "meaning": {
     "zh": "行動、連通性、冒險、快速能量，以及建立新路徑的衝勁。",
     "en": "Action, connectivity, adventure, rapid energy, and the drive to establish new paths."
-  }
+  },
+  "use_paw_symbol": true
 }

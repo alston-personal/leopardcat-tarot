@@ -108,5 +108,6 @@
     "offset_x": 0.5,
     "offset_y": 0.5,
     "trim": 40
-  }
+  },
+  "use_paw_symbol": true
 }
