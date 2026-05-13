@@ -9,7 +9,7 @@
   },
   "subtitle": "Expansion & Foresight",
   "slug": "three-of-wands",
-  "status": "todo",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -69,6 +69,9 @@
   "ornaments": [
     "distant-horizon"
   ],
+  "render_config": {
+    "trim": 30
+  },
   "output": "art/renders/card-wa-03-three-of-wands.png",
   "meanings": {
     "upright": "Progress, expansion, looking toward the long-term, and successful growth of the population range.",

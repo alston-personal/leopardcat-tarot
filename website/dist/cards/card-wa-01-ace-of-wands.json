@@ -69,6 +69,9 @@
   "ornaments": [
     "sprouting-buds"
   ],
+  "render_config": {
+    "trim": 30
+  },
   "output": "art/renders/card-wa-01-ace-of-wands.png",
   "meanings": {
     "upright": "A new opportunity, territorial expansion, inspiration, and the creative drive to establish oneself in new terrain.",

@@ -70,6 +70,9 @@
     "blindfold",
     "crossed-swords"
   ],
+  "render_config": {
+    "trim": 40
+  },
   "output": "art/renders/card-sw-02-two-of-swords.png",
   "meanings": {
     "upright": "Indecision, choice, stalemate, blocked emotions, and being at a crossroads.",

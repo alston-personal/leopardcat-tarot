@@ -27,6 +27,7 @@ def aggregate_cards():
                 entry = {
                     "id": data.get("id"),
                     "arcana": data.get("arcana"),
+                    "suit": data.get("suit"),
                     "number": data.get("number"),
                     "title": data.get("title", ""),
                     "subtitle": data.get("subtitle", ""),
@@ -74,6 +75,19 @@ def aggregate_cards():
     print(f"🚀 Success: {len(deck)} cards compiled.")
     print(f"📂 Assets Synced: {sync_count} images updated.")
     print(f"📍 Location: {WEBSITE_MANIFEST}")
+    
+    # --- 3. Trigger Production Build ---
+    print(f"🏗️ Triggering production build in {PROJECT_ROOT / 'website'}...")
+    try:
+        import subprocess
+        result = subprocess.run(["npm", "run", "build"], cwd=str(PROJECT_ROOT / "website"), capture_output=True, text=True)
+        if result.returncode == 0:
+            print("✅ Production build (dist/) updated successfully.")
+        else:
+            print(f"❌ Build failed:\n{result.stderr}")
+    except Exception as e:
+        print(f"❌ Could not run build: {e}")
+        
     print("-" * 50)
 
 if __name__ == "__main__":

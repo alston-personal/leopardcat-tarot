@@ -9,7 +9,7 @@
   },
   "subtitle": "Intuition & Compassion",
   "slug": "ten-of-cups",
-  "status": "todo",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text. ANTHROPOMORPHIC: A serene Taiwan leopard cat queen standing upright on two legs, wearing a flowing gown of sea-foam green and a simple crown. She holds a closed, ornate golden cup. Slender build, sharp facial structure, white ear spots, forehead stripes. Calm seaside background. Full bleed. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text. ANTHROPOMORPHIC: A serene Taiwan leopard cat queen standing upright on two legs, wearing a flowing gown of sea-foam green and a simple crown. She holds a closed, ornate golden cup. Slender build, sharp facial structure, white ear spots, forehead stripes. Calm seaside background. Full bleed. No borders.",
     "narrative": "The Queen of Cups embodies the intuitive protector—the mother leopard cat who masters the wisdom of the forest waters."
   },
   "ornaments": [
@@ -82,9 +82,8 @@
     ]
   },
   "ecology": {
-    "zh": "棲地樣貌：靈魂棲息的深邃濕地。生存威脅：濕地開發與排水工程。牌義關聯：聖杯皇后代表著「情感的深度」——以極致的直覺與慈悲，感知土地的哀愁與喜樂。",
-    "en": "A mature female leopard cat maintaining balance in nursery areas with wisdom.",
-    "mapping_note": "Queen of Cups represents 'Water Security'—the stable, unpolluted water sources that are critical for nursing mothers to sustain themselves and their kittens."
+    "zh": "成年雌性石虎，守護著育幼區的生態平衡，充滿生存智慧。",
+    "en": "A mature female leopard cat maintaining balance in nursery areas with wisdom."
   },
   "website": {
     "excerpt": "Under the double rainbow, the leopard cat family finds a home where all life flows in harmony.",
@@ -101,5 +100,11 @@
     "zh": "慈悲、直覺、情感的豐沛與深刻的同理心。",
     "en": "Compassion, intuition, emotional depth, and deep empathy."
   },
-  "image": "art/renders/card-cu-13-queen-of-cups.png"
+  "image": "art/renders/card-cu-13-queen-of-cups.png",
+  "render_config": {
+    "zoom": 1.0,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 30
+  }
 }

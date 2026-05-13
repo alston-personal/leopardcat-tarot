@@ -9,7 +9,7 @@
   },
   "subtitle": "The Gathering / Joyful Play / Communal Harmony",
   "slug": "three-of-cups",
-  "status": "todo",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: Three Taiwan leopard cats standing upright on two legs in a lush garden. They are wearing detailed 1900s social outfits (tunics, vests, and trousers for all). They hold three golden cups high in a toast. Full body visible. Full bleed. No borders. High-fidelity biological markers. 2:3 vertical. Full bleed. No borders.",
+    "image_prompt": "[CLEAN_V4_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. SAFE-ZONE COMPOSITION. ANTHROPOMORPHIC: Three graceful Taiwan leopard cats standing upright on two legs in a lush Victorian garden. They are wearing full detailed 1900s Victorian clothing, including matching tunics, vests, trousers, and polished boots for all. They hold three ornate golden cups high in a celebratory toast. Full body visible, centered with ample margin to avoid edge-cropping. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. 2:3 vertical aspect ratio. Full bleed. No borders.",
     "narrative": "The Three of Cups is the 'Celebration of the Litter'—a group of adolescents playing in the safety of their home territory before dispersal."
   },
   "ornaments": [

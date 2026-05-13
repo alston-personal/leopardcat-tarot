@@ -8,8 +8,8 @@
     "en": "PAGE OF CUPS"
   },
   "subtitle": "Curiosity & Discovery",
-  "slug": "page-of-cups",
-  "status": "todo",
+  "slug": "ten-of-cups",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -63,7 +63,7 @@
     "model": "gemini-2.5-flash",
     "image_size": "1K",
     "aspect_ratio": "2:3",
-    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text, no labels. ANTHROPOMORPHIC: A curious young Taiwan leopard cat standing upright on two legs, wearing a simple blue tunic. He stands by a stream bank, looking up as a dream-fish pops out of a golden cup he holds. Slender juvenile build, sharp facial structure, white ear spots, forehead stripes. Full bleed. No borders.",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text, no labels. ANTHROPOMORPHIC: A curious young Taiwan leopard cat standing upright on two legs, wearing a simple blue tunic. He stands by a stream bank, looking up as a dream-fish pops out of a golden cup he holds. Slender juvenile build, sharp facial structure, white ear spots, forehead stripes. Full bleed. No borders.",
     "narrative": "The Page of Cups represents the spark of discovery—the first time a kitten explores the wonders of the water edge."
   },
   "ornaments": [
@@ -72,34 +72,39 @@
   ],
   "output": "art/renders/card-cu-11-page-of-cups.png",
   "meanings": {
-    "upright": "New inspiration, intuition, emotional opportunity, and creative curiosity.",
-    "reversed": "Emotional immaturity, insecurity, creative blocks, or ignored intuition.",
+    "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
+    "reversed": "Conflict in relationships, family disagreements, or a disconnection from a group.",
     "keywords": [
-      "inspiration",
-      "intuition",
-      "discovery",
-      "curiosity"
+      "happiness",
+      "family",
+      "harmony",
+      "reunion"
     ]
   },
   "ecology": {
-    "zh": "棲地樣貌：波光粼粼的水邊世界。生存威脅：水岸開發導致的感官干擾。牌義關聯：聖杯侍者代表著「直覺的萌芽」——年輕石虎在水邊與靈魂對話，開啟對自然的感應力。",
-    "en": "A young leopard cat exploring streams and riverbanks with curiosity.",
-    "mapping_note": "Page of Cups represents '水岸探索'—the early stages where young leopard cats discover clean streams and begin hunting aquatic prey."
+    "zh": "初出茅廬的小石虎，帶著好奇心探索溪流與水岸。",
+    "en": "A young leopard cat exploring streams and riverbanks with curiosity."
   },
   "website": {
-    "excerpt": "A spark of curiosity at the water's edge, where the young leopard cat discovers the magic of the wild.",
-    "seo_title": "Page of Cups - LeopardCat Tarot",
-    "seo_description": "Page of Cups reimagined as a young leopard cat exploring the aquatic wonders of its territory.",
+    "excerpt": "Under the double rainbow, the leopard cat family finds a home where all life flows in harmony.",
+    "seo_title": "Ten of Cups - LeopardCat Tarot",
+    "seo_description": "Ten of Cups reimagined as a thriving leopard cat family in a safe, vibrant ecosystem.",
     "tags": [
       "minor-arcana",
       "cups",
       "leopard-cat",
-      "discovery"
+      "harmony"
     ]
   },
   "meaning": {
     "zh": "靈感的湧現、純真、情感的種子與驚喜。",
     "en": "New inspiration, innocence, emotional beginnings, and surprises."
   },
-  "image": "art/renders/card-cu-11-page-of-cups.png"
+  "image": "art/renders/card-cu-11-page-of-cups.png",
+  "render_config": {
+    "zoom": 1.0,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 40
+  }
 }
