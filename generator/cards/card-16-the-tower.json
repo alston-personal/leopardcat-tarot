@@ -95,5 +95,10 @@
       "leopard-cat",
       "destruction"
     ]
+  },
+  "render_config": {
+    "zoom": 1.0,
+    "trim": 40,
+    "offset_y": 0
   }
 }
