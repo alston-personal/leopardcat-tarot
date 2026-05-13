@@ -9,7 +9,7 @@
   },
   "subtitle": "Planning & Evaluation",
   "slug": "two-of-wands",
-  "status": "rework_required",
+  "status": "finalized",
   "size": {
     "width": 1400,
     "height": 2420
@@ -70,7 +70,7 @@
     "glowing-orb"
   ],
   "render_config": {
-    "trim": 35
+    "trim": 30
   },
   "output": "art/renders/card-wa-02-two-of-wands.png",
   "meanings": {
