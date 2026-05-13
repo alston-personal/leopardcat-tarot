@@ -1,6 +1,7 @@
 // Global state
 let revealObserver;
 let currentLang = localStorage.getItem('leopard-lang') || 'zh';
+if (!['zh', 'en'].includes(currentLang)) currentLang = 'zh';
 let siteData = null;
 let cardData = [];
 let chatQuota = parseInt(localStorage.getItem('chatQuota')) || 5;
@@ -217,15 +218,16 @@ function renderGallery(groups, cards) {
 }
 
 function createCardElement(card, groupId) {
-    const common = siteData[currentLang].common;
+    const langData = siteData[currentLang] || siteData['zh'];
+    const common = langData.common || {};
     const wrapper = document.createElement('div');
     wrapper.className = `card-wrapper reveal-on-scroll theme-${groupId}`;
     const title = (card.title && typeof card.title === 'object' ? card.title[currentLang] : card.title) || 'TBD';
     const meaning = (card.meaning && typeof card.meaning === 'object' ? card.meaning[currentLang] : card.meaning) || 'TBD';
     const ecology = (card.ecology && typeof card.ecology === 'object' ? card.ecology[currentLang] : card.ecology) || 'TBD';
     
-    const lM = common.label_tarot_meaning;
-    const lE = common.label_eco_connection;
+    const lM = common.label_tarot_meaning || (currentLang === 'zh' ? '塔羅牌義' : 'Tarot Meaning');
+    const lE = common.label_eco_connection || (currentLang === 'zh' ? '石虎生態' : 'Eco-Connection');
 
     wrapper.innerHTML = `
         <div class="card" id="${card.id}">
