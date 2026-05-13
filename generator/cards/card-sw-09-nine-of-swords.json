@@ -70,6 +70,9 @@
     "stone-effigy",
     "hanging-swords"
   ],
+  "render_config": {
+    "trim": 30
+  },
   "output": "art/renders/card-sw-09-nine-of-swords.png",
   "meanings": {
     "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
