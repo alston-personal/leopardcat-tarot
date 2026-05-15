@@ -8,6 +8,7 @@
       "mana": "靈氣",
       "btn_draw": "祈請大師開牌",
       "btn_ask": "提問",
+      "btn_share": "生成靈山分享卡",
       "btn_mint": "鑄造紀念 NFT",
       "btn_reset": "重新祈願",
       "placeholder_question": "在此輸入你的困惑，或是屏息靜心...",
@@ -18,8 +19,12 @@
       "label_eco_connection": "石虎生態",
       "err_mana_depleted": "⚡ 靈氣已耗盡。",
       "err_empty_question": "大師需要聽見你心中的疑惑！",
-      "dharma_prefixes": ["山林", "雲霧", "古剎", "石虎", "冥想", "靜心"],
-      "dharma_suffixes": ["行者", "求道貓", "徒兒", "隱士"]
+      "dharma_prefixes": ["山林", "雲霧", "古剎", "石虎", "冥想", "靜心", "月影", "溪澗", "幽谷", "微風", "烈火", "厚土", "澄波", "蒼松", "晨曦", "暮色", "星辰", "玲瓏", "自在", "歸真"],
+      "dharma_suffixes": ["行者", "求道貓", "徒兒", "隱士", "散人", "居士", "小友", "靈魂", "使者", "守護"],
+      "share_memo_title": "靈山靈貓 · 石虎塔羅",
+      "share_seeker_label": "求問者",
+      "share_site_tag": "與山靈連結 · 守護石虎",
+      "share_copy_template": "我在靈山求得啟示：【{card}】。你也來與石虎連結吧！"
     },
     "nav": {
       "home": "首頁",
@@ -99,6 +104,7 @@
       "mana": "Mana",
       "btn_draw": "Draw Your Destiny",
       "btn_ask": "Ask",
+      "btn_share": "Generate Spirit Share Card",
       "btn_mint": "Mint Memory NFT",
       "btn_reset": "New Ritual",
       "placeholder_question": "Enter your question or hold your breath...",
@@ -109,8 +115,12 @@
       "label_eco_connection": "Eco-Connection",
       "err_mana_depleted": "⚡ Mana depleted.",
       "err_empty_question": "The Master needs to hear your question!",
-      "dharma_prefixes": ["Forest", "Mist", "Old-Temple", "Wild-Cat", "Zen", "Pure"],
-      "dharma_suffixes": ["Seeker", "Disciple", "Adept", "Hermit"]
+      "dharma_prefixes": ["Forest", "Mist", "Temple", "Wild-Cat", "Zen", "Pure", "Moon-Shadow", "Valley", "Breeze", "Kindle", "Ancient", "Star", "Drifting", "Spirit", "Echo"],
+      "dharma_suffixes": ["Seeker", "Disciple", "Adept", "Hermit", "Wanderer", "Friend", "Keeper", "Soul", "Herald"],
+      "share_memo_title": "Hill Spirit · LeopardCat Tarot",
+      "share_seeker_label": "Seeker",
+      "share_site_tag": "Connect with Spirits · Protect Wild Cats",
+      "share_copy_template": "I received a spiritual insight: 【{card}】. Come connect with the spirits!"
     },
     "nav": {
       "home": "Home",

@@ -8,6 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Serif+TC:wght@700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+    <script>
+      // 🕵️ Mobile Debug Mode
+      window.vConsole = new window.VConsole();
+    </script>
     
     <svg style="display: none;">
       <filter id="metallic-bevel">
@@ -70,21 +77,35 @@
                     <span class="label" data-i18n="labels.wishing_well">Wishing Well</span>
                     <h2 class="glint-text" data-i18n="labels.fortune_title">靈山仙貓大師：塔羅占卜</h2>
                 </div>
-                <div id="fortune-panel" class="fortune-container" style="text-align: center; max-width: 750px; margin: 0 auto; background: rgba(5, 10, 8, 0.85); padding: 40px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.15); min-height: 480px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.8); backdrop-filter: blur(20px);">
+                <div id="fortune-panel" class="fortune-container sacred-panel">
                     <div id="fortune-ritual-area">
-                        <textarea id="fortune-question" data-i18n="common.placeholder_question" placeholder="在此輸入你的困惑，或是屏息靜心..." style="width: 100%; height: 100px; background: rgba(255,255,255,0.03); color: #fff; border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 15px; margin-bottom: 20px; font-size: 1.1rem; resize: none; outline: none;"></textarea>
+                        <textarea id="fortune-question" class="sacred-textarea" data-i18n="common.placeholder_question" placeholder="在此輸入你的困惑，或是屏息靜心..."></textarea>
                         <button class="btn btn-gold" data-i18n="common.btn_draw" onclick="drawFortune()">祈請大師開牌</button>
                     </div>
 
                     <div id="fortune-chat-area" class="hidden">
-                        <div id="chat-history" style="height: 380px; overflow-y: auto; text-align: left; padding: 15px; border-radius: 12px; background: rgba(0,0,0,0.2); margin-bottom: 20px;"></div>
-                        <div style="display: flex; gap: 10px;">
-                            <input type="text" id="chat-input" data-i18n="common.placeholder_chat" placeholder="進一步詢問..." style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); color: #fff; padding: 12px; border-radius: 10px; outline: none;">
-                            <button onclick="sendChatMessage()" class="btn btn-gold" data-i18n="common.btn_ask" style="padding: 10px 20px;">提問</button>
+                        <!-- 🎯 Pinned Drawn Card Area -->
+                        <div id="pinned-card-area" class="pinned-card-container hidden">
+                            <div id="pinned-card-display"></div>
                         </div>
-                        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 15px;">
-                            <button onclick="mintNFT()" class="btn btn-gold-outline" data-i18n="common.btn_mint" style="font-size: 0.75rem; padding: 6px 15px;">鑄造紀念 NFT</button>
-                            <button onclick="resetRitual()" class="btn btn-gold-outline" data-i18n="common.btn_reset" style="font-size: 0.75rem; padding: 6px 15px; opacity: 0.6;">重新祈願</button>
+                        
+                        <div id="chat-history" class="sacred-chat"></div>
+                        <div class="sacred-input-row">
+                            <input type="text" id="chat-input" class="sacred-input" data-i18n="common.placeholder_chat" placeholder="進一步詢問...">
+                            <button onclick="sendChatMessage()" class="btn btn-gold btn-small" data-i18n="common.btn_ask">提問</button>
+                        </div>
+                        <div id="fortune-actions" class="hidden sacred-actions">
+                            <div class="sacred-action-btns">
+                                <button id="btn-share-image" onclick="generateShareImage()" class="btn btn-gold btn-share" data-i18n="common.btn_share">生成靈山分享卡</button>
+                                <button onclick="resetRitual()" class="btn btn-gold-outline btn-small opacity-6" data-i18n="common.btn_reset">重新祈願</button>
+                            </div>
+                            <div id="social-share-row" class="hidden social-share-row">
+                                <span class="social-label">社群分享：</span>
+                                <a href="#" id="share-line" target="_blank" title="Line"><img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" class="social-icon"></a>
+                                <a href="#" id="share-fb" target="_blank" title="Facebook"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" class="social-icon"></a>
+                                <a href="#" id="share-x" target="_blank" title="X"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png" class="social-icon-x"></a>
+                                <a href="#" id="share-threads" target="_blank" title="Threads"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Threads_%28app%29_logo.svg" class="social-icon"></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -131,5 +152,40 @@
     </div>
 
     <script type="module" src="main.js"></script>
+
+    <!-- Hidden Share Card Template (Spirit Memo Style) -->
+    <div id="share-card-container" style="position: absolute; left: -9999px; top: -9999px;">
+        <div id="share-card-template" class="share-card-body">
+            <div class="share-header">
+                <div class="share-logo" id="share-memo-title">靈山靈貓 · 石虎塔羅</div>
+                <div class="share-date" id="share-date">2026.05.15</div>
+            </div>
+            
+            <div class="share-main">
+                <div class="share-card-frame">
+                    <img id="share-card-img" src="" alt="Tarot Card">
+                </div>
+                <div class="share-info">
+                    <h2 id="share-card-title">【卡牌名稱】</h2>
+                    <div class="share-quote-container">
+                        <span class="quote-mark">「</span>
+                        <div class="share-quote" id="share-quote">大師開示的金句將顯示於此...</div>
+                        <span class="quote-mark" style="text-align: right;">」</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="share-footer">
+                <div class="share-seeker">
+                    <span class="label" id="share-seeker-label">求問者</span>
+                    <div id="share-seeker-name">Seeker</div>
+                </div>
+                <div class="share-site-info">
+                    <div class="site-url">leopardcat-tarot.com</div>
+                    <div class="site-tag" id="share-site-tag">與山靈連結 · 守護石虎</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
