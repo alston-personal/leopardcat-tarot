@@ -70,7 +70,7 @@
     "golden-coins",
     "lush-vegetation"
   ],
-  "output": "art/renders/card-pe-06-six-of-pentacles.png",
+  "output": "art/renders/card-pe-06-six-of-pentacles.webp",
   "meanings": {
     "upright": "Generosity, giving and receiving, resource distribution, and ecological compensation.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",

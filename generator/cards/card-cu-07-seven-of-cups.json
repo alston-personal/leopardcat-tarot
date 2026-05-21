@@ -70,7 +70,7 @@
     "dream-mist",
     "seven-clouds"
   ],
-  "output": "art/renders/card-cu-07-seven-of-cups.png",
+  "output": "art/renders/card-cu-07-seven-of-cups.webp",
   "meanings": {
     "upright": "Illusions, daydreaming, wishful thinking, choices, and too many options.",
     "reversed": "Clarity, being realistic, making a decision, and realizing the truth after an illusion.",
@@ -102,7 +102,7 @@
     ]
   },
   "meaning": {
-    "zh": "這段塔羅牌義（通常對應聖杯七）的繁體中文（台灣習慣用語）翻譯如下：\n\n**「幻象、白日夢、一廂情願、選擇、以及過多的選項。」**\n\n在塔羅牌解釋中，這些詞彙也可以更深入地譯為：\n*   **Illusions**: 幻象、虛幻\n*   **Daydreaming**: 白日夢、幻想\n*   **Wishful thinking**: 一廂情願、過於理想化的想法\n*   **Choices**: 選擇、抉擇\n*   **Too many options**: 選項過多、眼花撩亂的選擇",
+    "zh": "幻象、白日夢、一廂情願、選擇、以及過多的選項。",
     "en": "Illusions, daydreaming, wishful thinking, choices, and too many options."
   },
   "render_config": {

@@ -72,7 +72,7 @@
     "silver-grass",
     "rodent-burrow"
   ],
-  "output": "art/renders/card-01-the-magician.png",
+  "output": "art/renders/card-01-the-magician.webp",
   "meanings": {
     "upright": "Focused skill, resourcefulness, environmental intelligence, and the power to act with precision.",
     "reversed": "Misapplied skill, scattered attention, manipulation, or overconfidence in unstable terrain.",

@@ -321,8 +321,48 @@ def to_roman(n):
     return roman_num
 
 
+def draw_paw_print(draw: ImageDraw.ImageDraw, width: int, y: int, size_base: int, fill: tuple, rank: int):
+    # Lower center_y and shrink rings to prevent artwork overflow
+    center_x = width / 2
+    size = size_base * 0.8
+    center_y = y + 55 # Lowered to center perfectly in the footer space
+    
+    f_color = list(fill)
+    if len(f_color) == 3: f_color.append(230) 
+    f_color = tuple(f_color)
+
+    # 1. Draw Toes
+    toe_size = size * 0.22
+    toe_y_top = center_y - size * 0.25
+    toe_y_side = center_y - size * 0.1
+    
+    toes = [
+        (center_x - size * 0.3, toe_y_side), 
+        (center_x - size * 0.12, toe_y_top),  
+        (center_x + size * 0.12, toe_y_top),  
+        (center_x + size * 0.3, toe_y_side), 
+    ]
+    for tx, ty in toes:
+        draw.ellipse((tx - toe_size/2, ty - toe_size/2, tx + toe_size/2, ty + toe_size/2), fill=f_color)
+
+    # 2. Draw Pad (For Knight, Queen, King)
+    if rank > 11:
+        pad_y = center_y + size * 0.15
+        pad_w = size * 0.6
+        pad_h = size * 0.45
+        draw.ellipse((center_x - pad_w/2, pad_y - pad_h/2, center_x + pad_w/2, pad_y + pad_h/2), fill=f_color)
+
+    # 3. Draw Decorative Rings (For Queen, King)
+    if rank >= 13:
+        ring_r = size * 0.85
+        draw.ellipse((center_x - ring_r, center_y - ring_r, center_x + ring_r, center_y + ring_r), outline=f_color, width=2)
+        if rank == 14:
+            ring_r2 = size * 1.0
+            draw.ellipse((center_x - ring_r2, center_y - ring_r2, center_x + ring_r2, center_y + ring_r2), outline=f_color, width=1)
+
+
 def draw_text(draw: ImageDraw.ImageDraw, width: int, height: int, config: dict, palette: dict):
-    # Width constraints (Panel width - absolute padding)
+    # Width constraints
     title_max_w = (width - 300) - 80 
     subtitle_max_w = (width - 480) - 60
     numeral_max_w = (width - 480) - 60
@@ -373,7 +413,6 @@ def draw_text(draw: ImageDraw.ImageDraw, width: int, height: int, config: dict, 
             numeral = to_roman(rank)
         else:
             # Page, Knight, Queen, King usually don't have numbers in footer
-            # They use their title instead
             numeral = ""
 
     subtitle = str(config.get("subtitle", ""))
@@ -381,7 +420,11 @@ def draw_text(draw: ImageDraw.ImageDraw, width: int, height: int, config: dict, 
     # Top Panel
     draw_spaced_text(draw, title, 168, 84, False, tuple(palette["text_primary"]), title_max_w, letter_spacing=12)
     # Bottom Panel (Numeral & Subtitle)
-    draw_spaced_text(draw, numeral, height - 320, 80, True, tuple(palette["text_primary"]), numeral_max_w, letter_spacing=10)
+    if config.get("use_paw_symbol"):
+        draw_paw_print(draw, width, height - 325, 64, tuple(palette["text_primary"]), rank=(num % 100))
+    else:
+        draw_spaced_text(draw, numeral, height - 320, 80, True, tuple(palette["text_primary"]), numeral_max_w, letter_spacing=10)
+    
     draw_spaced_text(draw, subtitle, height - 235, 42, False, tuple(palette["text_secondary"]), subtitle_max_w, letter_spacing=4)
 
 
@@ -419,9 +462,17 @@ def render_card(config: dict, output_override: str | None = None):
     final_img = apply_paper_grain(final_img, intensity=8)
     
     output_rel = output_override or config["output"]
+    # Auto-convert output extension to webp for web performance if requested
+    if output_rel.endswith('.png') and not output_override:
+        output_rel = output_rel.replace('.png', '.webp')
+        
     output_path = ROOT / output_rel
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    final_img.save(output_path, quality=95)
+    
+    if output_path.suffix == '.webp':
+        final_img.save(output_path, "WEBP", quality=80, method=6)
+    else:
+        final_img.save(output_path, quality=95)
     return output_path
 
 

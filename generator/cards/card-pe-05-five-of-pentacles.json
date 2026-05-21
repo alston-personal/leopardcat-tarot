@@ -70,7 +70,7 @@
     "golden-coins",
     "lush-vegetation"
   ],
-  "output": "art/renders/card-pe-05-five-of-pentacles.png",
+  "output": "art/renders/card-pe-05-five-of-pentacles.webp",
   "meanings": {
     "upright": "Material hardship, struggle, isolation, and survival crisis due to habitat loss.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",

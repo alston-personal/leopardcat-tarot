@@ -70,7 +70,7 @@
     "golden-coins",
     "lush-vegetation"
   ],
-  "output": "art/renders/card-pe-02-two-of-pentacles.png",
+  "output": "art/renders/card-pe-02-two-of-pentacles.webp",
   "meanings": {
     "upright": "Balance, adaptability, managing multiple priorities, and moving between fragmented habitats.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",

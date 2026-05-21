@@ -70,7 +70,7 @@
     "golden-coins",
     "lush-vegetation"
   ],
-  "output": "art/renders/card-pe-12-knight-of-pentacles.png",
+  "output": "art/renders/card-pe-12-knight-of-pentacles.webp",
   "meanings": {
     "upright": "Reliable, steady, hard-working, and systematically executing conservation plans.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",

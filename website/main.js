@@ -1,3 +1,8 @@
+const APP_VERSION = "v45-EX-TURBO";
+const BUILD_DATE = "2026-05-15-H10";
+console.log(`%c ✨ LeopardCat Tarot ${APP_VERSION} | ${BUILD_DATE} `, "background: #d4af37; color: #000; font-weight: bold; padding: 4px; border-radius: 4px;");
+window.appVersion = APP_VERSION;
+
 // Global state
 let revealObserver;
 window.currentLang = localStorage.getItem('leopard-lang') || 'zh';
@@ -7,6 +12,7 @@ window.siteData = null;
 window.cardData = [];
 window.currentDrawnCard = null;
 
+// ⚡ Restored to normal limit (5) for production
 let chatQuota = parseInt(localStorage.getItem('chatQuota'));
 if (isNaN(chatQuota) || chatQuota > 5) {
     chatQuota = 5; 
@@ -145,7 +151,25 @@ async function initAllSystems() {
         }
     } catch (err) {
         console.error('Initialization Failed:', err);
-        loadingOverlay.innerHTML = '<p style="color:#ff6b6b;font-size:0.8rem;">靈力連線中斷，請重新整理頁面</p>';
+        const errType = err.name || "Error";
+        const errMsg = err.message || "Unknown Failure";
+        
+        // 🛡️ Fail-Safe: If it's a transient DOM error, try one last time after a short delay
+        setTimeout(() => {
+            if (!window.siteData) return;
+            applyLanguage();
+            if (window.cardData && window.cardData.length > 0) {
+                renderGallery(window.siteData[window.currentLang].groups, window.cardData);
+            }
+        }, 1000);
+
+        loadingOverlay.innerHTML = `
+            <div style="text-align:center; padding:20px;">
+                <p style="color:#ff6b6b;font-size:0.8rem;">靈力連線不穩 (${errType})</p>
+                <p style="color:#666;font-size:0.6rem;margin-top:5px;">${errMsg}</p>
+                <button onclick="location.reload()" style="margin-top:15px;background:none;border:1px solid var(--color-gold);color:var(--color-gold);padding:5px 15px;border-radius:15px;font-size:0.7rem;">重新祈願</button>
+            </div>
+        `;
     }
 }
 
@@ -254,7 +278,24 @@ function renderGallery(groups, cards) {
         <div id="active-group-content"></div>
     `;
 
-    const tabContainer = container.querySelector('.gallery-tabs');
+    const tabScrollContainer = container.querySelector('.gallery-tabs-container');
+    if (!tabScrollContainer) {
+        console.warn("[Gallery] tabScrollContainer not found yet.");
+        return;
+    }
+
+    // 🖱️ Definitive Desktop Scroll: Target the actual overflow container
+    const handleWheel = (e) => {
+        if (e.deltaY !== 0) {
+            e.preventDefault();
+            tabScrollContainer.scrollBy({
+                left: e.deltaY * 1.5, 
+                behavior: 'auto'
+            });
+        }
+    };
+    
+    tabScrollContainer.addEventListener('wheel', handleWheel, { passive: false });
     const contentArea = container.querySelector('#active-group-content');
 
     const renderActiveGroup = (groupId) => {
@@ -289,10 +330,10 @@ function renderGallery(groups, cards) {
         // window.scrollTo({ top: container.offsetTop - 100, behavior: 'smooth' });
     };
 
-    tabContainer.addEventListener('click', (e) => {
+    tabScrollContainer.addEventListener('click', (e) => {
         const btn = e.target.closest('.tab-btn');
         if (!btn) return;
-        tabContainer.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        tabScrollContainer.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         renderActiveGroup(btn.dataset.group);
     });
@@ -337,10 +378,41 @@ function createCardElement(card, groupId) {
         </div>
     `;
     const cardInner = wrapper.querySelector('.card');
+    
+    // 🛡️ Interaction Isolation: Ensure Scroll > Flip on text areas
+    const scrollableContent = wrapper.querySelector('.back-content');
+    if (scrollableContent) {
+        scrollableContent.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+        scrollableContent.addEventListener('touchend', (e) => e.stopPropagation(), { passive: true });
+    }
+
+    let touchStartY = 0;
+    let touchStartTime = 0;
+
+    cardInner.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+        touchStartTime = Date.now();
+    }, { passive: true });
+
+    cardInner.addEventListener('touchend', (e) => {
+        const touchEndY = e.changedTouches[0].clientY;
+        const touchDuration = Date.now() - touchStartTime;
+        const scrollDiff = Math.abs(touchEndY - touchStartY);
+
+        // Only flip if it's a quick tap and almost no vertical movement
+        if (touchDuration < 250 && scrollDiff < 10) {
+            e.stopPropagation();
+            cardInner.classList.toggle('is-flipped');
+        }
+    }, { passive: true });
+
+    // Desktop support
     cardInner.addEventListener('click', (e) => {
-        e.stopPropagation();
+        // If clicking inside back-content, check if we're selecting text or just tapping
+        if (window.getSelection().toString()) return; 
         cardInner.classList.toggle('is-flipped');
     });
+
     return wrapper;
 }
 
@@ -478,14 +550,22 @@ window.generateShareImage = async function() {
     }
     
     if (!bestQuote && bubbles.length > 0) bestQuote = bubbles[0].innerText.substring(0, 60) + '...';
-    document.getElementById('share-quote').innerText = bestQuote || (window.currentLang === 'zh' ? '與山靈連結，尋找內心的平靜。' : 'Connect with the spirits, find your inner peace.');
+    const quote = bestQuote || (window.currentLang === 'zh' ? '與山靈連結，尋找內心的平靜。' : 'Connect with the spirits, find your inner peace.');
+    document.getElementById('share-quote').innerText = quote;
 
-    // Wait for image to load
-    await new Promise(resolve => {
-        const img = document.getElementById('share-card-img');
-        if (img.complete) resolve();
-        else img.onload = resolve;
-    });
+    // 🕵️ Stability: Wait for image load + small layout settling delay
+    const shareCardImg = document.getElementById('share-card-img');
+    await Promise.race([
+        new Promise(resolve => {
+            if (shareCardImg.complete) resolve();
+            else {
+                shareCardImg.onload = resolve;
+                shareCardImg.onerror = resolve; // Don't hang
+            }
+        }),
+        new Promise(resolve => setTimeout(resolve, 5000)) // Force continue after 5s
+    ]);
+    await new Promise(resolve => setTimeout(resolve, 300)); // Layout settling delay
 
     console.time('ManaGathering');
     try {
@@ -494,82 +574,137 @@ window.generateShareImage = async function() {
                 useCORS: true,
                 allowTaint: true,
                 logging: false,
-                backgroundColor: null,
-                scale: isMobile ? 1.0 : 2.5,
+                backgroundColor: '#0a0f0d',
+                scale: 1.0, 
                 width: 600,
                 height: 600,
-                imageTimeout: 5000, // Wait max 5s for images
+                imageTimeout: 5000, 
                 removeContainer: true
             }),
-            new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT')), 15000))
+            new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT')), 20000))
         ]);
         console.timeEnd('ManaGathering');
         
-        // 🔗 Update Share Card Labels (Language Specific)
-        const common = window.siteData[window.currentLang].common;
-        document.getElementById('share-memo-title').innerText = common.share_memo_title;
-        document.getElementById('share-seeker-label').innerText = common.share_seeker_label;
-        document.getElementById('share-site-tag').innerText = common.share_site_tag;
+        // 🕵️ Smart Language Detection for Share Message
+        // If the quote has Chinese characters, use 'zh' template even if UI is 'en'
+        const hasChinese = /[\u4e00-\u9fa5]/.test(bestQuote);
+        const shareLang = hasChinese ? 'zh' : window.currentLang;
+        const common = window.siteData[shareLang].common;
+
+        // 🔗 Update Share Card Labels (Always follows UI Language for frame consistency)
+        const uiCommon = window.siteData[window.currentLang].common;
+        document.getElementById('share-memo-title').innerText = uiCommon.share_memo_title;
+        document.getElementById('share-seeker-label').innerText = uiCommon.share_seeker_label;
+        document.getElementById('share-site-tag').innerText = uiCommon.share_site_tag;
         document.getElementById('share-date').innerText = new Date().toLocaleDateString(window.currentLang === 'zh' ? 'zh-TW' : 'en-US');
 
-        const shareMsg = common.share_copy_template.replace('{card}', currentDrawnCard.title[window.currentLang]);
-        const shareUrl = window.location.href.split('#')[0]; // Clean URL
-        lastShareText = `${shareMsg} ${shareUrl}`;
+        const shareMsg = common.share_copy_template.replace('{card}', currentDrawnCard.title[shareLang]);
+        // 🛠️ Dynamic URL Detection (Fix for milkcat.org and other domains)
+        const shareUrl = window.location.origin + window.location.pathname;
+        
+        const fullShareText = `${shareMsg} ${shareUrl}`;
+        lastShareText = fullShareText;
 
         const lineLink = document.getElementById('share-line');
-        if (lineLink) lineLink.href = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(lastShareText)}`;
+        if (lineLink) lineLink.href = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(fullShareText)}`;
         
-        document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(lastShareText)}`;
-        document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMsg)}&url=${encodeURIComponent(shareUrl)}`;
-        document.getElementById('share-threads').href = `https://www.threads.net/intent/post?text=${encodeURIComponent(lastShareText)}`;
+        const fbRefresh = Date.now();
+        const fbUrlSeparator = shareUrl.includes('?') ? '&' : '?';
+        const fbShareUrl = `${shareUrl}${fbUrlSeparator}fbrefresh=${fbRefresh}`;
+        document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fbShareUrl)}&quote=${encodeURIComponent(shareMsg)}`;
+        
+        // 🐦 X (Twitter) unified format for best compatibility
+        document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fullShareText)}`;
+        document.getElementById('share-threads').href = `https://www.threads.net/intent/post?text=${encodeURIComponent(fullShareText)}`;
         
         document.getElementById('social-share-row').classList.remove('hidden');
 
-        // Native Share (Mobile Specific)
-        if (isMobile && navigator.share) {
-            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-            if (blob) {
-                lastShareFile = new File([blob], 'leopard_tarot.png', { type: 'image/png' });
-                try {
-                    await navigator.share({
-                        title: '靈山靈貓 石虎塔羅',
-                        text: shareText,
-                        files: [lastShareFile]
-                    });
-                    btn.innerText = window.currentLang === 'zh' ? '🔄 再次分享' : '🔄 Share Again';
-                } catch (err) {
-                    console.log("File share failed, falling back to text", err);
-                    if (err.name !== 'AbortError') {
-                        try {
-                            await navigator.share({ title: '靈山靈貓 石虎塔羅', text: shareText });
-                            btn.innerText = window.currentLang === 'zh' ? '🔄 再次分享' : '🔄 Share Again';
-                        } catch(e2) {
-                            btn.innerText = window.currentLang === 'zh' ? '✅ 已生成' : '✅ Generated';
-                        }
-                    } else {
-                        btn.innerText = window.currentLang === 'zh' ? '🔄 再次分享' : '🔄 Share Again';
-                    }
-                }
+        // 🔗 Sync Metadata immediately
+        updateSocialLinks(currentDrawnCard, bestQuote);
+
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        const file = new File([blob], `leopardcat-tarot-${Date.now()}.png`, { type: 'image/png' });
+        
+        // 🎨 Ritual Result: Native Share (Mobile) or Clipboard Copy (Desktop)
+        if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+            try {
+                await navigator.share({
+                    files: [file],
+                    title: window.siteData[window.currentLang].common.share_memo_title,
+                    text: lastShareText
+                });
+            } catch (shareErr) {
+                if (shareErr.name !== 'AbortError') console.error("Share Failed:", shareErr);
             }
-        } else if (!isMobile) {
-            // Desktop logic
-            const link = document.createElement('a');
-            link.download = `LeopardCat-Tarot-${currentDrawnCard.id}.png`;
-            link.href = canvas.toDataURL('image/png');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            btn.innerText = window.currentLang === 'zh' ? '✅ 已下載' : '✅ Saved';
+        } else {
+            // 🖱️ Desktop Savior: Attempt Clipboard Image Copy
+            try {
+                if (window.ClipboardItem) {
+                    const item = new ClipboardItem({ "image/png": blob });
+                    await navigator.clipboard.write([item]);
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                    // Simplified sharing, no alert needed.
+                } else {
+                    throw new Error("ClipboardItem not supported");
+                }
+            } catch (err) {
+                console.warn("Clipboard Copy Failed:", err);
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `leopardcat-tarot-${Date.now()}.png`;
+                link.click();
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+                alert(window.currentLang === 'zh' ? "✨ 靈山紀錄已下載！\n請手動上傳至社群分享。" : "✨ Spirit Memo downloaded!\nPlease upload it manually to share.");
+            }
         }
+    } catch (error) {
+        console.error('Spirit Rendering Error:', error);
+        alert(`[RENDER_ERR] ${error.message}`);
         btn.disabled = false;
-    } catch (err) {
-        console.error('Mana Gathering Failed:', err);
-        console.timeEnd('ManaGathering');
-        btn.innerText = window.currentLang === 'zh' ? '分享失敗 (請重試)' : 'Share Failed (Retry)';
-        btn.disabled = false;
-        btn.classList.remove('loading');
+        btn.innerHTML = originalText;
     }
-};
+}
+
+function updateSocialLinks(card, customQuote = null) {
+    if (!card) return;
+    const shareLang = window.currentLang;
+    const common = window.siteData[shareLang].common;
+    
+    // Use quote if provided, else generic template
+    const shareMsg = customQuote ? `「${customQuote}」` : common.share_copy_template.replace('{card}', card.title[shareLang]);
+    const shareUrl = `${window.location.origin}${window.location.pathname}?card=${card.id}`;
+    window.shareUrl = shareUrl; // Store for the copy button
+    
+    // Update button text to encourage the next step
+    const shareBtn = document.getElementById('btn-share-image');
+    if (shareBtn) {
+        shareBtn.innerHTML = `✨ 靈光已存入剪貼簿`;
+        setTimeout(() => {
+            shareBtn.innerHTML = `再次生成分享卡`;
+        }, 5000);
+    }
+    const fullShareText = `${shareMsg} ${shareUrl}`;
+    
+    lastShareText = fullShareText;
+
+    const lineLink = document.getElementById('share-line');
+    if (lineLink) lineLink.href = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(fullShareText)}`;
+    
+    const fbLink = document.getElementById('share-fb');
+    if (fbLink) fbLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(fullShareText)}`;
+    
+    const xLink = document.getElementById('share-x');
+    if (xLink) xLink.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fullShareText)}`;
+    
+    const threadsLink = document.getElementById('share-threads');
+    if (threadsLink) threadsLink.href = `https://www.threads.net/intent/post?text=${encodeURIComponent(fullShareText)}`;
+    
+    document.getElementById('social-share-row')?.classList.remove('hidden');
+}
 
 window.drawFortune = async function() {
     const common = window.siteData[window.currentLang].common;
@@ -577,9 +712,11 @@ window.drawFortune = async function() {
     const q = document.getElementById('fortune-question').value;
     if (!q.trim()) return alert(common.err_empty_question);
     
-    // Decrement quota immediately
-    chatQuota--;
-    updateUIQuota();
+    // Decrement quota immediately (unless DEBUG)
+    if (q.toUpperCase() !== 'DEBUG' && q.toUpperCase() !== 'FORCE_DEBUG') {
+        chatQuota--;
+        updateUIQuota();
+    }
 
     document.getElementById('fortune-ritual-area').classList.add('hidden');
     document.getElementById('fortune-chat-area').classList.remove('hidden');
@@ -632,25 +769,50 @@ window.getAIReading = async function(q, card) {
         errBubble.appendChild(btn);
     };
 
-    try {
-        const apiResp = await fetch('/api/fortune', {
-            method: 'POST',
-            signal: controller.signal,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                question: q,
-                cardTitle: card.title[window.currentLang],
-                cardMeaning: card.meaning[window.currentLang],
-                lang: window.currentLang,
-                history: currentChatHistory
-            })
-        });
-        clearTimeout(timeoutId);
-        removeSensing();
+    // 🛡️ Internal Retry Logic
+    let attempts = 0;
+    const maxAttempts = 3;
+    let success = false;
+    let data = null;
 
-        if (!apiResp.ok) throw new Error('API_ERROR');
-        const data = await apiResp.json();
-        const rawReply = data.reading || card.meaning[window.currentLang];
+    while (attempts < maxAttempts && !success) {
+        attempts++;
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000);
+            
+            const apiResp = await fetch('/api/fortune', {
+                method: 'POST',
+                signal: controller.signal,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    question: q,
+                    cardTitle: card.title[window.currentLang],
+                    cardMeaning: card.meaning[window.currentLang],
+                    lang: window.currentLang,
+                    history: currentChatHistory
+                })
+            });
+            clearTimeout(timeoutId);
+
+            if (!apiResp.ok) throw new Error('API_ERROR');
+            data = await apiResp.json();
+            success = true;
+        } catch (e) {
+            console.warn(`Divination Attempt ${attempts} failed:`, e);
+            if (attempts < maxAttempts) {
+                // Wait 1.5s before retry
+                await new Promise(r => setTimeout(r, 1500));
+            } else {
+                removeSensing();
+                showRetry();
+                return;
+            }
+        }
+    }
+
+    removeSensing();
+    const rawReply = data.reading || card.meaning[window.currentLang];
         
         // Render Markdown to HTML
         const htmlReply = typeof marked !== 'undefined' ? marked.parse(rawReply) : rawReply.replace(/\n/g, '<br>');
@@ -686,12 +848,6 @@ window.getAIReading = async function(q, card) {
             }, 300);
         });
 
-    } catch (e) {
-        clearTimeout(timeoutId);
-        removeSensing();
-        console.error('Divination Error:', e);
-        showRetry();
-    }
 };
 
 window.sendChatMessage = async function() {
@@ -706,7 +862,10 @@ window.sendChatMessage = async function() {
 
     input.value = '';
     appendBubble('user', text);
-    chatQuota--; updateUIQuota();
+    if (text.toUpperCase() !== 'DEBUG' && text.toUpperCase() !== 'FORCE_DEBUG') {
+        chatQuota--; 
+        updateUIQuota();
+    }
 
     try {
         const bubble = appendBubble('assistant', '<div class="spirit-thinking"><span></span><span></span><span></span></div>');
@@ -769,3 +928,21 @@ window.resetRitual = function() {
 };
 
 window.mintNFT = () => alert(window.currentLang === 'zh' ? "即將開放" : "Coming Soon");
+
+// 📋 Copy Ritual URL Helper
+window.copyRitualUrl = function() {
+    if (!window.shareUrl) {
+        // Fallback to home if no card drawn
+        window.shareUrl = window.location.origin + window.location.pathname;
+    }
+    navigator.clipboard.writeText(window.shareUrl).then(() => {
+        const btn = document.getElementById('btn-copy-url');
+        if (btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "已複製連結";
+            setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+        }
+    }).catch(err => {
+        console.error('URL Copy Failed:', err);
+    });
+};

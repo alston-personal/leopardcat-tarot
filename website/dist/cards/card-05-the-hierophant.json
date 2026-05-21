@@ -73,7 +73,7 @@
     "zh": "棲地樣貌：穩定、低干擾的成熟森林與獸徑。生存威脅：傳統遷徙廊道與家域的破碎化。牌義關聯：教皇代表著「穩定棲地」以及世代相傳的生存智慧。",
     "en": "Habitat: stable, low-disturbance mature forest and animal runs (trails). Risk: disruption of traditional migration corridors and home ranges. Note: The Hierophant represents the 'stable habitat' and the survival knowledge passed down through generations—following the safe trails that have existed for centuries."
   },
-  "output": "art/renders/card-05-the-hierophant.png",
+  "output": "art/renders/card-05-the-hierophant.webp",
   "meanings": {
     "upright": "Tradition, ancestral wisdom, following established paths, education, and spiritual guidance.",
     "reversed": "Challenging tradition, losing connection to ancestry, wandering off the safe path, or outdated rigid rules.",

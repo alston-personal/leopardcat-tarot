@@ -70,7 +70,7 @@
     "scars",
     "wall-of-wands"
   ],
-  "output": "art/renders/card-wa-09-nine-of-wands.png",
+  "output": "art/renders/card-wa-09-nine-of-wands.webp",
   "meanings": {
     "upright": "Resilience, stamina, survival, persistence, and the wisdom gained through hardship.",
     "reversed": "Exhaustion, burnout, giving up, or a system that has finally collapsed from cumulative stress.",

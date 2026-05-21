@@ -70,7 +70,7 @@
     "lotuses",
     "sparkling-water"
   ],
-  "output": "art/renders/card-cu-01-ace-of-cups.png",
+  "output": "art/renders/card-cu-01-ace-of-cups.webp",
   "meanings": {
     "upright": "Love, potential, emotional abundance, spiritual intuition, and new beginnings in the realm of the heart.",
     "reversed": "Blocked emotions, suppressed intuition, or a period of emotional drought.",
@@ -102,7 +102,7 @@
     ]
   },
   "meaning": {
-    "zh": "這段塔羅牌義可以翻譯為：\n\n**「愛情、潛能、情感豐盈、靈性直覺，以及心靈領域中嶄新的開始。」**\n\n以下是針對各個詞彙的細節說明（台灣常用塔羅術語）：\n*   **Love:** 愛情\n*   **Potential:** 潛能 / 可能性\n*   **Emotional abundance:** 情感豐盈 / 情感充沛\n*   **Spiritual intuition:** 靈性直覺\n*   **New beginnings in the realm of the heart:** 感情世界（或心靈層面）中嶄新的開端。",
+    "zh": "愛情、潛能、情感豐盈、靈性直覺，以及心靈領域中嶄新的開始。",
     "en": "Love, potential, emotional abundance, spiritual intuition, and new beginnings in the realm of the heart."
   }
 }

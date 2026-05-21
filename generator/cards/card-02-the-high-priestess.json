@@ -72,7 +72,7 @@
     "arch-trees",
     "glowing-wood"
   ],
-  "output": "art/renders/card-02-the-high-priestess.png",
+  "output": "art/renders/card-02-the-high-priestess.webp",
   "meanings": {
     "upright": "Intuition, restraint, inner knowledge, and perception that moves beneath surface noise.",
     "reversed": "Blocked intuition, disconnection from instinct, hidden disturbance, or mistrust of inner knowing.",

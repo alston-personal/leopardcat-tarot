@@ -70,7 +70,7 @@
     "golden-coins",
     "lush-vegetation"
   ],
-  "output": "art/renders/card-pe-10-ten-of-pentacles.png",
+  "output": "art/renders/card-pe-10-ten-of-pentacles.webp",
   "meanings": {
     "upright": "Legacy, family inheritance, long-term stability, and the establishment of permanent nature reserves.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",

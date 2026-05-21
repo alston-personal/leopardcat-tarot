@@ -73,7 +73,7 @@
   "render_config": {
     "zoom": 0.9
   },
-  "output": "art/renders/card-sw-08-eight-of-swords.png",
+  "output": "art/renders/card-sw-08-eight-of-swords.webp",
   "meanings": {
     "upright": "Rest, recovery, meditation, solitude, and retreating from a conflict to regain strength.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",

@@ -72,7 +72,7 @@
   "render_config": {
     "trim": 30
   },
-  "output": "art/renders/card-wa-03-three-of-wands.png",
+  "output": "art/renders/card-wa-03-three-of-wands.webp",
   "meanings": {
     "upright": "Progress, expansion, looking toward the long-term, and successful growth of the population range.",
     "reversed": "Disrupted expansion, short-sightedness, or a failure to watch the horizon for opportunities/threats.",

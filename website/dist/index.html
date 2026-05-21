@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="hero.title">石虎塔羅 LeopardCat Tarot</title>
+    <meta name="description" content="靈山靈貓：一場連結生態與心靈的塔羅之旅。讓石虎大師為你指引方向。">
+    
+    <!-- 🌿 Spirit Mirror: Dynamic OG Tags v45 -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Serif+TC:wght@700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+    <script>
+      // 🕵️ Mobile Debug Mode
+      window.vConsole = new window.VConsole();
+    </script>
     
     <svg style="display: none;">
       <filter id="metallic-bevel">
@@ -18,8 +29,8 @@
         <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="composite"/></feMerge>
       </filter>
     </svg>
-  <script type="module" crossorigin src="/assets/index-Dg7wSxsu.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DJ3ZIivH.css">
+  <script type="module" crossorigin src="/assets/index-1rpcwD1S.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-cJli5CxJ.css">
 </head>
 <body>
     <nav class="navbar" style="padding: 0 20px;">
@@ -71,21 +82,44 @@
                     <span class="label" data-i18n="labels.wishing_well">Wishing Well</span>
                     <h2 class="glint-text" data-i18n="labels.fortune_title">靈山仙貓大師：塔羅占卜</h2>
                 </div>
-                <div id="fortune-panel" class="fortune-container" style="text-align: center; max-width: 750px; margin: 0 auto; background: rgba(5, 10, 8, 0.85); padding: 40px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.15); min-height: 480px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.8); backdrop-filter: blur(20px);">
+                <div id="fortune-panel" class="fortune-container sacred-panel">
                     <div id="fortune-ritual-area">
-                        <textarea id="fortune-question" data-i18n="common.placeholder_question" placeholder="在此輸入你的困惑，或是屏息靜心..." style="width: 100%; height: 100px; background: rgba(255,255,255,0.03); color: #fff; border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 15px; margin-bottom: 20px; font-size: 1.1rem; resize: none; outline: none;"></textarea>
+                        <textarea id="fortune-question" class="sacred-textarea" data-i18n="common.placeholder_question" placeholder="在此輸入你的困惑，或是屏息靜心..."></textarea>
                         <button class="btn btn-gold" data-i18n="common.btn_draw" onclick="drawFortune()">祈請大師開牌</button>
                     </div>
 
                     <div id="fortune-chat-area" class="hidden">
-                        <div id="chat-history" style="height: 380px; overflow-y: auto; text-align: left; padding: 15px; border-radius: 12px; background: rgba(0,0,0,0.2); margin-bottom: 20px;"></div>
-                        <div style="display: flex; gap: 10px;">
-                            <input type="text" id="chat-input" data-i18n="common.placeholder_chat" placeholder="進一步詢問..." style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); color: #fff; padding: 12px; border-radius: 10px; outline: none;">
-                            <button onclick="sendChatMessage()" class="btn btn-gold" data-i18n="common.btn_ask" style="padding: 10px 20px;">提問</button>
+                        <!-- 🎯 Pinned Drawn Card Area -->
+                        <div id="pinned-card-area" class="pinned-card-container hidden">
+                            <div id="pinned-card-display"></div>
                         </div>
-                        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 15px;">
-                            <button onclick="mintNFT()" class="btn btn-gold-outline" data-i18n="common.btn_mint" style="font-size: 0.75rem; padding: 6px 15px;">鑄造紀念 NFT</button>
-                            <button onclick="resetRitual()" class="btn btn-gold-outline" data-i18n="common.btn_reset" style="font-size: 0.75rem; padding: 6px 15px; opacity: 0.6;">重新祈願</button>
+                        
+                        <div id="chat-history" class="sacred-chat"></div>
+                        <div class="sacred-input-row">
+                            <input type="text" id="chat-input" class="sacred-input" data-i18n="common.placeholder_chat" placeholder="進一步詢問...">
+                            <button onclick="sendChatMessage()" class="btn btn-gold btn-small" data-i18n="common.btn_ask">提問</button>
+                        </div>
+                        <div id="fortune-actions" class="hidden sacred-actions">
+                            <div class="sacred-action-btns">
+                                <button id="btn-share-image" onclick="generateShareImage()" class="btn btn-gold btn-share" data-i18n="common.btn_share">生成靈山分享卡</button>
+                                <button onclick="resetRitual()" class="btn btn-gold-outline btn-small opacity-6" data-i18n="common.btn_reset">重新祈願</button>
+                            </div>
+                            <div id="social-share-row" class="hidden social-share-row">
+                                <span class="social-label">社群分享：</span>
+                                <a href="#" id="share-line" target="_blank" title="Line">
+                                    <svg class="social-icon" viewBox="0 0 24 24" fill="#00c300"><path d="M24 10.304c0-4.58-4.785-8.304-10.688-8.304C7.412 2 2.627 5.724 2.627 10.304c0 4.108 3.807 7.545 8.95 8.196.348.075.822.23 1.13.522.259.245.17.63.125.875-.125.688-.41 2.766-.51 3.42-.058.375-.27 1.467 1.157.8 1.425-.668 7.704-4.542 10.51-7.771C23.16 14.542 24 12.52 24 10.304zM8.338 12.872c0 .245-.198.442-.442.442H5.161c-.245 0-.442-.198-.442-.442V7.734c0-.245.198-.442.442-.442.245 0 .442.198.442.442v4.696h2.735c.245 0 .442.198.442.442zm3.96 0c0 .245-.198.442-.442.442h-.884c-.245 0-.442-.198-.442-.442V7.734c0-.245.198-.442.442-.442s.442.198.442.442v5.138h.442c.245 0 .442.198.442.442zm2.21 0c0 .245-.198.442-.442.442h-.884c-.245 0-.442-.198-.442-.442V7.734c0-.245.198-.442.442-.442s.442.198.442.442v5.138h.442c.245 0 .442.198.442.442zm6.186-4.696v4.696c0 .245-.198.442-.442.442h-2.735c-.245 0-.442-.198-.442-.442V7.734c0-.245.198-.442.442-.442h.884c.245 0 .442.198.442.442v4.254h1.412V7.734c0-.245.198-.442.442-.442s.442.198.442.442z"/></svg>
+                                </a>
+                                <a href="#" id="share-fb" target="_blank" title="Facebook">
+                                    <svg class="social-icon" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                                </a>
+                                <a href="#" id="share-x" target="_blank" title="X">
+                                    <svg class="social-icon" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.933zm-1.292 19.494h2.039L6.486 3.24H4.298l13.311 17.407z"/></svg>
+                                </a>
+                                <a href="#" id="share-threads" target="_blank" title="Threads">
+                                    <svg class="social-icon" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M16.4 12.1c0 1-.3 1.9-1 2.5-.7.6-1.5.9-2.5.9-.9 0-1.7-.3-2.4-.9-.7-.6-1-1.4-1-2.4 0-1 .3-1.8 1-2.4.7-.6 1.5-.9 2.4-.9 1 0 1.8.3 2.5.9.7.7 1 1.5 1 2.4zm5.1 1.1c.2 2-.5 3.8-1.9 5.2-1.4 1.4-3.2 2.1-5.4 2.1-2.5 0-4.6-.9-6.3-2.6-1.7-1.7-2.6-3.8-2.6-6.4s.9-4.7 2.6-6.4c1.7-1.7 3.8-2.6 6.3-2.6 2.4 0 4.4.8 5.9 2.3 1.5 1.5 2.2 3.5 2.1 5.8h-2.1c.1-1.7-.4-3.1-1.4-4.2-1-1.1-2.4-1.6-4.5-1.6-1.9 0-3.4.6-4.6 1.9-1.2 1.3-1.8 2.9-1.8 5s.6 3.7 1.8 5c1.2 1.3 2.7 1.9 4.6 1.9 1.6 0 2.9-.4 3.9-1.3 1-.8 1.4-2.1 1.5-3.8H12.9c-1.5 0-2.8-.5-3.9-1.4-1.1-.9-1.6-2.2-1.6-3.7 0-1.5.5-2.8 1.6-3.8 1.1-1 2.4-1.5 3.9-1.5 1.5 0 2.8.5 3.9 1.5 1.1 1 1.6 2.3 1.6 3.8 0 .4 0 .7-.1 1.1-.1.4-.2.8-.3 1.1z"/></svg>
+                                </a>
+                                <button id="btn-copy-url" onclick="copyRitualUrl()" class="btn btn-gold-outline btn-tiny" style="margin-left: 10px; font-size: 0.6rem;">複製連結</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -131,5 +165,40 @@
         </footer>
     </div>
 
+
+    <!-- Hidden Share Card Template (Spirit Memo Style) -->
+    <div id="share-card-container" style="position: absolute; left: -9999px; top: -9999px;">
+        <div id="share-card-template" class="share-card-body">
+            <div class="share-header">
+                <div class="share-logo" id="share-memo-title">靈山靈貓 · 石虎塔羅</div>
+                <div class="share-date" id="share-date">2026.05.15</div>
+            </div>
+            
+            <div class="share-main">
+                <div class="share-card-frame">
+                    <img id="share-card-img" src="" alt="Tarot Card">
+                </div>
+                <div class="share-info">
+                    <h2 id="share-card-title">【卡牌名稱】</h2>
+                    <div class="share-quote-container">
+                        <span class="quote-mark">「</span>
+                        <div class="share-quote" id="share-quote">大師開示的金句將顯示於此...</div>
+                        <span class="quote-mark" style="text-align: right;">」</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="share-footer">
+                <div class="share-seeker">
+                    <span class="label" id="share-seeker-label">求問者</span>
+                    <div id="share-seeker-name">Seeker</div>
+                </div>
+                <div class="share-site-info">
+                    <div class="site-url">leopardcat-tarot.com</div>
+                    <div class="site-tag" id="share-site-tag">與山靈連結 · 守護石虎</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

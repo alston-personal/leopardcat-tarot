@@ -70,7 +70,7 @@
     "semi-circle-cups",
     "warm-forest"
   ],
-  "output": "art/renders/card-cu-09-nine-of-cups.png",
+  "output": "art/renders/card-cu-09-nine-of-cups.webp",
   "meanings": {
     "upright": "Contentment, satisfaction, success, wishes fulfilled, and physical well-being.",
     "reversed": "Greed, excess, dissatisfaction, or a realization that physical wealth is not enough.",
@@ -102,7 +102,7 @@
     ]
   },
   "meaning": {
-    "zh": "這段塔羅牌義的繁體中文（台灣習慣用語）翻譯如下：\n\n**「滿足、滿意、成功、願望達成，以及身體健康（生理安適）。」**\n\n在塔羅牌（通常指聖杯九）的語境中，也可以更精煉地表達為：\n**「滿足、欣慰、成功、心想事成，以及身心的健康舒適。」**",
+    "zh": "滿足、滿意、成功、願望達成，以及身體健康（生理安適）。",
     "en": "Contentment, satisfaction, success, wishes fulfilled, and physical well-being."
   }
 }

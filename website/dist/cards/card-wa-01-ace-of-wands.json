@@ -72,7 +72,7 @@
   "render_config": {
     "trim": 30
   },
-  "output": "art/renders/card-wa-01-ace-of-wands.png",
+  "output": "art/renders/card-wa-01-ace-of-wands.webp",
   "meanings": {
     "upright": "A new opportunity, territorial expansion, inspiration, and the creative drive to establish oneself in new terrain.",
     "reversed": "Delayed dispersal, lack of direction, or an inability to claim one's own space.",

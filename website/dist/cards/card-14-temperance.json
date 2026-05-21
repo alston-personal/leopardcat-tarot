@@ -62,7 +62,7 @@
     "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. An angelic anthropomorphic Taiwan leopard cat with translucent wings, standing with one foot on a forest rock and the other in a clear stream. He pours water between two silver cups, creating a bridge of light. Meaning: Harmony, synthesis, and finding the perfect flow between wild and human-influenced environments.",
     "narrative": "An angelic anthropomorphic Taiwan leopard cat with translucent wings, standing with one foot on a forest rock and the other in a clear stream. He pours water between two silver cups, creating a bridge of light. Meaning: Harmony, synthesis, and finding the perfect flow between wild and human-influenced environments."
   },
-  "output": "art/renders/card-14-temperance.png",
+  "output": "art/renders/card-14-temperance.webp",
   "meaning": {
     "zh": "平衡、節制、融合，以及在衝突中尋找中間地帶。",
     "en": "Balance, moderation, patience, purpose, and harmonious blending."

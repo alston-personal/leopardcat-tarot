@@ -73,7 +73,7 @@
   "render_config": {
     "trim": 40
   },
-  "output": "art/renders/card-sw-02-two-of-swords.png",
+  "output": "art/renders/card-sw-02-two-of-swords.webp",
   "meanings": {
     "upright": "Indecision, choice, stalemate, blocked emotions, and being at a crossroads.",
     "reversed": "Confusion, information overload, or a decision that is finally made under pressure.",

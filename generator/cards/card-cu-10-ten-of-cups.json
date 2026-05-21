@@ -70,7 +70,7 @@
     "double-rainbow",
     "hillside-home"
   ],
-  "output": "art/renders/card-cu-10-ten-of-cups.png",
+  "output": "art/renders/card-cu-10-ten-of-cups.webp",
   "meanings": {
     "upright": "Happiness, emotional harmony, family, reunion, and a high sense of community.",
     "reversed": "Conflict in relationships, family disagreements, or a disconnection from a group.",
@@ -102,7 +102,7 @@
     ]
   },
   "meaning": {
-    "zh": "這段塔羅牌義的繁體中文（台灣習慣用語）翻譯如下：\n\n**「幸福、情感和諧、家庭、團聚、以及高度的社群感。」**\n\n在塔羅牌（通常指聖杯十）的語境中，也可以更優雅地表達為：\n**「幸福美滿、情感和諧、家庭生活、重逢團聚、強烈的社群歸屬感。」**\n\n---\n**詞彙解析：**\n*   **Happiness:** 幸福、快樂\n*   **Emotional harmony:** 情感和諧\n*   **Family:** 家庭\n*   **Reunion:** 團聚、團圓、重逢\n*   **High sense of community:** 高度的社群感、強烈的歸屬感（在台灣塔羅圈也常譯作「社群凝聚力」）",
+    "zh": "幸福、情感和諧、家庭、團聚、以及高度的社群感。",
     "en": "Happiness, emotional harmony, family, reunion, and a high sense of community."
   }
 }

@@ -73,7 +73,7 @@
   "render_config": {
     "trim": 40
   },
-  "output": "art/renders/card-sw-05-five-of-swords.png",
+  "output": "art/renders/card-sw-05-five-of-swords.webp",
   "meanings": {
     "upright": "Conflict, tension, loss, defeat, winning at all costs, and betrayal.",
     "reversed": "End of conflict, reconciliation, regret, and learning from past mistakes.",

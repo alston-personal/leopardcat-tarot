@@ -7,9 +7,21 @@ import os
 import ssl
 import traceback
 import sys
+import re
 
 PORT = 8088
 DIRECTORY = "dist"
+
+# 📚 Manifest Cache for Dynamic SEO/OG Tags
+CARD_MANIFEST = []
+try:
+    manifest_path = os.path.join(DIRECTORY, 'manifest.json')
+    if os.path.exists(manifest_path):
+        with open(manifest_path, 'r') as f:
+            CARD_MANIFEST = json.load(f)
+        print(f"✅ Loaded {len(CARD_MANIFEST)} cards into memory for dynamic OG tags.")
+except Exception as e:
+    print(f"❌ Failed to load manifest: {e}")
 
 def log(msg):
     print(msg, flush=True)
@@ -50,8 +62,6 @@ def load_env_key():
     return key
 
 API_KEY = load_env_key()
-log(f"API Key loaded (first 5 chars): {API_KEY[:5] if API_KEY else 'NONE'}")
-
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
@@ -63,6 +73,9 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         url_parts = self.path.split('?', 1)
         path = url_parts[0]
+        query = url_parts[1] if len(url_parts) > 1 else ""
+
+        # 👑 API Endpoints
         if path == '/api/stats':
             sdata = update_stats(divination=False)
             self.send_response(200)
@@ -70,8 +83,71 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
             self.wfile.write(json.dumps(sdata).encode('utf-8'))
-        else:
-            super().do_GET()
+            return
+
+        # 🔮 Dynamic SEO / Open Graph Injection for Social Sharing
+        if path == '/' or path == '/index.html':
+            card_id = None
+            if 'card=' in query:
+                match = re.search(r'card=([^&]+)', query)
+                if match:
+                    card_id = match.group(1)
+            
+            index_path = os.path.join(DIRECTORY, 'index.html')
+            if os.path.exists(index_path):
+                with open(index_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                
+                # 🌿 Construction of Metadata
+                host = 'leopardcat-tarot.milkcat.org'
+                base_url = f"https://{host}"
+                # 🖼️ Default Fallback Image (PNG for best FB stability)
+                meta_img = f"{base_url}/art/renders/card-00-the-fool.webp"
+                meta_title = "靈山靈貓 · 石虎塔羅 LeopardCat Tarot"
+                meta_desc = "連結淺山靈魂，傾聽大師開示。讓石虎為您指引生命的方向。"
+                
+                if card_id:
+                    card = next((c for c in CARD_MANIFEST if c['id'] == card_id), None)
+                    if card:
+                        meta_title = f"我在石虎塔羅抽到了：{card['title']['zh']} | {card['title']['en']}"
+                        meta_desc = f"{card['ecology']['zh'][:100]}..."
+                        meta_img = f"{base_url}/{card['image']}?v=v44"
+
+                # 🌿 Use Placeholder Replacement (Robust & Reliable)
+                # Match: <title data-i18n="hero.title">石虎塔羅 LeopardCat Tarot</title>
+                content = content.replace('石虎塔羅 LeopardCat Tarot', meta_title)
+                # Match: <meta name="description" content="...">
+                content = content.replace('靈山靈貓：一場連結生態與心靈的塔羅之旅。讓石虎為您指引方向。', meta_desc)
+                
+                # 🖼️ Inject Unified OG Tags
+                og_tags = f"""
+    <title>{meta_title}</title>
+    <meta name="description" content="{meta_desc}">
+    <meta property="og:title" content="{meta_title}">
+    <meta property="og:description" content="{meta_desc}">
+    <meta property="og:image" content="https://leopardcat-tarot.milkcat.org/spirit-vision/{os.path.splitext(os.path.basename(meta_img))[0]}.webp?v=v999">
+    <meta property="og:image:secure_url" content="https://leopardcat-tarot.milkcat.org/spirit-vision/{os.path.splitext(os.path.basename(meta_img))[0]}.webp?v=v999">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1800">
+    <meta property="og:image:alt" content="{meta_title}">
+    <meta property="og:url" content="{base_url}{self.path}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://leopardcat-tarot.milkcat.org/spirit-vision/{os.path.splitext(os.path.basename(meta_img))[0]}.webp?v=v999">"""
+                content = content.replace('<!-- 🌿 Spirit Mirror: Dynamic OG Tags v45 -->', og_tags)
+                
+                self.send_response(200)
+                self.send_header('Content-type', 'text/html; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
+                self.send_header('Pragma', 'no-cache')
+                self.send_header('Expires', '0')
+                self.end_headers()
+                self.wfile.write(content.encode('utf-8'))
+                return
+
+        super().do_GET()
 
     def do_POST(self):
         if self.path == '/api/fortune':
@@ -85,14 +161,27 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 lang = req_data.get('lang', 'zh')
                 history = req_data.get('history', [])
 
-                log(f"Fortune Request: Q='{question}', Card='{card_title}', Lang='{lang}', History_len={len(history)}")
+                # 📈 Immediate Stats Update (Count the attempt)
+                update_stats(divination=True)
+
+                # 🛠️ Spirit Simulator (Debug Mode)
+                if question.upper() == 'DEBUG' or question.upper() == 'FORCE_DEBUG':
+                    log(f"🛠️ Debug Mode Active: Bypassing Gemini API for {card_title}")
+                    mock_reading = f"（靈力模擬中）這是一則來自淺山的測試訊息。您抽到了「{card_title}」，靈貓正守護著您的分享測試。 <div class='hidden-quote' style='display:none'>靈貓守護，測試順利。</div>"
+                    self.send_response(200)
+                    self.send_header('Content-type', 'application/json')
+                    self.send_header('Access-Control-Allow-Origin', '*')
+                    self.end_headers()
+                    self.wfile.write(json.dumps({"reading": mock_reading}).encode('utf-8'))
+                    return
+
+                log(f"Fortune Request: Q='{question}', Card='{card_title}', Lang='{lang}'")
 
                 contents = []
                 for h in history:
                     role = "user" if h['role'] == 'user' else "model"
                     contents.append({"role": role, "parts": [{"text": h['content']}]})
                 
-                # System prompt + latest question
                 system_lang = "Traditional Chinese (Taiwan)" if lang == 'zh' else "English"
                 system_prompt = f"You are the 'Hill Spirit Master' of a Leopard Cat Tarot deck, a wise guardian of the shallow mountains. Connect the leopard cat's survival journey to the seeker's life. "
                 
@@ -120,36 +209,25 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
                 payload = {"contents": contents}
                 gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
-                
                 req = urllib.request.Request(gemini_url, data=json.dumps(payload).encode('utf-8'), headers={'Content-Type': 'application/json'})
                 
-                log(f"Calling Gemini API...")
                 with urllib.request.urlopen(req, context=ctx) as response:
                     res_data = json.loads(response.read().decode('utf-8'))
                     reading = res_data['candidates'][0]['content']['parts'][0]['text']
-                    log(f"Gemini Response Success (len={len(reading)})")
-                update_stats(divination=True)
-
+                
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.send_header('Access-Control-Allow-Origin', '*')
                 self.end_headers()
                 self.wfile.write(json.dumps({"reading": reading}).encode('utf-8'))
-                
             except Exception as e:
                 log(f"!!! FORTUNE ERROR: {e}")
-                traceback.print_exc(file=sys.stdout)
-                sys.stdout.flush()
                 self.send_response(500)
-                self.send_header('Content-type', 'application/json')
-                self.send_header('Access-Control-Allow-Origin', '*')
                 self.end_headers()
-                self.wfile.write(json.dumps({"error": str(e), "reading": "（大師閉目沉思中，請稍後再試...）"}).encode('utf-8'))
         else:
             self.send_error(404)
 
 socketserver.TCPServer.allow_reuse_address = True
-# Use ThreadingTCPServer to handle multiple concurrent asset requests (essential for mobile gallery performance)
 with socketserver.ThreadingTCPServer(("", PORT), MyHttpRequestHandler) as httpd:
-    log(f"LCS Server running on {PORT} (Multi-threaded)")
+    log(f"LCS v45 Server running on {PORT}")
     httpd.serve_forever()

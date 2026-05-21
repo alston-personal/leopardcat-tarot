@@ -1,37 +1,49 @@
 {
   "zh": {
+    "common": {
+      "nav_logo": "靈山靈貓",
+      "stat_visitors": "訪客",
+      "stat_divinations": "占卜",
+      "seeker": "求道者",
+      "mana": "靈氣",
+      "btn_draw": "祈請大師開牌",
+      "btn_ask": "提問",
+      "btn_mint": "鑄造紀念 NFT",
+      "btn_reset": "重新祈願",
+      "placeholder_question": "在此輸入你的困惑，或是屏息靜心...",
+      "placeholder_chat": "進一步詢問...",
+      "msg_sensing": "大師正在感應中...",
+      "msg_draw_prefix": "大師為你抽出了",
+      "label_tarot_meaning": "塔羅牌義",
+      "label_eco_connection": "石虎生態",
+      "err_mana_depleted": "⚡ 靈氣已耗盡。",
+      "err_empty_question": "大師需要聽見你心中的疑惑！",
+      "dharma_prefixes": ["山林", "雲霧", "古剎", "石虎", "冥想", "靜心"],
+      "dharma_suffixes": ["行者", "求道貓", "徒兒", "隱士"]
+    },
     "nav": {
       "home": "首頁",
-      "intro": "生態靈魂",
-      "events": "生命紀事",
-      "gallery": "大阿爾克那",
       "fortune": "大師占卜",
-      "logo": "靈山靈貓 | 石虎計畫"
+      "gallery": "藝廊",
+      "intro": "生態靈魂"
     },
     "hero": {
-      "hero_title": "靈山靈貓",
-      "hero_subtitle": "靈魂深處的棲地之旅：石虎保育計畫",
-      "hero_cta": "進入山林",
-      "hero_cta_fortune": "詢問大師"
+      "title": "靈山靈貓",
+      "subtitle": "石虎聖所：一場生態心靈之旅",
+      "cta_fortune": "詢問大師",
+      "cta_intro": "進入山林"
     },
     "labels": {
-      "label_intro": "前言導引",
-      "title_intro": "森與靈的守護者",
-      "label_history": "保育進程",
-      "title_history": "環境生命紀事",
-      "btn_gallery": "進入大阿爾克那展廳",
-      "label_gallery": "展示藝廊",
-      "title_gallery": "大阿爾克那：石虎的生命旅程",
-      "label_fortune": "許願池",
-      "title_fortune": "靈山仙貓大師：塔羅占卜",
-      "placeholder_fortune": "請問大師，我心中的疑惑是...",
-      "btn_fortune_draw": "祈請大師開牌",
-      "label_cta": "行動呼籲",
-      "title_cons": "加入保育行動"
+      "wishing_well": "許願池",
+      "fortune_title": "靈山仙貓大師：塔羅占卜",
+      "intro_label": "前言導覽",
+      "intro_title": "森與靈的守護者",
+      "history_label": "歷史紀錄",
+      "history_title": "環境生命紀事",
+      "gallery_label": "展示藝廊",
+      "gallery_title": "大阿爾克那：石虎的生命旅程"
     },
     "introduction": {
-      "title": "森與靈的守護者",
-      "subtitle": "台灣石虎 (Prionailurus bengalensis)",
       "description": "石虎不是台灣特有種，但卻是台灣現存唯一的本土原生貓科動物。牠們廣泛分布於亞洲，但在台灣僅剩不到 1,000 隻，正面臨極大的生存挑戰。每一張塔羅牌，都是牠們在棲地中求生存的真實縮影。",
       "stats": [
         {"label": "估計數量", "value": "少於 1,000 隻"},
@@ -44,40 +56,27 @@
         "date": "2019 - 苗栗",
         "title": "首座路殺防護圍籬系統",
         "description": "在台 13 甲線建立防護網，並設置生態廊道，監測顯示石虎已開始頻繁利用。",
-        "tag": "Conservation",
-        "attribution": "影像來源：公路局第一區養護工程處"
+        "tag": "保育"
       },
       {
         "date": "2024 - 台中",
         "title": "棲地海拔紀錄突破",
         "description": "於海拔 1050 公尺發現蹤跡，顯示石虎活動範圍受友善農法影響而擴張。",
-        "tag": "Discovery",
-        "attribution": "報導出處：林業及自然保育署台中分署"
+        "tag": "發現"
       },
       {
         "date": "2025 - 彰化",
         "title": "首次確認石虎族群繁衍",
         "description": "在溪州鄉拍到石虎寶寶與家族活動，證實石虎族群在新棲地成功扎根。",
-        "tag": "Ecology",
-        "attribution": "紀錄片：彰化縣政府自然生態教育中心"
+        "tag": "生態"
       },
       {
         "date": "2024 - 創作",
         "title": "AI 石虎塔羅計畫啟動",
         "description": "本網站專案開始，結合 生成式 AI 藝術與神祕學，為台灣生態保育注入全新的數位創意能量。",
-        "tag": "Digital-Art",
-        "attribution": "創作團隊：石虎聖所數位工作室"
+        "tag": "數位藝術"
       }
     ],
-    "conservation": {
-      "title": "加入保育行動",
-      "description": "守護石虎需要您的關注與支持，請訪問相關保育團體了解更多。",
-      "links": [
-        {"name": "台灣石虎保育協會", "url": "https://www.twlcat.org/"},
-        {"name": "農業部生物多樣性研究所", "url": "https://www.biodiv.tw/"},
-        {"name": "野灣野生動物救援協會", "url": "https://www.wildone.org.tw/"}
-      ]
-    },
     "groups": [
       {"id": "material", "title": "第一階段：物質與生存 (0-7)", "description": "探索石虎在現實世界中的初次闖蕩與社會連結。"},
       {"id": "inner", "title": "第二階段：內在與考驗 (8-14)", "description": "進入深山幽谷，面對孤獨與生命循環的深度洗禮。"},
@@ -87,108 +86,97 @@
       {"id": "swords", "title": "寶劍組：衝突與生存決斷", "description": "象徵石虎在危機四伏的地景中所需的洞察力與決定，面對生存邊緣的智慧。"},
       {"id": "pentacles", "title": "金幣組：物質豐饒與地景資源", "description": "象徵石虎對食物來源、穩定棲地與物質基礎的掌握，代表生存的保障。"}
     ],
-    "support": {
-      "label_support": "贊助支持",
-      "title_support": "支持靈山靈貓計畫",
-      "desc_support": "如果您認同我們的理念，歡迎透過以下方式支持計畫持續運作，讓石虎的靈魂故事能繼續傳承。"
-    },
     "footer": {
       "copyright": "© 2026 靈山靈貓 | 石虎塔羅計畫。保留所有權利。"
     }
   },
   "en": {
+    "common": {
+      "nav_logo": "Hill Spirit",
+      "stat_visitors": "Visitors",
+      "stat_divinations": "Oracle",
+      "seeker": "Seeker",
+      "mana": "Mana",
+      "btn_draw": "Draw Your Destiny",
+      "btn_ask": "Ask",
+      "btn_mint": "Mint Memory NFT",
+      "btn_reset": "New Ritual",
+      "placeholder_question": "Enter your question or hold your breath...",
+      "placeholder_chat": "Ask the Master further...",
+      "msg_sensing": "The Master is sensing...",
+      "msg_draw_prefix": "The Master has drawn",
+      "label_tarot_meaning": "Tarot Meaning",
+      "label_eco_connection": "Eco-Connection",
+      "err_mana_depleted": "⚡ Mana depleted.",
+      "err_empty_question": "The Master needs to hear your question!",
+      "dharma_prefixes": ["Forest", "Mist", "Old-Temple", "Wild-Cat", "Zen", "Pure"],
+      "dharma_suffixes": ["Seeker", "Disciple", "Adept", "Hermit"]
+    },
     "nav": {
       "home": "Home",
-      "intro": "Ecological Soul",
-      "events": "Chronicles",
-      "gallery": "Major Arcana",
-      "fortune": "Fortune",
-      "logo": "Leopard Cat | The Sanctuary"
+      "fortune": "Oracle",
+      "gallery": "Gallery",
+      "intro": "Eco-Soul"
     },
     "hero": {
-      "hero_title": "Spirit of the Hill",
-      "hero_subtitle": "A Journey into the Soul of the Leopard Cat",
-      "hero_cta": "Enter the Woods",
-      "hero_cta_fortune": "Ask the Master"
+      "title": "Hill Spirit",
+      "subtitle": "Leopard Cat Sanctuary: An Ecological Journey",
+      "cta_fortune": "Ask the Master",
+      "cta_intro": "Enter the Woods"
     },
     "labels": {
-      "label_intro": "Introduction",
-      "title_intro": "Guardian of Forest & Spirit",
-      "label_history": "History",
-      "title_history": "Ecological Chronicles",
-      "btn_gallery": "Enter the Tarot Gallery",
-      "label_gallery": "The Tarot Gallery",
-      "title_gallery": "Major Arcana: The Life Journey",
-      "label_fortune": "Wishing Well",
-      "title_fortune": "LeopardCat Oracle: Tarot Reading",
-      "placeholder_fortune": "Ask the AI Oracle your question...",
-      "btn_fortune_draw": "Draw Your Destiny",
-      "label_cta": "Call to Action",
-      "title_cons": "Join the Movement"
+      "wishing_well": "Wishing Well",
+      "fortune_title": "LeopardCat Oracle: Tarot Reading",
+      "intro_label": "Introduction",
+      "intro_title": "Guardian of Forest & Spirit",
+      "history_label": "History",
+      "history_title": "Ecological Chronicles",
+      "gallery_label": "Gallery",
+      "gallery_title": "Major Arcana: The Life Journey"
     },
     "introduction": {
-      "title": "Guardian of Forest & Spirit",
-      "subtitle": "Taiwan Leopard Cat (Prionailurus bengalensis)",
-      "description": "The Leopard Cat is the only extant native wild cat species in Taiwan. Widely distributed across Asia, fewer than 1,000 remain in Taiwan, facing severe survival challenges. Every Tarot card captures a moment of their struggle for survival.",
+      "description": "The Leopard Cat is the only native wild cat in Taiwan. Widely distributed in Asia, fewer than 1,000 remain in Taiwan, facing severe survival challenges. Every Tarot card captures a moment of their struggle for survival.",
       "stats": [
-        {"label": "Estimated Population", "value": "Less than 1,000"},
-        {"label": "Status", "value": "Category I Endangered"},
-        {"label": "Distribution Hotspots", "value": "Miaoli, Taichung, Nantou"}
+        {"label": "Estimated Pop.", "value": "< 1,000"},
+        {"label": "Status", "value": "Endangered Cat. I"},
+        {"label": "Hotspots", "value": "Miaoli, Taichung, Nantou"}
       ]
     },
     "events": [
       {
         "date": "2019 - Miaoli",
-        "title": "First Roadkill Prevention Fencing",
-        "description": "Established protection nets and ecological corridors on Route 13A. Monitoring shows frequent use by leopard cats.",
-        "tag": "Conservation",
-        "attribution": "Source: Directorate General of Highways"
+        "title": "First Roadkill Fence System",
+        "description": "Established protection nets and ecological corridors on Route 13A. Monitoring shows frequent use.",
+        "tag": "Conservation"
       },
       {
         "date": "2024 - Taichung",
         "title": "Elevation Record Breakthrough",
-        "description": "Traces found at 1,050m elevation, showing habitat expansion influenced by eco-friendly farming practices.",
-        "tag": "Discovery",
-        "attribution": "Source: Forestry and Nature Conservation Agency"
+        "description": "Traces found at 1,050m elevation, showing habitat expansion influenced by eco-friendly farming.",
+        "tag": "Discovery"
       },
       {
         "date": "2025 - Changhua",
-        "title": "Breeding Population Confirmed",
-        "description": "Footage of leopard cat kittens and families in Xizhou confirms successful colonization of new habitats.",
-        "tag": "Ecology",
-        "attribution": "Documentary: Changhua Nature Center"
+        "title": "Breeding Confirmed",
+        "description": "Footage of kittens in Xizhou confirms successful colonization of new habitats.",
+        "tag": "Ecology"
       },
       {
         "date": "2024 - Project",
         "title": "AI Leopard Cat Tarot Launch",
-        "description": "The project begins, blending Generative AI art with mysticism to inject new digital creative energy into Taiwan's conservation.",
-        "tag": "Digital-Art",
-        "attribution": "Team: Leopard Cat Sanctuary Studio"
+        "description": "Project begins, blending AI art with mysticism for ecological conservation.",
+        "tag": "Digital-Art"
       }
     ],
-    "conservation": {
-      "title": "Join the Movement",
-      "description": "Leopard Cat survival needs your attention. Visit these organizations to learn more and support their mission.",
-      "links": [
-        {"name": "Leopard Cat Association", "url": "https://www.twlcat.org/"},
-        {"name": "Bio-Diversity Research Institute", "url": "https://www.biodiv.tw/"},
-        {"name": "WildOne Wildlife Rescue", "url": "https://www.wildone.org.tw/"}
-      ]
-    },
     "groups": [
-      {"id": "material", "title": "Phase I: Material & Survival (0-7)", "description": "Exploring the first encounters and social bonds of leopard cats in the physical world."},
-      {"id": "inner", "title": "Phase II: Inner Trials (8-14)", "description": "Descending into deep valleys to face solitude and the profound cycles of life."},
-      {"id": "cosmic", "title": "Phase III: Awakening & Harmony (15-21)", "description": "Transcending disasters and dreams to reach final harmony with human civilization."},
-      {"id": "wands", "title": "Suit of Wands: Action & Territory", "description": "Symbolizing the expansion of the population and the search for new habitats. Every dispersal is a spark of survival."},
-      {"id": "cups", "title": "Suit of Cups: Water & Intuition", "description": "Symbolizing the bond with water habitats, representing emotion, healing, and inner vision."},
-      {"id": "swords", "title": "Suit of Swords: Conflict & Survival Logic", "description": "Symbolizing the sharp focus and decision-making required for survival in a dangerous, human-altered landscape."},
-      {"id": "pentacles", "title": "Suit of Pentacles: Abundance & Resource", "description": "Symbolizing the mastery of food sources and stable habitats, representing the foundation of physical survival."}
+      {"id": "material", "title": "Phase I: Material & Survival (0-7)", "description": "Exploring first encounters and social bonds in the physical world."},
+      {"id": "inner", "title": "Phase II: Inner Trials (8-14)", "description": "Solitude and the profound cycles of life in deep valleys."},
+      {"id": "cosmic", "title": "Phase III: Awakening & Harmony (15-21)", "description": "Transcending disasters to reach harmony with human civilization."},
+      {"id": "wands", "title": "Suit of Wands: Action & Territory", "description": "Population expansion and the search for new habitats."},
+      {"id": "cups", "title": "Suit of Cups: Water & Intuition", "description": "The bond with water habitats, emotion, healing, and vision."},
+      {"id": "swords", "title": "Suit of Swords: Conflict & Logic", "description": "Sharp focus and decision-making in human-altered landscapes."},
+      {"id": "pentacles", "title": "Suit of Pentacles: Abundance & Resource", "description": "Mastery of food sources and stable habitats."}
     ],
-    "support": {
-      "label_support": "Support the Project",
-      "title_support": "Preserve the Sanctuary",
-      "desc_support": "If you resonate with our mission, your support helps us continue documenting the soul of the leopard cat through art."
-    },
     "footer": {
       "copyright": "© 2026 LeopardCat Tarot Project. All rights reserved."
     }

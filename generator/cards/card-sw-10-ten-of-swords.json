@@ -70,7 +70,7 @@
     "stone-effigy",
     "hanging-swords"
   ],
-  "output": "art/renders/card-sw-10-ten-of-swords.png",
+  "output": "art/renders/card-sw-10-ten-of-swords.webp",
   "meanings": {
     "upright": "Tragedy, betrayal, rock bottom, defeat, and painful endings.",
     "reversed": "Recovery, resisting rock bottom, and the possibility of a new beginning after disaster.",

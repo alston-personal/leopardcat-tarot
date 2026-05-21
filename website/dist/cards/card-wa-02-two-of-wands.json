@@ -72,7 +72,7 @@
   "render_config": {
     "trim": 30
   },
-  "output": "art/renders/card-wa-02-two-of-wands.png",
+  "output": "art/renders/card-wa-02-two-of-wands.webp",
   "meanings": {
     "upright": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments.",
     "reversed": "Indecision, fear of the unknown, or poor evaluation of landscape safety.",

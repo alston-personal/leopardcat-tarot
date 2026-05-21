@@ -73,7 +73,7 @@
     "trim": 30,
     "zoom": 0.85
   },
-  "output": "art/renders/card-wa-04-four-of-wands.png",
+  "output": "art/renders/card-wa-04-four-of-wands.webp",
   "meanings": {
     "upright": "Celebration, harmony, a sense of belonging, and the establishment of a safe home base within the territory.",
     "reversed": "Instability at home, lack of community support, or a temporary 'safe' zone that is actually under threat.",

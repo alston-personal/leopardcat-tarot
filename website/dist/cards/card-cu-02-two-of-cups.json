@@ -70,7 +70,7 @@
     "caduceus-in-mist",
     "moonlit-stream"
   ],
-  "output": "art/renders/card-cu-02-two-of-cups.png",
+  "output": "art/renders/card-cu-02-two-of-cups.webp",
   "meanings": {
     "upright": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony.",
     "reversed": "Disharmony, distrust, or a temporary separation from a partner.",
@@ -102,7 +102,7 @@
     ]
   },
   "meaning": {
-    "zh": "這段塔羅牌義的繁體中文（台灣習慣用語）翻譯如下：\n\n**「相互信任、夥伴關係、吸引力、浪漫，以及二元性在和諧中的平衡。」**\n\n在塔羅牌的語境中，也可以稍微修飾得更具靈性或流暢感：\n\n**「彼此的信任、夥伴關係、吸引力、浪漫情調，以及二元對立在和諧中的平衡。」**",
+    "zh": "相互信任、夥伴關係、吸引力、浪漫，以及二元性在和諧中的平衡。",
     "en": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony."
   }
 }

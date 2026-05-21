@@ -70,7 +70,7 @@
     "silver-sword",
     "floating-crown"
   ],
-  "output": "art/renders/card-sw-01-ace-of-swords.png",
+  "output": "art/renders/card-sw-01-ace-of-swords.webp",
   "meanings": {
     "upright": "Clarity, breakthrough, power, mental strength, and success through logic.",
     "reversed": "Confusion, misunderstanding, or a power that is misdirected and destructive.",

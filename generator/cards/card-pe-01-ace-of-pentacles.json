@@ -70,7 +70,7 @@
     "golden-coins",
     "lush-vegetation"
   ],
-  "output": "art/renders/card-pe-01-ace-of-pentacles.png",
+  "output": "art/renders/card-pe-01-ace-of-pentacles.webp",
   "meanings": {
     "upright": "A new material opportunity, prosperity, health, and the abundance of survival resources.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",

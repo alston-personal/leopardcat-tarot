@@ -70,7 +70,7 @@
     "golden-coins",
     "lush-vegetation"
   ],
-  "output": "art/renders/card-pe-04-four-of-pentacles.png",
+  "output": "art/renders/card-pe-04-four-of-pentacles.webp",
   "meanings": {
     "upright": "Security, stability, control, and the strict protection of core habitat.",
     "reversed": "Restlessness, burnout, or a return to world before full recovery.",
