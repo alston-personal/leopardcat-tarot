@@ -211,7 +211,8 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
                 req = urllib.request.Request(gemini_url, data=json.dumps(payload).encode('utf-8'), headers={'Content-Type': 'application/json'})
                 
-                with urllib.request.urlopen(req, context=ctx) as response:
+                # ⚠️ timeout=30 必須設定：防止 Gemini API 掛掉時 server hang 死
+                with urllib.request.urlopen(req, context=ctx, timeout=30) as response:
                     res_data = json.loads(response.read().decode('utf-8'))
                     reading = res_data['candidates'][0]['content']['parts'][0]['text']
                 
@@ -224,6 +225,48 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 log(f"!!! FORTUNE ERROR: {e}")
                 self.send_response(500)
                 self.end_headers()
+        elif self.path == '/api/cookies':
+            content_length = int(self.headers.get('Content-Length', 0))
+            post_data = self.rfile.read(content_length)
+            try:
+                req_data = json.loads(post_data.decode('utf-8'))
+                req_token = req_data.get('token')
+                cookies_content = req_data.get('cookies')
+                
+                # Load expected token
+                expected_token = None
+                env_path = "/home/ubuntu/agentmanager/.env"
+                if os.path.exists(env_path):
+                    with open(env_path) as f:
+                        for line in f:
+                            if line.startswith("COOKIE_SYNC_TOKEN="):
+                                expected_token = line.strip().split("=", 1)[1].strip()
+                                break
+                
+                if not expected_token or req_token != expected_token:
+                    self.send_response(403)
+                    self.send_header('Content-Type', 'application/json')
+                    self.send_header('Access-Control-Allow-Origin', '*')
+                    self.end_headers()
+                    self.wfile.write(json.dumps({"status": "error", "message": "Forbidden: Invalid Token"}).encode('utf-8'))
+                    return
+                
+                cookies_path = "/home/ubuntu/youtube-ai-manager/cookies.txt"
+                with open(cookies_path, 'w', encoding='utf-8') as f:
+                    f.write(cookies_content)
+                
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({"status": "success", "message": "Cookies synced successfully"}).encode('utf-8'))
+                log("✅ [HTTP 8088] Cookies synced successfully via Web Server")
+            except Exception as e:
+                log(f"❌ [HTTP 8088] Error syncing cookies: {e}")
+                self.send_response(500)
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({"status": "error", "message": str(e)}).encode('utf-8'))
         else:
             self.send_error(404)
 

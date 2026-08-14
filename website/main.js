@@ -13,12 +13,50 @@ window.cardData = [];
 window.currentDrawnCard = null;
 
 // ⚡ Restored to normal limit (5) for production
-let chatQuota = parseInt(localStorage.getItem('chatQuota'));
-if (isNaN(chatQuota) || chatQuota > 5) {
-    chatQuota = 5; 
-    localStorage.setItem('chatQuota', chatQuota);
+let chatQuota = 5;
+let lastManaRegen = Date.now();
+
+function checkAndRegenMana() {
+    const now = Date.now();
+    let quota = parseInt(localStorage.getItem('chatQuota'));
+    if (isNaN(quota) || quota > 5) {
+        quota = 5;
+    }
+    let lastRegen = parseInt(localStorage.getItem('lastManaRegen'));
+    if (isNaN(lastRegen)) {
+        lastRegen = now;
+        localStorage.setItem('lastManaRegen', lastRegen);
+    }
+
+    if (quota >= 5) {
+        lastRegen = now;
+        localStorage.setItem('lastManaRegen', lastRegen);
+        chatQuota = 5;
+        lastManaRegen = lastRegen;
+        return;
+    }
+
+    const msPassed = now - lastRegen;
+    const regenInterval = 10 * 60 * 1000; // 10 minutes
+    const pointsToRegen = Math.floor(msPassed / regenInterval);
+
+    if (pointsToRegen > 0) {
+        quota = Math.min(5, quota + pointsToRegen);
+        if (quota === 5) {
+            lastRegen = now;
+        } else {
+            lastRegen = lastRegen + (pointsToRegen * regenInterval);
+        }
+        localStorage.setItem('chatQuota', quota);
+        localStorage.setItem('lastManaRegen', lastRegen);
+    }
+    
+    chatQuota = quota;
+    lastManaRegen = lastRegen;
 }
-let lastManaRegen = parseInt(localStorage.getItem('lastManaRegen')) || Date.now();
+
+// Perform initial offline regeneration calculation immediately
+checkAndRegenMana();
 let currentChatHistory = [];
 
 // ⚡ Immediate assignment for global access
@@ -87,17 +125,9 @@ async function updateTempleStats() {
 
 function startManaRegen() {
     setInterval(() => {
-        const now = Date.now();
-        const minutesPassed = (now - lastManaRegen) / (1000 * 60);
-        
-        if (minutesPassed >= 10 && chatQuota < 5) {
-            chatQuota = Math.min(5, chatQuota + 1);
-            lastManaRegen = now;
-            localStorage.setItem('chatQuota', chatQuota);
-            localStorage.setItem('lastManaRegen', lastManaRegen);
-            updateUIQuota();
-        }
-    }, 60 * 1000); 
+        checkAndRegenMana();
+        updateUIQuota();
+    }, 30 * 1000); 
 }
 
 function updateUIQuota() {
@@ -133,6 +163,7 @@ async function initAllSystems() {
             applyLanguage();
             initDharmaIdentity();
             updateTempleStats();
+            checkAndRegenMana();
             startManaRegen();
             updateUIQuota();
             hideLoader(); // Success!
@@ -714,6 +745,10 @@ window.drawFortune = async function() {
     
     // Decrement quota immediately (unless DEBUG)
     if (q.toUpperCase() !== 'DEBUG' && q.toUpperCase() !== 'FORCE_DEBUG') {
+        if (chatQuota === 5) {
+            lastManaRegen = Date.now();
+            localStorage.setItem('lastManaRegen', lastManaRegen);
+        }
         chatQuota--;
         updateUIQuota();
     }
@@ -863,6 +898,10 @@ window.sendChatMessage = async function() {
     input.value = '';
     appendBubble('user', text);
     if (text.toUpperCase() !== 'DEBUG' && text.toUpperCase() !== 'FORCE_DEBUG') {
+        if (chatQuota === 5) {
+            lastManaRegen = Date.now();
+            localStorage.setItem('lastManaRegen', lastManaRegen);
+        }
         chatQuota--; 
         updateUIQuota();
     }
