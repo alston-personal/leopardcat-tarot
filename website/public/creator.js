@@ -10,8 +10,12 @@
   const HISTORY_KEY = 'leopardcat-published-decks-v1';
   const deckSlug = document.getElementById('deck-slug');
   const slugStatus = document.getElementById('slug-status');
+  const personaOptions = document.getElementById('persona-options');
+  const personaStatus = document.getElementById('persona-status');
   let slugCheckTimer = null;
   let slugAvailable = null;
+  let personas = [];
+  let selectedPersonaId = 'master';
 
   function normalizeSlug(value) {
     return String(value || '').toLowerCase().trim().replace(/[^a-z0-9-]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '').slice(0, 48);
@@ -43,7 +47,6 @@
     slugCheckTimer = setTimeout(() => checkSlugAvailability(false), 350);
   });
 
-
   function getPublishedHistory() {
     try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); }
     catch (_) { return []; }
@@ -73,6 +76,50 @@
   const friendlyName = (filename) => filename.replace(/\.[^.]+$/, '').replace(/^\d+[\s._-]*/, '').replace(/[_-]+/g, ' ').trim();
   const escapeHtml = (s) => String(s || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 
+  function renderPersonaOptions() {
+    if (!personaOptions) return;
+    if (!personas.length) {
+      personaOptions.innerHTML = '<p class="muted">目前使用通用解牌師。</p>';
+      selectedPersonaId = 'master';
+      return;
+    }
+    if (!personas.some(x => x.persona_id === selectedPersonaId)) {
+      selectedPersonaId = personas.some(x => x.persona_id === 'master') ? 'master' : personas[0].persona_id;
+    }
+    personaOptions.innerHTML = personas.map(p => `
+      <label class="persona-option">
+        <input type="radio" name="default-persona" value="${escapeHtml(p.persona_id)}" ${p.persona_id === selectedPersonaId ? 'checked' : ''}>
+        <span><strong>${escapeHtml(p.name)}</strong><span class="muted">${escapeHtml(p.role || '')}</span></span>
+      </label>`).join('');
+    personaOptions.querySelectorAll('input[name="default-persona"]').forEach(el => {
+      el.addEventListener('change', () => {
+        if (el.checked) {
+          selectedPersonaId = el.value;
+          const p = personas.find(x => x.persona_id === selectedPersonaId);
+          personaStatus.textContent = p ? `這副牌發布後會預設由「${p.name}」解讀。` : '';
+        }
+      });
+    });
+    const p = personas.find(x => x.persona_id === selectedPersonaId);
+    personaStatus.textContent = p ? `這副牌發布後會預設由「${p.name}」解讀。` : '';
+  }
+
+  async function loadPersonas() {
+    try {
+      const r = await fetch('/api/v1/personas?deck=leopardcat', {cache:'no-store'});
+      if (!r.ok) throw new Error('persona catalog unavailable');
+      const data = await r.json();
+      personas = Array.isArray(data.personas) ? data.personas : [];
+      selectedPersonaId = personas.some(x => x.persona_id === 'master') ? 'master' : (data.default_persona || personas[0]?.persona_id || 'master');
+      renderPersonaOptions();
+    } catch (_) {
+      personas = [{persona_id:'master', name:'通用解牌師', role:'中立、謹慎、實用的塔羅解讀'}];
+      selectedPersonaId = 'master';
+      renderPersonaOptions();
+      personaStatus.textContent = '目前只顯示通用解牌師；其他解牌風格稍後可再切換。';
+    }
+  }
+
   const optimizeImage = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onerror = reject;
@@ -96,16 +143,10 @@
 
   async function readApiResponse(resp) {
     const contentType = (resp.headers.get('content-type') || '').toLowerCase();
-    if (contentType.includes('application/json')) {
-      return await resp.json();
-    }
+    if (contentType.includes('application/json')) return await resp.json();
     const text = await resp.text();
-    if (resp.status === 413) {
-      throw new Error('這次上傳的圖片總量太大。請稍微減少圖片尺寸或分批建立牌組後再試。');
-    }
-    if (resp.status === 502 || resp.status === 503 || resp.status === 504) {
-      throw new Error('伺服器暫時無法處理，請稍後再試。');
-    }
+    if (resp.status === 413) throw new Error('這次上傳的圖片總量太大。請稍微減少圖片尺寸或分批建立牌組後再試。');
+    if (resp.status === 502 || resp.status === 503 || resp.status === 504) throw new Error('伺服器暫時無法處理，請稍後再試。');
     const preview = text.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 120);
     throw new Error(preview ? `發布失敗（${resp.status}）：${preview}` : `發布失敗（${resp.status}）`);
   }
@@ -153,7 +194,6 @@
   });
 
   reversals.addEventListener('change', render);
-
 
   const themePreset = document.getElementById('theme-preset');
   const themeCustom = document.getElementById('theme-custom');
@@ -203,15 +243,18 @@
           creator: document.getElementById('creator').value.trim(),
           description: document.getElementById('description').value.trim(),
           reversals: reversals.checked,
+          persona: selectedPersonaId,
           cards
         })
       });
       const data = await readApiResponse(resp);
       if (!resp.ok) throw new Error(data.message || '發布失敗');
-      const u = new URL(data.share_path, location.origin); u.searchParams.set('theme', selectedThemeId); const url = u.href;
+      const u = new URL(data.share_path, location.origin);
+      u.searchParams.set('theme', selectedThemeId);
+      const url = u.href;
       const link = document.getElementById('share-link');
       link.href = url; link.textContent = url;
-      savePublishedHistory({ deck_id: data.deck_id, name: data.name || name, theme_id: selectedThemeId, url, published_at: new Date().toISOString() });
+      savePublishedHistory({ deck_id: data.deck_id, name: data.name || name, theme_id: selectedThemeId, persona_id: data.default_persona || selectedPersonaId, url, published_at: new Date().toISOString() });
       done.classList.remove('hidden');
       status.textContent = `完成，共 ${data.card_count} 張牌。`;
       done.scrollIntoView({behavior:'smooth'});
@@ -225,5 +268,7 @@
     await navigator.clipboard.writeText(url);
     document.getElementById('copy').textContent = '已複製';
   });
+
   renderPublishedHistory();
+  loadPersonas();
 })();

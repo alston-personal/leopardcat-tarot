@@ -1,0 +1,38 @@
+name: Creator Persona Choice
+on:
+  push:
+    branches: [feature/creator-persona-choice]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Validate creator persona contract
+        working-directory: website
+        run: |
+          node --check public/creator.js
+          grep -q 'id="persona-options"' public/create.html
+          grep -q '選擇預設解牌風格' public/create.html
+          grep -q "fetch('/api/v1/personas?deck=leopardcat'" public/creator.js
+          grep -q "selectedPersonaId = 'master'" public/creator.js
+          grep -q 'persona: selectedPersonaId' public/creator.js
+          grep -q 'persona_id: data.default_persona || selectedPersonaId' public/creator.js
+          grep -q 'default_persona = _clean_text(payload.get("persona")' divination/publishing.py
+          echo creator_persona_source_contract=passed
+      - name: Build
+        working-directory: website
+        run: |
+          find public -xtype l -delete || true
+          mkdir -p public/art/renders public/cards
+          npm ci
+          npm run build
+          test -s dist/create.html
+          test -s dist/creator.js
+          grep -q 'persona-options' dist/create.html
+          grep -q '/api/v1/personas?deck=leopardcat' dist/creator.js
+          echo creator_persona_build_contract=passed
