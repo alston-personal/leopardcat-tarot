@@ -8,6 +8,41 @@
   const done = document.getElementById('done');
   let cards = [];
   const HISTORY_KEY = 'leopardcat-published-decks-v1';
+  const deckSlug = document.getElementById('deck-slug');
+  const slugStatus = document.getElementById('slug-status');
+  let slugCheckTimer = null;
+  let slugAvailable = null;
+
+  function normalizeSlug(value) {
+    return String(value || '').toLowerCase().trim().replace(/[^a-z0-9-]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '').slice(0, 48);
+  }
+
+  async function checkSlugAvailability(force = false) {
+    const slug = normalizeSlug(deckSlug.value);
+    if (deckSlug.value !== slug) deckSlug.value = slug;
+    if (!slug) { slugAvailable = null; slugStatus.textContent = '留空會由系統自動產生網址。'; return true; }
+    if (slug.length < 3) { slugAvailable = false; slugStatus.textContent = '至少輸入 3 個字元。'; return false; }
+    slugStatus.textContent = '正在檢查網址…';
+    try {
+      const r = await fetch(`/api/v1/deck-slugs/${encodeURIComponent(slug)}`, {cache:'no-store'});
+      const data = await r.json();
+      slugAvailable = !!data.available;
+      slugStatus.textContent = data.available ? `✓ 可以使用：?deck=${slug}` : (data.reserved ? '✗ 這個名稱是系統保留字，請換一個。' : '✗ 這個名稱已被使用，請換一個。');
+      slugStatus.style.color = data.available ? '#2d7a3e' : '#a33a32';
+      return slugAvailable;
+    } catch (_) {
+      slugAvailable = null;
+      slugStatus.textContent = force ? '目前無法檢查網址，請稍後再試。' : '';
+      return false;
+    }
+  }
+
+  deckSlug.addEventListener('input', () => {
+    slugAvailable = null;
+    clearTimeout(slugCheckTimer);
+    slugCheckTimer = setTimeout(() => checkSlugAvailability(false), 350);
+  });
+
 
   function getPublishedHistory() {
     try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); }
@@ -151,6 +186,7 @@
   document.getElementById('publish').addEventListener('click', async () => {
     const name = document.getElementById('deck-name').value.trim();
     if (!name) return alert('先幫這副牌取一個名字。');
+    if (deckSlug.value && !(await checkSlugAvailability(true))) return alert('請先換一個可以使用的專屬網址名稱。');
     if (!cards.length) return alert('請先選取你的牌圖。');
     const missing = cards.find(c => !c.title.trim() || !c.upright.trim());
     if (missing) return alert(`「${missing.title || '某張牌'}」還沒有填牌義。`);
@@ -163,6 +199,7 @@
         method: 'POST', headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
           name,
+          slug: normalizeSlug(deckSlug.value),
           creator: document.getElementById('creator').value.trim(),
           description: document.getElementById('description').value.trim(),
           reversals: reversals.checked,
