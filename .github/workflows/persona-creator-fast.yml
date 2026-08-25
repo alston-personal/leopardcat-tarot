@@ -49,6 +49,8 @@ jobs:
           grep -q "fetch('/api/v1/personas'" public/creator.js
           grep -q "path.startswith('/api/v1/personas/')" fortune_server.py
           grep -q "source') != 'custom'" fortune_server.py
+          rm -f public/art/renders
+          mkdir -p public/art/renders
           npm ci
           npm run build
           echo persona_creator_fast_contract=passed
