@@ -1,19 +1,24 @@
 from pathlib import Path
 
 from .core import DivinationEngine, MethodRegistry, PersonaRegistry, ReadingRequest
+from .decks import DeckRegistry
 from .tarot import TarotMethod
 from .personas import ConfigurablePersona, GenericMasterPersona
 
 
 def build_default_engine(base_dir: str | Path) -> DivinationEngine:
     base = Path(base_dir)
+    decks = DeckRegistry(base / "public" / "manifest.json", base / "data" / "custom_decks")
+
     methods = MethodRegistry()
-    methods.register(TarotMethod(base / "public" / "manifest.json"))
+    methods.register(TarotMethod(decks))
 
     personas = PersonaRegistry()
     personas.register(ConfigurablePersona(base / "oracle_packs" / "leopardcat" / "pack.json"))
     personas.register(GenericMasterPersona())
-    return DivinationEngine(methods, personas)
+    engine = DivinationEngine(methods, personas)
+    engine.decks = decks
+    return engine
 
 
 __all__ = [
@@ -21,6 +26,7 @@ __all__ = [
     "MethodRegistry",
     "PersonaRegistry",
     "ReadingRequest",
+    "DeckRegistry",
     "TarotMethod",
     "ConfigurablePersona",
     "GenericMasterPersona",
