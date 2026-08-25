@@ -1,0 +1,66 @@
+name: Persona Creator Fast Contract
+
+on:
+  push:
+    branches: [feature/persona-creator]
+
+permissions:
+  contents: write
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone feature branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git clone --depth 1 --branch feature/persona-creator https://github.com/alston-personal/leopardcat-tarot.git repo
+          cd repo
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/alston-personal/leopardcat-tarot.git"
+      - name: Apply and validate
+        working-directory: repo
+        run: |
+          python3 tools/patch_persona_creator_runtime.py
+          cd website
+          python3 - <<'PY'
+          import json, tempfile
+          from divination.persona_publishing import PersonaPublisher
+          from divination.personas import ConfigurablePersona
+          with tempfile.TemporaryDirectory() as td:
+              pub = PersonaPublisher(td)
+              out = pub.publish({
+                  'name':'月光園丁', 'role':'溫柔但不逃避現實的夜間引路人',
+                  'voice':'溫柔、簡潔\n先同理，再指出盲點',
+                  'principles':'先讀牌面，再連回提問\n最後給一個今天能做的行動',
+                  'worldview':'熟悉植物與季節循環', 'closing':'最後留下一句月光提醒'
+              })
+              pack = json.loads(pub.pack_path(out['persona_id']).read_text(encoding='utf-8'))
+              assert pack['source'] == 'custom' and pack['methods'] == ['tarot'] and len(pack['safety']) >= 3
+              persona = ConfigurablePersona(pub.pack_path(out['persona_id']))
+              assert persona.public_info()['name'] == '月光園丁'
+              prompt = persona.build_prompt(method_result={'cards':[{'id':'x'}]}, question='我該注意什麼？', lang='zh-TW')
+              assert 'PLATFORM RULES' in prompt and 'FINAL PLATFORM REMINDER' in prompt
+          print('persona_creator_publisher_contract=passed')
+          PY
+          python3 -m py_compile fortune_server.py divination/*.py
+          node --check public/creator.js
+          grep -q '建立我的解牌師' public/create.html
+          grep -q "fetch('/api/v1/personas'" public/creator.js
+          grep -q "path.startswith('/api/v1/personas/')" fortune_server.py
+          grep -q "source') != 'custom'" fortune_server.py
+          npm ci
+          npm run build
+          echo persona_creator_fast_contract=passed
+      - name: Commit runtime source
+        working-directory: repo
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/fortune_server.py website/public/create.html website/public/creator.js
+          if git diff --cached --quiet; then
+            echo persona_creator_source_already_current=passed
+          else
+            git commit -m 'feat(persona): wire structured persona creator runtime'
+            git push origin HEAD:feature/persona-creator
+          fi
