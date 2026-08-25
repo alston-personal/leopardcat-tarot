@@ -12,6 +12,7 @@ window.siteData = null;
 window.cardData = [];
 window.currentDrawnCard = null;
 window.currentReadingEnvelope = null;
+window.currentReadingState = null; // shared deck/theme/card/orientation state for every Tarot deck
 
 // ⚡ Restored to normal limit (5) for production
 let chatQuota = 5;
@@ -569,8 +570,16 @@ window.generateShareImage = async function() {
     const template = document.getElementById('share-card-template');
     
     // Fill data
-    document.getElementById('share-card-img').src = `art/renders/${currentDrawnCard.id}.webp`;
-    document.getElementById('share-card-title').innerText = `【${currentDrawnCard.title['zh']} / ${currentDrawnCard.title['en']}】`;
+    const shareState = window.currentReadingState || {};
+    const shareOrientation = shareState.orientation || 'upright';
+    const shareImage = currentDrawnCard.image || `art/renders/${currentDrawnCard.id}.webp`;
+    const shareImgEl = document.getElementById('share-card-img');
+    shareImgEl.src = shareImage;
+    shareImgEl.style.transform = shareOrientation === 'reversed' ? 'rotate(180deg)' : '';
+    const titleZh = currentDrawnCard.title?.zh || currentDrawnCard.title?.['zh-TW'] || currentDrawnCard.title?.en || currentDrawnCard.id;
+    const titleEn = currentDrawnCard.title?.en || titleZh;
+    const orientationLabel = shareOrientation === 'reversed' ? (window.currentLang === 'zh' ? '逆位' : 'Reversed') : (window.currentLang === 'zh' ? '正位' : 'Upright');
+    document.getElementById('share-card-title').innerText = `【${titleZh} / ${titleEn}】 · ${orientationLabel}`;
     document.getElementById('share-seeker-name').innerText = localStorage.getItem('userDharmaName') || 'Seeker';
     document.getElementById('share-date').innerText = new Date().toLocaleDateString();
     
@@ -651,9 +660,16 @@ window.generateShareImage = async function() {
         document.getElementById('share-site-tag').innerText = uiCommon.share_site_tag;
         document.getElementById('share-date').innerText = new Date().toLocaleDateString(window.currentLang === 'zh' ? 'zh-TW' : 'en-US');
 
-        const shareMsg = common.share_copy_template.replace('{card}', currentDrawnCard.title[shareLang]);
-        // 🛠️ Dynamic URL Detection (Fix for milkcat.org and other domains)
-        const shareUrl = window.location.origin + window.location.pathname;
+        const shareTitle = currentDrawnCard.title?.[shareLang] || currentDrawnCard.title?.['zh-TW'] || currentDrawnCard.title?.zh || currentDrawnCard.title?.en || currentDrawnCard.id;
+        const orientationText = (window.currentReadingState?.orientation === 'reversed') ? (shareLang === 'zh' ? '（逆位）' : ' (Reversed)') : '';
+        const shareMsg = common.share_copy_template.replace('{card}', `${shareTitle}${orientationText}`);
+        // Shared deep link preserves deck + theme + card + orientation.
+        const shareU = new URL(window.location.origin + window.location.pathname);
+        if (window.activeDeckId && window.activeDeckId !== 'leopardcat') shareU.searchParams.set('deck', window.activeDeckId);
+        if (window.activeThemeId) shareU.searchParams.set('theme', window.activeThemeId);
+        shareU.searchParams.set('card', currentDrawnCard.id);
+        if (window.currentReadingState?.orientation === 'reversed') shareU.searchParams.set('orientation', 'reversed');
+        const shareUrl = shareU.toString();
         
         const fullShareText = `${shareMsg} ${shareUrl}`;
         lastShareText = fullShareText;
@@ -729,7 +745,12 @@ function updateSocialLinks(card, customQuote = null) {
     
     // Use quote if provided, else generic template
     const shareMsg = customQuote ? `「${customQuote}」` : common.share_copy_template.replace('{card}', card.title[shareLang]);
-    const shareUrl = `${window.location.origin}${window.location.pathname}?card=${card.id}`;
+    const shareU = new URL(`${window.location.origin}${window.location.pathname}`);
+    if (window.activeDeckId && window.activeDeckId !== 'leopardcat') shareU.searchParams.set('deck', window.activeDeckId);
+    if (window.activeThemeId) shareU.searchParams.set('theme', window.activeThemeId);
+    shareU.searchParams.set('card', card.id);
+    if (window.currentReadingState?.orientation === 'reversed') shareU.searchParams.set('orientation', 'reversed');
+    const shareUrl = shareU.toString();
     window.shareUrl = shareUrl; // Store for the copy button
     
     // Update button text to encourage the next step
@@ -894,6 +915,14 @@ window.getModularReading = async function(q) {
     currentDrawnCard = resolved[0].card;
     window.currentDrawnCard = currentDrawnCard;
     window.currentReadingEnvelope = data;
+    window.currentReadingState = {
+        deck_id: window.activeDeckId,
+        theme_id: window.activeThemeId,
+        card_id: resolved[0].spec.card_id || currentDrawnCard.id,
+        orientation: resolved[0].spec.orientation || 'upright',
+        spread: data.method_result?.spread || 'single',
+        cards: resolved.map(({spec, card}) => ({ card_id: spec.card_id || card.id, orientation: spec.orientation || 'upright', position: spec.position, position_label: spec.position_label }))
+    };
     window._lastQuestion = q;
     const pinnedArea = document.getElementById('pinned-card-area');
     const pinnedDisplay = document.getElementById('pinned-card-display');
@@ -1122,6 +1151,7 @@ window.sendChatMessage = async function() {
 window.resetRitual = function() {
     currentChatHistory = [];
     window.currentReadingEnvelope = null;
+    window.currentReadingState = null;
     lastShareFile = null;
     lastShareText = "";
     

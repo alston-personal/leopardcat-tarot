@@ -1,0 +1,38 @@
+name: Apply Shared Tarot Experience
+on:
+  push:
+    branches: [feature/shared-tarot-experience]
+    paths:
+      - 'tools/apply_shared_experience.py'
+      - '.github/workflows/apply-shared-tarot-experience.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/shared-tarot-experience
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: python tools/apply_shared_experience.py
+      - name: Validate shared experience contract
+        run: |
+          node --check website/main.js
+          grep -q 'window.currentReadingState' website/main.js
+          grep -q "orientationLabel" website/main.js
+          grep -q "currentDrawnCard.image" website/main.js
+          grep -q "searchParams.set('deck'" website/main.js
+          grep -q "searchParams.set('theme'" website/main.js
+          grep -q "searchParams.set('orientation', 'reversed')" website/main.js
+      - name: Commit generated source
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add website/main.js
+          git commit -m "refactor(ui): share tarot experience across decks" || exit 0
+          git pull --rebase origin feature/shared-tarot-experience
+          git push origin HEAD:feature/shared-tarot-experience
