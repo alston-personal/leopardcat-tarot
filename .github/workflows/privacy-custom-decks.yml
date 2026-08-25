@@ -31,15 +31,20 @@ jobs:
           python-version: "3.12"
       - name: Apply integration patch
         run: python tools/patch_privacy_custom_decks.py
-      - name: Validate
+      - name: Validate backend and JavaScript
         run: |
           python -m unittest -v tests/test_divination_engine.py tests/test_privacy_custom_decks.py
           python -m py_compile website/fortune_server.py website/divination/*.py
           node --check website/main.js
           node --check website/public/creator.js
-          cd website && npm run build
-          grep -R -q 'create.html' dist || true
+      - name: Clean install and build frontend
+        run: |
+          cd website
+          rm -rf node_modules
+          npm ci
+          npm run build
           test -f dist/create.html
+          test -f dist/creator.js
       - name: Commit generated integration changes
         shell: bash
         run: |
