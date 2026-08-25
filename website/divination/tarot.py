@@ -1,11 +1,10 @@
 from __future__ import annotations
 
-import json
-from pathlib import Path
 import random
 from typing import Any
 
 from .core import DivinationError
+from .decks import DeckRegistry
 
 
 SPREADS: dict[str, list[tuple[str, str]]] = {
@@ -18,14 +17,8 @@ SPREADS: dict[str, list[tuple[str, str]]] = {
 class TarotMethod:
     method_id = "tarot"
 
-    def __init__(self, manifest_path: str | Path) -> None:
-        self.manifest_path = Path(manifest_path)
-
-    def _load_deck(self) -> list[dict[str, Any]]:
-        cards = json.loads(self.manifest_path.read_text(encoding="utf-8"))
-        if not isinstance(cards, list) or len(cards) < 78:
-            raise DivinationError("tarot deck manifest is incomplete")
-        return cards
+    def __init__(self, decks: DeckRegistry) -> None:
+        self.decks = decks
 
     @staticmethod
     def _auto_spread(question: str) -> str:
@@ -39,28 +32,32 @@ class TarotMethod:
         return "single"
 
     def generate(self, *, input_data: dict[str, Any], question: str, rng: random.Random) -> dict[str, Any]:
-        cards = self._load_deck()
+        deck = self.decks.get(str(input_data.get("deck_id") or "leopardcat"))
+        cards = deck.cards
         spread_id = str(input_data.get("spread") or "single")
         if spread_id == "auto":
             spread_id = self._auto_spread(question)
         if spread_id not in SPREADS:
             raise DivinationError(f"unsupported tarot spread: {spread_id}")
 
-        reversal_rate = float(input_data.get("reversal_rate", 0.5))
-        if not 0.0 <= reversal_rate <= 1.0:
-            raise DivinationError("reversal_rate must be between 0 and 1")
-
         positions = SPREADS[spread_id]
+        if len(cards) < len(positions):
+            raise DivinationError(f"deck has {len(cards)} cards but spread requires {len(positions)}")
+
+        requested_rate = float(input_data.get("reversal_rate", 0.5))
+        if not 0.0 <= requested_rate <= 1.0:
+            raise DivinationError("reversal_rate must be between 0 and 1")
+        reversal_rate = requested_rate if deck.reversals else 0.0
+
         picked = rng.sample(cards, len(positions))
         results: list[dict[str, Any]] = []
         for card, (position, position_label) in zip(picked, positions):
             orientation = "reversed" if rng.random() < reversal_rate else "upright"
             meanings = card.get("meanings") or {}
-            title = card.get("title") or {}
-            selected_meaning = meanings.get(orientation) or card.get("meaning") or ""
+            selected_meaning = meanings.get(orientation) or meanings.get("upright") or card.get("meaning") or ""
             results.append({
                 "card_id": card.get("id"),
-                "title": title,
+                "title": card.get("title") or {},
                 "arcana": card.get("arcana"),
                 "suit": card.get("suit"),
                 "number": card.get("number"),
@@ -76,6 +73,14 @@ class TarotMethod:
 
         return {
             "method": "tarot",
+            "deck": {
+                "deck_id": deck.deck_id,
+                "name": deck.name,
+                "creator": deck.creator,
+                "card_count": len(deck.cards),
+                "reversals": deck.reversals,
+                "source": deck.source,
+            },
             "spread": spread_id,
             "cards": results,
             "rules": {
