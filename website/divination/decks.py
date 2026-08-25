@@ -9,6 +9,7 @@ from typing import Any
 from .core import DivinationError
 
 _SAFE_ID = re.compile(r"^[a-z0-9][a-z0-9-]{1,63}$")
+_SAFE_PERSONA_ID = re.compile(r"^[a-z0-9][a-z0-9-]{1,63}$")
 
 
 @dataclass(frozen=True)
@@ -20,6 +21,7 @@ class Deck:
     cards: list[dict[str, Any]]
     reversals: bool = True
     source: str = "builtin"
+    default_persona: str = "master"
 
 
 class DeckRegistry:
@@ -31,7 +33,16 @@ class DeckRegistry:
     def get(self, deck_id: str | None) -> Deck:
         if not deck_id or deck_id == "leopardcat":
             cards = json.loads(self.default_manifest.read_text(encoding="utf-8"))
-            return Deck("leopardcat", "靈山靈貓・石虎塔羅", "LeopardCat Tarot", "", cards, True, "builtin")
+            return Deck(
+                "leopardcat",
+                "靈山靈貓・石虎塔羅",
+                "LeopardCat Tarot",
+                "",
+                cards,
+                True,
+                "builtin",
+                "leopardcat",
+            )
         if not _SAFE_ID.fullmatch(deck_id):
             raise DivinationError("invalid deck id")
         path = self.custom_root / deck_id / "deck.json"
@@ -41,6 +52,9 @@ class DeckRegistry:
         cards = data.get("cards") or []
         if not isinstance(cards, list) or not cards:
             raise DivinationError("deck has no cards")
+        default_persona = str(data.get("default_persona") or "master").strip().lower()
+        if not _SAFE_PERSONA_ID.fullmatch(default_persona):
+            default_persona = "master"
         return Deck(
             deck_id=deck_id,
             name=str(data.get("name") or deck_id),
@@ -49,6 +63,7 @@ class DeckRegistry:
             cards=cards,
             reversals=bool(data.get("reversals", False)),
             source="custom",
+            default_persona=default_persona,
         )
 
     def public_info(self, deck_id: str) -> dict[str, Any]:
@@ -61,6 +76,7 @@ class DeckRegistry:
             "card_count": len(d.cards),
             "reversals": d.reversals,
             "source": d.source,
+            "default_persona": d.default_persona,
             # Card faces and meanings are intentionally public: a shared deck page is
             # also the creator's gallery/catalog, not only an opaque reading endpoint.
             "cards": d.cards,
