@@ -1,0 +1,110 @@
+from __future__ import annotations
+
+import base64
+import json
+import re
+import secrets
+from pathlib import Path
+from typing import Any
+
+from .core import DivinationError
+
+_ALLOWED_MIME = {"image/jpeg": ".jpg", "image/png": ".png", "image/webp": ".webp"}
+_MAX_IMAGE_BYTES = 8 * 1024 * 1024
+_MAX_CARDS = 120
+
+
+def _slug(text: str) -> str:
+    value = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")[:42]
+    return value or "my-deck"
+
+
+def _clean_text(value: Any, max_len: int) -> str:
+    return str(value or "").strip()[:max_len]
+
+
+class DeckPublisher:
+    def __init__(self, custom_root: str | Path) -> None:
+        self.root = Path(custom_root)
+        self.root.mkdir(parents=True, exist_ok=True)
+
+    def publish(self, payload: dict[str, Any]) -> dict[str, Any]:
+        name = _clean_text(payload.get("name"), 100)
+        creator = _clean_text(payload.get("creator"), 80)
+        description = _clean_text(payload.get("description"), 500)
+        cards = payload.get("cards") or []
+        reversals = bool(payload.get("reversals", False))
+        if not name:
+            raise DivinationError("請輸入牌組名稱")
+        if not isinstance(cards, list) or not cards:
+            raise DivinationError("請至少上傳一張牌")
+        if len(cards) > _MAX_CARDS:
+            raise DivinationError(f"一次最多 {_MAX_CARDS} 張牌")
+
+        deck_id = f"{_slug(name)}-{secrets.token_hex(3)}"
+        deck_dir = self.root / deck_id
+        image_dir = deck_dir / "images"
+        image_dir.mkdir(parents=True, exist_ok=False)
+        saved_cards: list[dict[str, Any]] = []
+
+        try:
+            for idx, card in enumerate(cards, start=1):
+                title = _clean_text(card.get("title"), 100) or f"Card {idx}"
+                upright = _clean_text(card.get("upright"), 2000)
+                reversed_meaning = _clean_text(card.get("reversed"), 2000)
+                if not upright:
+                    raise DivinationError(f"「{title}」還沒有填牌義")
+                image = str(card.get("image") or "")
+                match = re.fullmatch(r"data:(image/(?:jpeg|png|webp));base64,([A-Za-z0-9+/=\s]+)", image)
+                if not match:
+                    raise DivinationError(f"「{title}」的圖片格式不支援")
+                mime, encoded = match.groups()
+                raw = base64.b64decode(encoded, validate=False)
+                if not raw or len(raw) > _MAX_IMAGE_BYTES:
+                    raise DivinationError(f"「{title}」的圖片過大，單張請小於 8MB")
+                ext = _ALLOWED_MIME[mime]
+                filename = f"card-{idx:03d}{ext}"
+                (image_dir / filename).write_bytes(raw)
+                saved_cards.append({
+                    "id": f"card-{idx:03d}",
+                    "title": {"zh": title, "zh-TW": title, "en": title},
+                    "meanings": {
+                        "upright": upright,
+                        "reversed": reversed_meaning if reversals and reversed_meaning else upright,
+                    },
+                    "image": f"/api/v1/decks/{deck_id}/images/{filename}",
+                })
+
+            manifest = {
+                "schema_version": 1,
+                "deck_id": deck_id,
+                "name": name,
+                "creator": creator,
+                "description": description,
+                "reversals": reversals,
+                "card_count": len(saved_cards),
+                "cards": saved_cards,
+            }
+            (deck_dir / "deck.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        except Exception:
+            import shutil
+            shutil.rmtree(deck_dir, ignore_errors=True)
+            raise
+
+        return {
+            "deck_id": deck_id,
+            "name": name,
+            "card_count": len(saved_cards),
+            "reversals": reversals,
+            "share_path": f"/?deck={deck_id}",
+        }
+
+    def image_path(self, deck_id: str, filename: str) -> Path:
+        if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,63}", deck_id):
+            raise DivinationError("invalid deck id")
+        if not re.fullmatch(r"card-\d{3}\.(?:jpg|png|webp)", filename):
+            raise DivinationError("invalid image path")
+        path = self.root / deck_id / "images" / filename
+        if not path.exists():
+            raise DivinationError("image not found")
+        return path
