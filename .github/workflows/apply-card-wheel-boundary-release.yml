@@ -1,0 +1,43 @@
+name: Apply Card Wheel Boundary Release
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/fix_card_wheel_boundary_release.py'
+      - '.github/workflows/apply-card-wheel-boundary-release.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python tools/fix_card_wheel_boundary_release.py
+      - name: Validate
+        run: |
+          node --check website/main.js
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('website/main.js').read_text()
+          block=s[s.index("const panelCanConsume"):s.index("}, { passive: false });", s.index("const panelCanConsume"))]
+          assert "if (panelCanConsume)" in block
+          assert block.index("if (panelCanConsume)") < block.index("e.stopPropagation()")
+          print('wheel_boundary_release_validation=passed')
+          PY
+      - name: Commit source change
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/main.js
+          if git diff --cached --quiet; then echo no_changes=true; exit 0; fi
+          git commit -m 'fix(ui): release page scroll at card meaning boundaries'
+          git pull --rebase origin main
+          git push origin HEAD:main
