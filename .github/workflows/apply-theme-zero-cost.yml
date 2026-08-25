@@ -5,6 +5,7 @@ on:
     branches: [feature/theme-zero-cost-ai]
     paths:
       - "tools/apply_theme_zero_cost.py"
+      - "tools/refine_theme_zero_cost.py"
       - ".github/workflows/apply-theme-zero-cost.yml"
   workflow_dispatch:
 
@@ -28,7 +29,9 @@ jobs:
       - name: Install test tooling
         run: python -m pip install -q pytest
       - name: Apply patch
-        run: python tools/apply_theme_zero_cost.py
+        run: |
+          python tools/apply_theme_zero_cost.py
+          python tools/refine_theme_zero_cost.py
       - name: Validate
         run: |
           python -m pytest -q tests/test_divination_engine.py tests/test_privacy_custom_decks.py tests/test_themes_ai_policy.py
@@ -42,14 +45,24 @@ jobs:
           mkdir -p public/art/renders public/cards
           npm run build
           test -f dist/create.html
-      - name: Commit generated changes
+      - name: Restore validation-only filesystem changes
         run: |
-          if git diff --quiet && [ -z "$(git status --porcelain | grep '^??')" ]; then
-            echo no_changes=true
-            exit 0
-          fi
+          git checkout -- website/dist website/node_modules website/public/art/renders website/public/cards 2>/dev/null || true
+      - name: Commit source changes only
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add website tests
+          git add \
+            website/divination/themes.py \
+            website/divination/ai_gateway.py \
+            website/fortune_server.py \
+            website/main.js \
+            website/public/create.html \
+            website/public/creator.js \
+            tests/test_themes_ai_policy.py
+          if git diff --cached --quiet; then
+            echo no_source_changes=true
+            exit 0
+          fi
           git commit -m "feat(platform): themes and zero-cost AI gateway"
           git push origin HEAD:feature/theme-zero-cost-ai
