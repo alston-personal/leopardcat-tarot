@@ -18,6 +18,15 @@ class ConfigurablePersona:
         if not self.persona_id:
             raise DivinationError(f"oracle pack missing id: {self.pack_path}")
 
+    def public_info(self) -> dict[str, Any]:
+        identity = self.config.get("identity") or {}
+        return {
+            "persona_id": self.persona_id,
+            "name": str(identity.get("name") or self.persona_id),
+            "role": str(identity.get("role") or ""),
+            "source": "pack",
+        }
+
     def build_prompt(self, *, method_result: dict[str, Any], question: str, lang: str) -> str:
         language = "台灣繁體中文" if lang.lower().startswith("zh") else "the seeker's language"
         payload = json.dumps(method_result, ensure_ascii=False, indent=2)
@@ -63,6 +72,14 @@ Immutable divination result:
 class GenericMasterPersona:
     persona_id = "master"
 
+    def public_info(self) -> dict[str, Any]:
+        return {
+            "persona_id": self.persona_id,
+            "name": "通用解牌師",
+            "role": "中立、謹慎、實用的塔羅解讀 Persona",
+            "source": "builtin",
+        }
+
     def build_prompt(self, *, method_result: dict[str, Any], question: str, lang: str) -> str:
         payload = json.dumps(method_result, ensure_ascii=False, indent=2)
         language = "Traditional Chinese (Taiwan)" if lang.lower().startswith("zh") else "the seeker's language"
@@ -72,3 +89,16 @@ Question: {question}
 Result:
 {payload}
 """
+
+
+def persona_public_info(persona: Any) -> dict[str, Any]:
+    if hasattr(persona, "public_info"):
+        data = persona.public_info()
+        if isinstance(data, dict):
+            return data
+    return {
+        "persona_id": str(getattr(persona, "persona_id", "unknown")),
+        "name": str(getattr(persona, "persona_id", "unknown")),
+        "role": "",
+        "source": "unknown",
+    }
