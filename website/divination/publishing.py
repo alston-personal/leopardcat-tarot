@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from .core import DivinationError
+from .ownership import OwnershipTokens
 
 _ALLOWED_MIME = {"image/jpeg": ".jpg", "image/png": ".png", "image/webp": ".webp"}
 _MAX_IMAGE_BYTES = 8 * 1024 * 1024
@@ -35,6 +36,7 @@ class DeckPublisher:
         self.publish_log = self.root / ".publish-log.json"
         self.hourly_limit = int(os.environ.get("DECK_PUBLISH_LIMIT_PER_HOUR", "20"))
         self.max_decks = int(os.environ.get("DECK_MAX_PUBLISHED", "5000"))
+        self.ownership = OwnershipTokens()
 
     def _check_capacity(self) -> None:
         deck_count = sum(1 for p in self.root.iterdir() if p.is_dir() and (p / "deck.json").exists())
@@ -59,6 +61,14 @@ class DeckPublisher:
         recent = [x for x in recent if now - x < 3600]
         recent.append(now)
         self.publish_log.write_text(json.dumps(recent[-self.hourly_limit:]), encoding="utf-8")
+
+    def _deck_dir(self, deck_id: str) -> Path:
+        if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,63}", deck_id):
+            raise DivinationError("invalid deck id")
+        path = self.root / deck_id
+        if not (path / "deck.json").is_file():
+            raise DivinationError("deck not found")
+        return path
 
     def slug_available(self, requested: str) -> dict[str, Any]:
         slug = _clean_text(requested, 64).lower()
@@ -103,6 +113,7 @@ class DeckPublisher:
         except FileExistsError:
             raise DivinationError("這個專屬網址名稱剛被其他人使用，請換一個")
         saved_cards: list[dict[str, Any]] = []
+        management_token = ""
 
         try:
             for idx, card in enumerate(cards, start=1):
@@ -144,6 +155,7 @@ class DeckPublisher:
                 "cards": saved_cards,
             }
             (deck_dir / "deck.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+            management_token = self.ownership.issue(deck_dir)
             self._record_publish()
         except Exception:
             import shutil
@@ -157,7 +169,58 @@ class DeckPublisher:
             "reversals": reversals,
             "default_persona": default_persona,
             "share_path": f"/?deck={deck_id}",
+            "management_token": management_token,
+            "manage_path": f"/manage.html?deck={deck_id}",
         }
+
+    def management_info(self, deck_id: str, token: str) -> dict[str, Any]:
+        deck_dir = self._deck_dir(deck_id)
+        self.ownership.require(deck_dir, token)
+        data = json.loads((deck_dir / "deck.json").read_text(encoding="utf-8"))
+        return {
+            "resource_type": "deck",
+            "deck_id": deck_id,
+            "name": data.get("name", deck_id),
+            "creator": data.get("creator", ""),
+            "description": data.get("description", ""),
+            "default_persona": data.get("default_persona", "master"),
+            "reversals": bool(data.get("reversals", False)),
+            "card_count": int(data.get("card_count") or len(data.get("cards") or [])),
+            "share_path": f"/?deck={deck_id}",
+        }
+
+    def update_metadata(self, deck_id: str, token: str, payload: dict[str, Any]) -> dict[str, Any]:
+        deck_dir = self._deck_dir(deck_id)
+        self.ownership.require(deck_dir, token)
+        manifest_path = deck_dir / "deck.json"
+        data = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+        if "name" in payload:
+            name = _clean_text(payload.get("name"), 100)
+            if not name:
+                raise DivinationError("牌組名稱不能空白")
+            data["name"] = name
+        if "creator" in payload:
+            data["creator"] = _clean_text(payload.get("creator"), 80)
+        if "description" in payload:
+            data["description"] = _clean_text(payload.get("description"), 500)
+        if "persona" in payload:
+            persona = _clean_text(payload.get("persona"), 64).lower()
+            if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,63}", persona):
+                raise DivinationError("無效的解牌 Persona")
+            data["default_persona"] = persona
+
+        manifest_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+        return self.management_info(deck_id, token)
+
+    def delete(self, deck_id: str, token: str) -> None:
+        deck_dir = self._deck_dir(deck_id)
+        self.ownership.require(deck_dir, token)
+        import shutil
+        shutil.rmtree(deck_dir)
+
+    def rotate_management_token(self, deck_id: str, token: str) -> str:
+        return self.ownership.rotate(self._deck_dir(deck_id), token)
 
     def image_path(self, deck_id: str, filename: str) -> Path:
         if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,63}", deck_id):
