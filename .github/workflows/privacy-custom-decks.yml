@@ -42,6 +42,7 @@ jobs:
           cd website
           rm -rf node_modules
           npm ci
+          if [ -L public/art/renders ] || [ -f public/art/renders ]; then rm -f public/art/renders; fi
           mkdir -p public/art/renders
           npm run build
           test -f dist/create.html
