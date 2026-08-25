@@ -7,6 +7,33 @@
   const status = document.getElementById('status');
   const done = document.getElementById('done');
   let cards = [];
+  const HISTORY_KEY = 'leopardcat-published-decks-v1';
+
+  function getPublishedHistory() {
+    try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); }
+    catch (_) { return []; }
+  }
+
+  function savePublishedHistory(entry) {
+    const rows = getPublishedHistory().filter(x => x.deck_id !== entry.deck_id);
+    rows.unshift(entry);
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(rows.slice(0, 50)));
+    renderPublishedHistory();
+  }
+
+  function renderPublishedHistory() {
+    const el = document.getElementById('published-history');
+    if (!el) return;
+    const rows = getPublishedHistory();
+    if (!rows.length) {
+      el.innerHTML = '<p class="muted">這個瀏覽器還沒有發布紀錄。</p>';
+      return;
+    }
+    el.innerHTML = rows.map(x => {
+      const when = x.published_at ? new Date(x.published_at).toLocaleString('zh-TW') : '';
+      return `<div style="padding:10px 0;border-top:1px solid #eee3d4"><strong>${escapeHtml(x.name || x.deck_id)}</strong><div class="muted">${escapeHtml(when)}</div><a href="${escapeHtml(x.url)}" target="_blank">開啟占卜頁</a></div>`;
+    }).join('');
+  }
 
   const friendlyName = (filename) => filename.replace(/\.[^.]+$/, '').replace(/^\d+[\s._-]*/, '').replace(/[_-]+/g, ' ').trim();
   const escapeHtml = (s) => String(s || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -147,6 +174,7 @@
       const u = new URL(data.share_path, location.origin); u.searchParams.set('theme', selectedThemeId); const url = u.href;
       const link = document.getElementById('share-link');
       link.href = url; link.textContent = url;
+      savePublishedHistory({ deck_id: data.deck_id, name: data.name || name, theme_id: selectedThemeId, url, published_at: new Date().toISOString() });
       done.classList.remove('hidden');
       status.textContent = `完成，共 ${data.card_count} 張牌。`;
       done.scrollIntoView({behavior:'smooth'});
@@ -160,4 +188,5 @@
     await navigator.clipboard.writeText(url);
     document.getElementById('copy').textContent = '已複製';
   });
+  renderPublishedHistory();
 })();

@@ -401,7 +401,8 @@ function createCardElement(card, groupId) {
                 <img src="/art/renders/${card.id}.webp" alt="${title}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
             </div>
             <div class="card-back">
-                <div class="back-content">
+                <div class="back-content" tabindex="0" aria-label="${title} 牌義，可上下捲動">
+                    <button class="card-flip-back" type="button" aria-label="翻回牌面">↩ 翻回牌面</button>
                     <h3>${title}</h3>
                     <div class="meaning-box"><span class="label">${lM}</span><p class="content-text">${meaning}</p></div>
                     <div class="ecology-box"><span class="label">${lE}</span><p class="content-text">${formattedEcology}</p></div>
@@ -416,6 +417,10 @@ function createCardElement(card, groupId) {
     if (scrollableContent) {
         scrollableContent.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
         scrollableContent.addEventListener('touchend', (e) => e.stopPropagation(), { passive: true });
+        scrollableContent.addEventListener('wheel', (e) => e.stopPropagation(), { passive: true });
+        scrollableContent.addEventListener('click', (e) => e.stopPropagation());
+        const flipBack = scrollableContent.querySelector('.card-flip-back');
+        flipBack?.addEventListener('click', (e) => { e.stopPropagation(); cardInner.classList.remove('is-flipped'); });
     }
 
     let touchStartY = 0;

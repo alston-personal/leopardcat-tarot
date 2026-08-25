@@ -1197,3 +1197,33 @@ body {
 @media (max-width: 480px) {
   .nav-links { display: flex !important; } /* Restore from previous display:none */
 }
+
+/* Long card meanings: keep the back readable and independently scrollable. */
+.card-back { min-height: 0; }
+.back-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 100%;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  cursor: auto;
+  touch-action: pan-y;
+  scrollbar-gutter: stable;
+  padding-bottom: 18px;
+}
+.card-flip-back {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  align-self: flex-end;
+  border: 1px solid rgba(212,175,55,.45);
+  background: rgba(3,5,4,.88);
+  color: var(--color-gold);
+  border-radius: 999px;
+  padding: 5px 10px;
+  font: inherit;
+  font-size: .72rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+.card.is-flipped:hover { transform: rotateY(180deg); }
