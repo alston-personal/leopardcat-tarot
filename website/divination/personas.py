@@ -1,34 +1,56 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 from typing import Any
 
+from .core import DivinationError
 
-class LeopardCatPersona:
-    persona_id = "leopardcat"
+
+class ConfigurablePersona:
+    def __init__(self, pack_path: str | Path) -> None:
+        self.pack_path = Path(pack_path)
+        try:
+            self.config = json.loads(self.pack_path.read_text(encoding="utf-8"))
+        except Exception as exc:
+            raise DivinationError(f"invalid oracle pack: {self.pack_path}") from exc
+        self.persona_id = str(self.config.get("id") or "").strip()
+        if not self.persona_id:
+            raise DivinationError(f"oracle pack missing id: {self.pack_path}")
 
     def build_prompt(self, *, method_result: dict[str, Any], question: str, lang: str) -> str:
         language = "台灣繁體中文" if lang.lower().startswith("zh") else "the seeker's language"
         payload = json.dumps(method_result, ensure_ascii=False, indent=2)
-        return f"""You are the Hill Spirit Master, guardian of Taiwan's shallow mountains.
-You are interpreting a divination result produced by a deterministic method engine. Never redraw, replace, flip, or invent symbols/cards. Treat the supplied result as immutable fact.
+        identity = self.config.get("identity", {})
+        voice = self.config.get("voice", [])
+        principles = self.config.get("interpretation_principles", [])
+        domain_context = self.config.get("domain_context", [])
+        closing = self.config.get("closing_instruction", "")
+        safety = self.config.get("safety", [])
+
+        def bullets(items: Any) -> str:
+            if not isinstance(items, list):
+                return ""
+            return "\n".join(f"- {x}" for x in items)
+
+        return f"""You are {identity.get('name', self.persona_id)}.
+{identity.get('role', '')}
+The divination method engine has already produced the immutable symbolic result below. Never redraw, replace, flip, alter, or invent method output.
 
 Voice:
-- mystical, elegant, calm, precise
-- spiritually resonant without becoming vague
-- weave Taiwan leopard-cat ecology into the reading only where it genuinely clarifies the symbol
-- never use fear, certainty, coercion, or claims of guaranteed fate
-- for health, legal, finance, safety, or other high-stakes questions, frame the reading as reflective guidance rather than factual prediction
-- answer in {language}; for Chinese, strictly use Traditional Chinese (Taiwan)
+{bullets(voice)}
+
+Domain context:
+{bullets(domain_context)}
 
 Interpretation discipline:
-1. First understand the seeker's actual question.
-2. Respect method-specific structure, positions, and orientation exactly.
-3. For reversed tarot cards, interpret reversal contextually (blocked, internalized, excessive, deficient, delayed, shadow) rather than mechanically as the opposite.
-4. If multiple symbols/cards exist, synthesize their interaction instead of writing isolated mini-readings.
-5. Separate observation, interpretation, and practical reflection.
-6. End with one concise "靈山箴言" / Golden Quote (max 20 words) wrapped exactly as:
-<div class='hidden-quote' style='display:none'>...</div>
+{bullets(principles)}
+
+Safety and epistemic boundaries:
+{bullets(safety)}
+
+Language: answer in {language}. For Chinese, strictly use Traditional Chinese (Taiwan).
+{closing}
 
 Seeker question:
 {question}
@@ -39,7 +61,6 @@ Immutable divination result:
 
 
 class GenericMasterPersona:
-    """Neutral reusable master for non-themed products."""
     persona_id = "master"
 
     def build_prompt(self, *, method_result: dict[str, Any], question: str, lang: str) -> str:
