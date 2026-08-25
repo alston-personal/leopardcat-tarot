@@ -76,6 +76,31 @@
       <p class="muted">正在載入可用的解牌風格…</p>
     </div>
     <p id="persona-status" class="muted" aria-live="polite"></p>
+    <details id="custom-persona-builder" style="margin-top:16px;border-top:1px solid #eee3d4;padding-top:14px">
+      <summary style="cursor:pointer"><strong>＋ 建立我的解牌師</strong> <span class="muted">（選填）</span></summary>
+      <p class="muted">不用寫提示詞。用自己的話描述這位解牌師，系統會組成安全的 Persona Pack。</p>
+      <div class="row">
+        <div><label>解牌師名稱</label><input id="persona-name" placeholder="例如：月光園丁"></div>
+        <div><label>一句角色介紹</label><input id="persona-role" placeholder="例如：溫柔但不逃避現實的夜間引路人"></div>
+      </div>
+      <label>說話風格</label>
+      <textarea id="persona-voice" placeholder="每行一個特色，例如：
+溫柔、簡潔
+先同理，再指出盲點
+避免命令式語氣"></textarea>
+      <label>解讀原則</label>
+      <textarea id="persona-principles" placeholder="每行一條，例如：
+先讀牌面，再連回提問
+同時說明機會與風險
+最後給一個今天能做的行動"></textarea>
+      <label>世界觀／專長（選填）</label>
+      <textarea id="persona-worldview" placeholder="例如：熟悉植物、季節循環與園藝隱喻"></textarea>
+      <label>每次回答怎麼收尾？（選填）</label>
+      <input id="persona-closing" placeholder="例如：最後留下一句短短的月光提醒">
+      <p class="muted">抽牌結果、安全規則與隱私規則由平台固定保護，你的設定不會覆蓋它們。</p>
+      <button id="create-persona" type="button" class="btn secondary">建立這位解牌師</button>
+      <p id="persona-create-status" class="muted" aria-live="polite"></p>
+    </details>
   </section>
 
   <section class="card">

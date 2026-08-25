@@ -18,7 +18,8 @@ from divination.publishing import DeckPublisher
 from divination.themes import ThemeRegistry, ThemePublisher
 from divination.ai_gateway import ZeroCostGeminiGateway, AIUnavailable
 from divination.brands import BrandRegistry
-from divination.personas import persona_public_info
+from divination.personas import persona_public_info, ConfigurablePersona
+from divination.persona_publishing import PersonaPublisher
 
 PORT = 8088
 DIRECTORY = "dist"
@@ -83,6 +84,8 @@ DECK_PUBLISHER = DeckPublisher(os.path.join(DATA_DIR, 'custom_decks'))
 THEME_ROOT = os.path.join(DATA_DIR, 'custom_themes')
 THEMES = ThemeRegistry(THEME_ROOT)
 THEME_PUBLISHER = ThemePublisher(THEME_ROOT)
+PERSONA_ROOT = os.path.join(DATA_DIR, 'custom_personas')
+PERSONA_PUBLISHER = PersonaPublisher(PERSONA_ROOT)
 
 def call_master_prompt(prompt):
     return AI_GATEWAY.generate(prompt)
@@ -109,12 +112,29 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             try:
                 deck = DIVINATION_ENGINE.decks.get(deck_id)
                 default_persona = deck.default_persona
-                items = [persona_public_info(DIVINATION_ENGINE.personas.get(pid)) for pid in DIVINATION_ENGINE.personas.capabilities()]
+                items = []
+                for pid in DIVINATION_ENGINE.personas.capabilities():
+                    info = persona_public_info(DIVINATION_ENGINE.personas.get(pid))
+                    # Custom personas are unlisted. A deck exposes only its own default custom persona.
+                    if info.get('source') != 'custom' or pid == default_persona:
+                        items.append(info)
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json; charset=utf-8')
                 self.send_header('Cache-Control', 'public, max-age=60')
                 self.end_headers()
                 self.wfile.write(json.dumps({'default_persona': default_persona, 'personas': items}, ensure_ascii=False).encode('utf-8'))
+            except DivinationError:
+                self.send_error(404)
+            return
+        if path.startswith('/api/v1/personas/'):
+            persona_id = path.rsplit('/', 1)[-1]
+            try:
+                info = persona_public_info(DIVINATION_ENGINE.personas.get(persona_id))
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Cache-Control', 'public, max-age=60')
+                self.end_headers()
+                self.wfile.write(json.dumps(info, ensure_ascii=False).encode('utf-8'))
             except DivinationError:
                 self.send_error(404)
             return
@@ -293,6 +313,36 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_POST(self):
+        if self.path == '/api/v1/personas':
+            content_length = int(self.headers.get('Content-Length', 0))
+            if content_length > 64 * 1024:
+                self.send_response(413)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error':'persona_too_large','message':'解牌師設定內容過大'}, ensure_ascii=False).encode('utf-8'))
+                return
+            try:
+                payload = json.loads(self.rfile.read(content_length).decode('utf-8'))
+                result = PERSONA_PUBLISHER.publish(payload)
+                persona = ConfigurablePersona(PERSONA_PUBLISHER.pack_path(result['persona_id']))
+                DIVINATION_ENGINE.personas.register(persona)
+                self.send_response(201)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Cache-Control', 'no-store')
+                self.end_headers()
+                self.wfile.write(json.dumps(result, ensure_ascii=False).encode('utf-8'))
+            except DivinationError as e:
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error':'invalid_persona','message':str(e)}, ensure_ascii=False).encode('utf-8'))
+            except Exception as e:
+                log(f"!!! PERSONA PUBLISH ERROR: {e}")
+                self.send_response(500)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error':'persona_publish_failed'}, ensure_ascii=False).encode('utf-8'))
+            return
         if self.path == '/api/v1/themes':
             content_length = int(self.headers.get('Content-Length', 0))
             if content_length > 20 * 1024 * 1024:
@@ -412,6 +462,8 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 return
             try:
                 payload = json.loads(self.rfile.read(content_length).decode('utf-8'))
+                persona_id = str(payload.get('persona') or 'master').strip()
+                DIVINATION_ENGINE.personas.get(persona_id)
                 result = DECK_PUBLISHER.publish(payload)
                 self.send_response(201)
                 self.send_header('Content-type', 'application/json; charset=utf-8')
