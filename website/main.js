@@ -13,6 +13,7 @@ window.cardData = [];
 window.currentDrawnCard = null;
 window.currentReadingEnvelope = null;
 window.currentReadingState = null; // shared deck/theme/card/orientation state for every Tarot deck
+window.activeBrand = null; // Brand Pack: presentation/social identity, independent from Tarot logic
 
 // ⚡ Restored to normal limit (5) for production
 let chatQuota = 5;
@@ -140,10 +141,10 @@ function updateUIQuota() {
 
 // Initialize All Systems
 async function initAllSystems() {
-    console.log("Initializing LeopardCat Tarot Systems...");
+    console.log("Initializing Divination Platform...");
     const loadingOverlay = document.createElement('div');
     loadingOverlay.id = 'initial-loader';
-    loadingOverlay.innerHTML = '<div class="spirit-thinking"><span></span><span></span><span></span></div><p style="color:var(--color-gold);margin-top:10px;font-size:0.8rem;letter-spacing:0.1em;">靈山氣息凝聚中...</p>';
+    loadingOverlay.innerHTML = '<div class="spirit-thinking"><span></span><span></span><span></span></div><p style="color:var(--color-gold);margin-top:10px;font-size:0.8rem;letter-spacing:0.1em;">牌卡體驗載入中...</p>';
     loadingOverlay.style = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#030504;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;transition:opacity 0.8s;';
     document.body.appendChild(loadingOverlay);
 
@@ -162,6 +163,7 @@ async function initAllSystems() {
 
         if (cR.ok) {
             window.siteData = await cR.json();
+            await window.loadActiveBrand();
             applyLanguage();
             initDharmaIdentity();
             updateTempleStats();
@@ -564,7 +566,7 @@ window.generateShareImage = async function() {
     // ⚡ Optimization: If we already generated this card's memo, just share it
     if (lastShareFile && isMobile && navigator.share) {
         try {
-            await navigator.share({ title: '靈山靈貓 石虎塔羅', text: lastShareText, files: [lastShareFile] });
+            await navigator.share({ title: window.brandText('share_title', 'Tarot Reading'), text: lastShareText, files: [lastShareFile] });
             return;
         } catch(e) { console.log("Re-share failed", e); }
     }
@@ -618,7 +620,7 @@ window.generateShareImage = async function() {
     }
     
     if (!bestQuote && bubbles.length > 0) bestQuote = bubbles[0].innerText.substring(0, 60) + '...';
-    const quote = bestQuote || (window.currentLang === 'zh' ? '與山靈連結，尋找內心的平靜。' : 'Connect with the spirits, find your inner peace.');
+    const quote = bestQuote || window.brandText('default_quote', window.currentLang === 'zh' ? '聽見牌面，也聽見自己。' : 'Listen to the cards, and to yourself.');
     document.getElementById('share-quote').innerText = quote;
 
     // 🕵️ Stability: Wait for image load + small layout settling delay
@@ -661,14 +663,15 @@ window.generateShareImage = async function() {
 
         // 🔗 Update Share Card Labels (Always follows UI Language for frame consistency)
         const uiCommon = window.siteData[window.currentLang].common;
-        document.getElementById('share-memo-title').innerText = uiCommon.share_memo_title;
+        document.getElementById('share-memo-title').innerText = window.brandText('share_title', uiCommon.share_memo_title);
         document.getElementById('share-seeker-label').innerText = uiCommon.share_seeker_label;
-        document.getElementById('share-site-tag').innerText = uiCommon.share_site_tag;
+        document.getElementById('share-site-tag').innerText = window.brandText('share_site_tag', uiCommon.share_site_tag);
         document.getElementById('share-date').innerText = new Date().toLocaleDateString(window.currentLang === 'zh' ? 'zh-TW' : 'en-US');
 
         const shareTitle = currentDrawnCard.title?.[shareLang] || currentDrawnCard.title?.['zh-TW'] || currentDrawnCard.title?.zh || currentDrawnCard.title?.en || currentDrawnCard.id;
         const orientationText = (window.currentReadingState?.orientation === 'reversed') ? (shareLang === 'zh' ? '（逆位）' : ' (Reversed)') : '';
-        const shareMsg = common.share_copy_template.replace('{card}', `${shareTitle}${orientationText}`);
+        const brandTemplate = window.brandText('share_copy_template', common.share_copy_template);
+        const shareMsg = brandTemplate.replace('{card}', `${shareTitle}${orientationText}`);
         // Shared deep link preserves deck + theme + card + orientation.
         const shareU = new URL(window.location.origin + window.location.pathname);
         if (window.activeDeckId && window.activeDeckId !== 'leopardcat') shareU.searchParams.set('deck', window.activeDeckId);
@@ -698,7 +701,8 @@ window.generateShareImage = async function() {
         updateSocialLinks(currentDrawnCard, bestQuote);
 
         const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-        const file = new File([blob], `leopardcat-tarot-${Date.now()}.png`, { type: 'image/png' });
+        const filePrefix = window.activeBrand?.file_prefix || 'tarot';
+        const file = new File([blob], `${filePrefix}-${Date.now()}.png`, { type: 'image/png' });
         
         // 🎨 Ritual Result: Native Share (Mobile) or Clipboard Copy (Desktop)
         if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
@@ -707,7 +711,7 @@ window.generateShareImage = async function() {
             try {
                 await navigator.share({
                     files: [file],
-                    title: window.siteData[window.currentLang].common.share_memo_title,
+                    title: window.brandText('share_title', window.siteData[window.currentLang].common.share_memo_title),
                     text: lastShareText
                 });
             } catch (shareErr) {
@@ -729,7 +733,7 @@ window.generateShareImage = async function() {
                 console.warn("Clipboard Copy Failed:", err);
                 const link = document.createElement('a');
                 link.href = URL.createObjectURL(blob);
-                link.download = `leopardcat-tarot-${Date.now()}.png`;
+                link.download = `${window.activeBrand?.file_prefix || 'tarot'}-${Date.now()}.png`;
                 link.click();
                 btn.disabled = false;
                 btn.innerHTML = originalText;
@@ -750,7 +754,9 @@ function updateSocialLinks(card, customQuote = null) {
     const common = window.siteData[shareLang].common;
     
     // Use quote if provided, else generic template
-    const shareMsg = customQuote ? `「${customQuote}」` : common.share_copy_template.replace('{card}', card.title[shareLang]);
+    const brandTemplate = window.brandText('share_copy_template', common.share_copy_template);
+    const cardTitle = card.title?.[shareLang] || card.title?.['zh-TW'] || card.title?.zh || card.title?.en || card.id;
+    const shareMsg = customQuote ? `「${customQuote}」` : brandTemplate.replace('{card}', cardTitle);
     const shareU = new URL(`${window.location.origin}${window.location.pathname}`);
     if (window.activeDeckId && window.activeDeckId !== 'leopardcat') shareU.searchParams.set('deck', window.activeDeckId);
     if (window.activeThemeId) shareU.searchParams.set('theme', window.activeThemeId);
@@ -824,6 +830,53 @@ window.drawFortune = async function() {
 };
 
 window.activeDeckId = new URLSearchParams(window.location.search).get('deck') || 'leopardcat';
+
+
+window.brandText = function(field, fallback = '') {
+    const value = window.activeBrand?.[field];
+    if (value && typeof value === 'object') return value[window.currentLang] || value.zh || value.en || fallback;
+    return value || fallback;
+};
+
+window.applyActiveBrand = function() {
+    const b = window.activeBrand;
+    if (!b || window.activeDeckId === 'leopardcat') return;
+    document.title = b.app_name || b.short_name || 'Tarot';
+    const setText = (selector, text) => {
+        const el = document.querySelector(selector);
+        if (!el || !text) return;
+        el.removeAttribute('data-i18n');
+        el.textContent = text;
+    };
+    setText('.nav-logo', b.short_name || b.app_name);
+    setText('#hero h1', b.app_name);
+    setText('#hero .subtitle', b.description || b.creator_line);
+    setText('#fortune .section-title h2', `${b.short_name || b.app_name}・塔羅占卜`);
+    setText('#fortune .section-title .label', b.creator_line || 'Creator Tarot');
+    setText('#share-memo-title', window.brandText('share_title', b.app_name));
+    setText('#share-site-tag', window.brandText('share_site_tag', b.creator_line || ''));
+};
+
+window.loadActiveBrand = async function() {
+    try {
+        const r = await fetch(`/api/v1/brands/${encodeURIComponent(window.activeDeckId || 'leopardcat')}`, {cache:'no-cache'});
+        if (!r.ok) throw new Error(`BRAND_${r.status}`);
+        window.activeBrand = await r.json();
+        window.applyActiveBrand();
+    } catch (e) {
+        console.warn('[Brand Pack] load failed', e);
+        window.activeBrand = {
+            brand_id: `fallback:${window.activeDeckId || 'leopardcat'}`,
+            app_name: window.activeDeckId || 'Tarot', short_name: window.activeDeckId || 'Tarot',
+            share_title: {zh:'塔羅指引', en:'Tarot Reading'},
+            share_site_tag: {zh:'線上塔羅', en:'Online Tarot'},
+            share_copy_template: {zh:'我抽到了：{card}', en:'I drew {card}'},
+            default_quote: {zh:'聽見牌面，也聽見自己。', en:'Listen to the cards, and to yourself.'},
+            file_prefix: window.activeDeckId || 'tarot'
+        };
+    }
+};
+
 
 window.activeThemeId = new URLSearchParams(window.location.search).get('theme') || (window.activeDeckId === 'leopardcat' ? 'leopardcat' : 'minimal-light');
 
@@ -1304,6 +1357,7 @@ window.loadActiveDeckBranding = async function() {
         if (shareTitle) shareTitle.textContent = deck.name;
         const shareTag = document.getElementById('share-site-tag');
         if (shareTag) shareTag.textContent = deck.creator ? `牌卡創作：${deck.creator}` : '專屬線上占卜';
+        window.applyActiveBrand();
     } catch (err) {
         console.error('[Custom Deck] Unable to load deck:', err);
         const area = document.getElementById('fortune-ritual-area');

@@ -3,6 +3,8 @@ import socketserver
 import json
 import urllib.request
 import urllib.error
+import urllib.parse
+import html
 import os
 import ssl
 import traceback
@@ -15,6 +17,7 @@ from divination.sessions import ReadingSessionStore
 from divination.publishing import DeckPublisher
 from divination.themes import ThemeRegistry, ThemePublisher
 from divination.ai_gateway import ZeroCostGeminiGateway, AIUnavailable
+from divination.brands import BrandRegistry
 
 PORT = 8088
 DIRECTORY = "dist"
@@ -72,6 +75,7 @@ API_KEY = load_env_key()
 AI_GATEWAY = ZeroCostGeminiGateway(API_KEY)
 
 DIVINATION_ENGINE = build_default_engine(os.path.dirname(os.path.abspath(__file__)))
+BRANDS = BrandRegistry(DIVINATION_ENGINE.decks)
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 SESSION_STORE = ReadingSessionStore(os.path.join(DATA_DIR, 'reading_sessions.sqlite3'), ttl_seconds=86400)
 DECK_PUBLISHER = DeckPublisher(os.path.join(DATA_DIR, 'custom_decks'))
@@ -97,6 +101,18 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header('Content-type', 'application/json; charset=utf-8')
             self.end_headers()
             self.wfile.write(json.dumps(AI_GATEWAY.policy(), ensure_ascii=False).encode('utf-8'))
+            return
+        if path.startswith('/api/v1/brands/'):
+            deck_id = path.rsplit('/', 1)[-1]
+            try:
+                data = BRANDS.public_info(deck_id)
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Cache-Control', 'public, max-age=60')
+                self.end_headers()
+                self.wfile.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+            except DivinationError:
+                self.send_error(404)
             return
         if path == '/api/v1/themes':
             self.send_response(200)
@@ -177,31 +193,52 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         # 🔮 Dynamic SEO / Open Graph Injection for Social Sharing
         if path == '/' or path == '/index.html':
-            card_id = None
-            if 'card=' in query:
-                match = re.search(r'card=([^&]+)', query)
-                if match:
-                    card_id = match.group(1)
+            params = urllib.parse.parse_qs(query)
+            deck_id = (params.get('deck') or ['leopardcat'])[0]
+            card_id = (params.get('card') or [None])[0]
             
             index_path = os.path.join(DIRECTORY, 'index.html')
             if os.path.exists(index_path):
                 with open(index_path, 'r', encoding='utf-8') as f:
                     content = f.read()
                 
-                # 🌿 Construction of Metadata
+                # 🌿 Construction of metadata from the active Brand Pack + Deck Module.
                 host = 'leopardcat-tarot.milkcat.org'
                 base_url = f"https://{host}"
-                # 🖼️ Default Fallback Image (PNG for best FB stability)
-                meta_img = f"{base_url}/art/renders/card-00-the-fool.webp"
-                meta_title = "靈山靈貓 · 石虎塔羅 LeopardCat Tarot"
-                meta_desc = "連結淺山靈魂，傾聽大師開示。讓石虎為您指引生命的方向。"
-                
-                if card_id:
-                    card = next((c for c in CARD_MANIFEST if c['id'] == card_id), None)
-                    if card:
-                        meta_title = f"我在石虎塔羅抽到了：{card['title']['zh']} | {card['title']['en']}"
-                        meta_desc = f"{card['ecology']['zh'][:100]}..."
-                        meta_img = f"{base_url}/{card['image']}?v=v44"
+                try:
+                    brand = BRANDS.get(deck_id)
+                    active_deck = DIVINATION_ENGINE.decks.get(deck_id)
+                except DivinationError:
+                    brand = BRANDS.get('leopardcat')
+                    active_deck = DIVINATION_ENGINE.decks.get('leopardcat')
+                    deck_id = 'leopardcat'
+
+                meta_title = brand.app_name
+                meta_desc = brand.description
+                fallback_card = active_deck.cards[0] if active_deck.cards else {}
+                selected_card = next((c for c in active_deck.cards if c.get('id') == card_id), None) if card_id else None
+                card_for_image = selected_card or fallback_card
+                image_path = str(card_for_image.get('image') or 'art/renders/card-00-the-fool.webp')
+                meta_img = image_path if image_path.startswith(('http://', 'https://')) else f"{base_url}/{image_path.lstrip('/')}"
+
+                if selected_card:
+                    titles = selected_card.get('title') or {}
+                    if isinstance(titles, dict):
+                        title_zh = titles.get('zh') or titles.get('zh-TW') or titles.get('en') or selected_card.get('id', '')
+                    else:
+                        title_zh = str(titles or selected_card.get('id', ''))
+                    meta_title = brand.share_copy_template.get('zh', '{card}').replace('{card}', title_zh)
+                    meanings = selected_card.get('meanings') or selected_card.get('meaning') or {}
+                    if isinstance(meanings, dict):
+                        raw_desc = meanings.get('upright') or meanings.get('zh') or meanings.get('zh-TW') or meanings.get('en') or ''
+                    else:
+                        raw_desc = str(meanings)
+                    if raw_desc:
+                        meta_desc = str(raw_desc)[:160]
+
+                meta_title = html.escape(str(meta_title), quote=True)
+                meta_desc = html.escape(str(meta_desc), quote=True)
+                meta_img = html.escape(str(meta_img), quote=True)
 
                 # 🌿 Use Placeholder Replacement (Robust & Reliable)
                 # Match: <title data-i18n="hero.title">石虎塔羅 LeopardCat Tarot</title>
@@ -215,8 +252,8 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     <meta name="description" content="{meta_desc}">
     <meta property="og:title" content="{meta_title}">
     <meta property="og:description" content="{meta_desc}">
-    <meta property="og:image" content="https://leopardcat-tarot.milkcat.org/spirit-vision/{os.path.splitext(os.path.basename(meta_img))[0]}.webp?v=v999">
-    <meta property="og:image:secure_url" content="https://leopardcat-tarot.milkcat.org/spirit-vision/{os.path.splitext(os.path.basename(meta_img))[0]}.webp?v=v999">
+    <meta property="og:image" content="{meta_img}">
+    <meta property="og:image:secure_url" content="{meta_img}">
     <meta property="og:image:type" content="image/webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="1800">
@@ -224,7 +261,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     <meta property="og:url" content="{base_url}{self.path}">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://leopardcat-tarot.milkcat.org/spirit-vision/{os.path.splitext(os.path.basename(meta_img))[0]}.webp?v=v999">"""
+    <meta name="twitter:image" content="{meta_img}">"""
                 content = content.replace('<!-- 🌿 Spirit Mirror: Dynamic OG Tags v45 -->', og_tags)
                 
                 self.send_response(200)
