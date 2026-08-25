@@ -1,0 +1,60 @@
+name: Apply Persona Pack Contract
+on:
+  push:
+    branches: [feature/persona-pack-contract]
+    paths:
+      - 'website/divination/decks.py'
+      - 'website/divination/personas.py'
+      - 'website/tests/test_persona_packs.py'
+      - 'tools/apply_persona_pack.py'
+      - '.github/workflows/apply-persona-pack-contract.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/persona-pack-contract
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Apply source patch
+        run: python tools/apply_persona_pack.py
+      - name: Validate persona contracts
+        working-directory: website
+        run: |
+          python -m py_compile fortune_server.py divination/*.py
+          python -m pytest -q tests/test_persona_packs.py
+          node --check main.js
+          grep -q "default_persona" divination/decks.py
+          grep -q "/api/v1/personas" fortune_server.py
+          grep -q "window.activePersonaId" main.js
+          grep -q "persona_id: window.activePersonaId" main.js
+          grep -q "shareU.searchParams.set('persona', window.activePersonaId)" main.js
+          ! grep -q "activeDeckId === 'leopardcat' ? 'leopardcat' : 'master'" main.js
+          echo persona_pack_source_contract=passed
+      - name: Build web
+        working-directory: website
+        run: |
+          find public -xtype l -delete || true
+          mkdir -p public/art/renders public/cards
+          npm ci
+          npm run build
+      - name: Commit generated source
+        run: |
+          git config user.name Sunlake
+          git config user.email register@milkcat.org
+          git add website/main.js website/fortune_server.py website/divination/publishing.py
+          if git diff --cached --quiet; then
+            echo no_source_changes
+          else
+            git commit -m 'feat(persona): route readings through persona packs'
+            git push origin HEAD:feature/persona-pack-contract
+          fi
