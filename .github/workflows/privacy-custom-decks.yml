@@ -42,6 +42,7 @@ jobs:
           cd website
           rm -rf node_modules
           npm ci
+          mkdir -p public/art/renders
           npm run build
           test -f dist/create.html
           test -f dist/creator.js
