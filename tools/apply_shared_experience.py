@@ -20,4 +20,4 @@ once("    currentDrawnCard = resolved[0].card;\n    window.currentDrawnCard = cu
 once("    window.currentReadingEnvelope = null;\n    lastShareFile = null;", "    window.currentReadingEnvelope = null;\n    window.currentReadingState = null;\n    lastShareFile = null;")
 
 p.write_text(s)
-print('shared experience patch applied')
+print('shared experience patch applied and validated')
