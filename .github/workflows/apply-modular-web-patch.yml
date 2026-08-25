@@ -1,0 +1,54 @@
+name: Apply Modular Web Patch
+
+on:
+  push:
+    branches: [feature/modular-divination-master]
+    paths:
+      - ".github/workflows/apply-modular-web-patch.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/modular-divination-master
+          fetch-depth: 0
+          sparse-checkout: |
+            website
+            tests
+            tools
+            .github/workflows
+          sparse-checkout-cone-mode: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Apply validated migration helper
+        run: python tools/patch_modular_web.py
+
+      - name: Validate modular engine and adapters
+        run: |
+          python -m unittest -v tests/test_divination_engine.py
+          python -m py_compile website/fortune_server.py website/divination/*.py
+          node --check website/main.js
+
+      - name: Commit web adapter
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add website/fortune_server.py website/main.js
+          if git diff --cached --quiet; then
+            echo "No adapter changes required."
+            exit 0
+          fi
+          git commit -m "feat(divination): connect web UI to modular reading API"
+          git push origin HEAD:feature/modular-divination-master

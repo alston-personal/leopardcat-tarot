@@ -9,6 +9,9 @@ import traceback
 import sys
 import re
 
+from divination import ReadingRequest, build_default_engine
+from divination.core import DivinationError
+
 PORT = 8088
 DIRECTORY = "dist"
 
@@ -65,6 +68,18 @@ API_KEY = load_env_key()
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
+
+DIVINATION_ENGINE = build_default_engine(os.path.dirname(os.path.abspath(__file__)))
+
+def call_master_prompt(prompt):
+    if not API_KEY:
+        raise RuntimeError("GEMINI_API_KEY is not configured")
+    payload = {"contents": [{"role": "user", "parts": [{"text": prompt}]}]}
+    gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
+    req = urllib.request.Request(gemini_url, data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, context=ctx, timeout=30) as response:
+        data = json.loads(response.read().decode("utf-8"))
+    return data["candidates"][0]["content"]["parts"][0]["text"]
 
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -150,6 +165,71 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_POST(self):
+        if self.path == '/api/v1/readings':
+            content_length = int(self.headers.get('Content-Length', 0))
+            post_data = self.rfile.read(content_length)
+            try:
+                req_data = json.loads(post_data.decode('utf-8'))
+                question = str(req_data.get('question') or '').strip()
+                lang = str(req_data.get('lang') or 'zh-TW')
+                persona_id = str(req_data.get('persona') or 'leopardcat')
+                history = req_data.get('history') or []
+                supplied_result = req_data.get('methodResult')
+                if supplied_result:
+                    persona = DIVINATION_ENGINE.personas.get(persona_id)
+                    master_prompt = persona.build_prompt(method_result=supplied_result, question=question, lang=lang)
+                    reading_id = str(req_data.get('readingId') or '')
+                    method_id = str(req_data.get('method') or supplied_result.get('method') or 'tarot')
+                    method_result = supplied_result
+                    seed_fingerprint = None
+                else:
+                    request = ReadingRequest(
+                        method=str(req_data.get('method') or 'tarot'),
+                        persona=persona_id,
+                        question=question,
+                        input=req_data.get('input') or {},
+                        lang=lang,
+                        seed=req_data.get('seed'),
+                    )
+                    envelope = DIVINATION_ENGINE.prepare(request)
+                    reading_id = envelope.reading_id
+                    method_id = envelope.method
+                    method_result = envelope.method_result
+                    seed_fingerprint = envelope.seed_fingerprint
+                    master_prompt = envelope.master_prompt
+                if history:
+                    master_prompt += "\n\nConversation history for continuity only; never change the immutable divination result:\n" + json.dumps(history[-10:], ensure_ascii=False)
+                update_stats(divination=True)
+                reading = call_master_prompt(master_prompt)
+                response_body = {
+                    'reading_id': reading_id,
+                    'method': method_id,
+                    'persona': persona_id,
+                    'question': question,
+                    'lang': lang,
+                    'seed_fingerprint': seed_fingerprint,
+                    'method_result': method_result,
+                    'reading': reading,
+                }
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps(response_body, ensure_ascii=False).encode('utf-8'))
+            except DivinationError as e:
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error': 'invalid_request', 'message': str(e)}, ensure_ascii=False).encode('utf-8'))
+            except Exception as e:
+                log(f"!!! MODULAR DIVINATION ERROR: {e}")
+                self.send_response(500)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error': 'reading_failed'}, ensure_ascii=False).encode('utf-8'))
+            return
         if self.path == '/api/fortune':
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)

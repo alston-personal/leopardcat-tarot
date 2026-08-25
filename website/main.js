@@ -11,6 +11,7 @@ if (!['zh', 'en'].includes(window.currentLang)) window.currentLang = 'zh';
 window.siteData = null;
 window.cardData = [];
 window.currentDrawnCard = null;
+window.currentReadingEnvelope = null;
 
 // ⚡ Restored to normal limit (5) for production
 let chatQuota = 5;
@@ -742,8 +743,6 @@ window.drawFortune = async function() {
     if (chatQuota <= 0) return alert(common.err_mana_depleted);
     const q = document.getElementById('fortune-question').value;
     if (!q.trim()) return alert(common.err_empty_question);
-    
-    // Decrement quota immediately (unless DEBUG)
     if (q.toUpperCase() !== 'DEBUG' && q.toUpperCase() !== 'FORCE_DEBUG') {
         if (chatQuota === 5) {
             lastManaRegen = Date.now();
@@ -752,16 +751,88 @@ window.drawFortune = async function() {
         chatQuota--;
         updateUIQuota();
     }
-
     document.getElementById('fortune-ritual-area').classList.add('hidden');
     document.getElementById('fortune-chat-area').classList.remove('hidden');
-    
     appendBubble('user', q);
-    
-    const card = window.cardData[Math.floor(Math.random() * window.cardData.length)];
-    currentDrawnCard = card;
-    
-    await window.getAIReading(q, card);
+    try {
+        await window.getModularReading(q);
+    } catch (e) {
+        console.warn('[Divination v1] Falling back to legacy fortune API:', e);
+        const card = window.cardData[Math.floor(Math.random() * window.cardData.length)];
+        currentDrawnCard = card;
+        window.currentDrawnCard = card;
+        window.currentReadingEnvelope = null;
+        await window.getAIReading(q, card);
+    }
+};
+
+window.getModularReading = async function(q) {
+    const common = window.siteData[window.currentLang].common;
+    const historyDiv = document.getElementById('chat-history');
+    const sensingId = 'sensing-' + Date.now();
+    appendBubble('assistant', `<div id="${sensingId}" class="spirit-thinking">${common.msg_sensing}</div>`);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000);
+    let resp;
+    try {
+        resp = await fetch('/api/v1/readings', {
+            method: 'POST', signal: controller.signal,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                method: 'tarot', persona: 'leopardcat', question: q,
+                input: { spread: 'auto' },
+                lang: window.currentLang === 'zh' ? 'zh-TW' : 'en'
+            })
+        });
+    } finally { clearTimeout(timeoutId); }
+    if (!resp.ok) throw new Error(`DIVINATION_V1_${resp.status}`);
+    const data = await resp.json();
+    document.getElementById(sensingId)?.closest('.chat-bubble')?.remove();
+    const specs = data.method_result?.cards || [];
+    if (!specs.length) throw new Error('DIVINATION_V1_EMPTY_RESULT');
+    const resolved = specs.map(spec => ({spec, card: window.cardData.find(c => c.id === spec.card_id)})).filter(x => x.card);
+    if (!resolved.length) throw new Error('DIVINATION_V1_CARD_NOT_FOUND');
+    currentDrawnCard = resolved[0].card;
+    window.currentDrawnCard = currentDrawnCard;
+    window.currentReadingEnvelope = data;
+    window._lastQuestion = q;
+    const pinnedArea = document.getElementById('pinned-card-area');
+    const pinnedDisplay = document.getElementById('pinned-card-display');
+    if (pinnedArea && pinnedDisplay) {
+        pinnedArea.classList.remove('hidden');
+        pinnedDisplay.innerHTML = `<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">${resolved.map(({spec, card}) => {
+            const orientation = spec.orientation === 'reversed' ? (window.currentLang === 'zh' ? '逆位' : 'Reversed') : (window.currentLang === 'zh' ? '正位' : 'Upright');
+            const pos = spec.position_label || spec.position || '';
+            const title = card.title[window.currentLang];
+            const rotate = spec.orientation === 'reversed' ? 'transform:rotate(180deg);' : '';
+            return `<div class="pinned-card-content" style="max-width:150px;"><img src="art/renders/${card.id}.webp" class="pinned-card-img" style="${rotate}"><div class="pinned-card-title">【${title}】<br><small>${pos} · ${orientation}</small></div></div>`;
+        }).join('')}</div>`;
+    }
+    const spreadNames = {
+        single: window.currentLang === 'zh' ? '單牌指引' : 'Single Guidance',
+        three_card: window.currentLang === 'zh' ? '三牌時間流' : 'Three-card Timeline',
+        decision: window.currentLang === 'zh' ? '抉擇三牌' : 'Decision Spread'
+    };
+    const spread = data.method_result?.spread || 'single';
+    const summary = resolved.map(({spec, card}) => {
+        const orientation = spec.orientation === 'reversed' ? (window.currentLang === 'zh' ? '逆位' : 'Reversed') : (window.currentLang === 'zh' ? '正位' : 'Upright');
+        return `${spec.position_label || spec.position}: ${card.title[window.currentLang]}（${orientation}）`;
+    }).join(' / ');
+    const prefix = `${window.currentLang === 'zh' ? '大師展開' : 'The Master opens'} <strong>【${spreadNames[spread] || spread}】</strong><br><small>${summary}</small><br>`;
+    const bubble = appendBubble('assistant', prefix);
+    const textContainer = document.createElement('div');
+    textContainer.className = 'markdown-content';
+    bubble.appendChild(textContainer);
+    const rawReply = data.reading || '';
+    const htmlReply = typeof marked !== 'undefined' ? marked.parse(rawReply) : rawReply.replace(/\n/g, '<br>');
+    typeWriterHTML(textContainer, htmlReply, 35, () => {
+        currentChatHistory.push({role:'user', content:q}, {role:'assistant', content:rawReply});
+        updateTempleStats();
+        const actions = document.getElementById('fortune-actions');
+        actions.classList.remove('hidden');
+        setTimeout(() => actions.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+    });
+    historyDiv.scrollTop = historyDiv.scrollHeight;
 };
 
 window.getAIReading = async function(q, card) {
@@ -909,10 +980,20 @@ window.sendChatMessage = async function() {
     try {
         const bubble = appendBubble('assistant', '<div class="spirit-thinking"><span></span><span></span><span></span></div>');
 
-        const apiResp = await fetch('/api/fortune', {
+        const modular = window.currentReadingEnvelope;
+        const apiResp = await fetch(modular ? '/api/v1/readings' : '/api/fortune', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ question: text, cardTitle: currentDrawnCard.title[window.currentLang], cardMeaning: currentDrawnCard.meaning[window.currentLang], lang: window.currentLang, history: currentChatHistory })
+            body: modular ? JSON.stringify({
+                method: modular.method || 'tarot', persona: modular.persona || 'leopardcat',
+                readingId: modular.reading_id, question: text,
+                methodResult: modular.method_result,
+                lang: window.currentLang === 'zh' ? 'zh-TW' : 'en', history: currentChatHistory
+            }) : JSON.stringify({
+                question: text, cardTitle: currentDrawnCard.title[window.currentLang],
+                cardMeaning: currentDrawnCard.meaning[window.currentLang],
+                lang: window.currentLang, history: currentChatHistory
+            })
         });
         if (apiResp.ok) {
             const data = await apiResp.json();
@@ -942,6 +1023,7 @@ window.sendChatMessage = async function() {
 
 window.resetRitual = function() {
     currentChatHistory = [];
+    window.currentReadingEnvelope = null;
     lastShareFile = null;
     lastShareText = "";
     
