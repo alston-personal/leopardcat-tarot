@@ -29,7 +29,6 @@ jobs:
           python - <<'PY'
           import json
           import tempfile
-          from pathlib import Path
           from divination.persona_publishing import PersonaPublisher
           from divination.personas import ConfigurablePersona
 
@@ -69,6 +68,8 @@ jobs:
           grep -q "path.startswith('/api/v1/personas/')" website/fortune_server.py
           grep -q "source') != 'custom'" website/fortune_server.py
           cd website
+          rm -f public/art/renders public/cards
+          mkdir -p public/art/renders public/cards
           npm ci
           npm run build
           echo persona_creator_source_contract=passed
