@@ -758,6 +758,7 @@ window.drawFortune = async function() {
         await window.getModularReading(q);
     } catch (e) {
         console.warn('[Divination v1] Falling back to legacy fortune API:', e);
+        if (window.activeDeckId !== 'leopardcat') { alert('這副自訂牌暫時無法連線，請稍後再試。'); return; }
         const card = window.cardData[Math.floor(Math.random() * window.cardData.length)];
         currentDrawnCard = card;
         window.currentDrawnCard = card;
@@ -765,6 +766,8 @@ window.drawFortune = async function() {
         await window.getAIReading(q, card);
     }
 };
+
+window.activeDeckId = new URLSearchParams(window.location.search).get('deck') || 'leopardcat';
 
 window.getModularReading = async function(q) {
     const common = window.siteData[window.currentLang].common;
@@ -779,8 +782,8 @@ window.getModularReading = async function(q) {
             method: 'POST', signal: controller.signal,
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                method: 'tarot', persona: 'leopardcat', question: q,
-                input: { spread: 'auto' },
+                method: 'tarot', persona: window.activeDeckId === 'leopardcat' ? 'leopardcat' : 'master', question: q,
+                input: { spread: 'auto', deck_id: window.activeDeckId },
                 lang: window.currentLang === 'zh' ? 'zh-TW' : 'en'
             })
         });
@@ -790,7 +793,7 @@ window.getModularReading = async function(q) {
     document.getElementById(sensingId)?.closest('.chat-bubble')?.remove();
     const specs = data.method_result?.cards || [];
     if (!specs.length) throw new Error('DIVINATION_V1_EMPTY_RESULT');
-    const resolved = specs.map(spec => ({spec, card: window.cardData.find(c => c.id === spec.card_id)})).filter(x => x.card);
+    const resolved = specs.map(spec => ({spec, card: window.cardData.find(c => c.id === spec.card_id) || spec})).filter(x => x.card);
     if (!resolved.length) throw new Error('DIVINATION_V1_CARD_NOT_FOUND');
     currentDrawnCard = resolved[0].card;
     window.currentDrawnCard = currentDrawnCard;
@@ -803,9 +806,9 @@ window.getModularReading = async function(q) {
         pinnedDisplay.innerHTML = `<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">${resolved.map(({spec, card}) => {
             const orientation = spec.orientation === 'reversed' ? (window.currentLang === 'zh' ? '逆位' : 'Reversed') : (window.currentLang === 'zh' ? '正位' : 'Upright');
             const pos = spec.position_label || spec.position || '';
-            const title = card.title[window.currentLang];
+            const title = card.title?.[window.currentLang] || card.title?.['zh-TW'] || card.title?.zh || card.title?.en || card.id;
             const rotate = spec.orientation === 'reversed' ? 'transform:rotate(180deg);' : '';
-            return `<div class="pinned-card-content" style="max-width:150px;"><img src="art/renders/${card.id}.webp" class="pinned-card-img" style="${rotate}"><div class="pinned-card-title">【${title}】<br><small>${pos} · ${orientation}</small></div></div>`;
+            const imageSrc = card.image || `art/renders/${card.id}.webp`; return `<div class="pinned-card-content" style="max-width:150px;"><img src="${imageSrc}" class="pinned-card-img" style="${rotate}"><div class="pinned-card-title">【${title}】<br><small>${pos} · ${orientation}</small></div></div>`;
         }).join('')}</div>`;
     }
     const spreadNames = {
@@ -816,7 +819,7 @@ window.getModularReading = async function(q) {
     const spread = data.method_result?.spread || 'single';
     const summary = resolved.map(({spec, card}) => {
         const orientation = spec.orientation === 'reversed' ? (window.currentLang === 'zh' ? '逆位' : 'Reversed') : (window.currentLang === 'zh' ? '正位' : 'Upright');
-        return `${spec.position_label || spec.position}: ${card.title[window.currentLang]}（${orientation}）`;
+        const title = card.title?.[window.currentLang] || card.title?.['zh-TW'] || card.title?.zh || card.title?.en || card.id; return `${spec.position_label || spec.position}: ${title}（${orientation}）`;
     }).join(' / ');
     const prefix = `${window.currentLang === 'zh' ? '大師展開' : 'The Master opens'} <strong>【${spreadNames[spread] || spread}】</strong><br><small>${summary}</small><br>`;
     const bubble = appendBubble('assistant', prefix);
@@ -986,8 +989,7 @@ window.sendChatMessage = async function() {
             headers: { 'Content-Type': 'application/json' },
             body: modular ? JSON.stringify({
                 method: modular.method || 'tarot', persona: modular.persona || 'leopardcat',
-                readingId: modular.reading_id, question: text,
-                methodResult: modular.method_result,
+                readingId: modular.reading_id, sessionToken: modular.session_token, question: text,
                 lang: window.currentLang === 'zh' ? 'zh-TW' : 'en', history: currentChatHistory
             }) : JSON.stringify({
                 question: text, cardTitle: currentDrawnCard.title[window.currentLang],
@@ -1067,3 +1069,45 @@ window.copyRitualUrl = function() {
         console.error('URL Copy Failed:', err);
     });
 };
+
+
+window.loadActiveDeckBranding = async function() {
+    if (!window.activeDeckId || window.activeDeckId === 'leopardcat') return;
+    try {
+        const resp = await fetch(`/api/v1/decks/${encodeURIComponent(window.activeDeckId)}`);
+        if (!resp.ok) throw new Error('DECK_NOT_FOUND');
+        const deck = await resp.json();
+        window.activeDeckInfo = deck;
+        document.title = `${deck.name}・線上塔羅占卜`;
+
+        const logo = document.querySelector('.nav-logo');
+        if (logo) { logo.removeAttribute('data-i18n'); logo.textContent = deck.name; }
+        const heroTitle = document.querySelector('#hero h1');
+        if (heroTitle) { heroTitle.removeAttribute('data-i18n'); heroTitle.textContent = deck.name; }
+        const heroSubtitle = document.querySelector('#hero .subtitle');
+        if (heroSubtitle) {
+            heroSubtitle.removeAttribute('data-i18n');
+            heroSubtitle.textContent = deck.description || (deck.creator ? `由 ${deck.creator} 創作・${deck.card_count} 張牌` : `${deck.card_count} 張牌`);
+        }
+        const fortuneTitle = document.querySelector('#fortune .section-title h2');
+        if (fortuneTitle) { fortuneTitle.removeAttribute('data-i18n'); fortuneTitle.textContent = `${deck.name}・塔羅占卜`; }
+        const fortuneLabel = document.querySelector('#fortune .section-title .label');
+        if (fortuneLabel) { fortuneLabel.removeAttribute('data-i18n'); fortuneLabel.textContent = deck.creator ? `by ${deck.creator}` : 'Creator Tarot'; }
+
+        // Ecology/history/gallery belong to LeopardCat, so a creator page hides them instead of impersonating the creator.
+        ['intro','chronicle','gallery'].forEach(id => document.getElementById(id)?.classList.add('hidden'));
+        document.querySelector('a[href="#gallery"]')?.classList.add('hidden');
+        document.querySelector('a[href="#intro"]')?.classList.add('hidden');
+
+        const shareTitle = document.getElementById('share-memo-title');
+        if (shareTitle) shareTitle.textContent = deck.name;
+        const shareTag = document.getElementById('share-site-tag');
+        if (shareTag) shareTag.textContent = deck.creator ? `牌卡創作：${deck.creator}` : '專屬線上占卜';
+    } catch (err) {
+        console.error('[Custom Deck] Unable to load deck:', err);
+        const area = document.getElementById('fortune-ritual-area');
+        if (area) area.innerHTML = '<p style="padding:24px;text-align:center">找不到這副牌，可能已下架或網址有誤。</p>';
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => window.loadActiveDeckBranding());

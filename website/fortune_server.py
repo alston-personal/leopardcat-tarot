@@ -11,6 +11,8 @@ import re
 
 from divination import ReadingRequest, build_default_engine
 from divination.core import DivinationError
+from divination.sessions import ReadingSessionStore
+from divination.publishing import DeckPublisher
 
 PORT = 8088
 DIRECTORY = "dist"
@@ -70,6 +72,9 @@ ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 DIVINATION_ENGINE = build_default_engine(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+SESSION_STORE = ReadingSessionStore(os.path.join(DATA_DIR, 'reading_sessions.sqlite3'), ttl_seconds=86400)
+DECK_PUBLISHER = DeckPublisher(os.path.join(DATA_DIR, 'custom_decks'))
 
 def call_master_prompt(prompt):
     if not API_KEY:
@@ -91,6 +96,34 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         query = url_parts[1] if len(url_parts) > 1 else ""
 
         # 👑 API Endpoints
+        if path.startswith('/api/v1/decks/'):
+            parts = [p for p in path.split('/') if p]
+            try:
+                if len(parts) == 4:
+                    deck_id = parts[3]
+                    info = DIVINATION_ENGINE.decks.public_info(deck_id)
+                    self.send_response(200)
+                    self.send_header('Content-type', 'application/json; charset=utf-8')
+                    self.send_header('Cache-Control', 'public, max-age=60')
+                    self.end_headers()
+                    self.wfile.write(json.dumps(info, ensure_ascii=False).encode('utf-8'))
+                    return
+                if len(parts) == 6 and parts[4] == 'images':
+                    deck_id, filename = parts[3], parts[5]
+                    image_path = DECK_PUBLISHER.image_path(deck_id, filename)
+                    ext = image_path.suffix.lower()
+                    mime = {'.jpg':'image/jpeg','.png':'image/png','.webp':'image/webp'}[ext]
+                    raw = image_path.read_bytes()
+                    self.send_response(200)
+                    self.send_header('Content-type', mime)
+                    self.send_header('Content-Length', str(len(raw)))
+                    self.send_header('Cache-Control', 'public, max-age=86400')
+                    self.end_headers()
+                    self.wfile.write(raw)
+                    return
+            except DivinationError:
+                self.send_error(404)
+                return
         if path == '/api/stats':
             sdata = update_stats(divination=False)
             self.send_response(200)
@@ -172,17 +205,22 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 req_data = json.loads(post_data.decode('utf-8'))
                 question = str(req_data.get('question') or '').strip()
                 lang = str(req_data.get('lang') or 'zh-TW')
-                persona_id = str(req_data.get('persona') or 'leopardcat')
                 history = req_data.get('history') or []
-                supplied_result = req_data.get('methodResult')
-                if supplied_result:
+                reading_id = str(req_data.get('readingId') or '')
+                session_token = str(req_data.get('sessionToken') or '')
+
+                if reading_id and session_token:
+                    saved = SESSION_STORE.get(reading_id, session_token)
+                    persona_id = saved['persona']
+                    method_id = saved['method']
+                    method_result = saved['method_result']
                     persona = DIVINATION_ENGINE.personas.get(persona_id)
-                    master_prompt = persona.build_prompt(method_result=supplied_result, question=question, lang=lang)
-                    reading_id = str(req_data.get('readingId') or '')
-                    method_id = str(req_data.get('method') or supplied_result.get('method') or 'tarot')
-                    method_result = supplied_result
+                    master_prompt = persona.build_prompt(method_result=method_result, question=question, lang=lang)
+                    expires_at = saved['expires_at']
+                    issued_token = session_token
                     seed_fingerprint = None
                 else:
+                    persona_id = str(req_data.get('persona') or 'leopardcat')
                     request = ReadingRequest(
                         method=str(req_data.get('method') or 'tarot'),
                         persona=persona_id,
@@ -197,12 +235,23 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                     method_result = envelope.method_result
                     seed_fingerprint = envelope.seed_fingerprint
                     master_prompt = envelope.master_prompt
+                    deck_id = ((method_result.get('deck') or {}).get('deck_id'))
+                    issued = SESSION_STORE.create(
+                        reading_id=reading_id, method=method_id, persona=persona_id,
+                        deck_id=deck_id, method_result=method_result,
+                    )
+                    issued_token = issued['session_token']
+                    expires_at = issued['expires_at']
+
                 if history:
-                    master_prompt += "\n\nConversation history for continuity only; never change the immutable divination result:\n" + json.dumps(history[-10:], ensure_ascii=False)
+                    master_prompt += "\n\nConversation history supplied by the client for continuity only. It is not persisted by this service and must never change the immutable divination result:\n" + json.dumps(history[-10:], ensure_ascii=False)
                 update_stats(divination=True)
                 reading = call_master_prompt(master_prompt)
                 response_body = {
                     'reading_id': reading_id,
+                    'session_token': issued_token,
+                    'expires_at': expires_at,
+                    'privacy': {'question_stored': False, 'answer_stored': False, 'symbolic_state_ttl_hours': 24},
                     'method': method_id,
                     'persona': persona_id,
                     'question': question,
@@ -229,6 +278,29 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_header('Access-Control-Allow-Origin', '*')
                 self.end_headers()
                 self.wfile.write(json.dumps({'error': 'reading_failed'}, ensure_ascii=False).encode('utf-8'))
+            return
+
+        if self.path == '/api/v1/decks':
+            content_length = int(self.headers.get('Content-Length', 0))
+            if content_length > 160 * 1024 * 1024:
+                self.send_error(413)
+                return
+            try:
+                payload = json.loads(self.rfile.read(content_length).decode('utf-8'))
+                result = DECK_PUBLISHER.publish(payload)
+                self.send_response(201)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(json.dumps(result, ensure_ascii=False).encode('utf-8'))
+            except DivinationError as e:
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error':'invalid_deck','message':str(e)}, ensure_ascii=False).encode('utf-8'))
+            except Exception as e:
+                log(f"!!! DECK PUBLISH ERROR: {e}")
+                self.send_response(500)
+                self.end_headers()
             return
         if self.path == '/api/fortune':
             content_length = int(self.headers['Content-Length'])

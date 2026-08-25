@@ -51,6 +51,7 @@
             <a href="#hero" data-i18n="nav.home">Home</a>
             <a href="#fortune" data-i18n="nav.fortune">Fortune</a>
             <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
+            <a href="/create.html" id="nav-create-deck">建立我的牌組</a>
             
             <div class="lang-switcher">
                 <button onclick="window.setLanguage('zh')" class="lang-btn active" id="btn-zh">中</button>
@@ -84,6 +85,7 @@
                 <div id="fortune-panel" class="fortune-container sacred-panel">
                     <div id="fortune-ritual-area">
                         <textarea id="fortune-question" class="sacred-textarea" data-i18n="common.placeholder_question" placeholder="在此輸入你的困惑，或是屏息靜心..."></textarea>
+                        <p id="reading-privacy-note" style="font-size:0.72rem;line-height:1.6;opacity:.72;margin:8px 4px 14px;">🔒 隱私預設：本站不保存你的問題與大師回答；問題會送至 AI 服務產生回覆。為了讓你能繼續追問，同一牌局的抽牌結果會匿名保存 24 小時後自動刪除。</p>
                         <button class="btn btn-gold" data-i18n="common.btn_draw" onclick="drawFortune()">祈請大師開牌</button>
                     </div>
 
