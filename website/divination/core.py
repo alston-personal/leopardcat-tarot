@@ -78,6 +78,16 @@ class PersonaRegistry:
             raise DivinationError(f"duplicate persona: {persona.persona_id}")
         self._items[persona.persona_id] = persona
 
+    def replace(self, persona: PersonaPack) -> None:
+        if persona.persona_id not in self._items:
+            raise DivinationError(f"unsupported persona: {persona.persona_id}")
+        self._items[persona.persona_id] = persona
+
+    def unregister(self, persona_id: str) -> None:
+        if persona_id not in self._items:
+            raise DivinationError(f"unsupported persona: {persona_id}")
+        del self._items[persona_id]
+
     def get(self, persona_id: str) -> PersonaPack:
         try:
             return self._items[persona_id]
