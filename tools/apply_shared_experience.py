@@ -2,6 +2,23 @@ from pathlib import Path
 p=Path('website/main.js')
 s=p.read_text()
 
+# The feature branch may already contain the generated patch. Treat that as success so
+# validation workflows can be re-run safely without depending on the pre-patch source.
+if "window.currentReadingState = null; // shared deck/theme/card/orientation state for every Tarot deck" in s:
+    required = [
+        "const shareOrientation = shareState.orientation || 'upright';",
+        "shareImgEl.style.transform = shareOrientation === 'reversed' ? 'rotate(180deg)' : '';",
+        "shareU.searchParams.set('orientation', 'reversed')",
+        "window.currentReadingState = {",
+        "deck_id: window.activeDeckId",
+        "theme_id: window.activeThemeId",
+    ]
+    missing = [x for x in required if x not in s]
+    if missing:
+        raise SystemExit('shared experience patch is partial; missing: ' + ', '.join(missing))
+    print('shared experience patch already applied and validated')
+    raise SystemExit(0)
+
 def once(old,new):
     global s
     if old not in s: raise SystemExit('missing anchor: '+old[:80])
