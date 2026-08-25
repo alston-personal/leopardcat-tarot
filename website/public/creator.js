@@ -32,6 +32,22 @@
     reader.readAsDataURL(file);
   });
 
+  async function readApiResponse(resp) {
+    const contentType = (resp.headers.get('content-type') || '').toLowerCase();
+    if (contentType.includes('application/json')) {
+      return await resp.json();
+    }
+    const text = await resp.text();
+    if (resp.status === 413) {
+      throw new Error('這次上傳的圖片總量太大。請稍微減少圖片尺寸或分批建立牌組後再試。');
+    }
+    if (resp.status === 502 || resp.status === 503 || resp.status === 504) {
+      throw new Error('伺服器暫時無法處理，請稍後再試。');
+    }
+    const preview = text.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 120);
+    throw new Error(preview ? `發布失敗（${resp.status}）：${preview}` : `發布失敗（${resp.status}）`);
+  }
+
   function render() {
     section.classList.toggle('hidden', cards.length === 0);
     count.textContent = cards.length ? `已加入 ${cards.length} 張牌。圖片已自動最佳化，不需要自己縮圖。` : '';
@@ -96,7 +112,7 @@
           cards
         })
       });
-      const data = await resp.json();
+      const data = await readApiResponse(resp);
       if (!resp.ok) throw new Error(data.message || '發布失敗');
       const url = new URL(data.share_path, location.origin).href;
       const link = document.getElementById('share-link');
