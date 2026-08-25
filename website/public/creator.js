@@ -92,6 +92,35 @@
 
   reversals.addEventListener('change', render);
 
+
+  const themePreset = document.getElementById('theme-preset');
+  const themeCustom = document.getElementById('theme-custom');
+  themePreset.addEventListener('change', () => themeCustom.classList.toggle('hidden', themePreset.value !== 'custom'));
+
+  async function fileToThemeData(file) {
+    if (!file) return '';
+    return await optimizeImage(file);
+  }
+
+  async function publishThemeIfNeeded() {
+    if (themePreset.value !== 'custom') return themePreset.value;
+    status.textContent = '正在準備你的頁面風格…';
+    const payload = {
+      name: `${document.getElementById('deck-name').value.trim()} 的風格`,
+      colors: {
+        background: document.getElementById('theme-bg').value,
+        surface: '#171721', accent: document.getElementById('theme-accent').value, text: '#f5f2ea'
+      },
+      background_image: await fileToThemeData(document.getElementById('theme-background').files[0]),
+      card_back: await fileToThemeData(document.getElementById('theme-card-back').files[0])
+    };
+    const r = await fetch('/api/v1/themes', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+    const raw = await r.text();
+    let data = {}; try { data = JSON.parse(raw); } catch (_) {}
+    if (!r.ok) throw new Error(data.message || (r.status === 413 ? '主題圖片太大，請換較小的圖片。' : '建立頁面風格失敗。'));
+    return data.theme_id;
+  }
+
   document.getElementById('publish').addEventListener('click', async () => {
     const name = document.getElementById('deck-name').value.trim();
     if (!name) return alert('先幫這副牌取一個名字。');
@@ -102,6 +131,7 @@
     btn.disabled = true;
     status.textContent = '正在建立你的占卜頁…';
     try {
+      const selectedThemeId = await publishThemeIfNeeded();
       const resp = await fetch('/api/v1/decks', {
         method: 'POST', headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
@@ -114,7 +144,7 @@
       });
       const data = await readApiResponse(resp);
       if (!resp.ok) throw new Error(data.message || '發布失敗');
-      const url = new URL(data.share_path, location.origin).href;
+      const u = new URL(data.share_path, location.origin); u.searchParams.set('theme', selectedThemeId); const url = u.href;
       const link = document.getElementById('share-link');
       link.href = url; link.textContent = url;
       done.classList.remove('hidden');

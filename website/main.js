@@ -758,7 +758,15 @@ window.drawFortune = async function() {
         await window.getModularReading(q);
     } catch (e) {
         console.warn('[Divination v1] Falling back to legacy fortune API:', e);
-        if (window.activeDeckId !== 'leopardcat') { alert('這副自訂牌暫時無法連線，請稍後再試。'); return; }
+        if (window.activeDeckId !== 'leopardcat') {
+            const msg = e?.code === 'free_quota_exhausted'
+                ? '今天的免費 AI 額度暫時用完。你的牌局已保留，稍後再按一次就會沿用原牌，不會重新抽。'
+                : (e?.status === 503 ? 'AI 大師目前忙碌。你的牌局已保留，稍後再按一次就會沿用原牌。' : (e?.message || '這副牌目前無法完成占卜，請稍後再試。'));
+            alert(msg);
+            document.getElementById('fortune-ritual-area')?.classList.remove('hidden');
+            document.getElementById('fortune-chat-area')?.classList.add('hidden');
+            return;
+        }
         const card = window.cardData[Math.floor(Math.random() * window.cardData.length)];
         currentDrawnCard = card;
         window.currentDrawnCard = card;
@@ -769,6 +777,55 @@ window.drawFortune = async function() {
 
 window.activeDeckId = new URLSearchParams(window.location.search).get('deck') || 'leopardcat';
 
+window.activeThemeId = new URLSearchParams(window.location.search).get('theme') || (window.activeDeckId === 'leopardcat' ? 'leopardcat' : 'minimal-light');
+
+window.applyTheme = async function(themeId, updateUrl = false) {
+    try {
+        const resp = await fetch(`/api/v1/themes/${encodeURIComponent(themeId)}`, {cache:'no-cache'});
+        if (!resp.ok) throw new Error(`THEME_${resp.status}`);
+        const t = await resp.json();
+        const c = t.colors || {};
+        const root = document.documentElement;
+        root.style.setProperty('--theme-background', c.background || '#030504');
+        root.style.setProperty('--theme-surface', c.surface || '#111714');
+        root.style.setProperty('--theme-accent', c.accent || '#d4af37');
+        root.style.setProperty('--theme-text', c.text || '#f4efe4');
+        // Map Theme Contract onto the site's existing design tokens.
+        root.style.setProperty('--color-bg', c.background || '#030504');
+        root.style.setProperty('--color-panel', c.surface || '#111714');
+        root.style.setProperty('--color-gold', c.accent || '#d4af37');
+        root.style.setProperty('--color-gold-dim', c.accent || '#d4af37');
+        root.style.setProperty('--color-text-pri', c.text || '#f4efe4');
+        document.body.style.backgroundColor = c.background || '#030504';
+        document.body.style.color = c.text || '#f4efe4';
+        if (t.background_image) {
+            document.body.style.backgroundImage = `linear-gradient(#0006,#0006),url("${t.background_image}")`;
+            document.body.style.backgroundSize = 'cover'; document.body.style.backgroundAttachment = 'fixed';
+        } else document.body.style.backgroundImage = '';
+        window.activeThemeId = t.theme_id;
+        if (updateUrl) { const u = new URL(location.href); u.searchParams.set('theme', t.theme_id); history.replaceState(null,'',u); }
+        const sel = document.getElementById('theme-switcher-select'); if (sel) sel.value = t.theme_id;
+    } catch (e) { console.warn('Theme load failed', e); }
+};
+
+window.initThemeSwitcher = async function() {
+    const box = document.createElement('div');
+    box.id = 'theme-switcher';
+    box.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:1200;background:#111c;border:1px solid #ffffff22;border-radius:999px;padding:6px 10px;backdrop-filter:blur(8px);font-size:12px';
+    box.innerHTML = '<label style="display:flex;gap:6px;align-items:center">頁面風格 <select id="theme-switcher-select" style="border-radius:999px;padding:4px 8px"></select></label>';
+    document.body.appendChild(box);
+    const sel = box.querySelector('select');
+    try {
+        const r = await fetch('/api/v1/themes'); const d = await r.json();
+        for (const t of d.themes || []) { const o=document.createElement('option'); o.value=t.theme_id; o.textContent=t.name; sel.appendChild(o); }
+        if (![...sel.options].some(o=>o.value===window.activeThemeId)) { const o=document.createElement('option'); o.value=window.activeThemeId; o.textContent='這副牌的自訂風格'; sel.appendChild(o); }
+        sel.value = window.activeThemeId; sel.addEventListener('change', ()=>window.applyTheme(sel.value,true));
+    } catch (_) {}
+    await window.applyTheme(window.activeThemeId);
+};
+
+document.addEventListener('DOMContentLoaded', () => window.initThemeSwitcher());
+
 window.getModularReading = async function(q) {
     const common = window.siteData[window.currentLang].common;
     const historyDiv = document.getElementById('chat-history');
@@ -778,18 +835,36 @@ window.getModularReading = async function(q) {
     const timeoutId = setTimeout(() => controller.abort(), 30000);
     let resp;
     try {
+        const pending = window.pendingReadingSession;
+        const requestBody = pending ? {
+            readingId: pending.reading_id,
+            sessionToken: pending.session_token,
+            question: q,
+            lang: window.currentLang === 'zh' ? 'zh-TW' : 'en'
+        } : {
+            method: 'tarot', persona: window.activeDeckId === 'leopardcat' ? 'leopardcat' : 'master', question: q,
+            input: { spread: 'auto', deck_id: window.activeDeckId },
+            lang: window.currentLang === 'zh' ? 'zh-TW' : 'en'
+        };
         resp = await fetch('/api/v1/readings', {
             method: 'POST', signal: controller.signal,
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                method: 'tarot', persona: window.activeDeckId === 'leopardcat' ? 'leopardcat' : 'master', question: q,
-                input: { spread: 'auto', deck_id: window.activeDeckId },
-                lang: window.currentLang === 'zh' ? 'zh-TW' : 'en'
-            })
+            body: JSON.stringify(requestBody)
         });
     } finally { clearTimeout(timeoutId); }
-    if (!resp.ok) throw new Error(`DIVINATION_V1_${resp.status}`);
+    if (!resp.ok) {
+        let errData = {};
+        try { errData = await resp.json(); } catch (_) {}
+        if (errData.reading_id && errData.session_token) {
+            window.pendingReadingSession = {reading_id: errData.reading_id, session_token: errData.session_token};
+        }
+        const err = new Error(errData.message || `DIVINATION_V1_${resp.status}`);
+        err.status = resp.status;
+        err.code = errData.code || errData.error;
+        throw err;
+    }
     const data = await resp.json();
+    window.pendingReadingSession = null;
     document.getElementById(sensingId)?.closest('.chat-bubble')?.remove();
     const specs = data.method_result?.cards || [];
     if (!specs.length) throw new Error('DIVINATION_V1_EMPTY_RESULT');
