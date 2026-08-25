@@ -417,7 +417,23 @@ function createCardElement(card, groupId) {
     if (scrollableContent) {
         scrollableContent.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
         scrollableContent.addEventListener('touchend', (e) => e.stopPropagation(), { passive: true });
-        scrollableContent.addEventListener('wheel', (e) => e.stopPropagation(), { passive: true });
+        // Desktop wheel priority: while the pointer is over card meanings, consume wheel
+        // events whenever this panel can scroll in that direction. Only hand control back
+        // to the page after the panel is already at the corresponding boundary.
+        scrollableContent.addEventListener('wheel', (e) => {
+            const maxScroll = Math.max(0, scrollableContent.scrollHeight - scrollableContent.clientHeight);
+            const atTop = scrollableContent.scrollTop <= 0;
+            const atBottom = scrollableContent.scrollTop >= maxScroll - 1;
+            const wantsUp = e.deltaY < 0;
+            const wantsDown = e.deltaY > 0;
+            const panelCanConsume = maxScroll > 0 && !((wantsUp && atTop) || (wantsDown && atBottom));
+
+            e.stopPropagation();
+            if (panelCanConsume) {
+                e.preventDefault();
+                scrollableContent.scrollTop += e.deltaY;
+            }
+        }, { passive: false });
         scrollableContent.addEventListener('click', (e) => e.stopPropagation());
         const flipBack = scrollableContent.querySelector('.card-flip-back');
         flipBack?.addEventListener('click', (e) => { e.stopPropagation(); cardInner.classList.remove('is-flipped'); });
