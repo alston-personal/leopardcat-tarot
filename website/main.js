@@ -171,16 +171,22 @@ async function initAllSystems() {
             hideLoader(); // Success!
         }
 
-        // ⚡ Stage 2: Background load manifest (Large)
-        const mR = await fetch(`manifest.json?v=${ts}`, { cache: 'no-cache' });
-        if (mR.ok) {
-            window.cardData = await mR.json();
-            console.log("Manifest loaded, preparing gallery...");
-            setTimeout(() => {
-                const groups = window.siteData[window.currentLang].groups;
-                renderGallery(groups, window.cardData);
-                initScrollReveal();
-            }, 200);
+        // ⚡ Stage 2: Bootstrap exactly one Deck Module.
+        // Custom decks must never be overwritten by LeopardCat's built-in manifest.
+        if (window.activeDeckId && window.activeDeckId !== 'leopardcat') {
+            await window.loadActiveDeckBranding();
+            initScrollReveal();
+        } else {
+            const mR = await fetch(`manifest.json?v=${ts}`, { cache: 'no-cache' });
+            if (mR.ok) {
+                window.cardData = await mR.json();
+                console.log("LeopardCat deck loaded, preparing gallery...");
+                setTimeout(() => {
+                    const groups = window.siteData[window.currentLang].groups;
+                    renderGallery(groups, window.cardData);
+                    initScrollReveal();
+                }, 200);
+            }
         }
     } catch (err) {
         console.error('Initialization Failed:', err);
@@ -1305,4 +1311,4 @@ window.loadActiveDeckBranding = async function() {
     }
 };
 
-document.addEventListener('DOMContentLoaded', () => window.loadActiveDeckBranding());
+// Custom deck bootstrap is owned by initAllSystems() to prevent manifest races.
