@@ -12,6 +12,8 @@
   const slugStatus = document.getElementById('slug-status');
   const personaOptions = document.getElementById('persona-options');
   const personaStatus = document.getElementById('persona-status');
+  const personaCreateBtn = document.getElementById('create-persona');
+  const personaCreateStatus = document.getElementById('persona-create-status');
   let slugCheckTimer = null;
   let slugAvailable = null;
   let personas = [];
@@ -119,6 +121,43 @@
       personaStatus.textContent = '目前只顯示通用解牌師；其他解牌風格稍後可再切換。';
     }
   }
+
+  async function createCustomPersona() {
+    const name = document.getElementById('persona-name').value.trim();
+    const role = document.getElementById('persona-role').value.trim();
+    const voice = document.getElementById('persona-voice').value.trim();
+    const principles = document.getElementById('persona-principles').value.trim();
+    if (!name) return alert('先幫你的解牌師取一個名字。');
+    if (!role) return alert('請用一句話介紹這位解牌師。');
+    if (!voice) return alert('請描述至少一種說話風格。');
+    if (!principles) return alert('請填至少一條解讀原則。');
+
+    personaCreateBtn.disabled = true;
+    personaCreateStatus.textContent = '正在建立你的解牌師…';
+    try {
+      const resp = await fetch('/api/v1/personas', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          name, role, voice, principles,
+          worldview: document.getElementById('persona-worldview').value.trim(),
+          closing: document.getElementById('persona-closing').value.trim()
+        })
+      });
+      const data = await readApiResponse(resp);
+      if (!resp.ok) throw new Error(data.message || '建立解牌師失敗');
+      personas = personas.filter(x => x.persona_id !== data.persona_id);
+      personas.push(data);
+      selectedPersonaId = data.persona_id;
+      renderPersonaOptions();
+      personaCreateStatus.textContent = `✓ 已建立「${data.name}」，並設為這副牌的預設解牌師。`;
+    } catch (e) {
+      personaCreateStatus.textContent = e.message || '建立解牌師失敗，請稍後再試。';
+    } finally {
+      personaCreateBtn.disabled = false;
+    }
+  }
+
+  if (personaCreateBtn) personaCreateBtn.addEventListener('click', createCustomPersona);
 
   const optimizeImage = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
