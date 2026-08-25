@@ -25,6 +25,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install test tooling
+        run: python -m pip install -q pytest
       - name: Apply patch
         run: python tools/apply_theme_zero_cost.py
       - name: Validate
