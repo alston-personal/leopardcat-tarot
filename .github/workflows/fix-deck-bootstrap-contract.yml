@@ -1,0 +1,33 @@
+name: Fix Deck Bootstrap Contract
+on:
+  push:
+    branches: [feature/deck-bootstrap-contract]
+    paths:
+      - 'tools/fix_deck_bootstrap.py'
+      - '.github/workflows/fix-deck-bootstrap-contract.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: feature/deck-bootstrap-contract}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: python tools/fix_deck_bootstrap.py
+      - name: Validate
+        run: |
+          node --check website/main.js
+          grep -q 'Bootstrap exactly one Deck Module' website/main.js
+          grep -q "await window.loadActiveDeckBranding()" website/main.js
+          grep -q 'Custom deck bootstrap is owned by initAllSystems' website/main.js
+          test "$(grep -c "DOMContentLoaded.*loadActiveDeckBranding" website/main.js || true)" = 0
+      - name: Commit generated source
+        run: |
+          if git diff --quiet -- website/main.js; then echo source_already_current=passed; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add website/main.js
+          git commit -m "fix(ui): prevent custom deck bootstrap race"
+          git push origin HEAD:feature/deck-bootstrap-contract
