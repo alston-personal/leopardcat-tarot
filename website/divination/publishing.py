@@ -60,6 +60,13 @@ class DeckPublisher:
         recent.append(now)
         self.publish_log.write_text(json.dumps(recent[-self.hourly_limit:]), encoding="utf-8")
 
+    def slug_available(self, requested: str) -> dict[str, Any]:
+        slug = _clean_text(requested, 64).lower()
+        valid = bool(re.fullmatch(r"[a-z0-9](?:[a-z0-9-]{1,46}[a-z0-9])?", slug)) and 3 <= len(slug) <= 48
+        reserved = {"leopardcat", "admin", "api", "create", "themes", "tarot", "www"}
+        available = valid and slug not in reserved and not (self.root / slug).exists()
+        return {"slug": slug, "valid": valid, "available": available, "reserved": slug in reserved}
+
     def publish(self, payload: dict[str, Any]) -> dict[str, Any]:
         self._check_capacity()
         name = _clean_text(payload.get("name"), 100)
@@ -74,10 +81,24 @@ class DeckPublisher:
         if len(cards) > _MAX_CARDS:
             raise DivinationError(f"一次最多 {_MAX_CARDS} 張牌")
 
-        deck_id = f"{_slug(name)}-{secrets.token_hex(3)}"
+        requested_slug = _clean_text(payload.get("slug"), 64).lower()
+        if requested_slug:
+            check = self.slug_available(requested_slug)
+            if not check["valid"]:
+                raise DivinationError("專屬網址只能使用 3–48 個英文小寫字母、數字與連字號，且不能以連字號開頭或結尾")
+            if check["reserved"]:
+                raise DivinationError("這個專屬網址名稱為系統保留字，請換一個")
+            if not check["available"]:
+                raise DivinationError("這個專屬網址名稱已被使用，請換一個")
+            deck_id = requested_slug
+        else:
+            deck_id = f"{_slug(name)}-{secrets.token_hex(3)}"
         deck_dir = self.root / deck_id
         image_dir = deck_dir / "images"
-        image_dir.mkdir(parents=True, exist_ok=False)
+        try:
+            image_dir.mkdir(parents=True, exist_ok=False)
+        except FileExistsError:
+            raise DivinationError("這個專屬網址名稱剛被其他人使用，請換一個")
         saved_cards: list[dict[str, Any]] = []
 
         try:

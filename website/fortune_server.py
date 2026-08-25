@@ -129,6 +129,15 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             except DivinationError:
                 self.send_error(404)
                 return
+        if path.startswith('/api/v1/deck-slugs/'):
+            slug = path.rsplit('/', 1)[-1].lower()
+            result = DECK_PUBLISHER.slug_available(slug)
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json; charset=utf-8')
+            self.send_header('Cache-Control', 'no-store')
+            self.end_headers()
+            self.wfile.write(json.dumps(result, ensure_ascii=False).encode('utf-8'))
+            return
         if path.startswith('/api/v1/decks/'):
             parts = [p for p in path.split('/') if p]
             try:

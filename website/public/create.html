@@ -26,6 +26,12 @@
       <div><label>創作者名稱（選填）</label><input id="creator" placeholder="你的名字／筆名"></div>
     </div>
     <label>一句介紹（選填）</label><textarea id="description" placeholder="這副牌想陪伴大家看見什麼？"></textarea>
+    <label>你的專屬網址名稱（選填）</label>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="muted">?deck=</span><input id="deck-slug" style="max-width:360px" placeholder="例如 moon-garden" autocomplete="off" spellcheck="false">
+    </div>
+    <p class="muted" style="margin-bottom:4px">留空會自動產生。想自己指定時，只需英文小寫、數字與 -，共 3–48 個字元。</p>
+    <p id="slug-status" class="muted" aria-live="polite"></p>
   </section>
 
   <section class="card">
