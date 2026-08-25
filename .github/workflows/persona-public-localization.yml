@@ -1,0 +1,27 @@
+name: Persona Public Localization
+on:
+  push:
+    branches: [feature/persona-public-localization]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate localized persona metadata
+        working-directory: website
+        run: |
+          python -m py_compile divination/personas.py
+          python - <<'PY'
+          from divination.personas import ConfigurablePersona
+          p = ConfigurablePersona('oracle_packs/leopardcat/pack.json')
+          info = p.public_info()
+          assert info['persona_id'] == 'leopardcat'
+          assert '石虎' in info['name']
+          assert '淺山' in info['role']
+          prompt = p.build_prompt(method_result={'cards':[]}, question='test', lang='zh-TW')
+          assert 'the Hill Spirit Master' in prompt
+          print('persona_public_localization=passed')
+          PY

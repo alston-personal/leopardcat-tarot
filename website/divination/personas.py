@@ -20,10 +20,20 @@ class ConfigurablePersona:
 
     def public_info(self) -> dict[str, Any]:
         identity = self.config.get("identity") or {}
+        display_name = self.config.get("display_name") or {}
+        display_role = self.config.get("display_role") or {}
+        if isinstance(display_name, dict):
+            name = display_name.get("zh-TW") or display_name.get("zh") or display_name.get("en")
+        else:
+            name = display_name
+        if isinstance(display_role, dict):
+            role = display_role.get("zh-TW") or display_role.get("zh") or display_role.get("en")
+        else:
+            role = display_role
         return {
             "persona_id": self.persona_id,
-            "name": str(identity.get("name") or self.persona_id),
-            "role": str(identity.get("role") or ""),
+            "name": str(name or identity.get("name") or self.persona_id),
+            "role": str(role or identity.get("role") or ""),
             "source": "pack",
         }
 
