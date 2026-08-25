@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import base64
 import json
+import os
 import re
 import secrets
+import time
 from pathlib import Path
 from typing import Any
 
@@ -30,8 +32,36 @@ class DeckPublisher:
     def __init__(self, custom_root: str | Path) -> None:
         self.root = Path(custom_root)
         self.root.mkdir(parents=True, exist_ok=True)
+        self.publish_log = self.root / ".publish-log.json"
+        self.hourly_limit = int(os.environ.get("DECK_PUBLISH_LIMIT_PER_HOUR", "20"))
+        self.max_decks = int(os.environ.get("DECK_MAX_PUBLISHED", "5000"))
+
+    def _check_capacity(self) -> None:
+        deck_count = sum(1 for p in self.root.iterdir() if p.is_dir() and (p / "deck.json").exists())
+        if deck_count >= self.max_decks:
+            raise DivinationError("目前牌組空間已滿，請稍後再試")
+        now = int(time.time())
+        recent: list[int] = []
+        try:
+            recent = [int(x) for x in json.loads(self.publish_log.read_text(encoding="utf-8"))]
+        except Exception:
+            recent = []
+        recent = [x for x in recent if now - x < 3600]
+        if len(recent) >= self.hourly_limit:
+            raise DivinationError("目前建立牌組的人較多，請稍後再試")
+
+    def _record_publish(self) -> None:
+        now = int(time.time())
+        try:
+            recent = [int(x) for x in json.loads(self.publish_log.read_text(encoding="utf-8"))]
+        except Exception:
+            recent = []
+        recent = [x for x in recent if now - x < 3600]
+        recent.append(now)
+        self.publish_log.write_text(json.dumps(recent[-self.hourly_limit:]), encoding="utf-8")
 
     def publish(self, payload: dict[str, Any]) -> dict[str, Any]:
+        self._check_capacity()
         name = _clean_text(payload.get("name"), 100)
         creator = _clean_text(payload.get("creator"), 80)
         description = _clean_text(payload.get("description"), 500)
@@ -89,6 +119,7 @@ class DeckPublisher:
                 "cards": saved_cards,
             }
             (deck_dir / "deck.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+            self._record_publish()
         except Exception:
             import shutil
             shutil.rmtree(deck_dir, ignore_errors=True)
