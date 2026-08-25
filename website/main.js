@@ -428,9 +428,9 @@ function createCardElement(card, groupId) {
             const wantsDown = e.deltaY > 0;
             const panelCanConsume = maxScroll > 0 && !((wantsUp && atTop) || (wantsDown && atBottom));
 
-            e.stopPropagation();
             if (panelCanConsume) {
                 e.preventDefault();
+                e.stopPropagation();
                 scrollableContent.scrollTop += e.deltaY;
             }
         }, { passive: false });
