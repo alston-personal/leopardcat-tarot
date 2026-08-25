@@ -61,4 +61,7 @@ class DeckRegistry:
             "card_count": len(d.cards),
             "reversals": d.reversals,
             "source": d.source,
+            # Card faces and meanings are intentionally public: a shared deck page is
+            # also the creator's gallery/catalog, not only an opaque reading endpoint.
+            "cards": d.cards,
         }
