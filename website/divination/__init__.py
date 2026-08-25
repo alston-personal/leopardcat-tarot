@@ -16,6 +16,16 @@ def build_default_engine(base_dir: str | Path) -> DivinationEngine:
     personas = PersonaRegistry()
     personas.register(ConfigurablePersona(base / "oracle_packs" / "leopardcat" / "pack.json"))
     personas.register(GenericMasterPersona())
+
+    custom_persona_root = base / "data" / "custom_personas"
+    if custom_persona_root.exists():
+        for pack_path in sorted(custom_persona_root.glob("*/pack.json")):
+            try:
+                personas.register(ConfigurablePersona(pack_path))
+            except Exception:
+                # One malformed user pack must not prevent the service from starting.
+                continue
+
     engine = DivinationEngine(methods, personas)
     engine.decks = decks
     return engine
