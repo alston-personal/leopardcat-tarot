@@ -2,7 +2,9 @@ name: Apply Custom Deck Gallery
 on:
   push:
     branches: [main]
-    paths: ['tools/add_custom_deck_gallery.py']
+    paths:
+      - 'tools/add_custom_deck_gallery.py'
+      - '.github/workflows/apply-custom-deck-gallery.yml'
 permissions:
   contents: write
 jobs:
