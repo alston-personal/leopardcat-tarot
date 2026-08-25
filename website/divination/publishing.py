@@ -20,7 +20,10 @@ def _slug(text: str) -> str:
 
 
 def _clean_text(value: Any, max_len: int) -> str:
-    return str(value or "").strip()[:max_len]
+    text = str(value or "").replace("\x00", " ")
+    text = re.sub(r"[<>]", "", text)
+    text = re.sub(r"[\t\r]+", " ", text)
+    return text.strip()[:max_len]
 
 
 class DeckPublisher:
