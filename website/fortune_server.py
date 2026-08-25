@@ -13,6 +13,8 @@ from divination import ReadingRequest, build_default_engine
 from divination.core import DivinationError
 from divination.sessions import ReadingSessionStore
 from divination.publishing import DeckPublisher
+from divination.themes import ThemeRegistry, ThemePublisher
+from divination.ai_gateway import ZeroCostGeminiGateway, AIUnavailable
 
 PORT = 8088
 DIRECTORY = "dist"
@@ -67,24 +69,18 @@ def load_env_key():
     return key
 
 API_KEY = load_env_key()
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
+AI_GATEWAY = ZeroCostGeminiGateway(API_KEY)
 
 DIVINATION_ENGINE = build_default_engine(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 SESSION_STORE = ReadingSessionStore(os.path.join(DATA_DIR, 'reading_sessions.sqlite3'), ttl_seconds=86400)
 DECK_PUBLISHER = DeckPublisher(os.path.join(DATA_DIR, 'custom_decks'))
+THEME_ROOT = os.path.join(DATA_DIR, 'custom_themes')
+THEMES = ThemeRegistry(THEME_ROOT)
+THEME_PUBLISHER = ThemePublisher(THEME_ROOT)
 
 def call_master_prompt(prompt):
-    if not API_KEY:
-        raise RuntimeError("GEMINI_API_KEY is not configured")
-    payload = {"contents": [{"role": "user", "parts": [{"text": prompt}]}]}
-    gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
-    req = urllib.request.Request(gemini_url, data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, context=ctx, timeout=30) as response:
-        data = json.loads(response.read().decode("utf-8"))
-    return data["candidates"][0]["content"]["parts"][0]["text"]
+    return AI_GATEWAY.generate(prompt)
 
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -96,6 +92,43 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         query = url_parts[1] if len(url_parts) > 1 else ""
 
         # 👑 API Endpoints
+        if path == '/api/v1/ai-policy':
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json; charset=utf-8')
+            self.end_headers()
+            self.wfile.write(json.dumps(AI_GATEWAY.policy(), ensure_ascii=False).encode('utf-8'))
+            return
+        if path == '/api/v1/themes':
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json; charset=utf-8')
+            self.end_headers()
+            self.wfile.write(json.dumps({'themes': THEMES.list_builtin()}, ensure_ascii=False).encode('utf-8'))
+            return
+        if path.startswith('/api/v1/themes/'):
+            parts = [x for x in path.split('/') if x]
+            try:
+                if len(parts) == 4:
+                    data = THEMES.get(parts[3])
+                    self.send_response(200)
+                    self.send_header('Content-type', 'application/json; charset=utf-8')
+                    self.send_header('Cache-Control', 'public, max-age=60')
+                    self.end_headers()
+                    self.wfile.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+                    return
+                if len(parts) == 6 and parts[4] == 'assets':
+                    ap = THEMES.asset_path(parts[3], parts[5])
+                    raw = ap.read_bytes()
+                    mime = {'.jpg':'image/jpeg','.png':'image/png','.webp':'image/webp'}[ap.suffix.lower()]
+                    self.send_response(200)
+                    self.send_header('Content-type', mime)
+                    self.send_header('Content-Length', str(len(raw)))
+                    self.send_header('Cache-Control', 'public, max-age=86400')
+                    self.end_headers()
+                    self.wfile.write(raw)
+                    return
+            except DivinationError:
+                self.send_error(404)
+                return
         if path.startswith('/api/v1/decks/'):
             parts = [p for p in path.split('/') if p]
             try:
@@ -198,6 +231,33 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_POST(self):
+        if self.path == '/api/v1/themes':
+            content_length = int(self.headers.get('Content-Length', 0))
+            if content_length > 20 * 1024 * 1024:
+                self.send_response(413)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error':'theme_too_large','message':'主題圖片總量過大'}, ensure_ascii=False).encode('utf-8'))
+                return
+            try:
+                payload = json.loads(self.rfile.read(content_length).decode('utf-8'))
+                result = THEME_PUBLISHER.publish(payload)
+                self.send_response(201)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(json.dumps(result, ensure_ascii=False).encode('utf-8'))
+            except AIUnavailable as e:
+                self.send_response(503 if e.retryable else 503)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error': 'ai_unavailable', 'code': e.code, 'message': str(e), 'retryable': e.retryable, 'reading_id': locals().get('reading_id'), 'session_token': locals().get('issued_token')}, ensure_ascii=False).encode('utf-8'))
+            except DivinationError as e:
+                self.send_response(400)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error':'invalid_theme','message':str(e)}, ensure_ascii=False).encode('utf-8'))
+            return
         if self.path == '/api/v1/readings':
             content_length = int(self.headers.get('Content-Length', 0))
             post_data = self.rfile.read(content_length)

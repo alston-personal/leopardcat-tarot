@@ -40,7 +40,25 @@
   </section>
 
   <section class="card">
-    <h2>4. 發布</h2>
+    <h2>4. 選一個頁面風格（選填）</h2>
+    <p class="muted">不想調整就保持「靈山石虎」。也可以換成內建風格，或放一張自己的背景圖。</p>
+    <label>頁面風格</label>
+    <select id="theme-preset" style="width:100%;padding:12px;border:1px solid #cfc4b5;border-radius:10px;font:inherit">
+      <option value="leopardcat">靈山石虎</option><option value="midnight">午夜星空</option><option value="minimal-light">極簡晨光</option><option value="custom">自己設計</option>
+    </select>
+    <div id="theme-custom" class="hidden">
+      <div class="row">
+        <div><label>主色</label><input id="theme-accent" type="color" value="#d4af37" style="height:48px"></div>
+        <div><label>背景色</label><input id="theme-bg" type="color" value="#0b0b10" style="height:48px"></div>
+      </div>
+      <label>背景圖片（選填）</label><input id="theme-background" type="file" accept="image/jpeg,image/png,image/webp">
+      <label>牌背圖片（選填）</label><input id="theme-card-back" type="file" accept="image/jpeg,image/png,image/webp">
+      <p class="muted">直接選手機或電腦裡的圖片即可，系統會自動縮小。</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>5. 發布</h2>
     <p class="muted">發布後會得到一個專屬網址。你的訪客不需要登入即可使用這副牌占卜。</p>
     <button id="publish" class="btn">發布我的占卜頁</button>
     <p id="status" class="muted"></p>
