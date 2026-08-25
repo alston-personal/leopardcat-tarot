@@ -1,0 +1,60 @@
+name: Apply Brand Pack Contract
+on:
+  push:
+    branches: [feature/brand-pack-contract]
+    paths:
+      - 'tools/apply_brand_pack.py'
+      - 'website/divination/brands.py'
+      - 'website/tests/test_brands.py'
+      - '.github/workflows/apply-brand-pack-contract.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/brand-pack-contract
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Apply source patch
+        run: python tools/apply_brand_pack.py
+      - name: Validate contracts
+        working-directory: website
+        run: |
+          python -m py_compile fortune_server.py divination/*.py
+          python -m pytest -q tests/test_brands.py
+          node --check main.js
+          grep -q "BrandRegistry" fortune_server.py
+          grep -q "/api/v1/brands/" fortune_server.py
+          grep -q "window.activeBrand" main.js
+          grep -q "window.brandText('share_title'" main.js
+          grep -q "brandTemplate.replace('{card}'" main.js
+          grep -q "meta_img = image_path" fortune_server.py
+          ! grep -q "navigator.share({ title: '靈山靈貓 石虎塔羅'" main.js
+          echo brand_pack_source_contract=passed
+      - name: Build web
+        working-directory: website
+        run: |
+          find public -xtype l -delete || true
+          mkdir -p public/art/renders public/cards
+          npm ci
+          npm run build
+      - name: Commit generated source
+        run: |
+          git config user.name Sunlake
+          git config user.email register@milkcat.org
+          git add website/main.js website/fortune_server.py
+          if git diff --cached --quiet; then
+            echo no_source_changes
+          else
+            git commit -m 'feat(brand): route UI sharing and OG through brand packs'
+            git push origin HEAD:feature/brand-pack-contract
+          fi
