@@ -18,6 +18,7 @@ from divination.publishing import DeckPublisher
 from divination.themes import ThemeRegistry, ThemePublisher
 from divination.ai_gateway import ZeroCostGeminiGateway, AIUnavailable
 from divination.brands import BrandRegistry
+from divination.personas import persona_public_info
 
 PORT = 8088
 DIRECTORY = "dist"
@@ -101,6 +102,21 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header('Content-type', 'application/json; charset=utf-8')
             self.end_headers()
             self.wfile.write(json.dumps(AI_GATEWAY.policy(), ensure_ascii=False).encode('utf-8'))
+            return
+        if path == '/api/v1/personas':
+            params = urllib.parse.parse_qs(query)
+            deck_id = (params.get('deck') or ['leopardcat'])[0]
+            try:
+                deck = DIVINATION_ENGINE.decks.get(deck_id)
+                default_persona = deck.default_persona
+                items = [persona_public_info(DIVINATION_ENGINE.personas.get(pid)) for pid in DIVINATION_ENGINE.personas.capabilities()]
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Cache-Control', 'public, max-age=60')
+                self.end_headers()
+                self.wfile.write(json.dumps({'default_persona': default_persona, 'personas': items}, ensure_ascii=False).encode('utf-8'))
+            except DivinationError:
+                self.send_error(404)
             return
         if path.startswith('/api/v1/brands/'):
             deck_id = path.rsplit('/', 1)[-1]
@@ -326,12 +342,15 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                     issued_token = session_token
                     seed_fingerprint = None
                 else:
-                    persona_id = str(req_data.get('persona') or 'leopardcat')
+                    input_data = req_data.get('input') or {}
+                    deck_id = str(input_data.get('deck_id') or 'leopardcat')
+                    requested_persona = str(req_data.get('persona') or '').strip()
+                    persona_id = requested_persona or DIVINATION_ENGINE.decks.get(deck_id).default_persona
                     request = ReadingRequest(
                         method=str(req_data.get('method') or 'tarot'),
                         persona=persona_id,
                         question=question,
-                        input=req_data.get('input') or {},
+                        input=input_data,
                         lang=lang,
                         seed=req_data.get('seed'),
                     )
