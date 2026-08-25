@@ -676,6 +676,7 @@ window.generateShareImage = async function() {
         const shareU = new URL(window.location.origin + window.location.pathname);
         if (window.activeDeckId && window.activeDeckId !== 'leopardcat') shareU.searchParams.set('deck', window.activeDeckId);
         if (window.activeThemeId) shareU.searchParams.set('theme', window.activeThemeId);
+        if (window.activePersonaId && window.activePersonaId !== window.defaultPersonaId) shareU.searchParams.set('persona', window.activePersonaId);
         shareU.searchParams.set('card', currentDrawnCard.id);
         if (window.currentReadingState?.orientation === 'reversed') shareU.searchParams.set('orientation', 'reversed');
         const shareUrl = shareU.toString();
@@ -760,6 +761,7 @@ function updateSocialLinks(card, customQuote = null) {
     const shareU = new URL(`${window.location.origin}${window.location.pathname}`);
     if (window.activeDeckId && window.activeDeckId !== 'leopardcat') shareU.searchParams.set('deck', window.activeDeckId);
     if (window.activeThemeId) shareU.searchParams.set('theme', window.activeThemeId);
+    if (window.activePersonaId && window.activePersonaId !== window.defaultPersonaId) shareU.searchParams.set('persona', window.activePersonaId);
     shareU.searchParams.set('card', card.id);
     if (window.currentReadingState?.orientation === 'reversed') shareU.searchParams.set('orientation', 'reversed');
     const shareUrl = shareU.toString();
@@ -830,6 +832,8 @@ window.drawFortune = async function() {
 };
 
 window.activeDeckId = new URLSearchParams(window.location.search).get('deck') || 'leopardcat';
+window.activePersonaId = new URLSearchParams(window.location.search).get('persona') || null;
+window.defaultPersonaId = null;
 
 
 window.brandText = function(field, fallback = '') {
@@ -877,6 +881,43 @@ window.loadActiveBrand = async function() {
     }
 };
 
+
+
+window.initPersonaSwitcher = async function() {
+    try {
+        const r = await fetch(`/api/v1/personas?deck=${encodeURIComponent(window.activeDeckId)}`, {cache:'no-cache'});
+        if (!r.ok) throw new Error(`PERSONAS_${r.status}`);
+        const data = await r.json();
+        window.defaultPersonaId = data.default_persona || 'master';
+        if (!window.activePersonaId) window.activePersonaId = window.defaultPersonaId;
+
+        const box = document.createElement('div');
+        box.id = 'persona-switcher';
+        box.style.cssText = 'position:fixed;right:12px;bottom:58px;z-index:1200;background:#111c;border:1px solid #ffffff22;border-radius:999px;padding:6px 10px;backdrop-filter:blur(8px);font-size:12px';
+        box.innerHTML = '<label style="display:flex;gap:6px;align-items:center">解牌者 <select id="persona-switcher-select" style="border-radius:999px;padding:4px 8px"></select></label>';
+        document.body.appendChild(box);
+        const sel = box.querySelector('select');
+        for (const p of data.personas || []) {
+            const o = document.createElement('option');
+            o.value = p.persona_id;
+            o.textContent = p.name || p.persona_id;
+            sel.appendChild(o);
+        }
+        if (![...sel.options].some(o => o.value === window.activePersonaId)) window.activePersonaId = window.defaultPersonaId;
+        sel.value = window.activePersonaId;
+        sel.addEventListener('change', () => {
+            window.activePersonaId = sel.value;
+            const u = new URL(location.href);
+            if (window.activePersonaId === window.defaultPersonaId) u.searchParams.delete('persona');
+            else u.searchParams.set('persona', window.activePersonaId);
+            history.replaceState(null, '', u);
+        });
+    } catch (e) {
+        console.warn('[Persona Pack] load failed', e);
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => window.initPersonaSwitcher());
 
 window.activeThemeId = new URLSearchParams(window.location.search).get('theme') || (window.activeDeckId === 'leopardcat' ? 'leopardcat' : 'minimal-light');
 
@@ -943,7 +984,7 @@ window.getModularReading = async function(q) {
             question: q,
             lang: window.currentLang === 'zh' ? 'zh-TW' : 'en'
         } : {
-            method: 'tarot', persona: window.activeDeckId === 'leopardcat' ? 'leopardcat' : 'master', question: q,
+            method: 'tarot', persona: window.activePersonaId || undefined, question: q,
             input: { spread: 'auto', deck_id: window.activeDeckId },
             lang: window.currentLang === 'zh' ? 'zh-TW' : 'en'
         };
@@ -966,6 +1007,7 @@ window.getModularReading = async function(q) {
     }
     const data = await resp.json();
     window.pendingReadingSession = null;
+    window.activePersonaId = data.persona || window.activePersonaId || window.defaultPersonaId;
     document.getElementById(sensingId)?.closest('.chat-bubble')?.remove();
     const specs = data.method_result?.cards || [];
     if (!specs.length) throw new Error('DIVINATION_V1_EMPTY_RESULT');
@@ -977,6 +1019,7 @@ window.getModularReading = async function(q) {
     window.currentReadingState = {
         deck_id: window.activeDeckId,
         theme_id: window.activeThemeId,
+        persona_id: window.activePersonaId,
         card_id: resolved[0].spec.card_id || currentDrawnCard.id,
         orientation: resolved[0].spec.orientation || 'upright',
         spread: data.method_result?.spread || 'single',

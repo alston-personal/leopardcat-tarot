@@ -74,6 +74,9 @@ class DeckPublisher:
         description = _clean_text(payload.get("description"), 500)
         cards = payload.get("cards") or []
         reversals = bool(payload.get("reversals", False))
+        default_persona = _clean_text(payload.get("persona"), 64).lower() or "master"
+        if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,63}", default_persona):
+            raise DivinationError("無效的解牌 Persona")
         if not name:
             raise DivinationError("請輸入牌組名稱")
         if not isinstance(cards, list) or not cards:
@@ -136,6 +139,7 @@ class DeckPublisher:
                 "creator": creator,
                 "description": description,
                 "reversals": reversals,
+                "default_persona": default_persona,
                 "card_count": len(saved_cards),
                 "cards": saved_cards,
             }
@@ -151,6 +155,7 @@ class DeckPublisher:
             "name": name,
             "card_count": len(saved_cards),
             "reversals": reversals,
+            "default_persona": default_persona,
             "share_path": f"/?deck={deck_id}",
         }
 
