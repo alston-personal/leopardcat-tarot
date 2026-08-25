@@ -23,26 +23,8 @@ jobs:
         run: |
           python3 tools/patch_persona_creator_runtime.py
           cd website
-          python3 - <<'PY'
-          import json, tempfile
-          from divination.persona_publishing import PersonaPublisher
-          from divination.personas import ConfigurablePersona
-          with tempfile.TemporaryDirectory() as td:
-              pub = PersonaPublisher(td)
-              out = pub.publish({
-                  'name':'月光園丁', 'role':'溫柔但不逃避現實的夜間引路人',
-                  'voice':'溫柔、簡潔\n先同理，再指出盲點',
-                  'principles':'先讀牌面，再連回提問\n最後給一個今天能做的行動',
-                  'worldview':'熟悉植物與季節循環', 'closing':'最後留下一句月光提醒'
-              })
-              pack = json.loads(pub.pack_path(out['persona_id']).read_text(encoding='utf-8'))
-              assert pack['source'] == 'custom' and pack['methods'] == ['tarot'] and len(pack['safety']) >= 3
-              persona = ConfigurablePersona(pub.pack_path(out['persona_id']))
-              assert persona.public_info()['name'] == '月光園丁'
-              prompt = persona.build_prompt(method_result={'cards':[{'id':'x'}]}, question='我該注意什麼？', lang='zh-TW')
-              assert 'PLATFORM RULES' in prompt and 'FINAL PLATFORM REMINDER' in prompt
-          print('persona_creator_publisher_contract=passed')
-          PY
+          python3 -m pip install pytest >/dev/null
+          pytest -q tests/test_persona_creator.py tests/test_persona_packs.py
           python3 -m py_compile fortune_server.py divination/*.py
           node --check public/creator.js
           grep -q '建立我的解牌師' public/create.html
@@ -53,6 +35,7 @@ jobs:
           mkdir -p public/art/renders public/cards
           npm ci
           npm run build
+          echo persona_creator_permanent_tests=passed
           echo persona_creator_fast_contract=passed
       - name: Commit runtime source
         working-directory: repo
