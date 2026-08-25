@@ -1,0 +1,54 @@
+name: Apply Custom Deck Slug
+on:
+  push:
+    branches: [feature/custom-deck-slug]
+    paths: [tools/patch_custom_deck_slug.py, .github/workflows/apply-custom-deck-slug.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: python tools/patch_custom_deck_slug.py
+      - name: Validate
+        run: |
+          python -m py_compile website/fortune_server.py website/divination/*.py
+          node --check website/public/creator.js
+          python - <<'PY'
+          import tempfile
+          from pathlib import Path
+          import sys
+          sys.path.insert(0, 'website')
+          from divination.publishing import DeckPublisher
+          t=tempfile.TemporaryDirectory(); p=DeckPublisher(t.name)
+          assert p.slug_available('moon-garden')['available'] is True
+          (Path(t.name)/'moon-garden').mkdir()
+          assert p.slug_available('moon-garden')['available'] is False
+          assert p.slug_available('admin')['reserved'] is True
+          assert p.slug_available('ab')['valid'] is False
+          print('slug_policy_tests=passed')
+          PY
+          cd website
+          find public -xtype l -delete || true
+          rm -rf public/art/renders public/cards
+          mkdir -p public/art/renders public/cards
+          rm -rf node_modules
+          npm ci
+          npm run build
+      - name: Restore validation-only files
+        run: git checkout -- website/dist website/node_modules 2>/dev/null || true
+      - name: Commit source changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/divination/publishing.py website/fortune_server.py website/public/create.html website/public/creator.js
+          if git diff --cached --quiet; then echo no_changes=true; exit 0; fi
+          git commit -m 'feat(deck): allow custom share URLs'
+          git push origin HEAD:feature/custom-deck-slug
