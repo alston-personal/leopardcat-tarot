@@ -1,0 +1,27 @@
+name: Divination Engine Tests
+
+on:
+  push:
+    branches: [feature/modular-divination-master]
+    paths:
+      - "website/divination/**"
+      - "website/divination_service.py"
+      - "website/public/manifest.json"
+      - "tests/test_divination_engine.py"
+      - ".github/workflows/divination-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run modular divination tests
+        run: python -m unittest -v tests/test_divination_engine.py
