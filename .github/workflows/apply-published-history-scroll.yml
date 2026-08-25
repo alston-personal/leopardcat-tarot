@@ -31,9 +31,11 @@ jobs:
           cd website
           rm -rf node_modules
           npm ci
+          find public -xtype l -delete || true
+          mkdir -p public/art/renders public/cards
           npm run build
       - name: Restore validation-only files
-        run: git checkout -- website/dist website/node_modules 2>/dev/null || true
+        run: git checkout -- website/dist website/node_modules website/public/art/renders website/public/cards 2>/dev/null || true
       - name: Commit source changes
         run: |
           git config user.name "github-actions[bot]"
