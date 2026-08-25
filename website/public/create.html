@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>建立我的塔羅占卜</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif;color:#2c2925;background:#f7f3ea}body{margin:0}.wrap{max-width:860px;margin:auto;padding:28px 18px 80px}h1{font-size:2rem;margin-bottom:8px}.lead{color:#686057;margin-top:0}.card{background:white;border:1px solid #ddd3c5;border-radius:18px;padding:20px;margin:18px 0;box-shadow:0 5px 20px #0000000d}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}label{display:block;font-weight:700;margin:10px 0 6px}input,textarea{box-sizing:border-box;width:100%;padding:12px;border:1px solid #cfc4b5;border-radius:10px;font:inherit}textarea{min-height:90px;resize:vertical}.drop{border:2px dashed #b8a68f;padding:28px;text-align:center;border-radius:14px;background:#fbf8f2}.btn{border:0;border-radius:999px;padding:12px 20px;font-weight:800;cursor:pointer;background:#342d25;color:white}.btn.secondary{background:#e9e0d3;color:#342d25}.cards{display:grid;gap:14px}.item{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:14px;border:1px solid #e3dacd;border-radius:14px}.item img{width:120px;height:180px;object-fit:cover;border-radius:9px;background:#eee}.muted{font-size:.92rem;color:#776f65}.hidden{display:none}.success{background:#eef7ee;border-color:#b7d5b7}a{color:#5b4128}@media(max-width:650px){.row,.item{grid-template-columns:1fr}.item img{width:100%;height:auto;max-height:360px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>把你的牌，變成自己的線上占卜</h1>
+  <p class="lead">不用懂程式。一次選取所有牌圖，填上牌名與牌義，按「發布」就完成。</p>
+
+  <section class="card">
+    <h2>1. 這副牌叫什麼？</h2>
+    <div class="row">
+      <div><label>牌組名稱</label><input id="deck-name" placeholder="例如：月光花園塔羅"></div>
+      <div><label>創作者名稱（選填）</label><input id="creator" placeholder="你的名字／筆名"></div>
+    </div>
+    <label>一句介紹（選填）</label><textarea id="description" placeholder="這副牌想陪伴大家看見什麼？"></textarea>
+  </section>
+
+  <section class="card">
+    <h2>2. 一次選取所有牌圖</h2>
+    <div class="drop">
+      <p><strong>22 張、78 張或其他張數都可以。</strong></p>
+      <p class="muted">支援 JPG、PNG、WebP。建議先把檔名改成牌名，系統會自動帶入。</p>
+      <input id="images" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+    </div>
+    <p id="count" class="muted"></p>
+    <label style="display:flex;gap:10px;align-items:center;font-weight:600"><input id="reversals" type="checkbox" style="width:auto"> 這副牌有「逆位牌義」</label>
+  </section>
+
+  <section id="cards-section" class="card hidden">
+    <h2>3. 確認每張牌</h2>
+    <p class="muted">牌名已用圖片檔名自動填好。你只需要補上牌義；有逆位時再多填一格。</p>
+    <div id="cards" class="cards"></div>
+  </section>
+
+  <section class="card">
+    <h2>4. 發布</h2>
+    <p class="muted">發布後會得到一個專屬網址。你的訪客不需要登入即可使用這副牌占卜。</p>
+    <button id="publish" class="btn">發布我的占卜頁</button>
+    <p id="status" class="muted"></p>
+  </section>
+
+  <section id="done" class="card success hidden">
+    <h2>完成 🎉</h2>
+    <p>你的牌組已經可以占卜：</p>
+    <p><a id="share-link" target="_blank"></a></p>
+    <button id="copy" class="btn secondary">複製網址</button>
+  </section>
+</div>
+<script src="/creator.js"></script>
+</body>
+</html>
