@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>占卜 · Divination OS</title>
+  <meta name="description" content="先問問題，再抽牌。塔羅與雷諾曼共用同一個簡潔的占卜體驗。">
+  <link rel="stylesheet" href="/read.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" id="brand-link" href="/">Divination OS</a>
+  <nav><a href="/create.html">建立我的牌組</a><a href="/manage.html">管理</a></nav>
+</header>
+<main class="shell">
+  <section class="intro">
+    <p class="eyebrow" id="experience-label">ORACLE</p>
+    <h1 id="experience-title">先想一個你真正想問的問題。</h1>
+    <p id="experience-subtitle">不用先研究系統。選一種方式，抽牌，結果就會保留下來。</p>
+  </section>
+
+  <section class="panel ask-panel" id="ask-panel">
+    <label class="question-label" for="question">你的問題</label>
+    <textarea id="question" rows="3" placeholder="例如：接下來三個月，我最需要留意什麼？"></textarea>
+
+    <div class="field-group">
+      <span class="field-label">占卜方式</span>
+      <div class="segmented" id="method-options" role="radiogroup">
+        <button type="button" data-method="tarot" class="active">塔羅</button>
+        <button type="button" data-method="lenormand">雷諾曼</button>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="field-head"><span class="field-label">牌陣</span><span class="hint" id="method-hint"></span></div>
+      <div class="spread-grid" id="spread-options"></div>
+    </div>
+
+    <details class="advanced">
+      <summary>進階設定</summary>
+      <div id="tarot-advanced">
+        <label>牌組 <select id="deck-select"><option value="leopardcat">靈山靈貓・石虎塔羅</option></select></label>
+      </div>
+      <label>解讀師 <select id="persona-select"><option value="master">通用解讀師</option></select></label>
+    </details>
+
+    <button id="draw" class="primary">抽牌</button>
+    <p class="privacy">🔒 問題與回答不保存；牌局的匿名符號狀態最多保留 24 小時。AI 額度不足時，抽牌結果仍可交給你自己的 AI 解讀。</p>
+    <p id="status" class="status" aria-live="polite"></p>
+  </section>
+
+  <section id="result" class="result hidden" aria-live="polite">
+    <div class="result-head"><div><p class="eyebrow">YOUR DRAW</p><h2 id="result-title">你的牌</h2></div><button id="new-reading" class="ghost">重新抽牌</button></div>
+    <div id="cards" class="draw-grid"></div>
+    <div id="structure" class="structure hidden"></div>
+
+    <section class="interpretation panel">
+      <div class="interpretation-head"><div><p class="eyebrow">INTERPRETATION</p><h2>解讀</h2></div><span id="ai-state" class="pill">AI</span></div>
+      <div id="reading" class="reading-copy"></div>
+      <div id="ai-fallback" class="fallback hidden">
+        <strong>本站 AI 暫時無法使用，但你的抽牌沒有消失。</strong>
+        <p>你可以把同一份 Reading Capsule 交給自己的 AI；它不能重抽或改變牌面。</p>
+      </div>
+    </section>
+
+    <section id="handoff" class="handoff panel hidden">
+      <p class="eyebrow">USE YOUR OWN AI</p>
+      <h2>用你自己的 AI 解讀</h2>
+      <p class="handoff-desc">系統會先複製完整提示，再開啟你選的 AI。Reading Capsule 會保留牌陣、正逆位與雷諾曼組合結構。</p>
+      <div id="provider-actions" class="provider-actions"></div>
+      <button id="copy-prompt" class="secondary">只複製完整提示</button>
+      <details><summary>查看 Reading Capsule</summary><pre id="capsule-json"></pre></details>
+    </section>
+  </section>
+</main>
+<script src="/read.js"></script>
+</body>
+</html>
