@@ -48,10 +48,17 @@ jobs:
           const browser=await chromium.launch({headless:true});
 
           const page=await browser.newPage({viewport:{width:1280,height:900}});
-          await page.goto(base+'/read.html',{waitUntil:'networkidle'});
+          await page.goto(base+'/read.html?deck=leopardcat',{waitUntil:'networkidle'});
           assert.equal(await page.locator('[data-method="tarot"]').getAttribute('class'), 'active');
+          await page.waitForFunction(()=>document.getElementById('persona-select').value==='leopardcat');
+          assert.equal(await page.locator('#persona-select').inputValue(),'leopardcat');
+          console.log('browser_tarot_deck_default_persona=passed');
+
           await page.locator('[data-method="lenormand"]').click();
           await page.waitForSelector('[data-spread="box9"]');
+          await page.waitForFunction(()=>document.getElementById('persona-select').value==='master');
+          assert.equal(await page.locator('#persona-select').inputValue(),'master');
+          console.log('browser_lenormand_method_compatible_persona=passed');
           await page.locator('[data-spread="box9"]').click();
           await page.locator('#question').fill('接下來的整體局勢，我該注意什麼？');
           await page.locator('#draw').click();
@@ -88,6 +95,7 @@ jobs:
           console.log('browser_mobile_reading_layout=passed');
 
           const manage=await browser.newPage({viewport:{width:900,height:900}});
+          await manage.addInitScript(()=>{ window.confirm=()=>true; window.prompt=()=> 'DELETE'; });
           let getSeen=false, patchSeen=false, rotateSeen=false;
           await manage.route('**/api/v1/manage/decks/browser-owned**', async route=>{
             const req=route.request();
@@ -106,7 +114,6 @@ jobs:
             getSeen=true;
             return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({resource_type:'deck',deck_id:'browser-owned',name:'舊牌組',creator:'Creator',description:'Desc',default_persona:'master',card_count:22,reversals:true})});
           });
-          manage.on('dialog', async dialog => { await dialog.accept(); });
           await manage.goto(base+'/manage.html?deck=browser-owned#token=secret-browser-token',{waitUntil:'networkidle'});
           assert.ok(getSeen);
           await manage.locator('#deck-name').fill('新版牌組名稱');
