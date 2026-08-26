@@ -836,10 +836,12 @@ window.activePersonaId = new URLSearchParams(window.location.search).get('person
 window.defaultPersonaId = null;
 
 window.updatePrimaryReadingLinks = function() {
-    const u = new URL('/read.html', window.location.origin);
-    if (window.activeDeckId) u.searchParams.set('deck', window.activeDeckId);
-    if (window.activePersonaId) u.searchParams.set('persona', window.activePersonaId);
-    document.querySelectorAll('[data-primary-reading]').forEach(el => { el.href = u.toString(); });
+    // Tarot's primary experience stays inside the active deck page. The focused
+    // /read.html surface remains available for other methods or explicit entry,
+    // but “開始占卜／詢問大師” must not feel like leaving the deck's website.
+    document.querySelectorAll('[data-primary-reading]').forEach(el => {
+        el.setAttribute('href', '#fortune');
+    });
 };
 document.addEventListener('DOMContentLoaded', window.updatePrimaryReadingLinks);
 

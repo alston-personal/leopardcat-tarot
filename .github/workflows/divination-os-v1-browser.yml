@@ -79,10 +79,15 @@ jobs:
           console.log('browser_zero_cost_result_survives=passed');
           console.log('browser_external_ai_handoff=passed');
 
-          await page.goto(base+'/?deck=leopardcat',{waitUntil:'domcontentloaded'});
+          await page.goto(base+'/?deck=leopardcat',{waitUntil:'networkidle'});
           const primary=page.locator('[data-primary-reading]').first();
-          assert.match(await primary.getAttribute('href'), /\/read\.html/);
-          console.log('browser_progressive_disclosure_entry=passed');
+          assert.equal(await primary.getAttribute('href'), '#fortune');
+          const before=page.url();
+          await primary.click();
+          assert.equal(new URL(page.url()).pathname, new URL(before).pathname);
+          assert.equal(new URL(page.url()).hash, '#fortune');
+          assert.ok(await page.locator('#fortune').isVisible());
+          console.log('browser_primary_tarot_stays_in_deck_page=passed');
 
           const mobile=await browser.newPage({viewport:{width:375,height:812}});
           await mobile.goto(base+'/read.html?method=lenormand',{waitUntil:'networkidle'});
