@@ -1,0 +1,38 @@
+name: Apply Single Reading Request Flow
+on:
+  push:
+    branches: [fix/single-reading-request-flow]
+    paths:
+      - 'tools/patch_single_reading_request_flow.py'
+      - '.github/workflows/apply-single-reading-request-flow.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/single-reading-request-flow
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Apply exact source patch
+        run: |
+          python tools/patch_single_reading_request_flow.py
+          node --check website/main.js
+          grep -q "modular reading unavailable; preserving the same reading for retry" website/main.js
+          grep -q "function showModularRetry" website/main.js
+          grep -q "removeSensing();" website/main.js
+          ! grep -q "Falling back to legacy fortune API" website/main.js
+      - name: Commit generated source only
+        run: |
+          if git diff --quiet -- website/main.js; then
+            echo 'source already patched'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/main.js
+          git commit -m 'fix(ux): enforce one reading request flow'
+          git push origin HEAD:fix/single-reading-request-flow
