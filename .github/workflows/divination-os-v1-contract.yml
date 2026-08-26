@@ -72,7 +72,70 @@ jobs:
           assert {x['id'] for x in d['handoff']['providers']}=={'chatgpt','claude','gemini'}
           print('zero_cost_handoff_contract=passed')
           PY
-          test "$(curl -sS -o /tmp/manage-denied.json -w '%{http_code}' http://127.0.0.1:8088/api/v1/manage/decks/not-real)" = 403
+          python - <<'PY'
+          import json, urllib.request, urllib.error
+
+          BASE='http://127.0.0.1:8088'
+          PIXEL='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Wl2nWQAAAAASUVORK5CYII='
+
+          def request(method, path, body=None, token=None):
+              data=None if body is None else json.dumps(body, ensure_ascii=False).encode('utf-8')
+              headers={}
+              if data is not None: headers['Content-Type']='application/json'
+              if token: headers['X-Management-Token']=token
+              req=urllib.request.Request(BASE+path, data=data, headers=headers, method=method)
+              try:
+                  with urllib.request.urlopen(req, timeout=5) as r:
+                      raw=r.read().decode('utf-8')
+                      return r.status, json.loads(raw) if raw else {}
+              except urllib.error.HTTPError as e:
+                  raw=e.read().decode('utf-8', errors='replace')
+                  try: parsed=json.loads(raw)
+                  except Exception: parsed={'raw':raw}
+                  return e.code, parsed
+
+          # Persona ownership lifecycle through the real HTTP server.
+          code,p=request('POST','/api/v1/personas',{
+              'name':'CI 月光引路人','role':'CI 暫存解牌師','voice':'簡潔\n溫和','principles':'忠實解讀\n不改牌面'
+          })
+          assert code==201, (code,p)
+          pid=p['persona_id']; ptoken=p['management_token']
+          assert 'token=' not in p['manage_path']
+          code,managed=request('GET',f'/api/v1/manage/personas/{pid}',token=ptoken)
+          assert code==200 and managed['name']=='CI 月光引路人'
+          code,updated=request('PATCH',f'/api/v1/manage/personas/{pid}',{'role':'CI 新角色'},ptoken)
+          assert code==200 and updated['role']=='CI 新角色'
+          code,rot=request('POST',f'/api/v1/manage/personas/{pid}/rotate',{},ptoken)
+          assert code==200 and rot['management_token']!=ptoken
+          new_ptoken=rot['management_token']
+          assert request('GET',f'/api/v1/manage/personas/{pid}',token=ptoken)[0]==403
+          assert request('GET',f'/api/v1/manage/personas/{pid}',token=new_ptoken)[0]==200
+          assert request('DELETE',f'/api/v1/manage/personas/{pid}',token=new_ptoken)[0]==200
+          print('persona_management_http_lifecycle=passed')
+
+          # Deck ownership lifecycle through the real HTTP server.
+          code,d=request('POST','/api/v1/decks',{
+              'name':'CI Ownership Deck','persona':'master','cards':[{
+                  'title':'CI Card','upright':'CI meaning','image':'data:image/png;base64,'+PIXEL
+              }]
+          })
+          assert code==201, (code,d)
+          did=d['deck_id']; dtoken=d['management_token']
+          assert 'token=' not in d['manage_path']
+          assert request('GET',f'/api/v1/manage/decks/{did}')[0]==403
+          code,managed=request('GET',f'/api/v1/manage/decks/{did}',token=dtoken)
+          assert code==200 and managed['name']=='CI Ownership Deck'
+          code,updated=request('PATCH',f'/api/v1/manage/decks/{did}',{'name':'CI Ownership Deck v2'},dtoken)
+          assert code==200 and updated['name']=='CI Ownership Deck v2'
+          code,rot=request('POST',f'/api/v1/manage/decks/{did}/rotate',{},dtoken)
+          assert code==200 and rot['management_token']!=dtoken
+          new_dtoken=rot['management_token']
+          assert request('GET',f'/api/v1/manage/decks/{did}',token=dtoken)[0]==403
+          assert request('GET',f'/api/v1/manage/decks/{did}',token=new_dtoken)[0]==200
+          assert request('DELETE',f'/api/v1/manage/decks/{did}',token=new_dtoken)[0]==200
+          assert request('GET',f'/api/v1/decks/{did}')[0]==404
+          print('deck_management_http_lifecycle=passed')
+          PY
           echo local_api_v1_contract=passed
       - name: Commit generated runtime integration
         run: |
