@@ -1,25 +1,21 @@
 name: Divination OS v1 Contract
 on:
   push:
-    branches: [feature/creator-ownership]
+    branches: [main, feature/creator-ownership]
+  pull_request:
+    branches: [main]
 permissions:
-  contents: write
+  contents: read
 jobs:
   contract:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-        with: {ref: feature/creator-ownership, fetch-depth: 0}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
-      - name: Apply v1 integration patches
-        run: |
-          python tools/patch_divination_os_v1_server.py
-          python tools/patch_creator_ownership_ui.py
-          python tools/patch_primary_reading_cta.py
       - name: Python contracts
         working-directory: website
         run: |
@@ -38,6 +34,9 @@ jobs:
           grep -q "'/api/v1/methods'" website/fortune_server.py
           grep -q "'capsule': capsule" website/fortune_server.py
           grep -q "method_requested == 'tarot'" website/fortune_server.py
+          test -f website/divination/lenormand.py
+          test -f website/divination/capsules.py
+          test -f website/divination/ownership.py
           cd website
           rm -f public/art/renders public/cards || true
           mkdir -p public/art/renders public/cards
@@ -94,7 +93,6 @@ jobs:
                   except Exception: parsed={'raw':raw}
                   return e.code, parsed
 
-          # Persona ownership lifecycle through the real HTTP server.
           code,p=request('POST','/api/v1/personas',{
               'name':'CI 月光引路人','role':'CI 暫存解牌師','voice':'簡潔\n溫和','principles':'忠實解讀\n不改牌面'
           })
@@ -113,7 +111,6 @@ jobs:
           assert request('DELETE',f'/api/v1/manage/personas/{pid}',token=new_ptoken)[0]==200
           print('persona_management_http_lifecycle=passed')
 
-          # Deck ownership lifecycle through the real HTTP server.
           code,d=request('POST','/api/v1/decks',{
               'name':'CI Ownership Deck','persona':'master','cards':[{
                   'title':'CI Card','upright':'CI meaning','image':'data:image/png;base64,'+PIXEL
@@ -136,15 +133,4 @@ jobs:
           assert request('GET',f'/api/v1/decks/{did}')[0]==404
           print('deck_management_http_lifecycle=passed')
           PY
-          echo local_api_v1_contract=passed
-      - name: Commit generated runtime integration
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add website/fortune_server.py website/public/create.html website/public/creator.js website/index.html website/main.js
-          if git diff --cached --quiet; then
-            echo runtime_source_already_current=passed
-          else
-            git commit -m 'feat(v1): wire server capsule ownership and focused reading UX'
-            git push origin HEAD:feature/creator-ownership
-          fi
+          echo source_only_local_api_v1_contract=passed
