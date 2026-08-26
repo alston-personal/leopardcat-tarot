@@ -10,7 +10,7 @@
     envelope: null,
   };
   const $ = id => document.getElementById(id);
-  const escapeHtml = s => String(s ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[ch]));
+  const escapeHtml = s => String(s ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const FALLBACK_METHODS = {
     tarot: {method_id:'tarot', name:'塔羅 Tarot', description:'以牌陣位置與正逆位解讀。', spreads:[
       {id:'single',name:'單張指引',card_count:1},{id:'three_card',name:'過去・現在・未來',card_count:3},{id:'decision',name:'選擇題',card_count:3}
