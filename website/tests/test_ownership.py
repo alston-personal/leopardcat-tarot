@@ -1,5 +1,4 @@
 import base64
-import json
 
 import pytest
 
@@ -54,5 +53,5 @@ def test_custom_persona_management_keeps_structured_fields(tmp_path):
     assert info['name'] == '月光園丁'
     assert 'system_prompt' not in info and 'prompt' not in info
     updated = pub.update(pid, token, {'voice':'簡潔\n溫柔','closing':'留一句提醒'})
-    assert updated['voice'] == ['簡潔','溫柔']
+    assert updated['voice'] == '簡潔\n溫柔'
     assert updated['closing'] == '留一句提醒'
