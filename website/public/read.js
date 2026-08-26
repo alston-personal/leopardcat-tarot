@@ -5,9 +5,12 @@
     spread: '',
     deck: qs.get('deck') || 'leopardcat',
     persona: qs.get('persona') || '',
+    theme: qs.get('theme') || '',
     methods: {},
     handoff: null,
     envelope: null,
+    brand: null,
+    history: [],
   };
   const $ = id => document.getElementById(id);
   const escapeHtml = s => String(s ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -19,6 +22,52 @@
       {id:'yes_no',name:'是／否',card_count:1},{id:'three',name:'三張牌',card_count:3},{id:'five',name:'五張線性',card_count:5},{id:'box9',name:'九宮格',card_count:9}
     ]}
   };
+
+  function hexRgb(hex){
+    const s=String(hex||'').replace('#','');
+    if(!/^[0-9a-f]{6}$/i.test(s)) return [245,241,232];
+    return [parseInt(s.slice(0,2),16),parseInt(s.slice(2,4),16),parseInt(s.slice(4,6),16)];
+  }
+  function mix(a,b,t){return a.map((v,i)=>Math.round(v+(b[i]-v)*t));}
+  function rgb(v,alpha=1){return alpha===1?`rgb(${v.join(',')})`:`rgba(${v.join(',')},${alpha})`;}
+
+  async function loadExperienceIdentity(){
+    const defaultTheme=state.deck==='leopardcat'?'leopardcat':'minimal-light';
+    state.theme=state.theme||defaultTheme;
+    try{
+      const [brandResp,themeResp]=await Promise.all([
+        fetch(`/api/v1/brands/${encodeURIComponent(state.deck)}`,{cache:'no-store'}),
+        fetch(`/api/v1/themes/${encodeURIComponent(state.theme)}`,{cache:'no-store'})
+      ]);
+      if(brandResp.ok) state.brand=await brandResp.json();
+      if(themeResp.ok){
+        const t=await themeResp.json();
+        const c=t.colors||{};
+        const bg=c.background||'#f5f1e8', surface=c.surface||'#ffffff', accent=c.accent||'#6e5138', text=c.text||'#28231e';
+        const bgRgb=hexRgb(bg), textRgb=hexRgb(text), surfaceRgb=hexRgb(surface);
+        const root=document.documentElement;
+        root.style.setProperty('--bg',bg);
+        root.style.setProperty('--paper',surface);
+        root.style.setProperty('--ink',text);
+        root.style.setProperty('--accent',accent);
+        root.style.setProperty('--muted',rgb(mix(textRgb,bgRgb,.42)));
+        root.style.setProperty('--line',rgb(mix(textRgb,bgRgb,.72),.65));
+        root.style.setProperty('--soft',rgb(mix(surfaceRgb,bgRgb,.45)));
+        root.style.setProperty('--danger','#b85b50');
+        document.body.style.backgroundImage=t.background_image?`linear-gradient(${bg}dd,${bg}ee),url("${t.background_image}")`:'';
+        document.body.style.backgroundColor=bg;
+        state.theme=t.theme_id||state.theme;
+      }
+    }catch(_){}
+
+    const brandName=state.brand?.short_name||state.brand?.app_name||(state.deck==='leopardcat'?'靈山靈貓':'Divination OS');
+    $('brand-link').textContent=brandName;
+    $('brand-link').href=state.deck==='leopardcat'?'/':`/?deck=${encodeURIComponent(state.deck)}`;
+    $('back-to-deck').href=$('brand-link').href;
+    $('back-to-deck').textContent=state.deck==='leopardcat'?'返回石虎塔羅':'返回牌組首頁';
+    document.title=`${brandName}・詢問大師`;
+    document.body.dataset.deck=state.deck;
+  }
 
   async function loadMethods(){
     try{
@@ -96,9 +145,24 @@
     el.innerHTML=lines.map(x=>`<div>${escapeHtml(x)}</div>`).join(''); el.classList.toggle('hidden',!lines.length);
   }
 
+  function cleanReading(text){
+    let quote='';
+    let cleaned=String(text||'').replace(/<div\b[^>]*class=["'][^"']*hidden-quote[^"']*["'][^>]*>([\s\S]*?)<\/div>/gi,(_,q)=>{quote=String(q||'').replace(/<[^>]*>/g,'').replace(/[\[\]]/g,'').trim();return '';});
+    cleaned=cleaned.replace(/<\/?(?:div|span|p|br)\b[^>]*>/gi,'').trim();
+    return {text:cleaned,quote};
+  }
+
+  function readingHtml(text){
+    const parsed=cleanReading(text);
+    const safe=escapeHtml(parsed.text).replace(/\n\n+/g,'</p><p>').replace(/\n/g,'<br>');
+    const quote=parsed.quote?`<blockquote class="golden-quote">${escapeHtml(parsed.quote)}</blockquote>`:'';
+    return {html:(safe?`<p>${safe}</p>`:'<p>抽牌完成。牌局已保留，你可以稍後繼續詢問大師。</p>')+quote,plain:parsed.text,quote:parsed.quote};
+  }
+
   function renderReading(text){
-    const safe=escapeHtml(text||'').replace(/\n\n+/g,'</p><p>').replace(/\n/g,'<br>');
-    $('reading').innerHTML=safe?`<p>${safe}</p>`:'<p>抽牌完成。你可以使用自己的 AI 解讀這份 Reading Capsule。</p>';
+    const rendered=readingHtml(text);
+    $('reading').innerHTML=rendered.html;
+    return rendered;
   }
 
   function renderHandoff(handoff){
@@ -114,6 +178,44 @@
     $('copy-prompt').onclick=async()=>{await navigator.clipboard.writeText(handoff.generic_prompt||'');$('copy-prompt').textContent='已複製';setTimeout(()=>$('copy-prompt').textContent='只複製完整提示',1200);};
   }
 
+  function appendFollowup(role,text){
+    const rendered=readingHtml(text);
+    const node=document.createElement('div');
+    node.className=`followup-bubble ${role}`;
+    node.innerHTML=role==='assistant'?rendered.html:`<p>${escapeHtml(text)}</p>`;
+    $('followup-history').appendChild(node);
+    node.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+
+  function configureFollowup(){
+    const available=!!(state.envelope?.reading_id && state.envelope?.session_token);
+    $('followup').classList.toggle('hidden',!available);
+  }
+
+  async function askFollowup(){
+    const text=$('followup-input').value.trim();
+    if(!text || !state.envelope?.reading_id || !state.envelope?.session_token) return;
+    $('followup-send').disabled=true;$('followup-status').textContent='大師正在回應…';
+    appendFollowup('user',text);$('followup-input').value='';
+    try{
+      const payload={readingId:state.envelope.reading_id,sessionToken:state.envelope.session_token,question:text,lang:'zh-TW',history:state.history.slice(-10)};
+      const r=await fetch('/api/v1/readings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      let data={};try{data=await r.json();}catch(_){}
+      if(!r.ok && !data.method_result) throw new Error(data.message||'大師暫時無法回應，牌局仍然保留。');
+      if(data.reading){
+        appendFollowup('assistant',data.reading);
+        const clean=cleanReading(data.reading).text;
+        state.history.push({role:'user',content:text},{role:'assistant',content:clean});
+        $('followup-status').textContent='';
+      }else{
+        $('followup-status').textContent='大師目前暫時無法回應；牌局沒有重抽，你可以稍後再問。';
+        $('ai-fallback').classList.remove('hidden');
+        if(data.handoff) renderHandoff(data.handoff);
+      }
+    }catch(e){$('followup-status').textContent=e.message||'大師暫時無法回應，牌局仍然保留。';}
+    finally{$('followup-send').disabled=false;}
+  }
+
   async function draw(){
     const question=$('question').value.trim(); if(!question){$('status').textContent='先寫下你想問的問題。';$('status').className='status error';return;}
     $('draw').disabled=true;$('status').className='status';$('status').textContent='正在抽牌…';
@@ -125,17 +227,21 @@
       if(!r.ok && !data.method_result) throw new Error(data.message||'目前無法抽牌，請稍後再試。');
       state.envelope=data; const result=data.method_result||data.capsule?.result;
       if(!result) throw new Error('沒有收到抽牌結果。');
-      renderCards(result); renderReading(data.reading||''); renderHandoff(data.handoff||null);
+      renderCards(result); const initial=renderReading(data.reading||''); renderHandoff(data.handoff||null);
+      state.history=data.reading?[{role:'user',content:question},{role:'assistant',content:initial.plain}]:[];
+      $('followup-history').innerHTML='';configureFollowup();
       $('ai-fallback').classList.toggle('hidden',r.ok && !!data.reading);
-      $('ai-state').textContent=r.ok&&data.reading?'本站 AI':'自己的 AI 可用'; $('ai-state').classList.toggle('offline',!r.ok||!data.reading);
+      $('ai-state').textContent=r.ok&&data.reading?'本站大師':'牌局已保留'; $('ai-state').classList.toggle('offline',!r.ok||!data.reading);
       $('result-title').textContent=result.method==='lenormand'?(result.spread_name||'雷諾曼牌陣'):`${result.deck?.name||'塔羅'} · ${result.cards.length} 張`;
       $('result').classList.remove('hidden'); $('status').textContent=''; $('result').scrollIntoView({behavior:'smooth',block:'start'});
-      const u=new URL(location.href);u.searchParams.set('method',state.method);if(state.method==='tarot')u.searchParams.set('deck',state.deck);else u.searchParams.delete('deck');u.searchParams.set('persona',state.persona);history.replaceState({},'',u);
+      const u=new URL(location.href);u.searchParams.set('method',state.method);if(state.method==='tarot')u.searchParams.set('deck',state.deck);else u.searchParams.delete('deck');u.searchParams.set('persona',state.persona);if(state.theme)u.searchParams.set('theme',state.theme);history.replaceState({},'',u);
     }catch(e){$('status').className='status error';$('status').textContent=e.message||'發生錯誤。';}
     finally{$('draw').disabled=false;}
   }
 
   $('draw').onclick=draw;
-  $('new-reading').onclick=()=>{$('result').classList.add('hidden');$('question').focus();window.scrollTo({top:0,behavior:'smooth'});};
-  loadMethods();
+  $('followup-send').onclick=askFollowup;
+  $('followup-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();askFollowup();}});
+  $('new-reading').onclick=()=>{$('result').classList.add('hidden');state.envelope=null;state.history=[];$('followup-history').innerHTML='';$('question').focus();window.scrollTo({top:0,behavior:'smooth'});};
+  loadExperienceIdentity().finally(loadMethods);
 })();
