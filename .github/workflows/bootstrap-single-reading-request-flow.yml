@@ -29,3 +29,4 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'fix(ux): enforce one reading request flow'
           git push origin HEAD:fix/single-reading-request-flow
+# registered bootstrap trigger
