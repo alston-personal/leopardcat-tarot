@@ -94,42 +94,56 @@ jobs:
           assert.ok(overflow<=1,`horizontal overflow ${overflow}px`);
           console.log('browser_mobile_reading_layout=passed');
 
+          // True E2E ownership flow: create a real Persona, then manage it through the browser UI.
+          const createResp=await fetch(base+'/api/v1/personas',{
+            method:'POST',headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({name:'Browser 管理測試師',role:'E2E 測試',voice:'溫柔',principles:'忠實解讀'})
+          });
+          assert.equal(createResp.status,201);
+          const created=await createResp.json();
+          assert.ok(created.persona_id && created.management_token);
+          const personaId=created.persona_id;
+          const oldToken=created.management_token;
+
           const manage=await browser.newPage({viewport:{width:900,height:900}});
           await manage.addInitScript(()=>{ window.confirm=()=>true; window.prompt=()=> 'DELETE'; });
-          let getSeen=false, patchSeen=false, rotateSeen=false;
-          await manage.route('**/api/v1/manage/decks/browser-owned**', async route=>{
-            const req=route.request();
-            assert.ok(!req.url().includes('secret-browser-token'));
-            assert.equal(req.headers()['x-management-token'],'secret-browser-token');
-            if(req.url().endsWith('/rotate')){
-              rotateSeen=true;
-              return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({management_token:'new-secret-token',manage_path:'/manage.html?deck=browser-owned'})});
+          const seenManageRequests=[];
+          manage.on('request',req=>{
+            if(req.url().includes(`/api/v1/manage/personas/${personaId}`)){
+              seenManageRequests.push(req.url());
+              assert.ok(!req.url().includes(oldToken));
+              assert.ok(!new URL(req.url()).searchParams.has('token'));
+              assert.equal(req.headers()['x-management-token'],oldToken);
             }
-            if(req.method()==='PATCH'){
-              patchSeen=true;
-              const body=JSON.parse(req.postData()||'{}');
-              assert.equal(body.name,'新版牌組名稱');
-              return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({resource_type:'deck',deck_id:'browser-owned',name:'新版牌組名稱',creator:'Creator',description:'Desc',default_persona:'master',card_count:22,reversals:true})});
-            }
-            getSeen=true;
-            return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({resource_type:'deck',deck_id:'browser-owned',name:'舊牌組',creator:'Creator',description:'Desc',default_persona:'master',card_count:22,reversals:true})});
           });
-          await manage.goto(base+'/manage.html?deck=browser-owned#token=secret-browser-token',{waitUntil:'networkidle'});
-          assert.ok(getSeen);
-          await manage.locator('#deck-name').fill('新版牌組名稱');
+          await manage.goto(`${base}/manage.html?persona=${encodeURIComponent(personaId)}#token=${encodeURIComponent(oldToken)}`,{waitUntil:'networkidle'});
+          await manage.waitForFunction(()=>!document.getElementById('editor').classList.contains('hidden'));
+          assert.equal(await manage.locator('#persona-name').inputValue(),'Browser 管理測試師');
+          await manage.locator('#persona-name').fill('Browser 管理測試師 v2');
           await manage.locator('#save').click();
           await manage.waitForFunction(()=>document.getElementById('status').textContent.includes('已儲存'));
-          assert.ok(patchSeen);
+          assert.equal(await manage.locator('#persona-name').inputValue(),'Browser 管理測試師 v2');
           await manage.locator('#rotate').click();
           await manage.waitForFunction(()=>!document.getElementById('rotated').classList.contains('hidden'));
-          assert.ok(rotateSeen);
           const newUrl=await manage.locator('#new-manage-link').getAttribute('href');
           const parsed=new URL(newUrl);
-          assert.equal(parsed.searchParams.get('deck'),'browser-owned');
+          assert.equal(parsed.searchParams.get('persona'),personaId);
           assert.equal(parsed.searchParams.get('token'),null);
-          assert.equal(new URLSearchParams(parsed.hash.slice(1)).get('token'),'new-secret-token');
+          const newToken=new URLSearchParams(parsed.hash.slice(1)).get('token');
+          assert.ok(newToken && newToken!==oldToken);
+          assert.ok(seenManageRequests.length>=3);
+
+          const oldCheck=await fetch(`${base}/api/v1/manage/personas/${encodeURIComponent(personaId)}`,{headers:{'X-Management-Token':oldToken}});
+          assert.equal(oldCheck.status,403);
+          const newCheck=await fetch(`${base}/api/v1/manage/personas/${encodeURIComponent(personaId)}`,{headers:{'X-Management-Token':newToken}});
+          assert.equal(newCheck.status,200);
+          const newInfo=await newCheck.json();
+          assert.equal(newInfo.name,'Browser 管理測試師 v2');
+          const cleanup=await fetch(`${base}/api/v1/manage/personas/${encodeURIComponent(personaId)}`,{method:'DELETE',headers:{'X-Management-Token':newToken}});
+          assert.equal(cleanup.status,200);
           console.log('browser_management_header_only_secret=passed');
-          console.log('browser_management_edit_rotate=passed');
+          console.log('browser_management_edit_rotate_real_server=passed');
+          console.log('browser_management_old_token_revoked=passed');
 
           await browser.close();
           NODE
