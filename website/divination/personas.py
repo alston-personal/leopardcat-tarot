@@ -93,7 +93,7 @@ class GenericMasterPersona:
     def public_info(self) -> dict[str, Any]:
         return {
             "persona_id": self.persona_id,
-            "name": "通用解讀師",
+            "name": "通用解牌師",
             "role": "中立、謹慎、實用；依每種占卜法自己的規則解讀",
             "source": "builtin",
             "methods": ["tarot", "lenormand"],
