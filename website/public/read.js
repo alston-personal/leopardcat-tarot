@@ -10,7 +10,7 @@
     envelope: null,
   };
   const $ = id => document.getElementById(id);
-  const escapeHtml = s => String(s ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const escapeHtml = s => String(s ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[ch]));
   const FALLBACK_METHODS = {
     tarot: {method_id:'tarot', name:'塔羅 Tarot', description:'以牌陣位置與正逆位解讀。', spreads:[
       {id:'single',name:'單張指引',card_count:1},{id:'three_card',name:'過去・現在・未來',card_count:3},{id:'decision',name:'選擇題',card_count:3}
@@ -50,11 +50,13 @@
       const r=await fetch(`/api/v1/personas?deck=${encodeURIComponent(deckForPersona)}`,{cache:'no-store'}); if(!r.ok) throw new Error();
       const d=await r.json();
       const compatible=(d.personas||[]).filter(p=>(p.methods||['tarot']).includes(state.method));
-      const list=compatible.length?compatible:[{persona_id:'master',name:'通用解讀師'}];
+      const list=compatible.length?compatible:[{persona_id:'master',name:'通用解牌師'}];
       $('persona-select').innerHTML=list.map(p=>`<option value="${escapeHtml(p.persona_id)}">${escapeHtml(p.name)}</option>`).join('');
-      const desired=state.persona && list.some(p=>p.persona_id===state.persona)?state.persona:(list.some(p=>p.persona_id==='master')?'master':list[0].persona_id);
+      const requested=state.persona && list.some(p=>p.persona_id===state.persona) ? state.persona : '';
+      const deckDefault=d.default_persona && list.some(p=>p.persona_id===d.default_persona) ? d.default_persona : '';
+      const desired=requested || deckDefault || (list.some(p=>p.persona_id==='master') ? 'master' : list[0].persona_id);
       state.persona=desired; $('persona-select').value=desired;
-    }catch(_){ $('persona-select').innerHTML='<option value="master">通用解讀師</option>'; state.persona='master'; }
+    }catch(_){ $('persona-select').innerHTML='<option value="master">通用解牌師</option>'; state.persona='master'; }
   }
 
   function renderMethod(){
@@ -68,8 +70,8 @@
     loadDeckAndPersonas();
   }
 
-  document.querySelectorAll('[data-method]').forEach(b=>b.onclick=()=>{state.method=b.dataset.method;state.spread='';renderMethod();});
-  $('deck-select').onchange=e=>state.deck=e.target.value;
+  document.querySelectorAll('[data-method]').forEach(b=>b.onclick=()=>{state.method=b.dataset.method;state.spread='';state.persona='';renderMethod();});
+  $('deck-select').onchange=e=>{state.deck=e.target.value;state.persona='';loadDeckAndPersonas();};
   $('persona-select').onchange=e=>state.persona=e.target.value;
 
   function titleOf(card){ const t=card.title||{}; return typeof t==='string'?t:(t['zh-TW']||t.zh||t.en||card.card_id||''); }
@@ -128,7 +130,7 @@
       $('ai-state').textContent=r.ok&&data.reading?'本站 AI':'自己的 AI 可用'; $('ai-state').classList.toggle('offline',!r.ok||!data.reading);
       $('result-title').textContent=result.method==='lenormand'?(result.spread_name||'雷諾曼牌陣'):`${result.deck?.name||'塔羅'} · ${result.cards.length} 張`;
       $('result').classList.remove('hidden'); $('status').textContent=''; $('result').scrollIntoView({behavior:'smooth',block:'start'});
-      const u=new URL(location.href);u.searchParams.set('method',state.method);if(state.method==='tarot')u.searchParams.set('deck',state.deck);else u.searchParams.delete('deck');history.replaceState({},'',u);
+      const u=new URL(location.href);u.searchParams.set('method',state.method);if(state.method==='tarot')u.searchParams.set('deck',state.deck);else u.searchParams.delete('deck');u.searchParams.set('persona',state.persona);history.replaceState({},'',u);
     }catch(e){$('status').className='status error';$('status').textContent=e.message||'發生錯誤。';}
     finally{$('draw').disabled=false;}
   }
