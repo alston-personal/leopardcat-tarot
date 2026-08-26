@@ -115,6 +115,11 @@ class DivinationEngine:
         rng, fingerprint = _stable_seed(request.seed)
         method = self.methods.get(request.method)
         persona = self.personas.get(request.persona)
+        if hasattr(persona, "public_info"):
+            info = persona.public_info()
+            methods = list(info.get("methods") or []) if isinstance(info, dict) else []
+            if methods and request.method not in methods:
+                raise DivinationError(f"persona '{request.persona}' does not support method '{request.method}'")
         result = method.generate(input_data=request.input, question=request.question.strip(), rng=rng)
         prompt = persona.build_prompt(method_result=result, question=request.question.strip(), lang=request.lang)
         return ReadingEnvelope(
