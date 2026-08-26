@@ -19,6 +19,7 @@ jobs:
         run: |
           python tools/patch_divination_os_v1_server.py
           python tools/patch_creator_ownership_ui.py
+          python tools/patch_primary_reading_cta.py
       - name: Python contracts
         working-directory: website
         run: |
@@ -33,6 +34,7 @@ jobs:
           node --check website/main.js
           grep -q "Reading Capsule" website/public/read.html
           grep -q "X-Management-Token" website/public/manage.js
+          grep -q "data-primary-reading" website/index.html
           grep -q "'/api/v1/methods'" website/fortune_server.py
           grep -q "'capsule': capsule" website/fortune_server.py
           grep -q "method_requested == 'tarot'" website/fortune_server.py
@@ -76,10 +78,10 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add website/fortune_server.py website/public/create.html website/public/creator.js
+          git add website/fortune_server.py website/public/create.html website/public/creator.js website/index.html website/main.js
           if git diff --cached --quiet; then
             echo runtime_source_already_current=passed
           else
-            git commit -m 'feat(v1): wire server capsule ownership and creator recovery UX'
+            git commit -m 'feat(v1): wire server capsule ownership and focused reading UX'
             git push origin HEAD:feature/creator-ownership
           fi
