@@ -835,6 +835,14 @@ window.activeDeckId = new URLSearchParams(window.location.search).get('deck') ||
 window.activePersonaId = new URLSearchParams(window.location.search).get('persona') || null;
 window.defaultPersonaId = null;
 
+window.updatePrimaryReadingLinks = function() {
+    const u = new URL('/read.html', window.location.origin);
+    if (window.activeDeckId) u.searchParams.set('deck', window.activeDeckId);
+    if (window.activePersonaId) u.searchParams.set('persona', window.activePersonaId);
+    document.querySelectorAll('[data-primary-reading]').forEach(el => { el.href = u.toString(); });
+};
+document.addEventListener('DOMContentLoaded', window.updatePrimaryReadingLinks);
+
 
 window.brandText = function(field, fallback = '') {
     const value = window.activeBrand?.[field];

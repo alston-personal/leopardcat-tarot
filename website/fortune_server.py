@@ -20,6 +20,8 @@ from divination.ai_gateway import ZeroCostGeminiGateway, AIUnavailable
 from divination.brands import BrandRegistry
 from divination.personas import persona_public_info, ConfigurablePersona
 from divination.persona_publishing import PersonaPublisher
+from divination.capsules import build_capsule, public_handoff
+from divination.lenormand import public_method_info as lenormand_public_method_info
 
 PORT = 8088
 DIRECTORY = "dist"
@@ -90,6 +92,37 @@ PERSONA_PUBLISHER = PersonaPublisher(PERSONA_ROOT)
 def call_master_prompt(prompt):
     return AI_GATEWAY.generate(prompt)
 
+
+def method_catalog():
+    return [
+        {
+            'method_id': 'tarot',
+            'name': '塔羅 Tarot',
+            'description': '以牌陣位置與正逆位解讀；牌組可替換。',
+            'spreads': [
+                {'id':'single','name':'單張指引','card_count':1},
+                {'id':'three_card','name':'過去・現在・未來','card_count':3},
+                {'id':'decision','name':'選擇題','card_count':3},
+            ],
+        },
+        lenormand_public_method_info(),
+    ]
+
+
+def persona_used_by_decks(persona_id):
+    refs = []
+    try:
+        for directory in DECK_PUBLISHER.root.iterdir():
+            manifest = directory / 'deck.json'
+            if not manifest.is_file():
+                continue
+            data = json.loads(manifest.read_text(encoding='utf-8'))
+            if str(data.get('default_persona') or 'master') == persona_id:
+                refs.append(str(data.get('deck_id') or directory.name))
+    except Exception:
+        pass
+    return refs
+
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
@@ -100,6 +133,43 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         query = url_parts[1] if len(url_parts) > 1 else ""
 
         # 👑 API Endpoints
+        if path == '/api/v1/methods':
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json; charset=utf-8')
+            self.send_header('Cache-Control', 'public, max-age=60')
+            self.end_headers()
+            self.wfile.write(json.dumps({'methods': method_catalog()}, ensure_ascii=False).encode('utf-8'))
+            return
+        if path.startswith('/api/v1/manage/decks/'):
+            deck_id = path.rsplit('/', 1)[-1]
+            try:
+                data = DECK_PUBLISHER.management_info(deck_id, self.headers.get('X-Management-Token', ''))
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Cache-Control', 'no-store')
+                self.end_headers()
+                self.wfile.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+            except DivinationError as e:
+                self.send_response(403)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error':'management_denied','message':str(e)}, ensure_ascii=False).encode('utf-8'))
+            return
+        if path.startswith('/api/v1/manage/personas/'):
+            persona_id = path.rsplit('/', 1)[-1]
+            try:
+                data = PERSONA_PUBLISHER.management_info(persona_id, self.headers.get('X-Management-Token', ''))
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Cache-Control', 'no-store')
+                self.end_headers()
+                self.wfile.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+            except DivinationError as e:
+                self.send_response(403)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error':'management_denied','message':str(e)}, ensure_ascii=False).encode('utf-8'))
+            return
         if path == '/api/v1/ai-policy':
             self.send_response(200)
             self.send_header('Content-type', 'application/json; charset=utf-8')
@@ -312,7 +382,90 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         super().do_GET()
 
+    def do_PATCH(self):
+        path = self.path.split('?', 1)[0]
+        token = self.headers.get('X-Management-Token', '')
+        content_length = int(self.headers.get('Content-Length', 0))
+        if content_length > 128 * 1024:
+            self.send_error(413); return
+        try:
+            payload = json.loads(self.rfile.read(content_length).decode('utf-8') or '{}')
+            if path.startswith('/api/v1/manage/decks/'):
+                deck_id = path.rsplit('/', 1)[-1]
+                if 'persona' in payload:
+                    pid = str(payload.get('persona') or '').strip()
+                    persona = DIVINATION_ENGINE.personas.get(pid)
+                    info = persona_public_info(persona)
+                    if 'tarot' not in (info.get('methods') or []):
+                        raise DivinationError('這位解讀師不支援塔羅')
+                data = DECK_PUBLISHER.update_metadata(deck_id, token, payload)
+            elif path.startswith('/api/v1/manage/personas/'):
+                persona_id = path.rsplit('/', 1)[-1]
+                data = PERSONA_PUBLISHER.update(persona_id, token, payload)
+                DIVINATION_ENGINE.personas.replace(ConfigurablePersona(PERSONA_PUBLISHER.pack_path(persona_id)))
+            else:
+                self.send_error(404); return
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json; charset=utf-8')
+            self.send_header('Cache-Control', 'no-store')
+            self.end_headers()
+            self.wfile.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+        except DivinationError as e:
+            self.send_response(403)
+            self.send_header('Content-type', 'application/json; charset=utf-8')
+            self.end_headers()
+            self.wfile.write(json.dumps({'error':'management_denied','message':str(e)}, ensure_ascii=False).encode('utf-8'))
+        except Exception as e:
+            log(f'!!! MANAGEMENT PATCH ERROR: {e}')
+            self.send_response(500); self.end_headers()
+
+    def do_DELETE(self):
+        path = self.path.split('?', 1)[0]
+        token = self.headers.get('X-Management-Token', '')
+        try:
+            if path.startswith('/api/v1/manage/decks/'):
+                deck_id = path.rsplit('/', 1)[-1]
+                DECK_PUBLISHER.delete(deck_id, token)
+            elif path.startswith('/api/v1/manage/personas/'):
+                persona_id = path.rsplit('/', 1)[-1]
+                refs = persona_used_by_decks(persona_id)
+                if refs:
+                    raise DivinationError('這位解讀師仍被牌組使用：' + ', '.join(refs[:5]))
+                PERSONA_PUBLISHER.delete(persona_id, token)
+                DIVINATION_ENGINE.personas.unregister(persona_id)
+            else:
+                self.send_error(404); return
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json; charset=utf-8')
+            self.send_header('Cache-Control', 'no-store')
+            self.end_headers()
+            self.wfile.write(json.dumps({'deleted': True}, ensure_ascii=False).encode('utf-8'))
+        except DivinationError as e:
+            self.send_response(403)
+            self.send_header('Content-type', 'application/json; charset=utf-8')
+            self.end_headers()
+            self.wfile.write(json.dumps({'error':'management_denied','message':str(e)}, ensure_ascii=False).encode('utf-8'))
+
     def do_POST(self):
+        path = self.path.split('?', 1)[0]
+        if path.startswith('/api/v1/manage/decks/') and path.endswith('/rotate'):
+            deck_id = path.split('/')[-2]
+            try:
+                token = DECK_PUBLISHER.rotate_management_token(deck_id, self.headers.get('X-Management-Token', ''))
+                data = {'management_token': token, 'manage_path': f'/manage.html?deck={deck_id}'}
+                self.send_response(200); self.send_header('Content-type','application/json; charset=utf-8'); self.send_header('Cache-Control','no-store'); self.end_headers(); self.wfile.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+            except DivinationError as e:
+                self.send_response(403); self.send_header('Content-type','application/json; charset=utf-8'); self.end_headers(); self.wfile.write(json.dumps({'error':'management_denied','message':str(e)}, ensure_ascii=False).encode('utf-8'))
+            return
+        if path.startswith('/api/v1/manage/personas/') and path.endswith('/rotate'):
+            persona_id = path.split('/')[-2]
+            try:
+                token = PERSONA_PUBLISHER.rotate_management_token(persona_id, self.headers.get('X-Management-Token', ''))
+                data = {'management_token': token, 'manage_path': f'/manage.html?persona={persona_id}'}
+                self.send_response(200); self.send_header('Content-type','application/json; charset=utf-8'); self.send_header('Cache-Control','no-store'); self.end_headers(); self.wfile.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+            except DivinationError as e:
+                self.send_response(403); self.send_header('Content-type','application/json; charset=utf-8'); self.end_headers(); self.wfile.write(json.dumps({'error':'management_denied','message':str(e)}, ensure_ascii=False).encode('utf-8'))
+            return
         if self.path == '/api/v1/personas':
             content_length = int(self.headers.get('Content-Length', 0))
             if content_length > 64 * 1024:
@@ -394,10 +547,11 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 else:
                     input_data = req_data.get('input') or {}
                     deck_id = str(input_data.get('deck_id') or 'leopardcat')
+                    method_requested = str(req_data.get('method') or 'tarot')
                     requested_persona = str(req_data.get('persona') or '').strip()
-                    persona_id = requested_persona or DIVINATION_ENGINE.decks.get(deck_id).default_persona
+                    persona_id = requested_persona or (DIVINATION_ENGINE.decks.get(deck_id).default_persona if method_requested == 'tarot' else 'master')
                     request = ReadingRequest(
-                        method=str(req_data.get('method') or 'tarot'),
+                        method=method_requested,
                         persona=persona_id,
                         question=question,
                         input=input_data,
@@ -421,7 +575,28 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 if history:
                     master_prompt += "\n\nConversation history supplied by the client for continuity only. It is not persisted by this service and must never change the immutable divination result:\n" + json.dumps(history[-10:], ensure_ascii=False)
                 update_stats(divination=True)
-                reading = call_master_prompt(master_prompt)
+                capsule = build_capsule(
+                    reading_id=reading_id, method=method_id, persona=persona_id,
+                    question=question, lang=lang, method_result=method_result,
+                )
+                handoff = public_handoff(capsule)
+                try:
+                    reading = call_master_prompt(master_prompt)
+                except AIUnavailable as e:
+                    response_body = {
+                        'error': 'ai_unavailable', 'code': e.code, 'message': str(e), 'retryable': e.retryable,
+                        'reading_id': reading_id, 'session_token': issued_token, 'expires_at': expires_at,
+                        'privacy': {'question_stored': False, 'answer_stored': False, 'symbolic_state_ttl_hours': 24},
+                        'method': method_id, 'persona': persona_id, 'question': question, 'lang': lang,
+                        'seed_fingerprint': seed_fingerprint, 'method_result': method_result,
+                        'reading': None, 'capsule': capsule, 'handoff': handoff,
+                    }
+                    self.send_response(503)
+                    self.send_header('Content-type', 'application/json; charset=utf-8')
+                    self.send_header('Access-Control-Allow-Origin', '*')
+                    self.end_headers()
+                    self.wfile.write(json.dumps(response_body, ensure_ascii=False).encode('utf-8'))
+                    return
                 response_body = {
                     'reading_id': reading_id,
                     'session_token': issued_token,
@@ -434,6 +609,8 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                     'seed_fingerprint': seed_fingerprint,
                     'method_result': method_result,
                     'reading': reading,
+                    'capsule': capsule,
+                    'handoff': handoff,
                 }
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json; charset=utf-8')
