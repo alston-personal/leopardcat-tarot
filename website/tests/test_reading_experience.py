@@ -31,6 +31,12 @@ def test_focused_reading_keeps_brand_theme_and_followup_contract():
     assert '.followup-bubble.assistant' in css
 
 
+def test_primary_tarot_entry_stays_on_active_deck_page():
+    js = (ROOT / 'main.js').read_text(encoding='utf-8')
+    assert "el.setAttribute('href', '#fortune')" in js
+    assert 'must not feel like leaving the deck' in js
+
+
 def test_leopardcat_persona_preserves_familiar_master_voice():
     pack = json.loads((ROOT / 'oracle_packs' / 'leopardcat' / 'pack.json').read_text(encoding='utf-8'))
     voice = '\n'.join(pack['voice'])
