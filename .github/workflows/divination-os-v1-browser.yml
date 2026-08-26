@@ -1,7 +1,9 @@
 name: Divination OS v1 Browser
 on:
   push:
-    branches: [feature/creator-ownership]
+    branches: [main, feature/creator-ownership]
+  pull_request:
+    branches: [main]
 permissions:
   contents: read
 jobs:
@@ -10,16 +12,12 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-        with: {ref: feature/creator-ownership}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
-      - name: Apply integration and build
+      - name: Build committed source
         run: |
-          python tools/patch_divination_os_v1_server.py
-          python tools/patch_creator_ownership_ui.py
-          python tools/patch_primary_reading_cta.py
           cd website
           rm -f public/art/renders public/cards || true
           mkdir -p public/art/renders public/cards
@@ -94,7 +92,6 @@ jobs:
           assert.ok(overflow<=1,`horizontal overflow ${overflow}px`);
           console.log('browser_mobile_reading_layout=passed');
 
-          // True E2E ownership flow: create a real Persona, then manage it through the browser UI.
           const createResp=await fetch(base+'/api/v1/personas',{
             method:'POST',headers:{'Content-Type':'application/json'},
             body:JSON.stringify({name:'Browser 管理測試師',role:'E2E 測試',voice:'溫柔',principles:'忠實解讀'})
