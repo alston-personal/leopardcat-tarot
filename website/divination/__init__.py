@@ -3,6 +3,7 @@ from pathlib import Path
 from .core import DivinationEngine, MethodRegistry, PersonaRegistry, ReadingRequest
 from .decks import DeckRegistry
 from .tarot import TarotMethod
+from .lenormand import LenormandMethod
 from .personas import ConfigurablePersona, GenericMasterPersona
 
 
@@ -12,6 +13,7 @@ def build_default_engine(base_dir: str | Path) -> DivinationEngine:
 
     methods = MethodRegistry()
     methods.register(TarotMethod(decks))
+    methods.register(LenormandMethod())
 
     personas = PersonaRegistry()
     personas.register(ConfigurablePersona(base / "oracle_packs" / "leopardcat" / "pack.json"))
@@ -38,6 +40,7 @@ __all__ = [
     "ReadingRequest",
     "DeckRegistry",
     "TarotMethod",
+    "LenormandMethod",
     "ConfigurablePersona",
     "GenericMasterPersona",
     "build_default_engine",
