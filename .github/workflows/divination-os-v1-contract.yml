@@ -1,0 +1,85 @@
+name: Divination OS v1 Contract
+on:
+  push:
+    branches: [feature/creator-ownership]
+permissions:
+  contents: write
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: feature/creator-ownership, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Apply v1 integration patches
+        run: |
+          python tools/patch_divination_os_v1_server.py
+          python tools/patch_creator_ownership_ui.py
+      - name: Python contracts
+        working-directory: website
+        run: |
+          python -m pip install pytest >/dev/null
+          python -m pytest -q tests
+          python -m py_compile fortune_server.py divination/*.py
+      - name: Browser source contracts and build
+        run: |
+          node --check website/public/read.js
+          node --check website/public/manage.js
+          node --check website/public/creator.js
+          node --check website/main.js
+          grep -q "Reading Capsule" website/public/read.html
+          grep -q "X-Management-Token" website/public/manage.js
+          grep -q "'/api/v1/methods'" website/fortune_server.py
+          grep -q "'capsule': capsule" website/fortune_server.py
+          grep -q "method_requested == 'tarot'" website/fortune_server.py
+          cd website
+          rm -f public/art/renders public/cards || true
+          mkdir -p public/art/renders public/cards
+          npm ci
+          npm run build
+      - name: Local API smoke without paid AI
+        working-directory: website
+        env:
+          GEMINI_API_KEY: ''
+        run: |
+          python fortune_server.py >/tmp/divination-v1-server.log 2>&1 &
+          PID=$!
+          trap 'kill $PID >/dev/null 2>&1 || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8088/api/v1/methods >/tmp/methods.json 2>/dev/null && break; sleep 1; done
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/methods.json'))
+          by={x['method_id']:x for x in d['methods']}
+          assert {'tarot','lenormand'} <= set(by)
+          assert any(x['id']=='box9' and x['card_count']==9 for x in by['lenormand']['spreads'])
+          print('methods_api_contract=passed')
+          PY
+          code=$(curl -sS -o /tmp/lr.json -w '%{http_code}' -X POST -H 'Content-Type: application/json' -d '{"method":"lenormand","persona":"master","question":"接下來如何？","lang":"zh-TW","seed":"ci-v1","input":{"spread":"box9"}}' http://127.0.0.1:8088/api/v1/readings)
+          test "$code" = 503
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/lr.json'))
+          assert d['error']=='ai_unavailable'
+          assert d['method_result']['method']=='lenormand'
+          assert len(d['method_result']['cards'])==9
+          assert d['capsule']['schema']=='divination-reading/1'
+          assert {x['id'] for x in d['handoff']['providers']}=={'chatgpt','claude','gemini'}
+          print('zero_cost_handoff_contract=passed')
+          PY
+          test "$(curl -sS -o /tmp/manage-denied.json -w '%{http_code}' http://127.0.0.1:8088/api/v1/manage/decks/not-real)" = 403
+          echo local_api_v1_contract=passed
+      - name: Commit generated runtime integration
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/fortune_server.py website/public/create.html website/public/creator.js
+          if git diff --cached --quiet; then
+            echo runtime_source_already_current=passed
+          else
+            git commit -m 'feat(v1): wire server capsule ownership and creator recovery UX'
+            git push origin HEAD:feature/creator-ownership
+          fi
