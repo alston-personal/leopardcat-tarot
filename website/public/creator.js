@@ -8,6 +8,7 @@
   const done = document.getElementById('done');
   let cards = [];
   const HISTORY_KEY = 'leopardcat-published-decks-v1';
+  const MANAGED_KEY = 'divination-managed-resources-v1';
   const deckSlug = document.getElementById('deck-slug');
   const slugStatus = document.getElementById('slug-status');
   const personaOptions = document.getElementById('persona-options');
@@ -54,6 +55,21 @@
     catch (_) { return []; }
   }
 
+  function managementUrl(data) {
+    if (!data?.management_token || !data?.manage_path) return '';
+    const u = new URL(data.manage_path, location.origin);
+    u.hash = `token=${encodeURIComponent(data.management_token)}`;
+    return u.href;
+  }
+
+  function saveManagedResource(entry) {
+    try {
+      const rows = JSON.parse(localStorage.getItem(MANAGED_KEY) || '[]').filter(x => !(x.type === entry.type && x.id === entry.id));
+      rows.unshift(entry);
+      localStorage.setItem(MANAGED_KEY, JSON.stringify(rows.slice(0, 100)));
+    } catch (_) {}
+  }
+
   function savePublishedHistory(entry) {
     const rows = getPublishedHistory().filter(x => x.deck_id !== entry.deck_id);
     rows.unshift(entry);
@@ -71,7 +87,8 @@
     }
     el.innerHTML = rows.map(x => {
       const when = x.published_at ? new Date(x.published_at).toLocaleString('zh-TW') : '';
-      return `<div style="padding:10px 0;border-top:1px solid #eee3d4"><strong>${escapeHtml(x.name || x.deck_id)}</strong><div class="muted">${escapeHtml(when)}</div><a href="${escapeHtml(x.url)}" target="_blank">開啟占卜頁</a></div>`;
+      const manage = x.manage_url ? ` · <a href="${escapeHtml(x.manage_url)}">管理</a>` : '';
+      return `<div style="padding:10px 0;border-top:1px solid #eee3d4"><strong>${escapeHtml(x.name || x.deck_id)}</strong><div class="muted">${escapeHtml(when)}</div><a href="${escapeHtml(x.url)}" target="_blank">開啟占卜頁</a>${manage}</div>`;
     }).join('');
   }
 
@@ -150,6 +167,12 @@
       selectedPersonaId = data.persona_id;
       renderPersonaOptions();
       personaCreateStatus.textContent = `✓ 已建立「${data.name}」，並設為這副牌的預設解牌師。`;
+      const manageUrl = managementUrl(data);
+      if (manageUrl) {
+        const box = document.getElementById('persona-management'); const link = document.getElementById('persona-manage-link');
+        link.href = manageUrl; link.textContent = manageUrl; box.classList.remove('hidden');
+        saveManagedResource({type:'persona', id:data.persona_id, name:data.name, manage_url:manageUrl, created_at:new Date().toISOString()});
+      }
     } catch (e) {
       personaCreateStatus.textContent = e.message || '建立解牌師失敗，請稍後再試。';
     } finally {
@@ -293,13 +316,28 @@
       const url = u.href;
       const link = document.getElementById('share-link');
       link.href = url; link.textContent = url;
-      savePublishedHistory({ deck_id: data.deck_id, name: data.name || name, theme_id: selectedThemeId, persona_id: data.default_persona || selectedPersonaId, url, published_at: new Date().toISOString() });
+      const manageUrl = managementUrl(data);
+      const manageLink = document.getElementById('deck-manage-link');
+      if (manageLink && manageUrl) { manageLink.href = manageUrl; manageLink.textContent = manageUrl; }
+      savePublishedHistory({ deck_id: data.deck_id, name: data.name || name, theme_id: selectedThemeId, persona_id: data.default_persona || selectedPersonaId, url, manage_url: manageUrl, published_at: new Date().toISOString() });
+      if (manageUrl) saveManagedResource({type:'deck', id:data.deck_id, name:data.name || name, manage_url:manageUrl, public_url:url, created_at:new Date().toISOString()});
       done.classList.remove('hidden');
       status.textContent = `完成，共 ${data.card_count} 張牌。`;
       done.scrollIntoView({behavior:'smooth'});
     } catch (e) {
       status.textContent = e.message || '發布失敗，請稍後再試。';
     } finally { btn.disabled = false; }
+  });
+
+  document.getElementById('copy-persona-manage')?.addEventListener('click', async () => {
+    const url = document.getElementById('persona-manage-link')?.href || '';
+    if (url) await navigator.clipboard.writeText(url);
+    document.getElementById('copy-persona-manage').textContent = '已複製';
+  });
+  document.getElementById('copy-deck-manage')?.addEventListener('click', async () => {
+    const url = document.getElementById('deck-manage-link')?.href || '';
+    if (url) await navigator.clipboard.writeText(url);
+    document.getElementById('copy-deck-manage').textContent = '已複製';
   });
 
   document.getElementById('copy').addEventListener('click', async () => {

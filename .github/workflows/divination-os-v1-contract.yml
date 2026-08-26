@@ -1,0 +1,136 @@
+name: Divination OS v1 Contract
+on:
+  push:
+    branches: [main, feature/creator-ownership]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Python contracts
+        working-directory: website
+        run: |
+          python -m pip install pytest >/dev/null
+          python -m pytest -q tests
+          python -m py_compile fortune_server.py divination/*.py
+      - name: Browser source contracts and build
+        run: |
+          node --check website/public/read.js
+          node --check website/public/manage.js
+          node --check website/public/creator.js
+          node --check website/main.js
+          grep -q "Reading Capsule" website/public/read.html
+          grep -q "X-Management-Token" website/public/manage.js
+          grep -q "data-primary-reading" website/index.html
+          grep -q "'/api/v1/methods'" website/fortune_server.py
+          grep -q "'capsule': capsule" website/fortune_server.py
+          grep -q "method_requested == 'tarot'" website/fortune_server.py
+          test -f website/divination/lenormand.py
+          test -f website/divination/capsules.py
+          test -f website/divination/ownership.py
+          cd website
+          rm -f public/art/renders public/cards || true
+          mkdir -p public/art/renders public/cards
+          npm ci
+          npm run build
+      - name: Local API smoke without paid AI
+        working-directory: website
+        env:
+          GEMINI_API_KEY: ''
+        run: |
+          python fortune_server.py >/tmp/divination-v1-server.log 2>&1 &
+          PID=$!
+          trap 'kill $PID >/dev/null 2>&1 || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8088/api/v1/methods >/tmp/methods.json 2>/dev/null && break; sleep 1; done
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/methods.json'))
+          by={x['method_id']:x for x in d['methods']}
+          assert {'tarot','lenormand'} <= set(by)
+          assert any(x['id']=='box9' and x['card_count']==9 for x in by['lenormand']['spreads'])
+          print('methods_api_contract=passed')
+          PY
+          code=$(curl -sS -o /tmp/lr.json -w '%{http_code}' -X POST -H 'Content-Type: application/json' -d '{"method":"lenormand","persona":"master","question":"接下來如何？","lang":"zh-TW","seed":"ci-v1","input":{"spread":"box9"}}' http://127.0.0.1:8088/api/v1/readings)
+          test "$code" = 503
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/lr.json'))
+          assert d['error']=='ai_unavailable'
+          assert d['method_result']['method']=='lenormand'
+          assert len(d['method_result']['cards'])==9
+          assert d['capsule']['schema']=='divination-reading/1'
+          assert {x['id'] for x in d['handoff']['providers']}=={'chatgpt','claude','gemini'}
+          print('zero_cost_handoff_contract=passed')
+          PY
+          python - <<'PY'
+          import json, urllib.request, urllib.error
+
+          BASE='http://127.0.0.1:8088'
+          PIXEL='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Wl2nWQAAAAASUVORK5CYII='
+
+          def request(method, path, body=None, token=None):
+              data=None if body is None else json.dumps(body, ensure_ascii=False).encode('utf-8')
+              headers={}
+              if data is not None: headers['Content-Type']='application/json'
+              if token: headers['X-Management-Token']=token
+              req=urllib.request.Request(BASE+path, data=data, headers=headers, method=method)
+              try:
+                  with urllib.request.urlopen(req, timeout=5) as r:
+                      raw=r.read().decode('utf-8')
+                      return r.status, json.loads(raw) if raw else {}
+              except urllib.error.HTTPError as e:
+                  raw=e.read().decode('utf-8', errors='replace')
+                  try: parsed=json.loads(raw)
+                  except Exception: parsed={'raw':raw}
+                  return e.code, parsed
+
+          code,p=request('POST','/api/v1/personas',{
+              'name':'CI 月光引路人','role':'CI 暫存解牌師','voice':'簡潔\n溫和','principles':'忠實解讀\n不改牌面'
+          })
+          assert code==201, (code,p)
+          pid=p['persona_id']; ptoken=p['management_token']
+          assert 'token=' not in p['manage_path']
+          code,managed=request('GET',f'/api/v1/manage/personas/{pid}',token=ptoken)
+          assert code==200 and managed['name']=='CI 月光引路人'
+          code,updated=request('PATCH',f'/api/v1/manage/personas/{pid}',{'role':'CI 新角色'},ptoken)
+          assert code==200 and updated['role']=='CI 新角色'
+          code,rot=request('POST',f'/api/v1/manage/personas/{pid}/rotate',{},ptoken)
+          assert code==200 and rot['management_token']!=ptoken
+          new_ptoken=rot['management_token']
+          assert request('GET',f'/api/v1/manage/personas/{pid}',token=ptoken)[0]==403
+          assert request('GET',f'/api/v1/manage/personas/{pid}',token=new_ptoken)[0]==200
+          assert request('DELETE',f'/api/v1/manage/personas/{pid}',token=new_ptoken)[0]==200
+          print('persona_management_http_lifecycle=passed')
+
+          code,d=request('POST','/api/v1/decks',{
+              'name':'CI Ownership Deck','persona':'master','cards':[{
+                  'title':'CI Card','upright':'CI meaning','image':'data:image/png;base64,'+PIXEL
+              }]
+          })
+          assert code==201, (code,d)
+          did=d['deck_id']; dtoken=d['management_token']
+          assert 'token=' not in d['manage_path']
+          assert request('GET',f'/api/v1/manage/decks/{did}')[0]==403
+          code,managed=request('GET',f'/api/v1/manage/decks/{did}',token=dtoken)
+          assert code==200 and managed['name']=='CI Ownership Deck'
+          code,updated=request('PATCH',f'/api/v1/manage/decks/{did}',{'name':'CI Ownership Deck v2'},dtoken)
+          assert code==200 and updated['name']=='CI Ownership Deck v2'
+          code,rot=request('POST',f'/api/v1/manage/decks/{did}/rotate',{},dtoken)
+          assert code==200 and rot['management_token']!=dtoken
+          new_dtoken=rot['management_token']
+          assert request('GET',f'/api/v1/manage/decks/{did}',token=dtoken)[0]==403
+          assert request('GET',f'/api/v1/manage/decks/{did}',token=new_dtoken)[0]==200
+          assert request('DELETE',f'/api/v1/manage/decks/{did}',token=new_dtoken)[0]==200
+          assert request('GET',f'/api/v1/decks/{did}')[0]==404
+          print('deck_management_http_lifecycle=passed')
+          PY
+          echo source_only_local_api_v1_contract=passed
