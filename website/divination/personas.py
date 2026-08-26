@@ -93,17 +93,24 @@ class GenericMasterPersona:
     def public_info(self) -> dict[str, Any]:
         return {
             "persona_id": self.persona_id,
-            "name": "通用解牌師",
-            "role": "中立、謹慎、實用的塔羅解讀 Persona",
+            "name": "通用解讀師",
+            "role": "中立、謹慎、實用；依每種占卜法自己的規則解讀",
             "source": "builtin",
-            "methods": ["tarot"],
+            "methods": ["tarot", "lenormand"],
         }
 
     def build_prompt(self, *, method_result: dict[str, Any], question: str, lang: str) -> str:
         payload = json.dumps(method_result, ensure_ascii=False, indent=2)
         language = "Traditional Chinese (Taiwan)" if lang.lower().startswith("zh") else "the seeker's language"
+        method = str(method_result.get("method") or "divination")
+        method_rule = (
+            "For Lenormand, prioritize combinations, adjacency, position, center/line structure, and the engine-provided structural grammar over isolated card meanings."
+            if method == "lenormand" else
+            "For Tarot, preserve spread positions and upright/reversed orientation exactly as drawn."
+        )
         return f"""You are a careful divination interpreter. The method engine has already produced the immutable symbolic result below. Do not redraw or alter it. Interpret structure and interactions faithfully, avoid deterministic claims, and give practical reflective guidance in {language}.
 
+Method discipline: {method_rule}
 Question: {question}
 Result:
 {payload}
