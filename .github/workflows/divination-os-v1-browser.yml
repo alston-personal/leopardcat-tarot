@@ -106,13 +106,13 @@ jobs:
             getSeen=true;
             return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({resource_type:'deck',deck_id:'browser-owned',name:'舊牌組',creator:'Creator',description:'Desc',default_persona:'master',card_count:22,reversals:true})});
           });
+          manage.on('dialog', async dialog => { await dialog.accept(); });
           await manage.goto(base+'/manage.html?deck=browser-owned#token=secret-browser-token',{waitUntil:'networkidle'});
           assert.ok(getSeen);
           await manage.locator('#deck-name').fill('新版牌組名稱');
           await manage.locator('#save').click();
           await manage.waitForFunction(()=>document.getElementById('status').textContent.includes('已儲存'));
           assert.ok(patchSeen);
-          manage.once('dialog',d=>d.accept());
           await manage.locator('#rotate').click();
           await manage.waitForFunction(()=>!document.getElementById('rotated').classList.contains('hidden'));
           assert.ok(rotateSeen);
