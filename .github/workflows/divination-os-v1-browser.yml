@@ -47,7 +47,6 @@ jobs:
           const base='http://127.0.0.1:8088';
           const browser=await chromium.launch({headless:true});
 
-          // Real Lenormand engine + real 503 zero-cost fallback.
           const page=await browser.newPage({viewport:{width:1280,height:900}});
           await page.goto(base+'/read.html',{waitUntil:'networkidle'});
           assert.equal(await page.locator('[data-method="tarot"]').getAttribute('class'), 'active');
@@ -63,7 +62,8 @@ jobs:
           assert.ok(await page.locator('#ai-fallback').isVisible());
           assert.ok(await page.locator('#handoff').isVisible());
           assert.equal(await page.locator('#provider-actions .provider-btn').count(),3);
-          const capsule=JSON.parse(await page.locator('#capsule-json').innerText());
+          const capsuleText=await page.locator('#capsule-json').textContent();
+          const capsule=JSON.parse(capsuleText||'{}');
           assert.equal(capsule.schema,'divination-reading/1');
           assert.equal(capsule.method,'lenormand');
           assert.equal(capsule.result.spread,'box9');
@@ -74,13 +74,11 @@ jobs:
           console.log('browser_zero_cost_result_survives=passed');
           console.log('browser_external_ai_handoff=passed');
 
-          // Root experience must route primary use into the focused reading page.
           await page.goto(base+'/?deck=leopardcat',{waitUntil:'domcontentloaded'});
           const primary=page.locator('[data-primary-reading]').first();
           assert.match(await primary.getAttribute('href'), /\/read\.html/);
           console.log('browser_progressive_disclosure_entry=passed');
 
-          // Mobile: question + CTA usable, no horizontal overflow.
           const mobile=await browser.newPage({viewport:{width:375,height:812}});
           await mobile.goto(base+'/read.html?method=lenormand',{waitUntil:'networkidle'});
           assert.ok(await mobile.locator('#question').isVisible());
@@ -89,7 +87,6 @@ jobs:
           assert.ok(overflow<=1,`horizontal overflow ${overflow}px`);
           console.log('browser_mobile_reading_layout=passed');
 
-          // Manage UI: secret remains in fragment and is sent only via header.
           const manage=await browser.newPage({viewport:{width:900,height:900}});
           let getSeen=false, patchSeen=false, rotateSeen=false;
           await manage.route('**/api/v1/manage/decks/browser-owned**', async route=>{
