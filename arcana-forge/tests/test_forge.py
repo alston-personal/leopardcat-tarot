@@ -1,5 +1,7 @@
+import pytest
+
 from arcana_forge import ForgeRegistry, StyleSpec, SubjectSpec, forge
-from arcana_forge.exporters.divination_os import export_divination_os
+from arcana_forge.exporters.divination_os import export_divination_os, export_tarot_deck_manifest
 
 
 def test_same_api_forges_tarot_and_iching():
@@ -32,6 +34,23 @@ def test_divination_os_export_keeps_mechanics_outside_forge():
     assert "spread" not in payload
     assert "draw" not in payload
     assert "casting" not in payload
+
+
+def test_tarot_manifest_matches_current_divination_os_shape():
+    collection = forge(system="tarot-rws", subject="leopard cat", style="watercolor", title="LeopardCat Tarot")
+    manifest = export_tarot_deck_manifest(collection, deck_id="leopardcat-generated", default_persona="leopardcat")
+    assert manifest["schema_version"] == 1
+    assert manifest["deck_id"] == "leopardcat-generated"
+    assert manifest["card_count"] == 78
+    assert manifest["default_persona"] == "leopardcat"
+    assert set(manifest["cards"][0]) >= {"id", "title", "meanings", "image"}
+    assert manifest["cards"][0]["title"]["en"] == "The Fool"
+
+
+def test_iching_is_not_faked_as_tarot_deck():
+    collection = forge(system="iching-zhouyi", subject="leopard cat", style="ink")
+    with pytest.raises(ValueError, match="Tarot-only"):
+        export_tarot_deck_manifest(collection, deck_id="wrong")
 
 
 def test_registry_is_plugin_based():
