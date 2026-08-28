@@ -12,7 +12,9 @@ def export_divination_os(collection: SymbolicCollection, *, collection_id: str) 
         "title": collection.title or collection_id,
         "source": {"generator": "arcana-forge", "schema": collection.schema},
         "subject": collection.subject.concept,
+        "subject_pack_id": collection.subject_pack_id,
         "style": collection.style.name,
+        "metadata": collection.metadata,
         "units": [
             {
                 "id": item.unit.id,
@@ -23,7 +25,9 @@ def export_divination_os(collection: SymbolicCollection, *, collection_id: str) 
                 "required_cues": list(item.unit.required_cues),
                 "scene": item.scene,
                 "generation_prompt": item.prompt,
+                "meanings": item.meanings,
                 "metadata": item.unit.metadata,
+                "visual_metadata": item.visual_metadata,
             }
             for item in collection.units
         ],
@@ -50,8 +54,10 @@ def export_tarot_deck_manifest(
     cards = []
     for item in collection.units:
         title = item.unit.name
-        upright = item.unit.archetype
-        reversed_meaning = f"Shadow, blocked, excessive, or inward expression of: {item.unit.archetype}"
+        upright = item.meanings.get("upright") or item.unit.archetype
+        reversed_meaning = item.meanings.get("reversed") or (
+            f"Shadow, blocked, excessive, or inward expression of: {item.unit.archetype}"
+        )
         cards.append({
             "id": item.unit.id,
             "title": {"zh": title, "zh-TW": title, "en": title},
@@ -64,7 +70,9 @@ def export_tarot_deck_manifest(
                 "number": item.unit.number,
                 "keywords": list(item.unit.keywords),
                 "required_cues": list(item.unit.required_cues),
-                "metadata": item.unit.metadata,
+                "system_metadata": item.unit.metadata,
+                "visual_metadata": item.visual_metadata,
+                "subject_pack_id": collection.subject_pack_id,
             },
         })
     return {
