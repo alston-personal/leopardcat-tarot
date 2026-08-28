@@ -26,21 +26,34 @@ jobs:
         run: python -m pip install -e ./arcana-forge pytest
       - name: Test
         run: python -m pytest -q arcana-forge/tests
-      - name: CLI smoke - Tarot
+      - name: CLI semantic smoke - Tarot
         run: arcana-forge tarot-rws 'Taiwan leopard cat' 'sacred mountain watercolor' --divination-os-id leopardcat-tarot > /tmp/tarot.json
-      - name: CLI smoke - I Ching
+      - name: CLI semantic smoke - I Ching
         run: arcana-forge iching-zhouyi 'Taiwan leopard cat' 'sacred Chinese ink' --divination-os-id leopardcat-iching > /tmp/iching.json
-      - name: Validate exported collection sizes
+      - name: End-to-end SVG build - Tarot deck.json
+        run: arcana-forge tarot-rws 'Taiwan leopard cat' 'sacred mountain watercolor' --title 'LeopardCat Tarot' --provider svg --generate-dir /tmp/tarot-cards --format tarot-deck --id leopardcat-generated --default-persona leopardcat --output /tmp/deck.json
+      - name: End-to-end SVG build - I Ching asset pack
+        run: arcana-forge iching-zhouyi 'Taiwan leopard cat' 'sacred Chinese ink' --provider svg --generate-dir /tmp/iching-cards --format asset-pack --id leopardcat-iching --output /tmp/iching-pack.json
+      - name: Validate exported collections
         run: |
           python - <<'PY'
           import json
+          from pathlib import Path
           tarot=json.load(open('/tmp/tarot.json'))
           iching=json.load(open('/tmp/iching.json'))
+          deck=json.load(open('/tmp/deck.json'))
+          ipack=json.load(open('/tmp/iching-pack.json'))
           assert tarot['schema']=='divination-os.asset-pack/v0.1'
           assert iching['schema']=='divination-os.asset-pack/v0.1'
-          assert len(tarot['units'])==78
-          assert len(iching['units'])==64
-          assert tarot['units'][0]['name']=='The Fool'
-          assert iching['units'][0]['name']=='乾'
+          assert len(tarot['units'])==78 and len(iching['units'])==64
+          assert tarot['units'][0]['name']=='The Fool' and iching['units'][0]['name']=='乾'
+          assert deck['schema_version']==1 and deck['card_count']==78
+          assert deck['cards'][0]['image'].endswith('major-00.svg')
+          assert len(list(Path('/tmp/tarot-cards').glob('*.svg')))==78
+          assert len(list(Path('/tmp/iching-cards').glob('*.svg')))==64
+          assert all(unit.get('asset','').endswith('.svg') for unit in ipack['units'])
+          assert ipack['units'][0]['metadata']['line_pattern_bottom_to_top']=='111111'
           print('arcana_forge_contract=passed')
+          print('tarot_visual_assets=78')
+          print('iching_visual_assets=64')
           PY
