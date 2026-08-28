@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arcana-forge"
+version = "0.1.0"
+description = "Compile symbolic systems, subjects and styles into portable visual collection manifests."
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+arcana-forge = "arcana_forge.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
