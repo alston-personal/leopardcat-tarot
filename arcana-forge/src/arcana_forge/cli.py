@@ -6,6 +6,7 @@ from pathlib import Path
 from .exporters.divination_os import export_divination_os, export_tarot_deck_manifest
 from .forge import ForgeRegistry, forge
 from .generation import PromptFileProvider, SvgProofProvider, generate_collection
+from .packs import load_subject_pack
 from .systems import JsonSymbolicSystem
 from .validation import require_valid_assets, require_valid_collection
 
@@ -15,9 +16,10 @@ def main() -> None:
 
     parser = argparse.ArgumentParser(prog="arcana-forge")
     parser.add_argument("system", help="built-in system id, e.g. tarot-rws or iching-zhouyi")
-    parser.add_argument("subject", help="recurring subject/concept")
+    parser.add_argument("subject", nargs="?", help="recurring subject/concept; omit when --subject-pack is used")
     parser.add_argument("style", help="visual style")
     parser.add_argument("--system-file", help="JSON symbolic-system plugin to register before forging")
+    parser.add_argument("--subject-pack", help="portable ArcanaForge subject-pack JSON")
     parser.add_argument("--title")
     parser.add_argument("--format", choices=["collection", "asset-pack", "tarot-deck"], default="collection")
     parser.add_argument("--id", dest="collection_id", help="collection/deck id for exported formats")
@@ -34,9 +36,15 @@ def main() -> None:
     if args.system_file:
         registry.register(JsonSymbolicSystem.from_file(args.system_file))
 
+    if args.subject_pack and args.subject:
+        parser.error("use either positional subject or --subject-pack, not both")
+    if not args.subject_pack and not args.subject:
+        parser.error("subject is required unless --subject-pack is provided")
+    subject = load_subject_pack(args.subject_pack) if args.subject_pack else args.subject
+
     collection = require_valid_collection(forge(
         system=args.system,
-        subject=args.subject,
+        subject=subject,
         style=args.style,
         title=args.title,
         registry=registry,
