@@ -1,0 +1,18 @@
+{
+  "id": "western-zodiac",
+  "version": "1",
+  "units": [
+    {"id":"aries","number":1,"name":"Aries","archetype":"initiation, courage, direct action","keywords":["fire","initiative","courage"],"required_cues":["ram","cardinal fire"]},
+    {"id":"taurus","number":2,"name":"Taurus","archetype":"stability, embodiment, cultivation","keywords":["earth","stability","sensuality"],"required_cues":["bull","fixed earth"]},
+    {"id":"gemini","number":3,"name":"Gemini","archetype":"duality, exchange, curiosity","keywords":["air","communication","duality"],"required_cues":["twins","mutable air"]},
+    {"id":"cancer","number":4,"name":"Cancer","archetype":"protection, belonging, emotional roots","keywords":["water","home","care"],"required_cues":["crab","cardinal water"]},
+    {"id":"leo","number":5,"name":"Leo","archetype":"radiance, creativity, heart-centered expression","keywords":["fire","radiance","creativity"],"required_cues":["lion","fixed fire"]},
+    {"id":"virgo","number":6,"name":"Virgo","archetype":"discernment, service, refinement","keywords":["earth","craft","discernment"],"required_cues":["maiden","mutable earth"]},
+    {"id":"libra","number":7,"name":"Libra","archetype":"balance, relation, proportion","keywords":["air","balance","relationship"],"required_cues":["scales","cardinal air"]},
+    {"id":"scorpio","number":8,"name":"Scorpio","archetype":"depth, transformation, hidden intensity","keywords":["water","depth","transformation"],"required_cues":["scorpion","fixed water"]},
+    {"id":"sagittarius","number":9,"name":"Sagittarius","archetype":"quest, expansion, meaning","keywords":["fire","journey","meaning"],"required_cues":["archer","mutable fire"]},
+    {"id":"capricorn","number":10,"name":"Capricorn","archetype":"discipline, structure, long ascent","keywords":["earth","discipline","achievement"],"required_cues":["sea-goat","cardinal earth"]},
+    {"id":"aquarius","number":11,"name":"Aquarius","archetype":"innovation, collective vision, difference","keywords":["air","innovation","collective"],"required_cues":["water bearer","fixed air"]},
+    {"id":"pisces","number":12,"name":"Pisces","archetype":"empathy, imagination, boundary dissolution","keywords":["water","imagination","empathy"],"required_cues":["two fish","mutable water"]}
+  ]
+}
