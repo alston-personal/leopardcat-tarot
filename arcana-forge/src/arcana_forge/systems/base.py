@@ -21,10 +21,17 @@ class SymbolicSystem(ABC):
         )
         return scene, invariants
 
-    def compile_prompt(self, unit: SymbolicUnit, subject: SubjectSpec, style: StyleSpec) -> tuple[str, tuple[str, ...]]:
-        scene, invariants = self.compile_scene(unit, subject, style)
+    def compose_prompt(self, unit: SymbolicUnit, subject: SubjectSpec, style: StyleSpec, scene: str) -> str:
         medium = f", medium: {style.medium}" if style.medium else ""
         mood = f", mood: {', '.join(style.mood)}" if style.mood else ""
         palette = f", palette: {', '.join(style.palette)}" if style.palette else ""
-        prompt = f"Create a symbolic illustration. System={self.id}; unit={unit.name}; subject={subject.concept}; style={style.name}{medium}{mood}{palette}. {scene}"
-        return prompt, invariants
+        rules = f" Composition rules: {'; '.join(style.composition_rules)}." if style.composition_rules else ""
+        return (
+            f"Create a symbolic illustration. System={self.id}; unit={unit.name}; "
+            f"subject={subject.concept}; style={style.name}{medium}{mood}{palette}. "
+            f"{scene}{rules} No text, labels, borders, or unrelated symbols unless explicitly requested."
+        )
+
+    def compile_prompt(self, unit: SymbolicUnit, subject: SubjectSpec, style: StyleSpec) -> tuple[str, tuple[str, ...]]:
+        scene, invariants = self.compile_scene(unit, subject, style)
+        return self.compose_prompt(unit, subject, style, scene), invariants
