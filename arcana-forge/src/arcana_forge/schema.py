@@ -21,6 +21,28 @@ class StyleSpec:
 
 
 @dataclass(frozen=True)
+class UnitVisualOverride:
+    """Subject-specific translation of one symbolic unit.
+
+    Overrides may enrich scene/meaning/metadata, but they never replace the
+    SymbolicUnit identity or its required invariants.
+    """
+
+    scene: str | None = None
+    prompt_addendum: str | None = None
+    meanings: dict[str, str] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class SubjectPack:
+    id: str
+    subject: SubjectSpec
+    unit_overrides: dict[str, UnitVisualOverride] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
 class SymbolicUnit:
     id: str
     number: int
@@ -37,6 +59,8 @@ class CompiledUnit:
     scene: str
     prompt: str
     invariants: tuple[str, ...]
+    meanings: dict[str, str] = field(default_factory=dict)
+    visual_metadata: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         value = asdict(self)
@@ -61,6 +85,8 @@ class SymbolicCollection:
     style: StyleSpec
     units: tuple[CompiledUnit, ...]
     title: str | None = None
+    subject_pack_id: str | None = None
+    metadata: dict[str, Any] = field(default_factory=dict)
 
     def to_manifest(self) -> dict[str, Any]:
         return {
@@ -69,6 +95,8 @@ class SymbolicCollection:
             "system_version": self.system_version,
             "title": self.title,
             "subject": asdict(self.subject),
+            "subject_pack_id": self.subject_pack_id,
             "style": asdict(self.style),
+            "metadata": self.metadata,
             "units": [item.to_dict() for item in self.units],
         }
