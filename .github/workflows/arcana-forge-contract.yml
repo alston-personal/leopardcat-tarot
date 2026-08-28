@@ -30,12 +30,16 @@ jobs:
         run: arcana-forge tarot-rws 'Taiwan leopard cat' 'sacred mountain watercolor' --divination-os-id leopardcat-tarot > /tmp/tarot.json
       - name: CLI semantic smoke - I Ching
         run: arcana-forge iching-zhouyi 'Taiwan leopard cat' 'sacred Chinese ink' --divination-os-id leopardcat-iching > /tmp/iching.json
+      - name: CLI smoke - data-only Zodiac system
+        run: arcana-forge western-zodiac 'Taiwan leopard cat' 'celestial ink' --system-file arcana-forge/examples/zodiac.system.json --format asset-pack --id leopardcat-zodiac --output /tmp/zodiac.json
       - name: End-to-end SVG build - Tarot deck.json
         run: arcana-forge tarot-rws 'Taiwan leopard cat' 'sacred mountain watercolor' --title 'LeopardCat Tarot' --provider svg --generate-dir /tmp/tarot-cards --format tarot-deck --id leopardcat-generated --default-persona leopardcat --output /tmp/deck.json
       - name: End-to-end SVG build - I Ching asset pack
         run: arcana-forge iching-zhouyi 'Taiwan leopard cat' 'sacred Chinese ink' --provider svg --generate-dir /tmp/iching-cards --format asset-pack --id leopardcat-iching --output /tmp/iching-pack.json
       - name: Migrate real LeopardCat 78-card generator into portable Subject Pack
         run: arcana-forge-migrate-leopardcat generator/cards /tmp/leopardcat.subject-pack.json
+      - name: Prove Subject Pack CLI rebuilds LeopardCat independently
+        run: arcana-forge tarot-rws 'portable migration proof' --subject-pack /tmp/leopardcat.subject-pack.json --format tarot-deck --id leopardcat-portable --default-persona leopardcat --output /tmp/leopardcat-portable-deck.json
       - name: Prove portable Subject Pack no longer depends on legacy card files
         run: |
           python - <<'PY'
@@ -62,13 +66,16 @@ jobs:
           from pathlib import Path
           tarot=json.load(open('/tmp/tarot.json'))
           iching=json.load(open('/tmp/iching.json'))
+          zodiac=json.load(open('/tmp/zodiac.json'))
           deck=json.load(open('/tmp/deck.json'))
+          portable=json.load(open('/tmp/leopardcat-portable-deck.json'))
           ipack=json.load(open('/tmp/iching-pack.json'))
           assert tarot['schema']=='divination-os.asset-pack/v0.1'
           assert iching['schema']=='divination-os.asset-pack/v0.1'
-          assert len(tarot['units'])==78 and len(iching['units'])==64
-          assert tarot['units'][0]['name']=='The Fool' and iching['units'][0]['name']=='乾'
+          assert len(tarot['units'])==78 and len(iching['units'])==64 and len(zodiac['units'])==12
+          assert tarot['units'][0]['name']=='The Fool' and iching['units'][0]['name']=='乾' and zodiac['units'][0]['name']=='Aries'
           assert deck['schema_version']==1 and deck['card_count']==78
+          assert portable['card_count']==78 and portable['cards'][0]['meanings']['upright'].startswith('New beginnings')
           assert deck['cards'][0]['image'].endswith('major-00.svg')
           assert len(list(Path('/tmp/tarot-cards').glob('*.svg')))==78
           assert len(list(Path('/tmp/iching-cards').glob('*.svg')))==64
@@ -77,4 +84,6 @@ jobs:
           print('arcana_forge_contract=passed')
           print('tarot_visual_assets=78')
           print('iching_visual_assets=64')
+          print('data_driven_zodiac_units=12')
+          print('portable_leopardcat_deck=78')
           PY
