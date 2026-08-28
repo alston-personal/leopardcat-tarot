@@ -34,6 +34,27 @@ jobs:
         run: arcana-forge tarot-rws 'Taiwan leopard cat' 'sacred mountain watercolor' --title 'LeopardCat Tarot' --provider svg --generate-dir /tmp/tarot-cards --format tarot-deck --id leopardcat-generated --default-persona leopardcat --output /tmp/deck.json
       - name: End-to-end SVG build - I Ching asset pack
         run: arcana-forge iching-zhouyi 'Taiwan leopard cat' 'sacred Chinese ink' --provider svg --generate-dir /tmp/iching-cards --format asset-pack --id leopardcat-iching --output /tmp/iching-pack.json
+      - name: Migrate real LeopardCat 78-card generator into portable Subject Pack
+        run: arcana-forge-migrate-leopardcat generator/cards /tmp/leopardcat.subject-pack.json
+      - name: Prove portable Subject Pack no longer depends on legacy card files
+        run: |
+          python - <<'PY'
+          from arcana_forge import forge
+          from arcana_forge.packs import load_subject_pack
+          pack=load_subject_pack('/tmp/leopardcat.subject-pack.json')
+          collection=forge(system='tarot-rws', subject=pack, style='portable migration proof', title='LeopardCat Tarot')
+          assert len(collection.units)==78
+          assert collection.subject_pack_id=='leopardcat-legacy-v1'
+          fool=next(x for x in collection.units if x.unit.id=='major-00')
+          ace=next(x for x in collection.units if x.unit.id=='cups-01')
+          assert 'moonlit road' in fool.scene
+          assert fool.meanings['reversed'].startswith('Naivety')
+          assert ace.meanings['reversed'].startswith('Blocked emotions')
+          assert fool.visual_metadata['ecology']['species_focus']=='Taiwan leopard cat'
+          assert any('The Fool' in x for x in fool.invariants)
+          print('leopardcat_subject_pack_portability=passed')
+          print('leopardcat_migrated_units=78')
+          PY
       - name: Validate exported collections
         run: |
           python - <<'PY'
