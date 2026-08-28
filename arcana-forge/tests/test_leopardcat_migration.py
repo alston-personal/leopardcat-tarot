@@ -3,6 +3,7 @@ from pathlib import Path
 from arcana_forge import StyleSpec, forge
 from arcana_forge.exporters.divination_os import export_tarot_deck_manifest
 from arcana_forge.migration import import_legacy_leopardcat_cards, legacy_card_to_unit_id
+from arcana_forge.packs import load_subject_pack, save_subject_pack
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -63,3 +64,16 @@ def test_migrated_deck_export_preserves_legacy_meanings_and_visual_metadata():
     assert fool["meanings"]["reversed"].startswith("Naivety")
     assert fool["arcana_forge"]["visual_metadata"]["ecology"]["risk_theme"] == "road mortality during dispersal"
     assert fool["arcana_forge"]["subject_pack_id"] == "leopardcat-legacy-v1"
+
+
+def test_saved_subject_pack_is_standalone_after_legacy_import(tmp_path):
+    imported = import_legacy_leopardcat_cards(LEGACY_CARDS)
+    portable_path = save_subject_pack(imported, tmp_path / "leopardcat.subject-pack.json")
+    portable = load_subject_pack(portable_path)
+    collection = forge(system="tarot-rws", subject=portable, style="portable", title="LeopardCat Tarot")
+    assert len(collection.units) == 78
+    assert collection.subject_pack_id == "leopardcat-legacy-v1"
+    fool = next(item for item in collection.units if item.unit.id == "major-00")
+    assert "moonlit road" in fool.scene
+    assert fool.meanings["reversed"].startswith("Naivety")
+    assert fool.visual_metadata["ecology"]["mapping_note"]
