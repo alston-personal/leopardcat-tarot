@@ -1,0 +1,22 @@
+{
+  "id": "leopardcat-sacred-mountain",
+  "subject": {
+    "concept": "Taiwan leopard cat",
+    "role": "recurring symbolic protagonist",
+    "traits": ["alert", "quiet", "wild", "Taiwan low-elevation hills"]
+  },
+  "styles": {
+    "tarot": {
+      "name": "sacred mountain watercolor",
+      "medium": "oriental watercolor and ink",
+      "mood": ["mystical", "quiet", "sacred"],
+      "palette": ["moonlight", "forest green", "aged gold"]
+    },
+    "iching": {
+      "name": "sacred Chinese ink",
+      "medium": "Chinese ink wash",
+      "mood": ["contemplative", "elemental", "timeless"],
+      "palette": ["ink black", "rice paper", "muted mineral color"]
+    }
+  }
+}
