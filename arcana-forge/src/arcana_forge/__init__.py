@@ -1,8 +1,16 @@
 from .forge import ForgeRegistry, forge
-from .generation import GeneratedAsset, GenerationProvider, PromptFileProvider, generate_collection
+from .generation import (
+    CallableGenerationProvider,
+    GeneratedAsset,
+    GenerationProvider,
+    PromptFileProvider,
+    SvgProofProvider,
+    generate_collection,
+)
 from .schema import CollectionSpec, StyleSpec, SubjectSpec, SymbolicCollection, SymbolicUnit
 
 __all__ = [
+    "CallableGenerationProvider",
     "CollectionSpec",
     "ForgeRegistry",
     "GeneratedAsset",
@@ -10,6 +18,7 @@ __all__ = [
     "PromptFileProvider",
     "StyleSpec",
     "SubjectSpec",
+    "SvgProofProvider",
     "SymbolicCollection",
     "SymbolicUnit",
     "forge",
