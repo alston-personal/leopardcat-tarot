@@ -1,0 +1,46 @@
+name: ArcanaForge Contract
+
+on:
+  push:
+    branches: [feature/extract-arcana-forge]
+    paths:
+      - 'arcana-forge/**'
+      - '.github/workflows/arcana-forge-contract.yml'
+  pull_request:
+    paths:
+      - 'arcana-forge/**'
+      - '.github/workflows/arcana-forge-contract.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install
+        run: python -m pip install -e ./arcana-forge pytest
+      - name: Test
+        run: python -m pytest -q arcana-forge/tests
+      - name: CLI smoke - Tarot
+        run: arcana-forge tarot-rws 'Taiwan leopard cat' 'sacred mountain watercolor' --divination-os-id leopardcat-tarot > /tmp/tarot.json
+      - name: CLI smoke - I Ching
+        run: arcana-forge iching-zhouyi 'Taiwan leopard cat' 'sacred Chinese ink' --divination-os-id leopardcat-iching > /tmp/iching.json
+      - name: Validate exported collection sizes
+        run: |
+          python - <<'PY'
+          import json
+          tarot=json.load(open('/tmp/tarot.json'))
+          iching=json.load(open('/tmp/iching.json'))
+          assert tarot['schema']=='divination-os.asset-pack/v0.1'
+          assert iching['schema']=='divination-os.asset-pack/v0.1'
+          assert len(tarot['units'])==78
+          assert len(iching['units'])==64
+          assert tarot['units'][0]['name']=='The Fool'
+          assert iching['units'][0]['name']=='乾'
+          print('arcana_forge_contract=passed')
+          PY
