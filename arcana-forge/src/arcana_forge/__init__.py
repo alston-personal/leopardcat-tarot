@@ -8,6 +8,7 @@ from .generation import (
     generate_collection,
 )
 from .schema import CollectionSpec, StyleSpec, SubjectSpec, SymbolicCollection, SymbolicUnit
+from .systems import IChingSystem, JsonSymbolicSystem, SymbolicSystem, TarotSystem
 
 __all__ = [
     "CallableGenerationProvider",
@@ -15,12 +16,16 @@ __all__ = [
     "ForgeRegistry",
     "GeneratedAsset",
     "GenerationProvider",
+    "IChingSystem",
+    "JsonSymbolicSystem",
     "PromptFileProvider",
     "StyleSpec",
     "SubjectSpec",
     "SvgProofProvider",
     "SymbolicCollection",
+    "SymbolicSystem",
     "SymbolicUnit",
+    "TarotSystem",
     "forge",
     "generate_collection",
 ]
