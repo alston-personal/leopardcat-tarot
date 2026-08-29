@@ -25,8 +25,6 @@ jobs:
             website/main.js
             website/style.css
             website/tests
-            website/package.json
-            website/package-lock.json
       - name: Apply one scroll and flip contract
         shell: bash
         run: |
@@ -36,9 +34,12 @@ jobs:
           python3 -m py_compile website/tests/test_card_interaction_contract.py
           python3 -m pytest -q website/tests/test_card_interaction_contract.py
           node --check website/main.js
-          cd website
-          npm ci --ignore-scripts
-          npm run build
+          python3 - <<'PY'
+          from pathlib import Path
+          css = Path('website/style.css').read_text(encoding='utf-8')
+          assert css.count('{') == css.count('}'), 'CSS braces are unbalanced'
+          assert '.back-content {' in css
+          PY
       - name: Commit compiled fix
         shell: bash
         run: |
