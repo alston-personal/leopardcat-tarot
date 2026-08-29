@@ -1,3 +1,4 @@
+import io
 import json
 import urllib.error
 
@@ -24,6 +25,16 @@ class FakeResponse:
 
 def gateway():
     return ZeroCostGeminiGateway('test-free-tier-key')
+
+
+def http_error(status, payload, headers=None):
+    return urllib.error.HTTPError(
+        url='https://generativelanguage.googleapis.com/test',
+        code=status,
+        msg='provider error',
+        hdrs=headers or {},
+        fp=io.BytesIO(json.dumps(payload).encode('utf-8')),
+    )
 
 
 def test_valid_provider_text_is_returned(monkeypatch):
@@ -68,3 +79,88 @@ def test_provider_network_error_fails_closed(monkeypatch):
         gateway().generate('prompt')
     assert exc.value.code == 'provider_network'
     assert exc.value.retryable is True
+
+
+def test_429_is_not_mislabeled_as_free_quota_exhausted(monkeypatch):
+    payload = {
+        'error': {
+            'code': 429,
+            'status': 'RESOURCE_EXHAUSTED',
+            'message': 'You have exceeded your current quota. Please retry later.',
+            'details': [
+                {
+                    '@type': 'type.googleapis.com/google.rpc.QuotaFailure',
+                    'violations': [
+                        {
+                            'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests',
+                            'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier',
+                            'quotaDimensions': {'project': 'secret-project-id', 'model': 'gemini-2.5-flash'},
+                        }
+                    ],
+                }
+            ],
+        }
+    }
+
+    def fail(*args, **kwargs):
+        raise http_error(429, payload, {'Retry-After': '17'})
+
+    monkeypatch.setattr('urllib.request.urlopen', fail)
+    with pytest.raises(AIUnavailable) as exc:
+        gateway().generate('prompt')
+
+    assert exc.value.code == 'provider_429_quota_rejected'
+    assert exc.value.retryable is True
+    assert exc.value.code != 'free_quota_exhausted'
+    diagnostics = exc.value.public_diagnostics()
+    assert diagnostics['http_status'] == 429
+    assert diagnostics['status'] == 'RESOURCE_EXHAUSTED'
+    assert diagnostics['category'] == 'quota_rejected'
+    assert diagnostics['retry_after'] == '17'
+    assert diagnostics['quota_violations'] == [
+        {
+            'quota_metric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests',
+            'quota_id': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier',
+        }
+    ]
+    assert 'secret-project-id' not in json.dumps(diagnostics)
+
+
+def test_429_billing_state_is_distinct_from_quota_rejection(monkeypatch):
+    payload = {
+        'error': {
+            'code': 429,
+            'status': 'RESOURCE_EXHAUSTED',
+            'message': 'Your project has exceeded its monthly spending cap.',
+        }
+    }
+
+    def fail(*args, **kwargs):
+        raise http_error(429, payload)
+
+    monkeypatch.setattr('urllib.request.urlopen', fail)
+    with pytest.raises(AIUnavailable) as exc:
+        gateway().generate('prompt')
+
+    assert exc.value.code == 'provider_429_billing_or_quota_state'
+    assert exc.value.public_diagnostics()['category'] == 'billing_or_quota_state'
+
+
+def test_429_rate_limit_is_distinct_from_daily_quota(monkeypatch):
+    payload = {
+        'error': {
+            'code': 429,
+            'status': 'RESOURCE_EXHAUSTED',
+            'message': 'Rate limit exceeded: requests per minute.',
+        }
+    }
+
+    def fail(*args, **kwargs):
+        raise http_error(429, payload)
+
+    monkeypatch.setattr('urllib.request.urlopen', fail)
+    with pytest.raises(AIUnavailable) as exc:
+        gateway().generate('prompt')
+
+    assert exc.value.code == 'provider_429_rate_limit'
+    assert exc.value.public_diagnostics()['category'] == 'rate_limit'
