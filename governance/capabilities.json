@@ -3,9 +3,10 @@
   "policy": "additive-by-default",
   "protected_capabilities": {
     "ui.multilingual": {
-      "status": "regression-open",
+      "status": "protected",
       "owner": "website",
       "contract": [
+        "The canonical UI locale baseline is Traditional Chinese plus English; neither locale may be removed without an explicit approved migration.",
         "UI language support must be data-driven and must not be narrowed by a hard-coded locale whitelist.",
         "A feature change may add locales but may not remove an existing locale without an explicit approved migration.",
         "Stored user locale must survive reload when the locale is present in the locale bundle.",
@@ -14,15 +15,18 @@
       "evidence": [
         "website/public/locales_v10.json",
         "website/main.js",
-        "website/index.html"
+        "website/index.html",
+        "docs/i18n-history-audit.md",
+        "historical commit 61def0d651305448519935b8768f3d9ecac06fde"
       ],
       "implementation": {
         "runtime_status": "restored-data-driven",
-        "historical_parity": "unresolved",
+        "historical_parity": "resolved",
+        "canonical_ui_locales": ["zh", "en"],
         "locale_source": "website/public/locales_v10.json top-level keys",
         "runtime": "website/main.js data-driven locale resolver",
         "switcher": "website/index.html#lang-switcher rendered from available locale keys",
-        "baseline_note": "Runtime extensibility is restored, but the current bundle still contains only zh/en. Do not mark this capability fully restored until historical extra locale payloads or the prior dynamic translation service are recovered from canonical evidence."
+        "baseline_note": "Full Git-history archaeology found no canonical UI locale dictionary beyond the zh/en language families. The historical 'universal language support' capability belongs to AI answer language and is protected separately as ai.multilingual."
       }
     },
     "ai.multilingual": {
@@ -34,7 +38,8 @@
         "Persona packs cannot override platform language rules."
       ],
       "evidence": [
-        "website/divination/personas.py"
+        "website/divination/personas.py",
+        "historical commit 3add49eca2511a116b9f59f4b814189252752da7"
       ]
     },
     "deck.custom": {
