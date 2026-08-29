@@ -1,0 +1,52 @@
+name: Compile Custom Deck Theme Ownership
+
+on:
+  push:
+    branches: [fix/custom-deck-theme-ownership]
+    paths:
+      - '.github/workflows/patch-custom-deck-theme-ownership.yml'
+      - 'tools/compile_custom_deck_theme_ownership.py'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/patch-custom-deck-theme-ownership.yml
+            tools/compile_custom_deck_theme_ownership.py
+            website/divination
+            website/fortune_server.py
+            website/main.js
+            website/public/creator.js
+            website/public/read.js
+            website/tests
+      - name: Compile ownership contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install -q pytest
+          python3 tools/compile_custom_deck_theme_ownership.py
+          cd website
+          python3 -m pytest -q tests/test_custom_deck_theme_ownership.py
+          python3 -m py_compile fortune_server.py divination/*.py
+          node --check main.js
+          node --check public/creator.js
+          node --check public/read.js
+      - name: Commit product patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/divination/decks.py website/divination/publishing.py website/fortune_server.py website/main.js website/public/creator.js website/public/read.js website/tests/test_custom_deck_theme_ownership.py
+          git diff --cached --quiet && exit 0
+          git commit -m 'fix(deck): persist and inherit custom deck theme'
+          git push origin HEAD:fix/custom-deck-theme-ownership
