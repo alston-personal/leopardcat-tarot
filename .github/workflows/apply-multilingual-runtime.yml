@@ -39,7 +39,7 @@ jobs:
         run: python tools/audit_i18n_history.py
       - name: Commit canonical audit evidence if changed
         run: |
-          if git diff --quiet -- docs/i18n-history-audit.md; then
+          if [ -z "$(git status --porcelain -- docs/i18n-history-audit.md)" ]; then
             echo "Audit report unchanged."
             exit 0
           fi
