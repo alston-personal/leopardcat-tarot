@@ -9,7 +9,10 @@ window.requestedLang = localStorage.getItem('leopard-lang') || navigator.languag
 window.currentLang = window.requestedLang;
 window.localeMeta = {
     zh: { label: '中', htmlLang: 'zh-TW' },
-    en: { label: 'EN', htmlLang: 'en' }
+    en: { label: 'EN', htmlLang: 'en' },
+    ja: { label: '日本語', htmlLang: 'ja' },
+    ko: { label: '한국어', htmlLang: 'ko' },
+    es: { label: 'ES', htmlLang: 'es' }
 };
 
 function normalizeLocaleTag(lang) {
@@ -40,6 +43,11 @@ function resolveLocale(requested) {
 function getLocaleData(lang = window.currentLang) {
     const resolved = resolveLocale(lang);
     return (window.siteData && window.siteData[resolved]) || {};
+}
+
+function getAILanguageTag(lang = window.currentLang) {
+    const resolved = resolveLocale(lang);
+    return ({ zh: 'zh-TW', en: 'en', ja: 'ja', ko: 'ko', es: 'es' })[resolved] || resolved || 'en';
 }
 
 function getLocalizedField(value, lang = window.currentLang) {
@@ -880,9 +888,14 @@ function updateSocialLinks(card, customQuote = null) {
 
 function modularErrorMessage(e) {
     if (e?.code === 'provider_429_billing_or_quota_state' || e?.status === 429) {
-        return window.currentLang === 'zh'
-            ? 'Gemini 目前回報供應商端額度／帳務狀態異常。牌局已保留，稍後可沿用同一副牌重新祈請。'
-            : 'Gemini is currently reporting a provider quota or billing-state issue. Your draw is preserved for retry.';
+        const messages = {
+            zh: 'Gemini 目前回報供應商端額度／帳務狀態異常。牌局已保留，稍後可沿用同一副牌重新祈請。',
+            en: 'Gemini is currently reporting a provider quota or billing-state issue. Your draw is preserved for retry.',
+            ja: 'Gemini 側で割り当て／請求状態の問題が報告されています。カード結果は保持されているため、後でもう一度試せます。',
+            ko: 'Gemini 공급자 측 할당량/결제 상태 문제가 보고되고 있습니다. 카드 결과는 유지되므로 나중에 다시 시도할 수 있습니다.',
+            es: 'Gemini informa de un problema de cuota o facturación del proveedor. La tirada se conserva para volver a intentarlo más tarde.'
+        };
+        return messages[resolveLocale(window.currentLang)] || messages.en;
     }
     if (e?.code === 'free_quota_exhausted') {
         return window.currentLang === 'zh'
@@ -1129,11 +1142,11 @@ window.getModularReading = async function(q) {
             readingId: pending.reading_id,
             sessionToken: pending.session_token,
             question: q,
-            lang: window.currentLang === 'zh' ? 'zh-TW' : 'en'
+            lang: getAILanguageTag()
         } : {
             method: 'tarot', persona: window.activePersonaId || undefined, question: q,
             input: { spread: 'auto', deck_id: window.activeDeckId },
-            lang: window.currentLang === 'zh' ? 'zh-TW' : 'en'
+            lang: getAILanguageTag()
         };
         resp = await fetch('/api/v1/readings', {
             method: 'POST', signal: controller.signal,
@@ -1368,7 +1381,7 @@ window.sendChatMessage = async function() {
             body: modular ? JSON.stringify({
                 method: modular.method || 'tarot', persona: modular.persona || 'leopardcat',
                 readingId: modular.reading_id, sessionToken: modular.session_token, question: text,
-                lang: window.currentLang === 'zh' ? 'zh-TW' : 'en', history: currentChatHistory
+                lang: getAILanguageTag(), history: currentChatHistory
             }) : JSON.stringify({
                 question: text, cardTitle: currentDrawnCard.title[window.currentLang],
                 cardMeaning: currentDrawnCard.meaning[window.currentLang],
