@@ -3,7 +3,7 @@
   "policy": "additive-by-default",
   "protected_capabilities": {
     "ui.multilingual": {
-      "status": "protected",
+      "status": "regression-open",
       "owner": "website",
       "contract": [
         "UI language support must be data-driven and must not be narrowed by a hard-coded locale whitelist.",
@@ -17,10 +17,12 @@
         "website/index.html"
       ],
       "implementation": {
+        "runtime_status": "restored-data-driven",
+        "historical_parity": "unresolved",
         "locale_source": "website/public/locales_v10.json top-level keys",
         "runtime": "website/main.js data-driven locale resolver",
         "switcher": "website/index.html#lang-switcher rendered from available locale keys",
-        "baseline_note": "Do not invent or delete locale payloads. Historical locale payload recovery is tracked separately from runtime extensibility."
+        "baseline_note": "Runtime extensibility is restored, but the current bundle still contains only zh/en. Do not mark this capability fully restored until historical extra locale payloads or the prior dynamic translation service are recovered from canonical evidence."
       }
     },
     "ai.multilingual": {
