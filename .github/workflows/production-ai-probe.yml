@@ -1,0 +1,68 @@
+name: Production AI Probe
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/production-ai-probe.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Probe production reading endpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/request.json <<'JSON'
+          {
+            "method": "tarot",
+            "persona": "leopardcat",
+            "question": "PRODUCTION_AI_HEALTH_CHECK",
+            "lang": "zh-TW",
+            "seed": "production-ai-health-check",
+            "input": {"deck_id": "leopardcat", "spread": "single"}
+          }
+          JSON
+
+          status="$(curl -sS -o /tmp/response.json -w '%{http_code}' \
+            -H 'Content-Type: application/json' \
+            --data-binary @/tmp/request.json \
+            https://leopardcat-tarot.milkcat.org/api/v1/readings)"
+
+          python - "$status" <<'PY'
+          import json, sys
+          from pathlib import Path
+
+          status = int(sys.argv[1])
+          raw = Path('/tmp/response.json').read_text(encoding='utf-8')
+          try:
+              data = json.loads(raw)
+          except json.JSONDecodeError:
+              print(json.dumps({'http_status': status, 'invalid_json': True}))
+              raise SystemExit(1)
+
+          safe = {
+              'http_status': status,
+              'error': data.get('error'),
+              'code': data.get('code'),
+              'retryable': data.get('retryable'),
+              'reading_present': bool(data.get('reading')),
+              'privacy': data.get('privacy'),
+              'method': data.get('method'),
+              'persona': data.get('persona'),
+          }
+          print(json.dumps(safe, ensure_ascii=False, sort_keys=True))
+
+          # Both a successful reading and a fail-closed 503 are valid probe outcomes.
+          # Other statuses mean routing/runtime failure.
+          if status not in (200, 503):
+              raise SystemExit(1)
+          if status == 503 and data.get('error') != 'ai_unavailable':
+              raise SystemExit(1)
+          PY
