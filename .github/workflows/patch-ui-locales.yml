@@ -1,0 +1,52 @@
+name: Compile UI Locales
+
+on:
+  push:
+    branches: [feat/ui-locales-ja-ko-es]
+    paths:
+      - '.github/workflows/patch-ui-locales.yml'
+      - 'tools/compile_ui_locales.py'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/patch-ui-locales.yml
+            tools/compile_ui_locales.py
+            website/main.js
+            website/public/locales_v10.json
+            website/tests
+      - name: Compile multilingual UI
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install -q pytest
+          python3 tools/compile_ui_locales.py
+          cd website
+          python3 -m pytest -q tests/test_ui_locales.py
+          node --check main.js
+          python3 - <<'PY'
+          import json
+          data=json.load(open('public/locales_v10.json',encoding='utf-8'))
+          assert all(k in data for k in ('zh','en','ja','ko','es'))
+          print('locales=', ','.join(data))
+          PY
+      - name: Commit product patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/main.js website/public/locales_v10.json website/tests/test_ui_locales.py
+          git diff --cached --quiet && exit 0
+          git commit -m 'feat(i18n): add Japanese Korean and Spanish UI'
+          git push origin HEAD:feat/ui-locales-ja-ko-es
