@@ -879,10 +879,15 @@ function updateSocialLinks(card, customQuote = null) {
 }
 
 function modularErrorMessage(e) {
-    if (e?.code === 'free_quota_exhausted' || e?.status === 429) {
+    if (e?.code === 'provider_429_billing_or_quota_state' || e?.status === 429) {
         return window.currentLang === 'zh'
-            ? '今天的免費 AI 額度暫時用完。牌局已保留，稍後可沿用同一副牌重新祈請。'
-            : 'The free AI quota is temporarily exhausted. Your draw is preserved for retry.';
+            ? 'Gemini 目前回報供應商端額度／帳務狀態異常。牌局已保留，稍後可沿用同一副牌重新祈請。'
+            : 'Gemini is currently reporting a provider quota or billing-state issue. Your draw is preserved for retry.';
+    }
+    if (e?.code === 'free_quota_exhausted') {
+        return window.currentLang === 'zh'
+            ? '免費 AI 額度目前不可用。牌局已保留，稍後可沿用同一副牌重新祈請。'
+            : 'Free AI capacity is currently unavailable. Your draw is preserved for retry.';
     }
     if (e?.status === 503 || e?.name === 'AbortError') {
         return window.currentLang === 'zh'
