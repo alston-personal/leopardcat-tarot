@@ -1,0 +1,40 @@
+name: i18n Full-History Audit
+
+on:
+  push:
+    branches:
+      - fix/restore-i18n-governance
+    paths:
+      - tools/audit_i18n_history.py
+      - .github/workflows/i18n-history-audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/restore-i18n-governance
+          fetch-depth: 0
+      - name: Fetch every branch and tag
+        run: git fetch --all --tags --prune
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit complete website history
+        run: python tools/audit_i18n_history.py
+      - name: Commit evidence report
+        run: |
+          if git diff --quiet -- docs/i18n-history-audit.md; then
+            echo "Audit report unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/i18n-history-audit.md
+          git commit -m "docs(i18n): record full-history multilingual audit"
+          git push origin HEAD:fix/restore-i18n-governance
