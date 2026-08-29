@@ -9,10 +9,26 @@ import urllib.request
 
 
 class AIUnavailable(RuntimeError):
-    def __init__(self, code: str, message: str, retryable: bool = True):
+    def __init__(
+        self,
+        code: str,
+        message: str,
+        retryable: bool = True,
+        provider: dict | None = None,
+    ):
         super().__init__(message)
         self.code = code
         self.retryable = retryable
+        self.provider = provider or {}
+
+    def public_diagnostics(self) -> dict:
+        """Return provider metadata that is safe to expose to the browser.
+
+        Never include API keys, project identifiers, full upstream messages or request
+        payloads. The goal is to distinguish provider quota/billing/rate-limit states
+        without leaking credentials or user content.
+        """
+        return dict(self.provider)
 
 
 class ZeroCostGeminiGateway:
@@ -45,13 +61,6 @@ class ZeroCostGeminiGateway:
 
     @staticmethod
     def _extract_text(data: object) -> str:
-        """Return usable Gemini text or fail closed on any empty/malformed candidate.
-
-        Gemini may occasionally return a syntactically valid success payload without a
-        `content.parts[0].text` field (for example, an empty/safety-stopped candidate).
-        That is provider unavailability from this application's point of view; it must
-        never escape as KeyError/IndexError and become a platform HTTP 500.
-        """
         if not isinstance(data, dict):
             raise AIUnavailable("invalid_response", "AI 大師目前沒有可用回應，請稍後重新解讀")
         candidates = data.get("candidates")
@@ -74,6 +83,66 @@ class ZeroCostGeminiGateway:
             raise AIUnavailable("empty_response", "AI 大師目前沒有可用回應，請稍後重新解讀")
         return text
 
+    @staticmethod
+    def _classify_429(error: dict) -> str:
+        """Classify a Google 429 conservatively.
+
+        HTTP 429 is not proof that Free Tier allowance is exhausted. Google also uses
+        RESOURCE_EXHAUSTED for rate limits, billing/spend state and quota provisioning.
+        """
+        message = str(error.get("message") or "").lower()
+        if any(token in message for token in ("spending cap", "billing", "prepay", "prepayment", "credit")):
+            return "billing_or_quota_state"
+        if any(token in message for token in ("rate limit", "requests per minute", "tokens per minute", "rpm", "tpm")):
+            return "rate_limit"
+        if any(token in message for token in ("quota", "resource exhausted", "resource_exhausted")):
+            return "quota_rejected"
+        return "resource_exhausted"
+
+    @staticmethod
+    def _safe_http_diagnostics(exc: urllib.error.HTTPError) -> dict:
+        diagnostics = {"provider": "gemini", "http_status": int(exc.code)}
+        retry_after = exc.headers.get("Retry-After") if exc.headers else None
+        if retry_after:
+            diagnostics["retry_after"] = str(retry_after)[:64]
+        try:
+            raw = exc.read().decode("utf-8", errors="replace")
+            data = json.loads(raw)
+        except Exception:
+            data = {}
+        error = data.get("error") if isinstance(data, dict) else None
+        if not isinstance(error, dict):
+            return diagnostics
+        status = error.get("status")
+        if isinstance(status, str) and status:
+            diagnostics["status"] = status[:64]
+        if exc.code == 429:
+            diagnostics["category"] = ZeroCostGeminiGateway._classify_429(error)
+        quota_violations: list[dict] = []
+        details = error.get("details")
+        if isinstance(details, list):
+            for detail in details:
+                if not isinstance(detail, dict):
+                    continue
+                violations = detail.get("violations")
+                if not isinstance(violations, list):
+                    continue
+                for violation in violations[:8]:
+                    if not isinstance(violation, dict):
+                        continue
+                    safe = {}
+                    quota_metric = violation.get("quotaMetric")
+                    quota_id = violation.get("quotaId")
+                    if isinstance(quota_metric, str) and quota_metric:
+                        safe["quota_metric"] = quota_metric[:160]
+                    if isinstance(quota_id, str) and quota_id:
+                        safe["quota_id"] = quota_id[:160]
+                    if safe:
+                        quota_violations.append(safe)
+        if quota_violations:
+            diagnostics["quota_violations"] = quota_violations
+        return diagnostics
+
     def generate(self, prompt: str) -> str:
         if not self.api_key:
             raise AIUnavailable("not_configured", "AI service is not configured", False)
@@ -88,11 +157,18 @@ class ZeroCostGeminiGateway:
         except AIUnavailable:
             raise
         except urllib.error.HTTPError as e:
+            provider = self._safe_http_diagnostics(e)
             if e.code == 429:
-                raise AIUnavailable("free_quota_exhausted", "免費 AI 額度暫時用完，請稍後再試") from e
+                category = str(provider.get("category") or "resource_exhausted")
+                raise AIUnavailable(
+                    f"provider_429_{category}",
+                    "Google Gemini 暫時拒絕這次 AI 請求；可能是 quota、rate limit、billing 狀態或供應商端額度異常，請稍後再試",
+                    True,
+                    provider,
+                ) from e
             if e.code in (500, 502, 503, 504):
-                raise AIUnavailable("provider_busy", "AI 大師目前忙碌，請稍後重新解讀") from e
-            raise AIUnavailable("provider_error", f"AI provider error {e.code}") from e
+                raise AIUnavailable("provider_busy", "AI 大師目前忙碌，請稍後重新解讀", True, provider) from e
+            raise AIUnavailable("provider_error", f"AI provider error {e.code}", True, provider) from e
         except urllib.error.URLError as e:
             raise AIUnavailable("provider_network", "AI 大師目前無法連線，請稍後重新解讀") from e
         except (TimeoutError, socket.timeout) as e:
