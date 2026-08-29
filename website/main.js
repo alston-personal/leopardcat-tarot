@@ -465,6 +465,64 @@ function formatEcologyText(text) {
     return text.replace(/(Habitat:|Risk:|Note:|棲地:|風險:|備註:)/g, '<span class="ecology-tag">$1</span>');
 }
 
+function bindCardInteractions(cardInner, scrollableContent) {
+    if (!cardInner || !scrollableContent || scrollableContent.dataset.cardInteractionsBound === '1') return;
+    scrollableContent.dataset.cardInteractionsBound = '1';
+
+    // One interaction contract for built-in and creator decks.
+    // The meaning panel owns vertical gestures while it can scroll; card flipping
+    // only happens from the non-scrollable card surface or the explicit back button.
+    const consumeWheel = (e) => {
+        const maxScroll = Math.max(0, scrollableContent.scrollHeight - scrollableContent.clientHeight);
+        const atTop = scrollableContent.scrollTop <= 0;
+        const atBottom = scrollableContent.scrollTop >= maxScroll - 1;
+        const wantsUp = e.deltaY < 0;
+        const wantsDown = e.deltaY > 0;
+        const canScroll = maxScroll > 0 && !((wantsUp && atTop) || (wantsDown && atBottom));
+        e.stopPropagation();
+        if (canScroll) {
+            e.preventDefault();
+            scrollableContent.scrollTop += e.deltaY;
+        }
+    };
+
+    scrollableContent.addEventListener('wheel', consumeWheel, { passive: false });
+    scrollableContent.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+    scrollableContent.addEventListener('touchmove', (e) => e.stopPropagation(), { passive: true });
+    scrollableContent.addEventListener('touchend', (e) => e.stopPropagation(), { passive: true });
+    scrollableContent.addEventListener('click', (e) => e.stopPropagation());
+    scrollableContent.addEventListener('mouseenter', () => {
+        try { scrollableContent.focus({ preventScroll: true }); } catch (_) { scrollableContent.focus(); }
+    });
+
+    scrollableContent.querySelector('.card-flip-back')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        cardInner.classList.remove('is-flipped');
+    });
+
+    let touchStartY = 0;
+    let touchStartTime = 0;
+    cardInner.addEventListener('touchstart', (e) => {
+        if (e.target.closest('.back-content')) return;
+        touchStartY = e.touches[0].clientY;
+        touchStartTime = Date.now();
+    }, { passive: true });
+    cardInner.addEventListener('touchend', (e) => {
+        if (e.target.closest('.back-content')) return;
+        const touchEndY = e.changedTouches[0].clientY;
+        const touchDuration = Date.now() - touchStartTime;
+        const scrollDiff = Math.abs(touchEndY - touchStartY);
+        if (touchDuration < 250 && scrollDiff < 10) {
+            e.stopPropagation();
+            cardInner.classList.toggle('is-flipped');
+        }
+    }, { passive: true });
+    cardInner.addEventListener('click', (e) => {
+        if (e.target.closest('.back-content') || window.getSelection().toString()) return;
+        cardInner.classList.toggle('is-flipped');
+    });
+}
+
 function createCardElement(card, groupId) {
     if (!window.siteData) return document.createElement('div');
     const langData = getLocaleData();
@@ -498,59 +556,8 @@ function createCardElement(card, groupId) {
     `;
     const cardInner = wrapper.querySelector('.card');
     
-    // 🛡️ Interaction Isolation: Ensure Scroll > Flip on text areas
     const scrollableContent = wrapper.querySelector('.back-content');
-    if (scrollableContent) {
-        scrollableContent.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
-        scrollableContent.addEventListener('touchend', (e) => e.stopPropagation(), { passive: true });
-        // Desktop wheel priority: while the pointer is over card meanings, consume wheel
-        // events whenever this panel can scroll in that direction. Only hand control back
-        // to the page after the panel is already at the corresponding boundary.
-        scrollableContent.addEventListener('wheel', (e) => {
-            const maxScroll = Math.max(0, scrollableContent.scrollHeight - scrollableContent.clientHeight);
-            const atTop = scrollableContent.scrollTop <= 0;
-            const atBottom = scrollableContent.scrollTop >= maxScroll - 1;
-            const wantsUp = e.deltaY < 0;
-            const wantsDown = e.deltaY > 0;
-            const panelCanConsume = maxScroll > 0 && !((wantsUp && atTop) || (wantsDown && atBottom));
-
-            if (panelCanConsume) {
-                e.preventDefault();
-                e.stopPropagation();
-                scrollableContent.scrollTop += e.deltaY;
-            }
-        }, { passive: false });
-        scrollableContent.addEventListener('click', (e) => e.stopPropagation());
-        const flipBack = scrollableContent.querySelector('.card-flip-back');
-        flipBack?.addEventListener('click', (e) => { e.stopPropagation(); cardInner.classList.remove('is-flipped'); });
-    }
-
-    let touchStartY = 0;
-    let touchStartTime = 0;
-
-    cardInner.addEventListener('touchstart', (e) => {
-        touchStartY = e.touches[0].clientY;
-        touchStartTime = Date.now();
-    }, { passive: true });
-
-    cardInner.addEventListener('touchend', (e) => {
-        const touchEndY = e.changedTouches[0].clientY;
-        const touchDuration = Date.now() - touchStartTime;
-        const scrollDiff = Math.abs(touchEndY - touchStartY);
-
-        // Only flip if it's a quick tap and almost no vertical movement
-        if (touchDuration < 250 && scrollDiff < 10) {
-            e.stopPropagation();
-            cardInner.classList.toggle('is-flipped');
-        }
-    }, { passive: true });
-
-    // Desktop support
-    cardInner.addEventListener('click', (e) => {
-        // If clicking inside back-content, check if we're selecting text or just tapping
-        if (window.getSelection().toString()) return; 
-        cardInner.classList.toggle('is-flipped');
-    });
+    bindCardInteractions(cardInner, scrollableContent);
 
     return wrapper;
 }
@@ -1479,25 +1486,7 @@ window.renderCustomDeckGallery = function(deck) {
 
         const cardInner = wrapper.querySelector('.card');
         const scrollable = wrapper.querySelector('.back-content');
-        scrollable.addEventListener('wheel', (e) => {
-            const maxScroll = Math.max(0, scrollable.scrollHeight - scrollable.clientHeight);
-            const atTop = scrollable.scrollTop <= 0;
-            const atBottom = scrollable.scrollTop >= maxScroll - 1;
-            const canConsume = maxScroll > 0 && !((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom));
-            if (canConsume) {
-                e.preventDefault();
-                e.stopPropagation();
-                scrollable.scrollTop += e.deltaY;
-            }
-        }, { passive:false });
-        scrollable.addEventListener('click', e => e.stopPropagation());
-        scrollable.addEventListener('touchstart', e => e.stopPropagation(), { passive:true });
-        scrollable.addEventListener('touchend', e => e.stopPropagation(), { passive:true });
-        scrollable.querySelector('.card-flip-back')?.addEventListener('click', e => {
-            e.stopPropagation();
-            cardInner.classList.remove('is-flipped');
-        });
-        cardInner.addEventListener('click', () => cardInner.classList.toggle('is-flipped'));
+        bindCardInteractions(cardInner, scrollable);
         grid.appendChild(wrapper);
         revealObserver?.observe(wrapper);
     });
