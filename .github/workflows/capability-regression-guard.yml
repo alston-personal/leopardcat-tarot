@@ -13,8 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fetch main baseline
+        run: git fetch origin main:refs/remotes/origin/main
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Check protected capability contracts
         run: python scripts/check_capability_regressions.py
+      - name: Prevent capability ledger shrinkage
+        run: python scripts/check_capability_ledger_monotonic.py
