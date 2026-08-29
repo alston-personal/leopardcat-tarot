@@ -85,8 +85,11 @@ class DeckPublisher:
         cards = payload.get("cards") or []
         reversals = bool(payload.get("reversals", False))
         default_persona = _clean_text(payload.get("persona"), 64).lower() or "master"
+        default_theme = _clean_text(payload.get("theme"), 64).lower() or "minimal-light"
         if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,63}", default_persona):
             raise DivinationError("無效的解牌 Persona")
+        if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,63}", default_theme):
+            raise DivinationError("無效的牌組主題")
         if not name:
             raise DivinationError("請輸入牌組名稱")
         if not isinstance(cards, list) or not cards:
@@ -151,6 +154,7 @@ class DeckPublisher:
                 "description": description,
                 "reversals": reversals,
                 "default_persona": default_persona,
+                "default_theme": default_theme,
                 "card_count": len(saved_cards),
                 "cards": saved_cards,
             }
@@ -168,6 +172,7 @@ class DeckPublisher:
             "card_count": len(saved_cards),
             "reversals": reversals,
             "default_persona": default_persona,
+            "default_theme": default_theme,
             "share_path": f"/?deck={deck_id}",
             "management_token": management_token,
             "manage_path": f"/manage.html?deck={deck_id}",
@@ -184,6 +189,7 @@ class DeckPublisher:
             "creator": data.get("creator", ""),
             "description": data.get("description", ""),
             "default_persona": data.get("default_persona", "master"),
+            "default_theme": data.get("default_theme", "minimal-light"),
             "reversals": bool(data.get("reversals", False)),
             "card_count": int(data.get("card_count") or len(data.get("cards") or [])),
             "share_path": f"/?deck={deck_id}",
@@ -209,6 +215,11 @@ class DeckPublisher:
             if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,63}", persona):
                 raise DivinationError("無效的解牌 Persona")
             data["default_persona"] = persona
+        if "theme" in payload:
+            theme = _clean_text(payload.get("theme"), 64).lower()
+            if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,63}", theme):
+                raise DivinationError("無效的牌組主題")
+            data["default_theme"] = theme
 
         manifest_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
         return self.management_info(deck_id, token)
