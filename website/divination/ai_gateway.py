@@ -61,7 +61,6 @@ class ZeroCostGeminiGateway:
 
     @staticmethod
     def _extract_text(data: object) -> str:
-        """Return usable Gemini text or fail closed on any empty/malformed candidate."""
         if not isinstance(data, dict):
             raise AIUnavailable("invalid_response", "AI 大師目前沒有可用回應，請稍後重新解讀")
         candidates = data.get("candidates")
@@ -88,9 +87,8 @@ class ZeroCostGeminiGateway:
     def _classify_429(error: dict) -> str:
         """Classify a Google 429 conservatively.
 
-        A HTTP 429 is *not* proof that the Free Tier allowance is actually exhausted.
-        Google also uses RESOURCE_EXHAUSTED for rate limits, spending/billing state and
-        provider-side quota provisioning problems. Keep those states distinguishable.
+        HTTP 429 is not proof that Free Tier allowance is exhausted. Google also uses
+        RESOURCE_EXHAUSTED for rate limits, billing/spend state and quota provisioning.
         """
         message = str(error.get("message") or "").lower()
         if any(token in message for token in ("spending cap", "billing", "prepay", "prepayment", "credit")):
@@ -103,31 +101,23 @@ class ZeroCostGeminiGateway:
 
     @staticmethod
     def _safe_http_diagnostics(exc: urllib.error.HTTPError) -> dict:
-        diagnostics = {
-            "provider": "gemini",
-            "http_status": int(exc.code),
-        }
+        diagnostics = {"provider": "gemini", "http_status": int(exc.code)}
         retry_after = exc.headers.get("Retry-After") if exc.headers else None
         if retry_after:
             diagnostics["retry_after"] = str(retry_after)[:64]
-
         try:
             raw = exc.read().decode("utf-8", errors="replace")
             data = json.loads(raw)
         except Exception:
             data = {}
-
         error = data.get("error") if isinstance(data, dict) else None
         if not isinstance(error, dict):
             return diagnostics
-
         status = error.get("status")
         if isinstance(status, str) and status:
             diagnostics["status"] = status[:64]
-
         if exc.code == 429:
             diagnostics["category"] = ZeroCostGeminiGateway._classify_429(error)
-
         quota_violations: list[dict] = []
         details = error.get("details")
         if isinstance(details, list):
@@ -169,8 +159,9 @@ class ZeroCostGeminiGateway:
         except urllib.error.HTTPError as e:
             provider = self._safe_http_diagnostics(e)
             if e.code == 429:
+                category = str(provider.get("category") or "resource_exhausted")
                 raise AIUnavailable(
-                    "provider_quota_rejected",
+                    f"provider_429_{category}",
                     "Google Gemini 暫時拒絕這次 AI 請求；可能是 quota、rate limit、billing 狀態或供應商端額度異常，請稍後再試",
                     True,
                     provider,
