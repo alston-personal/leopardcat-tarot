@@ -5,8 +5,82 @@ window.appVersion = APP_VERSION;
 
 // Global state
 let revealObserver;
-window.currentLang = localStorage.getItem('leopard-lang') || 'zh';
-if (!['zh', 'en'].includes(window.currentLang)) window.currentLang = 'zh';
+window.requestedLang = localStorage.getItem('leopard-lang') || navigator.language || 'zh';
+window.currentLang = window.requestedLang;
+window.localeMeta = {
+    zh: { label: '中', htmlLang: 'zh-TW' },
+    en: { label: 'EN', htmlLang: 'en' }
+};
+
+function normalizeLocaleTag(lang) {
+    return String(lang || '').trim().replace('_', '-').toLowerCase();
+}
+
+function getAvailableLocales() {
+    return window.siteData && typeof window.siteData === 'object' ? Object.keys(window.siteData) : [];
+}
+
+function resolveLocale(requested) {
+    const available = getAvailableLocales();
+    if (!available.length) return normalizeLocaleTag(requested) || 'zh';
+
+    const normalized = normalizeLocaleTag(requested);
+    const exact = available.find(key => normalizeLocaleTag(key) === normalized);
+    if (exact) return exact;
+
+    const family = normalized.split('-')[0];
+    const familyMatch = available.find(key => normalizeLocaleTag(key).split('-')[0] === family);
+    if (familyMatch) return familyMatch;
+
+    if (available.includes('zh')) return 'zh';
+    if (available.includes('en')) return 'en';
+    return available[0];
+}
+
+function getLocaleData(lang = window.currentLang) {
+    const resolved = resolveLocale(lang);
+    return (window.siteData && window.siteData[resolved]) || {};
+}
+
+function getLocalizedField(value, lang = window.currentLang) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return value;
+    const resolved = resolveLocale(lang);
+    if (value[resolved] != null) return value[resolved];
+    const family = normalizeLocaleTag(resolved).split('-')[0];
+    const familyKey = Object.keys(value).find(key => normalizeLocaleTag(key).split('-')[0] === family);
+    if (familyKey && value[familyKey] != null) return value[familyKey];
+    if (value.zh != null) return value.zh;
+    if (value.en != null) return value.en;
+    const first = Object.keys(value)[0];
+    return first ? value[first] : null;
+}
+
+function renderLanguageSwitcher() {
+    const host = document.getElementById('lang-switcher');
+    if (!host) return;
+    const available = getAvailableLocales();
+    host.innerHTML = '';
+    available.forEach(lang => {
+        const meta = window.localeMeta[lang] || {};
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'lang-btn';
+        button.id = `btn-${lang}`;
+        button.dataset.locale = lang;
+        button.textContent = meta.label || lang.toUpperCase();
+        button.setAttribute('aria-label', `Language: ${lang}`);
+        button.addEventListener('click', () => window.setLanguage(lang));
+        host.appendChild(button);
+    });
+}
+
+function initializeLocaleRuntime() {
+    window.currentLang = resolveLocale(window.requestedLang || window.currentLang);
+    localStorage.setItem('leopard-lang', window.currentLang);
+    renderLanguageSwitcher();
+    const meta = window.localeMeta[window.currentLang] || {};
+    document.documentElement.lang = meta.htmlLang || window.currentLang;
+}
 
 window.siteData = null;
 window.cardData = [];
@@ -65,21 +139,26 @@ let currentChatHistory = [];
 // ⚡ Immediate assignment for global access
 window.setLanguage = (lang) => {
     console.log("Setting language to:", lang);
-    if (lang === window.currentLang) return;
-    window.currentLang = lang;
-    localStorage.setItem('leopard-lang', lang);
-    
+    const resolved = resolveLocale(lang);
+    if (!getAvailableLocales().includes(resolved)) return;
+    if (resolved === window.currentLang) return;
+    window.requestedLang = lang;
+    window.currentLang = resolved;
+    localStorage.setItem('leopard-lang', resolved);
+    const meta = window.localeMeta[resolved] || {};
+    document.documentElement.lang = meta.htmlLang || resolved;
+
     // Reset Dharma name for new language
     localStorage.removeItem('userDharmaName');
     initDharmaIdentity();
-    
+
     applyLanguage();
 };
 
 // 🔱 Dharma Name Identity System
 function initDharmaIdentity() {
     if (!window.siteData) return;
-    const langData = window.siteData[window.currentLang] || window.siteData['zh'] || window.siteData['en'];
+    const langData = getLocaleData();
     if (!langData || !langData.common) return;
     
     const common = langData.common;
@@ -163,6 +242,7 @@ async function initAllSystems() {
 
         if (cR.ok) {
             window.siteData = await cR.json();
+            initializeLocaleRuntime();
             await window.loadActiveBrand();
             applyLanguage();
             initDharmaIdentity();
@@ -222,14 +302,10 @@ function applyLanguage() {
         return;
     }
     
-    // Normalize language key
-    let lang = window.currentLang || 'zh';
-    if (!window.siteData[lang]) {
-        console.warn(`[i18n] Language '${lang}' not found in window.siteData, falling back to 'zh'`);
-        lang = 'zh';
-    }
-    
-    const data = window.siteData[lang];
+    // Resolve against the locale bundle instead of a hard-coded language list.
+    const lang = resolveLocale(window.currentLang || window.requestedLang);
+    if (lang !== window.currentLang) window.currentLang = lang;
+    const data = getLocaleData(lang);
     console.log(`[i18n] Applying language: ${lang}`, {
         available_langs: Object.keys(window.siteData),
         data_sample_keys: data ? Object.keys(data) : 'NULL'
@@ -273,7 +349,7 @@ function applyLanguage() {
     if (activeBtn) activeBtn.classList.add('active');
 
     // Update document title
-    document.title = (window.currentLang === 'zh' ? '靈山靈貓 石虎塔羅 | LeopardCat Tarot' : 'LeopardCat Tarot | Hill Spirit Oracle');
+    document.title = (data.hero && data.hero.title) ? `${data.hero.title} | LeopardCat Tarot` : 'LeopardCat Tarot';
 
     if (data.introduction) renderIntro(data.introduction);
     if (data.events) renderEvents(data.events);
@@ -391,17 +467,18 @@ function formatEcologyText(text) {
 
 function createCardElement(card, groupId) {
     if (!window.siteData) return document.createElement('div');
-    const langData = window.siteData[window.currentLang] || window.siteData['zh'];
+    const langData = getLocaleData();
     const common = langData.common || {};
     const wrapper = document.createElement('div');
     wrapper.className = `card-wrapper reveal-on-scroll theme-${groupId}`;
     
-    const title = (card.title && typeof card.title === 'object' ? card.title[window.currentLang] : card.title) || 'TBD';
-    const meaning = (card.meaning && typeof card.meaning === 'object' ? card.meaning[window.currentLang] : card.meaning) || 'TBD';
-    const ecology = (card.ecology && typeof card.ecology === 'object' ? card.ecology[window.currentLang] : card.ecology) || 'TBD';
-    
-    const lM = common.label_tarot_meaning || (window.currentLang === 'zh' ? '塔羅牌義' : 'Tarot Meaning');
-    const lE = common.label_eco_connection || (window.currentLang === 'zh' ? '石虎生態' : 'Eco-Connection');
+    const title = getLocalizedField(card.title) || 'TBD';
+    const meaning = getLocalizedField(card.meaning) || 'TBD';
+    const ecology = getLocalizedField(card.ecology) || 'TBD';
+
+    const fallbackCommon = (window.siteData && (window.siteData.zh || window.siteData.en) || {}).common || {};
+    const lM = common.label_tarot_meaning || fallbackCommon.label_tarot_meaning || 'Tarot Meaning';
+    const lE = common.label_eco_connection || fallbackCommon.label_eco_connection || 'Eco-Connection';
     const formattedEcology = formatEcologyText(ecology);
 
     wrapper.innerHTML = `
