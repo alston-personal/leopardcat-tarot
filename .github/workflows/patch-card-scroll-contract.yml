@@ -31,6 +31,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python3 -m pip install -q pytest
           python3 tools/compile_card_scroll_contract.py
           python3 -m py_compile website/tests/test_card_interaction_contract.py
           python3 -m pytest -q website/tests/test_card_interaction_contract.py
