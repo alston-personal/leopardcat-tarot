@@ -1,0 +1,45 @@
+name: Apply Multilingual Runtime Restoration
+
+on:
+  push:
+    branches:
+      - fix/restore-i18n-governance
+    paths:
+      - tools/restore_multilingual_runtime.py
+      - .github/workflows/apply-multilingual-runtime.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/restore-i18n-governance
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Restore data-driven multilingual runtime
+        run: python tools/restore_multilingual_runtime.py
+      - name: Enforce capability contracts
+        run: python scripts/check_capability_regressions.py
+      - name: Verify no hard-coded zh/en locale gate remains
+        run: |
+          ! grep -F "['zh', 'en'].includes(window.currentLang)" website/main.js
+          grep -F 'id="lang-switcher"' website/index.html
+          grep -F 'function resolveLocale(requested)' website/main.js
+      - name: Commit restoration if changed
+        run: |
+          if git diff --quiet; then
+            echo "No restoration diff to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add website/main.js website/index.html governance/capabilities.json
+          git commit -m "fix(i18n): restore data-driven multilingual UI runtime"
+          git push origin HEAD:fix/restore-i18n-governance
