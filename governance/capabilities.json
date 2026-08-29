@@ -3,7 +3,7 @@
   "policy": "additive-by-default",
   "protected_capabilities": {
     "ui.multilingual": {
-      "status": "regression-open",
+      "status": "protected",
       "owner": "website",
       "contract": [
         "UI language support must be data-driven and must not be narrowed by a hard-coded locale whitelist.",
@@ -15,7 +15,13 @@
         "website/public/locales_v10.json",
         "website/main.js",
         "website/index.html"
-      ]
+      ],
+      "implementation": {
+        "locale_source": "website/public/locales_v10.json top-level keys",
+        "runtime": "website/main.js data-driven locale resolver",
+        "switcher": "website/index.html#lang-switcher rendered from available locale keys",
+        "baseline_note": "Do not invent or delete locale payloads. Historical locale payload recovery is tracked separately from runtime extensibility."
+      }
     },
     "ai.multilingual": {
       "status": "protected",
@@ -25,7 +31,9 @@
         "Non-Chinese questions may be answered in the seeker's language.",
         "Persona packs cannot override platform language rules."
       ],
-      "evidence": ["website/divination/personas.py"]
+      "evidence": [
+        "website/divination/personas.py"
+      ]
     },
     "deck.custom": {
       "status": "protected",
@@ -46,22 +54,30 @@
     "reading.immutable-result": {
       "status": "protected",
       "owner": "divination",
-      "contract": ["Follow-up questions must interpret the same immutable symbolic result rather than redraw it."]
+      "contract": [
+        "Follow-up questions must interpret the same immutable symbolic result rather than redraw it."
+      ]
     },
     "sharing.reversed-orientation": {
       "status": "protected",
       "owner": "website",
-      "contract": ["A reversed card remains visibly reversed in generated share output."]
+      "contract": [
+        "A reversed card remains visibly reversed in generated share output."
+      ]
     },
     "privacy.ephemeral-reading": {
       "status": "protected",
       "owner": "divination",
-      "contract": ["Questions and AI answers are not persistently stored by default."]
+      "contract": [
+        "Questions and AI answers are not persistently stored by default."
+      ]
     },
     "ai.zero-cost-fail-closed": {
       "status": "protected",
       "owner": "divination",
-      "contract": ["Free-tier AI exhaustion/error must fail closed and must not silently switch to a paid provider."]
+      "contract": [
+        "Free-tier AI exhaustion/error must fail closed and must not silently switch to a paid provider."
+      ]
     },
     "creator.ownership": {
       "status": "protected",
