@@ -1,0 +1,20 @@
+name: Capability Regression Guard
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+      - 'fix/**'
+
+jobs:
+  preserve-capabilities:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check protected capability contracts
+        run: python scripts/check_capability_regressions.py
