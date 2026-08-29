@@ -392,6 +392,8 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             payload = json.loads(self.rfile.read(content_length).decode('utf-8') or '{}')
             if path.startswith('/api/v1/manage/decks/'):
                 deck_id = path.rsplit('/', 1)[-1]
+                if 'theme' in payload:
+                    THEMES.get(str(payload.get('theme') or '').strip())
                 if 'persona' in payload:
                     pid = str(payload.get('persona') or '').strip()
                     persona = DIVINATION_ENGINE.personas.get(pid)
@@ -641,6 +643,9 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 payload = json.loads(self.rfile.read(content_length).decode('utf-8'))
                 persona_id = str(payload.get('persona') or 'master').strip()
                 DIVINATION_ENGINE.personas.get(persona_id)
+                theme_id = str(payload.get('theme') or 'minimal-light').strip()
+                THEMES.get(theme_id)
+                payload['theme'] = theme_id
                 result = DECK_PUBLISHER.publish(payload)
                 self.send_response(201)
                 self.send_header('Content-type', 'application/json; charset=utf-8')

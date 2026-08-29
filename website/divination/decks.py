@@ -10,6 +10,7 @@ from .core import DivinationError
 
 _SAFE_ID = re.compile(r"^[a-z0-9][a-z0-9-]{1,63}$")
 _SAFE_PERSONA_ID = re.compile(r"^[a-z0-9][a-z0-9-]{1,63}$")
+_SAFE_THEME_ID = re.compile(r"^[a-z0-9][a-z0-9-]{1,63}$")
 
 
 @dataclass(frozen=True)
@@ -22,6 +23,7 @@ class Deck:
     reversals: bool = True
     source: str = "builtin"
     default_persona: str = "master"
+    default_theme: str = "minimal-light"
 
 
 class DeckRegistry:
@@ -42,6 +44,7 @@ class DeckRegistry:
                 True,
                 "builtin",
                 "leopardcat",
+                "leopardcat",
             )
         if not _SAFE_ID.fullmatch(deck_id):
             raise DivinationError("invalid deck id")
@@ -55,6 +58,9 @@ class DeckRegistry:
         default_persona = str(data.get("default_persona") or "master").strip().lower()
         if not _SAFE_PERSONA_ID.fullmatch(default_persona):
             default_persona = "master"
+        default_theme = str(data.get("default_theme") or "minimal-light").strip().lower()
+        if not _SAFE_THEME_ID.fullmatch(default_theme):
+            default_theme = "minimal-light"
         return Deck(
             deck_id=deck_id,
             name=str(data.get("name") or deck_id),
@@ -64,6 +70,7 @@ class DeckRegistry:
             reversals=bool(data.get("reversals", False)),
             source="custom",
             default_persona=default_persona,
+            default_theme=default_theme,
         )
 
     def public_info(self, deck_id: str) -> dict[str, Any]:
@@ -77,6 +84,7 @@ class DeckRegistry:
             "reversals": d.reversals,
             "source": d.source,
             "default_persona": d.default_persona,
+            "default_theme": d.default_theme,
             # Card faces and meanings are intentionally public: a shared deck page is
             # also the creator's gallery/catalog, not only an opaque reading endpoint.
             "cards": d.cards,

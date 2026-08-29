@@ -33,6 +33,12 @@
 
   async function loadExperienceIdentity(){
     const defaultTheme=state.deck==='leopardcat'?'leopardcat':'minimal-light';
+    if(!state.theme && state.deck!=='leopardcat'){
+      try{
+        const deckResp=await fetch(`/api/v1/decks/${encodeURIComponent(state.deck)}`,{cache:'no-store'});
+        if(deckResp.ok){const deck=await deckResp.json();state.theme=deck.default_theme||defaultTheme;}
+      }catch(_){}
+    }
     state.theme=state.theme||defaultTheme;
     try{
       const [brandResp,themeResp]=await Promise.all([

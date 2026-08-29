@@ -306,6 +306,7 @@
           description: document.getElementById('description').value.trim(),
           reversals: reversals.checked,
           persona: selectedPersonaId,
+          theme: selectedThemeId,
           cards
         })
       });

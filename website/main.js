@@ -1056,7 +1056,8 @@ window.initPersonaSwitcher = async function() {
 
 document.addEventListener('DOMContentLoaded', () => window.initPersonaSwitcher());
 
-window.activeThemeId = new URLSearchParams(window.location.search).get('theme') || (window.activeDeckId === 'leopardcat' ? 'leopardcat' : 'minimal-light');
+window.explicitThemeId = new URLSearchParams(window.location.search).get('theme');
+window.activeThemeId = window.explicitThemeId || (window.activeDeckId === 'leopardcat' ? 'leopardcat' : 'minimal-light');
 
 window.applyTheme = async function(themeId, updateUrl = false) {
     try {
@@ -1499,6 +1500,10 @@ window.loadActiveDeckBranding = async function() {
         if (!resp.ok) throw new Error('DECK_NOT_FOUND');
         const deck = await resp.json();
         window.activeDeckInfo = deck;
+        if (!window.explicitThemeId && deck.default_theme && deck.default_theme !== window.activeThemeId) {
+            window.activeThemeId = deck.default_theme;
+            await window.applyTheme(deck.default_theme);
+        }
         document.title = `${deck.name}・線上塔羅占卜`;
 
         const logo = document.querySelector('.nav-logo');
