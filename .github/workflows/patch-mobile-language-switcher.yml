@@ -1,0 +1,44 @@
+name: Compile Mobile Language Switcher
+
+on:
+  push:
+    branches: [fix/mobile-language-switcher]
+    paths:
+      - '.github/workflows/patch-mobile-language-switcher.yml'
+      - 'tools/compile_mobile_language_switcher.py'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/patch-mobile-language-switcher.yml
+            tools/compile_mobile_language_switcher.py
+            website/style.css
+            website/tests
+      - name: Compile mobile nav fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install -q pytest
+          python3 tools/compile_mobile_language_switcher.py
+          cd website
+          python3 -m pytest -q tests/test_mobile_language_switcher.py
+      - name: Commit product patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/style.css website/tests/test_mobile_language_switcher.py
+          git diff --cached --quiet && exit 0
+          git commit -m 'fix(ui): make mobile language switcher directly usable'
+          git push origin HEAD:fix/mobile-language-switcher
