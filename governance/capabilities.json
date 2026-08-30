@@ -152,6 +152,23 @@
         "website/style.css",
         "website/tests/test_deck_driven_share_spreads.py"
       ]
+    },
+    "sharing.reading-receipt-reload": {
+      "status": "protected",
+      "owner": "divination",
+      "contract": [
+        "Share URLs identify an immutable reading receipt with a dedicated read-only share token instead of serializing a single card as the source of truth.",
+        "The private continuation session token must never be placed in a share URL; the share token grants only access to immutable symbolic state.",
+        "Questions and AI answers remain absent from server-side persistent storage; same-tab reload continuity may keep them only in browser sessionStorage until the reading expires or the user resets.",
+        "Reloading the same reading must preserve spread, complete card order, positions, and each upright/reversed orientation without redrawing.",
+        "Custom decks remain resolved through the Deck Module referenced by the reading receipt."
+      ],
+      "evidence": [
+        "website/divination/sessions.py",
+        "website/fortune_server.py",
+        "website/main.js",
+        "website/tests/test_reading_based_share_reload.py"
+      ]
     }
   }
 }

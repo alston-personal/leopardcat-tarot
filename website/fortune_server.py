@@ -152,6 +152,29 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps({'methods': method_catalog()}, ensure_ascii=False).encode('utf-8'))
             return
+        if path.startswith('/api/v1/readings/'):
+            reading_id = path.rsplit('/', 1)[-1]
+            params = urllib.parse.parse_qs(query)
+            share_token = (params.get('shareToken') or [''])[0]
+            try:
+                shared = SESSION_STORE.get_shared(reading_id, share_token)
+                body = {
+                    **shared,
+                    'privacy': {'question_stored': False, 'answer_stored': False, 'symbolic_state_ttl_hours': 24},
+                    'share_mode': 'symbolic-read-only',
+                }
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Cache-Control', 'private, no-store')
+                self.end_headers()
+                self.wfile.write(json.dumps(body, ensure_ascii=False).encode('utf-8'))
+            except DivinationError:
+                self.send_response(404)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Cache-Control', 'no-store')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error':'shared_reading_not_found'}, ensure_ascii=False).encode('utf-8'))
+            return
         if path.startswith('/api/v1/manage/decks/'):
             deck_id = path.rsplit('/', 1)[-1]
             try:
@@ -557,6 +580,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                     master_prompt = persona.build_prompt(method_result=method_result, question=question, lang=lang)
                     expires_at = saved['expires_at']
                     issued_token = session_token
+                    issued_share_token = None
                     seed_fingerprint = None
                 else:
                     input_data = req_data.get('input') or {}
@@ -584,6 +608,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                         deck_id=deck_id, method_result=method_result,
                     )
                     issued_token = issued['session_token']
+                    issued_share_token = issued['share_token']
                     expires_at = issued['expires_at']
 
                 if history:
@@ -599,7 +624,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except AIUnavailable as e:
                     response_body = {
                         'error': 'ai_unavailable', 'code': e.code, 'message': str(e), 'retryable': e.retryable,
-                        'reading_id': reading_id, 'session_token': issued_token, 'expires_at': expires_at,
+                        'reading_id': reading_id, 'session_token': issued_token, 'share_token': issued_share_token, 'expires_at': expires_at,
                         'privacy': {'question_stored': False, 'answer_stored': False, 'symbolic_state_ttl_hours': 24},
                         'method': method_id, 'persona': persona_id, 'question': question, 'lang': lang,
                         'seed_fingerprint': seed_fingerprint, 'method_result': method_result,
@@ -614,6 +639,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 response_body = {
                     'reading_id': reading_id,
                     'session_token': issued_token,
+                    'share_token': issued_share_token,
                     'expires_at': expires_at,
                     'privacy': {'question_stored': False, 'answer_stored': False, 'symbolic_state_ttl_hours': 24},
                     'method': method_id,
