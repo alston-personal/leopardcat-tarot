@@ -108,6 +108,121 @@ window.currentReadingEnvelope = null;
 window.currentReadingState = null; // shared deck/theme/card/orientation state for every Tarot deck
 window.activeSpread = 'single'; // homepage spread selector; preserved across retries
 window.activeBrand = null; // Brand Pack: presentation/social identity, independent from Tarot logic
+window.currentShareReceipt = null; // read-only receipt identity; never grants follow-up authority
+
+const READING_SNAPSHOT_KEY = 'leopardcat.current-reading.v1';
+
+function clearReadingSnapshot() {
+    try { sessionStorage.removeItem(READING_SNAPSHOT_KEY); } catch (_) {}
+}
+
+function saveReadingSnapshot(data, question) {
+    if (!data?.reading_id || !data?.method_result) return;
+    const snapshot = {
+        version: 1,
+        saved_at: Date.now(),
+        expires_at: data.expires_at,
+        deck_id: window.activeDeckId,
+        theme_id: window.activeThemeId,
+        persona_id: data.persona || window.activePersonaId,
+        question: question || '',
+        envelope: data,
+        reading_state: window.currentReadingState,
+        chat_history: currentChatHistory,
+    };
+    try { sessionStorage.setItem(READING_SNAPSHOT_KEY, JSON.stringify(snapshot)); } catch (_) {}
+    const u = new URL(location.href);
+    u.searchParams.set('reading', data.reading_id);
+    if (data.share_token) u.searchParams.set('share', data.share_token);
+    else u.searchParams.delete('share');
+    if (window.activeDeckId && window.activeDeckId !== 'leopardcat') u.searchParams.set('deck', window.activeDeckId); else u.searchParams.delete('deck');
+    if (window.activeThemeId) u.searchParams.set('theme', window.activeThemeId);
+    if (window.activePersonaId && window.activePersonaId !== window.defaultPersonaId) u.searchParams.set('persona', window.activePersonaId);
+    history.replaceState(null, '', u);
+}
+
+function buildReadingStateFromEnvelope(data) {
+    const specs = data?.method_result?.cards || [];
+    if (!specs.length) return null;
+    const deckId = data.deck_id || data.method_result?.deck?.deck_id || window.activeDeckId || 'leopardcat';
+    return {
+        deck_id: deckId,
+        theme_id: window.activeThemeId,
+        persona_id: data.persona || window.activePersonaId,
+        card_id: specs[0].card_id || specs[0].id,
+        orientation: specs[0].orientation || 'upright',
+        spread: data.method_result?.spread || 'single',
+        cards: specs.map(spec => ({card_id: spec.card_id || spec.id, orientation: spec.orientation || 'upright', position: spec.position, position_label: spec.position_label}))
+    };
+}
+
+async function restoreReadingAfterReload() {
+    let snapshot = null;
+    try {
+        const raw = sessionStorage.getItem(READING_SNAPSHOT_KEY);
+        if (raw) snapshot = JSON.parse(raw);
+    } catch (_) {}
+    if (snapshot?.expires_at && Number(snapshot.expires_at) * 1000 <= Date.now()) {
+        clearReadingSnapshot(); snapshot = null;
+    }
+    const params = new URLSearchParams(location.search);
+    const readingId = params.get('reading');
+    const shareToken = params.get('share');
+    let data = snapshot?.envelope || null;
+    let question = snapshot?.question || '';
+    let local = Boolean(data && (!readingId || data.reading_id === readingId));
+    if ((!data || (readingId && data.reading_id !== readingId)) && readingId && shareToken) {
+        try {
+            const r = await fetch(`/api/v1/readings/${encodeURIComponent(readingId)}?shareToken=${encodeURIComponent(shareToken)}`, {cache:'no-store'});
+            if (r.ok) { data = await r.json(); local = false; question = ''; }
+        } catch (e) { console.warn('[Reading restore] shared reading unavailable', e); }
+    }
+    if (!data?.method_result?.cards?.length) return false;
+    const deckId = data.deck_id || data.method_result?.deck?.deck_id || window.activeDeckId;
+    if (deckId && deckId !== window.activeDeckId) return false; // URL carries deck so initialization should already match.
+    const resolved = data.method_result.cards.map(spec => ({spec, card: window.cardData.find(c => c.id === (spec.card_id || spec.id)) || spec}));
+    if (!resolved.length) return false;
+    currentDrawnCard = resolved[0].card;
+    window.currentDrawnCard = currentDrawnCard;
+    window.currentReadingEnvelope = local ? data : null; // public share token never grants continuation authority.
+    window.currentShareReceipt = data?.reading_id ? {reading_id: data.reading_id, share_token: data.share_token || shareToken || null} : null;
+    window.currentReadingState = snapshot?.reading_state || buildReadingStateFromEnvelope(data);
+    window.activeSpread = window.currentReadingState?.spread || window.activeSpread;
+    window._lastQuestion = question;
+    window.pendingReadingSession = local && data.session_token ? {reading_id:data.reading_id, session_token:data.session_token} : null;
+    currentChatHistory = local && Array.isArray(snapshot?.chat_history) ? snapshot.chat_history : [];
+
+    const ritual = document.getElementById('fortune-ritual-area');
+    const chat = document.getElementById('fortune-chat-area');
+    if (ritual) ritual.classList.add('hidden');
+    if (chat) chat.classList.remove('hidden');
+    if (local && question) appendBubble('user', question);
+    const pinnedArea = document.getElementById('pinned-card-area');
+    const pinnedDisplay = document.getElementById('pinned-card-display');
+    if (pinnedArea && pinnedDisplay) {
+        pinnedArea.classList.remove('hidden');
+        pinnedDisplay.innerHTML = `<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">${resolved.map(({spec,card}) => {
+            const orientation = spec.orientation === 'reversed' ? uiText('orientation_reversed','Reversed') : uiText('orientation_upright','Upright');
+            const pos = spec.position_label || spec.position || '';
+            const title = getShareCardTitle(card);
+            const rotate = spec.orientation === 'reversed' ? 'transform:rotate(180deg);' : '';
+            const imageSrc = getShareCardImage(card, deckId);
+            return `<div class="pinned-card-content" style="max-width:150px;"><img src="${imageSrc}" class="pinned-card-img" style="${rotate}"><div class="pinned-card-title">【${title}】<br><small>${pos} · ${orientation}</small></div></div>`;
+        }).join('')}</div>`;
+    }
+    if (local && data.reading) {
+        const spread = data.method_result?.spread || 'single';
+        const bubble = appendBubble('assistant', `<strong>【${spread}】</strong><br>`);
+        const body = document.createElement('div'); body.className='markdown-content';
+        body.innerHTML = typeof marked !== 'undefined' ? marked.parse(data.reading) : String(data.reading).replace(/\n/g,'<br>');
+        bubble?.appendChild(body);
+    } else {
+        appendBubble('assistant', uiText('shared_reading_restored', 'Shared reading restored. The original private question and Master answer are not stored; the immutable cards are shown below.'));
+    }
+    document.getElementById('fortune-actions')?.classList.remove('hidden');
+    updateSocialLinks(currentDrawnCard);
+    return true;
+}
 
 // ⚡ Restored to normal limit (5) for production
 let chatQuota = 5;
@@ -290,6 +405,7 @@ async function initAllSystems() {
                 }, 200);
             }
         }
+        await restoreReadingAfterReload();
     } catch (err) {
         console.error('Initialization Failed:', err);
         const errType = err.name || "Error";
@@ -877,13 +993,16 @@ window.generateShareImage = async function() {
         }).join(shareLang === 'zh' ? '、' : ', ');
         const brandTemplate = window.brandText('share_copy_template', common.share_copy_template);
         const shareMsg = brandTemplate.replace('{card}', shareCardText);
-        // Shared deep link preserves deck + theme + card + orientation.
+        // Reading-based deep link: deck/theme load the experience; immutable cards come from the read-only reading receipt.
         const shareU = new URL(window.location.origin + window.location.pathname);
         if (window.activeDeckId && window.activeDeckId !== 'leopardcat') shareU.searchParams.set('deck', window.activeDeckId);
         if (window.activeThemeId) shareU.searchParams.set('theme', window.activeThemeId);
         if (window.activePersonaId && window.activePersonaId !== window.defaultPersonaId) shareU.searchParams.set('persona', window.activePersonaId);
-        shareU.searchParams.set('card', currentDrawnCard.id);
-        if (window.currentReadingState?.orientation === 'reversed') shareU.searchParams.set('orientation', 'reversed');
+        const envelope = window.currentShareReceipt || window.currentReadingEnvelope;
+        if (envelope?.reading_id && envelope?.share_token) {
+            shareU.searchParams.set('reading', envelope.reading_id);
+            shareU.searchParams.set('share', envelope.share_token);
+        }
         const shareUrl = shareU.toString();
         
         const fullShareText = `${shareMsg} ${shareUrl}`;
@@ -967,8 +1086,11 @@ function updateSocialLinks(card, customQuote = null) {
     if (window.activeDeckId && window.activeDeckId !== 'leopardcat') shareU.searchParams.set('deck', window.activeDeckId);
     if (window.activeThemeId) shareU.searchParams.set('theme', window.activeThemeId);
     if (window.activePersonaId && window.activePersonaId !== window.defaultPersonaId) shareU.searchParams.set('persona', window.activePersonaId);
-    shareU.searchParams.set('card', card.id);
-    if (window.currentReadingState?.orientation === 'reversed') shareU.searchParams.set('orientation', 'reversed');
+    const envelope = window.currentShareReceipt || window.currentReadingEnvelope;
+    if (envelope?.reading_id && envelope?.share_token) {
+        shareU.searchParams.set('reading', envelope.reading_id);
+        shareU.searchParams.set('share', envelope.share_token);
+    }
     const shareUrl = shareU.toString();
     window.shareUrl = shareUrl; // Store for the copy button
     
@@ -1285,6 +1407,7 @@ window.getModularReading = async function(q) {
     currentDrawnCard = resolved[0].card;
     window.currentDrawnCard = currentDrawnCard;
     window.currentReadingEnvelope = data;
+    window.currentShareReceipt = data?.reading_id ? {reading_id: data.reading_id, share_token: data.share_token || null} : null;
     window.currentReadingState = {
         deck_id: window.activeDeckId,
         theme_id: window.activeThemeId,
@@ -1295,6 +1418,7 @@ window.getModularReading = async function(q) {
         cards: resolved.map(({spec, card}) => ({ card_id: spec.card_id || card.id, orientation: spec.orientation || 'upright', position: spec.position, position_label: spec.position_label }))
     };
     window._lastQuestion = q;
+    saveReadingSnapshot(data, q);
     const pinnedArea = document.getElementById('pinned-card-area');
     const pinnedDisplay = document.getElementById('pinned-card-display');
     if (pinnedArea && pinnedDisplay) {
@@ -1326,6 +1450,7 @@ window.getModularReading = async function(q) {
     const htmlReply = typeof marked !== 'undefined' ? marked.parse(rawReply) : rawReply.replace(/\n/g, '<br>');
     typeWriterHTML(textContainer, htmlReply, 35, () => {
         currentChatHistory.push({role:'user', content:q}, {role:'assistant', content:rawReply});
+        saveReadingSnapshot(data, q);
         updateTempleStats();
         const actions = document.getElementById('fortune-actions');
         actions.classList.remove('hidden');
@@ -1520,8 +1645,13 @@ window.sendChatMessage = async function() {
 };
 
 window.resetRitual = function() {
+    clearReadingSnapshot();
+    const cleanUrl = new URL(location.href);
+    ['reading','share','card','orientation'].forEach(k => cleanUrl.searchParams.delete(k));
+    history.replaceState(null, '', cleanUrl);
     currentChatHistory = [];
     window.currentReadingEnvelope = null;
+    window.currentShareReceipt = null;
     window.currentReadingState = null;
     lastShareFile = null;
     lastShareText = "";
