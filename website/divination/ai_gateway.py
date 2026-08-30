@@ -320,9 +320,12 @@ class ZeroCostOpenRouterGateway(OpenAICompatibleZeroCostGateway):
 
 
 class ZeroCostProviderPool:
+    """Ordered zero-cost provider pool with content-free request diagnostics."""
+
     def __init__(self, providers: list[ProviderGateway], quality_gate: MasterExperienceQualityGate | None = None):
         self.providers = list(providers)
         self.quality_gate = quality_gate or MasterExperienceQualityGate()
+        self._last_trace: dict = {"status": "idle", "attempts": []}
         if not self.providers:
             raise RuntimeError("zero-cost provider pool requires at least one provider adapter")
 
@@ -339,24 +342,66 @@ class ZeroCostProviderPool:
             "random_model_routing": False,
         }
 
+    def last_trace(self) -> dict:
+        """Return safe diagnostics only; never includes prompt or generated text."""
+        return json.loads(json.dumps(self._last_trace))
+
+    @staticmethod
+    def _failure_attempt(provider: ProviderGateway, exc: AIUnavailable) -> dict:
+        diag = exc.public_diagnostics()
+        row = {
+            "provider": provider.provider_id,
+            "model": provider.model,
+            "status": "failed",
+            "code": exc.code,
+        }
+        for key in ("http_status", "category", "retry_after", "finish_reason"):
+            if diag.get(key) is not None:
+                row[key] = diag.get(key)
+        return row
+
     def generate(self, prompt: str) -> str:
         compiled = MASTER_EXPERIENCE_CONTRACT + "\n\n" + prompt
         configured = [p for p in self.providers if p.configured()]
+        self._last_trace = {
+            "status": "running",
+            "attempts": [],
+            "configured_providers": [p.provider_id for p in configured],
+        }
         if not configured:
+            self._last_trace["status"] = "failed"
+            self._last_trace["code"] = "not_configured"
             raise AIUnavailable("not_configured", "AI service is not configured", False, {"provider":"zero-cost-pool"})
+
         failures: list[AIUnavailable] = []
         for provider in configured:
             try:
-                return self.quality_gate.validate(provider.generate(compiled))
+                text = provider.generate(compiled)
+                validated = self.quality_gate.validate(text)
+                self._last_trace["attempts"].append({
+                    "provider": provider.provider_id,
+                    "model": provider.model,
+                    "status": "success",
+                })
+                self._last_trace["status"] = "success"
+                self._last_trace["selected_provider"] = provider.provider_id
+                self._last_trace["selected_model"] = provider.model
+                return validated
             except AIUnavailable as exc:
                 failures.append(exc)
+                self._last_trace["attempts"].append(self._failure_attempt(provider, exc))
                 continue
+
+        self._last_trace["status"] = "failed"
         if len(configured) == 1 and failures:
+            self._last_trace["code"] = failures[0].code
             raise failures[0]
+
         attempts = []
         for exc in failures:
             diag = exc.public_diagnostics()
             attempts.append({k:diag.get(k) for k in ("provider","http_status","category","retry_after") if diag.get(k) is not None} | {"code":exc.code})
+        self._last_trace["code"] = "provider_pool_exhausted"
         raise AIUnavailable(
             "provider_pool_exhausted",
             "所有零成本 AI 引擎目前都無法通過可用性／品質檢查；牌局已保留，請稍後重試",
