@@ -9,6 +9,7 @@
   --font-header: 'Playfair Display', 'Noto Serif TC', serif;
   --font-body: 'Inter', sans-serif;
   --nav-height: 80px;
+  --control-radius: 18px;
 }
 
 .hidden { display: none !important; }
@@ -1370,3 +1371,12 @@ body {
   #user-dharma-name { max-width: 58px !important; }
   .language-select { min-width: 66px; max-width: 80px; font-size: 0.62rem; }
 }
+
+/* Public control geometry contract: interactive controls use one rounded language. */
+button, select, input, textarea, .btn, .btn-gold-outline, .nav-links a, .lang-switcher, .language-select, #user-spirit-badge {
+  border-radius: var(--control-radius) !important;
+}
+.legacy-spread-picker { display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin:4px 0 14px; }
+.legacy-spread-label { color:var(--color-text-sec); font-size:.78rem; margin-right:2px; }
+.legacy-spread-btn { background:rgba(212,175,55,.05); color:var(--color-gold); border:1px solid rgba(212,175,55,.35); padding:8px 18px; cursor:pointer; }
+.legacy-spread-btn.active { background:var(--color-gold); color:var(--color-bg); border-color:var(--color-gold); }

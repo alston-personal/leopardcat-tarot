@@ -106,6 +106,7 @@ window.cardData = [];
 window.currentDrawnCard = null;
 window.currentReadingEnvelope = null;
 window.currentReadingState = null; // shared deck/theme/card/orientation state for every Tarot deck
+window.activeSpread = 'single'; // homepage spread selector; preserved across retries
 window.activeBrand = null; // Brand Pack: presentation/social identity, independent from Tarot logic
 
 // ⚡ Restored to normal limit (5) for production
@@ -313,6 +314,18 @@ async function initAllSystems() {
     }
 }
 
+function bindLegacySpreadPicker() {
+    const buttons = Array.from(document.querySelectorAll('[data-spread-choice]'));
+    if (!buttons.length) return;
+    const select = spread => {
+        window.activeSpread = spread || 'single';
+        buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.spreadChoice === window.activeSpread));
+    };
+    buttons.forEach(btn => btn.addEventListener('click', () => select(btn.dataset.spreadChoice)));
+    select(window.activeSpread);
+}
+
+document.addEventListener('DOMContentLoaded', bindLegacySpreadPicker);
 document.addEventListener('DOMContentLoaded', initAllSystems);
 
 function applyLanguage() {
@@ -368,6 +381,19 @@ function applyLanguage() {
     if (activeBtn) activeBtn.classList.add('active');
     const languageSelect = document.getElementById('language-select');
     if (languageSelect) languageSelect.value = lang;
+
+    // Dynamic runtime states must change language too; static data-i18n alone is not enough.
+    document.querySelectorAll('.persona-switcher-label').forEach(el => { el.textContent = uiText('persona_label', 'Reader'); });
+    document.querySelectorAll('.theme-switcher-label').forEach(el => { el.textContent = uiText('theme_label', 'Theme'); });
+
+    document.querySelectorAll('.modular-retry-bubble').forEach(bubble => {
+        const code = bubble.dataset.errorCode || '';
+        const status = Number(bubble.dataset.errorStatus || 0);
+        const text = bubble.querySelector('.modular-error-text');
+        const retry = bubble.querySelector('.retry-btn');
+        if (text) text.textContent = modularErrorMessage({ code, status });
+        if (retry) retry.textContent = uiText('retry', 'Retry');
+    });
 
     // Update document title
     document.title = (data.hero && data.hero.title) ? `${data.hero.title} | LeopardCat Tarot` : 'LeopardCat Tarot';
@@ -901,14 +927,7 @@ function updateSocialLinks(card, customQuote = null) {
 
 function modularErrorMessage(e) {
     if (e?.code === 'provider_429_billing_or_quota_state' || e?.status === 429) {
-        const messages = {
-            zh: 'Gemini 目前回報供應商端額度／帳務狀態異常。牌局已保留，稍後可沿用同一副牌重新祈請。',
-            en: 'Gemini is currently reporting a provider quota or billing-state issue. Your draw is preserved for retry.',
-            ja: 'Gemini 側で割り当て／請求状態の問題が報告されています。カード結果は保持されているため、後でもう一度試せます。',
-            ko: 'Gemini 공급자 측 할당량/결제 상태 문제가 보고되고 있습니다. 카드 결과는 유지되므로 나중에 다시 시도할 수 있습니다.',
-            es: 'Gemini informa de un problema de cuota o facturación del proveedor. La tirada se conserva para volver a intentarlo más tarde.'
-        };
-        return messages[resolveLocale(window.currentLang)] || messages.en;
+        return uiText('provider_429_error', 'Gemini is currently reporting a provider quota or billing-state issue. Your draw is preserved for retry.');
     }
     if (e?.code === 'free_quota_exhausted') {
         return uiText('err_free_ai_unavailable', 'Free AI capacity is currently unavailable. Your draw is preserved for retry.');
@@ -940,7 +959,10 @@ function showModularRetry(q, error) {
     const errBubble = appendBubble('assistant', '');
     if (!errBubble) return;
     errBubble.classList.add('modular-retry-bubble');
+    errBubble.dataset.errorCode = error?.code || '';
+    errBubble.dataset.errorStatus = String(error?.status || '');
     const text = document.createElement('p');
+    text.className = 'modular-error-text';
     text.style.color = 'var(--color-gold)';
     text.textContent = modularErrorMessage(error);
     const btn = document.createElement('button');
@@ -1154,7 +1176,7 @@ window.getModularReading = async function(q) {
             lang: getAILanguageTag()
         } : {
             method: 'tarot', persona: window.activePersonaId || undefined, question: q,
-            input: { spread: 'auto', deck_id: window.activeDeckId },
+            input: { spread: window.activeSpread || 'single', deck_id: window.activeDeckId },
             lang: getAILanguageTag()
         };
         resp = await fetch('/api/v1/readings', {

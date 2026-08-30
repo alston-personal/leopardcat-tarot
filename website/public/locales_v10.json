@@ -99,13 +99,21 @@
       "gallery_nav": "牌卡展示",
       "share_creator": "牌卡創作：{creator}",
       "share_exclusive": "專屬線上占卜",
-      "deck_not_found": "找不到這副牌，可能已下架或網址有誤。"
+      "deck_not_found": "找不到這副牌，可能已下架或網址有誤。",
+      "provider_429_error": "Gemini 目前回報供應商端額度／帳務狀態異常。牌局已保留，稍後可沿用同一副牌重新祈請。",
+      "privacy_note": "🔒 隱私預設：本站不保存你的問題與大師回答；問題會送至 AI 服務產生回覆。為了讓你能繼續追問，同一牌局的抽牌結果會匿名保存 24 小時後自動刪除。",
+      "social_share": "社群分享：",
+      "copy_link": "複製連結",
+      "spread_label": "牌陣",
+      "spread_single_short": "單牌",
+      "spread_three_short": "三牌"
     },
     "nav": {
       "home": "首頁",
       "fortune": "大師占卜",
       "gallery": "藝廊",
-      "intro": "生態靈魂"
+      "intro": "生態靈魂",
+      "create_deck": "建立我的牌組"
     },
     "hero": {
       "title": "靈山靈貓",
@@ -301,13 +309,21 @@
       "gallery_nav": "Card Gallery",
       "share_creator": "Cards by {creator}",
       "share_exclusive": "Exclusive online reading",
-      "deck_not_found": "This deck could not be found; it may be unpublished or the URL may be incorrect."
+      "deck_not_found": "This deck could not be found; it may be unpublished or the URL may be incorrect.",
+      "provider_429_error": "Gemini is currently reporting a provider quota or billing-state issue. Your draw is preserved for retry.",
+      "privacy_note": "🔒 Privacy by default: your question and the Master’s answer are not stored. The question is sent to the AI service to generate a response; anonymous draw state is kept for up to 24 hours so you can continue the same reading.",
+      "social_share": "Share:",
+      "copy_link": "Copy link",
+      "spread_label": "Spread",
+      "spread_single_short": "Single card",
+      "spread_three_short": "Three cards"
     },
     "nav": {
       "home": "Home",
       "fortune": "Oracle",
       "gallery": "Gallery",
-      "intro": "Eco-Soul"
+      "intro": "Eco-Soul",
+      "create_deck": "Create My Deck"
     },
     "hero": {
       "title": "Hill Spirit",
@@ -497,13 +513,21 @@
       "gallery_nav": "カード展示",
       "share_creator": "カード制作：{creator}",
       "share_exclusive": "専用オンライン占い",
-      "deck_not_found": "このデッキは見つかりません。非公開になったか、URLが間違っている可能性があります。"
+      "deck_not_found": "このデッキは見つかりません。非公開になったか、URLが間違っている可能性があります。",
+      "provider_429_error": "Gemini 側で割り当て／請求状態の問題が報告されています。カード結果は保持されているため、後でもう一度試せます。",
+      "privacy_note": "🔒 プライバシー優先：質問とマスターの回答は保存しません。回答生成のため質問は AI サービスへ送信され、同じリーディングを続けられるよう匿名の抽選状態のみ最大24時間保持します。",
+      "social_share": "シェア：",
+      "copy_link": "リンクをコピー",
+      "spread_label": "スプレッド",
+      "spread_single_short": "1枚",
+      "spread_three_short": "3枚"
     },
     "nav": {
       "home": "ホーム",
       "fortune": "占い",
       "gallery": "ギャラリー",
-      "intro": "エコ・スピリット"
+      "intro": "エコ・スピリット",
+      "create_deck": "自分のデッキを作る"
     },
     "hero": {
       "title": "山霊猫",
@@ -693,13 +717,21 @@
       "gallery_nav": "카드 갤러리",
       "share_creator": "카드 제작: {creator}",
       "share_exclusive": "전용 온라인 리딩",
-      "deck_not_found": "이 덱을 찾을 수 없습니다. 비공개되었거나 URL이 잘못되었을 수 있습니다."
+      "deck_not_found": "이 덱을 찾을 수 없습니다. 비공개되었거나 URL이 잘못되었을 수 있습니다.",
+      "provider_429_error": "Gemini 공급자 측 할당량/결제 상태 문제가 보고되고 있습니다. 카드 결과는 유지되므로 나중에 다시 시도할 수 있습니다.",
+      "privacy_note": "🔒 개인정보 보호 기본값: 질문과 마스터의 답변은 저장하지 않습니다. 답변 생성을 위해 질문은 AI 서비스로 전송되며, 같은 리딩을 이어갈 수 있도록 익명 카드 상태만 최대 24시간 보관합니다.",
+      "social_share": "공유:",
+      "copy_link": "링크 복사",
+      "spread_label": "스프레드",
+      "spread_single_short": "1장",
+      "spread_three_short": "3장"
     },
     "nav": {
       "home": "홈",
       "fortune": "점괘",
       "gallery": "갤러리",
-      "intro": "생태 영혼"
+      "intro": "생태 영혼",
+      "create_deck": "내 덱 만들기"
     },
     "hero": {
       "title": "산령고양이",
@@ -889,13 +921,21 @@
       "gallery_nav": "Galería de cartas",
       "share_creator": "Cartas de {creator}",
       "share_exclusive": "Lectura exclusiva en línea",
-      "deck_not_found": "No se encontró este mazo; puede haber sido retirado o la URL es incorrecta."
+      "deck_not_found": "No se encontró este mazo; puede haber sido retirado o la URL es incorrecta.",
+      "provider_429_error": "Gemini informa de un problema de cuota o facturación del proveedor. La tirada se conserva para volver a intentarlo más tarde.",
+      "privacy_note": "🔒 Privacidad por defecto: no guardamos tu pregunta ni la respuesta del Maestro. La pregunta se envía al servicio de IA para generar la respuesta; solo el estado anónimo de la tirada se conserva hasta 24 horas para que puedas continuarla.",
+      "social_share": "Compartir:",
+      "copy_link": "Copiar enlace",
+      "spread_label": "Tirada",
+      "spread_single_short": "Una carta",
+      "spread_three_short": "Tres cartas"
     },
     "nav": {
       "home": "Inicio",
       "fortune": "Oráculo",
       "gallery": "Galería",
-      "intro": "Eco-alma"
+      "intro": "Eco-alma",
+      "create_deck": "Crear mi mazo"
     },
     "hero": {
       "title": "Espíritu del Monte",
