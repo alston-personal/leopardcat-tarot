@@ -17,6 +17,8 @@ jobs:
         with:
           ref: fix/semantic-grounding-complete-output
           fetch-depth: 0
+      - name: Install test runner
+        run: python -m pip install -q pytest
       - name: Apply patch
         run: python tools/patch_semantic_grounding_complete_output.py
       - name: Focused tests
