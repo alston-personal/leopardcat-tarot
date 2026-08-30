@@ -238,7 +238,7 @@ class OpenAICompatibleZeroCostGateway:
         req = urllib.request.Request(
             self.base_url + "/chat/completions",
             data=json.dumps(payload).encode("utf-8"),
-            headers={"Content-Type":"application/json", "Authorization":f"Bearer {self.api_key}"},
+            headers={"Content-Type":"application/json", "Accept":"application/json", "User-Agent":"leopardcat-tarot/1.0", "Authorization":f"Bearer {self.api_key}"},
         )
         try:
             with urllib.request.urlopen(req, context=self.context, timeout=30) as response:
