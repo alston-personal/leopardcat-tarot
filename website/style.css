@@ -1149,9 +1149,10 @@ body {
   }
   .gallery-tabs-container {
     display: block !important;
-    width: 100vw !important;
-    margin-left: -5px !important; /* Offset parent padding */
-    margin-right: -5px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     overflow-x: scroll !important; 
     overflow-y: hidden !important;
     -webkit-overflow-scrolling: touch !important;
@@ -1417,3 +1418,58 @@ button, select, input, textarea, .btn, .btn-gold-outline, .nav-links a, .lang-sw
 .legacy-spread-label { color:var(--color-text-sec); font-size:.78rem; margin-right:2px; }
 .legacy-spread-btn { background:rgba(212,175,55,.05); color:var(--color-gold); border:1px solid rgba(212,175,55,.35); padding:8px 18px; cursor:pointer; }
 .legacy-spread-btn.active { background:var(--color-gold); color:var(--color-bg); border-color:var(--color-gold); }
+
+
+/* Shared Draw Engine UI: shuffle is presentation; selection indices feed the same server draw(). */
+.draw-mode-picker { margin-top: 8px; }
+.manual-draw-stage { margin: 14px 0 4px; }
+.manual-draw-toolbar { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.manual-draw-status { font-size:.76rem; opacity:.82; min-height:1.2em; }
+.manual-card-pool {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(38px,1fr));
+  gap:5px;
+  max-height:330px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:10px;
+  border:1px solid rgba(212,175,55,.22);
+  border-radius:18px;
+  background:rgba(0,0,0,.22);
+  overscroll-behavior:contain;
+}
+.manual-card-back {
+  appearance:none;
+  border:0;
+  padding:0;
+  background:transparent;
+  border-radius:6px;
+  cursor:pointer;
+  transform:translateY(0) scale(1);
+  transition:transform .18s ease, filter .18s ease, opacity .18s ease;
+  aspect-ratio:3 / 5;
+  min-width:0;
+}
+.manual-card-back img { width:100%; height:100%; display:block; object-fit:cover; border-radius:6px; box-shadow:0 4px 10px rgba(0,0,0,.45); user-select:none; pointer-events:none; }
+.manual-card-back:hover, .manual-card-back:focus-visible { transform:translateY(-7px) scale(1.05); outline:2px solid var(--color-gold); outline-offset:2px; }
+.manual-card-back.selected { transform:translateY(-12px) scale(1.06); filter:drop-shadow(0 0 7px rgba(212,175,55,.75)); }
+.manual-card-back.selected img { outline:2px solid var(--color-gold); outline-offset:1px; }
+.manual-card-pool.is-shuffling .manual-card-back { animation:ritual-shuffle .6s cubic-bezier(.2,.8,.25,1); }
+.manual-card-pool.is-shuffling .manual-card-back:nth-child(3n) { animation-delay:.04s; }
+.manual-card-pool.is-shuffling .manual-card-back:nth-child(4n) { animation-delay:.08s; }
+.manual-card-pool.is-shuffling .manual-card-back:nth-child(5n) { animation-delay:.12s; }
+@keyframes ritual-shuffle {
+  0% { transform:translate3d(0,0,0) rotate(0deg); }
+  35% { transform:translate3d(12px,-10px,0) rotate(5deg); }
+  68% { transform:translate3d(-10px,6px,0) rotate(-4deg); }
+  100% { transform:translate3d(0,0,0) rotate(0deg); }
+}
+@media (max-width: 520px) {
+  .manual-card-pool { grid-template-columns:repeat(9,minmax(0,1fr)); gap:4px; max-height:300px; padding:7px; }
+  .manual-card-back { border-radius:4px; }
+  .manual-card-back img { border-radius:4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .manual-card-pool.is-shuffling .manual-card-back { animation:none; }
+  .manual-card-back { transition:none; }
+}

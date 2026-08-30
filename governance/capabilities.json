@@ -169,6 +169,26 @@
         "website/main.js",
         "website/tests/test_reading_based_share_reload.py"
       ]
+    },
+    "reading.shuffle-draw-engine": {
+      "status": "protected",
+      "owner": "divination",
+      "contract": [
+        "Tarot automatic and manual selection MUST share the same shuffle() and draw() engine primitives; draw mode is a controller/UI concern, not a second reading algorithm.",
+        "shuffle() fixes the hidden card order and each card orientation before selection; card backs MUST not reveal orientation before reveal.",
+        "Manual draw indices are unique, 1-based positions in the current shuffled deck and MUST be preserved in the immutable reading result/receipt.",
+        "Existing automatic drawing remains available and uses the same shuffled deck contract without requiring manual UI.",
+        "Every deck MUST expose a usable card-back asset; missing custom card backs fall back to the system four-way-symmetric card back.",
+        "Single-card and three-card spreads MUST both work in automatic and manual controllers without changing share/reload semantics."
+      ],
+      "evidence": [
+        "website/divination/tarot.py",
+        "website/divination/decks.py",
+        "website/main.js",
+        "website/index.html",
+        "website/public/art/card-back.svg",
+        "website/tests/test_shuffle_manual_draw.py"
+      ]
     }
   }
 }

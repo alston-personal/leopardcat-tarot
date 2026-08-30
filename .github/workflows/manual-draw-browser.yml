@@ -1,0 +1,44 @@
+name: Manual Draw Browser
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  manual-draw-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Build committed source
+        run: |
+          cd website
+          rm -f public/art/renders public/cards || true
+          mkdir -p public/art/renders public/cards
+          npm ci >/dev/null
+          npm run build >/dev/null
+      - name: Start no-cost local server
+        working-directory: website
+        env:
+          GEMINI_API_KEY: ''
+          GROQ_API_KEY: ''
+        run: |
+          nohup python fortune_server.py >/tmp/manual-draw-browser-server.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8088/api/v1/methods >/dev/null 2>&1 && exit 0; sleep 1; done
+          cat /tmp/manual-draw-browser-server.log
+          exit 1
+      - name: Install Chromium
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.55.0 >/dev/null
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Exercise manual and automatic draw controllers
+        run: |
+          cd website
+          NODE_PATH="$GITHUB_WORKSPACE/node_modules" node tests/manual_draw_browser.mjs

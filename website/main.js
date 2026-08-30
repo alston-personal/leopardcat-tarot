@@ -109,6 +109,107 @@ window.currentReadingState = null; // shared deck/theme/card/orientation state f
 window.activeSpread = 'single'; // homepage spread selector; preserved across retries
 window.activeBrand = null; // Brand Pack: presentation/social identity, independent from Tarot logic
 window.currentShareReceipt = null; // read-only receipt identity; never grants follow-up authority
+window.drawMode = 'auto';
+window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false };
+window.pendingDrawOptions = null; // preserves manual seed/indices until a reading receipt exists
+
+function requiredDrawCount() {
+    return window.activeSpread === 'single' ? 1 : 3;
+}
+
+function freshShuffleSeed() {
+    const bytes = new Uint32Array(4);
+    crypto.getRandomValues(bytes);
+    return Array.from(bytes, n => n.toString(16).padStart(8, '0')).join('');
+}
+
+function activeCardBack() {
+    return window.activeDeckInfo?.card_back || '/art/card-back.svg';
+}
+
+function manualStatus() {
+    const el = document.getElementById('manual-draw-status');
+    if (!el) return;
+    if (!window.manualDrawState.shuffled) {
+        el.textContent = uiText('manual_draw_shuffle_first', 'Shuffle first, then choose your cards.');
+        return;
+    }
+    const need = requiredDrawCount();
+    const selected = window.manualDrawState.selected.length;
+    el.textContent = uiText('manual_draw_progress', 'Selected {selected} / {need}', {selected, need});
+}
+
+function renderManualCardPool() {
+    const pool = document.getElementById('manual-card-pool');
+    if (!pool) return;
+    pool.innerHTML = '';
+    const total = Array.isArray(window.cardData) ? window.cardData.length : 0;
+    const back = activeCardBack();
+    for (let i = 1; i <= total; i++) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'manual-card-back';
+        button.dataset.drawIndex = String(i);
+        button.setAttribute('aria-label', uiText('manual_card_aria', 'Choose card position {index}', {index:i}));
+        const img = document.createElement('img');
+        img.src = back;
+        img.alt = '';
+        img.draggable = false;
+        button.appendChild(img);
+        if (window.manualDrawState.selected.includes(i)) button.classList.add('selected');
+        button.addEventListener('click', () => selectManualCard(i, button));
+        pool.appendChild(button);
+    }
+    manualStatus();
+}
+
+window.setDrawMode = function(mode) {
+    window.drawMode = mode === 'manual' ? 'manual' : 'auto';
+    document.querySelectorAll('[data-draw-mode]').forEach(btn => btn.classList.toggle('active', btn.dataset.drawMode === window.drawMode));
+    const stage = document.getElementById('manual-draw-stage');
+    const primary = document.getElementById('btn-primary-draw');
+    stage?.classList.toggle('hidden', window.drawMode !== 'manual');
+    primary?.classList.toggle('hidden', window.drawMode === 'manual');
+    if (window.drawMode === 'manual') {
+        window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false };
+        const pool = document.getElementById('manual-card-pool'); if (pool) pool.innerHTML = '';
+        manualStatus();
+    }
+};
+
+window.shuffleManualDeck = function() {
+    const q = document.getElementById('fortune-question')?.value?.trim() || '';
+    if (!q) return alert(uiText('err_empty_question', 'Please enter your question first.'));
+    window.manualDrawState = { seed: freshShuffleSeed(), selected: [], shuffled: true, submitting: false };
+    renderManualCardPool();
+    const pool = document.getElementById('manual-card-pool');
+    pool?.classList.remove('is-shuffling');
+    void pool?.offsetWidth;
+    pool?.classList.add('is-shuffling');
+    setTimeout(() => pool?.classList.remove('is-shuffling'), 650);
+};
+
+async function selectManualCard(index, button) {
+    const state = window.manualDrawState;
+    if (!state.shuffled || state.submitting || state.selected.includes(index)) return;
+    const need = requiredDrawCount();
+    if (state.selected.length >= need) return;
+    state.selected.push(index);
+    button.classList.add('selected');
+    button.disabled = true;
+    manualStatus();
+    if (state.selected.length === need) {
+        state.submitting = true;
+        const q = document.getElementById('fortune-question')?.value?.trim() || '';
+        await new Promise(resolve => setTimeout(resolve, 320));
+        await performReading(q, state.selected.slice(), state.seed);
+    }
+}
+
+function bindDrawModePicker() {
+    document.querySelectorAll('[data-draw-mode]').forEach(btn => btn.addEventListener('click', () => window.setDrawMode(btn.dataset.drawMode)));
+    window.setDrawMode(window.drawMode);
+}
 
 const READING_SNAPSHOT_KEY = 'leopardcat.current-reading.v1';
 
@@ -152,7 +253,9 @@ function buildReadingStateFromEnvelope(data) {
         card_id: specs[0].card_id || specs[0].id,
         orientation: specs[0].orientation || 'upright',
         spread: data.method_result?.spread || 'single',
-        cards: specs.map(spec => ({card_id: spec.card_id || spec.id, orientation: spec.orientation || 'upright', position: spec.position, position_label: spec.position_label}))
+        draw_mode: data.method_result?.rules?.draw_mode || 'auto',
+        draw_indices: data.method_result?.rules?.draw_indices || [],
+        cards: specs.map(spec => ({card_id: spec.card_id || spec.id, orientation: spec.orientation || 'upright', draw_index: spec.draw_index, position: spec.position, position_label: spec.position_label}))
     };
 }
 
@@ -436,12 +539,18 @@ function bindLegacySpreadPicker() {
     const select = spread => {
         window.activeSpread = spread || 'single';
         buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.spreadChoice === window.activeSpread));
+        if (window.drawMode === 'manual') {
+            window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false };
+            const pool = document.getElementById('manual-card-pool'); if (pool) pool.innerHTML = '';
+            manualStatus();
+        }
     };
     buttons.forEach(btn => btn.addEventListener('click', () => select(btn.dataset.spreadChoice)));
     select(window.activeSpread);
 }
 
 document.addEventListener('DOMContentLoaded', bindLegacySpreadPicker);
+document.addEventListener('DOMContentLoaded', bindDrawModePicker);
 document.addEventListener('DOMContentLoaded', initAllSystems);
 
 function applyLanguage() {
@@ -1174,7 +1283,7 @@ function showModularRetry(q, error) {
         btn.disabled = true;
         errBubble.remove();
         try {
-            await window.getModularReading(q);
+            await window.getModularReading(q, window.pendingDrawOptions || {});
         } catch (e) {
             refundLocalMana();
             showModularRetry(q, e);
@@ -1183,24 +1292,37 @@ function showModularRetry(q, error) {
     errBubble.append(text, btn);
 }
 
-window.drawFortune = async function() {
+async function performReading(q, drawIndices = null, seed = null) {
     const common = window.siteData[window.currentLang].common;
-    const q = document.getElementById('fortune-question').value;
-    if (!q.trim()) return alert(common.err_empty_question);
+    if (!q.trim()) {
+        if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
+        return alert(common.err_empty_question);
+    }
     const debug = q.toUpperCase() === 'DEBUG' || q.toUpperCase() === 'FORCE_DEBUG';
-    if (!debug && !chargeLocalMana()) return alert(common.err_mana_depleted);
+    if (!debug && !chargeLocalMana()) {
+        if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
+        return alert(common.err_mana_depleted);
+    }
 
     document.querySelectorAll('.modular-retry-bubble').forEach(el => el.remove());
     document.getElementById('fortune-ritual-area').classList.add('hidden');
     document.getElementById('fortune-chat-area').classList.remove('hidden');
     appendBubble('user', q);
+    window.pendingDrawOptions = Array.isArray(drawIndices) ? {drawIndices: drawIndices.slice(), seed} : {};
     try {
-        await window.getModularReading(q);
+        await window.getModularReading(q, window.pendingDrawOptions);
     } catch (e) {
         console.warn('[Divination v1] modular reading unavailable; preserving the same reading for retry:', e);
         if (!debug) refundLocalMana();
+        if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
         showModularRetry(q, e);
     }
+}
+
+window.drawFortune = async function() {
+    if (window.drawMode === 'manual') return window.shuffleManualDeck();
+    const q = document.getElementById('fortune-question').value;
+    return performReading(q);
 };
 
 window.activeDeckId = new URLSearchParams(window.location.search).get('deck') || 'leopardcat';
@@ -1351,7 +1473,7 @@ window.initThemeSwitcher = async function() {
 
 document.addEventListener('DOMContentLoaded', () => window.initThemeSwitcher());
 
-window.getModularReading = async function(q) {
+window.getModularReading = async function(q, drawOptions = {}) {
     const common = window.siteData[window.currentLang].common;
     const historyDiv = document.getElementById('chat-history');
     const sensingId = 'sensing-' + Date.now();
@@ -1372,7 +1494,12 @@ window.getModularReading = async function(q) {
             lang: getAILanguageTag()
         } : {
             method: 'tarot', persona: window.activePersonaId || undefined, question: q,
-            input: { spread: window.activeSpread || 'single', deck_id: window.activeDeckId },
+            input: {
+                spread: window.activeSpread || 'single',
+                deck_id: window.activeDeckId,
+                ...(Array.isArray(drawOptions.drawIndices) ? {draw_indices: drawOptions.drawIndices} : {})
+            },
+            ...(drawOptions.seed ? {seed: drawOptions.seed} : {}),
             lang: getAILanguageTag()
         };
         resp = await fetch('/api/v1/readings', {
@@ -1398,6 +1525,7 @@ window.getModularReading = async function(q) {
     }
     const data = await resp.json();
     window.pendingReadingSession = null;
+    window.pendingDrawOptions = null;
     window.activePersonaId = data.persona || window.activePersonaId || window.defaultPersonaId;
     removeSensing();
     const specs = data.method_result?.cards || [];
@@ -1415,7 +1543,9 @@ window.getModularReading = async function(q) {
         card_id: resolved[0].spec.card_id || currentDrawnCard.id,
         orientation: resolved[0].spec.orientation || 'upright',
         spread: data.method_result?.spread || 'single',
-        cards: resolved.map(({spec, card}) => ({ card_id: spec.card_id || card.id, orientation: spec.orientation || 'upright', position: spec.position, position_label: spec.position_label }))
+        draw_mode: data.method_result?.rules?.draw_mode || 'auto',
+        draw_indices: data.method_result?.rules?.draw_indices || [],
+        cards: resolved.map(({spec, card}) => ({ card_id: spec.card_id || card.id, orientation: spec.orientation || 'upright', draw_index: spec.draw_index, position: spec.position, position_label: spec.position_label }))
     };
     window._lastQuestion = q;
     saveReadingSnapshot(data, q);
@@ -1653,6 +1783,8 @@ window.resetRitual = function() {
     window.currentReadingEnvelope = null;
     window.currentShareReceipt = null;
     window.currentReadingState = null;
+    window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false };
+    window.pendingDrawOptions = null;
     lastShareFile = null;
     lastShareText = "";
     
@@ -1753,6 +1885,7 @@ window.loadActiveDeckBranding = async function() {
         if (!resp.ok) throw new Error('DECK_NOT_FOUND');
         const deck = await resp.json();
         window.activeDeckInfo = deck;
+        if (window.drawMode === 'manual' && window.manualDrawState.shuffled) renderManualCardPool();
         if (!window.explicitThemeId && deck.default_theme && deck.default_theme !== window.activeThemeId) {
             window.activeThemeId = deck.default_theme;
             await window.applyTheme(deck.default_theme);

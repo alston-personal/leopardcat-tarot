@@ -24,6 +24,7 @@ class Deck:
     source: str = "builtin"
     default_persona: str = "master"
     default_theme: str = "minimal-light"
+    card_back: str = "/art/card-back.svg"
 
 
 class DeckRegistry:
@@ -45,6 +46,7 @@ class DeckRegistry:
                 "builtin",
                 "leopardcat",
                 "leopardcat",
+                "/art/card-back.svg",
             )
         if not _SAFE_ID.fullmatch(deck_id):
             raise DivinationError("invalid deck id")
@@ -71,6 +73,7 @@ class DeckRegistry:
             source="custom",
             default_persona=default_persona,
             default_theme=default_theme,
+            card_back=str(data.get("card_back") or "/art/card-back.svg"),
         )
 
     def public_info(self, deck_id: str) -> dict[str, Any]:
@@ -85,6 +88,7 @@ class DeckRegistry:
             "source": d.source,
             "default_persona": d.default_persona,
             "default_theme": d.default_theme,
+            "card_back": d.card_back,
             # Card faces and meanings are intentionally public: a shared deck page is
             # also the creator's gallery/catalog, not only an opaque reading endpoint.
             "cards": d.cards,

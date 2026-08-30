@@ -14,6 +14,59 @@ SPREADS: dict[str, list[tuple[str, str]]] = {
 }
 
 
+def shuffle(cards: list[dict[str, Any]], *, reversal_rate: float, rng: random.Random) -> list[dict[str, Any]]:
+    """Create one hidden physical deck state: order + orientation are fixed before selection."""
+    ordered = list(cards)
+    rng.shuffle(ordered)
+    return [
+        {
+            "card": card,
+            "draw_index": idx + 1,  # public/manual API is intentionally 1-based
+            "orientation": "reversed" if rng.random() < reversal_rate else "upright",
+        }
+        for idx, card in enumerate(ordered)
+    ]
+
+
+def draw(
+    shuffled: list[dict[str, Any]],
+    indices: list[int],
+    positions: list[tuple[str, str]],
+) -> list[dict[str, Any]]:
+    """Select positions from an already shuffled deck. Auto/manual both call this function."""
+    if len(indices) != len(positions):
+        raise DivinationError(f"draw requires {len(positions)} indices")
+    if len(set(indices)) != len(indices):
+        raise DivinationError("draw indices must be unique")
+    if any(not isinstance(i, int) or isinstance(i, bool) or i < 1 or i > len(shuffled) for i in indices):
+        raise DivinationError(f"draw indices must be between 1 and {len(shuffled)}")
+
+    results: list[dict[str, Any]] = []
+    for index, (position, position_label) in zip(indices, positions):
+        entry = shuffled[index - 1]
+        card = entry["card"]
+        orientation = entry["orientation"]
+        meanings = card.get("meanings") or {}
+        selected_meaning = meanings.get(orientation) or meanings.get("upright") or card.get("meaning") or ""
+        results.append({
+            "card_id": card.get("id"),
+            "title": card.get("title") or {},
+            "arcana": card.get("arcana"),
+            "suit": card.get("suit"),
+            "number": card.get("number"),
+            "position": position,
+            "position_label": position_label,
+            "orientation": orientation,
+            "draw_index": index,
+            "meaning": selected_meaning,
+            "upright_meaning": meanings.get("upright"),
+            "reversed_meaning": meanings.get("reversed"),
+            "ecology": card.get("ecology"),
+            "image": card.get("image"),
+        })
+    return results
+
+
 class TarotMethod:
     method_id = "tarot"
 
@@ -49,27 +102,19 @@ class TarotMethod:
             raise DivinationError("reversal_rate must be between 0 and 1")
         reversal_rate = requested_rate if deck.reversals else 0.0
 
-        picked = rng.sample(cards, len(positions))
-        results: list[dict[str, Any]] = []
-        for card, (position, position_label) in zip(picked, positions):
-            orientation = "reversed" if rng.random() < reversal_rate else "upright"
-            meanings = card.get("meanings") or {}
-            selected_meaning = meanings.get(orientation) or meanings.get("upright") or card.get("meaning") or ""
-            results.append({
-                "card_id": card.get("id"),
-                "title": card.get("title") or {},
-                "arcana": card.get("arcana"),
-                "suit": card.get("suit"),
-                "number": card.get("number"),
-                "position": position,
-                "position_label": position_label,
-                "orientation": orientation,
-                "meaning": selected_meaning,
-                "upright_meaning": meanings.get("upright"),
-                "reversed_meaning": meanings.get("reversed"),
-                "ecology": card.get("ecology"),
-                "image": card.get("image"),
-            })
+        hidden_deck = shuffle(cards, reversal_rate=reversal_rate, rng=rng)
+        requested_indices = input_data.get("draw_indices")
+        if requested_indices is None:
+            # Existing automatic mode: shuffle first, then draw the required number from the top.
+            draw_indices = list(range(1, len(positions) + 1))
+            draw_mode = "auto"
+        else:
+            if not isinstance(requested_indices, list):
+                raise DivinationError("draw_indices must be a list")
+            draw_indices = requested_indices
+            draw_mode = "manual"
+
+        results = draw(hidden_deck, draw_indices, positions)
 
         return {
             "method": "tarot",
@@ -80,12 +125,20 @@ class TarotMethod:
                 "card_count": len(deck.cards),
                 "reversals": deck.reversals,
                 "source": deck.source,
+                "card_back": deck.card_back,
             },
             "spread": spread_id,
             "cards": results,
             "rules": {
                 "without_replacement": True,
+                # Kept for backward compatibility: orientation becomes visible at draw/reveal time.
                 "orientation_decided_at_draw_time": True,
+                "orientation_assigned_at_shuffle_time": True,
+                "orientation_hidden_until_reveal": True,
+                "shuffle_before_draw": True,
+                "draw_indices_are_1_based": True,
+                "draw_mode": draw_mode,
+                "draw_indices": draw_indices,
                 "reversal_rate": reversal_rate,
             },
         }
