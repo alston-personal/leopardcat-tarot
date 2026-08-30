@@ -255,7 +255,7 @@ def test_three_card_share_renders_every_entry_and_orientation():
     assert 'function renderShareCards(frame, shareContext)' in JS
     assert "entries.forEach((entry, index)" in JS
     assert "entry.orientation === 'reversed' ? 'rotate(180deg)'" in JS
-    assert "shareFrame.classList.toggle('share-three-card', shareEntries.length > 1)" in JS
+    assert "frame.classList.toggle('share-three-card', entries.length > 1)" in JS
     assert "shareEntries.map(entry =>" in JS
     assert "titleParts.join(' · ')" in JS
 
