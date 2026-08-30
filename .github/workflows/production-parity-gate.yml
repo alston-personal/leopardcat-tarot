@@ -1,0 +1,80 @@
+name: Production Parity Gate
+
+on:
+  push:
+    branches: [chore/production-parity-gate]
+    paths:
+      - '.github/workflows/production-parity-gate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  parity:
+    runs-on: [self-hosted, Linux, ARM64, oracle]
+    timeout-minutes: 5
+    steps:
+      - name: Verify deployed LeopardCat runtime matches main
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          runtime_repo=""
+          pids="$(ss -ltnp 2>/dev/null | sed -n 's/.*:8088 .*pid=\([0-9][0-9]*\).*/\1/p' | sort -u)"
+          for pid in $pids; do
+            cwd="$(readlink -f "/proc/$pid/cwd" 2>/dev/null || true)"
+            if [ -n "$cwd" ] && git -C "$cwd" rev-parse --show-toplevel >/dev/null 2>&1; then
+              runtime_repo="$(git -C "$cwd" rev-parse --show-toplevel)"
+              break
+            fi
+          done
+
+          if [ -z "$runtime_repo" ]; then
+            for base in "$HOME" /home/ubuntu /opt /srv /var/www; do
+              [ -d "$base" ] || continue
+              while read -r gitdir; do
+                repo="${gitdir%/.git}"
+                remote="$(git -C "$repo" remote get-url origin 2>/dev/null || true)"
+                case "$remote $repo" in
+                  *leopardcat-tarot*|*leopardcat*tarot*) runtime_repo="$repo"; break 2 ;;
+                esac
+              done < <(find "$base" -maxdepth 4 -type d -name .git -print 2>/dev/null)
+            done
+          fi
+
+          [ -n "$runtime_repo" ] || { echo 'production_repo=not_found'; exit 1; }
+          remote="$(git -C "$runtime_repo" remote get-url origin)"
+          main_head="$(git ls-remote "$remote" refs/heads/main | awk '{print $1}')"
+          runtime_head="$(git -C "$runtime_repo" rev-parse HEAD)"
+          runtime_branch="$(git -C "$runtime_repo" branch --show-current || true)"
+          runtime_dirty="$(git -C "$runtime_repo" status --porcelain | wc -l | tr -d ' ')"
+
+          echo "production_repo=$runtime_repo"
+          echo "runtime_branch=$runtime_branch"
+          echo "runtime_head=$runtime_head"
+          echo "main_head=$main_head"
+          echo "runtime_dirty=$runtime_dirty"
+
+          [ "$runtime_head" = "$main_head" ] || { echo 'parity=fail: deployed HEAD differs from main'; exit 1; }
+          [ "$runtime_dirty" = "0" ] || { echo 'parity=fail: deployed repo is dirty'; exit 1; }
+
+          curl -fsS --max-time 5 http://127.0.0.1:8088/ -o /tmp/leopardcat-index.html
+          curl -fsS --max-time 5 http://127.0.0.1:8088/main.js -o /tmp/leopardcat-main.js
+          curl -fsS --max-time 5 http://127.0.0.1:8088/api/v1/methods -o /tmp/leopardcat-methods.json
+
+          grep -q 'manual-draw-stage' /tmp/leopardcat-index.html || { echo 'parity=fail: manual draw stage missing from served HTML'; exit 1; }
+          grep -q 'data-draw-mode="manual"' /tmp/leopardcat-index.html || { echo 'parity=fail: manual draw mode control missing from served HTML'; exit 1; }
+          grep -q 'manualDrawState' /tmp/leopardcat-main.js || { echo 'parity=fail: manual draw runtime missing from served JS'; exit 1; }
+          grep -q 'shuffleManualDeck' /tmp/leopardcat-main.js || { echo 'parity=fail: shuffle controller missing from served JS'; exit 1; }
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('/tmp/leopardcat-methods.json').read_text(encoding='utf-8'))
+          text = json.dumps(data, ensure_ascii=False).lower()
+          if 'tarot' not in text:
+              raise SystemExit('parity=fail: tarot method missing from API')
+          print('api_methods=ok')
+          PY
+
+          echo 'production_parity=passed'
