@@ -1270,3 +1270,54 @@ body {
   .lang-switcher { max-width: calc(100vw - 88px) !important; }
   .lang-btn { padding: 5px 5px !important; font-size: 0.62rem !important; }
 }
+
+
+/* Mobile nav reachability + compact locale selector v2 */
+.language-select {
+  appearance: auto;
+  background: rgba(255,255,255,0.06);
+  color: var(--color-text-pri);
+  border: 1px solid rgba(212,175,55,0.35);
+  border-radius: 16px;
+  padding: 6px 10px;
+  font: inherit;
+  min-width: 84px;
+  cursor: pointer;
+}
+.language-select option { color: #111; background: #fff; }
+
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: space-between !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    gap: 8px !important;
+    padding: 0 10px !important;
+  }
+  .nav-logo { flex: 0 1 auto !important; min-width: 0 !important; max-width: 92px; }
+  #global-stats { display: none !important; }
+  .nav-links {
+    display: flex !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 6px !important;
+    overflow: visible !important;
+  }
+  .nav-links > a,
+  #user-spirit-badge { display: flex !important; }
+  .nav-links > a {
+    padding: 4px 7px !important;
+    font-size: 0.62rem !important;
+    letter-spacing: 0 !important;
+    white-space: nowrap;
+  }
+  #user-spirit-badge {
+    padding: 3px 6px !important;
+    gap: 4px !important;
+  }
+  #user-dharma-name { display: none !important; }
+  .lang-switcher { flex: 0 0 auto !important; padding: 0 !important; background: transparent !important; border: 0 !important; }
+  .language-select { min-width: 72px; max-width: 82px; padding: 5px 6px; font-size: 0.68rem; }
+}
