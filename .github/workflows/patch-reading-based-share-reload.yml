@@ -20,7 +20,9 @@ jobs:
       - name: Install test runner
         run: python -m pip install -q pytest
       - name: Apply patch
-        run: python tools/patch_reading_based_share_reload.py
+        run: |
+          python tools/patch_reading_based_share_reload.py
+          python tools/refine_reading_based_share_reload.py
       - name: Focused tests
         working-directory: website
         run: |
@@ -30,7 +32,7 @@ jobs:
         run: python scripts/check_capability_regressions.py
       - name: Commit product patch and remove temporary tooling
         run: |
-          rm -f tools/patch_reading_based_share_reload.py .github/workflows/patch-reading-based-share-reload.yml
+          rm -f tools/patch_reading_based_share_reload.py tools/refine_reading_based_share_reload.py .github/workflows/patch-reading-based-share-reload.yml
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A
