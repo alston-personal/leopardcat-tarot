@@ -37,3 +37,11 @@ def test_primary_read_page_still_exposes_single_and_three_card_spreads():
     js=(ROOT/'public/read.js').read_text(encoding='utf-8')
     assert "{id:'single'" in js
     assert "{id:'three_card'" in js
+
+
+def test_dynamic_persona_and_theme_labels_retranslate():
+    js=(ROOT/'main.js').read_text(encoding='utf-8')
+    assert 'persona-switcher-label' in js
+    assert 'theme-switcher-label' in js
+    assert "el.textContent = uiText('persona_label'" in js
+    assert "el.textContent = uiText('theme_label'" in js

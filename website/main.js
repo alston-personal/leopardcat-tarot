@@ -383,6 +383,9 @@ function applyLanguage() {
     if (languageSelect) languageSelect.value = lang;
 
     // Dynamic runtime states must change language too; static data-i18n alone is not enough.
+    document.querySelectorAll('.persona-switcher-label').forEach(el => { el.textContent = uiText('persona_label', 'Reader'); });
+    document.querySelectorAll('.theme-switcher-label').forEach(el => { el.textContent = uiText('theme_label', 'Theme'); });
+
     document.querySelectorAll('.modular-retry-bubble').forEach(bubble => {
         const code = bubble.dataset.errorCode || '';
         const status = Number(bubble.dataset.errorStatus || 0);
