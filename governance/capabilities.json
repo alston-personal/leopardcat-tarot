@@ -107,6 +107,21 @@
         "website/main.js",
         "website/tests/test_mobile_nav_reachability.py"
       ]
+    },
+    "ai.master-experience-provider-neutral": {
+      "status": "protected",
+      "owner": "divination",
+      "contract": [
+        "Changing AI providers may change the inference engine but must not change the selected Persona Pack, immutable reading result, language, or Master Experience contract.",
+        "Automatic fallback may use only explicitly approved fixed models; random model routers are forbidden for the primary Master experience.",
+        "Every provider receives the same compiled Master Experience prompt and equivalent generation controls.",
+        "Provider/model identity must not be exposed as a new reader persona, and outputs must pass the deterministic Master Experience quality gate before display.",
+        "No provider fallback may violate ai.zero-cost-fail-closed or silently enable paid inference."
+      ],
+      "evidence": [
+        "website/divination/ai_gateway.py",
+        "website/tests/test_provider_pool_quality.py"
+      ]
     }
   }
 }

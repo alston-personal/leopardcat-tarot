@@ -16,7 +16,7 @@ from divination.core import DivinationError
 from divination.sessions import ReadingSessionStore
 from divination.publishing import DeckPublisher
 from divination.themes import ThemeRegistry, ThemePublisher
-from divination.ai_gateway import ZeroCostGeminiGateway, AIUnavailable
+from divination.ai_gateway import ZeroCostGeminiGateway, ZeroCostGroqGateway, ZeroCostOpenRouterGateway, ZeroCostProviderPool, AIUnavailable
 from divination.brands import BrandRegistry
 from divination.personas import persona_public_info, ConfigurablePersona
 from divination.persona_publishing import PersonaPublisher
@@ -60,23 +60,35 @@ def update_stats(divination=False):
         log(f"Error updating stats: {e}")
         return {"total_visitors": 2026, "total_divinations": 888, "error": str(e)}
 
-def load_env_key():
-    key = os.environ.get("GEMINI_API_KEY")
-    if not key:
-        env_path = "/home/ubuntu/agentmanager/.env"
-        if os.path.exists(env_path):
-            try:
-                with open(env_path) as f:
-                    for line in f:
-                        if line.startswith("GEMINI_API_KEY="):
-                            key = line.strip().split("=", 1)[1]
-                            break
-            except Exception as e:
-                log(f"Error reading .env: {e}")
-    return key
+def load_env_value(name):
+    value = os.environ.get(name)
+    if value:
+        return value
+    env_path = "/home/ubuntu/agentmanager/.env"
+    if os.path.exists(env_path):
+        try:
+            with open(env_path) as f:
+                for line in f:
+                    if line.startswith(name + "="):
+                        return line.strip().split("=", 1)[1]
+        except Exception as e:
+            log(f"Error reading runtime env file: {e}")
+    return None
 
-API_KEY = load_env_key()
-AI_GATEWAY = ZeroCostGeminiGateway(API_KEY)
+
+def build_ai_gateway():
+    providers = [
+        ZeroCostGeminiGateway(load_env_value("GEMINI_API_KEY")),
+        ZeroCostGroqGateway(load_env_value("GROQ_API_KEY")),
+    ]
+    openrouter_key = load_env_value("OPENROUTER_API_KEY")
+    openrouter_model = load_env_value("OPENROUTER_MODEL")
+    if openrouter_key or openrouter_model:
+        providers.append(ZeroCostOpenRouterGateway(openrouter_key, openrouter_model))
+    return ZeroCostProviderPool(providers)
+
+
+AI_GATEWAY = build_ai_gateway()
 
 DIVINATION_ENGINE = build_default_engine(os.path.dirname(os.path.abspath(__file__)))
 BRANDS = BrandRegistry(DIVINATION_ENGINE.decks)
