@@ -1,0 +1,25 @@
+name: Cleanup shuffle manual draw branch
+on:
+  push:
+    branches: [feature/shuffle-manual-draw]
+    paths: ['.github/workflows/cleanup-shuffle-manual-draw.yml']
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/shuffle-manual-draw
+          fetch-depth: 0
+      - name: Restore tracked build dependencies and self-remove
+        run: |
+          git fetch origin main
+          git checkout origin/main -- website/node_modules
+          rm -f .github/workflows/cleanup-shuffle-manual-draw.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m 'chore: remove hosted build artifacts from draw feature'
+          git push origin HEAD:feature/shuffle-manual-draw
