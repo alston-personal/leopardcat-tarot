@@ -19,29 +19,7 @@ jobs:
           fetch-depth: 0
       - name: Apply mobile overflow fix and self-remove
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('website/style.css')
-          s = p.read_text(encoding='utf-8')
-          old = '''.manual-card-pool {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(38px,1fr));
-  gap:5px;
-  max-height:330px;
-  overflow:auto;
-'''
-          new = '''.manual-card-pool {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(38px,1fr));
-  gap:5px;
-  max-height:330px;
-  overflow-y:auto;
-  overflow-x:hidden;
-'''
-          if old not in s:
-              raise SystemExit('manual-card-pool overflow anchor not found')
-          p.write_text(s.replace(old, new, 1), encoding='utf-8')
-          PY
+          python -c "from pathlib import Path; p=Path('website/style.css'); s=p.read_text(encoding='utf-8'); old='max-height:330px;\\n  overflow:auto;'; new='max-height:330px;\\n  overflow-y:auto;\\n  overflow-x:hidden;'; assert old in s; p.write_text(s.replace(old,new,1),encoding='utf-8')"
           rm -f .github/workflows/fix-manual-draw-mobile-overflow.yml
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
