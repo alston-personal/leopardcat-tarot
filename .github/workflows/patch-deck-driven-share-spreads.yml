@@ -1,0 +1,37 @@
+name: Patch deck-driven share spreads
+
+on:
+  push:
+    branches: [fix/deck-driven-share-spreads]
+    paths:
+      - '.github/workflows/patch-deck-driven-share-spreads.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/deck-driven-share-spreads
+          fetch-depth: 0
+      - name: Install test runner
+        run: python -m pip install -q pytest
+      - name: Apply patch
+        run: python tools/patch_deck_driven_share_spreads.py
+      - name: Focused tests
+        working-directory: website
+        run: |
+          python -m pytest -q tests/test_deck_driven_share_spreads.py tests/test_custom_deck_theme_ownership.py tests/test_card_interaction_contract.py
+      - name: Capability guard
+        run: python scripts/check_capability_regressions.py
+      - name: Commit product patch and remove temporary tooling
+        run: |
+          rm -f tools/patch_deck_driven_share_spreads.py .github/workflows/patch-deck-driven-share-spreads.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m 'fix(share): render spreads from active deck'
+          git push origin HEAD:fix/deck-driven-share-spreads
