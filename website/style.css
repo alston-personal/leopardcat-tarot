@@ -1270,3 +1270,103 @@ body {
   .lang-switcher { max-width: calc(100vw - 88px) !important; }
   .lang-btn { padding: 5px 5px !important; font-size: 0.62rem !important; }
 }
+
+
+/* Governed mobile nav reachability v3: wrap, never hide capabilities for space. */
+.language-select {
+  appearance: auto;
+  background: rgba(255,255,255,0.06);
+  color: var(--color-text-pri);
+  border: 1px solid rgba(212,175,55,0.35);
+  border-radius: 16px;
+  padding: 6px 10px;
+  font: inherit;
+  min-width: 84px;
+  cursor: pointer;
+}
+.language-select option { color: #111; background: #fff; }
+
+@media (max-width: 768px) {
+  :root { --nav-height: 112px; }
+  .navbar {
+    height: auto !important;
+    min-height: var(--nav-height) !important;
+    justify-content: space-between !important;
+    align-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 4px 8px !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    padding: 6px 10px !important;
+  }
+  .nav-logo {
+    min-width: 0 !important;
+    max-width: 112px !important;
+    flex: 0 1 auto !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #global-stats {
+    display: flex !important;
+    flex: 0 1 auto !important;
+    gap: 6px !important;
+    padding-left: 6px !important;
+    font-size: 0.56rem !important;
+  }
+  .nav-links {
+    display: flex !important;
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+    overflow: visible !important;
+  }
+  .nav-links > a,
+  #user-spirit-badge {
+    display: flex !important;
+  }
+  .nav-links > a {
+    padding: 4px 7px !important;
+    font-size: 0.62rem !important;
+    letter-spacing: 0 !important;
+    white-space: nowrap;
+  }
+  #user-spirit-badge {
+    padding: 3px 6px !important;
+    gap: 4px !important;
+  }
+  #user-dharma-name {
+    display: inline-block !important;
+    max-width: 72px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .lang-switcher {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    overflow: visible !important;
+  }
+  .language-select {
+    min-width: 72px;
+    max-width: 92px;
+    padding: 5px 6px;
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 420px) {
+  :root { --nav-height: 132px; }
+  .nav-logo { max-width: 86px !important; font-size: 0.7rem !important; }
+  #global-stats { font-size: 0.52rem !important; }
+  .nav-links > a { font-size: 0.58rem !important; padding: 3px 5px !important; }
+  #user-dharma-name { max-width: 58px !important; }
+  .language-select { min-width: 66px; max-width: 80px; font-size: 0.62rem; }
+}

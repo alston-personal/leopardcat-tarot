@@ -22,7 +22,10 @@
       "implementation": {
         "runtime_status": "restored-data-driven",
         "historical_parity": "resolved",
-        "canonical_ui_locales": ["zh", "en"],
+        "canonical_ui_locales": [
+          "zh",
+          "en"
+        ],
         "locale_source": "website/public/locales_v10.json top-level keys",
         "runtime": "website/main.js data-driven locale resolver",
         "switcher": "website/index.html#lang-switcher rendered from available locale keys",
@@ -89,6 +92,21 @@
     "creator.ownership": {
       "status": "protected",
       "owner": "divination"
+    },
+    "navigation.mobile-reachability": {
+      "status": "protected",
+      "owner": "website",
+      "contract": [
+        "Responsive layout changes may compact, wrap or reorganize navigation but may not make an existing navigation capability unreachable merely to free screen space.",
+        "Mobile navigation must keep the existing primary links, identity/mana control, statistics and locale switcher reachable without requiring horizontal page or navbar scrolling.",
+        "A control remaining in the DOM does not satisfy this contract if responsive CSS hides it without an equivalent reachable replacement."
+      ],
+      "evidence": [
+        "website/index.html",
+        "website/style.css",
+        "website/main.js",
+        "website/tests/test_mobile_nav_reachability.py"
+      ]
     }
   }
 }

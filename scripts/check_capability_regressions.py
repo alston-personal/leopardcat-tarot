@@ -30,6 +30,7 @@ def main() -> None:
     locales_text = require("website/public/locales_v10.json")
     personas = require("website/divination/personas.py")
     fortune_server = require("website/fortune_server.py")
+    style_css = require("website/style.css")
 
     try:
         locales = json.loads(locales_text)
@@ -50,6 +51,30 @@ def main() -> None:
             status = protected.get("ui.multilingual", {}).get("status")
             if status != "regression-open":
                 fail("multilingual UI was narrowed by a hard-coded zh/en allow-list")
+
+
+    # Responsive presence is not enough: protected navigation must remain reachable.
+    if protected.get("navigation.mobile-reachability", {}).get("status") == "protected":
+        marker = "/* Governed mobile nav reachability v3: wrap, never hide capabilities for space. */"
+        if marker not in style_css:
+            fail("mobile navigation reachability contract has no governed responsive implementation")
+        mobile = style_css.split(marker, 1)[1]
+        required_visible = [
+            "#global-stats",
+            ".nav-links > a",
+            "#user-spirit-badge",
+            "#user-dharma-name",
+            ".lang-switcher",
+        ]
+        for selector in required_visible:
+            if selector not in mobile:
+                fail(f"mobile navigation reachability evidence missing selector: {selector}")
+        if "flex-wrap: wrap !important" not in mobile:
+            fail("mobile navigation must wrap instead of deleting capabilities for space")
+        if "overflow-x: hidden !important" not in mobile:
+            fail("mobile navbar horizontal-scroll regression protection disappeared")
+        if "document.createElement('select')" not in main_js or "language-select" not in main_js:
+            fail("compact data-driven locale selector disappeared")
 
     # Preserve AI multilingual platform rules.
     if "the seeker's language" not in personas:

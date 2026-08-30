@@ -68,18 +68,23 @@ function renderLanguageSwitcher() {
     if (!host) return;
     const available = getAvailableLocales();
     host.innerHTML = '';
+
+    const select = document.createElement('select');
+    select.id = 'language-select';
+    select.className = 'language-select';
+    select.setAttribute('aria-label', 'Language selector');
+
     available.forEach(lang => {
         const meta = window.localeMeta[lang] || {};
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'lang-btn';
-        button.id = `btn-${lang}`;
-        button.dataset.locale = lang;
-        button.textContent = meta.label || lang.toUpperCase();
-        button.setAttribute('aria-label', `Language: ${lang}`);
-        button.addEventListener('click', () => window.setLanguage(lang));
-        host.appendChild(button);
+        const option = document.createElement('option');
+        option.value = lang;
+        option.textContent = meta.label || lang.toUpperCase();
+        option.selected = lang === window.currentLang;
+        select.appendChild(option);
     });
+
+    select.addEventListener('change', event => window.setLanguage(event.target.value));
+    host.appendChild(select);
 }
 
 function initializeLocaleRuntime() {
@@ -355,6 +360,8 @@ function applyLanguage() {
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     const activeBtn = document.getElementById(`btn-${lang}`);
     if (activeBtn) activeBtn.classList.add('active');
+    const languageSelect = document.getElementById('language-select');
+    if (languageSelect) languageSelect.value = lang;
 
     // Update document title
     document.title = (data.hero && data.hero.title) ? `${data.hero.title} | LeopardCat Tarot` : 'LeopardCat Tarot';
