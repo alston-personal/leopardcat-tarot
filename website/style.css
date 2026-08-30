@@ -1429,7 +1429,8 @@ button, select, input, textarea, .btn, .btn-gold-outline, .nav-links a, .lang-sw
   grid-template-columns:repeat(auto-fill,minmax(38px,1fr));
   gap:5px;
   max-height:330px;
-  overflow:auto;
+  overflow-y:auto;
+  overflow-x:hidden;
   padding:10px;
   border:1px solid rgba(212,175,55,.22);
   border-radius:18px;
