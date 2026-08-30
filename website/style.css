@@ -1149,9 +1149,10 @@ body {
   }
   .gallery-tabs-container {
     display: block !important;
-    width: 100vw !important;
-    margin-left: -5px !important; /* Offset parent padding */
-    margin-right: -5px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     overflow-x: scroll !important; 
     overflow-y: hidden !important;
     -webkit-overflow-scrolling: touch !important;
