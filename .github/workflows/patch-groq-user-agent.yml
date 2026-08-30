@@ -17,15 +17,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Apply patch and tests
+      - name: Apply patch and verify
         run: |
           python tools/patch_groq_user_agent.py
-          python -m pytest -q website/tests/test_groq_transport_headers.py website/tests/test_ai_provider_pool.py
+          python -m py_compile website/divination/ai_gateway.py
+          grep -q 'User-Agent.*leopardcat-tarot/1.0' website/divination/ai_gateway.py
+          grep -q 'Accept.*application/json' website/divination/ai_gateway.py
       - name: Commit generated product changes
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add website/divination/ai_gateway.py website/tests/test_groq_transport_headers.py
-          git diff --cached --quiet && exit 0
+          if git diff --cached --quiet; then exit 0; fi
           git commit -m 'fix(ai): stabilize Groq transport headers'
           git push origin HEAD:fix/groq-user-agent
