@@ -937,6 +937,43 @@ body {
   box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
 
+
+/* Deck-driven share renderer: one-card and three-card spreads share the same deck contract. */
+.share-card-frame {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+.share-card-slot {
+  min-width: 0;
+  text-align: center;
+}
+.share-card-caption {
+  max-width: 160px;
+  margin-top: 8px;
+  color: rgba(244,241,234,.82);
+  font-size: 10px;
+  line-height: 1.35;
+}
+.share-card-frame.share-three-card {
+  width: 390px;
+  padding: 10px 8px;
+  gap: 8px;
+}
+.share-card-frame.share-three-card .share-card-slot {
+  width: 118px;
+}
+.share-card-frame.share-three-card img {
+  width: 112px;
+  max-height: 194px;
+  object-fit: contain;
+}
+.share-card-frame.share-three-card .share-card-caption {
+  max-width: 118px;
+  font-size: 9px;
+}
+
 .share-info { flex: 1; text-align: left; }
 .share-info h2 {
   font-family: var(--font-header);
