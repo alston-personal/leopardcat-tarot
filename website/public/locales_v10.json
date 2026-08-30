@@ -106,7 +106,14 @@
       "copy_link": "複製連結",
       "spread_label": "牌陣",
       "spread_single_short": "單牌",
-      "spread_three_short": "三牌"
+      "spread_three_short": "三牌",
+      "draw_mode_label": "抽牌方式",
+      "draw_mode_auto": "自動",
+      "draw_mode_manual": "手動",
+      "shuffle_cards": "洗牌",
+      "manual_draw_shuffle_first": "先洗牌，再憑直覺選牌。",
+      "manual_draw_progress": "已選 {selected} / {need} 張",
+      "manual_card_aria": "選擇第 {index} 個位置"
     },
     "nav": {
       "home": "首頁",
@@ -387,7 +394,14 @@
       "copy_link": "Copy link",
       "spread_label": "Spread",
       "spread_single_short": "Single card",
-      "spread_three_short": "Three cards"
+      "spread_three_short": "Three cards",
+      "draw_mode_label": "Draw mode",
+      "draw_mode_auto": "Auto",
+      "draw_mode_manual": "Manual",
+      "shuffle_cards": "Shuffle",
+      "manual_draw_shuffle_first": "Shuffle first, then choose by intuition.",
+      "manual_draw_progress": "Selected {selected} / {need}",
+      "manual_card_aria": "Choose card position {index}"
     },
     "nav": {
       "home": "Home",
@@ -662,7 +676,14 @@
       "copy_link": "リンクをコピー",
       "spread_label": "スプレッド",
       "spread_single_short": "1枚",
-      "spread_three_short": "3枚"
+      "spread_three_short": "3枚",
+      "draw_mode_label": "引き方",
+      "draw_mode_auto": "自動",
+      "draw_mode_manual": "手動",
+      "shuffle_cards": "シャッフル",
+      "manual_draw_shuffle_first": "まずシャッフルして、直感でカードを選んでください。",
+      "manual_draw_progress": "選択 {selected} / {need} 枚",
+      "manual_card_aria": "{index} 番のカードを選ぶ"
     },
     "nav": {
       "home": "ホーム",
@@ -937,7 +958,14 @@
       "copy_link": "링크 복사",
       "spread_label": "스프레드",
       "spread_single_short": "1장",
-      "spread_three_short": "3장"
+      "spread_three_short": "3장",
+      "draw_mode_label": "카드 뽑기",
+      "draw_mode_auto": "자동",
+      "draw_mode_manual": "수동",
+      "shuffle_cards": "셔플",
+      "manual_draw_shuffle_first": "먼저 셔플한 뒤 직감으로 카드를 고르세요.",
+      "manual_draw_progress": "선택 {selected} / {need}장",
+      "manual_card_aria": "{index}번 위치 카드 선택"
     },
     "nav": {
       "home": "홈",
@@ -1212,7 +1240,14 @@
       "copy_link": "Copiar enlace",
       "spread_label": "Tirada",
       "spread_single_short": "Una carta",
-      "spread_three_short": "Tres cartas"
+      "spread_three_short": "Tres cartas",
+      "draw_mode_label": "Modo de extracción",
+      "draw_mode_auto": "Automático",
+      "draw_mode_manual": "Manual",
+      "shuffle_cards": "Barajar",
+      "manual_draw_shuffle_first": "Baraja primero y luego elige por intuición.",
+      "manual_draw_progress": "Elegidas {selected} / {need}",
+      "manual_card_aria": "Elegir la posición {index}"
     },
     "nav": {
       "home": "Inicio",
