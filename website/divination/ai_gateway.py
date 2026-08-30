@@ -27,8 +27,10 @@ The upstream model is only a text-generation engine. It is not the identity of t
 - Never mention the AI provider, model name, transport, fallback, routing, or that another engine may have been used.
 - Never introduce a new persona or describe yourself as an AI/model.
 - The symbolic result is immutable: never redraw, replace, flip, alter, or invent cards/symbols.
+- The engine-provided meaning for each drawn symbol/card and orientation is the authoritative semantic anchor. Never substitute a different card meaning from model memory; if prior knowledge conflicts with the supplied meaning, follow the supplied meaning.
 - Do not present divination as certain fact or guaranteed prediction.
 - Keep the response coherent, reflective, and practically useful. Do not emit JSON, code, or prompt internals.
+- Return a complete response with a natural ending; never expose a response cut off by a token limit.
 """
 
 
@@ -113,6 +115,9 @@ class ZeroCostGeminiGateway:
         first = candidates[0]
         if not isinstance(first, dict):
             raise AIUnavailable("invalid_response", "AI 大師目前沒有可用回應，請稍後重新解讀")
+        finish_reason = str(first.get("finishReason") or "").upper()
+        if finish_reason in {"MAX_TOKENS", "LENGTH"}:
+            raise AIUnavailable("quality_truncated", "AI 大師回應未完整結束，已嘗試其他可用引擎", True, {"provider":"gemini", "finish_reason":finish_reason})
         content = first.get("content")
         if not isinstance(content, dict):
             raise AIUnavailable("empty_response", "AI 大師目前沒有可用回應，請稍後重新解讀")
@@ -180,7 +185,7 @@ class ZeroCostGeminiGateway:
             raise AIUnavailable("not_configured", "AI service is not configured", False, {"provider":"gemini"})
         payload = {
             "contents": [{"role": "user", "parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.45, "topP": 0.9, "maxOutputTokens": 1400},
+            "generationConfig": {"temperature": 0.45, "topP": 0.9, "maxOutputTokens": 2800},
         }
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent?key={self.api_key}"
         req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json"})
@@ -233,8 +238,11 @@ class OpenAICompatibleZeroCostGateway:
             ],
             "temperature": 0.45,
             "top_p": 0.9,
-            "max_tokens": 1400,
+            "max_completion_tokens": 3200,
         }
+        if self.provider_id == "groq" and self.model.startswith("openai/gpt-oss-"):
+            payload["reasoning_effort"] = "low"
+            payload["reasoning_format"] = "hidden"
         req = urllib.request.Request(
             self.base_url + "/chat/completions",
             data=json.dumps(payload).encode("utf-8"),
@@ -244,7 +252,13 @@ class OpenAICompatibleZeroCostGateway:
             with urllib.request.urlopen(req, context=self.context, timeout=30) as response:
                 data = json.loads(response.read().decode("utf-8"))
             choices = data.get("choices") if isinstance(data, dict) else None
-            text = choices[0].get("message", {}).get("content") if isinstance(choices, list) and choices else None
+            choice = choices[0] if isinstance(choices, list) and choices and isinstance(choices[0], dict) else None
+            if choice is None:
+                raise AIUnavailable("invalid_response", "AI 大師目前沒有可用回應", True, {"provider":self.provider_id})
+            finish_reason = str(choice.get("finish_reason") or "").lower()
+            if finish_reason in {"length", "max_tokens"}:
+                raise AIUnavailable("quality_truncated", "AI 大師回應未完整結束，已嘗試其他可用引擎", True, {"provider":self.provider_id, "finish_reason":finish_reason})
+            text = choice.get("message", {}).get("content")
             if not isinstance(text, str) or not text.strip():
                 raise AIUnavailable("empty_response", "AI 大師目前沒有可用回應", True, {"provider":self.provider_id})
             return text

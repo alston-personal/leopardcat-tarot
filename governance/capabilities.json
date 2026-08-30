@@ -122,6 +122,21 @@
         "website/divination/ai_gateway.py",
         "website/tests/test_provider_pool_quality.py"
       ]
+    },
+    "ai.semantic-grounding-complete-output": {
+      "status": "protected",
+      "owner": "divination",
+      "contract": [
+        "Engine-provided selected meanings and orientations are authoritative semantic anchors; providers may contextualize them but must not substitute a different card or symbol meaning from model memory.",
+        "Provider responses that terminate because of a token/completion length limit must be rejected before display and may trigger the next approved zero-cost provider.",
+        "Reasoning-model completion budgets must leave sufficient room for the visible final reading, and provider-specific reasoning controls may be normalized without changing the Persona or symbolic result.",
+        "A provider switch must preserve the same compiled semantic grounding and completion contract."
+      ],
+      "evidence": [
+        "website/divination/ai_gateway.py",
+        "website/divination/personas.py",
+        "website/tests/test_semantic_grounding_complete_output.py"
+      ]
     }
   }
 }
