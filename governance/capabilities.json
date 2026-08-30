@@ -137,6 +137,21 @@
         "website/divination/personas.py",
         "website/tests/test_semantic_grounding_complete_output.py"
       ]
+    },
+    "sharing.deck-driven-spreads": {
+      "status": "protected",
+      "owner": "website",
+      "contract": [
+        "Share-card rendering resolves card faces from the active Deck Module instead of assuming LeopardCat built-in asset paths.",
+        "A three-card Tarot reading renders all three drawn cards in reading order, including each card position and upright/reversed orientation.",
+        "Custom decks and future Deck Modules inherit the same share renderer when they expose cards through the public deck contract.",
+        "Single-card sharing remains supported and compatible with the existing share-card experience."
+      ],
+      "evidence": [
+        "website/main.js",
+        "website/style.css",
+        "website/tests/test_deck_driven_share_spreads.py"
+      ]
     }
   }
 }

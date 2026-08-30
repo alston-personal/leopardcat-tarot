@@ -687,6 +687,71 @@ function typeWriterHTML(element, html, speed = 20, onComplete) {
 let lastShareFile = null;
 let lastShareText = "";
 
+function getShareCardTitle(card, lang = window.currentLang) {
+    if (!card) return '';
+    return card.title?.[lang] || card.title?.['zh-TW'] || card.title?.zh || card.title?.en || card.id || '';
+}
+
+function getShareCardImage(card, deckId = window.activeDeckId || 'leopardcat') {
+    if (!card) return '';
+    return card.image || card.main_image || card.output || (deckId === 'leopardcat' && card.id ? `art/renders/${card.id}.webp` : '');
+}
+
+async function resolveShareCardsFromDeck() {
+    const state = window.currentReadingState || {};
+    const deckId = state.deck_id || window.activeDeckId || 'leopardcat';
+    let deck = null;
+    try {
+        const response = await fetch(`/api/v1/decks/${encodeURIComponent(deckId)}`, { cache: 'no-cache' });
+        if (response.ok) deck = await response.json();
+    } catch (error) {
+        console.warn('[Share] deck snapshot unavailable, using loaded deck data', error);
+    }
+    const deckCards = Array.isArray(deck?.cards) && deck.cards.length ? deck.cards : (Array.isArray(window.cardData) ? window.cardData : []);
+    const specs = Array.isArray(state.cards) && state.cards.length
+        ? state.cards
+        : [{ card_id: state.card_id || currentDrawnCard?.id, orientation: state.orientation || 'upright' }];
+    const cards = specs.map((spec, index) => {
+        const id = spec.card_id || spec.id;
+        const card = deckCards.find(item => item.id === id) || (index === 0 ? currentDrawnCard : null) || spec;
+        return {
+            card,
+            card_id: id || card?.id,
+            orientation: spec.orientation || 'upright',
+            position: spec.position || '',
+            position_label: spec.position_label || ''
+        };
+    }).filter(item => item.card && getShareCardImage(item.card, deckId));
+    if (!cards.length && currentDrawnCard) {
+        cards.push({ card: currentDrawnCard, card_id: currentDrawnCard.id, orientation: state.orientation || 'upright', position: '', position_label: '' });
+    }
+    return { deck: deck || { deck_id: deckId, name: window.activeBrand?.app_name || deckId, cards: deckCards }, deckId, cards };
+}
+
+function renderShareCards(frame, shareContext) {
+    const entries = shareContext.cards;
+    frame.classList.toggle('share-three-card', entries.length > 1);
+    frame.innerHTML = '';
+    entries.forEach((entry, index) => {
+        const slot = document.createElement('div');
+        slot.className = 'share-card-slot';
+        const img = document.createElement('img');
+        if (index === 0) img.id = 'share-card-img'; // compatibility for older selectors/tests
+        img.className = 'share-card-image';
+        img.src = getShareCardImage(entry.card, shareContext.deckId);
+        img.alt = getShareCardTitle(entry.card);
+        img.style.transform = entry.orientation === 'reversed' ? 'rotate(180deg)' : '';
+        slot.appendChild(img);
+        const caption = document.createElement('div');
+        caption.className = 'share-card-caption';
+        const position = entry.position_label || entry.position;
+        const orientation = entry.orientation === 'reversed' ? uiText('orientation_reversed', 'Reversed') : uiText('orientation_upright', 'Upright');
+        caption.textContent = `${position ? position + ' · ' : ''}${getShareCardTitle(entry.card)} · ${orientation}`;
+        slot.appendChild(caption);
+        frame.appendChild(slot);
+    });
+}
+
 // 📸 Share Image Generator
 window.generateShareImage = async function() {
     if (!currentDrawnCard) return;
@@ -708,17 +773,23 @@ window.generateShareImage = async function() {
 
     const template = document.getElementById('share-card-template');
     
-    // Fill data
+    // Deck-driven share composition: resolve this reading against the authoritative active deck.
     const shareState = window.currentReadingState || {};
-    const shareOrientation = shareState.orientation || 'upright';
-    const shareImage = currentDrawnCard.image || `art/renders/${currentDrawnCard.id}.webp`;
-    const shareImgEl = document.getElementById('share-card-img');
-    shareImgEl.src = shareImage;
-    shareImgEl.style.transform = shareOrientation === 'reversed' ? 'rotate(180deg)' : '';
-    const titleZh = currentDrawnCard.title?.zh || currentDrawnCard.title?.['zh-TW'] || currentDrawnCard.title?.en || currentDrawnCard.id;
-    const titleEn = currentDrawnCard.title?.en || titleZh;
-    const orientationLabel = shareOrientation === 'reversed' ? uiText('orientation_reversed', 'Reversed') : uiText('orientation_upright', 'Upright');
-    document.getElementById('share-card-title').innerText = `【${titleZh} / ${titleEn}】 · ${orientationLabel}`;
+    const shareContext = await resolveShareCardsFromDeck();
+    const shareEntries = shareContext.cards;
+    if (!shareEntries.length) throw new Error('SHARE_CARDS_NOT_FOUND');
+    const shareFrame = template.querySelector('.share-card-frame');
+    renderShareCards(shareFrame, shareContext);
+    const titleParts = shareEntries.map(entry => getShareCardTitle(entry.card));
+    if (shareEntries.length === 1) {
+        const entry = shareEntries[0];
+        const titleZh = entry.card.title?.zh || entry.card.title?.['zh-TW'] || entry.card.title?.en || entry.card_id;
+        const titleEn = entry.card.title?.en || titleZh;
+        const orientationLabel = entry.orientation === 'reversed' ? uiText('orientation_reversed', 'Reversed') : uiText('orientation_upright', 'Upright');
+        document.getElementById('share-card-title').innerText = `【${titleZh} / ${titleEn}】 · ${orientationLabel}`;
+    } else {
+        document.getElementById('share-card-title').innerText = `【${uiText('spread_three_short', 'Three Cards')}】 ${titleParts.join(' · ')}`;
+    }
     document.getElementById('share-seeker-name').innerText = localStorage.getItem('userDharmaName') || 'Seeker';
     document.getElementById('share-date').innerText = new Date().toLocaleDateString();
     
@@ -754,17 +825,17 @@ window.generateShareImage = async function() {
     const quote = bestQuote || window.brandText('default_quote', uiText('default_quote', 'Listen to the cards, and to yourself.'));
     document.getElementById('share-quote').innerText = quote;
 
-    // 🕵️ Stability: Wait for image load + small layout settling delay
-    const shareCardImg = document.getElementById('share-card-img');
+    // 🕵️ Stability: wait for every card face in the spread, not only the first card.
+    const shareCardImages = Array.from(template.querySelectorAll('.share-card-frame img'));
     await Promise.race([
-        new Promise(resolve => {
-            if (shareCardImg.complete) resolve();
+        Promise.all(shareCardImages.map(img => new Promise(resolve => {
+            if (img.complete) resolve();
             else {
-                shareCardImg.onload = resolve;
-                shareCardImg.onerror = resolve; // Don't hang
+                img.onload = resolve;
+                img.onerror = resolve; // Don't hang; html2canvas still renders the remaining deck faces.
             }
-        }),
-        new Promise(resolve => setTimeout(resolve, 5000)) // Force continue after 5s
+        }))),
+        new Promise(resolve => setTimeout(resolve, 5000))
     ]);
     await new Promise(resolve => setTimeout(resolve, 300)); // Layout settling delay
 
@@ -799,10 +870,13 @@ window.generateShareImage = async function() {
         document.getElementById('share-site-tag').innerText = window.brandText('share_site_tag', uiCommon.share_site_tag);
         document.getElementById('share-date').innerText = new Date().toLocaleDateString(getAILanguageTag());
 
-        const shareTitle = currentDrawnCard.title?.[shareLang] || currentDrawnCard.title?.['zh-TW'] || currentDrawnCard.title?.zh || currentDrawnCard.title?.en || currentDrawnCard.id;
-        const orientationText = (window.currentReadingState?.orientation === 'reversed') ? (shareLang === 'zh' ? '（逆位）' : ' (Reversed)') : '';
+        const shareCardText = shareEntries.map(entry => {
+            const title = getShareCardTitle(entry.card, shareLang);
+            const reversed = entry.orientation === 'reversed' ? (shareLang === 'zh' ? '（逆位）' : ' (Reversed)') : '';
+            return `${title}${reversed}`;
+        }).join(shareLang === 'zh' ? '、' : ', ');
         const brandTemplate = window.brandText('share_copy_template', common.share_copy_template);
-        const shareMsg = brandTemplate.replace('{card}', `${shareTitle}${orientationText}`);
+        const shareMsg = brandTemplate.replace('{card}', shareCardText);
         // Shared deep link preserves deck + theme + card + orientation.
         const shareU = new URL(window.location.origin + window.location.pathname);
         if (window.activeDeckId && window.activeDeckId !== 'leopardcat') shareU.searchParams.set('deck', window.activeDeckId);
