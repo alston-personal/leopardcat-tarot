@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,113 +11,108 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>把你的牌，變成自己的線上占卜</h1>
-  <p class="lead">不用懂程式。一次選取所有牌圖，填上牌名與牌義，按「發布」就完成。</p>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><a href="/" data-creator-i18n="home">返回首頁</a><select id="creator-language" aria-label="Language" style="width:auto;padding:8px 12px"></select></div>
+  <h1 data-creator-i18n="heading">把你的牌，變成自己的線上占卜</h1>
+  <p class="lead" data-creator-i18n="lead">不用懂程式。一次選取所有牌圖，填上牌名與牌義，按「發布」就完成。</p>
 
   <section class="card" id="published-history-card">
-    <h2>我發布的牌組</h2>
-    <p class="muted">這裡只記在你目前這個瀏覽器，不會公開列出所有人的牌組。之後忘記網址，可以回到這頁找。</p>
+    <h2 data-creator-i18n="history_title">我發布的牌組</h2>
+    <p class="muted" data-creator-i18n="history_note">這裡只記在你目前這個瀏覽器，不會公開列出所有人的牌組。之後忘記網址，可以回到這頁找。</p>
     <div id="published-history"></div>
   </section>
 
   <section class="card">
-    <h2>1. 這副牌叫什麼？</h2>
+    <h2 data-creator-i18n="step1">1. 這副牌叫什麼？</h2>
     <div class="row">
-      <div><label>牌組名稱</label><input id="deck-name" placeholder="例如：月光花園塔羅"></div>
-      <div><label>創作者名稱（選填）</label><input id="creator" placeholder="你的名字／筆名"></div>
+      <div><label data-creator-i18n="deck_name">牌組名稱</label><input id="deck-name" placeholder="例如：月光花園塔羅" data-creator-placeholder="deck_name_ph"></div>
+      <div><label data-creator-i18n="creator_name">創作者名稱（選填）</label><input id="creator" placeholder="你的名字／筆名" data-creator-placeholder="creator_ph"></div>
     </div>
-    <label>一句介紹（選填）</label><textarea id="description" placeholder="這副牌想陪伴大家看見什麼？"></textarea>
-    <label>你的專屬網址名稱（選填）</label>
+    <label data-creator-i18n="description">一句介紹（選填）</label><textarea id="description" placeholder="這副牌想陪伴大家看見什麼？" data-creator-placeholder="description_ph"></textarea>
+    <label data-creator-i18n="slug">你的專屬網址名稱（選填）</label>
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-      <span class="muted">?deck=</span><input id="deck-slug" style="max-width:360px" placeholder="例如 moon-garden" autocomplete="off" spellcheck="false">
+      <span class="muted">?deck=</span><input id="deck-slug" style="max-width:360px" placeholder="例如 moon-garden" data-creator-placeholder="slug_ph" autocomplete="off" spellcheck="false">
     </div>
-    <p class="muted" style="margin-bottom:4px">留空會自動產生。想自己指定時，只需英文小寫、數字與 -，共 3–48 個字元。</p>
+    <p class="muted" style="margin-bottom:4px" data-creator-i18n="slug_note">留空會自動產生。想自己指定時，只需英文小寫、數字與 -，共 3–48 個字元。</p>
     <p id="slug-status" class="muted" aria-live="polite"></p>
   </section>
 
   <section class="card">
-    <h2>2. 一次選取所有牌圖</h2>
+    <h2 data-creator-i18n="step2">2. 一次選取所有牌圖</h2>
     <div class="drop">
-      <p><strong>22 張、78 張或其他張數都可以。</strong></p>
-      <p class="muted">支援 JPG、PNG、WebP。建議先把檔名改成牌名，系統會自動帶入。</p>
+      <p><strong data-creator-i18n="image_count_hint">22 張、78 張或其他張數都可以。</strong></p>
+      <p class="muted" data-creator-i18n="image_format_hint">支援 JPG、PNG、WebP。建議先把檔名改成牌名，系統會自動帶入。</p>
       <input id="images" type="file" accept="image/jpeg,image/png,image/webp" multiple>
     </div>
     <p id="count" class="muted"></p>
-    <label style="display:flex;gap:10px;align-items:center;font-weight:600"><input id="reversals" type="checkbox" style="width:auto"> 這副牌有「逆位牌義」</label>
+    <label style="display:flex;gap:10px;align-items:center;font-weight:600"><input id="reversals" type="checkbox" style="width:auto"> <span data-creator-i18n="reversals">這副牌有「逆位牌義」</span></label>
   </section>
 
   <section id="cards-section" class="card hidden">
-    <h2>3. 確認每張牌</h2>
-    <p class="muted">牌名已用圖片檔名自動填好。你只需要補上牌義；有逆位時再多填一格。</p>
+    <h2 data-creator-i18n="step3">3. 確認每張牌</h2>
+    <p class="muted" data-creator-i18n="card_hint">牌名已用圖片檔名自動填好。你只需要補上牌義；有逆位時再多填一格。</p>
     <div id="cards" class="cards"></div>
   </section>
 
   <section class="card">
-    <h2>4. 選一個頁面風格（選填）</h2>
-    <p class="muted">不想調整就保持「靈山石虎」。也可以換成內建風格，或放一張自己的背景圖。</p>
-    <label>頁面風格</label>
+    <h2 data-creator-i18n="step4">4. 選一個頁面風格（選填）</h2>
+    <p class="muted" data-creator-i18n="theme_hint">不想調整就保持「靈山石虎」。也可以換成內建風格，或放一張自己的背景圖。</p>
+    <label data-creator-i18n="theme">頁面風格</label>
     <select id="theme-preset" style="width:100%;padding:12px;border:1px solid #cfc4b5;border-radius:10px;font:inherit">
-      <option value="leopardcat">靈山石虎</option><option value="midnight">午夜星空</option><option value="minimal-light">極簡晨光</option><option value="custom">自己設計</option>
+      <option value="leopardcat" data-creator-i18n="theme_leopardcat">靈山石虎</option><option value="midnight" data-creator-i18n="theme_midnight">午夜星空</option><option value="minimal-light" data-creator-i18n="theme_minimal">極簡晨光</option><option value="custom" data-creator-i18n="theme_custom">自己設計</option>
     </select>
     <div id="theme-custom" class="hidden">
       <div class="row">
-        <div><label>主色</label><input id="theme-accent" type="color" value="#d4af37" style="height:48px"></div>
-        <div><label>背景色</label><input id="theme-bg" type="color" value="#0b0b10" style="height:48px"></div>
+        <div><label data-creator-i18n="accent">主色</label><input id="theme-accent" type="color" value="#d4af37" style="height:48px"></div>
+        <div><label data-creator-i18n="background_color">背景色</label><input id="theme-bg" type="color" value="#0b0b10" style="height:48px"></div>
       </div>
-      <label>背景圖片（選填）</label><input id="theme-background" type="file" accept="image/jpeg,image/png,image/webp">
-      <label>牌背圖片（選填）</label><input id="theme-card-back" type="file" accept="image/jpeg,image/png,image/webp">
-      <p class="muted">直接選手機或電腦裡的圖片即可，系統會自動縮小。</p>
+      <label data-creator-i18n="background_image">背景圖片（選填）</label><input id="theme-background" type="file" accept="image/jpeg,image/png,image/webp">
+      <label data-creator-i18n="card_back">牌背圖片（選填）</label><input id="theme-card-back" type="file" accept="image/jpeg,image/png,image/webp">
+      <p class="muted" data-creator-i18n="image_auto_resize">直接選手機或電腦裡的圖片即可，系統會自動縮小。</p>
     </div>
   </section>
 
   <section class="card">
-    <h2>5. 選擇預設解牌風格</h2>
-    <p class="muted">訪客仍可以在占卜頁自行切換。這裡只決定你的牌組第一次開啟時，由誰來解牌。</p>
+    <h2 data-creator-i18n="step5">5. 選擇預設解牌風格</h2>
+    <p class="muted" data-creator-i18n="persona_hint">訪客仍可以在占卜頁自行切換。這裡只決定你的牌組第一次開啟時，由誰來解牌。</p>
     <div id="persona-options" class="persona-options">
-      <p class="muted">正在載入可用的解牌風格…</p>
+      <p class="muted" data-creator-i18n="persona_loading">正在載入可用的解牌風格…</p>
     </div>
     <p id="persona-status" class="muted" aria-live="polite"></p>
     <details id="custom-persona-builder" style="margin-top:16px;border-top:1px solid #eee3d4;padding-top:14px">
-      <summary style="cursor:pointer"><strong>＋ 建立我的解牌師</strong> <span class="muted">（選填）</span></summary>
-      <p class="muted">不用寫提示詞。用自己的話描述這位解牌師，系統會組成安全的 Persona Pack。</p>
+      <summary style="cursor:pointer"><strong data-creator-i18n="persona_builder">＋ 建立我的解牌師</strong> <span class="muted" data-creator-i18n="optional">（選填）</span></summary>
+      <p class="muted" data-creator-i18n="persona_builder_hint">不用寫提示詞。用自己的話描述這位解牌師，系統會組成安全的 Persona Pack。</p>
       <div class="row">
-        <div><label>解牌師名稱</label><input id="persona-name" placeholder="例如：月光園丁"></div>
-        <div><label>一句角色介紹</label><input id="persona-role" placeholder="例如：溫柔但不逃避現實的夜間引路人"></div>
+        <div><label data-creator-i18n="persona_name">解牌師名稱</label><input id="persona-name" placeholder="例如：月光園丁" data-creator-placeholder="persona_name_ph"></div>
+        <div><label data-creator-i18n="persona_role">一句角色介紹</label><input id="persona-role" placeholder="例如：溫柔但不逃避現實的夜間引路人" data-creator-placeholder="persona_role_ph"></div>
       </div>
-      <label>說話風格</label>
-      <textarea id="persona-voice" placeholder="每行一個特色，例如：
-溫柔、簡潔
-先同理，再指出盲點
-避免命令式語氣"></textarea>
-      <label>解讀原則</label>
-      <textarea id="persona-principles" placeholder="每行一條，例如：
-先讀牌面，再連回提問
-同時說明機會與風險
-最後給一個今天能做的行動"></textarea>
-      <label>世界觀／專長（選填）</label>
-      <textarea id="persona-worldview" placeholder="例如：熟悉植物、季節循環與園藝隱喻"></textarea>
-      <label>每次回答怎麼收尾？（選填）</label>
-      <input id="persona-closing" placeholder="例如：最後留下一句短短的月光提醒">
-      <p class="muted">抽牌結果、安全規則與隱私規則由平台固定保護，你的設定不會覆蓋它們。</p>
-      <button id="create-persona" type="button" class="btn secondary">建立這位解牌師</button>
+      <label data-creator-i18n="voice">說話風格</label>
+      <textarea id="persona-voice" placeholder="" data-creator-placeholder="voice_ph"></textarea>
+      <label data-creator-i18n="principles">解讀原則</label>
+      <textarea id="persona-principles" placeholder="" data-creator-placeholder="principles_ph"></textarea>
+      <label data-creator-i18n="worldview">世界觀／專長（選填）</label>
+      <textarea id="persona-worldview" placeholder="例如：熟悉植物、季節循環與園藝隱喻" data-creator-placeholder="worldview_ph"></textarea>
+      <label data-creator-i18n="closing">每次回答怎麼收尾？（選填）</label>
+      <input id="persona-closing" placeholder="例如：最後留下一句短短的月光提醒" data-creator-placeholder="closing_ph">
+      <p class="muted" data-creator-i18n="persona_safety">抽牌結果、安全規則與隱私規則由平台固定保護，你的設定不會覆蓋它們。</p>
+      <button id="create-persona" type="button" class="btn secondary" data-creator-i18n="create_persona">建立這位解牌師</button>
       <p id="persona-create-status" class="muted" aria-live="polite"></p>
-      <div id="persona-management" class="hidden" style="margin-top:12px;padding:12px;border-radius:12px;background:#fff7e8"><strong>請保存解牌師管理連結</strong><p class="muted">這是跨裝置找回與修改的唯一鑰匙，只顯示在你的瀏覽器。</p><a id="persona-manage-link" style="word-break:break-all"></a><br><button id="copy-persona-manage" type="button" class="btn secondary" style="margin-top:8px">複製管理連結</button></div>
+      <div id="persona-management" class="hidden" style="margin-top:12px;padding:12px;border-radius:12px;background:#fff7e8"><strong data-creator-i18n="save_persona_link">請保存解牌師管理連結</strong><p class="muted" data-creator-i18n="management_key_note">這是跨裝置找回與修改的唯一鑰匙，只顯示在你的瀏覽器。</p><a id="persona-manage-link" style="word-break:break-all"></a><br><button id="copy-persona-manage" type="button" class="btn secondary" style="margin-top:8px" data-creator-i18n="copy_manage">複製管理連結</button></div>
     </details>
   </section>
 
   <section class="card">
-    <h2>6. 發布</h2>
-    <p class="muted">發布後會得到一個專屬網址。你的訪客不需要登入即可使用這副牌占卜。</p>
-    <button id="publish" class="btn">發布我的占卜頁</button>
+    <h2 data-creator-i18n="step6">6. 發布</h2>
+    <p class="muted" data-creator-i18n="publish_hint">發布後會得到一個專屬網址。你的訪客不需要登入即可使用這副牌占卜。</p>
+    <button id="publish" class="btn" data-creator-i18n="publish">發布我的占卜頁</button>
     <p id="status" class="muted"></p>
   </section>
 
   <section id="done" class="card success hidden">
-    <h2>完成 🎉</h2>
-    <p>你的牌組已經可以占卜：</p>
+    <h2 data-creator-i18n="done">完成 🎉</h2>
+    <p data-creator-i18n="ready">你的牌組已經可以占卜：</p>
     <p><a id="share-link" target="_blank"></a></p>
-    <button id="copy" class="btn secondary">複製網址</button>
-    <div id="deck-management" style="margin-top:18px;padding:14px;border-radius:12px;background:#fff7e8"><strong>🔑 請另外保存管理連結</strong><p class="muted">公開占卜網址可以分享；管理連結不要公開。換手機或電腦時，只要開啟這條連結就能找回管理權。</p><p><a id="deck-manage-link" style="word-break:break-all"></a></p><button id="copy-deck-manage" type="button" class="btn secondary">複製管理連結</button></div>
+    <button id="copy" class="btn secondary" data-creator-i18n="copy_url">複製網址</button>
+    <div id="deck-management" style="margin-top:18px;padding:14px;border-radius:12px;background:#fff7e8"><strong data-creator-i18n="save_deck_link">🔑 請另外保存管理連結</strong><p class="muted" data-creator-i18n="deck_key_note">公開占卜網址可以分享；管理連結不要公開。換手機或電腦時，只要開啟這條連結就能找回管理權。</p><p><a id="deck-manage-link" style="word-break:break-all"></a></p><button id="copy-deck-manage" type="button" class="btn secondary" data-creator-i18n="copy_manage">複製管理連結</button></div>
   </section>
 </div>
 <script src="/creator.js"></script>

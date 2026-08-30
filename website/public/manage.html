@@ -1,33 +1,33 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>管理我的占卜內容</title><link rel="stylesheet" href="/read.css"><style>.manage-shell{width:min(760px,calc(100% - 28px));margin:auto;padding:56px 0 100px}.manage-panel{padding:28px}.manage-panel label{display:grid;gap:7px;margin:16px 0;font-weight:750}.manage-panel input,.manage-panel textarea,.manage-panel select{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:white}.manage-panel textarea{min-height:100px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.danger{background:#8f352e!important;color:#fff}.token-box{background:#f5eee5;border-radius:14px;padding:14px;word-break:break-all}.notice{color:var(--muted);line-height:1.7}.resource-chip{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:5px 9px;font-size:.75rem;color:var(--muted)}/* Public control geometry contract */ button,select,input,textarea,.btn{border-radius:18px!important}
   </style></head>
 <body>
-<header class="topbar"><a class="brand" href="/">Divination OS</a><nav><a href="/read.html">占卜</a><a href="/create.html">建立</a></nav></header>
+<header class="topbar"><a class="brand" href="/">Divination OS</a><nav><a href="/read.html" data-manage-i18n="reading">占卜</a><a href="/create.html" data-manage-i18n="create">建立</a><select id="manage-language" aria-label="Language"></select></nav></header>
 <main class="manage-shell">
-  <section class="intro"><p class="eyebrow">CREATOR OWNERSHIP</p><h1>管理你的占卜內容</h1><p>不需要帳號。管理連結本身就是鑰匙；請像密碼一樣保存，不要公開分享。</p></section>
-  <section id="missing" class="panel manage-panel hidden"><h2>需要管理連結</h2><p class="notice">請開啟發布完成時保存的完整管理連結。金鑰放在網址的 <code>#token=...</code> 後方，不會傳進一般伺服器紀錄。</p></section>
-  <section id="loading" class="panel manage-panel"><p>正在驗證管理權限…</p></section>
+  <section class="intro"><p class="eyebrow">CREATOR OWNERSHIP</p><h1 data-manage-i18n="heading">管理你的占卜內容</h1><p data-manage-i18n="intro">不需要帳號。管理連結本身就是鑰匙；請像密碼一樣保存，不要公開分享。</p></section>
+  <section id="missing" class="panel manage-panel hidden"><h2 data-manage-i18n="need_link">需要管理連結</h2><p class="notice" data-manage-i18n="need_link_note">請開啟發布完成時保存的完整管理連結。金鑰放在網址的 #token=... 後方，不會傳進一般伺服器紀錄。</p></section>
+  <section id="loading" class="panel manage-panel"><p data-manage-i18n="validating">正在驗證管理權限…</p></section>
   <section id="editor" class="panel manage-panel hidden">
     <span id="resource-chip" class="resource-chip"></span><h2 id="resource-title"></h2><p id="resource-meta" class="notice"></p>
     <div id="deck-fields" class="hidden">
-      <label>牌組名稱<input id="deck-name"></label>
-      <label>創作者名稱<input id="deck-creator"></label>
-      <label>一句介紹<textarea id="deck-description"></textarea></label>
-      <label>預設解讀師<input id="deck-persona" placeholder="master"></label>
+      <label><span data-manage-i18n="deck_name">牌組名稱</span><input id="deck-name"></label>
+      <label><span data-manage-i18n="creator_name">創作者名稱</span><input id="deck-creator"></label>
+      <label><span data-manage-i18n="description">一句介紹</span><textarea id="deck-description"></textarea></label>
+      <label><span data-manage-i18n="default_reader">預設解讀師</span><input id="deck-persona" placeholder="master"></label>
     </div>
     <div id="persona-fields" class="hidden">
-      <label>解牌師名稱<input id="persona-name"></label>
-      <label>一句角色介紹<input id="persona-role"></label>
-      <label>說話風格<textarea id="persona-voice"></textarea></label>
-      <label>解讀原則<textarea id="persona-principles"></textarea></label>
-      <label>世界觀／專長<textarea id="persona-worldview"></textarea></label>
-      <label>收尾方式<input id="persona-closing"></label>
+      <label><span data-manage-i18n="persona_name">解牌師名稱</span><input id="persona-name"></label>
+      <label><span data-manage-i18n="persona_role">一句角色介紹</span><input id="persona-role"></label>
+      <label><span data-manage-i18n="voice">說話風格</span><textarea id="persona-voice"></textarea></label>
+      <label><span data-manage-i18n="principles">解讀原則</span><textarea id="persona-principles"></textarea></label>
+      <label><span data-manage-i18n="worldview">世界觀／專長</span><textarea id="persona-worldview"></textarea></label>
+      <label><span data-manage-i18n="closing">收尾方式</span><input id="persona-closing"></label>
     </div>
-    <div class="actions"><button id="save" class="primary" style="width:auto;margin:0">儲存修改</button><button id="rotate" class="secondary">更換管理金鑰</button><button id="delete" class="secondary danger">刪除</button></div>
+    <div class="actions"><button id="save" class="primary" style="width:auto;margin:0" data-manage-i18n="save">儲存修改</button><button id="rotate" class="secondary" data-manage-i18n="rotate">更換管理金鑰</button><button id="delete" class="secondary danger" data-manage-i18n="delete">刪除</button></div>
     <p id="status" class="status" aria-live="polite"></p>
   </section>
-  <section id="rotated" class="panel manage-panel hidden"><h2>新的管理連結</h2><p class="notice">舊連結已失效。請立即保存這條新連結；伺服器不會保存明文金鑰。</p><div class="token-box"><a id="new-manage-link"></a></div><button id="copy-new" class="secondary" style="margin-top:14px">複製新管理連結</button></section>
+  <section id="rotated" class="panel manage-panel hidden"><h2 data-manage-i18n="new_link">新的管理連結</h2><p class="notice" data-manage-i18n="new_link_note">舊連結已失效。請立即保存這條新連結；伺服器不會保存明文金鑰。</p><div class="token-box"><a id="new-manage-link"></a></div><button id="copy-new" class="secondary" style="margin-top:14px" data-manage-i18n="copy_new">複製新管理連結</button></section>
 </main>
 <script src="/manage.js"></script>
 </body></html>
