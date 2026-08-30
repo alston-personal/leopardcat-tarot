@@ -1,0 +1,40 @@
+name: Compile Public UI Integrity
+
+on:
+  push:
+    branches: [fix/public-ui-integrity]
+    paths:
+      - '.github/workflows/patch-public-ui-integrity.yml'
+      - 'tools/compile_public_ui_integrity.py'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and validate product patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install -q pytest
+          python3 tools/compile_public_ui_integrity.py
+          cd website
+          python3 -m pytest -q tests/test_public_ui_integrity.py tests/test_ui_locales.py tests/test_runtime_i18n_parity.py tests/test_mobile_nav_reachability.py
+          node --check main.js
+          node --check public/read.js
+          cd ..
+          python3 scripts/check_capability_regressions.py
+      - name: Commit product patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/index.html website/main.js website/style.css website/public/locales_v10.json website/public/read.css website/public/create.html website/public/manage.html website/tests/test_public_ui_integrity.py
+          git diff --cached --quiet && exit 0
+          git commit -m 'fix(ui): restore spreads localize dynamic states and unify controls'
+          git push origin HEAD:fix/public-ui-integrity
