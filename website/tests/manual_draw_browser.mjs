@@ -130,8 +130,15 @@ try {
   await mobile.locator('[data-draw-mode="manual"]').click();
   await mobile.locator('#btn-manual-shuffle').click();
   assert.equal(await mobile.locator('#manual-card-pool .manual-card-back').count(),78);
-  const overflow = await mobile.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-  assert.ok(overflow <= 1, `manual draw horizontal overflow ${overflow}px`);
+  const mobileMetrics = await mobile.evaluate(() => {
+    const width = document.documentElement.clientWidth;
+    const offenders = [...document.querySelectorAll('body *')].map(el => {
+      const r = el.getBoundingClientRect();
+      return { tag:el.tagName, id:el.id, cls:String(el.className || '').slice(0,120), left:r.left, right:r.right, width:r.width };
+    }).filter(x => x.right > width + 1 || x.left < -1).slice(0,20);
+    return { overflow:document.documentElement.scrollWidth-width, width, offenders };
+  });
+  assert.ok(mobileMetrics.overflow <= 1, `manual draw horizontal overflow ${mobileMetrics.overflow}px offenders=${JSON.stringify(mobileMetrics.offenders)}`);
   const poolBox = await mobile.locator('#manual-card-pool').boundingBox();
   assert.ok(poolBox && poolBox.width <= 375);
   console.log('browser_manual_mobile_layout=passed');
