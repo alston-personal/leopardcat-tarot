@@ -1,0 +1,28 @@
+name: Fix gallery mobile overflow
+
+on:
+  push:
+    branches: [feature/shuffle-manual-draw]
+    paths:
+      - '.github/workflows/fix-gallery-mobile-overflow.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/shuffle-manual-draw
+          fetch-depth: 0
+      - name: Contain gallery tabs and self-remove
+        run: |
+          python -c "from pathlib import Path; p=Path('website/style.css'); s=p.read_text(encoding='utf-8'); old='width: 100vw !important;\n    margin-left: -5px !important; /* Offset parent padding */\n    margin-right: -5px !important;'; new='width: 100% !important;\n    max-width: 100% !important;\n    margin-left: 0 !important;\n    margin-right: 0 !important;'; assert old in s; p.write_text(s.replace(old,new,1),encoding='utf-8')"
+          rm -f .github/workflows/fix-gallery-mobile-overflow.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add website/style.css .github/workflows/fix-gallery-mobile-overflow.yml
+          git commit -m 'fix(ui): contain mobile gallery tabs within viewport'
+          git push origin HEAD:feature/shuffle-manual-draw
