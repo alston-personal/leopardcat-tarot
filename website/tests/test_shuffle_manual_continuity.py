@@ -2,6 +2,7 @@ from pathlib import Path
 
 JS = Path('main.js').read_text(encoding='utf-8')
 
+# This contract intentionally covers draw provenance across reload and retry.
 
 def test_reload_state_preserves_draw_provenance():
     block = JS.split('function buildReadingStateFromEnvelope', 1)[1].split('async function restoreReadingAfterReload', 1)[0]
