@@ -1,0 +1,31 @@
+name: Compile Creator Manage I18n
+on:
+  push:
+    branches: [fix/creator-manage-i18n]
+    paths:
+      - '.github/workflows/patch-creator-manage-i18n.yml'
+      - 'tools/compile_creator_manage_i18n.py'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          set -euo pipefail
+          python3 -m pip install -q pytest
+          python3 tools/compile_creator_manage_i18n.py
+          cd website
+          python3 -m pytest -q tests/test_creator_manage_i18n.py tests/test_read_page_i18n.py tests/test_public_ui_integrity.py tests/test_ui_locales.py tests/test_runtime_i18n_parity.py
+          node --check public/creator.js
+          node --check public/manage.js
+          cd ..
+          python3 scripts/check_capability_regressions.py
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/public/create.html website/public/creator.js website/public/manage.html website/public/manage.js website/public/locales_v10.json website/tests/test_creator_manage_i18n.py
+          git diff --cached --quiet && exit 0
+          git commit -m 'fix(i18n): localize creator and management surfaces'
+          git push origin HEAD:fix/creator-manage-i18n
