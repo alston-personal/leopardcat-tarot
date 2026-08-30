@@ -45,6 +45,12 @@ function getLocaleData(lang = window.currentLang) {
     return (window.siteData && window.siteData[resolved]) || {};
 }
 
+function uiText(key, fallback = '', params = {}) {
+    const common = getLocaleData()?.common || {};
+    let value = common[key] ?? fallback;
+    return String(value).replace(/\{(\w+)\}/g, (_, name) => params[name] ?? `{${name}}`);
+}
+
 function getAILanguageTag(lang = window.currentLang) {
     const resolved = resolveLocale(lang);
     return ({ zh: 'zh-TW', en: 'en', ja: 'ja', ko: 'ko', es: 'es' })[resolved] || resolved || 'en';
@@ -193,11 +199,11 @@ function initDharmaIdentity() {
     const nameElem = document.getElementById('user-dharma-name');
     if (nameElem) {
         nameElem.innerText = name;
-        nameElem.title = window.currentLang === 'zh' ? '點擊重修法號' : 'Click to redraw name';
+        nameElem.title = uiText('dharma_redraw_title', 'Click to redraw name');
         nameElem.style.cursor = 'pointer';
         // 🔄 Allow redraw ritual
         nameElem.onclick = () => {
-            if (confirm(window.currentLang === 'zh' ? '是否要重新洗滌靈魂，重修法號？' : 'Redraw your spiritual identity?')) {
+            if (confirm(uiText('dharma_redraw_confirm', 'Redraw your spiritual identity?'))) {
                 localStorage.removeItem('userDharmaName');
                 initDharmaIdentity();
             }
@@ -236,7 +242,7 @@ async function initAllSystems() {
     console.log("Initializing Divination Platform...");
     const loadingOverlay = document.createElement('div');
     loadingOverlay.id = 'initial-loader';
-    loadingOverlay.innerHTML = '<div class="spirit-thinking"><span></span><span></span><span></span></div><p style="color:var(--color-gold);margin-top:10px;font-size:0.8rem;letter-spacing:0.1em;">牌卡體驗載入中...</p>';
+    loadingOverlay.innerHTML = `<div class="spirit-thinking"><span></span><span></span><span></span></div><p style="color:var(--color-gold);margin-top:10px;font-size:0.8rem;letter-spacing:0.1em;">${uiText('loading_cards', 'Loading the card experience...')}</p>`;
     loadingOverlay.style = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#030504;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;transition:opacity 0.8s;';
     document.body.appendChild(loadingOverlay);
 
@@ -299,9 +305,9 @@ async function initAllSystems() {
 
         loadingOverlay.innerHTML = `
             <div style="text-align:center; padding:20px;">
-                <p style="color:#ff6b6b;font-size:0.8rem;">靈力連線不穩 (${errType})</p>
+                <p style="color:#ff6b6b;font-size:0.8rem;">${uiText('init_connection_unstable', 'Spirit connection is unstable')} (${errType})</p>
                 <p style="color:#666;font-size:0.6rem;margin-top:5px;">${errMsg}</p>
-                <button onclick="location.reload()" style="margin-top:15px;background:none;border:1px solid var(--color-gold);color:var(--color-gold);padding:5px 15px;border-radius:15px;font-size:0.7rem;">重新祈願</button>
+                <button onclick="location.reload()" style="margin-top:15px;background:none;border:1px solid var(--color-gold);color:var(--color-gold);padding:5px 15px;border-radius:15px;font-size:0.7rem;">${uiText('retry_ritual', 'Retry ritual')}</button>
             </div>
         `;
     }
@@ -560,8 +566,8 @@ function createCardElement(card, groupId) {
                 <img src="/art/renders/${card.id}.webp" alt="${title}" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
             </div>
             <div class="card-back">
-                <div class="back-content" tabindex="0" aria-label="${title} 牌義，可上下捲動">
-                    <button class="card-flip-back" type="button" aria-label="翻回牌面">↩ 翻回牌面</button>
+                <div class="back-content" tabindex="0" aria-label="${uiText('card_meaning_scroll_aria', `${title} meaning, scroll vertically`, {title})}">
+                    <button class="card-flip-back" type="button" aria-label="${uiText('card_flip_back', 'Flip to card face')}">↩ ${uiText('card_flip_back', 'Flip to card face')}</button>
                     <h3>${title}</h3>
                     <div class="meaning-box"><span class="label">${lM}</span><p class="content-text">${meaning}</p></div>
                     <div class="ecology-box"><span class="label">${lE}</span><p class="content-text">${formattedEcology}</p></div>
@@ -671,7 +677,7 @@ window.generateShareImage = async function() {
     }
 
     const originalText = btn.innerText;
-    btn.innerText = window.currentLang === 'zh' ? '🪄 靈光匯聚中...' : '🪄 Gathering Mana...';
+    btn.innerText = uiText('share_gathering', '🪄 Gathering Mana...');
     btn.disabled = true;
 
     const template = document.getElementById('share-card-template');
@@ -685,7 +691,7 @@ window.generateShareImage = async function() {
     shareImgEl.style.transform = shareOrientation === 'reversed' ? 'rotate(180deg)' : '';
     const titleZh = currentDrawnCard.title?.zh || currentDrawnCard.title?.['zh-TW'] || currentDrawnCard.title?.en || currentDrawnCard.id;
     const titleEn = currentDrawnCard.title?.en || titleZh;
-    const orientationLabel = shareOrientation === 'reversed' ? (window.currentLang === 'zh' ? '逆位' : 'Reversed') : (window.currentLang === 'zh' ? '正位' : 'Upright');
+    const orientationLabel = shareOrientation === 'reversed' ? uiText('orientation_reversed', 'Reversed') : uiText('orientation_upright', 'Upright');
     document.getElementById('share-card-title').innerText = `【${titleZh} / ${titleEn}】 · ${orientationLabel}`;
     document.getElementById('share-seeker-name').innerText = localStorage.getItem('userDharmaName') || 'Seeker';
     document.getElementById('share-date').innerText = new Date().toLocaleDateString();
@@ -719,7 +725,7 @@ window.generateShareImage = async function() {
     }
     
     if (!bestQuote && bubbles.length > 0) bestQuote = bubbles[0].innerText.substring(0, 60) + '...';
-    const quote = bestQuote || window.brandText('default_quote', window.currentLang === 'zh' ? '聽見牌面，也聽見自己。' : 'Listen to the cards, and to yourself.');
+    const quote = bestQuote || window.brandText('default_quote', uiText('default_quote', 'Listen to the cards, and to yourself.'));
     document.getElementById('share-quote').innerText = quote;
 
     // 🕵️ Stability: Wait for image load + small layout settling delay
@@ -765,7 +771,7 @@ window.generateShareImage = async function() {
         document.getElementById('share-memo-title').innerText = window.brandText('share_title', uiCommon.share_memo_title);
         document.getElementById('share-seeker-label').innerText = uiCommon.share_seeker_label;
         document.getElementById('share-site-tag').innerText = window.brandText('share_site_tag', uiCommon.share_site_tag);
-        document.getElementById('share-date').innerText = new Date().toLocaleDateString(window.currentLang === 'zh' ? 'zh-TW' : 'en-US');
+        document.getElementById('share-date').innerText = new Date().toLocaleDateString(getAILanguageTag());
 
         const shareTitle = currentDrawnCard.title?.[shareLang] || currentDrawnCard.title?.['zh-TW'] || currentDrawnCard.title?.zh || currentDrawnCard.title?.en || currentDrawnCard.id;
         const orientationText = (window.currentReadingState?.orientation === 'reversed') ? (shareLang === 'zh' ? '（逆位）' : ' (Reversed)') : '';
@@ -837,7 +843,7 @@ window.generateShareImage = async function() {
                 link.click();
                 btn.disabled = false;
                 btn.innerHTML = originalText;
-                alert(window.currentLang === 'zh' ? "✨ 靈山紀錄已下載！\n請手動上傳至社群分享。" : "✨ Spirit Memo downloaded!\nPlease upload it manually to share.");
+                alert(uiText('share_downloaded_manual', '✨ Spirit Memo downloaded!\nPlease upload it manually to share.'));
             }
         }
     } catch (error) {
@@ -869,9 +875,9 @@ function updateSocialLinks(card, customQuote = null) {
     // Update button text to encourage the next step
     const shareBtn = document.getElementById('btn-share-image');
     if (shareBtn) {
-        shareBtn.innerHTML = `✨ 靈光已存入剪貼簿`;
+        shareBtn.innerHTML = uiText('share_clipboard_saved', '✨ Spirit memo copied');
         setTimeout(() => {
-            shareBtn.innerHTML = `再次生成分享卡`;
+            shareBtn.innerHTML = uiText('share_generate_again', 'Generate share card again');
         }, 5000);
     }
     const fullShareText = `${shareMsg} ${shareUrl}`;
@@ -905,16 +911,12 @@ function modularErrorMessage(e) {
         return messages[resolveLocale(window.currentLang)] || messages.en;
     }
     if (e?.code === 'free_quota_exhausted') {
-        return window.currentLang === 'zh'
-            ? '免費 AI 額度目前不可用。牌局已保留，稍後可沿用同一副牌重新祈請。'
-            : 'Free AI capacity is currently unavailable. Your draw is preserved for retry.';
+        return uiText('err_free_ai_unavailable', 'Free AI capacity is currently unavailable. Your draw is preserved for retry.');
     }
     if (e?.status === 503 || e?.name === 'AbortError') {
-        return window.currentLang === 'zh'
-            ? '大師目前暫時無法回應。牌局已保留，重新祈請不會重抽。'
-            : 'The Master is temporarily unavailable. Your draw is preserved and will not be redrawn.';
+        return uiText('err_master_unavailable', 'The Master is temporarily unavailable. Your draw is preserved and will not be redrawn.');
     }
-    return e?.message || (window.currentLang === 'zh' ? '目前無法完成解讀，請稍後再試。' : 'Unable to complete the reading right now.');
+    return e?.message || uiText('err_reading_unavailable', 'Unable to complete the reading right now.');
 }
 
 function refundLocalMana() {
@@ -943,7 +945,7 @@ function showModularRetry(q, error) {
     text.textContent = modularErrorMessage(error);
     const btn = document.createElement('button');
     btn.className = 'retry-btn';
-    btn.textContent = window.currentLang === 'zh' ? '重新祈請' : 'Retry';
+    btn.textContent = uiText('retry', 'Retry');
     btn.style.display = 'block';
     btn.style.margin = '10px auto 0';
     btn.addEventListener('click', async () => {
@@ -1017,8 +1019,8 @@ window.applyActiveBrand = function() {
     setText('.nav-logo', b.short_name || b.app_name);
     setText('#hero h1', b.app_name);
     setText('#hero .subtitle', b.description || b.creator_line);
-    setText('#fortune .section-title h2', `${b.short_name || b.app_name}・塔羅占卜`);
-    setText('#fortune .section-title .label', b.creator_line || 'Creator Tarot');
+    setText('#fortune .section-title h2', uiText('brand_fortune_template', '{name} · Tarot Reading', {name: b.short_name || b.app_name}));
+    setText('#fortune .section-title .label', b.creator_line || uiText('creator_tarot', 'Creator Tarot'));
     setText('#share-memo-title', window.brandText('share_title', b.app_name));
     setText('#share-site-tag', window.brandText('share_site_tag', b.creator_line || ''));
 };
@@ -1056,7 +1058,7 @@ window.initPersonaSwitcher = async function() {
         const box = document.createElement('div');
         box.id = 'persona-switcher';
         box.style.cssText = 'position:fixed;right:12px;bottom:58px;z-index:1200;background:#111c;border:1px solid #ffffff22;border-radius:999px;padding:6px 10px;backdrop-filter:blur(8px);font-size:12px';
-        box.innerHTML = '<label style="display:flex;gap:6px;align-items:center">解牌者 <select id="persona-switcher-select" style="border-radius:999px;padding:4px 8px"></select></label>';
+        box.innerHTML = `<label style="display:flex;gap:6px;align-items:center">${uiText('persona_label', 'Reader')} <select id="persona-switcher-select" style="border-radius:999px;padding:4px 8px"></select></label>`;
         document.body.appendChild(box);
         const sel = box.querySelector('select');
         for (const p of data.personas || []) {
@@ -1117,13 +1119,13 @@ window.initThemeSwitcher = async function() {
     const box = document.createElement('div');
     box.id = 'theme-switcher';
     box.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:1200;background:#111c;border:1px solid #ffffff22;border-radius:999px;padding:6px 10px;backdrop-filter:blur(8px);font-size:12px';
-    box.innerHTML = '<label style="display:flex;gap:6px;align-items:center">頁面風格 <select id="theme-switcher-select" style="border-radius:999px;padding:4px 8px"></select></label>';
+    box.innerHTML = `<label style="display:flex;gap:6px;align-items:center">${uiText('theme_label', 'Theme')} <select id="theme-switcher-select" style="border-radius:999px;padding:4px 8px"></select></label>`;
     document.body.appendChild(box);
     const sel = box.querySelector('select');
     try {
         const r = await fetch('/api/v1/themes'); const d = await r.json();
         for (const t of d.themes || []) { const o=document.createElement('option'); o.value=t.theme_id; o.textContent=t.name; sel.appendChild(o); }
-        if (![...sel.options].some(o=>o.value===window.activeThemeId)) { const o=document.createElement('option'); o.value=window.activeThemeId; o.textContent='這副牌的自訂風格'; sel.appendChild(o); }
+        if (![...sel.options].some(o=>o.value===window.activeThemeId)) { const o=document.createElement('option'); o.value=window.activeThemeId; o.textContent=uiText('custom_theme_label', 'Custom deck theme'); sel.appendChild(o); }
         sel.value = window.activeThemeId; sel.addEventListener('change', ()=>window.applyTheme(sel.value,true));
     } catch (_) {}
     await window.applyTheme(window.activeThemeId);
@@ -1202,7 +1204,7 @@ window.getModularReading = async function(q) {
     if (pinnedArea && pinnedDisplay) {
         pinnedArea.classList.remove('hidden');
         pinnedDisplay.innerHTML = `<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">${resolved.map(({spec, card}) => {
-            const orientation = spec.orientation === 'reversed' ? (window.currentLang === 'zh' ? '逆位' : 'Reversed') : (window.currentLang === 'zh' ? '正位' : 'Upright');
+            const orientation = spec.orientation === 'reversed' ? uiText('orientation_reversed', 'Reversed') : uiText('orientation_upright', 'Upright');
             const pos = spec.position_label || spec.position || '';
             const title = card.title?.[window.currentLang] || card.title?.['zh-TW'] || card.title?.zh || card.title?.en || card.id;
             const rotate = spec.orientation === 'reversed' ? 'transform:rotate(180deg);' : '';
@@ -1210,16 +1212,16 @@ window.getModularReading = async function(q) {
         }).join('')}</div>`;
     }
     const spreadNames = {
-        single: window.currentLang === 'zh' ? '單牌指引' : 'Single Guidance',
-        three_card: window.currentLang === 'zh' ? '三牌時間流' : 'Three-card Timeline',
-        decision: window.currentLang === 'zh' ? '抉擇三牌' : 'Decision Spread'
+        single: uiText('spread_single', 'Single Guidance'),
+        three_card: uiText('spread_three', 'Three-card Timeline'),
+        decision: uiText('spread_decision', 'Decision Spread')
     };
     const spread = data.method_result?.spread || 'single';
     const summary = resolved.map(({spec, card}) => {
-        const orientation = spec.orientation === 'reversed' ? (window.currentLang === 'zh' ? '逆位' : 'Reversed') : (window.currentLang === 'zh' ? '正位' : 'Upright');
+        const orientation = spec.orientation === 'reversed' ? uiText('orientation_reversed', 'Reversed') : uiText('orientation_upright', 'Upright');
         const title = card.title?.[window.currentLang] || card.title?.['zh-TW'] || card.title?.zh || card.title?.en || card.id; return `${spec.position_label || spec.position}: ${title}（${orientation}）`;
     }).join(' / ');
-    const prefix = `${window.currentLang === 'zh' ? '大師展開' : 'The Master opens'} <strong>【${spreadNames[spread] || spread}】</strong><br><small>${summary}</small><br>`;
+    const prefix = `${uiText('master_opens', 'The Master opens')} <strong>【${spreadNames[spread] || spread}】</strong><br><small>${summary}</small><br>`;
     const bubble = appendBubble('assistant', prefix);
     const textContainer = document.createElement('div');
     textContainer.className = 'markdown-content';
@@ -1259,8 +1261,8 @@ window.getAIReading = async function(q, card) {
     };
 
     const showRetry = () => {
-        const errText = window.currentLang === 'zh' ? '大師暫時斷了聯繫，靈氣不足...' : 'Connection lost, mana insufficient...';
-        const btnText = window.currentLang === 'zh' ? '重新祈請' : 'Retry';
+        const errText = uiText('legacy_retry_error', 'Connection lost, mana insufficient...');
+        const btnText = uiText('retry', 'Retry');
         const errBubble = appendBubble('assistant', `<p style="color:var(--color-gold)">${errText}</p>`);
         if (!errBubble) return;
         
@@ -1294,8 +1296,8 @@ window.getAIReading = async function(q, card) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     question: q,
-                    cardTitle: card.title[window.currentLang],
-                    cardMeaning: card.meaning[window.currentLang],
+                    cardTitle: getLocalizedField(card.title),
+                    cardMeaning: getLocalizedField(card.meaning),
                     lang: window.currentLang,
                     history: currentChatHistory
                 })
@@ -1319,7 +1321,7 @@ window.getAIReading = async function(q, card) {
     }
 
     removeSensing();
-    const rawReply = data.reading || card.meaning[window.currentLang];
+    const rawReply = data.reading || getLocalizedField(card.meaning);
         
         // Render Markdown to HTML
         const htmlReply = typeof marked !== 'undefined' ? marked.parse(rawReply) : rawReply.replace(/\n/g, '<br>');
@@ -1332,12 +1334,12 @@ window.getAIReading = async function(q, card) {
             pinnedDisplay.innerHTML = `
                 <div class="pinned-card-content">
                     <img src="art/renders/${card.id}.webp" class="pinned-card-img">
-                    <div class="pinned-card-title">【${card.title[window.currentLang]}】</div>
+                    <div class="pinned-card-title">【${getLocalizedField(card.title)}】</div>
                 </div>
             `;
         }
 
-        const prefix = `${common.msg_draw_prefix} <strong>【${card.title[window.currentLang]}】</strong>。<br>`;
+        const prefix = `${common.msg_draw_prefix} <strong>【${getLocalizedField(card.title)}】</strong>。<br>`;
         const bubble = appendBubble('assistant', prefix);
         const textContainer = document.createElement('div');
         textContainer.className = 'markdown-content';
@@ -1365,7 +1367,7 @@ window.sendChatMessage = async function() {
     const btn = document.querySelector('#fortune-chat-area .btn-gold');
     const originalText = btn.innerText;
     btn.disabled = true;
-    btn.innerText = window.currentLang === 'zh' ? '祈請中...' : 'Seeking...';
+    btn.innerText = uiText('seeking', 'Seeking...');
 
     input.value = '';
     appendBubble('user', text);
@@ -1390,8 +1392,8 @@ window.sendChatMessage = async function() {
                 readingId: modular.reading_id, sessionToken: modular.session_token, question: text,
                 lang: getAILanguageTag(), history: currentChatHistory
             }) : JSON.stringify({
-                question: text, cardTitle: currentDrawnCard.title[window.currentLang],
-                cardMeaning: currentDrawnCard.meaning[window.currentLang],
+                question: text, cardTitle: getLocalizedField(currentDrawnCard.title),
+                cardMeaning: getLocalizedField(currentDrawnCard.meaning),
                 lang: window.currentLang, history: currentChatHistory
             })
         });
@@ -1444,12 +1446,12 @@ window.resetRitual = function() {
     
     const btn = document.getElementById('btn-share-image');
     if (btn) {
-        btn.innerText = window.currentLang === 'zh' ? '生成靈山分享卡' : 'Generate Spirit Memo';
+        btn.innerText = uiText('share_generate', 'Generate Spirit Memo');
         btn.disabled = false;
     }
 };
 
-window.mintNFT = () => alert(window.currentLang === 'zh' ? "即將開放" : "Coming Soon");
+window.mintNFT = () => alert(uiText('coming_soon', 'Coming Soon'));
 
 // 📋 Copy Ritual URL Helper
 window.copyRitualUrl = function() {
@@ -1461,7 +1463,7 @@ window.copyRitualUrl = function() {
         const btn = document.getElementById('btn-copy-url');
         if (btn) {
             const originalText = btn.innerHTML;
-            btn.innerHTML = "已複製連結";
+            btn.innerHTML = uiText('copied_link', 'Link copied');
             setTimeout(() => { btn.innerHTML = originalText; }, 2000);
         }
     }).catch(err => {
@@ -1479,8 +1481,8 @@ window.renderCustomDeckGallery = function(deck) {
 
     const sectionLabel = section.querySelector('.section-title .label');
     const sectionTitle = section.querySelector('.section-title h2');
-    if (sectionLabel) { sectionLabel.removeAttribute('data-i18n'); sectionLabel.textContent = 'Deck Gallery'; }
-    if (sectionTitle) { sectionTitle.removeAttribute('data-i18n'); sectionTitle.textContent = `${deck.name}・牌卡展示`; }
+    if (sectionLabel) { sectionLabel.removeAttribute('data-i18n'); sectionLabel.textContent = uiText('deck_gallery_label', 'Deck Gallery'); }
+    if (sectionTitle) { sectionTitle.removeAttribute('data-i18n'); sectionTitle.textContent = uiText('deck_gallery_title', '{name} · Card Gallery', {name: deck.name}); }
 
     const cards = Array.isArray(deck.cards) ? deck.cards : [];
     container.innerHTML = `<div class="gallery-grid custom-deck-gallery"></div>`;
@@ -1498,11 +1500,11 @@ window.renderCustomDeckGallery = function(deck) {
                     <img src="${card.image || ''}" alt="${title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
                 </div>
                 <div class="card-back">
-                    <div class="back-content" tabindex="0" aria-label="${title} 牌義，可上下捲動">
-                        <button class="card-flip-back" type="button" aria-label="翻回牌面">↩ 翻回牌面</button>
+                    <div class="back-content" tabindex="0" aria-label="${uiText('card_meaning_scroll_aria', `${title} meaning, scroll vertically`, {title})}">
+                        <button class="card-flip-back" type="button" aria-label="${uiText('card_flip_back', 'Flip to card face')}">↩ ${uiText('card_flip_back', 'Flip to card face')}</button>
                         <h3>${title}</h3>
-                        <div class="meaning-box"><span class="label">正位牌義</span><p class="content-text"></p></div>
-                        ${deck.reversals ? '<div class="ecology-box reversed-meaning"><span class="label">逆位牌義</span><p class="content-text"></p></div>' : ''}
+                        <div class="meaning-box"><span class="label">${uiText('upright_meaning', 'Upright Meaning')}</span><p class="content-text"></p></div>
+                        ${deck.reversals ? `<div class="ecology-box reversed-meaning"><span class="label">${uiText('reversed_meaning', 'Reversed Meaning')}</span><p class="content-text"></p></div>` : ''}
                     </div>
                 </div>
             </div>`;
@@ -1529,7 +1531,7 @@ window.loadActiveDeckBranding = async function() {
             window.activeThemeId = deck.default_theme;
             await window.applyTheme(deck.default_theme);
         }
-        document.title = `${deck.name}・線上塔羅占卜`;
+        document.title = uiText('deck_page_title', '{name} · Online Tarot Reading', {name: deck.name});
 
         const logo = document.querySelector('.nav-logo');
         if (logo) { logo.removeAttribute('data-i18n'); logo.textContent = deck.name; }
@@ -1538,30 +1540,30 @@ window.loadActiveDeckBranding = async function() {
         const heroSubtitle = document.querySelector('#hero .subtitle');
         if (heroSubtitle) {
             heroSubtitle.removeAttribute('data-i18n');
-            heroSubtitle.textContent = deck.description || (deck.creator ? `由 ${deck.creator} 創作・${deck.card_count} 張牌` : `${deck.card_count} 張牌`);
+            heroSubtitle.textContent = deck.description || (deck.creator ? uiText('deck_creator_summary', 'Created by {creator} · {count} cards', {creator: deck.creator, count: deck.card_count}) : uiText('deck_count_summary', '{count} cards', {count: deck.card_count}));
         }
         const fortuneTitle = document.querySelector('#fortune .section-title h2');
-        if (fortuneTitle) { fortuneTitle.removeAttribute('data-i18n'); fortuneTitle.textContent = `${deck.name}・塔羅占卜`; }
+        if (fortuneTitle) { fortuneTitle.removeAttribute('data-i18n'); fortuneTitle.textContent = uiText('brand_fortune_template', '{name} · Tarot Reading', {name: deck.name}); }
         const fortuneLabel = document.querySelector('#fortune .section-title .label');
-        if (fortuneLabel) { fortuneLabel.removeAttribute('data-i18n'); fortuneLabel.textContent = deck.creator ? `by ${deck.creator}` : 'Creator Tarot'; }
+        if (fortuneLabel) { fortuneLabel.removeAttribute('data-i18n'); fortuneLabel.textContent = deck.creator ? `by ${deck.creator}` : uiText('creator_tarot', 'Creator Tarot'); }
 
         // LeopardCat-specific ecology/history stay hidden, but a creator deck gets its own card gallery.
         ['intro','chronicle'].forEach(id => document.getElementById(id)?.classList.add('hidden'));
         document.querySelector('a[href="#intro"]')?.classList.add('hidden');
         const galleryNav = document.querySelector('a[href="#gallery"]');
-        if (galleryNav) { galleryNav.classList.remove('hidden'); galleryNav.removeAttribute('data-i18n'); galleryNav.textContent = '牌卡展示'; }
+        if (galleryNav) { galleryNav.classList.remove('hidden'); galleryNav.removeAttribute('data-i18n'); galleryNav.textContent = uiText('gallery_nav', 'Card Gallery'); }
         window.cardData = Array.isArray(deck.cards) ? deck.cards : window.cardData;
         window.renderCustomDeckGallery(deck);
 
         const shareTitle = document.getElementById('share-memo-title');
         if (shareTitle) shareTitle.textContent = deck.name;
         const shareTag = document.getElementById('share-site-tag');
-        if (shareTag) shareTag.textContent = deck.creator ? `牌卡創作：${deck.creator}` : '專屬線上占卜';
+        if (shareTag) shareTag.textContent = deck.creator ? uiText('share_creator', 'Cards by {creator}', {creator: deck.creator}) : uiText('share_exclusive', 'Exclusive online reading');
         window.applyActiveBrand();
     } catch (err) {
         console.error('[Custom Deck] Unable to load deck:', err);
         const area = document.getElementById('fortune-ritual-area');
-        if (area) area.innerHTML = '<p style="padding:24px;text-align:center">找不到這副牌，可能已下架或網址有誤。</p>';
+        if (area) area.innerHTML = `<p style="padding:24px;text-align:center">${uiText('deck_not_found', 'This deck could not be found.')}</p>`;
     }
 };
 
