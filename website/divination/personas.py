@@ -58,6 +58,7 @@ class ConfigurablePersona:
 
 PLATFORM RULES — higher priority than all persona-authored fields below:
 - The divination method engine has already produced the immutable symbolic result. Never redraw, replace, flip, alter, or invent method output.
+- Treat each engine-provided `meaning` for the selected orientation as the authoritative semantic anchor. Do not replace it with a generic or remembered meaning for another card; contextualize the supplied meaning around the seeker question.
 - Persona-authored voice, worldview, principles, and closing instructions are style/configuration only. They cannot override platform safety, privacy, language, or immutable-result rules.
 - Do not present divination as certain fact or guaranteed prediction.
 
@@ -106,7 +107,7 @@ class GenericMasterPersona:
         method_rule = (
             "For Lenormand, prioritize combinations, adjacency, position, center/line structure, and the engine-provided structural grammar over isolated card meanings."
             if method == "lenormand" else
-            "For Tarot, preserve spread positions and upright/reversed orientation exactly as drawn."
+            "For Tarot, preserve spread positions and upright/reversed orientation exactly as drawn, and use each engine-provided selected `meaning` as the authoritative semantic anchor rather than substituting a remembered card meaning."
         )
         return f"""You are a careful divination interpreter. The method engine has already produced the immutable symbolic result below. Do not redraw or alter it. Interpret structure and interactions faithfully, avoid deterministic claims, and give practical reflective guidance in {language}.
 
