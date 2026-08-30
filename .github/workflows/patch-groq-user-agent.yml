@@ -1,0 +1,31 @@
+name: Patch Groq Transport Headers
+on:
+  push:
+    branches: [fix/groq-user-agent]
+    paths:
+      - 'tools/patch_groq_user_agent.py'
+      - '.github/workflows/patch-groq-user-agent.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/groq-user-agent
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply patch and tests
+        run: |
+          python tools/patch_groq_user_agent.py
+          python -m pytest -q website/tests/test_groq_transport_headers.py website/tests/test_ai_provider_pool.py
+      - name: Commit generated product changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/divination/ai_gateway.py website/tests/test_groq_transport_headers.py
+          git diff --cached --quiet && exit 0
+          git commit -m 'fix(ai): stabilize Groq transport headers'
+          git push origin HEAD:fix/groq-user-agent
