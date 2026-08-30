@@ -1,6 +1,7 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 
+// Permanent release gate for the shared shuffle/manual-draw experience.
 const base = process.env.TEST_BASE || 'http://127.0.0.1:8088';
 const browser = await chromium.launch({ headless: true });
 
