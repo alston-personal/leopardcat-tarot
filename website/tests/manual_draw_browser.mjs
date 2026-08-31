@@ -86,9 +86,21 @@ try {
   console.log('browser_manual_shuffle_phase_and_fan=passed');
 
   const backs = page.locator('#manual-card-pool .manual-card-back');
-  await backs.nth(2).click();
-  await backs.nth(75).click();
-  await backs.nth(54).click();
+  const pool = page.locator('#manual-card-pool');
+  await pool.scrollIntoViewIfNeeded();
+  const clickFanIndex = async zeroBasedIndex => {
+    const cardBox = await backs.nth(zeroBasedIndex).boundingBox();
+    const poolBox = await pool.boundingBox();
+    assert.ok(cardBox && poolBox);
+    const x = cardBox.x + cardBox.width / 2;
+    const y = poolBox.y + poolBox.height * 0.72;
+    await page.mouse.move(x, y);
+    assert.ok(await backs.nth(zeroBasedIndex).evaluate(el => el.classList.contains('fan-hover')));
+    await page.mouse.click(x, y);
+  };
+  await clickFanIndex(2);
+  await clickFanIndex(75);
+  await clickFanIndex(54);
   await page.waitForFunction(() => window.currentReadingState?.cards?.length === 3);
 
   assert.ok(manualBody);

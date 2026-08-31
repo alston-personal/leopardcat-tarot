@@ -143,6 +143,40 @@ function manualStatus() {
     el.textContent = uiText('manual_draw_progress', 'Selected {selected} / {need}', {selected, need});
 }
 
+function nearestManualFanButton(pool, clientX) {
+    const cards = [...pool.querySelectorAll('.manual-card-back:not(:disabled)')];
+    let best = null;
+    let bestDistance = Number.POSITIVE_INFINITY;
+    cards.forEach(button => {
+        const rect = button.getBoundingClientRect();
+        const center = rect.left + rect.width / 2;
+        const distance = Math.abs(clientX - center);
+        if (distance < bestDistance) { best = button; bestDistance = distance; }
+    });
+    return best;
+}
+
+function bindManualFanPointer(pool) {
+    if (!pool || pool.dataset.fanPointerBound === 'true') return;
+    pool.dataset.fanPointerBound = 'true';
+    const isDesktopFan = () => !window.matchMedia?.('(max-width: 620px)').matches;
+    const clearHover = () => pool.querySelectorAll('.manual-card-back.fan-hover').forEach(card => card.classList.remove('fan-hover'));
+    pool.addEventListener('pointermove', event => {
+        if (!isDesktopFan() || window.manualDrawState.phase === 'shuffling') return;
+        const button = nearestManualFanButton(pool, event.clientX);
+        clearHover();
+        button?.classList.add('fan-hover');
+    });
+    pool.addEventListener('pointerleave', clearHover);
+    pool.addEventListener('click', event => {
+        if (event.target.closest?.('.manual-card-back') || !isDesktopFan()) return;
+        const button = nearestManualFanButton(pool, event.clientX);
+        if (!button) return;
+        const index = Number(button.dataset.drawIndex);
+        if (Number.isInteger(index)) selectManualCard(index, button);
+    });
+}
+
 function renderManualCardPool() {
     const pool = document.getElementById('manual-card-pool');
     if (!pool) return;
@@ -175,6 +209,7 @@ function renderManualCardPool() {
         button.addEventListener('click', () => selectManualCard(i, button));
         pool.appendChild(button);
     }
+    bindManualFanPointer(pool);
     manualStatus();
 }
 
