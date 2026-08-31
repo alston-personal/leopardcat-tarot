@@ -1,0 +1,42 @@
+name: Apply Manual Fan Shuffle v2
+
+on:
+  push:
+    branches: [feat/manual-fan-shuffle]
+    paths:
+      - '.github/workflows/apply-manual-fan-shuffle-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/manual-fan-shuffle
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply patch
+        run: python3 scripts/apply_manual_fan_shuffle.py
+      - name: Build and source-check
+        run: |
+          cd website
+          rm -f public/art/renders public/cards || true
+          mkdir -p public/art/renders public/cards
+          npm ci >/dev/null
+          npm run build >/dev/null
+          grep -q "phase: 'shuffling'" main.js
+          grep -q 'ritual-fan-shuffle' style.css
+          grep -q 'browser_manual_shuffle_phase_and_fan=passed' tests/manual_draw_browser.mjs
+      - name: Commit implementation only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/main.js website/style.css website/tests/manual_draw_browser.mjs website/dist
+          git rm -f .github/workflows/apply-manual-fan-shuffle.yml .github/workflows/apply-manual-fan-shuffle-v2.yml scripts/apply_manual_fan_shuffle.py
+          git commit -m 'feat(draw): animate shuffle and fan manual deck'
+          git push origin HEAD:feat/manual-fan-shuffle
