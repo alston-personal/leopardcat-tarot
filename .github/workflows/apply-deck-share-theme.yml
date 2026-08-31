@@ -26,6 +26,7 @@ jobs:
       - name: Validate
         run: |
           python -m py_compile website/divination/decks.py website/divination/publishing.py
+          python -m pip install pytest >/dev/null
           python -m pytest -q website/tests/test_deck_owned_share_theme.py website/tests/test_deck_driven_share_spreads.py
           node --check website/main.js
           cd website
