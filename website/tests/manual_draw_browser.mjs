@@ -66,12 +66,41 @@ try {
   await page.locator('#btn-manual-shuffle').click();
   await page.waitForSelector('#manual-card-pool .manual-card-back');
   assert.equal(await page.locator('#manual-card-pool .manual-card-back').count(),78);
+  assert.equal(await page.evaluate(() => window.manualDrawState.phase),'shuffling');
+  assert.equal(await page.evaluate(() => window.manualDrawState.shuffled),false);
+  assert.ok(await page.locator('#manual-card-pool').evaluate(el => el.classList.contains('is-shuffling')));
+  assert.equal(await page.locator('#btn-manual-shuffle').isDisabled(),true);
+  await page.evaluate(() => document.querySelector('#manual-card-pool .manual-card-back:nth-child(3)').click());
+  assert.deepEqual(await page.evaluate(() => window.manualDrawState.selected),[]);
+  await page.waitForFunction(() => window.manualDrawState.phase === 'ready_to_draw' && window.manualDrawState.shuffled === true);
   assert.match(await page.locator('#manual-draw-status').innerText(), /0\s*\/\s*3/);
 
+  const fanGeometry = await page.locator('#manual-card-pool .manual-card-back').nth(0).evaluate(el => ({
+    position:getComputedStyle(el).position,
+    transform:getComputedStyle(el).transform,
+    fanX:el.style.getPropertyValue('--fan-x')
+  }));
+  assert.equal(fanGeometry.position,'absolute');
+  assert.ok(fanGeometry.fanX.endsWith('px'));
+  assert.notEqual(fanGeometry.transform,'none');
+  console.log('browser_manual_shuffle_phase_and_fan=passed');
+
   const backs = page.locator('#manual-card-pool .manual-card-back');
-  await backs.nth(2).click();
-  await backs.nth(75).click();
-  await backs.nth(54).click();
+  const pool = page.locator('#manual-card-pool');
+  await pool.scrollIntoViewIfNeeded();
+  const clickFanIndex = async zeroBasedIndex => {
+    const poolBox = await pool.boundingBox();
+    assert.ok(poolBox);
+    const fanX = await backs.nth(zeroBasedIndex).evaluate(el => Number.parseFloat(el.style.getPropertyValue('--fan-x')) || 0);
+    const x = poolBox.x + poolBox.width / 2 + fanX;
+    const y = poolBox.y + poolBox.height * 0.72;
+    await page.mouse.move(x, y);
+    assert.ok(await backs.nth(zeroBasedIndex).evaluate(el => el.classList.contains('fan-hover')));
+    await page.mouse.click(x, y);
+  };
+  await clickFanIndex(2);
+  await clickFanIndex(75);
+  await clickFanIndex(54);
   await page.waitForFunction(() => window.currentReadingState?.cards?.length === 3);
 
   assert.ok(manualBody);
@@ -130,6 +159,13 @@ try {
   await mobile.locator('[data-draw-mode="manual"]').click();
   await mobile.locator('#btn-manual-shuffle').click();
   assert.equal(await mobile.locator('#manual-card-pool .manual-card-back').count(),78);
+  await mobile.waitForFunction(() => window.manualDrawState.phase === 'ready_to_draw');
+  const mobileLayout = await mobile.locator('#manual-card-pool .manual-card-back').nth(0).evaluate(el => ({
+    position:getComputedStyle(el).position,
+    width:el.getBoundingClientRect().width
+  }));
+  assert.equal(mobileLayout.position,'relative');
+  assert.ok(mobileLayout.width >= 44);
   const mobileMetrics = await mobile.evaluate(() => {
     const width = document.documentElement.clientWidth;
     const offenders = [...document.querySelectorAll('body *')].map(el => {
