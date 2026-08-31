@@ -160,7 +160,9 @@
         "A reading share URL MUST expose Open Graph metadata from the immutable read-only reading receipt rather than falling back to an unrelated deck card.",
         "The browser MUST preserve the user-facing square/native share memo separately from a purpose-built 1200x630 landscape Open Graph preview for social crawlers.",
         "The landscape OG preview MUST reuse the same deck-owned cards, spread order, orientations, branding and share quote without uploading the private question or full AI answer.",
-        "If no persisted share image exists, social preview MUST degrade to a card image from the same reading/deck instead of a global LeopardCat fallback."
+        "If no persisted share image exists, social preview MUST degrade to a card image from the same reading/deck instead of a global LeopardCat fallback.",
+        "OG metadata and persisted share images MUST NOT upload or expose the private question or AI answer.",
+        "When the browser has rendered the deck-owned 600x600 share card, it MAY persist that PNG using the private reading session token; the public share token grants read-only access to that image while the reading receipt remains valid."
       ],
       "evidence": [
         "website/fortune_server.py",
