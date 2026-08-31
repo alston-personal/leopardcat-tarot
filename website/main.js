@@ -1287,7 +1287,29 @@ window.generateShareImage = async function() {
         updateSocialLinks(currentDrawnCard, bestQuote);
 
         const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-        await persistReadingSharePreview(blob); // social crawlers can now resolve the actual deck-owned share card.
+
+        // Social crawlers need a landscape Open Graph asset. Keep the downloadable/native
+        // share memo square, but reflow the same deck-owned content into 1200x630 for OG.
+        let ogBlob = blob;
+        template.classList.add('share-og-mode');
+        try {
+            const ogCanvas = await html2canvas(template, {
+                useCORS: true,
+                allowTaint: true,
+                logging: false,
+                backgroundColor: shareTheme.background,
+                scale: 1.0,
+                width: 1200,
+                height: 630,
+                imageTimeout: 5000,
+                removeContainer: true
+            });
+            const renderedOgBlob = await new Promise(resolve => ogCanvas.toBlob(resolve, 'image/png'));
+            if (renderedOgBlob) ogBlob = renderedOgBlob;
+        } finally {
+            template.classList.remove('share-og-mode');
+        }
+        await persistReadingSharePreview(ogBlob); // OG receives the landscape asset; private text is still excluded.
         const filePrefix = window.activeBrand?.file_prefix || 'tarot';
         const file = new File([blob], `${filePrefix}-${Date.now()}.png`, { type: 'image/png' });
         

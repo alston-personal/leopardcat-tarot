@@ -413,7 +413,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                     if os.path.isfile(persisted):
                         meta_img = f"{base_url}/api/v1/readings/{urllib.parse.quote(reading_id)}/share-image.png?shareToken={urllib.parse.quote(share_token)}"
                         meta_img_type = 'image/png'
-                        meta_img_width = meta_img_height = 600
+                        meta_img_width, meta_img_height = 1200, 630
 
                 if selected_card and not shared_reading:
                     titles = selected_card.get('title') or {}

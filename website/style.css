@@ -1595,3 +1595,156 @@ button, select, input, textarea, .btn, .btn-gold-outline, .nav-links a, .lang-sw
 .share-card-body .share-card-frame { background: var(--share-surface); border-color: var(--share-line); }
 .share-card-body .share-card-caption { color: var(--share-muted); }
 .share-card-body[data-share-layout="deck-memo"] .share-logo { letter-spacing: .04em; }
+
+
+/* === Reading Control Surface + Social OG v1 === */
+.reading-config-card {
+  margin: 14px 0 18px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  border: 1px solid rgba(212,175,55,.22);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(212,175,55,.07), rgba(5,12,10,.45));
+  box-shadow: inset 0 1px rgba(255,255,255,.025), 0 12px 32px rgba(0,0,0,.14);
+}
+.reading-config-group {
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(2,9,7,.36);
+  border: 1px solid rgba(255,255,255,.045);
+}
+.reading-config-card .legacy-spread-picker {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+}
+.reading-config-card .legacy-spread-label {
+  grid-column: 1 / -1;
+  margin: 0 0 2px;
+  font-size: .68rem;
+  line-height: 1.2;
+  letter-spacing: .13em;
+  color: rgba(244,241,234,.58);
+  text-transform: uppercase;
+}
+.reading-config-card .legacy-spread-btn {
+  min-height: 38px;
+  margin: 0 !important;
+  padding: 8px 12px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(212,175,55,.18) !important;
+  background: rgba(255,255,255,.025) !important;
+  color: rgba(244,241,234,.74) !important;
+  font-weight: 700;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
+}
+.reading-config-card .legacy-spread-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(212,175,55,.5) !important;
+}
+.reading-config-card .legacy-spread-btn.active {
+  color: #111 !important;
+  background: linear-gradient(135deg, #f2d878, #c9a542) !important;
+  border-color: rgba(255,232,145,.8) !important;
+  box-shadow: 0 5px 18px rgba(212,175,55,.18);
+}
+.reading-config-card .manual-draw-stage {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 12px 12px 8px;
+  border-top: 1px solid rgba(212,175,55,.15);
+}
+.reading-config-card .manual-draw-toolbar {
+  justify-content: center;
+  gap: 12px;
+}
+.reading-config-card .manual-draw-status {
+  color: rgba(244,241,234,.68);
+  font-size: .72rem;
+}
+
+/* Same semantic share card, purpose-built landscape composition for social crawlers. */
+.share-card-body.share-og-mode {
+  width: 1200px !important;
+  height: 630px !important;
+  padding: 24px 42px !important;
+  border-width: 10px !important;
+}
+.share-card-body.share-og-mode .share-header {
+  padding-bottom: 8px;
+}
+.share-card-body.share-og-mode .share-main {
+  min-height: 0;
+  padding: 10px 0 8px;
+  display: grid;
+  grid-template-columns: minmax(520px, .9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 36px;
+}
+.share-card-body.share-og-mode .share-card-frame,
+.share-card-body.share-og-mode .share-card-frame.share-three-card {
+  width: 100%;
+  max-width: 610px;
+  margin: 0 auto;
+  padding: 10px 12px;
+  justify-content: center;
+  gap: 10px;
+}
+.share-card-body.share-og-mode .share-card-frame.share-three-card .share-card-slot {
+  width: 170px;
+}
+.share-card-body.share-og-mode .share-card-frame.share-three-card img {
+  width: 146px;
+  max-height: 245px;
+}
+.share-card-body.share-og-mode .share-card-frame.share-three-card .share-card-caption {
+  max-width: 165px;
+  font-size: 11px;
+  line-height: 1.3;
+}
+.share-card-body.share-og-mode .share-info {
+  min-width: 0;
+  text-align: left;
+  align-self: center;
+}
+.share-card-body.share-og-mode .share-info h2 {
+  margin: 0 0 14px;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+.share-card-body.share-og-mode .share-quote-container {
+  gap: 4px;
+}
+.share-card-body.share-og-mode .share-quote {
+  max-width: 510px;
+  padding: 0;
+  font-size: 1.48rem;
+  line-height: 1.48;
+  font-style: normal;
+  text-wrap: balance;
+}
+.share-card-body.share-og-mode .quote-mark {
+  font-size: 2.2rem;
+}
+.share-card-body.share-og-mode .share-footer {
+  padding-top: 8px;
+}
+
+@media (max-width: 700px) {
+  .reading-config-card {
+    grid-template-columns: 1fr;
+    padding: 10px;
+    gap: 8px;
+    border-radius: 14px;
+  }
+  .reading-config-group { padding: 9px 10px; }
+  .reading-config-card .manual-draw-stage { grid-column: 1; padding-left: 4px; padding-right: 4px; }
+}
