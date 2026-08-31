@@ -1041,6 +1041,68 @@ function renderShareCards(frame, shareContext) {
     });
 }
 
+
+function readThemeToken(name, fallback) {
+    try {
+        const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        return value || fallback;
+    } catch (_) {
+        return fallback;
+    }
+}
+
+function normalizeShareTheme(shareContext) {
+    const deck = shareContext?.deck || {};
+    const deckId = shareContext?.deckId || deck.deck_id || window.activeDeckId || 'leopardcat';
+    const explicit = (deck.share_theme && typeof deck.share_theme === 'object') ? deck.share_theme : {};
+    const hasExplicit = Object.keys(explicit).length > 0;
+    const hasDeckTheme = Boolean(deck.default_theme || deck.theme_id || window.currentReadingState?.theme_id || window.activeThemeId);
+    const isLeopardCat = deckId === 'leopardcat';
+    const neutral = {
+        background: '#171717', surface: 'rgba(255,255,255,.055)', accent: '#d7d2c8',
+        text: '#f5f2ec', muted: 'rgba(245,242,236,.74)', line: 'rgba(215,210,200,.28)'
+    };
+    const themed = {
+        background: readThemeToken('--color-bg', '#0a110e'),
+        surface: readThemeToken('--color-card-bg', 'rgba(212,175,55,.05)'),
+        accent: readThemeToken('--color-gold', '#d4af37'),
+        text: readThemeToken('--color-text', '#ffffff'),
+        muted: readThemeToken('--color-text-muted', 'rgba(244,241,234,.82)'),
+        line: readThemeToken('--color-gold-glow', 'rgba(212,175,55,.28)')
+    };
+    const base = (isLeopardCat || hasDeckTheme) ? themed : neutral;
+    const title = String(explicit.title || deck.name || (isLeopardCat ? window.brandText('share_title', '靈山靈貓 · 石虎塔羅') : 'Tarot Reading'));
+    const siteTag = String(explicit.site_tag || (isLeopardCat ? window.brandText('share_site_tag', location.host) : location.host));
+    return {
+        source: hasExplicit ? 'deck' : ((isLeopardCat || hasDeckTheme) ? 'theme-derived' : 'neutral'),
+        layout: String(explicit.layout || (isLeopardCat ? 'spirit-memo' : 'deck-memo')),
+        title, site_tag: siteTag,
+        background: String(explicit.background || base.background),
+        surface: String(explicit.surface || base.surface),
+        accent: String(explicit.accent || base.accent),
+        text: String(explicit.text || base.text),
+        muted: String(explicit.muted || base.muted),
+        line: String(explicit.line || base.line)
+    };
+}
+
+function applyShareTheme(template, shareContext) {
+    const theme = normalizeShareTheme(shareContext);
+    template.dataset.shareThemeSource = theme.source;
+    template.dataset.shareLayout = theme.layout;
+    template.style.setProperty('--share-bg', theme.background);
+    template.style.setProperty('--share-surface', theme.surface);
+    template.style.setProperty('--share-accent', theme.accent);
+    template.style.setProperty('--share-text', theme.text);
+    template.style.setProperty('--share-muted', theme.muted);
+    template.style.setProperty('--share-line', theme.line);
+    const memo = template.querySelector('#share-memo-title');
+    const site = template.querySelector('#share-site-tag');
+    if (memo) memo.textContent = theme.title;
+    if (site) site.textContent = theme.site_tag;
+    return theme;
+}
+
 // 📸 Share Image Generator
 window.generateShareImage = async function() {
     if (!currentDrawnCard) return;
@@ -1069,6 +1131,7 @@ window.generateShareImage = async function() {
     if (!shareEntries.length) throw new Error('SHARE_CARDS_NOT_FOUND');
     const shareFrame = template.querySelector('.share-card-frame');
     renderShareCards(shareFrame, shareContext);
+    const shareTheme = applyShareTheme(template, shareContext);
     const titleParts = shareEntries.map(entry => getShareCardTitle(entry.card));
     if (shareEntries.length === 1) {
         const entry = shareEntries[0];
@@ -1135,7 +1198,7 @@ window.generateShareImage = async function() {
                 useCORS: true,
                 allowTaint: true,
                 logging: false,
-                backgroundColor: '#0a0f0d',
+                backgroundColor: shareTheme.background,
                 scale: 1.0, 
                 width: 600,
                 height: 600,
@@ -1154,9 +1217,8 @@ window.generateShareImage = async function() {
 
         // 🔗 Update Share Card Labels (Always follows UI Language for frame consistency)
         const uiCommon = window.siteData[window.currentLang].common;
-        document.getElementById('share-memo-title').innerText = window.brandText('share_title', uiCommon.share_memo_title);
+        applyShareTheme(template, shareContext); // locale refresh must not restore LeopardCat branding.
         document.getElementById('share-seeker-label').innerText = uiCommon.share_seeker_label;
-        document.getElementById('share-site-tag').innerText = window.brandText('share_site_tag', uiCommon.share_site_tag);
         document.getElementById('share-date').innerText = new Date().toLocaleDateString(getAILanguageTag());
 
         const shareCardText = shareEntries.map(entry => {

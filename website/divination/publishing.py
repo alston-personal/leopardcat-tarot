@@ -29,6 +29,25 @@ def _clean_text(value: Any, max_len: int) -> str:
     return text.strip()[:max_len]
 
 
+_SHARE_THEME_FIELDS = {
+    "layout": 32, "title": 120, "site_tag": 120,
+    "background": 80, "surface": 80, "accent": 80,
+    "text": 80, "muted": 80, "line": 80,
+}
+
+
+def _clean_share_theme(value: Any) -> dict[str, str]:
+    if not isinstance(value, dict):
+        return {}
+    cleaned: dict[str, str] = {}
+    for key, max_len in _SHARE_THEME_FIELDS.items():
+        if key in value:
+            item = _clean_text(value.get(key), max_len)
+            if item:
+                cleaned[key] = item
+    return cleaned
+
+
 class DeckPublisher:
     def __init__(self, custom_root: str | Path) -> None:
         self.root = Path(custom_root)
@@ -86,6 +105,7 @@ class DeckPublisher:
         reversals = bool(payload.get("reversals", False))
         default_persona = _clean_text(payload.get("persona"), 64).lower() or "master"
         default_theme = _clean_text(payload.get("theme"), 64).lower() or "minimal-light"
+        share_theme = _clean_share_theme(payload.get("share_theme"))
         if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,63}", default_persona):
             raise DivinationError("無效的解牌 Persona")
         if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,63}", default_theme):
@@ -155,6 +175,7 @@ class DeckPublisher:
                 "reversals": reversals,
                 "default_persona": default_persona,
                 "default_theme": default_theme,
+                "share_theme": share_theme,
                 "card_count": len(saved_cards),
                 "cards": saved_cards,
             }
@@ -173,6 +194,7 @@ class DeckPublisher:
             "reversals": reversals,
             "default_persona": default_persona,
             "default_theme": default_theme,
+            "share_theme": share_theme,
             "share_path": f"/?deck={deck_id}",
             "management_token": management_token,
             "manage_path": f"/manage.html?deck={deck_id}",
@@ -190,6 +212,7 @@ class DeckPublisher:
             "description": data.get("description", ""),
             "default_persona": data.get("default_persona", "master"),
             "default_theme": data.get("default_theme", "minimal-light"),
+            "share_theme": data.get("share_theme") if isinstance(data.get("share_theme"), dict) else {},
             "reversals": bool(data.get("reversals", False)),
             "card_count": int(data.get("card_count") or len(data.get("cards") or [])),
             "share_path": f"/?deck={deck_id}",
@@ -220,6 +243,8 @@ class DeckPublisher:
             if not re.fullmatch(r"[a-z0-9][a-z0-9-]{1,63}", theme):
                 raise DivinationError("無效的牌組主題")
             data["default_theme"] = theme
+        if "share_theme" in payload:
+            data["share_theme"] = _clean_share_theme(payload.get("share_theme"))
 
         manifest_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
         return self.management_info(deck_id, token)
