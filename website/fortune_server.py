@@ -1,4 +1,5 @@
 import http.server
+import base64
 import socketserver
 import json
 import urllib.request
@@ -145,6 +146,26 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         query = url_parts[1] if len(url_parts) > 1 else ""
 
         # 👑 API Endpoints
+        share_image_match = re.fullmatch(r'/api/v1/readings/([^/]+)/share-image\.png', path)
+        if share_image_match:
+            reading_id = share_image_match.group(1)
+            params = urllib.parse.parse_qs(query)
+            share_token = (params.get('shareToken') or [''])[0]
+            try:
+                SESSION_STORE.get_shared(reading_id, share_token)
+                image_path = os.path.join(DATA_DIR, 'share_images', f'{reading_id}.png')
+                if not os.path.isfile(image_path):
+                    raise DivinationError('share image not found')
+                raw = open(image_path, 'rb').read()
+                self.send_response(200)
+                self.send_header('Content-type', 'image/png')
+                self.send_header('Content-Length', str(len(raw)))
+                self.send_header('Cache-Control', 'public, max-age=300')
+                self.end_headers()
+                self.wfile.write(raw)
+            except DivinationError:
+                self.send_error(404)
+            return
         if path == '/api/v1/methods':
             self.send_response(200)
             self.send_header('Content-type', 'application/json; charset=utf-8')
@@ -337,6 +358,15 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             params = urllib.parse.parse_qs(query)
             deck_id = (params.get('deck') or ['leopardcat'])[0]
             card_id = (params.get('card') or [None])[0]
+            reading_id = (params.get('reading') or [None])[0]
+            share_token = (params.get('share') or [None])[0]
+            shared_reading = None
+            if reading_id and share_token:
+                try:
+                    shared_reading = SESSION_STORE.get_shared(reading_id, share_token)
+                    deck_id = shared_reading.get('deck_id') or deck_id
+                except DivinationError:
+                    shared_reading = None
             
             index_path = os.path.join(DIRECTORY, 'index.html')
             if os.path.exists(index_path):
@@ -357,12 +387,35 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 meta_title = brand.app_name
                 meta_desc = brand.description
                 fallback_card = active_deck.cards[0] if active_deck.cards else {}
-                selected_card = next((c for c in active_deck.cards if c.get('id') == card_id), None) if card_id else None
+                reading_specs = ((shared_reading or {}).get('method_result') or {}).get('cards') or []
+                reading_card_id = (reading_specs[0].get('card_id') or reading_specs[0].get('id')) if reading_specs else None
+                selected_card = next((c for c in active_deck.cards if c.get('id') == (reading_card_id or card_id)), None) if (reading_card_id or card_id) else None
                 card_for_image = selected_card or fallback_card
                 image_path = str(card_for_image.get('image') or 'art/renders/card-00-the-fool.webp')
                 meta_img = image_path if image_path.startswith(('http://', 'https://')) else f"{base_url}/{image_path.lstrip('/')}"
+                meta_img_type = 'image/webp' if meta_img.lower().endswith('.webp') else ('image/png' if meta_img.lower().endswith('.png') else 'image/jpeg')
+                meta_img_width, meta_img_height = 1200, 1800
 
-                if selected_card:
+                if shared_reading and reading_specs:
+                    labels = []
+                    for spec in reading_specs[:3]:
+                        cid = spec.get('card_id') or spec.get('id')
+                        card = next((c for c in active_deck.cards if c.get('id') == cid), None) or {}
+                        titles = card.get('title') or {}
+                        title = (titles.get('zh') or titles.get('zh-TW') or titles.get('en') or cid) if isinstance(titles, dict) else str(titles or cid or '')
+                        if spec.get('orientation') == 'reversed':
+                            title += '（逆位）'
+                        labels.append(title)
+                    spread = ((shared_reading.get('method_result') or {}).get('spread') or 'tarot')
+                    meta_title = f"{brand.app_name}｜{'、'.join(labels)}"
+                    meta_desc = f"{spread} · {'、'.join(labels)}"
+                    persisted = os.path.join(DATA_DIR, 'share_images', f'{reading_id}.png')
+                    if os.path.isfile(persisted):
+                        meta_img = f"{base_url}/api/v1/readings/{urllib.parse.quote(reading_id)}/share-image.png?shareToken={urllib.parse.quote(share_token)}"
+                        meta_img_type = 'image/png'
+                        meta_img_width = meta_img_height = 600
+
+                if selected_card and not shared_reading:
                     titles = selected_card.get('title') or {}
                     if isinstance(titles, dict):
                         title_zh = titles.get('zh') or titles.get('zh-TW') or titles.get('en') or selected_card.get('id', '')
@@ -395,9 +448,9 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     <meta property="og:description" content="{meta_desc}">
     <meta property="og:image" content="{meta_img}">
     <meta property="og:image:secure_url" content="{meta_img}">
-    <meta property="og:image:type" content="image/webp">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="1800">
+    <meta property="og:image:type" content="{meta_img_type}">
+    <meta property="og:image:width" content="{meta_img_width}">
+    <meta property="og:image:height" content="{meta_img_height}">
     <meta property="og:image:alt" content="{meta_title}">
     <meta property="og:url" content="{base_url}{self.path}">
     <meta property="og:type" content="website">
@@ -485,6 +538,40 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_POST(self):
         path = self.path.split('?', 1)[0]
+        share_image_match = re.fullmatch(r'/api/v1/readings/([^/]+)/share-image', path)
+        if share_image_match:
+            reading_id = share_image_match.group(1)
+            content_length = int(self.headers.get('Content-Length', 0))
+            if content_length <= 0 or content_length > 4 * 1024 * 1024:
+                self.send_error(413); return
+            try:
+                payload = json.loads(self.rfile.read(content_length).decode('utf-8'))
+                SESSION_STORE.get(reading_id, str(payload.get('session_token') or ''))
+                image = str(payload.get('image') or '')
+                match = re.fullmatch(r'data:image/png;base64,([A-Za-z0-9+/=\s]+)', image)
+                if not match:
+                    raise DivinationError('invalid share image')
+                raw = base64.b64decode(match.group(1), validate=False)
+                if not raw.startswith(b'\x89PNG\r\n\x1a\n') or len(raw) > 3 * 1024 * 1024:
+                    raise DivinationError('invalid share image')
+                share_dir = os.path.join(DATA_DIR, 'share_images')
+                os.makedirs(share_dir, exist_ok=True)
+                tmp = os.path.join(share_dir, f'.{reading_id}.tmp')
+                final = os.path.join(share_dir, f'{reading_id}.png')
+                with open(tmp, 'wb') as f:
+                    f.write(raw)
+                os.replace(tmp, final)
+                self.send_response(201)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Cache-Control', 'no-store')
+                self.end_headers()
+                self.wfile.write(json.dumps({'stored': True, 'reading_id': reading_id}).encode('utf-8'))
+            except (DivinationError, ValueError, TypeError):
+                self.send_response(403)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(json.dumps({'error':'share_image_denied'}).encode('utf-8'))
+            return
         if path.startswith('/api/v1/manage/decks/') and path.endswith('/rotate'):
             deck_id = path.split('/')[-2]
             try:

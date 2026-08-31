@@ -153,6 +153,21 @@
         "website/tests/test_deck_driven_share_spreads.py"
       ]
     },
+    "sharing.reading-og-share-preview": {
+      "status": "protected",
+      "owner": "website",
+      "contract": [
+        "A reading share URL MUST expose Open Graph metadata from the immutable read-only reading receipt rather than falling back to an unrelated deck card.",
+        "When the browser has rendered the deck-owned 600x600 share card, it MAY persist that PNG using the private reading session token; the public share token grants read-only access to that image while the reading receipt remains valid.",
+        "OG metadata and persisted share images MUST NOT upload or expose the private question or AI answer.",
+        "If no persisted share image exists, social preview MUST degrade to a card image from the same reading/deck instead of a global LeopardCat fallback."
+      ],
+      "evidence": [
+        "website/fortune_server.py",
+        "website/main.js",
+        "website/tests/test_reading_og_share_preview.py"
+      ]
+    },
     "sharing.deck-owned-share-theme": {
       "status": "protected",
       "owner": "website",
