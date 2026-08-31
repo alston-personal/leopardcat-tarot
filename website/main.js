@@ -1276,7 +1276,10 @@ window.generateShareImage = async function() {
         
         // 🐦 X (Twitter) unified format for best compatibility
         document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fullShareText)}`;
-        document.getElementById('share-threads').href = `https://www.threads.net/intent/post?text=${encodeURIComponent(fullShareText)}`;
+        const threadsShareU = new URL(shareUrl);
+        threadsShareU.searchParams.set('preview', String(Date.now()));
+        const threadsShareText = `${shareMsg} ${threadsShareU.toString()}`;
+        document.getElementById('share-threads').href = `https://www.threads.net/intent/post?text=${encodeURIComponent(threadsShareText)}`;
         
         document.getElementById('social-share-row').classList.remove('hidden');
 
@@ -1375,7 +1378,12 @@ function updateSocialLinks(card, customQuote = null) {
     if (xLink) xLink.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fullShareText)}`;
     
     const threadsLink = document.getElementById('share-threads');
-    if (threadsLink) threadsLink.href = `https://www.threads.net/intent/post?text=${encodeURIComponent(fullShareText)}`;
+    if (threadsLink) {
+        const threadsShareU = new URL(shareUrl);
+        threadsShareU.searchParams.set('preview', String(Date.now()));
+        const threadsShareText = `${shareMsg} ${threadsShareU.toString()}`;
+        threadsLink.href = `https://www.threads.net/intent/post?text=${encodeURIComponent(threadsShareText)}`;
+    }
     
     document.getElementById('social-share-row')?.classList.remove('hidden');
 }

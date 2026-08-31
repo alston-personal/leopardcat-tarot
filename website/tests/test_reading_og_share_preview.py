@@ -27,3 +27,11 @@ def test_browser_uploads_rendered_png_before_social_share():
     assert "body: JSON.stringify({session_token: envelope.session_token, image})" in js
     assert "await persistReadingSharePreview(blob);" in js
     assert js.index('await persistReadingSharePreview(blob);') < js.index('navigator.share({', js.index('await persistReadingSharePreview(blob);'))
+
+
+def test_threads_share_busts_social_preview_cache_without_changing_reading_identity():
+    js = (ROOT / 'main.js').read_text(encoding='utf-8')
+    assert "threadsShareU.searchParams.set('preview', String(Date.now()))" in js
+    assert "new URL(shareUrl)" in js
+    assert "shareU.searchParams.set('reading'" in js
+    assert "shareU.searchParams.set('share'" in js
