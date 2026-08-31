@@ -147,9 +147,11 @@ function nearestManualFanButton(pool, clientX) {
     const cards = [...pool.querySelectorAll('.manual-card-back:not(:disabled)')];
     let best = null;
     let bestDistance = Number.POSITIVE_INFINITY;
+    const poolRect = pool.getBoundingClientRect();
+    const poolCenter = poolRect.left + poolRect.width / 2;
     cards.forEach(button => {
-        const rect = button.getBoundingClientRect();
-        const center = rect.left + rect.width / 2;
+        const fanX = Number.parseFloat(button.style.getPropertyValue('--fan-x')) || 0;
+        const center = poolCenter + fanX;
         const distance = Math.abs(clientX - center);
         if (distance < bestDistance) { best = button; bestDistance = distance; }
     });

@@ -89,10 +89,10 @@ try {
   const pool = page.locator('#manual-card-pool');
   await pool.scrollIntoViewIfNeeded();
   const clickFanIndex = async zeroBasedIndex => {
-    const cardBox = await backs.nth(zeroBasedIndex).boundingBox();
     const poolBox = await pool.boundingBox();
-    assert.ok(cardBox && poolBox);
-    const x = cardBox.x + cardBox.width / 2;
+    assert.ok(poolBox);
+    const fanX = await backs.nth(zeroBasedIndex).evaluate(el => Number.parseFloat(el.style.getPropertyValue('--fan-x')) || 0);
+    const x = poolBox.x + poolBox.width / 2 + fanX;
     const y = poolBox.y + poolBox.height * 0.72;
     await page.mouse.move(x, y);
     assert.ok(await backs.nth(zeroBasedIndex).evaluate(el => el.classList.contains('fan-hover')));
