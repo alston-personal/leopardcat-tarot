@@ -153,6 +153,23 @@
         "website/tests/test_deck_driven_share_spreads.py"
       ]
     },
+    "sharing.deck-owned-share-theme": {
+      "status": "protected",
+      "owner": "website",
+      "contract": [
+        "Share-card branding, palette, and layout are resolved from the active Deck Module/share_theme or its active Theme instead of a global LeopardCat template.",
+        "Custom decks without an explicit share_theme derive the share surface from their active theme; decks without either use a neutral platform fallback, never LeopardCat branding.",
+        "Deck public metadata may expose a sanitized share_theme contract without executable HTML/CSS or arbitrary fields.",
+        "Deck-driven card faces, spread order, positions, and upright/reversed orientation remain unchanged."
+      ],
+      "evidence": [
+        "website/main.js",
+        "website/style.css",
+        "website/divination/decks.py",
+        "website/divination/publishing.py",
+        "website/tests/test_deck_owned_share_theme.py"
+      ]
+    },
     "sharing.reading-receipt-reload": {
       "status": "protected",
       "owner": "divination",

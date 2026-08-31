@@ -1572,3 +1572,26 @@ button, select, input, textarea, .btn, .btn-gold-outline, .nav-links a, .lang-sw
 }
 
 @media (max-width: 620px) { .manual-card-back { pointer-events:auto; } }
+
+
+/* Share surface is owned by the active Deck/Theme contract, not LeopardCat globals. */
+.share-card-body {
+  --share-bg: #171717;
+  --share-surface: rgba(255,255,255,.055);
+  --share-accent: #d7d2c8;
+  --share-text: #f5f2ec;
+  --share-muted: rgba(245,242,236,.74);
+  --share-line: rgba(215,210,200,.28);
+  background: var(--share-bg);
+  border-color: var(--share-accent);
+  color: var(--share-text);
+}
+.share-card-body .share-header,
+.share-card-body .share-footer { border-color: var(--share-line); }
+.share-card-body .share-logo,
+.share-card-body .share-info h2,
+.share-card-body .quote-mark,
+.share-card-body .share-seeker .label { color: var(--share-accent); }
+.share-card-body .share-card-frame { background: var(--share-surface); border-color: var(--share-line); }
+.share-card-body .share-card-caption { color: var(--share-muted); }
+.share-card-body[data-share-layout="deck-memo"] .share-logo { letter-spacing: .04em; }

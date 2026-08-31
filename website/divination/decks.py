@@ -25,6 +25,7 @@ class Deck:
     default_persona: str = "master"
     default_theme: str = "minimal-light"
     card_back: str = "/art/card-back.svg"
+    share_theme: dict[str, Any] | None = None
 
 
 class DeckRegistry:
@@ -47,6 +48,13 @@ class DeckRegistry:
                 "leopardcat",
                 "leopardcat",
                 "/art/card-back.svg",
+                {
+                    "layout": "spirit-memo",
+                    "title": "靈山靈貓 · 石虎塔羅",
+                    "site_tag": "leopardcat-tarot.milkcat.org",
+                    "background": "#0a110e",
+                    "accent": "#d4af37",
+                },
             )
         if not _SAFE_ID.fullmatch(deck_id):
             raise DivinationError("invalid deck id")
@@ -74,6 +82,7 @@ class DeckRegistry:
             default_persona=default_persona,
             default_theme=default_theme,
             card_back=str(data.get("card_back") or "/art/card-back.svg"),
+            share_theme=data.get("share_theme") if isinstance(data.get("share_theme"), dict) else None,
         )
 
     def public_info(self, deck_id: str) -> dict[str, Any]:
@@ -89,6 +98,7 @@ class DeckRegistry:
             "default_persona": d.default_persona,
             "default_theme": d.default_theme,
             "card_back": d.card_back,
+            "share_theme": d.share_theme or {},
             # Card faces and meanings are intentionally public: a shared deck page is
             # also the creator's gallery/catalog, not only an opaque reading endpoint.
             "cards": d.cards,
