@@ -13,5 +13,5 @@ p.write_text(s,encoding='utf-8')
 
 t=Path('website/tests/test_reading_og_share_preview.py')
 ts=t.read_text(encoding='utf-8')
-ts += r'''\n\ndef test_threads_share_busts_social_preview_cache_without_changing_reading_identity():\n    js = (ROOT / 'main.js').read_text(encoding='utf-8')\n    assert "threadsShareU.searchParams.set('preview', String(Date.now()))" in js\n    assert "new URL(shareUrl)" in js\n    assert "shareU.searchParams.set('reading'" in js\n    assert "shareU.searchParams.set('share'" in js\n'''
+ts += '''\n\ndef test_threads_share_busts_social_preview_cache_without_changing_reading_identity():\n    js = (ROOT / 'main.js').read_text(encoding='utf-8')\n    assert "threadsShareU.searchParams.set('preview', String(Date.now()))" in js\n    assert "new URL(shareUrl)" in js\n    assert "shareU.searchParams.set('reading'" in js\n    assert "shareU.searchParams.set('share'" in js\n'''
 t.write_text(ts,encoding='utf-8')
