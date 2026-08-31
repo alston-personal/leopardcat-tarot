@@ -110,7 +110,7 @@ window.activeSpread = 'single'; // homepage spread selector; preserved across re
 window.activeBrand = null; // Brand Pack: presentation/social identity, independent from Tarot logic
 window.currentShareReceipt = null; // read-only receipt identity; never grants follow-up authority
 window.drawMode = 'auto';
-window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false };
+window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false, phase: 'idle' };
 window.pendingDrawOptions = null; // preserves manual seed/indices until a reading receipt exists
 
 function requiredDrawCount() {
@@ -130,6 +130,10 @@ function activeCardBack() {
 function manualStatus() {
     const el = document.getElementById('manual-draw-status');
     if (!el) return;
+    if (window.manualDrawState.phase === 'shuffling') {
+        el.textContent = uiText('manual_draw_shuffling', '洗牌中…');
+        return;
+    }
     if (!window.manualDrawState.shuffled) {
         el.textContent = uiText('manual_draw_shuffle_first', 'Shuffle first, then choose your cards.');
         return;
@@ -150,6 +154,17 @@ function renderManualCardPool() {
         button.type = 'button';
         button.className = 'manual-card-back';
         button.dataset.drawIndex = String(i);
+        const fanPosition = total > 1 ? ((i - 1) / (total - 1)) * 2 - 1 : 0;
+        const fanAngle = fanPosition * 31;
+        const fanX = fanPosition * Math.min(340, Math.max(180, total * 7));
+        const fanY = Math.pow(Math.abs(fanPosition), 1.65) * 72;
+        button.style.setProperty('--fan-x', `${fanX.toFixed(1)}px`);
+        button.style.setProperty('--fan-y', `${fanY.toFixed(1)}px`);
+        button.style.setProperty('--fan-angle', `${fanAngle.toFixed(2)}deg`);
+        button.style.setProperty('--fan-mobile-angle', `${(fanAngle * 0.18).toFixed(2)}deg`);
+        button.style.setProperty('--fan-z', String(i));
+        button.style.setProperty('--shuffle-shift', `${i % 2 ? 34 : -34}px`);
+        button.style.setProperty('--shuffle-delay', `${(i % 9) * 16}ms`);
         button.setAttribute('aria-label', uiText('manual_card_aria', 'Choose card position {index}', {index:i}));
         const img = document.createElement('img');
         img.src = back;
@@ -171,7 +186,7 @@ window.setDrawMode = function(mode) {
     stage?.classList.toggle('hidden', window.drawMode !== 'manual');
     primary?.classList.toggle('hidden', window.drawMode === 'manual');
     if (window.drawMode === 'manual') {
-        window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false };
+        window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false, phase: 'idle' };
         const pool = document.getElementById('manual-card-pool'); if (pool) pool.innerHTML = '';
         manualStatus();
     }
@@ -180,13 +195,25 @@ window.setDrawMode = function(mode) {
 window.shuffleManualDeck = function() {
     const q = document.getElementById('fortune-question')?.value?.trim() || '';
     if (!q) return alert(uiText('err_empty_question', 'Please enter your question first.'));
-    window.manualDrawState = { seed: freshShuffleSeed(), selected: [], shuffled: true, submitting: false };
+    const seed = freshShuffleSeed();
+    window.manualDrawState = { seed, selected: [], shuffled: false, submitting: false, phase: 'shuffling' };
     renderManualCardPool();
     const pool = document.getElementById('manual-card-pool');
+    const shuffleButton = document.getElementById('btn-manual-shuffle');
     pool?.classList.remove('is-shuffling');
     void pool?.offsetWidth;
     pool?.classList.add('is-shuffling');
-    setTimeout(() => pool?.classList.remove('is-shuffling'), 650);
+    if (shuffleButton) shuffleButton.disabled = true;
+    manualStatus();
+    const duration = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 240 : 1050;
+    setTimeout(() => {
+        if (window.manualDrawState.seed !== seed || window.drawMode !== 'manual') return;
+        window.manualDrawState.shuffled = true;
+        window.manualDrawState.phase = 'ready_to_draw';
+        pool?.classList.remove('is-shuffling');
+        if (shuffleButton) shuffleButton.disabled = false;
+        manualStatus();
+    }, duration);
 };
 
 async function selectManualCard(index, button) {
@@ -540,7 +567,7 @@ function bindLegacySpreadPicker() {
         window.activeSpread = spread || 'single';
         buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.spreadChoice === window.activeSpread));
         if (window.drawMode === 'manual') {
-            window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false };
+            window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false, phase: 'idle' };
             const pool = document.getElementById('manual-card-pool'); if (pool) pool.innerHTML = '';
             manualStatus();
         }
@@ -1783,7 +1810,7 @@ window.resetRitual = function() {
     window.currentReadingEnvelope = null;
     window.currentShareReceipt = null;
     window.currentReadingState = null;
-    window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false };
+    window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false, phase: 'idle' };
     window.pendingDrawOptions = null;
     lastShareFile = null;
     lastShareText = "";
