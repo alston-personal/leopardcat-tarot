@@ -40,7 +40,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add website/fortune_server.py website/main.js website/tests/test_reading_og_share_preview.py governance/capabilities.json website/dist/index.html
+          git add website/fortune_server.py website/main.js website/tests/test_reading_og_share_preview.py governance/capabilities.json
+          git add -f website/dist/index.html
           git commit -m 'fix(share): make reading links preview the rendered share card'
           git rm tools/apply_reading_og_share_preview.py .github/workflows/apply-reading-og-share-preview.yml
           git commit -m 'chore(ci): remove temporary reading OG patcher'
