@@ -1,0 +1,56 @@
+name: Apply Share OG And Reading Controls
+
+on:
+  push:
+    branches: [feat/share-og-and-reading-controls]
+    paths:
+      - 'tools/apply_share_og_reading_controls.py'
+      - '.github/workflows/apply-share-og-reading-controls.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/share-og-and-reading-controls
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply product patch
+        run: |
+          set -euo pipefail
+          python tools/apply_share_og_reading_controls.py
+          python -m pip install -q pytest
+          PYTHONPATH=website python -m pytest -q \
+            website/tests/test_share_og_and_reading_controls.py \
+            website/tests/test_reading_og_share_preview.py \
+            website/tests/test_deck_owned_share_theme.py \
+            website/tests/test_shuffle_manual_draw.py
+          node --check website/main.js
+      - name: Build committed frontend
+        working-directory: website
+        run: |
+          set -euo pipefail
+          mkdir -p public/art/renders public/cards
+          npm ci
+          npm run build
+      - name: Commit product change and remove scaffolding
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f tools/apply_share_og_reading_controls.py .github/workflows/apply-share-og-reading-controls.yml
+          git add governance/capabilities.json website/index.html website/main.js website/style.css website/tests/test_share_og_and_reading_controls.py
+          git add -u tools/apply_share_og_reading_controls.py .github/workflows/apply-share-og-reading-controls.yml
+          git add -f website/dist/index.html
+          git commit -m 'feat(ui): refine reading setup and social share preview'
+          git push origin HEAD:feat/share-og-and-reading-controls
