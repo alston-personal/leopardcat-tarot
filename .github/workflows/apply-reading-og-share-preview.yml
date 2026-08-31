@@ -32,6 +32,8 @@ jobs:
           python -m pytest -q website/tests/test_reading_og_share_preview.py website/tests/test_deck_owned_share_theme.py website/tests/test_reading_based_share_reload.py
           node --check website/main.js
           cd website
+          rm -f public/art/renders public/cards || true
+          mkdir -p public/art/renders public/cards
           npm ci >/dev/null
           npm run build >/dev/null
       - name: Commit implementation
