@@ -1,0 +1,105 @@
+{
+  "id": "card-15-the-devil",
+  "arcana": "major",
+  "number": 15,
+  "title": {
+    "zh": "惡魔",
+    "en": "THE DEVIL"
+  },
+  "subtitle": "Shadow / Entrapment / Baited Cage",
+  "slug": "15-the-devil",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      100,
+      30,
+      22
+    ],
+    "bottom": [
+      26,
+      26,
+      26
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      54,
+      28,
+      28
+    ],
+    "text_primary": [
+      231,
+      76,
+      60
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "shadowed-temptation-cage",
+    "subject": "horned-leopard-cat-demon"
+  },
+  "main_image": "art/generated/card-15-the-devil.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, high contrast. NO BORDERS. NO TEXT. A monstrous and powerful anthropomorphic leopard cat as The Devil. He has massive, curved demonic horns and glowing, malevolent amber eyes that pierce the darkness. His facial expression is one of savage dominance. He wears tattered black Victorian robes that look like shadows. His large, sharp black claws are bared. He looms over two smaller leopard cats who are chained by heavy iron collars to a dark stone altar. The background is an oppressive, smoky cavern illuminated by the violent orange glow of infernal flames. The atmosphere is terrifying and violent. Full bleed. No borders. High-fidelity biological leopard cat features mixed with demonic power.",
+    "narrative": "The Devil is the 'Baited Cage'—the shadow of urbanization where the wild is trapped by instinct and artificial boundaries. This reimagined version emphasizes the raw, terrifying power of obsession and the violent traps of the modern landscape."
+  },
+  "output": "art/renders/card-15-the-devil.webp",
+  "meaning": {
+    "zh": "束縛、慾望、依賴，以及被物質或恐懼所困的狀態。",
+    "en": "Addiction, materialism, entrapment, restriction, and unhealthy attachments."
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "trapped individual",
+    "habitat_fragment": "illegal traps or highly polluted industrial edge",
+    "risk_theme": "physical entrapment by snares, poison, or artificial borders",
+    "mapping_note": "The Devil represents the literal and metaphorical traps laid by human development—poisons, snares, and the false allure of easy prey near deadly roads that chain the leopard cat to its doom.",
+    "zh": "棲地樣貌：充滿非法獸夾的危險熱點。生存威脅：報復性獵捕與非法走私。牌義關聯：惡魔代表著人類貪婪與無知導致的束縛，是石虎在陰暗處面臨的最深威脅。",
+    "en": "Habitat: illegal traps or highly polluted industrial edge. Risk: physical entrapment by snares, poison, or artificial borders. Note: The Devil represents the literal and metaphorical traps laid by human development—poisons, snares, and the false allure of easy prey near deadly roads that chain the leopard cat to its doom."
+  },
+  "meanings": {
+    "upright": "Addiction, materialism, entrapment, restriction, and unhealthy attachments.",
+    "reversed": "Release, breaking free, reclaiming power, or escaping a toxic situation.",
+    "keywords": [
+      "entrapment",
+      "restriction",
+      "materialism",
+      "illusion"
+    ]
+  },
+  "website": {
+    "excerpt": "Chained by invisible human traps, The Devil exposes the dark illusions and toxic dangers of the fragmented landscape.",
+    "seo_title": "The Devil - LeopardCat Tarot",
+    "seo_description": "The Devil tarot card reimagined as the deadly traps, poisons, and artificial barriers threatening the leopard cat.",
+    "tags": [
+      "major-arcana",
+      "devil",
+      "leopard-cat",
+      "entrapment"
+    ]
+  },
+  "render_config": {
+    "zoom": 1.0,
+    "trim": 40,
+    "offset_y": 0
+  }
+}

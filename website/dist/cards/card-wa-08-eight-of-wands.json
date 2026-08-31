@@ -1,0 +1,107 @@
+{
+  "id": "card-wa-08-eight-of-wands",
+  "arcana": "minor",
+  "suit": "wands",
+  "number": 108,
+  "title": {
+    "zh": "權杖八",
+    "en": "EIGHT OF WANDS"
+  },
+  "subtitle": "The Efficient Passage / Corridor Flow",
+  "slug": "eight-of-wands",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      30,
+      80,
+      120
+    ],
+    "bottom": [
+      50,
+      100,
+      60
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      20,
+      30,
+      40
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "rapid-transit",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "leopard-cat-running"
+  },
+  "main_image": "art/generated/card-wa-08-eight-of-wands.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "A single continuous scene. NO MARGINS. NO BORDERS. NO INSET FRAMES. NO FLOATING CARDS. 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs in a vast open landscape. He is wearing a detailed 1900s traveling outfit with a patterned tunic, trousers, and a cloak. In the open sky above, EXACTLY EIGHT wooden wands are flying in a neat diagonal line. The count must be EXACTLY EIGHT, no more, no less. The leopard cat's hands are empty. The scene touches all four edges of the image (FULL BLEED). Earthy color palette. High-fidelity biological markers.",
+    "narrative": "Eight wands fly through the sky as a leopard cat moves with incredible speed through a newly opened ecological corridor, symbolizing the efficiency of habitat restoration."
+  },
+  "ornaments": [
+    "flying-wands"
+  ],
+  "output": "art/renders/card-wa-08-eight-of-wands.webp",
+  "meanings": {
+    "upright": "Speed, rapid movement, travel, sudden progress, and the success of open corridors.",
+    "reversed": "Delays, roadblocks, interrupted progress, or a movement that is too fast and lacks safety.",
+    "keywords": [
+      "speed",
+      "movement",
+      "passage",
+      "flow"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "ecological corridor",
+    "risk_theme": "speed and crossing safety",
+    "mapping_note": "Eight of Wands represents the 'Corridor Flow'—the vital speed and efficiency at which restoration efforts allow leopard cats to safely cross vulnerable areas to reach new habitats.",
+    "zh": "棲地樣貌：暢通無阻的生態廊道。生存威脅：快速移動時的過路安全。牌義關聯：權杖八代表著「廊道流量」——石虎能透過復育後的廊道，迅速且安全地在棲地間移動。",
+    "en": "Habitat: ecological corridor. Risk: speed and crossing safety. Note: Eight of Wands represents the 'Corridor Flow'—the vital speed and efficiency at which restoration efforts allow leopard cats to safely cross vulnerable areas to reach new habitats."
+  },
+  "website": {
+    "excerpt": "Swift and sure, the leopard cat utilizes the newly opened corridor, a testament to effective restoration planning.",
+    "seo_title": "Eight of Wands - LeopardCat Tarot",
+    "seo_description": "Eight of Wands reimagined as rapid leopard cat movement through restored habitat corridors.",
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "flow"
+    ]
+  },
+  "meaning": {
+    "zh": "速度、快速移動、順暢通行、突飛猛進，以及生態廊道的成功串聯。",
+    "en": "Speed, rapid movement, travel, sudden progress, and the success of open corridors."
+  }
+}

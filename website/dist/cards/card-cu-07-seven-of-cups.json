@@ -1,0 +1,114 @@
+{
+  "id": "card-cu-07-seven-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 207,
+  "title": {
+    "zh": "聖杯七",
+    "en": "SEVEN OF CUPS"
+  },
+  "subtitle": "The Illusion / Dreams / Choices",
+  "slug": "seven-of-cups",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      100,
+      80,
+      120
+    ],
+    "bottom": [
+      30,
+      20,
+      40
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      20,
+      15,
+      30
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "dream-mist-vision",
+    "forest": false,
+    "road": false,
+    "grass": false,
+    "subject": "visionary-leopard-cat"
+  },
+  "main_image": "art/generated/card-cu-07-seven-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. FULL BLEED: No borders, no text. ANTHROPOMORPHIC: A Taiwan leopard cat standing upright on two legs, wearing a scholar's robe, looking in wonder at EXACTLY SEVEN golden cups floating in a cloud of mist. CENTERED COMPOSITION: All cups must be fully visible and contained within the image frame, nothing cut off. Slender build, sharp facial structure, white ear spots, forehead stripes. Ethereal atmosphere. Full bleed. No borders.",
+    "narrative": "The Seven of Cups is 'The Choice'—the confusing array of potential paths that a dispersing leopard cat must navigate."
+  },
+  "ornaments": [
+    "dream-mist",
+    "seven-clouds"
+  ],
+  "output": "art/renders/card-cu-07-seven-of-cups.webp",
+  "meanings": {
+    "upright": "Illusions, daydreaming, wishful thinking, choices, and too many options.",
+    "reversed": "Clarity, being realistic, making a decision, and realizing the truth after an illusion.",
+    "keywords": [
+      "illusions",
+      "dreams",
+      "choices",
+      "possibility"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "young-adult",
+    "habitat_fragment": "unfamiliar transition zone",
+    "risk_theme": "decision-making in new territory",
+    "mapping_note": "Seven of Cups represents 'The Dispersal Dilemma'—the many choices a leopard cat faces when crossing between habitat fragments.",
+    "zh": "棲地樣貌：主要活動於海拔一千公尺以下的淺山丘陵，偏好闊葉林、草生地與農田交織的邊緣地帶。生存威脅：最嚴峻的挑戰在於棲地破碎化，這迫使石虎必須穿越公路或進入人類聚落，面臨路殺、誤入陷阱（獸鋏）、犬隻攻擊及農藥毒害。牌義關聯：聖杯七象徵「離散的抉擇」。當成年後的石虎離開出生地進行擴張（Dispersal）時，前方破碎的棲地如同七個充滿幻象的聖杯，每一條看似通往新家園的路徑，背後可能隱藏著致命的道路，或是充滿陷阱的農地，考驗著牠們在迷惘中尋找唯一生機的能力。",
+    "en": "Habitat: Primarily inhabits low-elevation secondary forests, grasslands, and agricultural edges below 1,000 meters. Risk: The most severe threat is habitat fragmentation, which forces leopard cats to cross roads or enter human settlements, leading to roadkill, illegal snares, feral dog attacks, and secondary poisoning. Note: The Seven of Cups represents 'The Dispersal Dilemma.' As sub-adult leopard cats leave their natal territory to find their own range, they are confronted with a dizzying array of paths through a fragmented landscape. Much like the cups in the tarot, each choice is an illusion of safety that could lead to either a new territory or a fatal encounter, reflecting the confusing and dangerous reality of survival."
+  },
+  "website": {
+    "excerpt": "In the mist of possibilities, which path is real, and which is a dangerous trap?",
+    "seo_title": "Seven of Cups - LeopardCat Tarot",
+    "seo_description": "Seven of Cups reimagined as a dispersing leopard cat facing many confusing choices.",
+    "tags": [
+      "minor-arcana",
+      "cups",
+      "leopard-cat",
+      "choice"
+    ]
+  },
+  "meaning": {
+    "zh": "幻象、白日夢、一廂情願、選擇、以及過多的選項。",
+    "en": "Illusions, daydreaming, wishful thinking, choices, and too many options."
+  },
+  "render_config": {
+    "zoom": 1.1,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 75
+  }
+}

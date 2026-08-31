@@ -1,0 +1,100 @@
+{
+  "id": "card-11-justice",
+  "arcana": "major",
+  "number": 11,
+  "title": {
+    "zh": "正義",
+    "en": "JUSTICE"
+  },
+  "subtitle": "Balance / Law / Ecological Integrity",
+  "slug": "11-justice",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      44,
+      62,
+      80
+    ],
+    "bottom": [
+      189,
+      195,
+      199
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      34,
+      48,
+      74
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "ecological-balance-scales",
+    "subject": "judicial-leopard-cat"
+  },
+  "main_image": "art/generated/card-11-justice.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A dignified anthropomorphic Taiwan leopard cat wearing formal judicial robes, sitting upon a mossy stone chair at a forest boundary. He holds a sword in one hand and a gold scale in the other. On the scales, a healthy forest patch balances against a cluster of rural houses. Meaning: Fairness, natural laws, and the complex balance between wildlife habitat and human development.",
+    "narrative": "A dignified anthropomorphic Taiwan leopard cat wearing formal judicial robes, sitting upon a mossy stone chair at a forest boundary. He holds a sword in one hand and a gold scale in the other. On the scales, a healthy forest patch balances against a cluster of rural houses. Meaning: Fairness, natural laws, and the complex balance between wildlife habitat and human development."
+  },
+  "output": "art/renders/card-11-justice.webp",
+  "meanings": {
+    "upright": "Fairness, truth, cause and effect, the law, and taking responsibility for actions.",
+    "reversed": "Injustice, unfairness, dishonesty, or avoiding accountability for environmental damage.",
+    "keywords": [
+      "justice",
+      "truth",
+      "balance",
+      "consequence"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "forest border where human law meets natural law",
+    "risk_theme": "legal protection, conservation laws, and the consequences of human actions on wildlife",
+    "mapping_note": "Justice represents the absolute law of cause and effect in ecology: destroying habitats has consequences, and protecting them restores balance. It also directly maps to the legal conservation status protecting the leopard cat.",
+    "zh": "棲地樣貌：受法律保護的生態保護區邊界。生存威脅：法規執行不力或開發爭端。牌義關聯：正義代表著生態補償與法理的平衡，是環境正義在土地上的落實。",
+    "en": "Habitat: forest border where human law meets natural law. Risk: legal protection, conservation laws, and the consequences of human actions on wildlife. Note: Justice represents the absolute law of cause and effect in ecology: destroying habitats has consequences, and protecting them restores balance. It also directly maps to the legal conservation status protecting the leopard cat."
+  },
+  "website": {
+    "excerpt": "Holding the scales of balance, Justice demands accountability for the ecological choices we make.",
+    "seo_title": "Justice - LeopardCat Tarot",
+    "seo_description": "The Justice tarot card reimagined as ecological balance and the law of cause and effect.",
+    "tags": [
+      "major-arcana",
+      "justice",
+      "leopard-cat",
+      "balance"
+    ]
+  },
+  "meaning": {
+    "zh": "正義、公平、法律，以及因果循環的平衡。",
+    "en": "Fairness, truth, cause and effect, the law, and taking responsibility for actions."
+  }
+}

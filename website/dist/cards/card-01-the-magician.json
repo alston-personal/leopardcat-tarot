@@ -1,0 +1,110 @@
+{
+  "id": "card-01-the-magician",
+  "arcana": "major",
+  "number": 1,
+  "title": {
+    "zh": "魔術師",
+    "en": "THE MAGICIAN"
+  },
+  "subtitle": "Skill / Focus / Adaptation",
+  "slug": "the-magician",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      28,
+      36,
+      28
+    ],
+    "bottom": [
+      108,
+      104,
+      63
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      24,
+      28,
+      23
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "field-edge-adaptation",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "headlights": false,
+    "subject": "adult-leopard-cat"
+  },
+  "main_image": "art/generated/card-01-the-magician.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. ... High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
+    "narrative": "An adult anthropomorphic Taiwan leopard cat standing at an agricultural field edge with focused tactical intelligence. It masters its environment with symbolic tools: a dry reed (wand), a footprint pool (cup), a blade of grass (sword), and a burrow (disk). Classic magical mastery pose."
+  },
+  "ornaments": [
+    "dry-reed",
+    "pooled-water",
+    "silver-grass",
+    "rodent-burrow"
+  ],
+  "output": "art/renders/card-01-the-magician.webp",
+  "meanings": {
+    "upright": "Focused skill, resourcefulness, environmental intelligence, and the power to act with precision.",
+    "reversed": "Misapplied skill, scattered attention, manipulation, or overconfidence in unstable terrain.",
+    "keywords": [
+      "skill",
+      "focus",
+      "adaptation",
+      "manifestation"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult male",
+    "habitat_fragment": "agricultural edge and field ridges",
+    "risk_theme": "survival in 破碎化棲地 through precision and adaptive behavior",
+    "mapping_note": "The Magician's elemental mastery becomes a leopard cat's ability to read and use edge habitat with tactical intelligence.",
+    "zh": "棲地樣貌：多樣化的人機交界環境。生存威脅：快速變遷的開發壓力。牌義關聯：魔術師展現了石虎在多變環境中的適應力與生存智慧。",
+    "en": "Habitat: Diverse ecotones at the human-wildland interface.\nThreats: The intensifying pressure of rapid land development.\nTarot Correlation: The Magician reflects the leopard cat’s resourcefulness, manifesting survival intelligence and profound adaptability within a shifting landscape."
+  },
+  "website": {
+    "excerpt": "An adult leopard cat moves through the agricultural edge with focused intelligence, turning habitat fragments into tools of survival.",
+    "seo_title": "The Magician - LeopardCat Tarot",
+    "seo_description": "The Magician reimagined through leopard cat adaptation, hunting precision, and edge-habitat intelligence.",
+    "tags": [
+      "major-arcana",
+      "field-edge",
+      "adaptation",
+      "leopard-cat"
+    ]
+  },
+  "meaning": {
+    "zh": "專注的技能、資源豐富、環境智慧，以及精準行動的力量。",
+    "en": "Focused skill, resourcefulness, environmental intelligence, and the power to act with precision."
+  }
+}

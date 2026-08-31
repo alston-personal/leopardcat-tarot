@@ -1,0 +1,107 @@
+{
+  "id": "card-04-the-emperor",
+  "arcana": "major",
+  "number": 4,
+  "title": {
+    "zh": "皇帝",
+    "en": "THE EMPEROR"
+  },
+  "subtitle": "Structure / Territory / Authority",
+  "slug": "the-emperor",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      91,
+      28,
+      28
+    ],
+    "bottom": [
+      54,
+      42,
+      34
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      42,
+      24,
+      24
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "ridge-territory-guard",
+    "forest": true,
+    "hills": true,
+    "subject": "dominant-male-leopard-cat"
+  },
+  "main_image": "art/generated/card-04-the-emperor.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. [CLEAN_V4_EMPEROR_NO_BORDER]... High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes between the eyes, white muzzle, and large white spots behind black ears. 2:3 vertical. Full bleed. No borders.",
+    "narrative": "A large, powerful adult male anthropomorphic Taiwan leopard cat standing firmly on a high rocky ridge at night. He has an authoritative, stern gaze, overseeing a sweeping valley of fragmented forests and moonlit hills. His posture is rigid and commanding, representing the structure and protection of a large home territory. Deep earthy red and dark iron-like color palette."
+  },
+  "ornaments": [
+    "rocky-ridge",
+    "valley-view",
+    "stern-expression"
+  ],
+  "output": "art/renders/card-04-the-emperor.webp",
+  "meanings": {
+    "upright": "Authority, establishment, foundation, protection of territory, and structured leadership.",
+    "reversed": "Tyranny, loss of territory, lack of discipline, or the collapse of habitat protection boundaries.",
+    "keywords": [
+      "authority",
+      "structure",
+      "territory",
+      "fatherhood"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "dominant adult male",
+    "habitat_fragment": "large interconnected territorial hillsides",
+    "risk_theme": "territory loss and internal competition of males",
+    "mapping_note": "The Emperor is the dominant male securing a massive home range, needing large patches of safe forest to sustain his law over the land.",
+    "zh": "棲地樣貌：穩固的核心棲地斑塊。生存威脅：核心家域的喪失與棲地破碎化。牌義關聯：皇帝代表著建立與守護穩固的領域，那是族群生存最根本的基礎。",
+    "en": "Habitat: large interconnected territorial hillsides. Risk: territory loss and internal competition of males. Note: The Emperor is the dominant male securing a massive home range, needing large patches of safe forest to sustain his law over the land."
+  },
+  "website": {
+    "excerpt": "Standing upon the high ridge, the Emperor represents the structural strength required to protect a leopard cat's vast kingdom.",
+    "seo_title": "The Emperor - LeopardCat Tarot",
+    "seo_description": "The Emperor tarot card reimagined as the dominant male leopard cat defending its vast territory.",
+    "tags": [
+      "major-arcana",
+      "territory",
+      "authority",
+      "leopard-cat"
+    ]
+  },
+  "meaning": {
+    "zh": "權威、建立、基礎、領地的保護，以及結構化的領導力。",
+    "en": "Authority, establishment, foundation, protection of territory, and structured leadership."
+  }
+}

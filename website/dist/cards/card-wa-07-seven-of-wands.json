@@ -1,0 +1,107 @@
+{
+  "id": "card-wa-07-seven-of-wands",
+  "arcana": "minor",
+  "suit": "wands",
+  "number": 107,
+  "title": {
+    "zh": "權杖七",
+    "en": "SEVEN OF WANDS"
+  },
+  "subtitle": "The Core Guardian / Defensive Resilience",
+  "slug": "seven-of-wands",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      70,
+      50,
+      10
+    ],
+    "bottom": [
+      140,
+      100,
+      30
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      30,
+      20,
+      5
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "defensive-stand",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "defiant-leopard-cat"
+  },
+  "main_image": "art/generated/card-wa-07-seven-of-wands.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "A single continuous scene. NO MARGINS. NO BORDERS. NO INSET FRAMES. FULL BLEED IMAGE. 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: One Taiwan leopard cat standing upright on two legs on a high rocky ledge, defending his position. He is wearing a detailed 1900s warrior's tunic and protective robes. He holds ONE wooden wand firmly with both paws. SIX other wooden wands are reaching up toward him from the bottom center of the image. Total wands must be EXACTLY SEVEN. All seven wands and the main cat must be centrally located and safely away from the edges to avoid being cropped. Earthy color palette. High-fidelity biological markers. NO VINTAGE PAPER MARGINS. NO PICTURE-IN-PICTURE.",
+    "narrative": "A leopard cat defends the last core habitat patch from external pressures, representing the vital educational need to protect the 'pristine baseline'."
+  },
+  "ornaments": [
+    "mountain-rocks"
+  ],
+  "output": "art/renders/card-wa-07-seven-of-wands.webp",
+  "meanings": {
+    "upright": "Defensiveness, resilience, protecting the core, standing one's ground against encroachment.",
+    "reversed": "Feeling overwhelmed, giving up habitat, or a failure to defend the essential core.",
+    "keywords": [
+      "defense",
+      "resilience",
+      "protection",
+      "core-habitat"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "contested territory boundary",
+    "risk_theme": "the struggle to hold shrinking habitat patches",
+    "mapping_note": "Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones (Ecological Core) from constant external human and invasive pressure.",
+    "zh": "棲地樣貌：受威脅的領地邊界。生存威脅：守護日益萎縮的棲地斑塊。牌義關聯：權杖七代表著「邊界防禦」——堅守最後的核心區域，抵抗外部的人為與外來種壓力。",
+    "en": "Habitat: contested territory boundary. Risk: the struggle to hold shrinking habitat patches. Note: Seven of Wands represents the 'Boundary Defense'—the vital need to protect the few remaining safe core zones (Ecological Core) from constant external human and invasive pressure."
+  },
+  "website": {
+    "excerpt": "Standing firm against the tide of encroachment, the leopard cat defends the sanctity of the core habitat.",
+    "seo_title": "Seven of Wands - LeopardCat Tarot",
+    "seo_description": "Seven of Wands reimagined as leopard cat boundary defense and habitat protection.",
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "defense"
+    ]
+  },
+  "meaning": {
+    "zh": "守護、韌性、保護核心棲地，以及在外部壓力下堅守陣地。",
+    "en": "Defensiveness, resilience, protecting the core, standing one's ground against encroachment."
+  }
+}

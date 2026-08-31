@@ -1,0 +1,99 @@
+{
+  "id": "card-20-judgement",
+  "arcana": "major",
+  "number": 20,
+  "title": {
+    "zh": "審判",
+    "en": "JUDGEMENT"
+  },
+  "subtitle": "Rebirth / Calling / Conservation Law",
+  "slug": "20-judgement",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      52,
+      152,
+      219
+    ],
+    "bottom": [
+      189,
+      195,
+      199
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      42,
+      54,
+      74
+    ],
+    "text_primary": [
+      255,
+      255,
+      255
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "major-arcana-finale"
+  },
+  "main_image": "art/generated/card-20-judgement.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. An angelic anthropomorphic Taiwan leopard cat in the sky blows a golden trumpet. Below, leopard cat families emerge from stone-like dens with open arms, looking up toward the light. Meaning: A call to action, the collective awakening for conservation, and the evaluation of past ecological choices.",
+    "narrative": "An angelic anthropomorphic Taiwan leopard cat in the sky blows a golden trumpet. Below, leopard cat families emerge from stone-like dens with open arms, looking up toward the light. Meaning: A call to action, the collective awakening for conservation, and the evaluation of past ecological choices."
+  },
+  "output": "art/renders/card-20-judgement.webp",
+  "meaning": {
+    "zh": "覺醒、重生、評估，以及對過去行為的總結與新出路。",
+    "en": "Judgement, rebirth, inner calling, absolution, and awakening."
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "awakened population",
+    "habitat_fragment": "a recovering ecosystem",
+    "risk_theme": "the ultimate human decision to either save or forsake the species",
+    "mapping_note": "審判代表人類的覺醒與抉擇——決定是否要讓石虎從絕跡邊緣重生，給予生態系第二次機會。",
+    "zh": "棲地樣貌：環境影響評估後的決策現場。生存威脅：錯誤政策導致的不可逆損害。牌義關聯：審判代表著生態價值的重新認定，是大地對人類行為的最終呼喚。",
+    "en": "Habitat: Decision-making sites following Environmental Impact Assessments (EIA).\nThreats: Irreversible damage resulting from flawed policies.\nTarot Correspondence: Judgement signifies the reappraisal of ecological value—the Earth’s final clarion call in response to human conduct."
+  },
+  "meanings": {
+    "upright": "Judgement, rebirth, inner calling, absolution, and awakening.",
+    "reversed": "Self-doubt, inner critic, ignoring the call, or refusing to learn from the past.",
+    "keywords": [
+      "rebirth",
+      "awakening",
+      "calling",
+      "absolution"
+    ]
+  },
+  "website": {
+    "excerpt": "Answering the ultimate call, Judgement represents the collective awakening required to pull a species back from the brink.",
+    "seo_title": "Judgement - LeopardCat Tarot",
+    "seo_description": "The Judgement tarot card reimagined as the ecological awakening and the decision to save the leopard cat.",
+    "tags": [
+      "major-arcana",
+      "judgement",
+      "leopard-cat",
+      "awakening"
+    ]
+  }
+}

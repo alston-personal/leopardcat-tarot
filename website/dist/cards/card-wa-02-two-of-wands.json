@@ -1,0 +1,110 @@
+{
+  "id": "card-wa-02-two-of-wands",
+  "arcana": "minor",
+  "suit": "wands",
+  "number": 102,
+  "title": {
+    "zh": "權杖二",
+    "en": "TWO OF WANDS"
+  },
+  "subtitle": "Planning & Evaluation",
+  "slug": "two-of-wands",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      30,
+      45,
+      60
+    ],
+    "bottom": [
+      80,
+      100,
+      60
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      25,
+      35,
+      45
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "future-planning",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "adult-leopard-cat"
+  },
+  "main_image": "art/generated/card-wa-02-two-of-wands.png",
+  "generation": {
+    "model": "gemini-2.0-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. ANTHROPOMORPHIC: A Taiwan leopard cat in traveler's clothing standing on a cliff overlook. VISUAL FOCUS: Exactly 2 wooden wands must be present in total. One wooden wand is held in his right hand like a staff, and another wooden wand is planted firmly in the ground beside him. He holds a small glowing globe (the world) in his left hand. He looks out over a vast sea. High-fidelity biological markers: narrow face, white stripes nose-to-forehead, white ear spots. 2:3 vertical. Full bleed. No borders.",
+    "narrative": "A leopard cat stands at a vantage point, holding its territory in its hand while evaluating the distant fragments of forest. It represents the crucial planning stage before moving into new habitat."
+  },
+  "ornaments": [
+    "glowing-orb"
+  ],
+  "render_config": {
+    "trim": 30
+  },
+  "output": "art/renders/card-wa-02-two-of-wands.webp",
+  "meanings": {
+    "upright": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments.",
+    "reversed": "Indecision, fear of the unknown, or poor evaluation of landscape safety.",
+    "keywords": [
+      "planning",
+      "vision",
+      "foresight",
+      "territory"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "adult",
+    "habitat_fragment": "high mountain ridge",
+    "risk_theme": "connectivity evaluation",
+    "mapping_note": "Two of Wands becomes the decision to move between distant forest patches—a calculated risk based on environmental reading.",
+    "zh": "棲地樣貌：高處俯瞰的制高點。生存威脅：領地擴張時面臨的未知風險。牌義關聯：權杖二代表著「長遠規劃」——站在至高點規劃族群未來的擴散路徑。",
+    "en": "Habitat: high mountain ridge. Risk: connectivity evaluation. Note: Two of Wands becomes the decision to move between distant forest patches—a calculated risk based on environmental reading."
+  },
+  "website": {
+    "excerpt": "Evaluating the landscape from a high ridge, the leopard cat plans its next move between forest fragments.",
+    "seo_title": "Two of Wands - LeopardCat Tarot",
+    "seo_description": "Two of Wands reimagined as leopard cat landscape evaluation and planning.",
+    "tags": [
+      "minor-arcana",
+      "wands",
+      "leopard-cat",
+      "planning"
+    ]
+  },
+  "meaning": {
+    "zh": "規劃、決策、目光遠大，並評估不同棲地碎片之間的潛在路徑。",
+    "en": "Planning, decision-making, looking ahead, and evaluates potential path between habitat fragments."
+  }
+}

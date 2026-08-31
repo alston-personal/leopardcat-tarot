@@ -1,0 +1,100 @@
+{
+  "id": "card-07-the-chariot",
+  "arcana": "major",
+  "number": 7,
+  "title": {
+    "zh": "戰車",
+    "en": "THE CHARIOT"
+  },
+  "subtitle": "Willpower / Victory / Determined Crossing",
+  "slug": "07-the-chariot",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      85,
+      120,
+      168
+    ],
+    "bottom": [
+      54,
+      54,
+      54
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      24,
+      42,
+      64
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "determined-corridor-crossing",
+    "subject": "strong-male-leopard-cat"
+  },
+  "main_image": "art/generated/card-07-the-chariot.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A powerful anthropomorphic male Taiwan leopard cat standing heroically upon a high rock formation, holding a spear. He points forward toward a distant forest patch, ignoring the dangerous light-filled valley below. His expression is one of unbreakable focus. Meaning: Overcoming obstacles, willpower, and the successful navigation through fragmented human landscapes.",
+    "narrative": "A powerful anthropomorphic male Taiwan leopard cat standing heroically upon a high rock formation, holding a spear. He points forward toward a distant forest patch, ignoring the dangerous light-filled valley below. His expression is one of unbreakable focus. Meaning: Overcoming obstacles, willpower, and the successful navigation through fragmented human landscapes."
+  },
+  "output": "art/renders/card-07-the-chariot.webp",
+  "meanings": {
+    "upright": "Willpower, determination, victory, overcoming obstacles, and maintaining focus.",
+    "reversed": "Lack of direction, aggression, losing control, or being overwhelmed by external obstacles.",
+    "keywords": [
+      "willpower",
+      "victory",
+      "determination",
+      "focus"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "prime adult male",
+    "habitat_fragment": "high ridge overlooking fragmented valley",
+    "risk_theme": "navigating dangerous human landscapes to reach new territory",
+    "mapping_note": "The Chariot represents the sheer willpower and determination required for a leopard cat to successfully cross hostile, human-dominated landscapes to reach safe habitat.",
+    "zh": "棲地樣貌：需要長距離穿越的開發區。生存威脅：擴張過程中的各種人為陷阱。牌義關聯：戰車代表著突破困境的動力，是在險峻環境中尋找生路的決心。",
+    "en": "Habitat: high ridge overlooking fragmented valley. Risk: navigating dangerous human landscapes to reach new territory. Note: The Chariot represents the sheer willpower and determination required for a leopard cat to successfully cross hostile, human-dominated landscapes to reach safe habitat."
+  },
+  "website": {
+    "excerpt": "Overlooking a dangerous valley, The Chariot charges forward with unbreakable focus and sheer willpower.",
+    "seo_title": "The Chariot - LeopardCat Tarot",
+    "seo_description": "The Chariot reimagined as a leopard cat's determined crossing through a fragmented landscape.",
+    "tags": [
+      "major-arcana",
+      "chariot",
+      "leopard-cat",
+      "willpower"
+    ]
+  },
+  "meaning": {
+    "zh": "意志、勝利、克服障礙，以及在控制下的快速前進。",
+    "en": "Willpower, determination, victory, overcoming obstacles, and maintaining focus."
+  }
+}

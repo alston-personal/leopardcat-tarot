@@ -1,0 +1,108 @@
+{
+  "id": "card-cu-02-two-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 202,
+  "title": {
+    "zh": "聖杯二",
+    "en": "TWO OF CUPS"
+  },
+  "subtitle": "The Meeting / Partnership / Mutual Trust",
+  "slug": "two-of-cups",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      80,
+      150,
+      120
+    ],
+    "bottom": [
+      40,
+      80,
+      60
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      20,
+      35,
+      30
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "moonlit-stream-meeting",
+    "forest": true,
+    "road": false,
+    "grass": false,
+    "subject": "two-leopard-cats"
+  },
+  "main_image": "art/generated/card-cu-02-two-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. Two anthropomorphic leopard cats (male and female) facing each other across a narrow, glass-clear moonlit stream. They gently toast each other with two ornate golden cups. A Caduceus with a lion head floats above them in the mist. Symmetry, trust, and deep connection. Cool blue-green atmosphere. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "narrative": "The Two of Cups is the 'Meeting of Souls'—when two usually solitary leopard cats find a rare, profound connection through mutual trust."
+  },
+  "ornaments": [
+    "caduceus-in-mist",
+    "moonlit-stream"
+  ],
+  "output": "art/renders/card-cu-02-two-of-cups.webp",
+  "meanings": {
+    "upright": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony.",
+    "reversed": "Disharmony, distrust, or a temporary separation from a partner.",
+    "keywords": [
+      "union",
+      "trust",
+      "harmony",
+      "attraction"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "breeding-adults",
+    "habitat_fragment": "protected forest creek edge",
+    "risk_theme": "trust as survival strategy",
+    "mapping_note": "Two of Cups represents the 'Trust of the Breed'—the rare moment when solitary instincts give way to mating season cooperation.",
+    "zh": "棲地樣貌：主要分布於台灣低海拔的丘陵、次生林與草生地，常在農田與水源附近的交界地帶活動，是生態系統中的頂級掠食者。生存威脅：面臨棲地破碎化、頻繁的路殺意外、非法陷阱（如捕獸夾）、犬隻攻擊以及與野放寵物間的疾病傳染。牌義關聯：聖杯二象徵「靈魂的交會」。石虎天性孤僻且具強烈領域感，唯有在短暫的交配季節，兩隻個體才會放下對峙的本能，建立起基於信任的罕見連結。這反映了牌面中從孤寂走向合作、從競爭轉向和諧的深刻互信。",
+    "en": "Habitat: Primarily inhabits low-elevation hills, secondary forests, and grasslands in Taiwan, often roaming the borders between agricultural lands and water sources as a top predator. Risk: Faces severe threats from habitat fragmentation, frequent roadkill incidents, illegal snaring, stray dog attacks, and diseases transmitted by domestic animals. Note: The Two of Cups signifies a 'Meeting of Souls.' Usually solitary and fiercely territorial, the leopard cat only lowers its guard during the brief mating season. This rare moment of cooperation mirrors the card's theme of transitioning from isolation to a profound, mutual trust, where survival instinct gives way to a sacred connection."
+  },
+  "website": {
+    "excerpt": "A rare and trust-filled meeting at the moonlit stream, where two solitary hearts become one.",
+    "seo_title": "Two of Cups - LeopardCat Tarot",
+    "seo_description": "Two of Cups reimagined as a trust-filled meeting between two leopard cats.",
+    "tags": [
+      "minor-arcana",
+      "cups",
+      "leopard-cat",
+      "partnership"
+    ]
+  },
+  "meaning": {
+    "zh": "相互信任、夥伴關係、吸引力、浪漫，以及二元性在和諧中的平衡。",
+    "en": "Mutual trust, partnership, attraction, romance, and the balance of dualities in harmony."
+  }
+}

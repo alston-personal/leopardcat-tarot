@@ -1,0 +1,114 @@
+{
+  "id": "card-cu-06-six-of-cups",
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 206,
+  "title": {
+    "zh": "聖杯六",
+    "en": "SIX OF CUPS"
+  },
+  "subtitle": "The Heritage / Nostalgia / Sharing",
+  "slug": "six-of-cups",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      200,
+      240,
+      255
+    ],
+    "bottom": [
+      120,
+      180,
+      200
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      40,
+      60,
+      70
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "safe-sanctuary-garden",
+    "forest": true,
+    "road": false,
+    "grass": true,
+    "subject": "two-leopard-cats"
+  },
+  "main_image": "art/generated/card-cu-06-six-of-cups.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "Including exactly six cups in the scene. Mystical 1900s lithography tarot card illustration. Clean bold black ink outlines. 2:3 vertical. A beautiful, safe sanctuary garden filled with white flowers. Two anthropomorphic leopard cats—one an adult, one a kitten—share golden cups filled with pure water. A peaceful, nostalgic village is visible in the distance. The atmosphere is warm, safe, and innocent. Full bleed. No borders. High-fidelity biological markers: narrow small-cat facial structure, distinct white stripes from nose to forehead, white muzzle, and large white spots behind black ears. Slender and agile feline build. Full bleed. No borders.",
+    "narrative": "The Six of Cups is 'The Heritage'—the safe sharing of knowledge and territory between generations in a pristine environment."
+  },
+  "ornaments": [
+    "white-flowers",
+    "safe-village"
+  ],
+  "output": "art/renders/card-cu-06-six-of-cups.webp",
+  "meanings": {
+    "upright": "Nostalgia, childhood memories, innocence, sharing, and kindness.",
+    "reversed": "Focusing on the future, leaving the past behind, or unrealistic expectations.",
+    "keywords": [
+      "nostalgia",
+      "innocence",
+      "sharing",
+      "heritage"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "kitten-and-elder",
+    "habitat_fragment": "pristine core habitat",
+    "risk_theme": "knowledge transfer and security",
+    "mapping_note": "Six of Cups represents 'The Safe Haven'—the importance of undisturbed core habitats where leopard cats can raise young without human interference.",
+    "zh": "棲地樣貌：石虎偏好低海拔的原始闊葉林、草生地與淺山農地交界的邊緣地帶。為了育幼，牠們極度依賴植被茂密且人煙罕至的「核心棲地」，這些隱密的小環境提供了充足的齧齒類與鳥類獵物，是雌石虎安全生產與教導幼獸捕獵技巧的溫室。 生存威脅：棲地破碎化是最大的威脅，導致幼獸在尋找新領地時頻發「路殺」；此外，淺山地區的人為開發、滅鼠藥中毒，以及與流浪犬貓之間的疾病傳播與生存競爭，都讓這份生命傳承變得步履維艱。 牌義關聯：聖杯六象徵「傳承」與「避風港」。在此脈絡下，石虎母親與幼獸的互動體現了知識與生命力的傳遞。這張牌強調了守護核心棲地的重要性，唯有在免於恐懼與干擾的安全環境（Safe Haven）中，物種的血緣與生存智慧才能如聖杯六的贈禮般，代代相傳。",
+    "en": "Habitat: Taiwan leopard cats favor low-elevation broadleaf forests, grasslands, and the edges of Satoyama agricultural lands. For raising young, they rely heavily on dense, undisturbed \"core habitats.\" These secluded areas provide abundant prey like rodents and birds, serving as a sanctuary where mothers can safely nurse and teach hunting skills to their kittens. Risk: Habitat fragmentation is the primary threat, leading to frequent roadkill as juveniles disperse to find new territories. Additionally, land development, secondary poisoning from rodenticides, and competition or disease transmission from feral dogs and cats jeopardize the continuity of the species. Note: Representing \"The Heritage\" and \"The Safe Haven\" of the Six of Cups, this card depicts the tender exchange of survival wisdom between a mother leopard cat and her young. It emphasizes that a pristine, undisturbed environment is essential for the flow of life and knowledge, ensuring that the legacy of this species is passed down safely to the next generation."
+  },
+  "website": {
+    "excerpt": "In the safety of the white-flower garden, the leopard cat shares the gift of life with the next generation.",
+    "seo_title": "Six of Cups - LeopardCat Tarot",
+    "seo_description": "Six of Cups reimagined as leopard cats sharing life's gifts in a safe sanctuary.",
+    "tags": [
+      "minor-arcana",
+      "cups",
+      "leopard-cat",
+      "innocence"
+    ]
+  },
+  "meaning": {
+    "zh": "懷舊、童年回憶、純真、分享、善意。",
+    "en": "Nostalgia, childhood memories, innocence, sharing, and kindness."
+  },
+  "render_config": {
+    "zoom": 1.02,
+    "offset_x": 0.5,
+    "offset_y": 0.5,
+    "trim": 30
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "id": "card-17-the-star",
+  "arcana": "major",
+  "number": 17,
+  "title": {
+    "zh": "星星",
+    "en": "THE STAR"
+  },
+  "subtitle": "Hope / Guidance / Ecological Recovery",
+  "slug": "17-the-star",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      43,
+      62,
+      80
+    ],
+    "bottom": [
+      52,
+      152,
+      219
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      34,
+      48,
+      74
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "major-arcana-finale"
+  },
+  "main_image": "art/generated/card-17-the-star.png",
+  "generation": {
+    "model": "gemini-3.1-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A beautiful, serene anthropomorphic Taiwan leopard cat stands by a mountain pool at night. Above her, one giant bright star and seven smaller stars shine brilliantly. She pours clear water from two silver jars—one into the pool, one onto the dry mossy ground. Meaning: Inspiration, renewal of the species, and the guiding hope of conservation efforts.",
+    "narrative": "A beautiful, serene anthropomorphic Taiwan leopard cat stands by a mountain pool at night. Above her, one giant bright star and seven smaller stars shine brilliantly. She pours clear water from two silver jars—one into the pool, one onto the dry mossy ground. Meaning: Inspiration, renewal of the species, and the guiding hope of conservation efforts."
+  },
+  "output": "art/renders/card-17-the-star.webp",
+  "meaning": {
+    "zh": "希望、啟發、寧靜，以及在黑暗後重見的光明。",
+    "en": "Hope, faith, purpose, renewal, spirituality, and healing after destruction."
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "recovering population",
+    "habitat_fragment": "a newly planted ecological corridor",
+    "risk_theme": "the slow process of habitat restoration and species recovery",
+    "mapping_note": "The Star represents conservation hope—the slow but beautiful process of habitat restoration, where pure water and newly planted trees guide the leopard cat toward a safer future.",
+    "zh": "棲地樣貌：新建立的人工棲地補償區。生存威脅：復育初期脆弱的族群基數。牌義關聯：星星代表著指引未來的希望，是所有保育志士心中不滅的理想之光。",
+    "en": "Habitat: a newly planted ecological corridor. Risk: the slow process of habitat restoration and species recovery. Note: The Star represents conservation hope—the slow but beautiful process of habitat restoration, where pure water and newly planted trees guide the leopard cat toward a safer future."
+  },
+  "meanings": {
+    "upright": "Hope, faith, purpose, renewal, spirituality, and healing after destruction.",
+    "reversed": "Despair, lack of faith, disconnection, or loss of hope.",
+    "keywords": [
+      "hope",
+      "renewal",
+      "healing",
+      "inspiration"
+    ]
+  },
+  "website": {
+    "excerpt": "Under the pure night sky, The Star brings the healing waters of restoration and the quiet hope of recovery.",
+    "seo_title": "The Star - LeopardCat Tarot",
+    "seo_description": "The Star tarot card reimagined as habitat restoration and hope for the leopard cat's future.",
+    "tags": [
+      "major-arcana",
+      "star",
+      "leopard-cat",
+      "hope"
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "id": "card-10-wheel-of-fortune",
+  "arcana": "major",
+  "number": 10,
+  "title": {
+    "zh": "命運之輪",
+    "en": "WHEEL OF FORTUNE"
+  },
+  "subtitle": "Cycles / Fate / Environmental Change",
+  "slug": "10-wheel-of-fortune",
+  "status": "finalized",
+  "size": {
+    "width": 1400,
+    "height": 2420
+  },
+  "palette": {
+    "top": [
+      142,
+      68,
+      173
+    ],
+    "bottom": [
+      230,
+      126,
+      34
+    ],
+    "frame": [
+      219,
+      203,
+      156
+    ],
+    "frame_inner": [
+      171,
+      149,
+      102
+    ],
+    "panel": [
+      54,
+      42,
+      28
+    ],
+    "text_primary": [
+      243,
+      233,
+      201
+    ],
+    "text_secondary": [
+      198,
+      186,
+      151
+    ]
+  },
+  "scene": {
+    "theme": "seasonal-ecological-wheel",
+    "subject": "no-subject-center"
+  },
+  "main_image": "art/generated/card-10-wheel-of-fortune.png",
+  "generation": {
+    "model": "gemini-2.5-flash",
+    "image_size": "1K",
+    "aspect_ratio": "2:3",
+    "image_prompt": "[CLEAN_V3_STRICT_NO_BORDERS] 1900s mystical lithography, bold ink outlines. NO BORDERS. NO MARGINS. NO TEXT. FULL BLEED. Traditional mystical illustration in the style of 1900s lithography, with clean bold black ink outlines. FULL BLEED: Image content (trees, rocks, sky) MUST touch all four physical edges of the 2:3 image. ABSOLUTELY NO WHITE MARGINS, NO VINTAGE PAPER BORDERS, NO MATTED EDGES. ABSOLUTELY NO TEXT, NO LABELS, NO LETTERS, NO NUMBERS, NO CAPTIONS IN THE ARTWORK. STRICTLY ANTHROPOMORPHIC. The subject is a Taiwan leopard cat standing upright on two legs with human-like posture and proportions. It MUST wear clothing or robes. Essential markers: white spots on back of black ears, white forehead stripes, and rosette leopard cat fur patterns. NO FOUR-LEGGED ANIMAL POSTURE. A large mystical wooden wheel constructed from woven vines and stones, suspended between two huge forest trees. Various forest creatures (cricket, rat, hare, bird) are depicted in the quadrants representing seasons. An anthropomorphic Taiwan leopard cat mask sits at the very center, eyes closed in meditation of the cosmic cycle.",
+    "narrative": "A large mystical wooden wheel constructed from woven vines and stones, suspended between two huge forest trees. Various forest creatures (cricket, rat, hare, bird) are depicted in the quadrants representing seasons. An anthropomorphic Taiwan leopard cat mask sits at the very center, eyes closed in meditation of the cosmic cycle."
+  },
+  "output": "art/renders/card-10-wheel-of-fortune.webp",
+  "meanings": {
+    "upright": "Cycles of change, fate, turning points, seasons, and the interconnectedness of all life.",
+    "reversed": "Bad luck, negative external forces, broken cycles, or ecological collapse.",
+    "keywords": [
+      "cycles",
+      "change",
+      "fate",
+      "seasons"
+    ]
+  },
+  "ecology": {
+    "species_focus": "Taiwan leopard cat",
+    "life_stage": "all life stages",
+    "habitat_fragment": "the grand ecological cycle",
+    "risk_theme": "climate shifts and the disruption of natural seasonal prey cycles",
+    "mapping_note": "The Wheel of Fortune symbolizes the grand cosmic and ecological cycle—the changing seasons, the food web, and the delicate fate of the leopard cat intertwined with all forest creatures.",
+    "zh": "棲地樣貌：受極端天氣影響的動態棲地。生存威脅：氣候變遷導致的棲地適合度下降。牌義關聯：命運之輪象徵著大自然的週期，也是保育工作中不斷變動的契機與挑戰。",
+    "en": "Habitat: the grand ecological cycle. Risk: climate shifts and the disruption of natural seasonal prey cycles. Note: The Wheel of Fortune symbolizes the grand cosmic and ecological cycle—the changing seasons, the food web, and the delicate fate of the leopard cat intertwined with all forest creatures."
+  },
+  "website": {
+    "excerpt": "The great wheel turns, weaving the fate of the leopard cat into the eternal, changing cycles of the forest ecosystem.",
+    "seo_title": "Wheel of Fortune - LeopardCat Tarot",
+    "seo_description": "The Wheel of Fortune tarot card reimagined as the grand ecological cycle and seasonal changes in the forest.",
+    "tags": [
+      "major-arcana",
+      "wheel-of-fortune",
+      "leopard-cat",
+      "cycles"
+    ]
+  },
+  "meaning": {
+    "zh": "循環、變化、宿命，以及在不斷轉動的命運中尋找機會。",
+    "en": "Cycles of change, fate, turning points, seasons, and the interconnectedness of all life."
+  }
+}
