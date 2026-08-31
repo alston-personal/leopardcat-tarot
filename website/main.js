@@ -185,6 +185,8 @@ function renderManualCardPool() {
     pool.innerHTML = '';
     const total = Array.isArray(window.cardData) ? window.cardData.length : 0;
     const back = activeCardBack();
+    const measuredPoolWidth = pool.getBoundingClientRect().width || pool.clientWidth || 720;
+    const fanHalfWidth = Math.min(340, Math.max(120, measuredPoolWidth / 2 - 42));
     for (let i = 1; i <= total; i++) {
         const button = document.createElement('button');
         button.type = 'button';
@@ -192,7 +194,7 @@ function renderManualCardPool() {
         button.dataset.drawIndex = String(i);
         const fanPosition = total > 1 ? ((i - 1) / (total - 1)) * 2 - 1 : 0;
         const fanAngle = fanPosition * 31;
-        const fanX = fanPosition * Math.min(340, Math.max(180, total * 7));
+        const fanX = fanPosition * fanHalfWidth;
         const fanY = Math.pow(Math.abs(fanPosition), 1.65) * 72;
         button.style.setProperty('--fan-x', `${fanX.toFixed(1)}px`);
         button.style.setProperty('--fan-y', `${fanY.toFixed(1)}px`);

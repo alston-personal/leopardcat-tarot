@@ -32,3 +32,14 @@ def test_square_native_share_is_preserved_separately_from_og_blob():
     assert "const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'))" in js
     assert 'let ogBlob = blob' in js
     assert 'const file = new File([blob]' in js
+
+
+def test_manual_fan_width_tracks_available_control_surface_width():
+    js = (ROOT / 'main.js').read_text(encoding='utf-8')
+    css = (ROOT / 'style.css').read_text(encoding='utf-8')
+    assert 'const measuredPoolWidth = pool.getBoundingClientRect().width' in js
+    assert 'const fanHalfWidth = Math.min(340, Math.max(120, measuredPoolWidth / 2 - 42))' in js
+    assert 'const fanX = fanPosition * fanHalfWidth' in js
+    assert 'Reading setup intrinsic-width containment' in css
+    assert '.reading-config-card .manual-card-pool' in css
+    assert 'max-width: 100% !important' in css
