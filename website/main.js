@@ -1103,6 +1103,29 @@ function applyShareTheme(template, shareContext) {
     return theme;
 }
 
+async function persistReadingSharePreview(blob) {
+    const envelope = window.currentReadingEnvelope;
+    if (!blob || !envelope?.reading_id || !envelope?.session_token) return false;
+    try {
+        const image = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+        });
+        const response = await fetch(`/api/v1/readings/${encodeURIComponent(envelope.reading_id)}/share-image`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({session_token: envelope.session_token, image})
+        });
+        if (!response.ok) throw new Error(`share preview persist ${response.status}`);
+        return true;
+    } catch (error) {
+        console.warn('[Share] OG preview persistence unavailable', error);
+        return false;
+    }
+}
+
 // 📸 Share Image Generator
 window.generateShareImage = async function() {
     if (!currentDrawnCard) return;
@@ -1261,6 +1284,7 @@ window.generateShareImage = async function() {
         updateSocialLinks(currentDrawnCard, bestQuote);
 
         const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        await persistReadingSharePreview(blob); // social crawlers can now resolve the actual deck-owned share card.
         const filePrefix = window.activeBrand?.file_prefix || 'tarot';
         const file = new File([blob], `${filePrefix}-${Date.now()}.png`, { type: 'image/png' });
         
