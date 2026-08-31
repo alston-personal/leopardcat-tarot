@@ -57,6 +57,7 @@ jobs:
         working-directory: website
         run: |
           set -euo pipefail
+          rm -rf public/art/renders public/cards
           mkdir -p public/art/renders public/cards
           npm ci
           npm run build
