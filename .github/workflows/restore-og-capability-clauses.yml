@@ -1,0 +1,41 @@
+name: Restore OG Capability Clauses
+
+on:
+  push:
+    branches: [feat/share-og-and-reading-controls]
+    paths:
+      - 'tools/restore_og_capability_clauses.py'
+      - '.github/workflows/restore-og-capability-clauses.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/share-og-and-reading-controls
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Restore and verify monotonic capability ledger
+        run: |
+          set -euo pipefail
+          python tools/restore_og_capability_clauses.py
+          python scripts/check_capability_regressions.py
+          git fetch origin main:refs/remotes/origin/main
+          python scripts/check_capability_ledger_monotonic.py
+      - name: Commit governance fix and remove scaffolding
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f tools/restore_og_capability_clauses.py .github/workflows/restore-og-capability-clauses.yml
+          git add governance/capabilities.json
+          git add -u tools/restore_og_capability_clauses.py .github/workflows/restore-og-capability-clauses.yml
+          git commit -m 'fix(governance): preserve reading OG capability history'
+          git push origin HEAD:feat/share-og-and-reading-controls
