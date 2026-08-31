@@ -33,11 +33,9 @@ jobs:
           from pathlib import Path
           p = Path('website/tests/test_reading_og_share_preview.py')
           s = p.read_text(encoding='utf-8')
-          old = "assert \"await persistReadingSharePreview(blob);\" in js"
-          new = "assert \"await persistReadingSharePreview(ogBlob);\" in js"
-          if old not in s:
+          if 'persistReadingSharePreview(blob)' not in s:
               raise SystemExit('legacy OG upload assertion missing')
-          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          p.write_text(s.replace('persistReadingSharePreview(blob)', 'persistReadingSharePreview(ogBlob)'), encoding='utf-8')
           PY
           python -m pip install -q pytest
           PYTHONPATH=website python -m pytest -q \
