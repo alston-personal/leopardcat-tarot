@@ -1748,3 +1748,17 @@ button, select, input, textarea, .btn, .btn-gold-outline, .nav-links a, .lang-sw
   .reading-config-group { padding: 9px 10px; }
   .reading-config-card .manual-draw-stage { grid-column: 1; padding-left: 4px; padding-right: 4px; }
 }
+
+
+/* Reading setup intrinsic-width containment */
+.reading-config-card,
+.reading-config-group,
+.reading-config-card .legacy-spread-picker,
+.reading-config-card .manual-draw-stage,
+.reading-config-card .manual-card-pool {
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+.reading-config-card { overflow: hidden; }
