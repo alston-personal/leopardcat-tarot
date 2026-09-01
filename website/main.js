@@ -185,6 +185,8 @@ function renderManualCardPool() {
     pool.innerHTML = '';
     const total = Array.isArray(window.cardData) ? window.cardData.length : 0;
     const back = activeCardBack();
+    const measuredPoolWidth = pool.getBoundingClientRect().width || pool.clientWidth || 720;
+    const fanHalfWidth = Math.min(340, Math.max(120, measuredPoolWidth / 2 - 42));
     for (let i = 1; i <= total; i++) {
         const button = document.createElement('button');
         button.type = 'button';
@@ -192,7 +194,7 @@ function renderManualCardPool() {
         button.dataset.drawIndex = String(i);
         const fanPosition = total > 1 ? ((i - 1) / (total - 1)) * 2 - 1 : 0;
         const fanAngle = fanPosition * 31;
-        const fanX = fanPosition * Math.min(340, Math.max(180, total * 7));
+        const fanX = fanPosition * fanHalfWidth;
         const fanY = Math.pow(Math.abs(fanPosition), 1.65) * 72;
         button.style.setProperty('--fan-x', `${fanX.toFixed(1)}px`);
         button.style.setProperty('--fan-y', `${fanY.toFixed(1)}px`);
@@ -1287,7 +1289,29 @@ window.generateShareImage = async function() {
         updateSocialLinks(currentDrawnCard, bestQuote);
 
         const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-        await persistReadingSharePreview(blob); // social crawlers can now resolve the actual deck-owned share card.
+
+        // Social crawlers need a landscape Open Graph asset. Keep the downloadable/native
+        // share memo square, but reflow the same deck-owned content into 1200x630 for OG.
+        let ogBlob = blob;
+        template.classList.add('share-og-mode');
+        try {
+            const ogCanvas = await html2canvas(template, {
+                useCORS: true,
+                allowTaint: true,
+                logging: false,
+                backgroundColor: shareTheme.background,
+                scale: 1.0,
+                width: 1200,
+                height: 630,
+                imageTimeout: 5000,
+                removeContainer: true
+            });
+            const renderedOgBlob = await new Promise(resolve => ogCanvas.toBlob(resolve, 'image/png'));
+            if (renderedOgBlob) ogBlob = renderedOgBlob;
+        } finally {
+            template.classList.remove('share-og-mode');
+        }
+        await persistReadingSharePreview(ogBlob); // OG receives the landscape asset; private text is still excluded.
         const filePrefix = window.activeBrand?.file_prefix || 'tarot';
         const file = new File([blob], `${filePrefix}-${Date.now()}.png`, { type: 'image/png' });
         

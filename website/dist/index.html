@@ -24,8 +24,8 @@
         <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="composite"/></feMerge>
       </filter>
     </svg>
-  <script type="module" crossorigin src="/assets/index-D9cVKmNt.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CnJ-Ug1n.css">
+  <script type="module" crossorigin src="/assets/index-Bim75ljB.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CulRwAY5.css">
 </head>
 <body>
     <nav class="navbar" style="padding: 0 20px;">
@@ -79,22 +79,28 @@
                     <div id="fortune-ritual-area">
                         <textarea id="fortune-question" class="sacred-textarea" data-i18n="common.placeholder_question" placeholder="在此輸入你的困惑，或是屏息靜心..."></textarea>
                         <p id="reading-privacy-note" data-i18n="common.privacy_note" style="font-size:0.72rem;line-height:1.6;opacity:.72;margin:8px 4px 14px;">🔒 隱私預設：本站不保存你的問題與大師回答；問題會送至 AI 服務產生回覆。為了讓你能繼續追問，同一牌局的抽牌結果會匿名保存 24 小時後自動刪除。</p>
+                        <div id="reading-config-card" class="reading-config-card" aria-label="Reading setup">
+                            <div class="reading-config-group reading-config-spread">
                         <div id="legacy-spread-picker" class="legacy-spread-picker" role="radiogroup" aria-label="Spread">
                             <span class="legacy-spread-label" data-i18n="common.spread_label">牌陣</span>
                             <button type="button" class="legacy-spread-btn active" data-spread-choice="single" data-i18n="common.spread_single_short">單牌</button>
                             <button type="button" class="legacy-spread-btn" data-spread-choice="three_card" data-i18n="common.spread_three_short">三牌</button>
                         </div>
+                            </div>
+                            <div class="reading-config-group reading-config-mode">
                         <div id="draw-mode-picker" class="legacy-spread-picker draw-mode-picker" role="radiogroup" aria-label="Draw mode">
                             <span class="legacy-spread-label" data-i18n="common.draw_mode_label">抽牌方式</span>
                             <button type="button" class="legacy-spread-btn active" data-draw-mode="auto" data-i18n="common.draw_mode_auto">自動</button>
                             <button type="button" class="legacy-spread-btn" data-draw-mode="manual" data-i18n="common.draw_mode_manual">手動</button>
                         </div>
+                            </div>
                         <div id="manual-draw-stage" class="manual-draw-stage hidden">
                             <div class="manual-draw-toolbar">
                                 <button type="button" id="btn-manual-shuffle" class="btn btn-gold-outline btn-small" onclick="shuffleManualDeck()" data-i18n="common.shuffle_cards">洗牌</button>
                                 <span id="manual-draw-status" class="manual-draw-status" aria-live="polite"></span>
                             </div>
                             <div id="manual-card-pool" class="manual-card-pool" aria-label="Card backs"></div>
+                        </div>
                         </div>
                         <button id="btn-primary-draw" class="btn btn-gold" data-i18n="common.btn_draw" onclick="drawFortune()">祈請大師開牌</button>
                     </div>

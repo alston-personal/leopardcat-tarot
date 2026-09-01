@@ -158,14 +158,17 @@
       "owner": "website",
       "contract": [
         "A reading share URL MUST expose Open Graph metadata from the immutable read-only reading receipt rather than falling back to an unrelated deck card.",
-        "When the browser has rendered the deck-owned 600x600 share card, it MAY persist that PNG using the private reading session token; the public share token grants read-only access to that image while the reading receipt remains valid.",
+        "The browser MUST preserve the user-facing square/native share memo separately from a purpose-built 1200x630 landscape Open Graph preview for social crawlers.",
+        "The landscape OG preview MUST reuse the same deck-owned cards, spread order, orientations, branding and share quote without uploading the private question or full AI answer.",
+        "If no persisted share image exists, social preview MUST degrade to a card image from the same reading/deck instead of a global LeopardCat fallback.",
         "OG metadata and persisted share images MUST NOT upload or expose the private question or AI answer.",
-        "If no persisted share image exists, social preview MUST degrade to a card image from the same reading/deck instead of a global LeopardCat fallback."
+        "When the browser has rendered the deck-owned 600x600 share card, it MAY persist that PNG using the private reading session token; the public share token grants read-only access to that image while the reading receipt remains valid."
       ],
       "evidence": [
         "website/fortune_server.py",
         "website/main.js",
-        "website/tests/test_reading_og_share_preview.py"
+        "website/tests/test_reading_og_share_preview.py",
+        "website/tests/test_share_og_and_reading_controls.py"
       ]
     },
     "sharing.deck-owned-share-theme": {
@@ -220,6 +223,20 @@
         "website/index.html",
         "website/public/art/card-back.svg",
         "website/tests/test_shuffle_manual_draw.py"
+      ]
+    },
+    "reading.control-surface": {
+      "status": "protected",
+      "owner": "website",
+      "contract": [
+        "Spread selection, draw-mode selection and manual-shuffle controls remain a visually coherent reading setup surface instead of unrelated controls scattered through the ritual panel.",
+        "The redesign MUST preserve the existing controller IDs and automatic/manual draw semantics.",
+        "The reading setup surface MUST remain usable without horizontal page overflow on mobile."
+      ],
+      "evidence": [
+        "website/index.html",
+        "website/style.css",
+        "website/tests/test_share_og_and_reading_controls.py"
       ]
     }
   }
