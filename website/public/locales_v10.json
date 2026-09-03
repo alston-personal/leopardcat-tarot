@@ -113,7 +113,13 @@
       "shuffle_cards": "洗牌",
       "manual_draw_shuffle_first": "先洗牌，再憑直覺選牌。",
       "manual_draw_progress": "已選 {selected} / {need} 張",
-      "manual_card_aria": "選擇第 {index} 個位置"
+      "manual_card_aria": "選擇第 {index} 個位置",
+      "share_content_label": "分享內容",
+      "share_quote_mode": "金句",
+      "share_full_mode": "完整大師解讀",
+      "share_include_question": "包含我的問題",
+      "share_full_privacy": "完整解讀只在你主動分享時送往社群；問題預設不分享。",
+      "share_question_heading": "我的提問"
     },
     "nav": {
       "home": "首頁",
@@ -401,7 +407,13 @@
       "shuffle_cards": "Shuffle",
       "manual_draw_shuffle_first": "Shuffle first, then choose by intuition.",
       "manual_draw_progress": "Selected {selected} / {need}",
-      "manual_card_aria": "Choose card position {index}"
+      "manual_card_aria": "Choose card position {index}",
+      "share_content_label": "Share content",
+      "share_quote_mode": "Quote",
+      "share_full_mode": "Full Master reading",
+      "share_include_question": "Include my question",
+      "share_full_privacy": "The full reading is sent to the social app only when you choose to share it. Your question is excluded by default.",
+      "share_question_heading": "My question"
     },
     "nav": {
       "home": "Home",
@@ -683,7 +695,13 @@
       "shuffle_cards": "シャッフル",
       "manual_draw_shuffle_first": "まずシャッフルして、直感でカードを選んでください。",
       "manual_draw_progress": "選択 {selected} / {need} 枚",
-      "manual_card_aria": "{index} 番のカードを選ぶ"
+      "manual_card_aria": "{index} 番のカードを選ぶ",
+      "share_content_label": "共有内容",
+      "share_quote_mode": "金言",
+      "share_full_mode": "大師の全文解読",
+      "share_include_question": "質問も含める",
+      "share_full_privacy": "全文解読は共有を選んだ時だけSNSへ渡されます。質問は既定では共有しません。",
+      "share_question_heading": "私の質問"
     },
     "nav": {
       "home": "ホーム",
@@ -965,7 +983,13 @@
       "shuffle_cards": "셔플",
       "manual_draw_shuffle_first": "먼저 셔플한 뒤 직감으로 카드를 고르세요.",
       "manual_draw_progress": "선택 {selected} / {need}장",
-      "manual_card_aria": "{index}번 위치 카드 선택"
+      "manual_card_aria": "{index}번 위치 카드 선택",
+      "share_content_label": "공유 내용",
+      "share_quote_mode": "한마디",
+      "share_full_mode": "전체 해석",
+      "share_include_question": "내 질문 포함",
+      "share_full_privacy": "전체 해석은 직접 공유할 때만 소셜 앱으로 전달됩니다. 질문은 기본적으로 포함되지 않습니다.",
+      "share_question_heading": "내 질문"
     },
     "nav": {
       "home": "홈",
@@ -1247,7 +1271,13 @@
       "shuffle_cards": "Barajar",
       "manual_draw_shuffle_first": "Baraja primero y luego elige por intuición.",
       "manual_draw_progress": "Elegidas {selected} / {need}",
-      "manual_card_aria": "Elegir la posición {index}"
+      "manual_card_aria": "Elegir la posición {index}",
+      "share_content_label": "Contenido para compartir",
+      "share_quote_mode": "Frase",
+      "share_full_mode": "Lectura completa",
+      "share_include_question": "Incluir mi pregunta",
+      "share_full_privacy": "La lectura completa solo se envía a la red social cuando decides compartirla. Tu pregunta queda fuera por defecto.",
+      "share_question_heading": "Mi pregunta"
     },
     "nav": {
       "home": "Inicio",
