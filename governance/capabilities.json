@@ -238,6 +238,24 @@
         "website/style.css",
         "website/tests/test_share_og_and_reading_controls.py"
       ]
+    },
+    "sharing.full-master-text": {
+      "status": "protected",
+      "owner": "website",
+      "contract": [
+        "Quote-only sharing remains the default; full Master interpretation sharing requires an explicit user choice.",
+        "Sharing the full Master interpretation uses the browser-local reading/chat state and MUST NOT introduce server-side persistence of the AI answer.",
+        "The seeker question is excluded from full interpretation sharing by default and may be included only through a separate explicit opt-in control.",
+        "Native/social sharing may send the selected share text and existing deck-owned share image to the chosen platform, while the public reading URL keeps the existing read-only symbolic receipt boundary.",
+        "Facebook web sharing may copy the selected full text to the clipboard because the platform does not guarantee arbitrary long-text prefill from third-party share URLs."
+      ],
+      "evidence": [
+        "website/index.html",
+        "website/main.js",
+        "website/style.css",
+        "website/public/locales_v10.json",
+        "website/tests/test_full_master_share.py"
+      ]
     }
   }
 }

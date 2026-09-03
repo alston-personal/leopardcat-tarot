@@ -116,6 +116,18 @@
                             <button onclick="sendChatMessage()" class="btn btn-gold btn-small" data-i18n="common.btn_ask">提問</button>
                         </div>
                         <div id="fortune-actions" class="hidden sacred-actions">
+                            <div id="share-content-controls" class="share-content-controls" data-share-content-mode="quote">
+                                <span class="share-content-label" data-i18n="common.share_content_label">分享內容</span>
+                                <div class="share-content-segments" role="group" aria-label="分享內容">
+                                    <button type="button" class="share-content-btn active" data-share-content-mode="quote" onclick="setShareContentMode('quote')" data-i18n="common.share_quote_mode">金句</button>
+                                    <button type="button" class="share-content-btn" data-share-content-mode="full" onclick="setShareContentMode('full')" data-i18n="common.share_full_mode">完整大師解讀</button>
+                                </div>
+                                <label id="share-question-option" class="share-question-option">
+                                    <input id="share-include-question" type="checkbox" onchange="setShareIncludeQuestion(this.checked)">
+                                    <span data-i18n="common.share_include_question">包含我的問題</span>
+                                </label>
+                                <p class="share-content-privacy" data-i18n="common.share_full_privacy">完整解讀只在你主動分享時送往社群；問題預設不分享。</p>
+                            </div>
                             <div class="sacred-action-btns">
                                 <button id="btn-share-image" onclick="generateShareImage()" class="btn btn-gold btn-share" data-i18n="common.btn_share">生成靈山分享卡</button>
                                 <button onclick="resetRitual()" class="btn btn-gold-outline btn-small opacity-6" data-i18n="common.btn_reset">重新祈願</button>
@@ -125,7 +137,7 @@
                                 <a href="#" id="share-line" target="_blank" title="Line">
                                     <svg class="social-icon" viewBox="0 0 24 24" fill="#00c300"><path d="M24 10.304c0-4.58-4.785-8.304-10.688-8.304C7.412 2 2.627 5.724 2.627 10.304c0 4.108 3.807 7.545 8.95 8.196.348.075.822.23 1.13.522.259.245.17.63.125.875-.125.688-.41 2.766-.51 3.42-.058.375-.27 1.467 1.157.8 1.425-.668 7.704-4.542 10.51-7.771C23.16 14.542 24 12.52 24 10.304zM8.338 12.872c0 .245-.198.442-.442.442H5.161c-.245 0-.442-.198-.442-.442V7.734c0-.245.198-.442.442-.442.245 0 .442.198.442.442v4.696h2.735c.245 0 .442.198.442.442zm3.96 0c0 .245-.198.442-.442.442h-.884c-.245 0-.442-.198-.442-.442V7.734c0-.245.198-.442.442-.442s.442.198.442.442v5.138h.442c.245 0 .442.198.442.442zm2.21 0c0 .245-.198.442-.442.442h-.884c-.245 0-.442-.198-.442-.442V7.734c0-.245.198-.442.442-.442s.442.198.442.442v5.138h.442c.245 0 .442.198.442.442zm6.186-4.696v4.696c0 .245-.198.442-.442.442h-2.735c-.245 0-.442-.198-.442-.442V7.734c0-.245.198-.442.442-.442h.884c.245 0 .442.198.442.442v4.254h1.412V7.734c0-.245.198-.442.442-.442s.442.198.442.442z"/></svg>
                                 </a>
-                                <a href="#" id="share-fb" target="_blank" title="Facebook">
+                                <a href="#" id="share-fb" target="_blank" title="Facebook" onclick="prepareFacebookShare()">
                                     <svg class="social-icon" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                                 </a>
                                 <a href="#" id="share-x" target="_blank" title="X">

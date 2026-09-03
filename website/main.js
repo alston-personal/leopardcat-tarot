@@ -977,6 +977,87 @@ function typeWriterHTML(element, html, speed = 20, onComplete) {
 // 📸 Share Image Generator
 let lastShareFile = null;
 let lastShareText = "";
+let lastShareBaseMessage = "";
+let lastShareUrl = "";
+window.shareContentMode = 'quote';
+window.shareIncludeQuestion = false;
+
+function normalizeMasterShareText(value) {
+    return String(value || '')
+        .replace(/^#{1,6}\s+/gm, '')
+        .replace(/\*\*(.*?)\*\*/g, '$1')
+        .replace(/__(.*?)__/g, '$1')
+        .replace(/`([^`]+)`/g, '$1')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+}
+
+function latestMasterInterpretation() {
+    for (let i = currentChatHistory.length - 1; i >= 0; i--) {
+        const item = currentChatHistory[i];
+        if (item?.role === 'assistant' && item.content) return normalizeMasterShareText(item.content);
+    }
+    return '';
+}
+
+function buildSocialShareText(shareMsg, shareUrl) {
+    if (window.shareContentMode !== 'full') return `${shareMsg} ${shareUrl}`;
+    const answer = latestMasterInterpretation();
+    if (!answer) return `${shareMsg} ${shareUrl}`;
+    const parts = [];
+    if (window.shareIncludeQuestion && window._lastQuestion) {
+        parts.push(`${uiText('share_question_heading', '我的提問')}\n${normalizeMasterShareText(window._lastQuestion)}`);
+    }
+    parts.push(answer);
+    parts.push(shareUrl);
+    return parts.join('\n\n');
+}
+
+function syncShareContentControls() {
+    const host = document.getElementById('share-content-controls');
+    if (host) host.dataset.shareContentMode = window.shareContentMode;
+    document.querySelectorAll('[data-share-content-mode]').forEach(btn => {
+        if (btn.matches('button')) btn.classList.toggle('active', btn.dataset.shareContentMode === window.shareContentMode);
+    });
+    const question = document.getElementById('share-include-question');
+    if (question) question.checked = Boolean(window.shareIncludeQuestion);
+}
+
+function refreshSocialShareText() {
+    if (!lastShareUrl || !lastShareBaseMessage) return;
+    const fullShareText = buildSocialShareText(lastShareBaseMessage, lastShareUrl);
+    lastShareText = fullShareText;
+    const lineLink = document.getElementById('share-line');
+    if (lineLink) lineLink.href = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(lastShareUrl)}&text=${encodeURIComponent(fullShareText)}`;
+    const fbLink = document.getElementById('share-fb');
+    if (fbLink) fbLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(lastShareUrl)}&quote=${encodeURIComponent(fullShareText)}`;
+    const xLink = document.getElementById('share-x');
+    if (xLink) xLink.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fullShareText)}`;
+    const threadsLink = document.getElementById('share-threads');
+    if (threadsLink) {
+        const u = new URL(lastShareUrl);
+        u.searchParams.set('preview', String(Date.now()));
+        threadsLink.href = `https://www.threads.net/intent/post?text=${encodeURIComponent(buildSocialShareText(lastShareBaseMessage, u.toString()))}`;
+    }
+}
+
+window.setShareContentMode = function(mode) {
+    window.shareContentMode = mode === 'full' ? 'full' : 'quote';
+    if (window.shareContentMode !== 'full') window.shareIncludeQuestion = false;
+    syncShareContentControls();
+    refreshSocialShareText();
+};
+
+window.setShareIncludeQuestion = function(include) {
+    window.shareIncludeQuestion = window.shareContentMode === 'full' && Boolean(include);
+    syncShareContentControls();
+    refreshSocialShareText();
+};
+
+window.prepareFacebookShare = async function() {
+    if (window.shareContentMode !== 'full' || !lastShareText) return;
+    try { await navigator.clipboard?.writeText(lastShareText); } catch (_) {}
+};
 
 function getShareCardTitle(card, lang = window.currentLang) {
     if (!card) return '';
@@ -1265,7 +1346,9 @@ window.generateShareImage = async function() {
         }
         const shareUrl = shareU.toString();
         
-        const fullShareText = `${shareMsg} ${shareUrl}`;
+        lastShareBaseMessage = shareMsg;
+        lastShareUrl = shareUrl;
+        const fullShareText = buildSocialShareText(shareMsg, shareUrl);
         lastShareText = fullShareText;
 
         const lineLink = document.getElementById('share-line');
@@ -1274,13 +1357,13 @@ window.generateShareImage = async function() {
         const fbRefresh = Date.now();
         const fbUrlSeparator = shareUrl.includes('?') ? '&' : '?';
         const fbShareUrl = `${shareUrl}${fbUrlSeparator}fbrefresh=${fbRefresh}`;
-        document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fbShareUrl)}&quote=${encodeURIComponent(shareMsg)}`;
+        document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fbShareUrl)}&quote=${encodeURIComponent(fullShareText)}`;
         
         // 🐦 X (Twitter) unified format for best compatibility
         document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fullShareText)}`;
         const threadsShareU = new URL(shareUrl);
         threadsShareU.searchParams.set('preview', String(Date.now()));
-        const threadsShareText = `${shareMsg} ${threadsShareU.toString()}`;
+        const threadsShareText = buildSocialShareText(shareMsg, threadsShareU.toString());
         document.getElementById('share-threads').href = `https://www.threads.net/intent/post?text=${encodeURIComponent(threadsShareText)}`;
         
         document.getElementById('social-share-row').classList.remove('hidden');
@@ -1388,7 +1471,9 @@ function updateSocialLinks(card, customQuote = null) {
             shareBtn.innerHTML = uiText('share_generate_again', 'Generate share card again');
         }, 5000);
     }
-    const fullShareText = `${shareMsg} ${shareUrl}`;
+    lastShareBaseMessage = shareMsg;
+    lastShareUrl = shareUrl;
+    const fullShareText = buildSocialShareText(shareMsg, shareUrl);
     
     lastShareText = fullShareText;
 
@@ -1405,7 +1490,7 @@ function updateSocialLinks(card, customQuote = null) {
     if (threadsLink) {
         const threadsShareU = new URL(shareUrl);
         threadsShareU.searchParams.set('preview', String(Date.now()));
-        const threadsShareText = `${shareMsg} ${threadsShareU.toString()}`;
+        const threadsShareText = buildSocialShareText(shareMsg, threadsShareU.toString());
         threadsLink.href = `https://www.threads.net/intent/post?text=${encodeURIComponent(threadsShareText)}`;
     }
     
@@ -1969,6 +2054,11 @@ window.resetRitual = function() {
     window.pendingDrawOptions = null;
     lastShareFile = null;
     lastShareText = "";
+    lastShareBaseMessage = "";
+    lastShareUrl = "";
+    window.shareContentMode = 'quote';
+    window.shareIncludeQuestion = false;
+    syncShareContentControls();
     
     const historyDiv = document.getElementById('chat-history');
     if (historyDiv) historyDiv.innerHTML = '';
