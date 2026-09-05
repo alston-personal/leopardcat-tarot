@@ -78,9 +78,12 @@ def load_env_value(name):
 
 
 def build_ai_gateway():
+    groq_key = load_env_value("GROQ_API_KEY")
     providers = [
         ZeroCostGeminiGateway(load_env_value("GEMINI_API_KEY")),
-        ZeroCostGroqGateway(load_env_value("GROQ_API_KEY")),
+        ZeroCostGroqGateway(groq_key, load_env_value("GROQ_MODEL") or "openai/gpt-oss-120b"),
+        ZeroCostGroqGateway(groq_key, "openai/gpt-oss-20b"),
+        ZeroCostGroqGateway(groq_key, "qwen/qwen3.6-27b"),
     ]
     openrouter_key = load_env_value("OPENROUTER_API_KEY")
     openrouter_model = load_env_value("OPENROUTER_MODEL")
