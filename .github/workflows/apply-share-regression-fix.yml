@@ -22,10 +22,26 @@ jobs:
           grep -F "applySingleCardShareFallback(shareU);" website/main.js
           grep -F "shareU.searchParams.set('card', cardId);" website/main.js
       - name: Build frontend
+        id: build
+        continue-on-error: true
         working-directory: website
         run: |
-          npm ci
-          npm run build
+          set -o pipefail
+          {
+            node --version
+            npm --version
+            npm ci
+            npm run build
+          } 2>&1 | tee "$RUNNER_TEMP/share-build.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: share-build-log
+          path: ${{ runner.temp }}/share-build.log
+          retention-days: 1
+      - name: Enforce build success
+        if: steps.build.outcome != 'success'
+        run: exit 1
       - name: Commit fix
         run: |
           if git diff --quiet; then exit 0; fi
