@@ -44,11 +44,14 @@ def test_public_shared_reading_api_is_symbolic_only():
     assert "'session_token':" not in endpoint
 
 
-def test_share_url_is_reading_based_not_single_card_based():
+def test_share_url_keeps_reading_receipt_canonical_with_single_card_fallback():
     assert "shareU.searchParams.set('reading', envelope.reading_id)" in JS
     assert "shareU.searchParams.set('share', envelope.share_token)" in JS
-    assert "shareU.searchParams.set('card'" not in JS
-    assert "shareU.searchParams.set('orientation'" not in JS
+    assert 'function applySingleCardShareFallback(shareU)' in JS
+    assert "if (spread !== 'single') return;" in JS
+    assert "shareU.searchParams.set('card', cardId)" in JS
+    assert "shareU.searchParams.set('orientation', orientation)" in JS
+    assert JS.count('applySingleCardShareFallback(shareU);') == 2
     assert 'session_token' not in JS.split('function updateSocialLinks',1)[1].split('function modularErrorMessage',1)[0]
     assert JS.count('window.currentShareReceipt || window.currentReadingEnvelope') == 2
 
