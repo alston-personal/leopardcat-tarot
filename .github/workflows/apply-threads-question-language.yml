@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/apply-threads-question-language.yml'
       - 'tools/apply_threads_question_language.py'
+      - 'tools/fix_threads_question_patcher.py'
 permissions:
   contents: write
 jobs:
@@ -21,8 +22,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Apply source patch
-        run: python tools/apply_threads_question_language.py
+      - name: Repair patch anchor and apply source patch
+        run: |
+          python tools/fix_threads_question_patcher.py
+          python tools/apply_threads_question_language.py
       - name: Verify contracts
         working-directory: website
         run: |
@@ -48,6 +51,6 @@ jobs:
           git config user.name github-actions-bot
           git config user.email github-actions-bot@users.noreply.github.com
           git add website/main.js website/fortune_server.py website/tests/test_threads_question_language.py governance/capabilities.json
-          git rm -f .github/workflows/apply-threads-question-language.yml tools/apply_threads_question_language.py
+          git rm -f .github/workflows/apply-threads-question-language.yml tools/apply_threads_question_language.py tools/fix_threads_question_patcher.py
           git commit -m "feat(reading): resolve Threads questions and follow user language"
           git push origin HEAD:feat/threads-question-language
