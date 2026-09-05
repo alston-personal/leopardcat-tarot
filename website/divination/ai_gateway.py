@@ -290,7 +290,7 @@ class OpenAICompatibleZeroCostGateway:
 
 class ZeroCostGroqGateway(OpenAICompatibleZeroCostGateway):
     provider_id = "groq"
-    ALLOWED_MODELS = {"openai/gpt-oss-120b"}
+    ALLOWED_MODELS = {"openai/gpt-oss-120b", "openai/gpt-oss-20b", "qwen/qwen3.6-27b"}
 
     def __init__(self, api_key: str | None, model: str | None = None):
         super().__init__(
