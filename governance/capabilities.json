@@ -256,6 +256,32 @@
         "website/public/locales_v10.json",
         "website/tests/test_full_master_share.py"
       ]
+    },
+    "reading.reply-language-follows-user": {
+      "status": "protected",
+      "contract": [
+        "Master reply language follows the current user question rather than the site UI locale.",
+        "Japanese kana, Korean Hangul, Traditional/Chinese Han text, English Latin text, and Spanish markers are detected deterministically; ambiguous symbol-only turns retain the previous question language before UI fallback.",
+        "Initial readings, retries, legacy calls, and follow-up questions use the same question-language rule."
+      ],
+      "evidence": [
+        "website/main.js",
+        "website/tests/test_threads_question_language.py"
+      ]
+    },
+    "reading.threads-public-source": {
+      "status": "protected",
+      "contract": [
+        "A pasted public Threads post URL is resolved through the AgentOS/vendor Threads reader; the Master receives extracted post text, not the raw URL.",
+        "Only HTTPS threads.com/threads.net canonical post URLs are accepted and the LeopardCat backend proxies only to the localhost reader.",
+        "Full social sharing of a Threads-sourced question preserves the public original URL and labels the source text separately from the Master interpretation.",
+        "Threads source metadata is session-local reading state and does not grant continuation or management authority."
+      ],
+      "evidence": [
+        "website/main.js",
+        "website/fortune_server.py",
+        "website/tests/test_threads_question_language.py"
+      ]
     }
   }
 }

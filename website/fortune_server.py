@@ -101,6 +101,7 @@ THEMES = ThemeRegistry(THEME_ROOT)
 THEME_PUBLISHER = ThemePublisher(THEME_ROOT)
 PERSONA_ROOT = os.path.join(DATA_DIR, 'custom_personas')
 PERSONA_PUBLISHER = PersonaPublisher(PERSONA_ROOT)
+THREADS_READER_URL = load_env_value('THREADS_READER_URL') or 'http://127.0.0.1:18766'
 
 def call_master_prompt(prompt):
     return AI_GATEWAY.generate(prompt)
@@ -538,6 +539,38 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_POST(self):
         path = self.path.split('?', 1)[0]
+        if path == '/api/v1/sources/threads':
+            content_length = int(self.headers.get('Content-Length', 0))
+            if content_length <= 0 or content_length > 16 * 1024:
+                self.send_error(413); return
+            try:
+                payload = json.loads(self.rfile.read(content_length).decode('utf-8') or '{}')
+                source_url = str(payload.get('url') or '').strip()
+                parsed = urllib.parse.urlsplit(source_url)
+                allowed_hosts = {'threads.com','www.threads.com','threads.net','www.threads.net'}
+                if parsed.scheme != 'https' or (parsed.hostname or '').lower() not in allowed_hosts or not re.fullmatch(r'/@[^/]+/post/[A-Za-z0-9_-]+/?', parsed.path):
+                    raise ValueError('invalid_threads_post_url')
+                request = urllib.request.Request(
+                    THREADS_READER_URL.rstrip('/') + '/v1/threads/resolve',
+                    data=json.dumps({'url': source_url}).encode('utf-8'),
+                    headers={'Content-Type':'application/json'}, method='POST'
+                )
+                with urllib.request.urlopen(request, timeout=52) as response:
+                    body = json.loads(response.read(256 * 1024).decode('utf-8'))
+                source = body.get('source') or {}
+                if source.get('type') != 'threads' or not source.get('text') or not source.get('url'):
+                    raise ValueError('threads_source_invalid')
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json; charset=utf-8')
+                self.send_header('Cache-Control', 'no-store')
+                self.end_headers()
+                self.wfile.write(json.dumps({'source': source}, ensure_ascii=False).encode('utf-8'))
+            except ValueError as exc:
+                self.send_response(400); self.send_header('Content-type','application/json; charset=utf-8'); self.end_headers(); self.wfile.write(json.dumps({'error':str(exc)}, ensure_ascii=False).encode('utf-8'))
+            except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as exc:
+                log(f'Threads source unavailable: {type(exc).__name__}')
+                self.send_response(502); self.send_header('Content-type','application/json; charset=utf-8'); self.end_headers(); self.wfile.write(json.dumps({'error':'threads_source_unavailable'}).encode('utf-8'))
+            return
         share_image_match = re.fullmatch(r'/api/v1/readings/([^/]+)/share-image', path)
         if share_image_match:
             reading_id = share_image_match.group(1)
