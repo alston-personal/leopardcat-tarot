@@ -1368,6 +1368,7 @@ window.generateShareImage = async function() {
             shareU.searchParams.set('share', envelope.share_token);
         }
         applySingleCardShareFallback(shareU);
+        applySingleCardShareFallback(shareU);
         const shareUrl = shareU.toString();
         
         lastShareBaseMessage = shareMsg;
@@ -1484,6 +1485,7 @@ function updateSocialLinks(card, customQuote = null) {
         shareU.searchParams.set('reading', envelope.reading_id);
         shareU.searchParams.set('share', envelope.share_token);
     }
+    applySingleCardShareFallback(shareU);
     applySingleCardShareFallback(shareU);
     const shareUrl = shareU.toString();
     window.shareUrl = shareUrl; // Store for the copy button
