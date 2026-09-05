@@ -66,9 +66,18 @@ class MasterExperienceQualityGate:
         self.min_chars = min_chars
         self.max_chars = max_chars
 
+    DENSE_SCRIPT = re.compile(r"[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uac00-\ud7af]")
+
+    def _minimum_chars_for(self, value: str) -> int:
+        dense = len(self.DENSE_SCRIPT.findall(value))
+        ratio = dense / max(1, len(value))
+        if dense >= 24 and ratio >= 0.35:
+            return max(40, int(self.min_chars * 0.6))
+        return self.min_chars
+
     def validate(self, text: str) -> str:
         value = str(text or "").strip()
-        if len(value) < self.min_chars:
+        if len(value) < self._minimum_chars_for(value):
             raise AIUnavailable("quality_too_short", "AI 大師回應未達品質門檻，已嘗試其他可用引擎")
         if len(value) > self.max_chars:
             raise AIUnavailable("quality_too_long", "AI 大師回應超出品質門檻，已嘗試其他可用引擎")
