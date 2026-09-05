@@ -43,15 +43,22 @@ function applySingleCardShareFallback(shareU) {
 function latestMasterInterpretation'''
 s = s[:m.start()] + replacement + s[m.end():]
 
-marker = """        if (envelope?.reading_id && envelope?.share_token) {
-            shareU.searchParams.set('reading', envelope.reading_id);
-            shareU.searchParams.set('share', envelope.share_token);
-        }
-"""
-count = s.count(marker)
+pattern = re.compile(
+    r"(?P<indent>^[ \t]*)if \(envelope\?\.reading_id && envelope\?\.share_token\) \{\n"
+    r"(?P=indent)    shareU\.searchParams\.set\('reading', envelope\.reading_id\);\n"
+    r"(?P=indent)    shareU\.searchParams\.set\('share', envelope\.share_token\);\n"
+    r"(?P=indent)\}\n",
+    re.M,
+)
+
+def inject(match):
+    block = match.group(0)
+    indent = match.group('indent')
+    return block + f"{indent}applySingleCardShareFallback(shareU);\n"
+
+s, count = pattern.subn(inject, s)
 if count < 2:
     raise SystemExit(f'expected at least 2 share receipt blocks, got {count}')
-s = s.replace(marker, marker + "        applySingleCardShareFallback(shareU);\n")
 
 p.write_text(s, encoding='utf-8')
 print(f'patched share receipt blocks: {count}')
