@@ -56,6 +56,23 @@ function getAILanguageTag(lang = window.currentLang) {
     return ({ zh: 'zh-TW', en: 'en', ja: 'ja', ko: 'ko', es: 'es' })[resolved] || resolved || 'en';
 }
 
+function detectQuestionLanguage(text, fallback = window.currentQuestionLanguage || getAILanguageTag()) {
+    const value = String(text || '').trim();
+    if (!value) return fallback || getAILanguageTag();
+    if (/[ぁ-ゖァ-ヺー]/.test(value)) return 'ja';
+    if (/[가-힣]/.test(value)) return 'ko';
+    if (/[㐀-鿿]/.test(value)) return 'zh-TW';
+    if (/[¿¡ñáéíóúü]/i.test(value) || /(?:que|qué|para|por|una|uno|como|cómo|cuando|cuándo|donde|dónde|gracias|quiero|puede|puedo|será|futuro)/i.test(value)) return 'es';
+    if (/[A-Za-z]/.test(value)) return 'en';
+    return fallback || getAILanguageTag();
+}
+
+function getQuestionLanguageTag(text) {
+    const detected = detectQuestionLanguage(text);
+    window.currentQuestionLanguage = detected;
+    return detected;
+}
+
 function getLocalizedField(value, lang = window.currentLang) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) return value;
     const resolved = resolveLocale(lang);
@@ -112,6 +129,29 @@ window.currentShareReceipt = null; // read-only receipt identity; never grants f
 window.drawMode = 'auto';
 window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false, phase: 'idle' };
 window.pendingDrawOptions = null; // preserves manual seed/indices until a reading receipt exists
+window.currentQuestionSource = null; // explicit public source metadata; never sent as a raw URL to the Master
+window.currentQuestionLanguage = null; // latest user/question language, independent from UI locale
+
+const THREADS_POST_URL_RE = /^https:\/\/(?:www\.)?threads\.(?:com|net)\/@[^/]+\/post\/[A-Za-z0-9_-]+\/?(?:[?#].*)?$/i;
+
+async function resolveQuestionInput(rawQuestion) {
+    const raw = String(rawQuestion || '').trim();
+    if (!THREADS_POST_URL_RE.test(raw)) return { question: raw, source: null };
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 55000);
+    try {
+        const response = await fetch('/api/v1/sources/threads', {
+            method: 'POST', signal: controller.signal,
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({url: raw})
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload?.source?.text) throw new Error(payload?.error || 'THREADS_SOURCE_UNAVAILABLE');
+        return { question: String(payload.source.text).trim(), source: payload.source };
+    } finally {
+        clearTimeout(timeoutId);
+    }
+}
 
 function requiredDrawCount() {
     return window.activeSpread === 'single' ? 1 : 3;
@@ -296,6 +336,8 @@ function saveReadingSnapshot(data, question) {
         envelope: data,
         reading_state: window.currentReadingState,
         chat_history: currentChatHistory,
+        question_source: window.currentQuestionSource,
+        question_language: window.currentQuestionLanguage,
     };
     try { sessionStorage.setItem(READING_SNAPSHOT_KEY, JSON.stringify(snapshot)); } catch (_) {}
     const u = new URL(location.href);
@@ -358,6 +400,8 @@ async function restoreReadingAfterReload() {
     window.currentReadingState = snapshot?.reading_state || buildReadingStateFromEnvelope(data);
     window.activeSpread = window.currentReadingState?.spread || window.activeSpread;
     window._lastQuestion = question;
+    window.currentQuestionSource = local ? (snapshot?.question_source || null) : null;
+    window.currentQuestionLanguage = local ? (snapshot?.question_language || (question ? detectQuestionLanguage(question) : null)) : null;
     window.pendingReadingSession = local && data.session_token ? {reading_id:data.reading_id, session_token:data.session_token} : null;
     currentChatHistory = local && Array.isArray(snapshot?.chat_history) ? snapshot.chat_history : [];
 
@@ -1027,11 +1071,18 @@ function buildSocialShareText(shareMsg, shareUrl) {
     if (window.shareContentMode !== 'full') return `${shareMsg} ${shareUrl}`;
     const answer = latestMasterInterpretation();
     if (!answer) return `${shareMsg} ${shareUrl}`;
+    const source = window.currentQuestionSource;
     const parts = [];
-    if (window.shareIncludeQuestion && window._lastQuestion) {
-        parts.push(`${uiText('share_question_heading', '我的提問')}\n${normalizeMasterShareText(window._lastQuestion)}`);
+    if (source?.type === 'threads' && source.text && source.url) {
+        parts.push(`${uiText('share_threads_question_heading', '該文作者提問：')}\n${normalizeMasterShareText(source.text)}`);
+        parts.push(`${uiText('share_source_heading', '原文：')}\n${source.url}`);
+        parts.push(`${uiText('share_master_heading', '大師解讀：')}\n${answer}`);
+    } else {
+        if (window.shareIncludeQuestion && window._lastQuestion) {
+            parts.push(`${uiText('share_question_heading', '我的提問')}\n${normalizeMasterShareText(window._lastQuestion)}`);
+        }
+        parts.push(answer);
     }
-    parts.push(answer);
     parts.push(shareUrl);
     return parts.join('\n\n');
 }
@@ -1590,6 +1641,16 @@ async function performReading(q, drawIndices = null, seed = null) {
         if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
         return alert(common.err_empty_question);
     }
+    try {
+        const resolvedInput = await resolveQuestionInput(q);
+        q = resolvedInput.question;
+        window.currentQuestionSource = resolvedInput.source;
+        window.currentQuestionLanguage = getQuestionLanguageTag(q);
+    } catch (error) {
+        console.warn('[Threads source] unable to resolve public post', error);
+        if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
+        return alert(uiText('err_threads_source_unavailable', '無法讀取這則 Threads 公開貼文，請確認網址與公開狀態後再試。'));
+    }
     const debug = q.toUpperCase() === 'DEBUG' || q.toUpperCase() === 'FORCE_DEBUG';
     if (!debug && !chargeLocalMana()) {
         if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
@@ -1941,7 +2002,7 @@ window.getAIReading = async function(q, card) {
                     question: q,
                     cardTitle: getLocalizedField(card.title),
                     cardMeaning: getLocalizedField(card.meaning),
-                    lang: window.currentLang,
+                    lang: getQuestionLanguageTag(q),
                     history: currentChatHistory
                 })
             });
@@ -2033,11 +2094,11 @@ window.sendChatMessage = async function() {
             body: modular ? JSON.stringify({
                 method: modular.method || 'tarot', persona: modular.persona || 'leopardcat',
                 readingId: modular.reading_id, sessionToken: modular.session_token, question: text,
-                lang: getAILanguageTag(), history: currentChatHistory
+                lang: getQuestionLanguageTag(text), history: currentChatHistory
             }) : JSON.stringify({
                 question: text, cardTitle: getLocalizedField(currentDrawnCard.title),
                 cardMeaning: getLocalizedField(currentDrawnCard.meaning),
-                lang: window.currentLang, history: currentChatHistory
+                lang: getQuestionLanguageTag(q), history: currentChatHistory
             })
         });
         if (apiResp.ok) {
@@ -2075,6 +2136,8 @@ window.resetRitual = function() {
     window.currentReadingEnvelope = null;
     window.currentShareReceipt = null;
     window.currentReadingState = null;
+    window.currentQuestionSource = null;
+    window.currentQuestionLanguage = null;
     window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false, phase: 'idle' };
     window.pendingDrawOptions = null;
     lastShareFile = null;
