@@ -742,6 +742,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 try:
                     reading = call_master_prompt(master_prompt)
                 except AIUnavailable as e:
+                    log('MASTER_PROVIDER_TRACE ' + json.dumps(AI_GATEWAY.last_trace(), ensure_ascii=False, separators=(',', ':')))
                     response_body = {
                         'error': 'ai_unavailable', 'code': e.code, 'message': str(e), 'retryable': e.retryable,
                         'reading_id': reading_id, 'session_token': issued_token, 'share_token': issued_share_token, 'expires_at': expires_at,
