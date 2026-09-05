@@ -30,6 +30,7 @@ jobs:
         run: |
           python -m py_compile website/fortune_server.py
           node --check website/main.js
+          mkdir -p website/public/art/renders
           cd website
           npm ci
           npm run build
