@@ -1,0 +1,31 @@
+name: Apply Follow-up Language Fix
+on:
+  push:
+    branches: [fix/master-availability-followup-lang]
+    paths:
+      - 'tools/fix_followup_language_regression.py'
+      - '.github/workflows/apply-followup-language-fix.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/master-availability-followup-lang
+          fetch-depth: 0
+      - run: python tools/fix_followup_language_regression.py
+      - name: Verify focused regression
+        run: |
+          grep -F "lang: getQuestionLanguageTag(text), history: currentChatHistory" website/main.js
+          ! grep -A3 -F "cardMeaning: getLocalizedField(currentDrawnCard.meaning)" website/main.js | grep -F "getQuestionLanguageTag(q)"
+          python -m pytest -q website/tests/test_threads_question_language.py
+      - name: Commit product fix
+        run: |
+          git config user.name github-actions-bot
+          git config user.email github-actions-bot@users.noreply.github.com
+          git add website/main.js
+          git diff --cached --quiet && exit 0
+          git commit -m "fix(reading): use follow-up text for reply language"
+          git push origin HEAD:fix/master-availability-followup-lang
