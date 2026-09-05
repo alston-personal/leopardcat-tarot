@@ -37,4 +37,13 @@ new_server = '''server_config_pattern = re.compile(r"PERSONA_PUBLISHER = Persona
 if old_server not in s:
     raise SystemExit('server patcher block missing')
 s = s.replace(old_server, new_server, 1)
+
+needle = '''s = s.replace("lang: window.currentLang,\\n                    history: currentChatHistory", "lang: getQuestionLanguageTag(q),\\n                    history: currentChatHistory", 1)'''
+replacement_legacy = needle + r'''
+legacy_initial_pattern = re.compile(r"(question:\s*q,\s*\n\s*cardTitle:.*?\n\s*cardMeaning:.*?\n\s*)lang:\s*window\.currentLang", re.S)
+s, _legacy_initial_count = legacy_initial_pattern.subn(lambda m: m.group(1) + "lang: getQuestionLanguageTag(q)", s, count=1)
+'''
+if needle not in s:
+    raise SystemExit('legacy language patcher anchor missing')
+s = s.replace(needle, replacement_legacy, 1)
 p.write_text(s, encoding='utf-8')
