@@ -31,4 +31,10 @@ if count != 1:
     raise SystemExit('share function boundary missing')
 '''
 s = s[:start] + replacement + s[end:]
+
+old_server = '''old = """PERSONA_PUBLISHER = PersonaPublisher(PERSONA_ROOT)\ndef call_master_prompt(prompt):\n"""\nnew = """PERSONA_PUBLISHER = PersonaPublisher(PERSONA_ROOT)\nTHREADS_READER_URL = load_env_value('THREADS_READER_URL') or 'http://127.0.0.1:18766'\ndef call_master_prompt(prompt):\n"""\nif old not in server:\n    raise SystemExit('server config anchor missing')\nserver = server.replace(old, new, 1)'''
+new_server = '''server_config_pattern = re.compile(r"PERSONA_PUBLISHER = PersonaPublisher\\(PERSONA_ROOT\\)\\n+def call_master_prompt\\(prompt\\):")\nserver_config_new = "PERSONA_PUBLISHER = PersonaPublisher(PERSONA_ROOT)\\nTHREADS_READER_URL = load_env_value('THREADS_READER_URL') or 'http://127.0.0.1:18766'\\n\\ndef call_master_prompt(prompt):"\nserver, count = server_config_pattern.subn(server_config_new, server, count=1)\nif count != 1:\n    raise SystemExit('server config boundary missing')'''
+if old_server not in s:
+    raise SystemExit('server patcher block missing')
+s = s.replace(old_server, new_server, 1)
 p.write_text(s, encoding='utf-8')
