@@ -31,16 +31,17 @@ jobs:
             node --version
             npm --version
             npm ci
-            # public/art/renders is an Oracle-local symlink. Hosted CI validates
-            # the JS bundle with an empty stand-in; production builds with the
-            # real render target on Oracle.
-            if [ -L public/art/renders ]; then
-              mv public/art/renders "$RUNNER_TEMP/renders-link"
-              mkdir -p public/art/renders
-            fi
+            # Several public assets are Oracle-local symlinks. Hosted CI only
+            # validates the JS bundle, so replace broken symlinks with empty
+            # stand-in directories. Production still builds on Oracle with the
+            # real targets present.
+            find public -xtype l -print > "$RUNNER_TEMP/broken-public-links.txt" || true
+            while IFS= read -r link; do
+              [ -n "$link" ] || continue
+              rm -f "$link"
+              mkdir -p "$link"
+            done < "$RUNNER_TEMP/broken-public-links.txt"
             npx vite build --outDir "$RUNNER_TEMP/share-dist" --emptyOutDir
-            rm -rf public/art/renders
-            if [ -L "$RUNNER_TEMP/renders-link" ]; then mv "$RUNNER_TEMP/renders-link" public/art/renders; fi
           } 2>&1 | tee "$RUNNER_TEMP/share-build.log"
       - uses: actions/upload-artifact@v4
         if: always()
@@ -53,7 +54,7 @@ jobs:
         run: exit 1
       - name: Commit source fix
         run: |
-          git checkout -- website/public/art/renders || true
+          git checkout -- website/public || true
           if git diff --quiet -- website/main.js; then exit 0; fi
           git config user.name github-actions-bot
           git config user.email github-actions-bot@users.noreply.github.com
