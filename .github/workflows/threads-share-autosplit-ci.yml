@@ -30,6 +30,7 @@ jobs:
         run: |
           python -m py_compile website/fortune_server.py
           node --check website/main.js
+          if [ -L website/public/art/renders ] && [ ! -e website/public/art/renders ]; then rm website/public/art/renders; fi
           mkdir -p website/public/art/renders
           cd website
           npm ci
