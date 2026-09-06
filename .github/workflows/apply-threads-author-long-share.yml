@@ -1,0 +1,44 @@
+name: Apply Threads Author Long Share Fix
+
+on:
+  push:
+    branches: [fix/threads-author-long-share]
+    paths:
+      - 'scripts/patch_threads_share.py'
+      - '.github/workflows/apply-threads-author-long-share.yml'
+      - '.ci/threads-author-long-share-trigger'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/threads-author-long-share
+      - name: Apply guarded patch
+        run: python scripts/patch_threads_share.py
+      - name: Run focused regression tests
+        working-directory: website
+        run: pytest -q tests/test_threads_author_long_share.py tests/test_full_master_share.py
+      - name: Commit product changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add website/main.js website/tests/test_threads_author_long_share.py docs/experience/THREADS_LONG_SHARE_CAPABILITY.md
+          git commit -m 'fix(threads): preserve author and bound long share intent'
+          git push origin HEAD:fix/threads-author-long-share
+      - name: Remove temporary patch machinery
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm scripts/patch_threads_share.py .github/workflows/apply-threads-author-long-share.yml || true
+          rm -f .ci/threads-author-long-share-trigger
+          git add -A
+          git commit -m 'chore(threads): remove temporary patch workflow'
+          git push origin HEAD:fix/threads-author-long-share
