@@ -27,6 +27,7 @@ class ThreadsPublishingService:
     Preferred mode is the AgentOS shared social runtime. In that mode LeopardCat
     stores only a random local browser session plus the safe account binding and
     public profile; Meta app credentials and provider access tokens stay in Core.
+    Product-local provider access tokens are intentionally not persisted.
 
     The legacy direct-provider mode remains as a fail-closed compatibility path
     until the governed shared write-acceptance bridge is accepted end to end.
