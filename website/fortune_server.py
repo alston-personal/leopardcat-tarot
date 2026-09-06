@@ -11,6 +11,8 @@ import ssl
 import traceback
 import sys
 import re
+import threading
+import time
 
 from divination import ReadingRequest, build_default_engine
 from divination.core import DivinationError
@@ -105,6 +107,29 @@ THEME_PUBLISHER = ThemePublisher(THEME_ROOT)
 PERSONA_ROOT = os.path.join(DATA_DIR, 'custom_personas')
 PERSONA_PUBLISHER = PersonaPublisher(PERSONA_ROOT)
 THREADS_READER_URL = load_env_value('THREADS_READER_URL') or 'http://127.0.0.1:18766'
+
+READING_REQUEST_LOCK = threading.Lock()
+READING_REQUESTS_IN_FLIGHT = {}
+READING_REQUEST_TTL_SECONDS = 180
+
+def begin_reading_request(client_request_id):
+    if not client_request_id:
+        return True
+    now = time.time()
+    with READING_REQUEST_LOCK:
+        stale = [key for key, started in READING_REQUESTS_IN_FLIGHT.items() if now - started > READING_REQUEST_TTL_SECONDS]
+        for key in stale:
+            READING_REQUESTS_IN_FLIGHT.pop(key, None)
+        if client_request_id in READING_REQUESTS_IN_FLIGHT:
+            return False
+        READING_REQUESTS_IN_FLIGHT[client_request_id] = now
+        return True
+
+def end_reading_request(client_request_id):
+    if not client_request_id:
+        return
+    with READING_REQUEST_LOCK:
+        READING_REQUESTS_IN_FLIGHT.pop(client_request_id, None)
 
 THREADS_ALLOWED_HOSTS = {'threads.com','www.threads.com','threads.net','www.threads.net'}
 THREADS_CANONICAL_PATH_RE = re.compile(r'/@[^/]+/post/[A-Za-z0-9_-]+/?$')
@@ -722,6 +747,19 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 history = req_data.get('history') or []
                 reading_id = str(req_data.get('readingId') or '')
                 session_token = str(req_data.get('sessionToken') or '')
+                client_request_id = str(req_data.get('clientRequestId') or '').strip()
+                request_registered = False
+                if client_request_id and not re.fullmatch(r'[A-Za-z0-9_-]{16,96}', client_request_id):
+                    raise DivinationError('invalid client request id')
+                if not reading_id and client_request_id:
+                    if not begin_reading_request(client_request_id):
+                        self.send_response(409)
+                        self.send_header('Content-type', 'application/json; charset=utf-8')
+                        self.send_header('Cache-Control', 'no-store')
+                        self.end_headers()
+                        self.wfile.write(json.dumps({'error':'reading_in_progress','code':'reading_in_progress','retryable':True}, ensure_ascii=False).encode('utf-8'))
+                        return
+                    request_registered = True
 
                 if reading_id and session_token:
                     saved = SESSION_STORE.get(reading_id, session_token)
@@ -823,6 +861,9 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_header('Access-Control-Allow-Origin', '*')
                 self.end_headers()
                 self.wfile.write(json.dumps({'error': 'reading_failed'}, ensure_ascii=False).encode('utf-8'))
+            finally:
+                if locals().get('request_registered'):
+                    end_reading_request(locals().get('client_request_id'))
             return
 
         if self.path == '/api/v1/decks':
