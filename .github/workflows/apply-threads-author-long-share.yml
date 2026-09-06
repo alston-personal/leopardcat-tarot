@@ -21,9 +21,11 @@ jobs:
           ref: fix/threads-author-long-share
       - name: Apply guarded patch
         run: python scripts/patch_threads_share.py
+      - name: Install focused test dependency
+        run: python -m pip install pytest
       - name: Run focused regression tests
         working-directory: website
-        run: pytest -q tests/test_threads_author_long_share.py tests/test_full_master_share.py
+        run: python -m pytest -q tests/test_threads_author_long_share.py tests/test_full_master_share.py
       - name: Commit product changes
         shell: bash
         run: |
