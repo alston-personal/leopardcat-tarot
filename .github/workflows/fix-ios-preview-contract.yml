@@ -19,7 +19,6 @@ jobs:
           fetch-depth: 1
           sparse-checkout: |
             website
-            tests
             .github
             .ci
       - name: Apply contract fix
@@ -28,7 +27,7 @@ jobs:
         run: |
           python -m pip install -q pytest
           pytest -q website/tests/test_ios_share_renderer.py website/tests/test_share_reading_state_monotonic.py website/tests/test_share_render_timeout.py
-          pytest -q tests/test_reading_og_share_preview.py
+          pytest -q website/tests/test_reading_og_share_preview.py
       - name: Commit fix
         run: |
           git config user.name github-actions[bot]
