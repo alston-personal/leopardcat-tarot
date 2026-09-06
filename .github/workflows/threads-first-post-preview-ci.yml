@@ -1,0 +1,38 @@
+name: Threads First Post Preview CI
+on:
+  push:
+    branches: [fix/threads-first-post-preview]
+    paths:
+      - 'tools/apply_threads_first_post_preview.py'
+      - '.github/workflows/threads-first-post-preview-ci.yml'
+permissions:
+  contents: write
+jobs:
+  patch-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/threads-first-post-preview
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply patch
+        run: python tools/apply_threads_first_post_preview.py
+      - name: Verify syntax and regression
+        run: |
+          python -m pip install -q pytest
+          node --check website/main.js
+          pytest -q website/tests/test_threads_first_post_preview.py
+      - name: Commit product patch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website/main.js website/tests/test_threads_first_post_preview.py
+          if git diff --cached --quiet; then
+            echo 'No product changes to commit'
+          else
+            git commit -m 'fix(share): keep Tarot preview in first Threads post'
+            git push origin HEAD:fix/threads-first-post-preview
+          fi
