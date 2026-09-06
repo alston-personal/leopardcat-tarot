@@ -1835,7 +1835,11 @@ window.generateShareImage = async function() {
                 template.classList.remove('share-og-mode');
             }
         }
-        void persistReadingSharePreview(ogBlob); // preview persistence is best-effort and never blocks native share.
+        if (isIOSShareRuntime()) {
+            void persistReadingSharePreview(ogBlob); // best-effort: never block iOS native share.
+        } else {
+            await persistReadingSharePreview(ogBlob); // preserve desktop/OG-before-share contract.
+        }
         const filePrefix = window.activeBrand?.file_prefix || 'tarot';
         const file = new File([blob], `${filePrefix}-${Date.now()}.png`, { type: 'image/png' });
         

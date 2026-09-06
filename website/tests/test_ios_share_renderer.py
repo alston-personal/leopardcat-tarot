@@ -15,6 +15,7 @@ def test_ios_native_share_does_not_wait_for_og_dom_raster():
     src = source()
     assert "if (!isIOSShareRuntime())" in src
     assert 'void persistReadingSharePreview(ogBlob)' in src
+    assert 'await persistReadingSharePreview(ogBlob)' in src
     assert "console.warn('[Share] OG render unavailable; native share remains valid'" in src
 
 
