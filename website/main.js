@@ -548,7 +548,20 @@ async function restoreReadingAfterReload() {
         appendBubble('assistant', uiText('shared_reading_restored', 'Shared reading restored. The original private question and Master answer are not stored; the immutable cards are shown below.'));
     }
     document.getElementById('fortune-actions')?.classList.remove('hidden');
-    updateSocialLinks(currentDrawnCard);
+    const restoredCards = Array.isArray(window.currentReadingState?.cards) ? window.currentReadingState.cards : [];
+    const restoredSpread = window.currentReadingState?.spread || data.method_result?.spread || (restoredCards.length > 1 ? 'three_card' : 'single');
+    if (restoredSpread === 'single' && restoredCards.length <= 1) {
+        updateSocialLinks(currentDrawnCard);
+    } else {
+        // A restored multi-card reading has higher semantic authority than
+        // currentDrawnCard. Do not let the legacy single-card writer collapse it
+        // to the first card; social links are rebuilt from canonical reading state
+        // when the share artifact is generated.
+        lastShareBaseMessage = '';
+        lastShareUrl = '';
+        lastShareText = '';
+        document.getElementById('social-share-row')?.classList.add('hidden');
+    }
     return true;
 }
 
@@ -1497,7 +1510,16 @@ async function renderShareCanvas(target, options, label = 'share') {
 }
 
 function isIOSShareRuntime() {
-    return /iP(?:hone|ad|od)/i.test(navigator.userAgent);
+    // Do not rely on UA alone. iPadOS desktop mode and embedded WKWebView/PWA
+    // runtimes can omit the classic iPhone/iPad/iPod token even though they
+    // still have the same WebKit rendering constraints.
+    const ua = String(navigator.userAgent || '');
+    const platform = String(navigator.platform || '');
+    const touchPoints = Number(navigator.maxTouchPoints || 0);
+    const explicitIOS = /iP(?:hone|ad|od)/i.test(`${ua} ${platform}`);
+    const touchMacIOS = platform === 'MacIntel' && touchPoints > 1;
+    const standaloneIOS = typeof navigator.standalone !== 'undefined' && touchPoints > 0;
+    return explicitIOS || touchMacIOS || standaloneIOS;
 }
 
 function roundedRectPath(ctx, x, y, width, height, radius) {

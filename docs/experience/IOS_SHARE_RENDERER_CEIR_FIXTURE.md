@@ -23,3 +23,17 @@ For iOS native sharing, square PNG generation is now derived directly from canon
 - failed_path: increase DOM-raster timeout
 - decision: deterministic Canvas2D renderer from canonical reading state
 - forbidden_transition: canonical spread state -> DOM/current-card lossy projection -> authoritative native share
+
+
+## Follow-up: runtime classification and restore projection
+
+Real-device reproduction after the first Canvas2D change exposed two additional causal edges:
+
+- platform routing itself is an authority decision: a UA-only classifier can incorrectly route an iOS WebView/PWA back to the superseded DOM-raster path;
+- restoring an N-card reading and then invoking a single-card social writer is another forbidden lossy transition, even if the initial draw path is monotonic.
+
+New invariants:
+
+1. runtime classification for safety-critical renderer selection must use multiple platform/capability signals, not a single UA token;
+2. `reading_state(cards.length > 1) -> currentDrawnCard -> social/share authority` is forbidden in restore paths as well as fresh-reading paths;
+3. a fix is not accepted until the actual production artifact identity is proven and real-device evidence passes.
