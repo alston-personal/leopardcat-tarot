@@ -1654,8 +1654,13 @@ window.generateShareImage = async function() {
         
         document.getElementById('social-share-row').classList.remove('hidden');
 
-        // 🔗 Sync Metadata immediately
-        updateSocialLinks(currentDrawnCard, bestQuote);
+        // Share links above were derived from the canonical reading-level share context.
+        // Never re-author them from currentDrawnCard: that legacy single-card helper can
+        // silently collapse a spread back to the first card. Only legacy single-card
+        // sessions without a reading-level context may use updateSocialLinks here.
+        if (shareEntries.length === 1 && !window.currentReadingState && !window.currentReadingEnvelope) {
+            updateSocialLinks(shareEntries[0].card, bestQuote);
+        }
 
         const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
 
