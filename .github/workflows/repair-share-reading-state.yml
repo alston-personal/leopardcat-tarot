@@ -33,14 +33,14 @@ jobs:
 
           main = Path('website/main.js')
           src = main.read_text(encoding='utf-8')
-          old = """        // 🔗 Sync Metadata immediately\n        updateSocialLinks(currentDrawnCard, bestQuote);\n\n        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));\n"""
-          new = """        // Share links above were derived from the canonical reading-level share context.\n        // Never re-author them from currentDrawnCard: that legacy single-card helper can\n        // silently collapse a spread back to the first card. Only legacy single-card\n        // sessions without a reading-level context may use updateSocialLinks here.\n        if (shareEntries.length === 1 && !window.currentReadingState && !window.currentReadingEnvelope) {\n            updateSocialLinks(shareEntries[0].card, bestQuote);\n        }\n\n        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));\n"""
-          if old not in src:
-              raise SystemExit('share sync anchor not found; refusing stale patch')
-          main.write_text(src.replace(old, new, 1), encoding='utf-8')
+          needle = '        updateSocialLinks(currentDrawnCard, bestQuote);\n'
+          if src.count(needle) != 1:
+              raise SystemExit(f'expected exactly one legacy share overwrite, found {src.count(needle)}')
+          replacement = """        // Share links above were already derived from canonical reading-level state.\n        // Never re-author an active reading from currentDrawnCard: that lossy legacy\n        // projection collapses multi-card spreads back to one card (often the first).\n        if (shareEntries.length === 1 && !window.currentReadingState && !window.currentReadingEnvelope) {\n            updateSocialLinks(shareEntries[0].card, bestQuote);\n        }\n"""
+          main.write_text(src.replace(needle, replacement, 1), encoding='utf-8')
 
           test = Path('website/tests/test_share_reading_state_monotonic.py')
-          test.write_text("""from pathlib import Path\n\n\ndef test_spread_share_state_cannot_be_reauthored_from_current_drawn_card():\n    src = Path(__file__).parents[1].joinpath('main.js').read_text(encoding='utf-8')\n    assert 'if (shareEntries.length === 1 && !window.currentReadingState && !window.currentReadingEnvelope)' in src\n    assert 'updateSocialLinks(shareEntries[0].card, bestQuote);' in src\n    assert 'updateSocialLinks(currentDrawnCard, bestQuote);' not in src\n\n\ndef test_three_card_share_is_derived_from_reading_entries():\n    src = Path(__file__).parents[1].joinpath('main.js').read_text(encoding='utf-8')\n    assert 'const shareEntries = shareContext.cards;' in src\n    assert 'shareEntries.map(entry =>' in src\n    assert 'renderShareCards(shareFrame, shareContext);' in src\n""", encoding='utf-8')
+          test.write_text("""from pathlib import Path\n\n\ndef test_spread_share_state_cannot_be_reauthored_from_current_drawn_card():\n    src = Path(__file__).parents[1].joinpath('main.js').read_text(encoding='utf-8')\n    assert 'if (shareEntries.length === 1 && !window.currentReadingState && !window.currentReadingEnvelope)' in src\n    assert 'updateSocialLinks(shareEntries[0].card, bestQuote);' in src\n    assert 'updateSocialLinks(currentDrawnCard, bestQuote);' not in src\n\n\ndef test_three_card_share_is_derived_from_reading_entries():\n    src = Path(__file__).parents[1].joinpath('main.js').read_text(encoding='utf-8')\n    assert 'const shareEntries = shareContext.cards;' in src\n    assert 'shareEntries.map(entry =>' in src\n    assert 'renderShareCards(shareFrame, shareContext);' in src\n    assert "shareEntries.length === 1" in src\n""", encoding='utf-8')
 
           exp = Path('docs/experience/SHARE_STATE_MONOTONICITY.md')
           exp.parent.mkdir(parents=True, exist_ok=True)
