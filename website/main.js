@@ -123,7 +123,8 @@ window.cardData = [];
 window.currentDrawnCard = null;
 window.currentReadingEnvelope = null;
 window.currentReadingState = null; // shared deck/theme/card/orientation state for every Tarot deck
-window.activeSpread = 'single'; // homepage spread selector; preserved across retries
+window.activeSpread = 'auto'; // requested spread mode; auto resolves from the question
+window.effectiveSpread = null; // concrete spread selected for the current reading
 window.activeBrand = null; // Brand Pack: presentation/social identity, independent from Tarot logic
 window.currentShareReceipt = null; // read-only receipt identity; never grants follow-up authority
 window.drawMode = 'auto';
@@ -153,8 +154,23 @@ async function resolveQuestionInput(rawQuestion) {
     }
 }
 
+function automaticSpreadForQuestion(question) {
+    const q = String(question || '').trim();
+    if (!q) return 'three_card';
+    const simple = /^(?:今天|現在|目前|是否|能不能|可不可以|適不適合|會不會|要不要|should\s+i|is\s+it|will\s+i|can\s+i)/i.test(q);
+    const complex = /(?:關係|比較|選擇|原因|阻礙|建議|發展|未來|過去|工作|感情|對方|兩個|方案|影響|走向)/.test(q);
+    return simple && !complex && q.length <= 36 ? 'single' : 'three_card';
+}
+
+function resolvedSpreadForQuestion(question) {
+    const resolved = window.activeSpread === 'auto' ? automaticSpreadForQuestion(question) : (window.activeSpread || 'single');
+    window.effectiveSpread = resolved;
+    return resolved;
+}
+
 function requiredDrawCount() {
-    return window.activeSpread === 'single' ? 1 : 3;
+    const spread = window.effectiveSpread || (window.activeSpread === 'auto' ? 'three_card' : window.activeSpread);
+    return spread === 'single' ? 1 : 3;
 }
 
 function freshShuffleSeed() {
@@ -260,6 +276,8 @@ function renderManualCardPool() {
 window.setDrawMode = function(mode) {
     window.drawMode = mode === 'manual' ? 'manual' : 'auto';
     document.querySelectorAll('[data-draw-mode]').forEach(btn => btn.classList.toggle('active', btn.dataset.drawMode === window.drawMode));
+    const summary = document.getElementById('draw-mode-summary');
+    if (summary) summary.textContent = window.drawMode === 'manual' ? uiText('draw_mode_manual', '手動') : uiText('draw_mode_auto', '自動');
     const stage = document.getElementById('manual-draw-stage');
     const primary = document.getElementById('btn-primary-draw');
     stage?.classList.toggle('hidden', window.drawMode !== 'manual');
@@ -274,6 +292,7 @@ window.setDrawMode = function(mode) {
 window.shuffleManualDeck = function() {
     const q = document.getElementById('fortune-question')?.value?.trim() || '';
     if (!q) return alert(uiText('err_empty_question', 'Please enter your question first.'));
+    resolvedSpreadForQuestion(q);
     const seed = freshShuffleSeed();
     window.manualDrawState = { seed, selected: [], shuffled: false, submitting: false, phase: 'shuffling' };
     renderManualCardPool();
@@ -644,19 +663,30 @@ async function initAllSystems() {
 }
 
 function bindLegacySpreadPicker() {
+    const selectEl = document.getElementById('spread-select');
+    if (selectEl) {
+        const select = spread => {
+            window.activeSpread = ['auto', 'single', 'three_card'].includes(spread) ? spread : 'auto';
+            window.effectiveSpread = null;
+            selectEl.value = window.activeSpread;
+            if (window.drawMode === 'manual') {
+                window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false, phase: 'idle' };
+                const pool = document.getElementById('manual-card-pool'); if (pool) pool.innerHTML = '';
+                manualStatus();
+            }
+        };
+        selectEl.addEventListener('change', () => select(selectEl.value));
+        select(window.activeSpread);
+        return;
+    }
     const buttons = Array.from(document.querySelectorAll('[data-spread-choice]'));
     if (!buttons.length) return;
-    const select = spread => {
+    const choose = spread => {
         window.activeSpread = spread || 'single';
         buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.spreadChoice === window.activeSpread));
-        if (window.drawMode === 'manual') {
-            window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false, phase: 'idle' };
-            const pool = document.getElementById('manual-card-pool'); if (pool) pool.innerHTML = '';
-            manualStatus();
-        }
     };
-    buttons.forEach(btn => btn.addEventListener('click', () => select(btn.dataset.spreadChoice)));
-    select(window.activeSpread);
+    buttons.forEach(btn => btn.addEventListener('click', () => choose(btn.dataset.spreadChoice)));
+    choose(window.activeSpread);
 }
 
 document.addEventListener('DOMContentLoaded', bindLegacySpreadPicker);
@@ -1909,7 +1939,7 @@ window.getModularReading = async function(q, drawOptions = {}) {
         } : {
             method: 'tarot', persona: window.activePersonaId || undefined, question: q,
             input: {
-                spread: window.activeSpread || 'single',
+                spread: resolvedSpreadForQuestion(q),
                 deck_id: window.activeDeckId,
                 ...(Array.isArray(drawOptions.drawIndices) ? {draw_indices: drawOptions.drawIndices} : {})
             },

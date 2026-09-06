@@ -6,11 +6,13 @@ def test_homepage_preserves_explicit_spread_selection_and_no_prod_vconsole():
     html=(ROOT/'index.html').read_text(encoding='utf-8')
     js=(ROOT/'main.js').read_text(encoding='utf-8')
     assert 'vconsole' not in html.lower()
-    assert 'data-spread-choice="single"' in html
-    assert 'data-spread-choice="three_card"' in html
-    assert "window.activeSpread = 'single'" in js
-    assert "spread: window.activeSpread || 'single'" in js
-    assert "spread: 'auto'" not in js
+    assert 'id="spread-select"' in html
+    assert '<option value="auto" selected>自動</option>' in html
+    assert '<option value="single"' in html
+    assert '<option value="three_card"' in html
+    assert "window.activeSpread = 'auto'" in js
+    assert 'resolvedSpreadForQuestion(q)' in js
+    assert "spread: resolvedSpreadForQuestion(q)" in js
 
 def test_dynamic_errors_and_nav_are_locale_driven():
     html=(ROOT/'index.html').read_text(encoding='utf-8')

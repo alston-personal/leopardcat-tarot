@@ -59,7 +59,8 @@ try {
   });
 
   await page.locator('#fortune-question').fill('手動抽三牌測試');
-  await page.locator('[data-spread-choice="three_card"]').click();
+  await page.locator('#spread-select').selectOption('three_card');
+  await page.locator('#draw-mode-details > summary').click();
   await page.locator('[data-draw-mode="manual"]').click();
   assert.ok(await page.locator('#manual-draw-stage').isVisible());
   assert.ok(await page.locator('#btn-primary-draw').isHidden());
@@ -142,6 +143,7 @@ try {
     await route.fulfill({ status:200, contentType:'application/json', body:JSON.stringify(mockReading(autoBody,[autoId],'auto')) });
   });
   await auto.locator('#fortune-question').fill('自動抽牌測試');
+  await auto.locator('#spread-select').selectOption('single');
   assert.ok((await auto.locator('[data-draw-mode="auto"]').getAttribute('class')).includes('active'));
   await auto.locator('#btn-primary-draw').click();
   await auto.waitForFunction(() => window.currentReadingState?.cards?.length === 1);
@@ -156,6 +158,7 @@ try {
   await mobile.goto(base+'/?deck=leopardcat', { waitUntil:'networkidle' });
   await mobile.waitForFunction(() => Array.isArray(window.cardData) && window.cardData.length >= 78);
   await mobile.locator('#fortune-question').fill('手機手動抽牌');
+  await mobile.locator('#draw-mode-details > summary').click();
   await mobile.locator('[data-draw-mode="manual"]').click();
   await mobile.locator('#btn-manual-shuffle').click();
   assert.equal(await mobile.locator('#manual-card-pool .manual-card-back').count(),78);
