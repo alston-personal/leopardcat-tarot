@@ -14,12 +14,15 @@ def test_threads_share_short_url_is_accepted_and_canonicalized():
     assert "data=json.dumps({'url': source_url})" in SERVER
 
 
-def test_threads_long_share_uses_native_paste_flow_not_overlong_intent():
+def test_threads_long_share_uses_bounded_intent_and_typed_text_attachment():
     assert 'THREADS_TEXT_LIMIT = 500' in MAIN
     assert 'function splitThreadsText' in MAIN
     assert 'function threadsSharePlan' in MAIN
-    assert 'navigator.clipboard.writeText(plan.text)' in MAIN
-    assert "const blankComposer = 'https://www.threads.net/intent/post'" in MAIN
+    assert 'function buildThreadsPrimaryPost' in MAIN
+    assert 'requiresTextAttachment: isLong' in MAIN
+    assert 'window.pendingThreadsTextAttachment = plan.textAttachment' in MAIN
+    assert 'navigator.clipboard.writeText(plan.text)' not in MAIN
+    assert 'threads_long_share_copied' not in MAIN
     assert 'threadsLink.onclick = window.prepareThreadsShare' in MAIN
     assert "document.getElementById('share-threads').onclick = window.prepareThreadsShare" in MAIN
 
