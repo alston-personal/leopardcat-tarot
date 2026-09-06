@@ -132,7 +132,7 @@ window.pendingDrawOptions = null; // preserves manual seed/indices until a readi
 window.currentQuestionSource = null; // explicit public source metadata; never sent as a raw URL to the Master
 window.currentQuestionLanguage = null; // latest user/question language, independent from UI locale
 
-const THREADS_POST_URL_RE = /^https:\/\/(?:www\.)?threads\.(?:com|net)\/@[^/]+\/post\/[A-Za-z0-9_-]+\/?(?:[?#].*)?$/i;
+const THREADS_POST_URL_RE = /^https:\/\/(?:www\.)?threads\.(?:com|net)\/(?:@[^/]+\/post\/[A-Za-z0-9_-]+|share\/[A-Za-z0-9_-]+)\/?(?:[?#].*)?$/i;
 
 async function resolveQuestionInput(rawQuestion) {
     const raw = String(rawQuestion || '').trim();
@@ -1097,6 +1097,65 @@ function syncShareContentControls() {
     if (question) question.checked = Boolean(window.shareIncludeQuestion);
 }
 
+const THREADS_TEXT_LIMIT = 500;
+
+function splitThreadsText(text, limit = THREADS_TEXT_LIMIT) {
+    const source = String(text || '').trim();
+    if (!source) return [];
+    if (source.length <= limit) return [source];
+    const chunks = [];
+    let rest = source;
+    while (rest.length > limit) {
+        const windowText = rest.slice(0, limit + 1);
+        let cut = Math.max(
+            windowText.lastIndexOf('\n\n', limit),
+            windowText.lastIndexOf('\n', limit),
+            windowText.lastIndexOf('。', limit),
+            windowText.lastIndexOf('！', limit),
+            windowText.lastIndexOf('？', limit),
+            windowText.lastIndexOf('. ', limit),
+            windowText.lastIndexOf('! ', limit),
+            windowText.lastIndexOf('? ', limit),
+            windowText.lastIndexOf(' ', limit)
+        );
+        if (cut < Math.floor(limit * 0.55)) cut = limit;
+        else if ('。！？'.includes(rest[cut])) cut += 1;
+        const chunk = rest.slice(0, cut).trim();
+        if (!chunk) { cut = limit; }
+        else chunks.push(chunk);
+        rest = rest.slice(cut).trim();
+    }
+    if (rest) chunks.push(rest);
+    return chunks;
+}
+
+function threadsSharePlan(text) {
+    const chunks = splitThreadsText(text);
+    return { text: String(text || '').trim(), chunks, count: chunks.length, requiresPaste: chunks.length > 1 };
+}
+
+window.prepareThreadsShare = async function(event) {
+    const link = document.getElementById('share-threads');
+    if (!link || !lastShareText) return true;
+    const plan = threadsSharePlan(lastShareText);
+    if (!plan.requiresPaste) return true;
+    event?.preventDefault?.();
+    try {
+        await navigator.clipboard.writeText(plan.text);
+    } catch (_) {
+        return true;
+    }
+    const blankComposer = 'https://www.threads.net/intent/post';
+    window.open(blankComposer, '_blank', 'noopener');
+    const message = uiText(
+        'threads_long_share_copied',
+        '完整內容已複製。請在 Threads 貼上，Threads 會自動分成約 {count} 則串文。',
+        {count: plan.count}
+    );
+    setTimeout(() => alert(message), 120);
+    return false;
+};
+
 function refreshSocialShareText() {
     if (!lastShareUrl || !lastShareBaseMessage) return;
     const fullShareText = buildSocialShareText(lastShareBaseMessage, lastShareUrl);
@@ -1112,6 +1171,7 @@ function refreshSocialShareText() {
         const u = new URL(lastShareUrl);
         u.searchParams.set('preview', String(Date.now()));
         threadsLink.href = `https://www.threads.net/intent/post?text=${encodeURIComponent(buildSocialShareText(lastShareBaseMessage, u.toString()))}`;
+        threadsLink.onclick = window.prepareThreadsShare;
     }
 }
 
@@ -1440,6 +1500,7 @@ window.generateShareImage = async function() {
         threadsShareU.searchParams.set('preview', String(Date.now()));
         const threadsShareText = buildSocialShareText(shareMsg, threadsShareU.toString());
         document.getElementById('share-threads').href = `https://www.threads.net/intent/post?text=${encodeURIComponent(threadsShareText)}`;
+        document.getElementById('share-threads').onclick = window.prepareThreadsShare;
         
         document.getElementById('social-share-row').classList.remove('hidden');
 
@@ -1844,7 +1905,7 @@ window.getModularReading = async function(q, drawOptions = {}) {
             readingId: pending.reading_id,
             sessionToken: pending.session_token,
             question: q,
-            lang: getAILanguageTag()
+            lang: getQuestionLanguageTag(q)
         } : {
             method: 'tarot', persona: window.activePersonaId || undefined, question: q,
             input: {
@@ -1853,7 +1914,7 @@ window.getModularReading = async function(q, drawOptions = {}) {
                 ...(Array.isArray(drawOptions.drawIndices) ? {draw_indices: drawOptions.drawIndices} : {})
             },
             ...(drawOptions.seed ? {seed: drawOptions.seed} : {}),
-            lang: getAILanguageTag()
+            lang: getQuestionLanguageTag(q)
         };
         resp = await fetch('/api/v1/readings', {
             method: 'POST', signal: controller.signal,
@@ -2098,7 +2159,7 @@ window.sendChatMessage = async function() {
             }) : JSON.stringify({
                 question: text, cardTitle: getLocalizedField(currentDrawnCard.title),
                 cardMeaning: getLocalizedField(currentDrawnCard.meaning),
-                lang: getQuestionLanguageTag(q), history: currentChatHistory
+                lang: getQuestionLanguageTag(text), history: currentChatHistory
             })
         });
         if (apiResp.ok) {
