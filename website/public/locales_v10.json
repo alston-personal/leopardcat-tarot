@@ -119,7 +119,9 @@
       "share_full_mode": "完整大師解讀",
       "share_include_question": "包含我的問題",
       "share_full_privacy": "完整解讀只在你主動分享時送往社群；問題預設不分享。",
-      "share_question_heading": "我的提問"
+      "share_question_heading": "我的提問",
+      "reading_in_progress": "大師正在感應…",
+      "reload_app": "重新載入"
     },
     "nav": {
       "home": "首頁",
@@ -413,7 +415,9 @@
       "share_full_mode": "Full Master reading",
       "share_include_question": "Include my question",
       "share_full_privacy": "The full reading is sent to the social app only when you choose to share it. Your question is excluded by default.",
-      "share_question_heading": "My question"
+      "share_question_heading": "My question",
+      "reading_in_progress": "The Master is reading…",
+      "reload_app": "Reload app"
     },
     "nav": {
       "home": "Home",
@@ -701,7 +705,9 @@
       "share_full_mode": "大師の全文解読",
       "share_include_question": "質問も含める",
       "share_full_privacy": "全文解読は共有を選んだ時だけSNSへ渡されます。質問は既定では共有しません。",
-      "share_question_heading": "私の質問"
+      "share_question_heading": "私の質問",
+      "reading_in_progress": "大師が牌を読み取っています…",
+      "reload_app": "再読み込み"
     },
     "nav": {
       "home": "ホーム",
@@ -989,7 +995,9 @@
       "share_full_mode": "전체 해석",
       "share_include_question": "내 질문 포함",
       "share_full_privacy": "전체 해석은 직접 공유할 때만 소셜 앱으로 전달됩니다. 질문은 기본적으로 포함되지 않습니다.",
-      "share_question_heading": "내 질문"
+      "share_question_heading": "내 질문",
+      "reading_in_progress": "대사가 카드를 읽고 있습니다…",
+      "reload_app": "앱 새로고침"
     },
     "nav": {
       "home": "홈",
@@ -1277,7 +1285,9 @@
       "share_full_mode": "Lectura completa",
       "share_include_question": "Incluir mi pregunta",
       "share_full_privacy": "La lectura completa solo se envía a la red social cuando decides compartirla. Tu pregunta queda fuera por defecto.",
-      "share_question_heading": "Mi pregunta"
+      "share_question_heading": "Mi pregunta",
+      "reading_in_progress": "El Maestro está leyendo…",
+      "reload_app": "Recargar app"
     },
     "nav": {
       "home": "Inicio",

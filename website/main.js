@@ -132,6 +132,102 @@ window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting
 window.pendingDrawOptions = null; // preserves manual seed/indices until a reading receipt exists
 window.currentQuestionSource = null; // explicit public source metadata; never sent as a raw URL to the Master
 window.currentQuestionLanguage = null; // latest user/question language, independent from UI locale
+window.readingRequestState = { inFlight: false, clientRequestId: null };
+
+function newReadingClientRequestId() {
+    if (crypto?.randomUUID) return crypto.randomUUID();
+    return `${Date.now().toString(36)}-${freshShuffleSeed()}`;
+}
+
+function setPrimaryReadingBusy(busy) {
+    const btn = document.getElementById('btn-primary-draw');
+    const question = document.getElementById('fortune-question');
+    const spread = document.getElementById('spread-select');
+    const drawDetails = document.getElementById('draw-mode-details');
+    if (btn) {
+        btn.disabled = Boolean(busy);
+        btn.setAttribute('aria-busy', busy ? 'true' : 'false');
+        btn.classList.toggle('is-reading-pending', Boolean(busy));
+        btn.textContent = busy ? uiText('reading_in_progress', '大師正在感應…') : uiText('btn_draw', '祈請大師開牌');
+    }
+    if (question) question.readOnly = Boolean(busy);
+    if (spread) spread.disabled = Boolean(busy);
+    if (drawDetails) drawDetails.classList.toggle('is-reading-pending', Boolean(busy));
+}
+
+function beginReadingRequest() {
+    const state = window.readingRequestState;
+    if (state.inFlight) return false;
+    state.inFlight = true;
+    state.clientRequestId = state.clientRequestId || newReadingClientRequestId();
+    setPrimaryReadingBusy(true);
+    return true;
+}
+
+function endReadingRequest({ preserveRequestId = false } = {}) {
+    const state = window.readingRequestState;
+    state.inFlight = false;
+    if (!preserveRequestId) state.clientRequestId = null;
+    setPrimaryReadingBusy(false);
+}
+
+function isStandaloneLaunch() {
+    return window.matchMedia?.('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
+function cleanRefreshMarker() {
+    const u = new URL(location.href);
+    if (!u.searchParams.has('_lc_refresh')) return;
+    u.searchParams.delete('_lc_refresh');
+    history.replaceState(null, '', u);
+}
+
+window.forceAppRefresh = function() {
+    const u = new URL(location.href);
+    u.searchParams.set('_lc_refresh', String(Date.now()));
+    location.replace(u.toString());
+};
+
+async function checkForAppUpdate() {
+    if (!isStandaloneLaunch() || document.visibilityState === 'hidden') return false;
+    try {
+        const probe = new URL(location.origin + location.pathname);
+        probe.searchParams.set('_lc_update_probe', String(Date.now()));
+        const response = await fetch(probe.toString(), { cache: 'no-store', headers: { 'Cache-Control': 'no-cache' } });
+        if (!response.ok) return false;
+        const html = await response.text();
+        const latestDoc = new DOMParser().parseFromString(html, 'text/html');
+        const latest = latestDoc.querySelector('script[type="module"][src]')?.getAttribute('src') || '';
+        const current = document.querySelector('script[type="module"][src]')?.getAttribute('src') || '';
+        if (!latest || !current || latest === current) return false;
+        const guard = `leopardcat.reload-for:${latest}`;
+        if (sessionStorage.getItem(guard) === '1') return false;
+        sessionStorage.setItem(guard, '1');
+        window.forceAppRefresh();
+        return true;
+    } catch (error) {
+        console.warn('[App update] check unavailable', error);
+        return false;
+    }
+}
+
+function initStandaloneUpdateControls() {
+    cleanRefreshMarker();
+    const btn = document.getElementById('standalone-refresh');
+    if (btn && isStandaloneLaunch()) {
+        btn.classList.remove('hidden');
+        btn.title = uiText('reload_app', '重新載入');
+        btn.setAttribute('aria-label', uiText('reload_app', '重新載入'));
+    }
+    if (!isStandaloneLaunch()) return;
+    setTimeout(checkForAppUpdate, 600);
+    window.addEventListener('pageshow', () => setTimeout(checkForAppUpdate, 250));
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') setTimeout(checkForAppUpdate, 250);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initStandaloneUpdateControls);
 
 const THREADS_POST_URL_RE = /^https:\/\/(?:www\.)?threads\.(?:com|net)\/(?:@[^/]+\/post\/[A-Za-z0-9_-]+|share\/[A-Za-z0-9_-]+)\/?(?:[?#].*)?$/i;
 
@@ -1732,34 +1828,44 @@ async function performReading(q, drawIndices = null, seed = null) {
         if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
         return alert(common.err_empty_question);
     }
+    if (!beginReadingRequest()) return;
+    let preserveRequestId = false;
+    let debug = false;
     try {
-        const resolvedInput = await resolveQuestionInput(q);
-        q = resolvedInput.question;
-        window.currentQuestionSource = resolvedInput.source;
-        window.currentQuestionLanguage = getQuestionLanguageTag(q);
-    } catch (error) {
-        console.warn('[Threads source] unable to resolve public post', error);
-        if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
-        return alert(uiText('err_threads_source_unavailable', '無法讀取這則 Threads 公開貼文，請確認網址與公開狀態後再試。'));
-    }
-    const debug = q.toUpperCase() === 'DEBUG' || q.toUpperCase() === 'FORCE_DEBUG';
-    if (!debug && !chargeLocalMana()) {
-        if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
-        return alert(common.err_mana_depleted);
-    }
+        try {
+            const resolvedInput = await resolveQuestionInput(q);
+            q = resolvedInput.question;
+            window.currentQuestionSource = resolvedInput.source;
+            window.currentQuestionLanguage = getQuestionLanguageTag(q);
+        } catch (error) {
+            console.warn('[Threads source] unable to resolve public post', error);
+            if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
+            alert(uiText('err_threads_source_unavailable', '無法讀取這則 Threads 公開貼文，請確認網址與公開狀態後再試。'));
+            return;
+        }
+        debug = q.toUpperCase() === 'DEBUG' || q.toUpperCase() === 'FORCE_DEBUG';
+        if (!debug && !chargeLocalMana()) {
+            if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
+            alert(common.err_mana_depleted);
+            return;
+        }
 
-    document.querySelectorAll('.modular-retry-bubble').forEach(el => el.remove());
-    document.getElementById('fortune-ritual-area').classList.add('hidden');
-    document.getElementById('fortune-chat-area').classList.remove('hidden');
-    appendBubble('user', q);
-    window.pendingDrawOptions = Array.isArray(drawIndices) ? {drawIndices: drawIndices.slice(), seed} : {};
-    try {
-        await window.getModularReading(q, window.pendingDrawOptions);
-    } catch (e) {
-        console.warn('[Divination v1] modular reading unavailable; preserving the same reading for retry:', e);
-        if (!debug) refundLocalMana();
-        if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
-        showModularRetry(q, e);
+        document.querySelectorAll('.modular-retry-bubble').forEach(el => el.remove());
+        document.getElementById('fortune-ritual-area').classList.add('hidden');
+        document.getElementById('fortune-chat-area').classList.remove('hidden');
+        appendBubble('user', q);
+        window.pendingDrawOptions = Array.isArray(drawIndices) ? {drawIndices: drawIndices.slice(), seed} : {};
+        try {
+            await window.getModularReading(q, window.pendingDrawOptions);
+        } catch (e) {
+            console.warn('[Divination v1] modular reading unavailable; preserving the same reading for retry:', e);
+            preserveRequestId = !e.responseReceived;
+            if (!debug) refundLocalMana();
+            if (window.drawMode === 'manual') window.manualDrawState.submitting = false;
+            showModularRetry(q, e);
+        }
+    } finally {
+        endReadingRequest({ preserveRequestId });
     }
 }
 
@@ -1938,6 +2044,7 @@ window.getModularReading = async function(q, drawOptions = {}) {
             lang: getQuestionLanguageTag(q)
         } : {
             method: 'tarot', persona: window.activePersonaId || undefined, question: q,
+            clientRequestId: window.readingRequestState?.clientRequestId || undefined,
             input: {
                 spread: resolvedSpreadForQuestion(q),
                 deck_id: window.activeDeckId,
@@ -1965,6 +2072,7 @@ window.getModularReading = async function(q, drawOptions = {}) {
         const err = new Error(errData.message || `DIVINATION_V1_${resp.status}`);
         err.status = resp.status;
         err.code = errData.code || errData.error;
+        err.responseReceived = true;
         throw err;
     }
     const data = await resp.json();
@@ -2231,6 +2339,8 @@ window.resetRitual = function() {
     window.currentQuestionLanguage = null;
     window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false, phase: 'idle' };
     window.pendingDrawOptions = null;
+    window.readingRequestState = { inFlight: false, clientRequestId: null };
+    setPrimaryReadingBusy(false);
     lastShareFile = null;
     lastShareText = "";
     lastShareBaseMessage = "";
