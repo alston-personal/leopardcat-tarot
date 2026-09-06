@@ -1,0 +1,36 @@
+name: Compact Spread Selector CI
+on:
+  push:
+    branches: [feat/compact-spread-selector]
+    paths:
+      - 'tools/apply_compact_spread_selector.py'
+      - '.github/workflows/compact-spread-selector-ci.yml'
+permissions:
+  contents: write
+jobs:
+  patch-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pytest
+        run: python -m pip install -q pytest
+      - name: Apply compact selector
+        run: python tools/apply_compact_spread_selector.py
+      - name: Focused regression
+        run: python -m pytest website/tests/test_compact_spread_selector.py website/tests/test_reading_setup_v2.py -q
+      - name: JS syntax
+        run: node --check website/main.js
+      - name: Commit product changes
+        run: |
+          git config user.name 'Sunlake'
+          git config user.email 'register@milkcat.org'
+          git add website/index.html website/main.js website/style.css website/tests/test_compact_spread_selector.py
+          if ! git diff --cached --quiet; then
+            git commit -m 'feat(ui): make spread selection compact and scalable'
+            git push origin HEAD:feat/compact-spread-selector
+          fi
