@@ -13,6 +13,7 @@ import sys
 import re
 import threading
 import time
+import secrets
 
 from divination import ReadingRequest, build_default_engine
 from divination.core import DivinationError
@@ -25,6 +26,7 @@ from divination.personas import persona_public_info, ConfigurablePersona
 from divination.persona_publishing import PersonaPublisher
 from divination.capsules import build_capsule, public_handoff
 from divination.lenormand import public_method_info as lenormand_public_method_info
+from divination.threads_publishing import ThreadsPublishingService, ThreadsPublishingError
 
 PORT = 8088
 DIRECTORY = "dist"
@@ -107,6 +109,7 @@ THEME_PUBLISHER = ThemePublisher(THEME_ROOT)
 PERSONA_ROOT = os.path.join(DATA_DIR, 'custom_personas')
 PERSONA_PUBLISHER = PersonaPublisher(PERSONA_ROOT)
 THREADS_READER_URL = load_env_value('THREADS_READER_URL') or 'http://127.0.0.1:18766'
+THREADS_PUBLISHER = ThreadsPublishingService(load_env_value)
 
 READING_REQUEST_LOCK = threading.Lock()
 READING_REQUESTS_IN_FLIGHT = {}
@@ -198,8 +201,33 @@ def persona_used_by_decks(persona_id):
     return refs
 
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
+    THREADS_SESSION_COOKIE = 'lc_threads_session'
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
+
+    def _send_api_json(self, status, payload):
+        raw = json.dumps(payload, ensure_ascii=False).encode('utf-8')
+        self.send_response(status)
+        self.send_header('Content-type', 'application/json; charset=utf-8')
+        self.send_header('Content-Length', str(len(raw)))
+        self.send_header('Cache-Control', 'no-store')
+        self.end_headers()
+        self.wfile.write(raw)
+
+    def _threads_session_id(self, create=False):
+        cookie = self.headers.get('Cookie', '')
+        for part in cookie.split(';'):
+            key, sep, value = part.strip().partition('=')
+            if sep and key == self.THREADS_SESSION_COOKIE and re.fullmatch(r'[A-Za-z0-9_-]{20,128}', value):
+                return value
+        return secrets.token_urlsafe(32) if create else ''
+
+    def _set_threads_session_cookie(self, session_id):
+        self.send_header(
+            'Set-Cookie',
+            f'{self.THREADS_SESSION_COOKIE}={session_id}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=5184000'
+        )
 
     def do_GET(self):
         url_parts = self.path.split('?', 1)
@@ -207,6 +235,57 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         query = url_parts[1] if len(url_parts) > 1 else ""
 
         # 👑 API Endpoints
+        if path == '/api/v1/threads/oauth/status':
+            session_id = self._threads_session_id(create=False)
+            self._send_api_json(200, THREADS_PUBLISHER.status(session_id))
+            return
+        if path == '/api/v1/threads/oauth/start':
+            params = urllib.parse.parse_qs(query)
+            session_id = self._threads_session_id(create=True)
+            try:
+                location = THREADS_PUBLISHER.issue_authorization(
+                    session_id,
+                    (params.get('return_to') or ['/'])[0],
+                )
+            except ThreadsPublishingError as e:
+                self._send_api_json(e.status, {'error': e.code})
+                return
+            self.send_response(302)
+            self._set_threads_session_cookie(session_id)
+            self.send_header('Location', location)
+            self.send_header('Cache-Control', 'no-store')
+            self.end_headers()
+            return
+        if path == '/api/v1/threads/oauth/callback':
+            params = urllib.parse.parse_qs(query)
+            session_id = self._threads_session_id(create=False)
+            if not session_id or params.get('error'):
+                self.send_response(302)
+                self.send_header('Location', '/?threads=oauth_error')
+                self.send_header('Cache-Control', 'no-store')
+                self.end_headers()
+                return
+            try:
+                result = THREADS_PUBLISHER.complete_authorization(
+                    session_id,
+                    (params.get('state') or [''])[0],
+                    (params.get('code') or [''])[0],
+                )
+                return_to = result.get('return_to') or '/'
+                account = result.get('account') or {}
+                marker = urllib.parse.urlencode({
+                    'threads': 'connected',
+                    'threads_account': account.get('username') or '',
+                })
+                joiner = '&' if '?' in return_to else '?'
+                location = f'{return_to}{joiner}{marker}'
+            except ThreadsPublishingError as e:
+                location = '/?' + urllib.parse.urlencode({'threads': 'oauth_error', 'reason': e.code})
+            self.send_response(302)
+            self.send_header('Location', location)
+            self.send_header('Cache-Control', 'no-store')
+            self.end_headers()
+            return
         share_image_match = re.fullmatch(r'/api/v1/readings/([^/]+)/share-image\.png', path)
         if share_image_match:
             reading_id = share_image_match.group(1)
@@ -599,6 +678,28 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_POST(self):
         path = self.path.split('?', 1)[0]
+        if path == '/api/v1/threads/oauth/disconnect':
+            THREADS_PUBLISHER.disconnect(self._threads_session_id(create=False))
+            self._send_api_json(200, {'connected': False})
+            return
+        if path == '/api/v1/threads/publish':
+            content_length = int(self.headers.get('Content-Length', 0))
+            if content_length <= 0 or content_length > 32 * 1024:
+                self._send_api_json(413, {'error': 'threads_publish_payload_too_large'})
+                return
+            try:
+                payload = json.loads(self.rfile.read(content_length).decode('utf-8'))
+                result = THREADS_PUBLISHER.publish_text(
+                    self._threads_session_id(create=False),
+                    payload.get('primary_text'),
+                    payload.get('text_attachment'),
+                )
+                self._send_api_json(201, {'post': result})
+            except (ValueError, UnicodeDecodeError, json.JSONDecodeError):
+                self._send_api_json(400, {'error': 'threads_publish_payload_invalid'})
+            except ThreadsPublishingError as e:
+                self._send_api_json(e.status, {'error': e.code})
+            return
         if path == '/api/v1/sources/threads':
             content_length = int(self.headers.get('Content-Length', 0))
             if content_length <= 0 or content_length > 16 * 1024:

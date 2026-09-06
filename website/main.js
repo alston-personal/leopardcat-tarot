@@ -1330,13 +1330,55 @@ window.prepareThreadsShare = async function(event) {
     const plan = threadsSharePlan(lastShareText);
     if (!plan.isLong) return true;
 
-    // Threads intent only supports the <=500-character primary post. Never put the
-    // full long interpretation into the composer and never fall back to clipboard
-    // paste. The full text is represented as a typed text-attachment capability for
-    // the OAuth publishing path; until connected, the primary post remains valid and
-    // links back to the reading instead of showing a negative character counter.
+    // Long-form is a separate capability. Never put >500 characters into intent
+    // and never fall back to clipboard/manual paste.
     event?.preventDefault?.();
     window.pendingThreadsTextAttachment = plan.textAttachment;
+
+    let oauth = null;
+    try {
+        const statusResponse = await fetch('/api/v1/threads/oauth/status', {
+            credentials: 'same-origin', cache: 'no-store'
+        });
+        if (statusResponse.ok) oauth = await statusResponse.json();
+    } catch (error) {
+        console.warn('[Threads] OAuth status unavailable', error);
+    }
+
+    if (oauth?.configured && !oauth?.connected) {
+        const returnTo = `${location.pathname}${location.search}${location.hash}`;
+        location.href = `/api/v1/threads/oauth/start?return_to=${encodeURIComponent(returnTo)}`;
+        return false;
+    }
+
+    if (oauth?.connected && plan.textAttachment) {
+        const account = oauth.account || {};
+        const identity = account.username ? `@${account.username}` : (account.name || '目前連線的 Threads 帳號');
+        const approved = window.confirm(`要以 ${identity} 發布完整大師解讀嗎？`);
+        if (!approved) return false;
+        link.setAttribute('aria-busy', 'true');
+        try {
+            const response = await fetch('/api/v1/threads/publish', {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    primary_text: plan.primaryText,
+                    text_attachment: plan.textAttachment
+                })
+            });
+            const payload = await response.json().catch(() => ({}));
+            if (!response.ok || !payload?.post?.id) throw new Error(payload?.error || 'threads_publish_failed');
+            window.alert(`已由 ${identity} 發布完整大師解讀。`);
+            return false;
+        } catch (error) {
+            console.warn('[Threads] API publish unavailable; using bounded intent fallback', error);
+            window.alert('Threads API 發布暫時不可用，將改用一般分享視窗；完整長文不會被塞進超過 500 字的主貼文。');
+        } finally {
+            link.removeAttribute('aria-busy');
+        }
+    }
+
     const composer = `https://www.threads.net/intent/post?text=${encodeURIComponent(plan.primaryText)}`;
     window.open(composer, '_blank', 'noopener');
     return false;
