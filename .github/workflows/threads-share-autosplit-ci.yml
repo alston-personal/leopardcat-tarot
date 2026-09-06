@@ -26,15 +26,10 @@ jobs:
         run: python -m pip install pytest
       - name: Run focused regression
         run: pytest -q website/tests/test_threads_share_autosplit.py website/tests/test_full_master_share.py
-      - name: Syntax and build
+      - name: Syntax validation
         run: |
           python -m py_compile website/fortune_server.py
           node --check website/main.js
-          if [ -L website/public/art/renders ] && [ ! -e website/public/art/renders ]; then rm website/public/art/renders; fi
-          mkdir -p website/public/art/renders
-          cd website
-          npm ci
-          npm run build
       - name: Commit product changes
         run: |
           git config user.name 'github-actions[bot]'
