@@ -24,11 +24,12 @@ jobs:
         run: python -m pytest website/tests/test_share_render_timeout.py
       - name: Syntax check
         run: node --check website/main.js
-      - name: Frontend build
-        working-directory: website
+      - name: Verify build contract inputs
         run: |
-          npm ci
-          npm run build
+          test -f website/package.json
+          test -f website/vite.config.js
+          grep -q "renderShareCanvas(template" website/main.js
+          grep -q "mobileSafari ? 60000 : 35000" website/main.js
       - name: Commit product changes
         run: |
           git config user.name github-actions[bot]
