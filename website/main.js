@@ -1496,6 +1496,148 @@ async function renderShareCanvas(target, options, label = 'share') {
     }
 }
 
+function isIOSShareRuntime() {
+    return /iP(?:hone|ad|od)/i.test(navigator.userAgent);
+}
+
+function roundedRectPath(ctx, x, y, width, height, radius) {
+    const r = Math.max(0, Math.min(radius, width / 2, height / 2));
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + width, y, x + width, y + height, r);
+    ctx.arcTo(x + width, y + height, x, y + height, r);
+    ctx.arcTo(x, y + height, x, y, r);
+    ctx.arcTo(x, y, x + width, y, r);
+    ctx.closePath();
+}
+
+function canvasWrapLines(ctx, text, maxWidth, maxLines = 3) {
+    const value = String(text || '').replace(/\s+/g, ' ').trim();
+    if (!value) return [];
+    const chars = Array.from(value);
+    const lines = [];
+    let line = '';
+    for (const ch of chars) {
+        const next = line + ch;
+        if (line && ctx.measureText(next).width > maxWidth) {
+            lines.push(line);
+            line = ch;
+            if (lines.length >= maxLines) break;
+        } else {
+            line = next;
+        }
+    }
+    if (lines.length < maxLines && line) lines.push(line);
+    if (lines.length === maxLines && chars.join('') !== lines.join('')) {
+        let last = lines[maxLines - 1];
+        while (last && ctx.measureText(last + '…').width > maxWidth) last = last.slice(0, -1);
+        lines[maxLines - 1] = `${last}…`;
+    }
+    return lines;
+}
+
+async function loadShareBitmap(src, timeoutMs = 5000) {
+    if (!src) return null;
+    return await Promise.race([
+        new Promise(resolve => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.decoding = 'async';
+            img.onload = () => resolve(img);
+            img.onerror = () => resolve(null);
+            img.src = src;
+        }),
+        new Promise(resolve => setTimeout(() => resolve(null), timeoutMs))
+    ]);
+}
+
+async function renderMobileSafeSquareCanvas(shareContext, shareEntries, shareTheme, quote) {
+    const size = 600;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d', { alpha: false });
+    if (!ctx) throw new Error('CANVAS2D_UNAVAILABLE');
+
+    ctx.fillStyle = shareTheme.background || '#0a110e';
+    ctx.fillRect(0, 0, size, size);
+
+    ctx.fillStyle = shareTheme.accent || '#d4af37';
+    ctx.font = '600 25px -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(shareTheme.title || window.brandText('share_title', 'Tarot Reading'), size / 2, 46);
+
+    ctx.fillStyle = shareTheme.muted || 'rgba(245,242,236,.74)';
+    ctx.font = '15px -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif';
+    const seeker = localStorage.getItem('userDharmaName') || 'Seeker';
+    ctx.fillText(`${seeker} · ${new Date().toLocaleDateString(getAILanguageTag())}`, size / 2, 72);
+
+    const count = shareEntries.length;
+    const gap = count === 1 ? 0 : 14;
+    const cardW = count === 1 ? 180 : 138;
+    const cardH = count === 1 ? 292 : 224;
+    const totalW = cardW * count + gap * Math.max(0, count - 1);
+    const startX = (size - totalW) / 2;
+    const cardY = 102;
+
+    const loaded = await Promise.all(shareEntries.map(entry =>
+        loadShareBitmap(getShareCardImage(entry.card, shareContext.deckId), 5000)
+    ));
+
+    shareEntries.forEach((entry, index) => {
+        const x = startX + index * (cardW + gap);
+        roundedRectPath(ctx, x - 4, cardY - 4, cardW + 8, cardH + 8, 12);
+        ctx.fillStyle = shareTheme.surface || 'rgba(255,255,255,.055)';
+        ctx.fill();
+        ctx.strokeStyle = shareTheme.line || 'rgba(212,175,55,.28)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        const img = loaded[index];
+        if (img && img.naturalWidth && img.naturalHeight) {
+            const scale = Math.min(cardW / img.naturalWidth, cardH / img.naturalHeight);
+            const dw = img.naturalWidth * scale;
+            const dh = img.naturalHeight * scale;
+            const cx = x + cardW / 2;
+            const cy = cardY + cardH / 2;
+            ctx.save();
+            ctx.translate(cx, cy);
+            if (entry.orientation === 'reversed') ctx.rotate(Math.PI);
+            ctx.drawImage(img, -dw / 2, -dh / 2, dw, dh);
+            ctx.restore();
+        } else {
+            ctx.fillStyle = shareTheme.surface || '#171717';
+            ctx.fillRect(x, cardY, cardW, cardH);
+            ctx.fillStyle = shareTheme.muted || '#ccc';
+            ctx.font = '14px -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(getShareCardTitle(entry.card), x + cardW / 2, cardY + cardH / 2);
+        }
+
+        ctx.fillStyle = shareTheme.text || '#fff';
+        ctx.font = `${count === 1 ? 16 : 13}px -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif`;
+        ctx.textAlign = 'center';
+        const title = getShareCardTitle(entry.card);
+        const orientation = entry.orientation === 'reversed' ? uiText('orientation_reversed', 'Reversed') : uiText('orientation_upright', 'Upright');
+        const caption = count === 1 ? `${title} · ${orientation}` : `${index + 1}. ${title}${entry.orientation === 'reversed' ? ' ↕' : ''}`;
+        const lines = canvasWrapLines(ctx, caption, cardW + 8, 2);
+        lines.forEach((line, lineIndex) => ctx.fillText(line, x + cardW / 2, cardY + cardH + 24 + lineIndex * 17));
+    });
+
+    const quoteTop = count === 1 ? 444 : 392;
+    ctx.textAlign = 'left';
+    ctx.font = '18px -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif';
+    ctx.fillStyle = shareTheme.text || '#fff';
+    const quoteLines = canvasWrapLines(ctx, `「${quote || ''}」`, 520, count === 1 ? 4 : 5);
+    quoteLines.forEach((line, index) => ctx.fillText(line, 40, quoteTop + index * 26));
+
+    ctx.textAlign = 'center';
+    ctx.fillStyle = shareTheme.muted || 'rgba(245,242,236,.74)';
+    ctx.font = '13px -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif';
+    ctx.fillText(shareTheme.site_tag || location.host, size / 2, 578);
+    return canvas;
+}
+
 // 📸 Share Image Generator
 window.generateShareImage = async function() {
     if (!currentDrawnCard) return;
@@ -1586,17 +1728,19 @@ window.generateShareImage = async function() {
 
     console.time('ManaGathering');
     try {
-        const canvas = await renderShareCanvas(template, {
-            useCORS: true,
-            allowTaint: true,
-            logging: false,
-            backgroundColor: shareTheme.background,
-            scale: 1.0,
-            width: 600,
-            height: 600,
-            imageTimeout: 5000,
-            removeContainer: true
-        }, 'square');
+        const canvas = isIOSShareRuntime()
+            ? await renderMobileSafeSquareCanvas(shareContext, shareEntries, shareTheme, quote)
+            : await renderShareCanvas(template, {
+                useCORS: true,
+                allowTaint: true,
+                logging: false,
+                backgroundColor: shareTheme.background,
+                scale: 1.0,
+                width: 600,
+                height: 600,
+                imageTimeout: 5000,
+                removeContainer: true
+            }, 'square');
         console.timeEnd('ManaGathering');
         
         // 🕵️ Smart Language Detection for Share Message
@@ -1667,25 +1811,35 @@ window.generateShareImage = async function() {
         // Social crawlers need a landscape Open Graph asset. Keep the downloadable/native
         // share memo square, but reflow the same deck-owned content into 1200x630 for OG.
         let ogBlob = blob;
-        template.classList.add('share-og-mode');
-        try {
-            const ogCanvas = await renderShareCanvas(template, {
-                useCORS: true,
-                allowTaint: true,
-                logging: false,
-                backgroundColor: shareTheme.background,
-                scale: 1.0,
-                width: 1200,
-                height: 630,
-                imageTimeout: 5000,
-                removeContainer: true
-            }, 'og');
-            const renderedOgBlob = await new Promise(resolve => ogCanvas.toBlob(resolve, 'image/png'));
-            if (renderedOgBlob) ogBlob = renderedOgBlob;
-        } finally {
-            template.classList.remove('share-og-mode');
+        // Native iOS sharing must never wait for a second DOM raster. The square Canvas2D
+        // asset is persisted as a safe preview fallback; desktop keeps the landscape OG path.
+        if (!isIOSShareRuntime()) {
+            template.classList.add('share-og-mode');
+            try {
+                const ogCanvas = await renderShareCanvas(template, {
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: false,
+                    backgroundColor: shareTheme.background,
+                    scale: 1.0,
+                    width: 1200,
+                    height: 630,
+                    imageTimeout: 5000,
+                    removeContainer: true
+                }, 'og');
+                const renderedOgBlob = await new Promise(resolve => ogCanvas.toBlob(resolve, 'image/png'));
+                if (renderedOgBlob) ogBlob = renderedOgBlob;
+            } catch (ogError) {
+                console.warn('[Share] OG render unavailable; native share remains valid', ogError);
+            } finally {
+                template.classList.remove('share-og-mode');
+            }
         }
-        await persistReadingSharePreview(ogBlob); // OG receives the landscape asset; private text is still excluded.
+        if (isIOSShareRuntime()) {
+            void persistReadingSharePreview(ogBlob); // best-effort: never block iOS native share.
+        } else {
+            await persistReadingSharePreview(ogBlob); // preserve desktop/OG-before-share contract.
+        }
         const filePrefix = window.activeBrand?.file_prefix || 'tarot';
         const file = new File([blob], `${filePrefix}-${Date.now()}.png`, { type: 'image/png' });
         
