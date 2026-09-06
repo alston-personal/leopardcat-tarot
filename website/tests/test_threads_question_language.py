@@ -31,8 +31,12 @@ def test_threads_url_is_resolved_before_reading_and_raw_url_is_not_question():
 def test_threads_source_proxy_is_localhost_and_ssrf_restricted():
     assert "THREADS_READER_URL = load_env_value('THREADS_READER_URL') or 'http://127.0.0.1:18766'" in SERVER
     assert "if path == '/api/v1/sources/threads':" in SERVER
-    assert "allowed_hosts = {'threads.com','www.threads.com','threads.net','www.threads.net'}" in SERVER
+    assert "THREADS_ALLOWED_HOSTS = {'threads.com','www.threads.com','threads.net','www.threads.net'}" in SERVER
     assert "parsed.scheme != 'https'" in SERVER
+    assert 'class ThreadsSafeRedirectHandler' in SERVER
+    assert "(parsed.hostname or '').lower() not in THREADS_ALLOWED_HOSTS" in SERVER
+    assert 'THREADS_CANONICAL_PATH_RE.fullmatch(final.path)' in SERVER
+    assert 'canonicalize_threads_source_url(source_url)' in SERVER
     assert "THREADS_READER_URL.rstrip('/') + '/v1/threads/resolve'" in SERVER
 
 
