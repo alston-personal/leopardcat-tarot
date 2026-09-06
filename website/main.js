@@ -1206,6 +1206,28 @@ function latestMasterInterpretation() {
     return '';
 }
 
+function threadsSourceAuthorLabel(source) {
+    if (!source || source.type !== 'threads') return '';
+    const author = (source.author && typeof source.author === 'object') ? source.author : {};
+    const displayName = String(
+        author.display_name || author.name || source.author_name || source.display_name || ''
+    ).trim();
+    let rawHandle = String(
+        author.username || author.handle || source.username || source.handle || ''
+    ).trim();
+    if (!rawHandle && source.url) {
+        try {
+            const match = new URL(source.url).pathname.match(/^\/@([^/]+)\/post\//i);
+            if (match) rawHandle = match[1];
+        } catch (_) {}
+    }
+    const handle = rawHandle ? `@${rawHandle.replace(/^@+/, '')}` : '';
+    if (displayName && handle && displayName.toLowerCase() !== handle.slice(1).toLowerCase()) {
+        return `${displayName}（${handle}）`;
+    }
+    return displayName || handle;
+}
+
 function buildSocialShareText(shareMsg, shareUrl) {
     if (window.shareContentMode !== 'full') return `${shareMsg} ${shareUrl}`;
     const answer = latestMasterInterpretation();
@@ -1213,7 +1235,11 @@ function buildSocialShareText(shareMsg, shareUrl) {
     const source = window.currentQuestionSource;
     const parts = [];
     if (source?.type === 'threads' && source.text && source.url) {
-        parts.push(`${uiText('share_threads_question_heading', '該文作者提問：')}\n${normalizeMasterShareText(source.text)}`);
+        const authorLabel = threadsSourceAuthorLabel(source);
+        const questionHeading = authorLabel
+            ? uiText('share_threads_question_heading_with_author', '原文作者 {author} 提問：', {author: authorLabel})
+            : uiText('share_threads_question_heading', '原文作者提問：');
+        parts.push(`${questionHeading}\n${normalizeMasterShareText(source.text)}`);
         parts.push(`${uiText('share_source_heading', '原文：')}\n${source.url}`);
         parts.push(`${uiText('share_master_heading', '大師解讀：')}\n${answer}`);
     } else {
@@ -1268,30 +1294,51 @@ function splitThreadsText(text, limit = THREADS_TEXT_LIMIT) {
     return chunks;
 }
 
+function buildThreadsPrimaryPost(text, limit = THREADS_TEXT_LIMIT) {
+    const full = String(text || '').trim();
+    if (full.length <= limit) return full;
+    const url = String(lastShareUrl || '').trim();
+    const suffix = url ? `\n\n${uiText('threads_full_reading_link', '完整解讀：')} ${url}` : '';
+    const ellipsis = '…';
+    const budget = Math.max(40, limit - suffix.length - ellipsis.length);
+    const lead = splitThreadsText(full, budget)[0] || full.slice(0, budget);
+    return `${lead.slice(0, budget).trim()}${ellipsis}${suffix}`.slice(0, limit);
+}
+
 function threadsSharePlan(text) {
-    const chunks = splitThreadsText(text);
-    return { text: String(text || '').trim(), chunks, count: chunks.length, requiresPaste: chunks.length > 1 };
+    const full = String(text || '').trim();
+    const chunks = splitThreadsText(full);
+    const isLong = full.length > THREADS_TEXT_LIMIT;
+    const primaryText = buildThreadsPrimaryPost(full);
+    return {
+        text: full,
+        primaryText,
+        chunks,
+        count: chunks.length,
+        isLong,
+        requiresTextAttachment: isLong,
+        textAttachment: isLong ? {
+            plaintext: full,
+            link_attachment_url: String(lastShareUrl || '').trim() || undefined
+        } : null
+    };
 }
 
 window.prepareThreadsShare = async function(event) {
     const link = document.getElementById('share-threads');
     if (!link || !lastShareText) return true;
     const plan = threadsSharePlan(lastShareText);
-    if (!plan.requiresPaste) return true;
+    if (!plan.isLong) return true;
+
+    // Threads intent only supports the <=500-character primary post. Never put the
+    // full long interpretation into the composer and never fall back to clipboard
+    // paste. The full text is represented as a typed text-attachment capability for
+    // the OAuth publishing path; until connected, the primary post remains valid and
+    // links back to the reading instead of showing a negative character counter.
     event?.preventDefault?.();
-    try {
-        await navigator.clipboard.writeText(plan.text);
-    } catch (_) {
-        return true;
-    }
-    const blankComposer = 'https://www.threads.net/intent/post';
-    window.open(blankComposer, '_blank', 'noopener');
-    const message = uiText(
-        'threads_long_share_copied',
-        '完整內容已複製。請在 Threads 貼上，Threads 會自動分成約 {count} 則串文。',
-        {count: plan.count}
-    );
-    setTimeout(() => alert(message), 120);
+    window.pendingThreadsTextAttachment = plan.textAttachment;
+    const composer = `https://www.threads.net/intent/post?text=${encodeURIComponent(plan.primaryText)}`;
+    window.open(composer, '_blank', 'noopener');
     return false;
 };
 
@@ -1309,7 +1356,7 @@ function refreshSocialShareText() {
     if (threadsLink) {
         const u = new URL(lastShareUrl);
         u.searchParams.set('preview', String(Date.now()));
-        threadsLink.href = `https://www.threads.net/intent/post?text=${encodeURIComponent(buildSocialShareText(lastShareBaseMessage, u.toString()))}`;
+        threadsLink.href = `https://www.threads.net/intent/post?text=${encodeURIComponent(buildThreadsPrimaryPost(buildSocialShareText(lastShareBaseMessage, u.toString())))}`;
         threadsLink.onclick = window.prepareThreadsShare;
     }
 }
@@ -1815,7 +1862,7 @@ window.generateShareImage = async function() {
         const threadsShareU = new URL(shareUrl);
         threadsShareU.searchParams.set('preview', String(Date.now()));
         const threadsShareText = buildSocialShareText(shareMsg, threadsShareU.toString());
-        document.getElementById('share-threads').href = `https://www.threads.net/intent/post?text=${encodeURIComponent(threadsShareText)}`;
+        document.getElementById('share-threads').href = `https://www.threads.net/intent/post?text=${encodeURIComponent(buildThreadsPrimaryPost(threadsShareText))}`;
         document.getElementById('share-threads').onclick = window.prepareThreadsShare;
         
         document.getElementById('social-share-row').classList.remove('hidden');
@@ -1959,7 +2006,7 @@ function updateSocialLinks(card, customQuote = null) {
         const threadsShareU = new URL(shareUrl);
         threadsShareU.searchParams.set('preview', String(Date.now()));
         const threadsShareText = buildSocialShareText(shareMsg, threadsShareU.toString());
-        threadsLink.href = `https://www.threads.net/intent/post?text=${encodeURIComponent(threadsShareText)}`;
+        threadsLink.href = `https://www.threads.net/intent/post?text=${encodeURIComponent(buildThreadsPrimaryPost(threadsShareText))}`;
     }
     
     document.getElementById('social-share-row')?.classList.remove('hidden');
