@@ -1992,3 +1992,85 @@ button, select, input, textarea, .btn, .btn-gold-outline, .nav-links a, .lang-sw
     min-height: 58px;
   }
 }
+
+
+/* === Compact scalable spread selector v3 === */
+#reading-config-card.reading-config-compact {
+  margin: 16px 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+#reading-config-card.reading-config-compact::before { display: none; }
+.compact-spread-picker {
+  display: grid;
+  grid-template-columns: auto minmax(150px, 240px);
+  align-items: center;
+  justify-content: center;
+  gap: 8px 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(212,175,55,.22);
+  border-radius: 14px;
+  background: rgba(8,14,10,.72);
+}
+.compact-spread-label { color: rgba(244,241,234,.72); font-size: .78rem; font-weight: 700; }
+.compact-spread-select {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 36px 0 14px;
+  border: 1px solid rgba(212,175,55,.42);
+  border-radius: 12px;
+  color: #f2d56b;
+  background: #0a100d;
+  font: inherit;
+  font-weight: 700;
+}
+.compact-spread-hint {
+  grid-column: 2;
+  margin-top: -2px;
+  color: rgba(244,241,234,.42);
+  font-size: .62rem;
+}
+.draw-mode-details {
+  margin: 8px auto 0;
+  width: min(100%, 430px);
+  color: rgba(244,241,234,.58);
+}
+.draw-mode-details > summary {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: .66rem;
+  list-style: none;
+}
+.draw-mode-details > summary::-webkit-details-marker { display: none; }
+#draw-mode-summary { color: rgba(226,190,66,.86); }
+.compact-draw-mode {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px !important;
+  padding: 8px 0 0 !important;
+}
+#reading-config-card .compact-draw-mode .legacy-spread-btn {
+  min-height: 42px;
+  padding: 8px 12px !important;
+  border-radius: 10px !important;
+  font-size: .72rem;
+}
+#reading-config-card .compact-draw-mode .legacy-spread-btn::before,
+#reading-config-card .compact-draw-mode .legacy-spread-btn::after { display: none !important; }
+#reading-config-card + #btn-primary-draw {
+  width: min(100%, 430px);
+  margin: 14px auto 28px;
+  min-height: 52px;
+  border-radius: 14px;
+}
+@media (max-width: 620px) {
+  #reading-config-card.reading-config-compact { margin: 12px 4px 0; padding: 0 !important; }
+  .compact-spread-picker { grid-template-columns: auto 1fr; padding: 10px 12px; }
+  .compact-spread-hint { grid-column: 2; }
+  #reading-config-card + #btn-primary-draw { width: calc(100% - 8px); margin-top: 12px; }
+}
