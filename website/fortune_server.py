@@ -106,6 +106,38 @@ PERSONA_ROOT = os.path.join(DATA_DIR, 'custom_personas')
 PERSONA_PUBLISHER = PersonaPublisher(PERSONA_ROOT)
 THREADS_READER_URL = load_env_value('THREADS_READER_URL') or 'http://127.0.0.1:18766'
 
+THREADS_ALLOWED_HOSTS = {'threads.com','www.threads.com','threads.net','www.threads.net'}
+THREADS_CANONICAL_PATH_RE = re.compile(r'/@[^/]+/post/[A-Za-z0-9_-]+/?$')
+THREADS_SHARE_PATH_RE = re.compile(r'/share/[A-Za-z0-9_-]+/?$')
+
+class ThreadsSafeRedirectHandler(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        parsed = urllib.parse.urlsplit(newurl)
+        if parsed.scheme != 'https' or (parsed.hostname or '').lower() not in THREADS_ALLOWED_HOSTS:
+            raise urllib.error.HTTPError(newurl, 403, 'threads_redirect_not_allowed', headers, fp)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+def canonicalize_threads_source_url(source_url):
+    parsed = urllib.parse.urlsplit(str(source_url or '').strip())
+    if parsed.scheme != 'https' or (parsed.hostname or '').lower() not in THREADS_ALLOWED_HOSTS:
+        raise ValueError('invalid_threads_post_url')
+    if THREADS_CANONICAL_PATH_RE.fullmatch(parsed.path):
+        return urllib.parse.urlunsplit((parsed.scheme, parsed.netloc, parsed.path, parsed.query, ''))
+    if not THREADS_SHARE_PATH_RE.fullmatch(parsed.path):
+        raise ValueError('invalid_threads_post_url')
+    opener = urllib.request.build_opener(ThreadsSafeRedirectHandler())
+    request = urllib.request.Request(source_url, headers={
+        'User-Agent': 'Mozilla/5.0 (compatible; LeopardCat-Tarot/1.0)',
+        'Accept': 'text/html,application/xhtml+xml',
+    })
+    with opener.open(request, timeout=12) as response:
+        final_url = response.geturl()
+        response.read(1)
+    final = urllib.parse.urlsplit(final_url)
+    if final.scheme != 'https' or (final.hostname or '').lower() not in THREADS_ALLOWED_HOSTS or not THREADS_CANONICAL_PATH_RE.fullmatch(final.path):
+        raise ValueError('threads_share_redirect_unresolved')
+    return urllib.parse.urlunsplit((final.scheme, final.netloc, final.path, final.query, ''))
+
 def call_master_prompt(prompt):
     return AI_GATEWAY.generate(prompt)
 
@@ -549,10 +581,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             try:
                 payload = json.loads(self.rfile.read(content_length).decode('utf-8') or '{}')
                 source_url = str(payload.get('url') or '').strip()
-                parsed = urllib.parse.urlsplit(source_url)
-                allowed_hosts = {'threads.com','www.threads.com','threads.net','www.threads.net'}
-                if parsed.scheme != 'https' or (parsed.hostname or '').lower() not in allowed_hosts or not re.fullmatch(r'/@[^/]+/post/[A-Za-z0-9_-]+/?', parsed.path):
-                    raise ValueError('invalid_threads_post_url')
+                source_url = canonicalize_threads_source_url(source_url)
                 request = urllib.request.Request(
                     THREADS_READER_URL.rstrip('/') + '/v1/threads/resolve',
                     data=json.dumps({'url': source_url}).encode('utf-8'),
