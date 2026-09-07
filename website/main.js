@@ -124,7 +124,8 @@ window.currentDrawnCard = null;
 window.currentReadingEnvelope = null;
 window.currentReadingState = null; // shared deck/theme/card/orientation state for every Tarot deck
 window.activeSpread = 'auto'; // requested spread mode; auto resolves from the question
-window.effectiveSpread = null; // concrete spread selected for the current reading
+window.effectiveSpread = null; // concrete spread selected by the canonical server planner
+window.currentSpreadPlan = null; // product-safe planner metadata; never re-plan downstream
 window.activeBrand = null; // Brand Pack: presentation/social identity, independent from Tarot logic
 window.currentShareReceipt = null; // read-only receipt identity; never grants follow-up authority
 window.drawMode = 'auto';
@@ -250,23 +251,34 @@ async function resolveQuestionInput(rawQuestion) {
     }
 }
 
-function automaticSpreadForQuestion(question) {
-    const q = String(question || '').trim();
-    if (!q) return 'three_card';
-    const simple = /^(?:今天|現在|目前|是否|能不能|可不可以|適不適合|會不會|要不要|should\s+i|is\s+it|will\s+i|can\s+i)/i.test(q);
-    const complex = /(?:關係|比較|選擇|原因|阻礙|建議|發展|未來|過去|工作|感情|對方|兩個|方案|影響|走向)/.test(q);
-    return simple && !complex && q.length <= 36 ? 'single' : 'three_card';
+async function fetchCanonicalSpreadPlan(question) {
+    const response = await fetch('/api/v1/spread-plan', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({question: String(question || '').trim()})
+    });
+    const payload = await response.json().catch(() => ({}));
+    const plan = payload?.plan;
+    if (!response.ok || !plan?.spread || !Number.isInteger(Number(plan.card_count))) {
+        throw new Error(payload?.error || 'SPREAD_PLAN_UNAVAILABLE');
+    }
+    return {...plan, card_count: Number(plan.card_count)};
 }
 
-function resolvedSpreadForQuestion(question) {
-    const resolved = window.activeSpread === 'auto' ? automaticSpreadForQuestion(question) : (window.activeSpread || 'single');
-    window.effectiveSpread = resolved;
+function resolvedSpreadForQuestion() {
+    const resolved = window.activeSpread || 'auto';
+    window.effectiveSpread = resolved === 'auto' ? null : resolved;
+    if (resolved !== 'auto') window.currentSpreadPlan = null;
     return resolved;
 }
 
 function requiredDrawCount() {
-    const spread = window.effectiveSpread || (window.activeSpread === 'auto' ? 'three_card' : window.activeSpread);
-    return spread === 'single' ? 1 : 3;
+    if (window.currentSpreadPlan?.spread === window.effectiveSpread) {
+        return Number(window.currentSpreadPlan.card_count) || 1;
+    }
+    const selected = document.getElementById('spread-select')?.selectedOptions?.[0];
+    const explicitCount = Number(selected?.dataset?.cardCount || 0);
+    return explicitCount > 0 ? explicitCount : 1;
 }
 
 function freshShuffleSeed() {
@@ -385,10 +397,21 @@ window.setDrawMode = function(mode) {
     }
 };
 
-window.shuffleManualDeck = function() {
+window.shuffleManualDeck = async function() {
     const q = document.getElementById('fortune-question')?.value?.trim() || '';
     if (!q) return alert(uiText('err_empty_question', 'Please enter your question first.'));
-    resolvedSpreadForQuestion(q);
+    try {
+        if ((window.activeSpread || 'auto') === 'auto') {
+            const plan = await fetchCanonicalSpreadPlan(q);
+            window.currentSpreadPlan = plan;
+            window.effectiveSpread = plan.spread;
+        } else {
+            resolvedSpreadForQuestion();
+        }
+    } catch (error) {
+        console.warn('[Spread planner] unavailable', error);
+        return alert(uiText('err_spread_plan_unavailable', '大師暫時無法決定牌陣，請稍後再試或手動選擇牌陣。'));
+    }
     const seed = freshShuffleSeed();
     window.manualDrawState = { seed, selected: [], shuffled: false, submitting: false, phase: 'shuffling' };
     renderManualCardPool();
@@ -775,8 +798,10 @@ function bindLegacySpreadPicker() {
     const selectEl = document.getElementById('spread-select');
     if (selectEl) {
         const select = spread => {
-            window.activeSpread = ['auto', 'single', 'three_card'].includes(spread) ? spread : 'auto';
+            const allowed = new Set([...selectEl.options].map(option => option.value));
+            window.activeSpread = allowed.has(spread) ? spread : 'auto';
             window.effectiveSpread = null;
+            window.currentSpreadPlan = null;
             selectEl.value = window.activeSpread;
             if (window.drawMode === 'manual') {
                 window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false, phase: 'idle' };
@@ -2340,7 +2365,7 @@ window.getModularReading = async function(q, drawOptions = {}) {
             method: 'tarot', persona: window.activePersonaId || undefined, question: q,
             clientRequestId: window.readingRequestState?.clientRequestId || undefined,
             input: {
-                spread: resolvedSpreadForQuestion(q),
+                spread: window.drawMode === 'manual' ? (window.effectiveSpread || window.activeSpread || 'auto') : (window.activeSpread || 'auto'),
                 deck_id: window.activeDeckId,
                 ...(Array.isArray(drawOptions.drawIndices) ? {draw_indices: drawOptions.drawIndices} : {})
             },
@@ -2629,6 +2654,8 @@ window.resetRitual = function() {
     window.currentReadingEnvelope = null;
     window.currentShareReceipt = null;
     window.currentReadingState = null;
+    window.currentSpreadPlan = null;
+    window.effectiveSpread = null;
     window.currentQuestionSource = null;
     window.currentQuestionLanguage = null;
     window.manualDrawState = { seed: null, selected: [], shuffled: false, submitting: false, phase: 'idle' };
