@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MAIN_JS = (ROOT / 'main.js').read_text(encoding='utf-8')
 SERVER = (ROOT / 'fortune_server.py').read_text(encoding='utf-8')
 INDEX = (ROOT / 'index.html').read_text(encoding='utf-8')
+STYLE = (ROOT / 'style.css').read_text(encoding='utf-8')
 
 
 def test_spread_catalog_cannot_silently_shrink():
@@ -98,3 +99,19 @@ def test_share_path_stays_reading_state_monotonic():
     assert 'const shareEntries = shareContext.cards;' in MAIN_JS
     forbidden = 'updateSocialLinks(currentDrawnCard, bestQuote);'
     assert forbidden not in MAIN_JS
+
+
+def test_share_layout_supports_five_and_ten_card_receipts():
+    assert "frame.classList.toggle('share-many-card', entries.length > 3)" in MAIN_JS
+    assert "frame.classList.toggle('share-ten-card', entries.length > 6)" in MAIN_JS
+    assert 'const col = index % layout.cols' in MAIN_JS
+    assert 'const row = Math.floor(index / layout.cols)' in MAIN_JS
+    assert 'grid-template-columns: repeat(3, 84px)' in STYLE
+    assert 'grid-template-columns: repeat(5, 58px)' in STYLE
+    assert 'grid-template-columns: repeat(5, 92px)' in STYLE
+
+
+def test_reading_receipt_remains_spread_authority_after_draw_and_restore():
+    assert "window.currentSpreadPlan = data.method_result?.spread_plan || null;" in MAIN_JS
+    assert "window.effectiveSpread = data.method_result?.spread || null;" in MAIN_JS
+    assert "spread: data.method_result?.spread || 'single'" in MAIN_JS
