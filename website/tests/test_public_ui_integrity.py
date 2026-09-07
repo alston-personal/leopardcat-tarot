@@ -10,9 +10,13 @@ def test_homepage_preserves_explicit_spread_selection_and_no_prod_vconsole():
     assert '<option value="auto" selected>自動</option>' in html
     assert '<option value="single"' in html
     assert '<option value="three_card"' in html
+    assert '<option value="relationship"' in html
+    assert '<option value="celtic_cross"' in html
     assert "window.activeSpread = 'auto'" in js
-    assert 'resolvedSpreadForQuestion(q)' in js
-    assert "spread: resolvedSpreadForQuestion(q)" in js
+    assert 'function automaticSpreadForQuestion' not in js
+    assert "fetch('/api/v1/spread-plan'" in js
+    assert "spread: window.drawMode === 'manual'" in js
+    assert "(window.activeSpread || 'auto')" in js
 
 def test_dynamic_errors_and_nav_are_locale_driven():
     html=(ROOT/'index.html').read_text(encoding='utf-8')

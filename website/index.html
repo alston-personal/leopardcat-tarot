@@ -84,8 +84,15 @@
                                 <label for="spread-select" class="compact-spread-label" data-i18n="common.spread_label">牌陣</label>
                                 <select id="spread-select" class="compact-spread-select" aria-label="Spread">
                                     <option value="auto" selected>自動</option>
-                                    <option value="single" data-i18n="common.spread_single_short">單牌</option>
-                                    <option value="three_card" data-i18n="common.spread_three_short">三牌</option>
+                                    <option value="single" data-card-count="1">單張指引</option>
+                                    <option value="clarifier" data-card-count="1">補充牌</option>
+                                    <option value="three_card" data-card-count="3">時間流三牌</option>
+                                    <option value="situation_advice" data-card-count="3">現況・阻礙・建議</option>
+                                    <option value="decision" data-card-count="3">選擇分析</option>
+                                    <option value="relationship" data-card-count="5">關係五牌</option>
+                                    <option value="career" data-card-count="5">職涯五牌</option>
+                                    <option value="path" data-card-count="5">道路五牌</option>
+                                    <option value="celtic_cross" data-card-count="10">凱爾特十字</option>
                                 </select>
                                 <span class="compact-spread-hint">依問題自動選擇適合的牌陣</span>
                             </div>

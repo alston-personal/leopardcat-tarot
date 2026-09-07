@@ -27,6 +27,7 @@ from divination.persona_publishing import PersonaPublisher
 from divination.capsules import build_capsule, public_handoff
 from divination.lenormand import public_method_info as lenormand_public_method_info
 from divination.threads_publishing import ThreadsPublishingService, ThreadsPublishingError
+from divination.tarot import plan_spread, spread_catalog
 
 PORT = 8088
 DIRECTORY = "dist"
@@ -176,11 +177,7 @@ def method_catalog():
             'method_id': 'tarot',
             'name': '塔羅 Tarot',
             'description': '以牌陣位置與正逆位解讀；牌組可替換。',
-            'spreads': [
-                {'id':'single','name':'單張指引','card_count':1},
-                {'id':'three_card','name':'過去・現在・未來','card_count':3},
-                {'id':'decision','name':'選擇題','card_count':3},
-            ],
+            'spreads': spread_catalog(),
         },
         lenormand_public_method_info(),
     ]
@@ -678,6 +675,20 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_POST(self):
         path = self.path.split('?', 1)[0]
+        if path == '/api/v1/spread-plan':
+            content_length = int(self.headers.get('Content-Length', 0))
+            if content_length <= 0 or content_length > 16 * 1024:
+                self._send_api_json(413, {'error': 'spread_plan_payload_too_large'})
+                return
+            try:
+                payload = json.loads(self.rfile.read(content_length).decode('utf-8') or '{}')
+                question = str(payload.get('question') or '').strip()
+                if not question or len(question) > 4000:
+                    raise ValueError('spread_plan_question_invalid')
+                self._send_api_json(200, {'plan': plan_spread(question)})
+            except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+                self._send_api_json(400, {'error': str(exc) or 'spread_plan_payload_invalid'})
+            return
         if path == '/api/v1/threads/oauth/disconnect':
             THREADS_PUBLISHER.disconnect(self._threads_session_id(create=False))
             self._send_api_json(200, {'connected': False})
