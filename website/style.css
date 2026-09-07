@@ -2082,3 +2082,36 @@ button, select, input, textarea, .btn, .btn-gold-outline, .nav-links a, .lang-sw
 .draw-mode-details.is-reading-pending { pointer-events: none; opacity: .58; }
 .standalone-refresh { position: fixed; left: max(14px, env(safe-area-inset-left)); bottom: max(14px, env(safe-area-inset-bottom)); width: 42px; height: 42px; border-radius: 999px; border: 1px solid var(--color-gold-glow); background: rgba(5,8,6,.88); color: var(--color-gold); z-index: 1600; font-size: 23px; line-height: 1; backdrop-filter: blur(10px); box-shadow: 0 6px 22px rgba(0,0,0,.3); }
 .standalone-refresh:active { transform: scale(.95); }
+
+
+/* === N-card canonical share layouts (#69) === */
+.share-card-frame.share-many-card {
+  display: grid;
+  grid-template-columns: repeat(3, 84px);
+  width: 310px;
+  gap: 8px 10px;
+  justify-content: center;
+  align-items: start;
+}
+.share-card-frame.share-many-card .share-card-slot { width: 84px; }
+.share-card-frame.share-many-card img { width: 78px; max-height: 132px; object-fit: contain; }
+.share-card-frame.share-many-card .share-card-caption { max-width: 84px; font-size: 7.5px; line-height: 1.2; }
+.share-card-frame.share-many-card.share-ten-card {
+  grid-template-columns: repeat(5, 58px);
+  width: 340px;
+  gap: 6px 8px;
+}
+.share-card-frame.share-many-card.share-ten-card .share-card-slot { width: 58px; }
+.share-card-frame.share-many-card.share-ten-card img { width: 54px; max-height: 92px; }
+.share-card-frame.share-many-card.share-ten-card .share-card-caption { max-width: 58px; font-size: 6.5px; line-height: 1.15; }
+.share-card-body.share-og-mode .share-card-frame.share-many-card {
+  display: grid;
+  grid-template-columns: repeat(5, 92px);
+  width: 100%;
+  max-width: 510px;
+  gap: 8px;
+  justify-content: center;
+}
+.share-card-body.share-og-mode .share-card-frame.share-many-card .share-card-slot { width: 92px; }
+.share-card-body.share-og-mode .share-card-frame.share-many-card img { width: 82px; max-height: 138px; object-fit: contain; }
+.share-card-body.share-og-mode .share-card-frame.share-many-card .share-card-caption { max-width: 92px; font-size: 8px; line-height: 1.2; }
