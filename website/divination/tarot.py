@@ -9,9 +9,138 @@ from .decks import DeckRegistry
 
 SPREADS: dict[str, list[tuple[str, str]]] = {
     "single": [("guidance", "核心指引")],
-    "three_card": [("past", "過去／根源"), ("present", "現在／核心"), ("future", "未來／發展")],
-    "decision": [("situation", "現況"), ("path_a", "選擇 A 的能量"), ("path_b", "選擇 B 的能量")],
+    "clarifier": [("clarifier", "補充訊息")],
+    "three_card": [
+        ("past", "過去／根源"),
+        ("present", "現在／核心"),
+        ("future", "未來／發展"),
+    ],
+    "situation_advice": [
+        ("situation", "現況"),
+        ("obstacle", "阻礙／盲點"),
+        ("advice", "建議／下一步"),
+    ],
+    "decision": [
+        ("situation", "現況"),
+        ("path_a", "選擇 A 的能量"),
+        ("path_b", "選擇 B 的能量"),
+    ],
+    "relationship": [
+        ("self", "你的狀態"),
+        ("other", "對方的狀態"),
+        ("bond", "關係核心"),
+        ("challenge", "關係課題"),
+        ("direction", "可能發展"),
+    ],
+    "career": [
+        ("present", "目前位置"),
+        ("strength", "可運用的優勢"),
+        ("challenge", "主要阻力"),
+        ("opportunity", "可把握的機會"),
+        ("action", "建議行動"),
+    ],
+    "path": [
+        ("origin", "目前起點"),
+        ("lesson", "核心課題"),
+        ("resource", "可運用資源"),
+        ("next_step", "下一步"),
+        ("direction", "發展方向"),
+    ],
+    "celtic_cross": [
+        ("present", "核心現況"),
+        ("cross", "交叉影響／阻力"),
+        ("foundation", "深層根源"),
+        ("recent_past", "近期過去"),
+        ("possibility", "可見可能性"),
+        ("near_future", "近期發展"),
+        ("self", "你的內在位置"),
+        ("environment", "外在環境"),
+        ("hopes_fears", "期待與擔憂"),
+        ("outcome", "整體走向"),
+    ],
 }
+
+SPREAD_INFO: dict[str, dict[str, Any]] = {
+    "single": {"label": "單張指引", "intent": "guidance", "complexity": "low"},
+    "clarifier": {"label": "補充牌", "intent": "clarification", "complexity": "low"},
+    "three_card": {"label": "時間流三牌", "intent": "timeline", "complexity": "medium"},
+    "situation_advice": {"label": "現況・阻礙・建議", "intent": "guidance", "complexity": "medium"},
+    "decision": {"label": "選擇分析", "intent": "decision", "complexity": "medium"},
+    "relationship": {"label": "關係五牌", "intent": "relationship", "complexity": "medium"},
+    "career": {"label": "職涯五牌", "intent": "career", "complexity": "medium"},
+    "path": {"label": "道路五牌", "intent": "direction", "complexity": "medium"},
+    "celtic_cross": {"label": "凱爾特十字", "intent": "deep_reading", "complexity": "high"},
+}
+
+
+def spread_catalog() -> list[dict[str, Any]]:
+    """Public, stable spread capability catalog.
+
+    The catalog is derived from the canonical registry so UI/API consumers never
+    maintain a second card-count table.
+    """
+    return [
+        {
+            "id": spread_id,
+            "name": SPREAD_INFO[spread_id]["label"],
+            "card_count": len(positions),
+            "intent": SPREAD_INFO[spread_id]["intent"],
+            "complexity": SPREAD_INFO[spread_id]["complexity"],
+        }
+        for spread_id, positions in SPREADS.items()
+    ]
+
+
+def plan_spread(question: str) -> dict[str, Any]:
+    """Choose one canonical spread for automatic Tarot readings.
+
+    This is deliberately server-side and source-agnostic: typed questions and
+    resolved Threads text arrive here as plain question text and are planned by
+    the same authority. Downstream render/share code must consume the resulting
+    reading receipt rather than re-plan it.
+    """
+    q = str(question or "").strip()
+    lower = q.lower()
+
+    def has(*markers: str) -> bool:
+        return any(marker in lower for marker in markers)
+
+    if has("補牌", "補充", "釐清", "clarify", "clarifier"):
+        spread_id = "clarifier"
+        reason = "question explicitly asks for clarification"
+    elif has("感情", "關係", "對方", "他對我", "她對我", "我們之間", "relationship", "love"):
+        spread_id = "relationship"
+        reason = "relationship questions benefit from both parties, bond, challenge, and direction"
+    elif has("哪個", "二選一", "兩個選擇", "選擇 a", "選擇 b", "比較", "vs", " or "):
+        spread_id = "decision"
+        reason = "question compares alternatives"
+    elif has("工作", "職涯", "轉職", "換工作", "升遷", "事業", "career", "job", "work"):
+        spread_id = "career"
+        reason = "career question needs strengths, obstacles, opportunity, and action"
+    elif has("人生方向", "方向", "道路", "下一步怎麼走", "該往哪", "path", "direction"):
+        spread_id = "path"
+        reason = "direction question needs a broader action path"
+    elif has("凱爾特", "完整分析", "深入分析", "全面分析", "整體局勢", "複雜", "deep reading", "celtic") or len(q) >= 120:
+        spread_id = "celtic_cross"
+        reason = "high-complexity question needs a deep multi-position reading"
+    elif has("未來", "發展", "接下來", "過去", "時間", "走向", "future", "next", "timeline"):
+        spread_id = "three_card"
+        reason = "question is primarily about change over time"
+    elif has("今天", "今日", "此刻", "現在給我一個指引", "一句指引", "抽一張", "one card", "daily guidance") and len(q) <= 48:
+        spread_id = "single"
+        reason = "question explicitly asks for a compact present-moment guidance"
+    else:
+        spread_id = "situation_advice"
+        reason = "general question is best served by situation, obstacle, and advice rather than a binary answer"
+
+    info = SPREAD_INFO[spread_id]
+    return {
+        "spread": spread_id,
+        "card_count": len(SPREADS[spread_id]),
+        "intent": info["intent"],
+        "complexity": info["complexity"],
+        "reason": reason,
+    }
 
 
 def shuffle(cards: list[dict[str, Any]], *, reversal_rate: float, rng: random.Random) -> list[dict[str, Any]]:
@@ -21,7 +150,7 @@ def shuffle(cards: list[dict[str, Any]], *, reversal_rate: float, rng: random.Ra
     return [
         {
             "card": card,
-            "draw_index": idx + 1,  # public/manual API is intentionally 1-based
+            "draw_index": idx + 1,
             "orientation": "reversed" if rng.random() < reversal_rate else "upright",
         }
         for idx, card in enumerate(ordered)
@@ -73,25 +202,25 @@ class TarotMethod:
     def __init__(self, decks: DeckRegistry) -> None:
         self.decks = decks
 
-    @staticmethod
-    def _auto_spread(question: str) -> str:
-        q = question.lower()
-        decision_markers = ("是否", "要不要", "該不該", "哪個", "選擇", "vs", " or ")
-        timeline_markers = ("未來", "發展", "接下來", "過去", "現在", "future", "next")
-        if any(x in q for x in decision_markers):
-            return "decision"
-        if any(x in q for x in timeline_markers):
-            return "three_card"
-        return "single"
-
     def generate(self, *, input_data: dict[str, Any], question: str, rng: random.Random) -> dict[str, Any]:
         deck = self.decks.get(str(input_data.get("deck_id") or "leopardcat"))
         cards = deck.cards
-        spread_id = str(input_data.get("spread") or "single")
-        if spread_id == "auto":
-            spread_id = self._auto_spread(question)
-        if spread_id not in SPREADS:
-            raise DivinationError(f"unsupported tarot spread: {spread_id}")
+        requested_spread = str(input_data.get("spread") or "single")
+        if requested_spread == "auto":
+            plan = plan_spread(question)
+            spread_id = plan["spread"]
+        else:
+            spread_id = requested_spread
+            if spread_id not in SPREADS:
+                raise DivinationError(f"unsupported tarot spread: {spread_id}")
+            info = SPREAD_INFO[spread_id]
+            plan = {
+                "spread": spread_id,
+                "card_count": len(SPREADS[spread_id]),
+                "intent": info["intent"],
+                "complexity": info["complexity"],
+                "reason": "explicit spread selected by user",
+            }
 
         positions = SPREADS[spread_id]
         if len(cards) < len(positions):
@@ -105,7 +234,6 @@ class TarotMethod:
         hidden_deck = shuffle(cards, reversal_rate=reversal_rate, rng=rng)
         requested_indices = input_data.get("draw_indices")
         if requested_indices is None:
-            # Existing automatic mode: shuffle first, then draw the required number from the top.
             draw_indices = list(range(1, len(positions) + 1))
             draw_mode = "auto"
         else:
@@ -128,10 +256,10 @@ class TarotMethod:
                 "card_back": deck.card_back,
             },
             "spread": spread_id,
+            "spread_plan": plan,
             "cards": results,
             "rules": {
                 "without_replacement": True,
-                # Kept for backward compatibility: orientation becomes visible at draw/reveal time.
                 "orientation_decided_at_draw_time": True,
                 "orientation_assigned_at_shuffle_time": True,
                 "orientation_hidden_until_reveal": True,
