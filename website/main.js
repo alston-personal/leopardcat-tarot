@@ -536,6 +536,8 @@ async function restoreReadingAfterReload() {
     window.currentReadingEnvelope = local ? data : null; // public share token never grants continuation authority.
     window.currentShareReceipt = data?.reading_id ? {reading_id: data.reading_id, share_token: data.share_token || shareToken || null} : null;
     window.currentReadingState = snapshot?.reading_state || buildReadingStateFromEnvelope(data);
+    window.currentSpreadPlan = data.method_result?.spread_plan || null;
+    window.effectiveSpread = data.method_result?.spread || window.currentReadingState?.spread || null;
     window.activeSpread = window.currentReadingState?.spread || window.activeSpread;
     window._lastQuestion = question;
     window.currentQuestionSource = local ? (snapshot?.question_source || null) : null;
@@ -1489,7 +1491,10 @@ async function resolveShareCardsFromDeck() {
 
 function renderShareCards(frame, shareContext) {
     const entries = shareContext.cards;
-    frame.classList.toggle('share-three-card', entries.length > 1);
+    frame.classList.toggle('share-three-card', entries.length > 1 && entries.length <= 3);
+    frame.classList.toggle('share-many-card', entries.length > 3);
+    frame.classList.toggle('share-ten-card', entries.length > 6);
+    frame.dataset.shareCardCount = String(entries.length);
     frame.innerHTML = '';
     entries.forEach((entry, index) => {
         const slot = document.createElement('div');
@@ -1709,20 +1714,30 @@ async function renderMobileSafeSquareCanvas(shareContext, shareEntries, shareThe
     ctx.fillText(`${seeker} · ${new Date().toLocaleDateString(getAILanguageTag())}`, size / 2, 72);
 
     const count = shareEntries.length;
-    const gap = count === 1 ? 0 : 14;
-    const cardW = count === 1 ? 180 : 138;
-    const cardH = count === 1 ? 292 : 224;
-    const totalW = cardW * count + gap * Math.max(0, count - 1);
+    const layout = count === 1
+        ? {cols:1, cardW:180, cardH:292, gapX:0, gapY:0, captionH:42, cardY:102}
+        : count <= 3
+            ? {cols:count, cardW:138, cardH:224, gapX:14, gapY:0, captionH:46, cardY:102}
+            : count <= 6
+                ? {cols:3, cardW:84, cardH:136, gapX:14, gapY:12, captionH:38, cardY:88}
+                : {cols:5, cardW:62, cardH:100, gapX:10, gapY:10, captionH:34, cardY:88};
+    const rows = Math.ceil(count / layout.cols);
+    const totalW = layout.cardW * layout.cols + layout.gapX * Math.max(0, layout.cols - 1);
     const startX = (size - totalW) / 2;
-    const cardY = 102;
+    const cardW = layout.cardW;
+    const cardH = layout.cardH;
+    const cardY = layout.cardY;
 
     const loaded = await Promise.all(shareEntries.map(entry =>
         loadShareBitmap(getShareCardImage(entry.card, shareContext.deckId), 5000)
     ));
 
     shareEntries.forEach((entry, index) => {
-        const x = startX + index * (cardW + gap);
-        roundedRectPath(ctx, x - 4, cardY - 4, cardW + 8, cardH + 8, 12);
+        const col = index % layout.cols;
+        const row = Math.floor(index / layout.cols);
+        const x = startX + col * (cardW + layout.gapX);
+        const y = cardY + row * (cardH + layout.captionH + layout.gapY);
+        roundedRectPath(ctx, x - 4, y - 4, cardW + 8, cardH + 8, 12);
         ctx.fillStyle = shareTheme.surface || 'rgba(255,255,255,.055)';
         ctx.fill();
         ctx.strokeStyle = shareTheme.line || 'rgba(212,175,55,.28)';
@@ -1735,7 +1750,7 @@ async function renderMobileSafeSquareCanvas(shareContext, shareEntries, shareThe
             const dw = img.naturalWidth * scale;
             const dh = img.naturalHeight * scale;
             const cx = x + cardW / 2;
-            const cy = cardY + cardH / 2;
+            const cy = y + cardH / 2;
             ctx.save();
             ctx.translate(cx, cy);
             if (entry.orientation === 'reversed') ctx.rotate(Math.PI);
@@ -1743,28 +1758,29 @@ async function renderMobileSafeSquareCanvas(shareContext, shareEntries, shareThe
             ctx.restore();
         } else {
             ctx.fillStyle = shareTheme.surface || '#171717';
-            ctx.fillRect(x, cardY, cardW, cardH);
+            ctx.fillRect(x, y, cardW, cardH);
             ctx.fillStyle = shareTheme.muted || '#ccc';
             ctx.font = '14px -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText(getShareCardTitle(entry.card), x + cardW / 2, cardY + cardH / 2);
+            ctx.fillText(getShareCardTitle(entry.card), x + cardW / 2, y + cardH / 2);
         }
 
         ctx.fillStyle = shareTheme.text || '#fff';
-        ctx.font = `${count === 1 ? 16 : 13}px -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif`;
+        ctx.font = `${count === 1 ? 16 : (count <= 3 ? 13 : 10)}px -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif`;
         ctx.textAlign = 'center';
         const title = getShareCardTitle(entry.card);
         const orientation = entry.orientation === 'reversed' ? uiText('orientation_reversed', 'Reversed') : uiText('orientation_upright', 'Upright');
         const caption = count === 1 ? `${title} · ${orientation}` : `${index + 1}. ${title}${entry.orientation === 'reversed' ? ' ↕' : ''}`;
         const lines = canvasWrapLines(ctx, caption, cardW + 8, 2);
-        lines.forEach((line, lineIndex) => ctx.fillText(line, x + cardW / 2, cardY + cardH + 24 + lineIndex * 17));
+        lines.forEach((line, lineIndex) => ctx.fillText(line, x + cardW / 2, y + cardH + 20 + lineIndex * 15));
     });
 
-    const quoteTop = count === 1 ? 444 : 392;
+    const gridBottom = cardY + rows * (cardH + layout.captionH) + Math.max(0, rows - 1) * layout.gapY;
+    const quoteTop = count === 1 ? 444 : (count <= 3 ? 392 : Math.min(472, gridBottom + 14));
     ctx.textAlign = 'left';
     ctx.font = '18px -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif';
     ctx.fillStyle = shareTheme.text || '#fff';
-    const quoteLines = canvasWrapLines(ctx, `「${quote || ''}」`, 520, count === 1 ? 4 : 5);
+    const quoteLines = canvasWrapLines(ctx, `「${quote || ''}」`, 520, count === 1 ? 4 : (count <= 3 ? 5 : 3));
     quoteLines.forEach((line, index) => ctx.fillText(line, 40, quoteTop + index * 26));
 
     ctx.textAlign = 'center';
@@ -1811,7 +1827,17 @@ window.generateShareImage = async function() {
         const orientationLabel = entry.orientation === 'reversed' ? uiText('orientation_reversed', 'Reversed') : uiText('orientation_upright', 'Upright');
         document.getElementById('share-card-title').innerText = `【${titleZh} / ${titleEn}】 · ${orientationLabel}`;
     } else {
-        document.getElementById('share-card-title').innerText = `【${uiText('spread_three_short', 'Three Cards')}】 ${titleParts.join(' · ')}`;
+        const spreadId = shareState.spread || window.currentReadingEnvelope?.method_result?.spread || '';
+        const spreadLabel = window.currentSpreadPlan?.label || ({
+            three_card: uiText('spread_three', 'Three-card Timeline'),
+            situation_advice: uiText('spread_situation_advice', 'Situation · Obstacle · Advice'),
+            decision: uiText('spread_decision', 'Decision Spread'),
+            relationship: uiText('spread_relationship', 'Relationship Five'),
+            career: uiText('spread_career', 'Career Five'),
+            path: uiText('spread_path', 'Path Five'),
+            celtic_cross: uiText('spread_celtic_cross', 'Celtic Cross')
+        })[spreadId] || `${shareEntries.length} Cards`;
+        document.getElementById('share-card-title').innerText = `【${spreadLabel}】 ${titleParts.join(' · ')}`;
     }
     document.getElementById('share-seeker-name').innerText = localStorage.getItem('userDharmaName') || 'Seeker';
     document.getElementById('share-date').innerText = new Date().toLocaleDateString();
@@ -2407,6 +2433,8 @@ window.getModularReading = async function(q, drawOptions = {}) {
     window.currentDrawnCard = currentDrawnCard;
     window.currentReadingEnvelope = data;
     window.currentShareReceipt = data?.reading_id ? {reading_id: data.reading_id, share_token: data.share_token || null} : null;
+    window.currentSpreadPlan = data.method_result?.spread_plan || null;
+    window.effectiveSpread = data.method_result?.spread || null;
     window.currentReadingState = {
         deck_id: window.activeDeckId,
         theme_id: window.activeThemeId,
@@ -2434,8 +2462,14 @@ window.getModularReading = async function(q, drawOptions = {}) {
     }
     const spreadNames = {
         single: uiText('spread_single', 'Single Guidance'),
+        clarifier: uiText('spread_clarifier', 'Clarifier'),
         three_card: uiText('spread_three', 'Three-card Timeline'),
-        decision: uiText('spread_decision', 'Decision Spread')
+        situation_advice: uiText('spread_situation_advice', 'Situation · Obstacle · Advice'),
+        decision: uiText('spread_decision', 'Decision Spread'),
+        relationship: uiText('spread_relationship', 'Relationship Five'),
+        career: uiText('spread_career', 'Career Five'),
+        path: uiText('spread_path', 'Path Five'),
+        celtic_cross: uiText('spread_celtic_cross', 'Celtic Cross')
     };
     const spread = data.method_result?.spread || 'single';
     const summary = resolved.map(({spec, card}) => {
