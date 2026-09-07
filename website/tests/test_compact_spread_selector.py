@@ -9,8 +9,12 @@ def test_compact_selector_is_default_and_scalable():
     assert '<option value="auto" selected>自動</option>' in HTML
     assert '<option value="single"' in HTML
     assert '<option value="three_card"' in HTML
+    assert '<option value="relationship" data-card-count="5">' in HTML
+    assert '<option value="celtic_cross" data-card-count="10">' in HTML
     assert 'window.activeSpread = \'auto\'' in MAIN
-    assert 'resolvedSpreadForQuestion(q)' in MAIN
+    assert 'function automaticSpreadForQuestion' not in MAIN
+    assert "fetch('/api/v1/spread-plan'" in MAIN
+    assert "(window.activeSpread || 'auto')" in MAIN
 
 def test_manual_draw_is_secondary_but_preserved():
     assert 'id="draw-mode-details"' in HTML
