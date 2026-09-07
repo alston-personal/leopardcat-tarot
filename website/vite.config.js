@@ -1,6 +1,20 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  plugins: [
+    {
+      name: 'leopardcat-share-snapshot-runtime',
+      transformIndexHtml() {
+        return [
+          {
+            tag: 'script',
+            attrs: { type: 'module', src: '/share_snapshot.js' },
+            injectTo: 'body',
+          },
+        ]
+      },
+    },
+  ],
   // Dev server config
   server: {
     host: '0.0.0.0',
