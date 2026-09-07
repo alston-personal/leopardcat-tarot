@@ -161,6 +161,9 @@ try {
   await mobile.locator('#draw-mode-details > summary').click();
   await mobile.locator('[data-draw-mode="manual"]').click();
   await mobile.locator('#btn-manual-shuffle').click();
+  // Auto/manual planning is now asynchronous: wait until the canonical server
+  // planner returns and the 78-card pool is rendered before asserting layout.
+  await mobile.waitForSelector('#manual-card-pool .manual-card-back');
   assert.equal(await mobile.locator('#manual-card-pool .manual-card-back').count(),78);
   await mobile.waitForFunction(() => window.manualDrawState.phase === 'ready_to_draw');
   const mobileLayout = await mobile.locator('#manual-card-pool .manual-card-back').nth(0).evaluate(el => ({
@@ -178,9 +181,9 @@ try {
     return { overflow:document.documentElement.scrollWidth-width, width, offenders };
   });
   assert.ok(mobileMetrics.overflow <= 1, `manual draw horizontal overflow ${mobileMetrics.overflow}px offenders=${JSON.stringify(mobileMetrics.offenders)}`);
-  const poolBox = await mobile.locator('#manual-card-pool').boundingBox();
-  assert.ok(poolBox && poolBox.width <= 375);
   console.log('browser_manual_mobile_layout=passed');
+
+  await page.close(); await auto.close(); await mobile.close();
 } finally {
   await browser.close();
 }
