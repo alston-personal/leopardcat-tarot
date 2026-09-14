@@ -6,6 +6,7 @@ on:
     paths:
       - "website/print_service.py"
       - "website/fortune_server.py"
+      - "website/public/art/card-back.svg"
       - "tools/patch_private_duplex_print.py"
       - ".github/workflows/apply-private-duplex-print.yml"
   workflow_dispatch:
@@ -28,6 +29,7 @@ jobs:
           sparse-checkout: |
             website/fortune_server.py
             website/print_service.py
+            website/public/art/card-back.svg
             tools/patch_private_duplex_print.py
             .github/workflows/apply-private-duplex-print.yml
           sparse-checkout-cone-mode: false
@@ -46,14 +48,18 @@ jobs:
           from pathlib import Path
           p = Path('website/print_service.py').read_text()
           s = Path('website/fortune_server.py').read_text()
+          back = Path('website/public/art/card-back.svg')
           assert 'Missing credentials must never make print masters public' in p
           assert 'Cache-Control", "no-store, private"' in p
           assert 'from print_service import handle_print_get' in s
           assert 'if handle_print_get(self, path, query, CARD_MANIFEST):' in s
           assert 'MASTER_RENDER_DIR' in p
+          assert 'CARD_BACK_PATH' in p
+          assert 'website" / "public" / "art" / "card-back.svg"' in p
           assert '/admin/print/card/' in p
           assert '/admin/print/back.svg' in p
-          print('private duplex print contract OK')
+          assert back.is_file() and '<svg' in back.read_text(encoding='utf-8')
+          print('private duplex print contract OK; canonical card back present')
           PY
 
       - name: Commit integration if required
@@ -62,12 +68,12 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add website/fortune_server.py
+          git add website/fortune_server.py website/print_service.py
           if git diff --cached --quiet; then
             echo "No patch changes required."
             exit 0
           fi
-          git commit -m "feat(print): wire private duplex print into web server"
+          git commit -m "fix(print): use canonical LeopardCat card back"
           git push origin HEAD:feature/private-duplex-print-v2
 
   deploy-oracle:
@@ -82,6 +88,7 @@ jobs:
           sparse-checkout: |
             website/fortune_server.py
             website/print_service.py
+            website/public/art/card-back.svg
           sparse-checkout-cone-mode: false
 
       - name: Install print service into production
@@ -122,6 +129,7 @@ jobs:
           }
           install_one website/print_service.py "$WEB/print_service.py"
           install_one website/fortune_server.py "$WEB/fortune_server.py"
+          install_one website/public/art/card-back.svg "$WEB/public/art/card-back.svg"
 
           if systemctl --user restart leopardcat-tarot.service 2>/dev/null; then
             :
