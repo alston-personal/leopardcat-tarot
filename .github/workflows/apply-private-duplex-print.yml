@@ -13,6 +13,9 @@ on:
 permissions:
   contents: write
 
+env:
+  PRINT_BRANCH: feature/private-duplex-print-v2
+
 jobs:
   apply:
     runs-on: ubuntu-latest
@@ -43,13 +46,14 @@ jobs:
           from pathlib import Path
           p = Path('website/print_service.py').read_text()
           s = Path('website/fortune_server.py').read_text()
-          assert 'if not PRINT_USER or not PRINT_PASSWORD' in p
+          assert 'Missing credentials must never make print masters public' in p
           assert 'Cache-Control", "no-store, private"' in p
           assert 'from print_service import handle_print_get' in s
           assert 'if handle_print_get(self, path, query, CARD_MANIFEST):' in s
           assert 'MASTER_RENDER_DIR' in p
           assert '/admin/print/card/' in p
-          print('private print contract OK')
+          assert '/admin/print/back.svg' in p
+          print('private duplex print contract OK')
           PY
 
       - name: Commit integration if required
@@ -65,3 +69,84 @@ jobs:
           fi
           git commit -m "feat(print): wire private duplex print into web server"
           git push origin HEAD:feature/private-duplex-print-v2
+
+  deploy-oracle:
+    needs: apply
+    runs-on: [self-hosted, Linux, ARM64, oracle]
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/private-duplex-print-v2
+          fetch-depth: 1
+          sparse-checkout: |
+            website/fortune_server.py
+            website/print_service.py
+          sparse-checkout-cone-mode: false
+
+      - name: Install print service into production
+        id: deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+          PROD=/home/ubuntu/leopardcat-tarot
+          WEB="$PROD/website"
+          CREDS="$PROD/.print-credentials"
+          OUT="$RUNNER_TEMP/leopardcat-print-login.txt"
+
+          [ -d "$WEB" ] || { echo "Production website not found: $WEB" >&2; exit 1; }
+
+          if [ ! -s "$CREDS" ]; then
+            PASS="$(python3 - <<'PY'
+          import secrets
+          print(secrets.token_urlsafe(18))
+          PY
+          )"
+            TMP="$RUNNER_TEMP/.print-credentials"
+            printf 'LEOPARDCAT_PRINT_USER=alston\nLEOPARDCAT_PRINT_PASSWORD=%s\n' "$PASS" > "$TMP"
+            chmod 600 "$TMP"
+            if [ -w "$PROD" ]; then
+              install -m 600 "$TMP" "$CREDS"
+            else
+              sudo -n install -o ubuntu -g ubuntu -m 600 "$TMP" "$CREDS"
+            fi
+          fi
+
+          install_one() {
+            src="$1"; dst="$2"
+            if [ -w "$(dirname "$dst")" ]; then
+              install -m 644 "$src" "$dst"
+            else
+              sudo -n install -o ubuntu -g ubuntu -m 644 "$src" "$dst"
+            fi
+          }
+          install_one website/print_service.py "$WEB/print_service.py"
+          install_one website/fortune_server.py "$WEB/fortune_server.py"
+
+          if systemctl --user restart leopardcat-tarot.service 2>/dev/null; then
+            :
+          else
+            sudo -n systemctl restart leopardcat-tarot.service
+          fi
+
+          sleep 2
+          USER="$(sed -n 's/^LEOPARDCAT_PRINT_USER=//p' "$CREDS" | head -1)"
+          PASS="$(sed -n 's/^LEOPARDCAT_PRINT_PASSWORD=//p' "$CREDS" | head -1)"
+          [ -n "$USER" ] && [ -n "$PASS" ] || { echo 'Print credentials unreadable' >&2; exit 1; }
+
+          unauth="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 8 http://127.0.0.1:8088/admin/print || true)"
+          auth="$(curl -sS -u "$USER:$PASS" -o /dev/null -w '%{http_code}' --max-time 15 http://127.0.0.1:8088/admin/print || true)"
+          test "$unauth" = 401
+          test "$auth" = 200
+
+          printf 'URL=https://leopardcat-tarot.milkcat.org/admin/print\nUSER=%s\nPASSWORD=%s\n' "$USER" "$PASS" > "$OUT"
+          chmod 600 "$OUT"
+          echo "Oracle duplex print deployed: unauth=$unauth auth=$auth"
+
+      - name: Upload owner login (1 day)
+        uses: actions/upload-artifact@v4
+        with:
+          name: leopardcat-private-print-login
+          path: ${{ runner.temp }}/leopardcat-print-login.txt
+          retention-days: 1
+          if-no-files-found: error
