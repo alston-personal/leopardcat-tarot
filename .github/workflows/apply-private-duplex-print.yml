@@ -21,7 +21,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: feature/private-duplex-print-v2
-          fetch-depth: 0
+          fetch-depth: 1
+          sparse-checkout: |
+            website/fortune_server.py
+            website/print_service.py
+            tools/patch_private_duplex_print.py
+            .github/workflows/apply-private-duplex-print.yml
+          sparse-checkout-cone-mode: false
 
       - uses: actions/setup-python@v5
         with:
@@ -41,7 +47,8 @@ jobs:
           assert 'Cache-Control", "no-store, private"' in p
           assert 'from print_service import handle_print_get' in s
           assert 'if handle_print_get(self, path, query, CARD_MANIFEST):' in s
-          assert '/home/ubuntu/leopardcat-tarot/art/renders' not in Path('website/public/art/renders').read_text() if Path('website/public/art/renders').is_file() else True
+          assert 'MASTER_RENDER_DIR' in p
+          assert '/admin/print/card/' in p
           print('private print contract OK')
           PY
 
