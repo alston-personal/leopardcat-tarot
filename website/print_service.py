@@ -16,6 +16,7 @@ from urllib.parse import parse_qs, quote
 PROJECT_ROOT = Path(os.environ.get("LEOPARDCAT_PROJECT_ROOT", "/home/ubuntu/leopardcat-tarot"))
 MASTER_RENDER_DIR = Path(os.environ.get("LEOPARDCAT_PRINT_MASTER_DIR", PROJECT_ROOT / "art" / "renders"))
 CREDENTIAL_FILE = Path(os.environ.get("LEOPARDCAT_PRINT_CREDENTIAL_FILE", PROJECT_ROOT / ".print-credentials"))
+CARD_BACK_PATH = Path(os.environ.get("LEOPARDCAT_PRINT_CARD_BACK", PROJECT_ROOT / "website" / "public" / "art" / "card-back.svg"))
 
 
 def _load_credentials():
@@ -81,11 +82,13 @@ def _master_path(card_id: str, manifest) -> Path | None:
 
 
 def _back_svg() -> bytes:
-    # 180-degree rotational symmetry makes the prototype tolerant of duplex
-    # long-edge/short-edge orientation differences.
-    return b'''<svg xmlns="http://www.w3.org/2000/svg" width="700" height="1200" viewBox="0 0 700 1200">
-<defs><radialGradient id="g"><stop stop-color="#173b31"/><stop offset="1" stop-color="#071713"/></radialGradient><pattern id="p" width="120" height="120" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><ellipse cx="28" cy="30" rx="18" ry="28" fill="none" stroke="#bca86e" stroke-width="5" opacity=".40"/><ellipse cx="88" cy="90" rx="14" ry="22" fill="none" stroke="#bca86e" stroke-width="4" opacity=".28"/></pattern></defs>
-<rect width="700" height="1200" fill="url(#g)"/><rect width="700" height="1200" fill="url(#p)"/><rect x="30" y="30" width="640" height="1140" rx="30" fill="none" stroke="#d8c58b" stroke-width="8"/><rect x="52" y="52" width="596" height="1096" rx="24" fill="none" stroke="#7c704b" stroke-width="3"/><g fill="none" stroke="#d8c58b" stroke-width="7" opacity=".90"><circle cx="350" cy="600" r="145"/><circle cx="350" cy="600" r="105"/><path d="M350 455L390 545L488 555L414 620L436 716L350 666L264 716L286 620L212 555L310 545Z"/></g><g fill="#e3d39d" font-family="serif" text-anchor="middle"><text x="350" y="110" font-size="34" letter-spacing="7">LEOPARDCAT TAROT</text><text x="350" y="1110" font-size="34" letter-spacing="7" transform="rotate(180 350 600)">LEOPARDCAT TAROT</text></g></svg>'''
+    # One canonical design for both the public deck animation and physical print.
+    # Do not silently synthesize another back: if the canonical asset disappears,
+    # fail closed so a prototype design cannot leak into production printing.
+    try:
+        return CARD_BACK_PATH.read_bytes()
+    except OSError:
+        return b""
 
 
 def _admin_page(manifest) -> str:
@@ -128,7 +131,11 @@ def handle_print_get(handler, path: str, query: str, manifest) -> bool:
         _send(handler, 200, _admin_page(manifest).encode("utf-8"), "text/html; charset=utf-8")
         return True
     if path == "/admin/print/back.svg":
-        _send(handler, 200, _back_svg(), "image/svg+xml; charset=utf-8")
+        back = _back_svg()
+        if not back:
+            _send(handler, 503, b"Canonical card back is unavailable.", "text/plain; charset=utf-8")
+        else:
+            _send(handler, 200, back, "image/svg+xml; charset=utf-8")
         return True
     if path.startswith("/admin/print/card/"):
         card_id = path[len("/admin/print/card/"):]
