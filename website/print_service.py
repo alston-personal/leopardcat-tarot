@@ -1,13 +1,12 @@
 """Private browser-based duplex print service for LeopardCat Tarot.
 
-No print-master assets are exposed through the public static tree.  The owner
+No print-master assets are exposed through the public static tree. The owner
 opens /admin/print, authenticates with HTTP Basic auth, selects cards, then
 prints the generated A4 front/back sheet at 100% / Actual Size.
 """
 from __future__ import annotations
 
 import base64
-import html
 import json
 import mimetypes
 import os
@@ -16,8 +15,25 @@ from urllib.parse import parse_qs, quote
 
 PROJECT_ROOT = Path(os.environ.get("LEOPARDCAT_PROJECT_ROOT", "/home/ubuntu/leopardcat-tarot"))
 MASTER_RENDER_DIR = Path(os.environ.get("LEOPARDCAT_PRINT_MASTER_DIR", PROJECT_ROOT / "art" / "renders"))
-PRINT_USER = os.environ.get("LEOPARDCAT_PRINT_USER", "")
-PRINT_PASSWORD = os.environ.get("LEOPARDCAT_PRINT_PASSWORD", "")
+CREDENTIAL_FILE = Path(os.environ.get("LEOPARDCAT_PRINT_CREDENTIAL_FILE", PROJECT_ROOT / ".print-credentials"))
+
+
+def _load_credentials():
+    user = os.environ.get("LEOPARDCAT_PRINT_USER", "")
+    password = os.environ.get("LEOPARDCAT_PRINT_PASSWORD", "")
+    if user and password:
+        return user, password
+    try:
+        values = {}
+        for raw in CREDENTIAL_FILE.read_text(encoding="utf-8").splitlines():
+            line = raw.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            values[key.strip()] = value.strip()
+        return values.get("LEOPARDCAT_PRINT_USER", ""), values.get("LEOPARDCAT_PRINT_PASSWORD", "")
+    except OSError:
+        return "", ""
 
 
 def _send(handler, status: int, body: bytes, content_type: str, extra_headers=None):
@@ -33,26 +49,15 @@ def _send(handler, status: int, body: bytes, content_type: str, extra_headers=No
 
 
 def _authorized(handler) -> bool:
-    # Fail closed.  A missing credential configuration must never turn the
-    # high-resolution print endpoint into an anonymous public endpoint.
-    if not PRINT_USER or not PRINT_PASSWORD:
-        _send(
-            handler,
-            503,
-            "Print service credentials are not configured.".encode(),
-            "text/plain; charset=utf-8",
-        )
+    print_user, print_password = _load_credentials()
+    # Fail closed. Missing credentials must never make print masters public.
+    if not print_user or not print_password:
+        _send(handler, 503, b"Print service credentials are not configured.", "text/plain; charset=utf-8")
         return False
     header = handler.headers.get("Authorization", "")
-    expected = "Basic " + base64.b64encode(f"{PRINT_USER}:{PRINT_PASSWORD}".encode()).decode()
+    expected = "Basic " + base64.b64encode(f"{print_user}:{print_password}".encode()).decode()
     if header != expected:
-        _send(
-            handler,
-            401,
-            "Authentication required.".encode(),
-            "text/plain; charset=utf-8",
-            {"WWW-Authenticate": 'Basic realm="LeopardCat Tarot Print"'},
-        )
+        _send(handler, 401, b"Authentication required.", "text/plain; charset=utf-8", {"WWW-Authenticate": 'Basic realm="LeopardCat Tarot Print"'})
         return False
     return True
 
@@ -64,7 +69,6 @@ def _card_index(manifest):
 def _master_path(card_id: str, manifest) -> Path | None:
     if card_id not in _card_index(manifest):
         return None
-    # Prefer lossless PNG print master.  Fall back to webp only for legacy cards.
     for ext in (".png", ".webp"):
         candidate = (MASTER_RENDER_DIR / f"{card_id}{ext}").resolve()
         try:
@@ -77,30 +81,11 @@ def _master_path(card_id: str, manifest) -> Path | None:
 
 
 def _back_svg() -> bytes:
-    # Deliberately 180-degree rotationally symmetric so reversed readings and
-    # long/short-edge duplex settings cannot create an upside-down card back.
-    svg = '''<svg xmlns="http://www.w3.org/2000/svg" width="700" height="1200" viewBox="0 0 700 1200">
-<defs>
- <radialGradient id="g"><stop stop-color="#173b31"/><stop offset="1" stop-color="#071713"/></radialGradient>
- <pattern id="p" width="120" height="120" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-  <ellipse cx="28" cy="30" rx="18" ry="28" fill="none" stroke="#bca86e" stroke-width="5" opacity=".40"/>
-  <ellipse cx="88" cy="90" rx="14" ry="22" fill="none" stroke="#bca86e" stroke-width="4" opacity=".28"/>
- </pattern>
-</defs>
-<rect width="700" height="1200" fill="url(#g)"/>
-<rect width="700" height="1200" fill="url(#p)"/>
-<rect x="30" y="30" width="640" height="1140" rx="30" fill="none" stroke="#d8c58b" stroke-width="8"/>
-<rect x="52" y="52" width="596" height="1096" rx="24" fill="none" stroke="#7c704b" stroke-width="3"/>
-<g fill="none" stroke="#d8c58b" stroke-width="7" opacity=".90">
- <circle cx="350" cy="600" r="145"/><circle cx="350" cy="600" r="105"/>
- <path d="M350 455L390 545L488 555L414 620L436 716L350 666L264 716L286 620L212 555L310 545Z"/>
-</g>
-<g fill="#e3d39d" font-family="serif" text-anchor="middle">
- <text x="350" y="110" font-size="34" letter-spacing="7">LEOPARDCAT TAROT</text>
- <text x="350" y="1110" font-size="34" letter-spacing="7" transform="rotate(180 350 600)">LEOPARDCAT TAROT</text>
-</g>
-</svg>'''
-    return svg.encode("utf-8")
+    # 180-degree rotational symmetry makes the prototype tolerant of duplex
+    # long-edge/short-edge orientation differences.
+    return b'''<svg xmlns="http://www.w3.org/2000/svg" width="700" height="1200" viewBox="0 0 700 1200">
+<defs><radialGradient id="g"><stop stop-color="#173b31"/><stop offset="1" stop-color="#071713"/></radialGradient><pattern id="p" width="120" height="120" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><ellipse cx="28" cy="30" rx="18" ry="28" fill="none" stroke="#bca86e" stroke-width="5" opacity=".40"/><ellipse cx="88" cy="90" rx="14" ry="22" fill="none" stroke="#bca86e" stroke-width="4" opacity=".28"/></pattern></defs>
+<rect width="700" height="1200" fill="url(#g)"/><rect width="700" height="1200" fill="url(#p)"/><rect x="30" y="30" width="640" height="1140" rx="30" fill="none" stroke="#d8c58b" stroke-width="8"/><rect x="52" y="52" width="596" height="1096" rx="24" fill="none" stroke="#7c704b" stroke-width="3"/><g fill="none" stroke="#d8c58b" stroke-width="7" opacity=".90"><circle cx="350" cy="600" r="145"/><circle cx="350" cy="600" r="105"/><path d="M350 455L390 545L488 555L414 620L436 716L350 666L264 716L286 620L212 555L310 545Z"/></g><g fill="#e3d39d" font-family="serif" text-anchor="middle"><text x="350" y="110" font-size="34" letter-spacing="7">LEOPARDCAT TAROT</text><text x="350" y="1110" font-size="34" letter-spacing="7" transform="rotate(180 350 600)">LEOPARDCAT TAROT</text></g></svg>'''
 
 
 def _admin_page(manifest) -> str:
@@ -123,9 +108,6 @@ def _sheet_page(card_ids, manifest) -> str:
     valid = [cid for cid in card_ids if _master_path(cid, manifest)]
     if not valid:
         return ""
-    # 4 cards per physical A4 sheet. Every front page is immediately followed
-    # by its matching back page. The common back is symmetric, so slot reversal
-    # is unnecessary for the prototype and both duplex flip modes remain usable.
     chunks = [valid[i:i + 4] for i in range(0, len(valid), 4)]
     pages = []
     for chunk in chunks:
@@ -133,7 +115,7 @@ def _sheet_page(card_ids, manifest) -> str:
         backs = ''.join('<div class="slot"><img src="/admin/print/back.svg"></div>' for _ in chunk)
         pages.append(f'<section class="sheet fronts">{fronts}</section><section class="sheet backs">{backs}</section>')
     return f'''<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><title>石虎塔羅雙面試印</title><style>
-@page{{size:A4 portrait;margin:0}}*{{box-sizing:border-box}}body{{margin:0;background:#ddd;font-family:system-ui,sans-serif}}.toolbar{{position:sticky;top:0;background:#111;color:#fff;padding:10px;z-index:2}}.sheet{{width:210mm;height:297mm;background:white;margin:8mm auto;display:grid;grid-template-columns:70mm 70mm;grid-template-rows:120mm 120mm;column-gap:4mm;row-gap:4mm;justify-content:center;align-content:center;break-after:page;page-break-after:always}}.slot{{width:70mm;height:120mm;position:relative;outline:.15mm solid #777}}.slot img{{display:block;width:70mm;height:120mm;object-fit:fill}}.slot:before,.slot:after{{content:"";position:absolute;pointer-events:none}}@media print{{body{{background:#fff}}.toolbar{{display:none}}.sheet{{margin:0;break-after:page;page-break-after:always}}}}
+@page{{size:A4 portrait;margin:0}}*{{box-sizing:border-box}}body{{margin:0;background:#ddd;font-family:system-ui,sans-serif}}.toolbar{{position:sticky;top:0;background:#111;color:#fff;padding:10px;z-index:2}}.sheet{{width:210mm;height:297mm;background:white;margin:8mm auto;display:grid;grid-template-columns:70mm 70mm;grid-template-rows:120mm 120mm;column-gap:4mm;row-gap:4mm;justify-content:center;align-content:center;break-after:page;page-break-after:always}}.slot{{width:70mm;height:120mm;position:relative;outline:.15mm solid #555}}.slot img{{display:block;width:70mm;height:120mm;object-fit:fill}}@media print{{body{{background:#fff}}.toolbar{{display:none}}.sheet{{margin:0;break-after:page;page-break-after:always}}}}
 </style></head><body><div class="toolbar"><b>石虎塔羅雙面試印</b>　頁序：正面 → 牌背。請選雙面列印、A4、100% / 實際大小。 <button onclick="window.print()">列印</button></div>{''.join(pages)}</body></html>'''
 
 
@@ -142,7 +124,6 @@ def handle_print_get(handler, path: str, query: str, manifest) -> bool:
         return False
     if not _authorized(handler):
         return True
-
     if path == "/admin/print":
         _send(handler, 200, _admin_page(manifest).encode("utf-8"), "text/html; charset=utf-8")
         return True
