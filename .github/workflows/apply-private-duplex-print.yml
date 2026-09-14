@@ -1,0 +1,60 @@
+name: Apply Private Duplex Print
+
+on:
+  push:
+    branches: [feature/private-duplex-print-v2]
+    paths:
+      - "website/print_service.py"
+      - "website/fortune_server.py"
+      - "tools/patch_private_duplex_print.py"
+      - ".github/workflows/apply-private-duplex-print.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/private-duplex-print-v2
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Apply guarded print integration
+        run: python tools/patch_private_duplex_print.py
+
+      - name: Validate Python syntax and security contract
+        run: |
+          python -m py_compile website/fortune_server.py website/print_service.py
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('website/print_service.py').read_text()
+          s = Path('website/fortune_server.py').read_text()
+          assert 'if not PRINT_USER or not PRINT_PASSWORD' in p
+          assert 'Cache-Control", "no-store, private"' in p
+          assert 'from print_service import handle_print_get' in s
+          assert 'if handle_print_get(self, path, query, CARD_MANIFEST):' in s
+          assert '/home/ubuntu/leopardcat-tarot/art/renders' not in Path('website/public/art/renders').read_text() if Path('website/public/art/renders').is_file() else True
+          print('private print contract OK')
+          PY
+
+      - name: Commit integration if required
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add website/fortune_server.py
+          if git diff --cached --quiet; then
+            echo "No patch changes required."
+            exit 0
+          fi
+          git commit -m "feat(print): wire private duplex print into web server"
+          git push origin HEAD:feature/private-duplex-print-v2
