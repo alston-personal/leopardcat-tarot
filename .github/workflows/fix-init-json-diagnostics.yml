@@ -47,12 +47,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Canonical print masters live on Oracle and must never be copied into public dist.
-          if [ -L website/public/art/renders ]; then
-            rm website/public/art/renders
-          fi
-          mkdir -p website/public/art/renders
-          test -z "$(find website/public/art/renders -mindepth 1 -print -quit)"
+          # Oracle runtime symlinks are intentionally excluded from public dist.
+          for p in website/public/art/renders website/public/cards; do
+            if [ -L "$p" ]; then
+              rm "$p"
+            fi
+            mkdir -p "$p"
+            test -z "$(find "$p" -mindepth 1 -print -quit)"
+          done
 
       - name: Build website
         working-directory: website
