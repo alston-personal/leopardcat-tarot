@@ -43,6 +43,17 @@ jobs:
           ! grep -F "window.cardData = await mR.json()" website/main.js
           grep -F "error.preview" website/main.js
 
+      - name: Prepare public build boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Canonical print masters live on Oracle and must never be copied into public dist.
+          if [ -L website/public/art/renders ]; then
+            rm website/public/art/renders
+          fi
+          mkdir -p website/public/art/renders
+          test -z "$(find website/public/art/renders -mindepth 1 -print -quit)"
+
       - name: Build website
         working-directory: website
         run: |
