@@ -1,0 +1,64 @@
+name: Fix Init JSON Diagnostics
+
+on:
+  push:
+    branches: [feature/private-duplex-print-v2]
+    paths:
+      - "tools/patch_init_json_diagnostics.py"
+      - ".github/workflows/fix-init-json-diagnostics.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/private-duplex-print-v2
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Apply guarded init JSON diagnostics
+        run: python tools/patch_init_json_diagnostics.py
+
+      - name: Validate browser syntax and regression contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check website/main.js
+          grep -F "fetchInitJson('locales_v10.json'" website/main.js
+          grep -F "fetchInitJson('manifest.json'" website/main.js
+          ! grep -F "await cR.json()" website/main.js
+          ! grep -F "window.cardData = await mR.json()" website/main.js
+          grep -F "error.preview" website/main.js
+
+      - name: Build website
+        working-directory: website
+        run: |
+          npm ci
+          npm run build
+
+      - name: Commit guarded loader and built site
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add website/main.js website/dist
+          if git diff --cached --quiet; then
+            echo "No changes required."
+            exit 0
+          fi
+          git commit -m "fix(web): diagnose initialization JSON failures"
+          git push origin HEAD:feature/private-duplex-print-v2
