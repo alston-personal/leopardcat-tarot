@@ -6,6 +6,10 @@ on:
     paths:
       - "website/print_service.py"
       - "website/fortune_server.py"
+      - "website/main.js"
+      - "website/index.html"
+      - "website/package.json"
+      - "website/package-lock.json"
       - "website/public/art/card-back.svg"
       - "tools/patch_private_duplex_print.py"
       - ".github/workflows/apply-private-duplex-print.yml"
@@ -29,6 +33,7 @@ jobs:
           sparse-checkout: |
             website/fortune_server.py
             website/print_service.py
+            website/main.js
             website/public/art/card-back.svg
             tools/patch_private_duplex_print.py
             .github/workflows/apply-private-duplex-print.yml
@@ -41,13 +46,15 @@ jobs:
       - name: Apply guarded print integration
         run: python tools/patch_private_duplex_print.py
 
-      - name: Validate Python syntax and security contract
+      - name: Validate Python, browser syntax and security contract
         run: |
           python -m py_compile website/fortune_server.py website/print_service.py
+          node --check website/main.js
           python - <<'PY'
           from pathlib import Path
           p = Path('website/print_service.py').read_text()
           s = Path('website/fortune_server.py').read_text()
+          j = Path('website/main.js').read_text()
           back = Path('website/public/art/card-back.svg')
           assert 'Missing credentials must never make print masters public' in p
           assert 'Cache-Control", "no-store, private"' in p
@@ -58,8 +65,13 @@ jobs:
           assert 'website" / "public" / "art" / "card-back.svg"' in p
           assert '/admin/print/card/' in p
           assert '/admin/print/back.svg' in p
+          assert '全選 78 張' in p
+          assert "fetchInitJson('locales_v10.json'" in j
+          assert "fetchInitJson('manifest.json'" in j
+          assert 'await cR.json()' not in j
+          assert 'window.cardData = await mR.json()' not in j
           assert back.is_file() and '<svg' in back.read_text(encoding='utf-8')
-          print('private duplex print contract OK; canonical card back present')
+          print('print + init diagnostics contract OK')
           PY
 
       - name: Commit integration if required
@@ -73,25 +85,56 @@ jobs:
             echo "No patch changes required."
             exit 0
           fi
-          git commit -m "fix(print): use canonical LeopardCat card back"
+          git commit -m "fix(print): preserve production print integration"
           git push origin HEAD:feature/private-duplex-print-v2
 
   deploy-oracle:
     needs: apply
     runs-on: [self-hosted, Linux, ARM64, oracle]
-    timeout-minutes: 5
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
           ref: feature/private-duplex-print-v2
           fetch-depth: 1
-          sparse-checkout: |
-            website/fortune_server.py
-            website/print_service.py
-            website/public/art/card-back.svg
-          sparse-checkout-cone-mode: false
 
-      - name: Install print service into production
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Build public site without print masters
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Never copy Oracle print masters into the public Vite dist.
+          if [ -L website/public/art/renders ]; then
+            rm website/public/art/renders
+          fi
+          mkdir -p website/public/art/renders
+          test -z "$(find website/public/art/renders -mindepth 1 -print -quit)"
+
+          # public/cards intentionally stays: on Oracle this symlink resolves to
+          # the web card assets used by the public gallery.
+          test -e website/public/cards || { echo 'public/cards runtime asset is unavailable' >&2; exit 1; }
+
+          cd website
+          npm ci
+          npm run build
+          node --check main.js
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for name in ('manifest.json', 'locales_v10.json'):
+              p = Path('dist') / name
+              json.loads(p.read_text(encoding='utf-8'))
+              print('valid JSON:', p)
+          assets = list((Path('dist') / 'assets').glob('*.js'))
+          assert assets, 'built JS bundle missing'
+          assert any('InitJsonError' in p.read_text(encoding='utf-8') for p in assets), 'diagnostic loader missing from built bundle'
+          assert not any((Path('dist') / 'art' / 'renders').glob('*')), 'print masters leaked into public dist'
+          PY
+
+      - name: Install site and print service into production
         id: deploy
         shell: bash
         run: |
@@ -129,7 +172,14 @@ jobs:
           }
           install_one website/print_service.py "$WEB/print_service.py"
           install_one website/fortune_server.py "$WEB/fortune_server.py"
+          install_one website/main.js "$WEB/main.js"
           install_one website/public/art/card-back.svg "$WEB/public/art/card-back.svg"
+
+          if [ -w "$WEB/dist" ]; then
+            rsync -a --delete website/dist/ "$WEB/dist/"
+          else
+            sudo -n rsync -a --delete website/dist/ "$WEB/dist/"
+          fi
 
           if systemctl --user restart leopardcat-tarot.service 2>/dev/null; then
             :
@@ -143,13 +193,26 @@ jobs:
           [ -n "$USER" ] && [ -n "$PASS" ] || { echo 'Print credentials unreadable' >&2; exit 1; }
 
           unauth="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 8 http://127.0.0.1:8088/admin/print || true)"
-          auth="$(curl -sS -u "$USER:$PASS" -o /dev/null -w '%{http_code}' --max-time 15 http://127.0.0.1:8088/admin/print || true)"
+          auth="$(curl -sS -u "$USER:$PASS" -o /tmp/leopardcat-print.html -w '%{http_code}' --max-time 15 http://127.0.0.1:8088/admin/print || true)"
           test "$unauth" = 401
           test "$auth" = 200
+          grep -F '全選 78 張' /tmp/leopardcat-print.html
+
+          python3 - <<'PY'
+          import json, urllib.request
+          for url in ('http://127.0.0.1:8088/manifest.json', 'http://127.0.0.1:8088/locales_v10.json'):
+              with urllib.request.urlopen(url, timeout=8) as r:
+                  json.loads(r.read().decode('utf-8'))
+                  print('production JSON OK:', url)
+          PY
+
+          bundle="$(curl -sS --max-time 8 http://127.0.0.1:8088/ | sed -n 's/.*src="\([^"]*assets\/index-[^"]*\.js\)".*/\1/p' | head -1)"
+          [ -n "$bundle" ] || { echo 'production JS bundle not found' >&2; exit 1; }
+          curl -sS --max-time 8 "http://127.0.0.1:8088$bundle" | grep -F 'InitJsonError' >/dev/null
 
           printf 'URL=https://leopardcat-tarot.milkcat.org/admin/print\nUSER=%s\nPASSWORD=%s\n' "$USER" "$PASS" > "$OUT"
           chmod 600 "$OUT"
-          echo "Oracle duplex print deployed: unauth=$unauth auth=$auth"
+          echo "Oracle site + duplex print deployed: unauth=$unauth auth=$auth bundle=$bundle"
 
       - name: Upload owner login (1 day)
         uses: actions/upload-artifact@v4
