@@ -719,6 +719,46 @@ function updateUIQuota() {
     localStorage.setItem('chatQuota', chatQuota);
 }
 
+async function fetchInitJson(resourceName, url, { retry = true } = {}) {
+    const attempt = async (attemptNo) => {
+        const response = await fetch(url, { cache: 'no-cache' });
+        const contentType = response.headers.get('content-type') || '';
+        const raw = await response.text();
+        if (!response.ok) {
+            const error = new Error(`${resourceName} HTTP ${response.status}`);
+            error.name = 'InitResourceError';
+            error.resource = resourceName;
+            error.status = response.status;
+            error.contentType = contentType;
+            error.preview = raw.slice(0, 120).replace(/\s+/g, ' ');
+            throw error;
+        }
+        try {
+            return JSON.parse(raw);
+        } catch (cause) {
+            if (retry && attemptNo === 1) {
+                const retryUrl = new URL(url, location.href);
+                retryUrl.searchParams.set('_lc_json_retry', String(Date.now()));
+                return attempt(2, retryUrl.toString());
+            }
+            const error = new Error(`${resourceName} invalid JSON`);
+            error.name = 'InitJsonError';
+            error.resource = resourceName;
+            error.status = response.status;
+            error.contentType = contentType;
+            error.preview = raw.slice(0, 120).replace(/\s+/g, ' ');
+            error.cause = cause;
+            throw error;
+        }
+    };
+
+    const first = new URL(url, location.href);
+    if (!first.searchParams.has('_lc_json_probe')) {
+        first.searchParams.set('_lc_json_probe', String(Date.now()));
+    }
+    return attempt(1, first.toString());
+}
+
 // Initialize All Systems
 async function initAllSystems() {
     console.log("Initializing Divination Platform...");
@@ -731,7 +771,7 @@ async function initAllSystems() {
     try {
         const ts = Date.now();
         // ⚡ Stage 1: Load locales (Small) to get UI ready
-        const cR = await fetch(`locales_v10.json?v=${ts}`, { cache: 'no-cache' });
+        const localesUrl = `locales_v10.json?v=${ts}`;
         // Fade out loader regardless of success after 3 seconds as a safety net
         const hideLoader = () => {
             if (loadingOverlay.parentNode) {
@@ -741,8 +781,8 @@ async function initAllSystems() {
         };
         setTimeout(hideLoader, 3000); 
 
-        if (cR.ok) {
-            window.siteData = await cR.json();
+        {
+            window.siteData = await fetchInitJson('locales_v10.json', localesUrl);
             initializeLocaleRuntime();
             await window.loadActiveBrand();
             applyLanguage();
@@ -760,9 +800,9 @@ async function initAllSystems() {
             await window.loadActiveDeckBranding();
             initScrollReveal();
         } else {
-            const mR = await fetch(`manifest.json?v=${ts}`, { cache: 'no-cache' });
-            if (mR.ok) {
-                window.cardData = await mR.json();
+            const manifestUrl = `manifest.json?v=${ts}`;
+            {
+                window.cardData = await fetchInitJson('manifest.json', manifestUrl);
                 console.log("LeopardCat deck loaded, preparing gallery...");
                 setTimeout(() => {
                     const groups = window.siteData[window.currentLang].groups;
@@ -775,7 +815,11 @@ async function initAllSystems() {
     } catch (err) {
         console.error('Initialization Failed:', err);
         const errType = err.name || "Error";
-        const errMsg = err.message || "Unknown Failure";
+        const resource = err.resource ? ` [${err.resource}]` : '';
+        const status = err.status ? ` HTTP ${err.status}` : '';
+        const contentType = err.contentType ? ` ${err.contentType}` : '';
+        const preview = err.preview ? ` | response: ${err.preview}` : '';
+        const errMsg = `${err.message || "Unknown Failure"}${resource}${status}${contentType}${preview}`;
         
         // 🛡️ Fail-Safe: If it's a transient DOM error, try one last time after a short delay
         setTimeout(() => {
