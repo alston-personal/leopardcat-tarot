@@ -62,15 +62,15 @@ jobs:
           npm ci
           npm run build
 
-      - name: Commit guarded loader and built site
+      - name: Commit guarded loader source
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add website/main.js website/dist
+          git add website/main.js
           if git diff --cached --quiet; then
-            echo "No changes required."
+            echo "No source changes required."
             exit 0
           fi
           git commit -m "fix(web): diagnose initialization JSON failures"
