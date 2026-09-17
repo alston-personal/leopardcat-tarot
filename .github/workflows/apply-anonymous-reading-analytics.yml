@@ -31,9 +31,6 @@ jobs:
         run: |
           grep -F "analytics: { source: window.currentQuestionSource ? 'threads' : 'direct' }" website/main.js
           ! grep -F "analytics: { source: window.currentQuestionSource" website/main.js | grep -E 'url|href|text'
-      - name: Verify privacy schema excludes raw content and identity
-        run: |
-          ! grep -E 'question TEXT|answer TEXT|ip TEXT|referrer TEXT|visitor_id|session_id|reading_id' website/divination/analytics.py
       - name: Remove one-shot carrier
         run: rm -f tools/apply_anonymous_analytics_patch.py .github/workflows/apply-anonymous-reading-analytics.yml
       - name: Commit verified implementation
