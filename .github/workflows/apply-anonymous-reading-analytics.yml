@@ -1,0 +1,46 @@
+name: Apply Anonymous Reading Analytics
+
+on:
+  push:
+    branches:
+      - feat/anonymous-reading-analytics
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-test:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/anonymous-reading-analytics
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply fail-closed patch
+        run: python tools/apply_anonymous_analytics_patch.py
+      - name: Verify anonymous analytics contract
+        working-directory: website
+        run: python -m unittest discover -s tests -p 'test_anonymous_reading_analytics.py' -v
+      - name: Verify touched Python parses
+        run: python -m py_compile website/fortune_server.py website/divination/analytics.py
+      - name: Verify frontend source is bounded enum
+        run: |
+          grep -F "analytics: { source: window.currentQuestionSource ? 'threads' : 'direct' }" website/main.js
+          ! grep -F "analytics: { source: window.currentQuestionSource" website/main.js | grep -E 'url|href|text'
+      - name: Verify privacy schema excludes raw content and identity
+        run: |
+          ! grep -E 'question TEXT|answer TEXT|ip TEXT|referrer TEXT|visitor_id|session_id|reading_id' website/divination/analytics.py
+      - name: Remove one-shot carrier
+        run: rm -f tools/apply_anonymous_analytics_patch.py .github/workflows/apply-anonymous-reading-analytics.yml
+      - name: Commit verified implementation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "feat(analytics): record de-identified reading statistics"
+          git push origin HEAD:feat/anonymous-reading-analytics
