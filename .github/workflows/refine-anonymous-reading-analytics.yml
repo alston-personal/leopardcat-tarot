@@ -1,0 +1,53 @@
+name: Refine Anonymous Reading Analytics
+
+on:
+  push:
+    branches:
+      - feat/anonymous-reading-analytics
+
+permissions:
+  contents: write
+
+jobs:
+  refine-and-test:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/anonymous-reading-analytics
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply deterministic refinement patch
+        run: python tools/refine_anonymous_analytics_patch.py
+      - name: Verify anonymous analytics tests
+        working-directory: website
+        run: python -m unittest discover -s tests -p 'test_anonymous_reading_analytics.py' -v
+      - name: Verify touched Python parses
+        run: python -m py_compile website/fortune_server.py website/divination/analytics.py
+      - name: Verify visit is session-bounded client side
+        run: |
+          grep -F "sessionStorage.getItem(key) === '1'" website/main.js
+          grep -F "fetch('/api/v1/analytics/visit'" website/main.js
+          grep -F "if path == '/api/v1/analytics/visit':" website/fortune_server.py
+      - name: Verify stats GET is read-only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path('website/fortune_server.py').read_text(encoding='utf-8')
+          block = text.split("if path == '/api/stats':",1)[1].split('return',1)[0]
+          assert 'read_stats()' in block
+          assert 'update_stats' not in block
+          PY
+      - name: Remove one-shot refinement carrier
+        run: rm -f tools/refine_anonymous_analytics_patch.py .github/workflows/refine-anonymous-reading-analytics.yml
+      - name: Commit verified refinement
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "fix(analytics): refine visitor and decision statistics"
+          git push origin HEAD:feat/anonymous-reading-analytics
