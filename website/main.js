@@ -2396,6 +2396,7 @@ window.getModularReading = async function(q, drawOptions = {}) {
                 ...(Array.isArray(drawOptions.drawIndices) ? {draw_indices: drawOptions.drawIndices} : {})
             },
             ...(drawOptions.seed ? {seed: drawOptions.seed} : {}),
+            analytics: { source: window.currentQuestionSource ? 'threads' : 'direct' },
             lang: getQuestionLanguageTag(q)
         };
         resp = await fetch('/api/v1/readings', {

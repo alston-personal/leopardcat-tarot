@@ -28,6 +28,7 @@ from divination.capsules import build_capsule, public_handoff
 from divination.lenormand import public_method_info as lenormand_public_method_info
 from divination.threads_publishing import ThreadsPublishingService, ThreadsPublishingError
 from divination.tarot import plan_spread, spread_catalog
+from divination.analytics import ReadingAnalyticsStore, classify_question, normalize_source
 
 PORT = 8088
 DIRECTORY = "dist"
@@ -46,12 +47,23 @@ except Exception as e:
 def log(msg):
     print(msg, flush=True)
 
+def _ensure_stats_file():
+    if not os.path.exists('stats.json'):
+        with open('stats.json', 'w') as f:
+            json.dump({"total_visitors": 2026, "total_divinations": 888}, f)
+
+def read_stats():
+    try:
+        _ensure_stats_file()
+        with open('stats.json', 'r') as sf:
+            return json.load(sf)
+    except Exception as e:
+        log(f"Error reading stats: {e}")
+        return {"total_visitors": 2026, "total_divinations": 888, "error": str(e)}
+
 def update_stats(divination=False):
     try:
-        if not os.path.exists('stats.json'):
-            with open('stats.json', 'w') as f: 
-                json.dump({"total_visitors": 2026, "total_divinations": 888}, f)
-        
+        _ensure_stats_file()
         with open('stats.json', 'r+') as sf:
             sdata = json.load(sf)
             if divination:
@@ -103,6 +115,7 @@ DIVINATION_ENGINE = build_default_engine(os.path.dirname(os.path.abspath(__file_
 BRANDS = BrandRegistry(DIVINATION_ENGINE.decks)
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 SESSION_STORE = ReadingSessionStore(os.path.join(DATA_DIR, 'reading_sessions.sqlite3'), ttl_seconds=86400)
+ANALYTICS_STORE = ReadingAnalyticsStore(os.path.join(DATA_DIR, 'analytics.sqlite3'))
 DECK_PUBLISHER = DeckPublisher(os.path.join(DATA_DIR, 'custom_decks'))
 THEME_ROOT = os.path.join(DATA_DIR, 'custom_themes')
 THEMES = ThemeRegistry(THEME_ROOT)
@@ -481,8 +494,24 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             except DivinationError:
                 self.send_error(404)
                 return
+        if path == '/api/v1/analytics/summary':
+            analytics_token = load_env_value('LEOPARDCAT_ANALYTICS_TOKEN')
+            supplied_token = self.headers.get('X-Analytics-Token', '')
+            if not analytics_token:
+                self._send_api_json(404, {'error': 'analytics_not_configured'})
+                return
+            if not supplied_token or not secrets.compare_digest(supplied_token, analytics_token):
+                self._send_api_json(403, {'error': 'analytics_denied'})
+                return
+            params = urllib.parse.parse_qs(query)
+            try:
+                days = int((params.get('days') or ['30'])[0])
+            except ValueError:
+                days = 30
+            self._send_api_json(200, ANALYTICS_STORE.summary(days=days))
+            return
         if path == '/api/stats':
-            sdata = update_stats(divination=False)
+            sdata = read_stats()
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.send_header('Access-Control-Allow-Origin', '*')
@@ -912,10 +941,24 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
                     issued_token = issued['session_token']
                     issued_share_token = issued['share_token']
                     expires_at = issued['expires_at']
+                    analytics_meta = req_data.get('analytics') if isinstance(req_data.get('analytics'), dict) else {}
+                    analytics_source = normalize_source(analytics_meta.get('source'))
+                    analytics_category = classify_question(question, method_result)
+                    try:
+                        ANALYTICS_STORE.record_reading(
+                            source=analytics_source,
+                            question_category=analytics_category,
+                            method=method_id,
+                            method_result=method_result,
+                            language=lang,
+                            persona_id=persona_id,
+                        )
+                    except Exception as analytics_error:
+                        log(f'Anonymous analytics write failed: {analytics_error}')
+                    update_stats(divination=True)
 
                 if history:
                     master_prompt += "\n\nConversation history supplied by the client for continuity only. It is not persisted by this service and must never change the immutable divination result:\n" + json.dumps(history[-10:], ensure_ascii=False)
-                update_stats(divination=True)
                 capsule = build_capsule(
                     reading_id=reading_id, method=method_id, persona=persona_id,
                     question=question, lang=lang, method_result=method_result,
