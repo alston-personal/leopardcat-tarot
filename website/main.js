@@ -230,6 +230,17 @@ function initStandaloneUpdateControls() {
 
 document.addEventListener('DOMContentLoaded', initStandaloneUpdateControls);
 
+function recordAnonymousVisitOnce() {
+    const key = 'leopardcat.visit-recorded.v1';
+    try {
+        if (sessionStorage.getItem(key) === '1') return;
+        sessionStorage.setItem(key, '1');
+    } catch (_) {}
+    fetch('/api/v1/analytics/visit', { method: 'POST', keepalive: true }).catch(() => {});
+}
+
+document.addEventListener('DOMContentLoaded', recordAnonymousVisitOnce);
+
 const THREADS_POST_URL_RE = /^https:\/\/(?:www\.)?threads\.(?:com|net)\/(?:@[^/]+\/post\/[A-Za-z0-9_-]+|share\/[A-Za-z0-9_-]+)\/?(?:[?#].*)?$/i;
 
 async function resolveQuestionInput(rawQuestion) {
@@ -2396,6 +2407,7 @@ window.getModularReading = async function(q, drawOptions = {}) {
                 ...(Array.isArray(drawOptions.drawIndices) ? {draw_indices: drawOptions.drawIndices} : {})
             },
             ...(drawOptions.seed ? {seed: drawOptions.seed} : {}),
+            analytics: { source: window.currentQuestionSource ? 'threads' : 'direct' },
             lang: getQuestionLanguageTag(q)
         };
         resp = await fetch('/api/v1/readings', {
