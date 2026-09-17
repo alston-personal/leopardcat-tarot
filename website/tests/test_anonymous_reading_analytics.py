@@ -31,7 +31,7 @@ class TestAnonymousReadingAnalytics(unittest.TestCase):
     def test_question_classification_is_coarse_only(self):
         self.assertEqual(classify_question('我跟對方的感情會如何？', self.sample_result()), 'love_relationship')
         self.assertEqual(classify_question('我的投資和收入接下來如何？', {'spread_plan': {'intent': 'guidance'}}), 'money')
-        self.assertEqual(classify_question('Should I take job A or B?', {'spread_plan': {'intent': 'decision'}}), 'career_study')
+        self.assertEqual(classify_question('Should I take job A or B?', {'spread_plan': {'intent': 'decision'}}), 'decision')
 
     def test_unknown_source_collapses_to_other(self):
         self.assertEqual(normalize_source('threads'), 'threads')

@@ -51,10 +51,10 @@ def classify_question(question: str, method_result: dict[str, Any] | None) -> st
     text = str(question or "").strip().lower()
 
     keyword_groups = (
+        ("decision", ("哪個", "二選一", "兩個選擇", "選擇 a", "選擇 b", "比較", "該選", "vs", " or ", "which", "choose", "decision", "elegir", "decisión", "どちら", "選ぶ", "선택")),
         ("money", ("錢", "金錢", "財運", "收入", "薪水", "投資", "股票", "理財", "貸款", "房貸", "money", "finance", "financial", "salary", "income", "investment", "dinero", "inversión", "お金", "投資", "収入", "돈", "투자", "수입")),
         ("love_relationship", ("感情", "愛情", "關係", "對方", "他對我", "她對我", "我們之間", "戀愛", "relationship", "love", "partner", "boyfriend", "girlfriend", "amor", "pareja", "恋愛", "関係", "相手", "연애", "관계")),
         ("career_study", ("工作", "職涯", "轉職", "換工作", "升遷", "事業", "學業", "考試", "career", "job", "work", "study", "exam", "trabajo", "carrera", "estudio", "仕事", "転職", "勉強", "직장", "이직", "공부")),
-        ("decision", ("哪個", "二選一", "兩個選擇", "選擇 a", "選擇 b", "比較", "該選", "vs", " or ", "which", "choose", "decision", "elegir", "decisión", "どちら", "選ぶ", "선택")),
         ("self_growth", ("自己", "成長", "人生方向", "方向", "下一步", "內在", "課題", "self", "growth", "direction", "purpose", "crecimiento", "dirección", "自分", "成長", "方向", "자기", "성장", "방향")),
     )
     for category, markers in keyword_groups:

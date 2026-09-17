@@ -704,6 +704,10 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_POST(self):
         path = self.path.split('?', 1)[0]
+        if path == '/api/v1/analytics/visit':
+            update_stats(divination=False)
+            self._send_api_json(200, {'recorded': True})
+            return
         if path == '/api/v1/spread-plan':
             content_length = int(self.headers.get('Content-Length', 0))
             if content_length <= 0 or content_length > 16 * 1024:
