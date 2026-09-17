@@ -1,10 +1,10 @@
 {
   "schema": "agentos.execution-request/v1",
-  "request_id": "leopardcat-production-parity-faf0ae71e171f65502a466f6b671667417f8b9ec",
+  "request_id": "leopardcat-production-parity-848a9671604b50f9f22cbe6ae6a54dd40493dc7a",
   "project_id": "leopardcat-tarot",
   "repository": "alston-personal/leopardcat-tarot",
   "source_ref": "main",
-  "source_sha": "faf0ae71e171f65502a466f6b671667417f8b9ec",
+  "source_sha": "848a9671604b50f9f22cbe6ae6a54dd40493dc7a",
   "capability": "leopardcat.production.parity.inspect",
   "environment": "production",
   "parameters": {
