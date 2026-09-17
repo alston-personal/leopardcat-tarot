@@ -769,6 +769,22 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_POST(self):
         path = self.path.split('?', 1)[0]
+        if path == '/api/v1/site-analytics/events':
+            origin = self.headers.get('Origin', '').strip()
+            if origin and not self._site_analytics_allowed_origin():
+                self._send_site_analytics_json(403, {'error': 'analytics_origin_denied'})
+                return
+            content_length = int(self.headers.get('Content-Length', 0))
+            if content_length <= 0 or content_length > 8 * 1024:
+                self._send_site_analytics_json(413, {'error': 'analytics_payload_too_large'})
+                return
+            try:
+                payload = json.loads(self.rfile.read(content_length).decode('utf-8') or '{}')
+                SITE_ANALYTICS_STORE.record(payload)
+                self._send_site_analytics_json(202, {'recorded': True})
+            except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+                self._send_site_analytics_json(400, {'error': str(exc) or 'analytics_payload_invalid'})
+            return
         if path == '/api/v1/analytics/visit':
             update_stats(divination=False)
             self._send_api_json(200, {'recorded': True})
