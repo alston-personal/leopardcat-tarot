@@ -230,6 +230,20 @@ class ReadingAnalyticsStore:
             counter = Counter(str(row[key] or "unknown") for row in rows)
             return dict(sorted(counter.items(), key=lambda item: (-item[1], item[0])))
 
+        spread_draw_mode: dict[str, dict[str, int]] = {}
+        for row in rows:
+            spread = str(row["spread"] or "unknown")
+            raw_mode = str(row["draw_mode"] or "unknown").strip().lower()
+            mode = raw_mode if raw_mode in {"manual", "auto"} else "unknown"
+            bucket = spread_draw_mode.setdefault(spread, {"manual": 0, "auto": 0, "unknown": 0})
+            bucket[mode] += 1
+        spread_draw_mode = dict(
+            sorted(
+                spread_draw_mode.items(),
+                key=lambda item: (-sum(item[1].values()), item[0]),
+            )
+        )
+
         return {
             "privacy": {
                 "question_stored": False,
@@ -247,5 +261,6 @@ class ReadingAnalyticsStore:
             "by_deck": counts("deck_id"),
             "by_language": counts("language"),
             "by_draw_mode": counts("draw_mode"),
+            "by_spread_draw_mode": spread_draw_mode,
             "cards": [dict(row) for row in card_rows],
         }

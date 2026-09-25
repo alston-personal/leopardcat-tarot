@@ -16,16 +16,16 @@ class TestAnonymousReadingAnalytics(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def sample_result(self):
+    def sample_result(self, draw_mode='manual', spread='relationship'):
         return {
             'deck': {'deck_id': 'leopardcat'},
-            'spread': 'relationship',
+            'spread': spread,
             'spread_plan': {'intent': 'relationship'},
             'cards': [
                 {'card_id': 'card-a', 'orientation': 'upright', 'position': 'self'},
                 {'card_id': 'card-b', 'orientation': 'reversed', 'position': 'other'},
             ],
-            'rules': {'draw_mode': 'manual'},
+            'rules': {'draw_mode': draw_mode},
         }
 
     def test_question_classification_is_coarse_only(self):
@@ -54,6 +54,54 @@ class TestAnonymousReadingAnalytics(unittest.TestCase):
         self.assertTrue(row)
         self.assertFalse(forbidden.intersection(event_columns))
         self.assertFalse(forbidden.intersection(card_columns))
+
+    def test_summary_cross_tabs_spread_by_draw_mode(self):
+        self.store.record_reading(
+            source='direct',
+            question_category='general',
+            method='tarot',
+            method_result=self.sample_result(draw_mode='manual', spread='three_card'),
+            language='zh-TW',
+            persona_id='master',
+        )
+        self.store.record_reading(
+            source='direct',
+            question_category='general',
+            method='tarot',
+            method_result=self.sample_result(draw_mode='auto', spread='three_card'),
+            language='zh-TW',
+            persona_id='master',
+        )
+        self.store.record_reading(
+            source='direct',
+            question_category='general',
+            method='tarot',
+            method_result=self.sample_result(draw_mode='auto', spread='three_card'),
+            language='zh-TW',
+            persona_id='master',
+        )
+        summary = self.store.summary(days=30)
+        self.assertEqual(summary['by_draw_mode'], {'auto': 2, 'manual': 1})
+        self.assertEqual(
+            summary['by_spread_draw_mode']['three_card'],
+            {'manual': 1, 'auto': 2, 'unknown': 0},
+        )
+
+    def test_summary_normalizes_legacy_draw_mode_to_unknown(self):
+        result = self.sample_result(draw_mode='legacy', spread='single')
+        self.store.record_reading(
+            source='direct',
+            question_category='general',
+            method='tarot',
+            method_result=result,
+            language='zh-TW',
+            persona_id='master',
+        )
+        summary = self.store.summary(days=30)
+        self.assertEqual(
+            summary['by_spread_draw_mode']['single'],
+            {'manual': 0, 'auto': 0, 'unknown': 1},
+        )
 
     def test_summary_contains_only_aggregates(self):
         self.store.record_reading(
