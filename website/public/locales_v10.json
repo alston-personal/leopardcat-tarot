@@ -131,10 +131,10 @@
       "create_deck": "建立我的牌組"
     },
     "hero": {
-      "title": "靈山靈貓",
-      "subtitle": "石虎聖所：一場生態心靈之旅",
-      "cta_fortune": "詢問大師",
-      "cta_intro": "進入山林"
+      "title": "石虎塔羅",
+      "subtitle": "有一件事放不下嗎？寫下問題，抽一組牌，讓石虎大師陪你看清方向。",
+      "cta_fortune": "開始占卜",
+      "cta_intro": "先看看牌卡"
     },
     "labels": {
       "wishing_well": "許願池",
@@ -427,10 +427,10 @@
       "create_deck": "Create My Deck"
     },
     "hero": {
-      "title": "Hill Spirit",
-      "subtitle": "Leopard Cat Sanctuary: An Ecological Journey",
-      "cta_fortune": "Ask the Master",
-      "cta_intro": "Enter the Woods"
+      "title": "LeopardCat Tarot",
+      "subtitle": "Have something on your mind? Ask a question, draw the cards, and let the Leopard Cat Master help you see the situation more clearly.",
+      "cta_fortune": "Start a reading",
+      "cta_intro": "Explore the cards"
     },
     "labels": {
       "wishing_well": "Wishing Well",
@@ -717,10 +717,10 @@
       "create_deck": "自分のデッキを作る"
     },
     "hero": {
-      "title": "山霊猫",
-      "subtitle": "ベンガルヤマネコ保護区：生態と心をめぐる旅",
-      "cta_fortune": "師に尋ねる",
-      "cta_intro": "森へ入る"
+      "title": "石虎タロット",
+      "subtitle": "気になっていることはありますか？質問を書いてカードを引き、石虎の師と一緒に状況を見つめてみましょう。",
+      "cta_fortune": "占いを始める",
+      "cta_intro": "カードを見る"
     },
     "labels": {
       "wishing_well": "願いの泉",
@@ -1007,10 +1007,10 @@
       "create_deck": "내 덱 만들기"
     },
     "hero": {
-      "title": "산령고양이",
-      "subtitle": "삵 보호구역: 생태와 마음을 잇는 여정",
-      "cta_fortune": "스승에게 묻기",
-      "cta_intro": "숲으로 들어가기"
+      "title": "삵 타로",
+      "subtitle": "마음에 걸리는 일이 있나요? 질문을 적고 카드를 뽑아 삵 마스터와 함께 상황을 차분히 살펴보세요.",
+      "cta_fortune": "점 보기 시작",
+      "cta_intro": "카드 둘러보기"
     },
     "labels": {
       "wishing_well": "소원의 샘",
@@ -1297,10 +1297,10 @@
       "create_deck": "Crear mi mazo"
     },
     "hero": {
-      "title": "Espíritu del Monte",
-      "subtitle": "Santuario del gato leopardo: un viaje ecológico y espiritual",
-      "cta_fortune": "Preguntar al Maestro",
-      "cta_intro": "Entrar al bosque"
+      "title": "Tarot del Gato Leopardo",
+      "subtitle": "¿Hay algo que no puedes dejar de pensar? Escribe tu pregunta, saca las cartas y deja que el Maestro Gato Leopardo te ayude a verlo con más claridad.",
+      "cta_fortune": "Empezar la lectura",
+      "cta_intro": "Explorar las cartas"
     },
     "labels": {
       "wishing_well": "Fuente de deseos",
