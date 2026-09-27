@@ -82,7 +82,7 @@
       }
     }catch(_){}
 
-    const brandName=state.brand?.short_name||state.brand?.app_name||(state.deck==='leopardcat'?'靈山靈貓':'Divination OS');
+    const brandName=state.deck==='leopardcat'?'石虎塔羅':(state.brand?.short_name||state.brand?.app_name||'Divination OS');
     $('brand-link').textContent=brandName;
     $('brand-link').href=state.deck==='leopardcat'?'/':`/?deck=${encodeURIComponent(state.deck)}`;
     $('back-to-deck').href=$('brand-link').href;
@@ -106,8 +106,7 @@
         const r=await fetch(`/api/v1/decks/${encodeURIComponent(state.deck)}`,{cache:'no-store'});
         if(r.ok){
           const d=await r.json();
-          $('experience-label').textContent=d.name || 'TAROT';
-          $('experience-subtitle').textContent=d.description || rt('deck_default_subtitle','Ask your question, then choose a spread. Other settings can wait.');
+          $('experience-label').textContent=state.deck==='leopardcat'?'LEOPARDCAT TAROT':(d.name || 'TAROT');
           const opt=document.createElement('option'); opt.value=d.deck_id; opt.textContent=d.name;
           $('deck-select').innerHTML=''; $('deck-select').appendChild(opt); $('deck-select').value=d.deck_id;
         }
