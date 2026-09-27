@@ -261,6 +261,14 @@
     finally{$('draw').disabled=false;}
   }
 
+  document.querySelectorAll('[data-question-example]').forEach(button=>{
+    button.addEventListener('click',()=>{
+      $('question').value=button.dataset.questionExample||'';
+      $('question').focus();
+      $('question').setSelectionRange($('question').value.length,$('question').value.length);
+    });
+  });
+
   $('draw').onclick=draw;
   $('followup-send').onclick=askFollowup;
   $('followup-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();askFollowup();}});
