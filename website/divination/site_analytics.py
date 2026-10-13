@@ -74,6 +74,11 @@ class SiteAnalyticsStore:
                   ON site_analytics(project);
                 """
             )
+            columns = {row[1] for row in conn.execute("PRAGMA table_info(site_analytics)")}
+            if "event_version" not in columns:
+                conn.execute("ALTER TABLE site_analytics ADD COLUMN event_version TEXT NOT NULL DEFAULT '1'")
+            if "site_version" not in columns:
+                conn.execute("ALTER TABLE site_analytics ADD COLUMN site_version TEXT NOT NULL DEFAULT 'unknown'")
 
     def record(self, payload: dict[str, Any]) -> str:
         if not isinstance(payload, dict) or payload.get("schema") != SCHEMA:
