@@ -29,6 +29,7 @@ from divination.lenormand import public_method_info as lenormand_public_method_i
 from divination.threads_publishing import ThreadsPublishingService, ThreadsPublishingError
 from divination.tarot import plan_spread, spread_catalog
 from divination.analytics import ReadingAnalyticsStore, classify_question, normalize_source
+from divination.site_analytics import SiteAnalyticsStore
 
 PORT = 8088
 DIRECTORY = "dist"
@@ -116,6 +117,7 @@ BRANDS = BrandRegistry(DIVINATION_ENGINE.decks)
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 SESSION_STORE = ReadingSessionStore(os.path.join(DATA_DIR, 'reading_sessions.sqlite3'), ttl_seconds=86400)
 ANALYTICS_STORE = ReadingAnalyticsStore(os.path.join(DATA_DIR, 'analytics.sqlite3'))
+SITE_ANALYTICS_STORE = SiteAnalyticsStore(os.path.join(DATA_DIR, 'site_analytics.sqlite3'))
 DECK_PUBLISHER = DeckPublisher(os.path.join(DATA_DIR, 'custom_decks'))
 THEME_ROOT = os.path.join(DATA_DIR, 'custom_themes')
 THEMES = ThemeRegistry(THEME_ROOT)
@@ -494,6 +496,26 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             except DivinationError:
                 self.send_error(404)
                 return
+        if path == '/api/v1/site-analytics/summary':
+            analytics_token = load_env_value('LEOPARDCAT_ANALYTICS_TOKEN')
+            supplied_token = self.headers.get('X-Analytics-Token', '')
+            if not analytics_token:
+                self._send_api_json(404, {'error': 'analytics_not_configured'})
+                return
+            if not supplied_token or not secrets.compare_digest(supplied_token, analytics_token):
+                self._send_api_json(403, {'error': 'analytics_denied'})
+                return
+            params = urllib.parse.parse_qs(query)
+            try:
+                days = int((params.get('days') or ['30'])[0])
+            except ValueError:
+                days = 30
+            site = (params.get('site') or [None])[0]
+            try:
+                self._send_api_json(200, SITE_ANALYTICS_STORE.summary(days=days, site=site))
+            except ValueError as exc:
+                self._send_api_json(400, {'error': str(exc)})
+            return
         if path == '/api/v1/analytics/summary':
             analytics_token = load_env_value('LEOPARDCAT_ANALYTICS_TOKEN')
             supplied_token = self.headers.get('X-Analytics-Token', '')
@@ -636,6 +658,49 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         super().do_GET()
 
+    def _site_analytics_allowed_origin(self):
+        origin = self.headers.get('Origin', '').strip()
+        configured = load_env_value('MILKCAT_ANALYTICS_ALLOWED_ORIGINS')
+        allowed = {
+            'https://studio.milkcat.org',
+            'https://leopardcat-tarot.milkcat.org',
+        }
+        if configured:
+            allowed.update(item.strip() for item in configured.split(',') if item.strip())
+        return origin if origin in allowed else ''
+
+    def _send_site_analytics_json(self, status, payload):
+        raw = json.dumps(payload, ensure_ascii=False).encode('utf-8')
+        self.send_response(status)
+        self.send_header('Content-type', 'application/json; charset=utf-8')
+        self.send_header('Content-Length', str(len(raw)))
+        self.send_header('Cache-Control', 'no-store')
+        origin = self._site_analytics_allowed_origin()
+        if origin:
+            self.send_header('Access-Control-Allow-Origin', origin)
+            self.send_header('Vary', 'Origin')
+        self.end_headers()
+        self.wfile.write(raw)
+
+    def do_OPTIONS(self):
+        path = self.path.split('?', 1)[0]
+        if path == '/api/v1/site-analytics/events':
+            origin = self._site_analytics_allowed_origin()
+            if not origin:
+                self.send_response(403)
+                self.end_headers()
+                return
+            self.send_response(204)
+            self.send_header('Access-Control-Allow-Origin', origin)
+            self.send_header('Vary', 'Origin')
+            self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
+            self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+            self.send_header('Access-Control-Max-Age', '600')
+            self.end_headers()
+            return
+        self.send_response(404)
+        self.end_headers()
+
     def do_PATCH(self):
         path = self.path.split('?', 1)[0]
         token = self.headers.get('X-Management-Token', '')
@@ -704,6 +769,22 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_POST(self):
         path = self.path.split('?', 1)[0]
+        if path == '/api/v1/site-analytics/events':
+            origin = self.headers.get('Origin', '').strip()
+            if origin and not self._site_analytics_allowed_origin():
+                self._send_site_analytics_json(403, {'error': 'analytics_origin_denied'})
+                return
+            content_length = int(self.headers.get('Content-Length', 0))
+            if content_length <= 0 or content_length > 8 * 1024:
+                self._send_site_analytics_json(413, {'error': 'analytics_payload_too_large'})
+                return
+            try:
+                payload = json.loads(self.rfile.read(content_length).decode('utf-8') or '{}')
+                SITE_ANALYTICS_STORE.record(payload)
+                self._send_site_analytics_json(202, {'recorded': True})
+            except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+                self._send_site_analytics_json(400, {'error': str(exc) or 'analytics_payload_invalid'})
+            return
         if path == '/api/v1/analytics/visit':
             update_stats(divination=False)
             self._send_api_json(200, {'recorded': True})
