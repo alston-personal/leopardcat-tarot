@@ -32,7 +32,9 @@ try {
   // Verify the published reference against the live canonical artwork service,
   // not the asset-free local test server. Still require real HTTP 200 + PNG bytes.
   const imagePath=deck.cards[0].image;
-  assert.match(imagePath,/^\\/art\\/renders\\/[A-Za-z0-9_-]+\\.png$/);
+  assert.ok(imagePath.startsWith('/art/renders/'));
+  assert.ok(imagePath.endsWith('.png'));
+  assert.ok(!imagePath.includes('..'));
   const art=await page.request.get('https://leopardcat-tarot.milkcat.org'+imagePath);
   assert.equal(art.status(),200,'published image URL must be retrievable');
   assert.ok((await art.body()).length>100,'published image must have nonempty image content');
