@@ -1,0 +1,28 @@
+name: Builtin Artwork Reuse
+on:
+  push:
+    branches: [feature/issue-80-reuse-leopardcat-images]
+  pull_request:
+    paths:
+      - "website/divination/publishing.py"
+      - "website/public/creator.js"
+      - "website/public/create.html"
+      - "website/tests/test_builtin_artwork_reuse.py"
+      - ".github/workflows/builtin-artwork-reuse.yml"
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: python -m pip install pytest
+      - run: python -m compileall -q website/divination
+      - run: node --check website/public/creator.js
+      - run: cd website && python -m pytest -q tests/test_builtin_artwork_reuse.py
