@@ -53,6 +53,7 @@ jobs:
           assert.equal(await page.locator('#persona-select').inputValue(),'leopardcat');
           console.log('browser_tarot_deck_default_persona=passed');
 
+          await page.locator('details.reading-options > summary').click();
           await page.locator('[data-method="lenormand"]').click();
           await page.waitForSelector('[data-spread="box9"]');
           await page.waitForFunction(()=>document.getElementById('persona-select').value==='master');
