@@ -42,7 +42,7 @@ function mockReading(body, ids, suffix='manual') {
 try {
   const page = await browser.newPage({ viewport:{width:1280,height:900} });
   await page.addInitScript(() => localStorage.setItem('leopard-lang','zh'));
-  await page.goto(base+'/?deck=leopardcat', { waitUntil:'networkidle' });
+  await page.goto(base+'/?deck=leopardcat', { waitUntil:'domcontentloaded' });
   await page.waitForFunction(() => Array.isArray(window.cardData) && window.cardData.length >= 78);
   const ids = await page.evaluate(() => window.cardData.slice(0,3).map(c=>c.id));
   assert.equal(ids.length,3);
