@@ -16,9 +16,11 @@ try {
   const guidance=await page.locator('#persona-principles').inputValue();
   assert.ok(guidance.includes('不相關時完全不提政治'));
   assert.ok(guidance.includes('不得憑空捏造'));
-  assert.equal(guidance.split('\\n').length,5,'preset instructions must be separate lines');
-  // Do not actually publish a persona during deck baseline regression;
-  // independent persona publication will be validated separately.
+  assert.equal(guidance.split('\n').length,5,'preset instructions must be separate lines');
+  await page.locator('#create-persona').click();
+  await page.waitForFunction(() => document.getElementById('persona-create-status').textContent.includes('已建立'));
+  const personaId=await page.locator('input[name="default-persona"]:checked').inputValue();
+  assert.ok(personaId.startsWith('persona-'));
   await page.locator('#deck-name').fill('Builtin Source E2E');
   await page.locator('#reversals').check();
   await page.locator('#cards textarea[data-k="upright"]').first().fill('測試專屬正位');
@@ -35,6 +37,7 @@ try {
   assert.equal(deckResponse.status(),200);
   const deck=await deckResponse.json();
   assert.equal(deck.card_count,78);
+  assert.equal(deck.default_persona,personaId,'published deck should use selected Boyang persona');
   assert.equal(deck.cards.length,78);
   assert.equal(deck.cards[0].meanings.upright,'測試專屬正位');
   assert.equal(deck.cards[0].meanings.reversed,'測試專屬逆位');
