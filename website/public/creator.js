@@ -239,6 +239,36 @@
     });
   }
 
+  async function setImageSource(source) {
+    document.getElementById('upload-images').classList.toggle('hidden', source !== 'upload');
+    images.value = '';
+    cards = [];
+    render();
+    if (source !== 'leopardcat') return;
+    status.textContent = '正在載入石虎塔羅牌圖…';
+    try {
+      const response = await fetch('/manifest.json', {cache:'no-store'});
+      if (!response.ok) throw new Error('石虎牌組載入失敗');
+      const manifest = await response.json();
+      if (!Array.isArray(manifest) || manifest.length !== 78) throw new Error('內建牌組必須包含 78 張牌');
+      cards = manifest.map(card => ({
+        title: card.title?.zh || card.title?.['zh-TW'] || card.title?.en || card.id,
+        upright: card.meanings?.upright || card.meaning?.zh || '',
+        reversed: card.meanings?.reversed || '',
+        image: '/' + card.image.replace(/^\\//, ''),
+        image_ref: card.id
+      }));
+      render();
+      status.textContent = '';
+    } catch (err) {
+      status.textContent = err.message || '無法載入內建牌組';
+    }
+  }
+  document.querySelectorAll('input[name="image-source"]').forEach(el => {
+    el.addEventListener('change', () => { if (el.checked) setImageSource(el.value); });
+  });
+  setImageSource(document.querySelector('input[name="image-source"]:checked')?.value || 'leopardcat');
+
   images.addEventListener('change', async () => {
     const files = [...images.files].sort((a,b) => a.name.localeCompare(b.name, 'zh-Hant', {numeric:true}));
     status.textContent = files.length ? `正在準備 ${files.length} 張圖片…` : '';
@@ -307,7 +337,7 @@
           reversals: reversals.checked,
           persona: selectedPersonaId,
           theme: selectedThemeId,
-          cards
+          cards: cards.map(card => card.image_ref ? {title:card.title, upright:card.upright, reversed:card.reversed, image_ref:card.image_ref} : card)
         })
       });
       const data = await readApiResponse(resp);
