@@ -255,7 +255,7 @@
         title: card.title?.zh || card.title?.['zh-TW'] || card.title?.en || card.id,
         upright: card.meanings?.upright || card.meaning?.zh || '',
         reversed: card.meanings?.reversed || '',
-        image: '/' + card.image.replace(/^\\//, ''),
+        image: '/' + card.image,
         image_ref: card.id
       }));
       render();
