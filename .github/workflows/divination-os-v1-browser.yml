@@ -47,7 +47,7 @@ jobs:
 
           const page=await browser.newPage({viewport:{width:1280,height:900}});
           await page.addInitScript(()=>localStorage.setItem('leopard-lang','zh'));
-          await page.goto(base+'/read.html?deck=leopardcat',{waitUntil:'networkidle'});
+          await page.goto(base+'/read.html?deck=leopardcat',{waitUntil:'domcontentloaded'});
           assert.equal(await page.locator('[data-method="tarot"]').getAttribute('class'), 'active');
           await page.waitForFunction(()=>document.getElementById('persona-select').value==='leopardcat');
           assert.equal(await page.locator('#persona-select').inputValue(),'leopardcat');
@@ -83,13 +83,13 @@ jobs:
 
           const spanish=await browser.newPage({viewport:{width:900,height:900}});
           await spanish.addInitScript(()=>localStorage.setItem('leopard-lang','es'));
-          await spanish.goto(base+'/read.html?deck=leopardcat',{waitUntil:'networkidle'});
+          await spanish.goto(base+'/read.html?deck=leopardcat',{waitUntil:'domcontentloaded'});
           assert.equal(await spanish.locator('#read-language').inputValue(),'es');
           assert.ok((await spanish.locator('label[for="question"]').innerText()).trim().length > 0);
           assert.equal((await spanish.locator('[data-read-i18n="spread"]').textContent()).trim(),'Tirada');
           console.log('browser_reading_spanish_locale=passed');
 
-          await page.goto(base+'/?deck=leopardcat',{waitUntil:'networkidle'});
+          await page.goto(base+'/?deck=leopardcat',{waitUntil:'domcontentloaded'});
           const primary=page.locator('[data-primary-reading]').first();
           assert.equal(await primary.getAttribute('href'), '#fortune');
           const before=page.url();
@@ -101,7 +101,7 @@ jobs:
 
           const mobile=await browser.newPage({viewport:{width:375,height:812}});
           await mobile.addInitScript(()=>localStorage.setItem('leopard-lang','zh'));
-          await mobile.goto(base+'/read.html?method=lenormand',{waitUntil:'networkidle'});
+          await mobile.goto(base+'/read.html?method=lenormand',{waitUntil:'domcontentloaded'});
           assert.ok(await mobile.locator('#question').isVisible());
           assert.ok(await mobile.locator('#draw').isVisible());
           const overflow=await mobile.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
@@ -129,7 +129,7 @@ jobs:
               assert.equal(req.headers()['x-management-token'],oldToken);
             }
           });
-          await manage.goto(`${base}/manage.html?persona=${encodeURIComponent(personaId)}#token=${encodeURIComponent(oldToken)}`,{waitUntil:'networkidle'});
+          await manage.goto(`${base}/manage.html?persona=${encodeURIComponent(personaId)}#token=${encodeURIComponent(oldToken)}`,{waitUntil:'domcontentloaded'});
           await manage.waitForFunction(()=>!document.getElementById('editor').classList.contains('hidden'));
           assert.equal(await manage.locator('#persona-name').inputValue(),'Browser 管理測試師');
           await manage.locator('#persona-name').fill('Browser 管理測試師 v2');
