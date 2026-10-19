@@ -1,0 +1,21 @@
+name: Live LeopardCat Artwork Probe
+on:
+  push:
+    branches: [feature/issue-80-reuse-leopardcat-images]
+    paths:
+      - ".github/workflows/live-leopardcat-artwork-probe.yml"
+permissions:
+  contents: read
+jobs:
+  check-live:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read-only probe of public production site and card
+        shell: bash
+        run: |
+          set -uo pipefail
+          for path in / /manifest.json /art/renders/card-00-the-fool.png /create.html; do
+            echo "PROBE_PATH=$path"
+            curl -L -sS --max-time 15 -o /tmp/probe-body -w 'HTTP_STATUS=%{http_code} CONTENT_TYPE=%{content_type} BYTES=%{size_download} REMOTE_IP=%{remote_ip}\n' "https://leopardcat-tarot.milkcat.org$path" || echo "CURL_EXIT=$?"
+          done
+          echo "Probe complete; probe does not modify the production server."
