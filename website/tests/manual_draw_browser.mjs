@@ -118,7 +118,7 @@ try {
   assert.ok(new URL(page.url()).searchParams.get('share'));
   console.log('browser_manual_three_card_indices=passed');
 
-  await page.reload({ waitUntil:'networkidle' });
+  await page.reload({ waitUntil:'domcontentloaded' });
   await page.waitForFunction(() => window.currentReadingState?.cards?.length === 3);
   assert.deepEqual(await page.evaluate(() => window.currentReadingState.draw_indices),[3,76,55]);
   assert.equal(await page.locator('#pinned-card-display .pinned-card-content').count(),3);
@@ -134,7 +134,7 @@ try {
 
   const auto = await browser.newPage({ viewport:{width:900,height:800} });
   await auto.addInitScript(() => localStorage.setItem('leopard-lang','zh'));
-  await auto.goto(base+'/?deck=leopardcat', { waitUntil:'networkidle' });
+  await auto.goto(base+'/?deck=leopardcat', { waitUntil:'domcontentloaded' });
   await auto.waitForFunction(() => Array.isArray(window.cardData) && window.cardData.length >= 78);
   const autoId = await auto.evaluate(() => window.cardData[0].id);
   let autoBody = null;
@@ -155,7 +155,7 @@ try {
 
   const mobile = await browser.newPage({ viewport:{width:375,height:812} });
   await mobile.addInitScript(() => localStorage.setItem('leopard-lang','zh'));
-  await mobile.goto(base+'/?deck=leopardcat', { waitUntil:'networkidle' });
+  await mobile.goto(base+'/?deck=leopardcat', { waitUntil:'domcontentloaded' });
   await mobile.waitForFunction(() => Array.isArray(window.cardData) && window.cardData.length >= 78);
   await mobile.locator('#fortune-question').fill('手機手動抽牌');
   await mobile.locator('#draw-mode-details > summary').click();
