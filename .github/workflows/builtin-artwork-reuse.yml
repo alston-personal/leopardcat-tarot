@@ -26,3 +26,10 @@ jobs:
       - run: python -m compileall -q website/divination
       - run: node --check website/public/creator.js
       - run: cd website && python -m pytest -q tests/test_builtin_artwork_reuse.py
+      - name: Observe real production artwork availability
+        shell: bash
+        run: |
+          for path in /manifest.json /art/renders/card-00-the-fool.png; do
+            printf 'LIVE_PROBE_PATH=%s ' "$path"
+            curl --max-time 12 -L -sS -o /tmp/live-art-probe -w 'HTTP=%{http_code} BYTES=%{size_download} TYPE=%{content_type}\\n' "https://leopardcat-tarot.milkcat.org$path" || echo "CURL_UNAVAILABLE"
+          done
