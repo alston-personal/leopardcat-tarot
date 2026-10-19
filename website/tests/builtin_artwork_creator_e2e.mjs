@@ -9,6 +9,18 @@ try {
   assert.equal(await page.locator('#cards .item').count(),78);
   assert.equal(await page.locator('input[name="image-source"]:checked').inputValue(),'leopardcat');
   assert.equal(await page.locator('#cards .item img').count(),78);
+  // Unofficial contextual persona preset must remain optional and editable.
+  await page.locator('#custom-persona-builder > summary').click();
+  await page.locator('#preset-boyang').click();
+  assert.equal(await page.locator('#persona-name').inputValue(),'伯洋式議題解讀');
+  const guidance=await page.locator('#persona-principles').inputValue();
+  assert.ok(guidance.includes('不相關時完全不提政治'));
+  assert.ok(guidance.includes('不得憑空捏造'));
+  assert.equal(guidance.split('\n').length,5,'preset instructions must be separate lines');
+  await page.locator('#create-persona').click();
+  await page.waitForFunction(() => document.getElementById('persona-create-status').textContent.includes('已建立'));
+  const personaId=await page.locator('input[name="default-persona"]:checked').inputValue();
+  assert.ok(personaId.startsWith('persona-'));
   await page.locator('#deck-name').fill('Builtin Source E2E');
   await page.locator('#reversals').check();
   await page.locator('#cards textarea[data-k="upright"]').first().fill('測試專屬正位');
@@ -25,6 +37,7 @@ try {
   assert.equal(deckResponse.status(),200);
   const deck=await deckResponse.json();
   assert.equal(deck.card_count,78);
+  assert.equal(deck.default_persona,personaId,'published deck should use selected Boyang persona');
   assert.equal(deck.cards.length,78);
   assert.equal(deck.cards[0].meanings.upright,'測試專屬正位');
   assert.equal(deck.cards[0].meanings.reversed,'測試專屬逆位');
@@ -38,5 +51,33 @@ try {
   const art=await page.request.get('https://leopardcat-tarot.milkcat.org'+imagePath);
   assert.equal(art.status(),200,'published image URL must be retrievable');
   assert.ok((await art.body()).length>100,'published image must have nonempty image content');
+  // One-card draw acceptance: exercise the published deck UI + selected persona.
+  // The LLM response is mocked to keep CI deterministic; it does not prove model style.
+  const readPage=await browser.newPage();
+  await readPage.addInitScript(() => localStorage.setItem('leopard-lang','zh'));
+  await readPage.goto(base+'/?deck='+encodeURIComponent(deckId),{waitUntil:'domcontentloaded'});
+  await readPage.waitForFunction(() => Array.isArray(window.cardData) && window.cardData.length===78);
+  const firstId=await readPage.evaluate(() => window.cardData[0].id);
+  let drawn=null;
+  await readPage.route('**/api/v1/readings', async route => {
+    drawn=route.request().postDataJSON();
+    const now=Math.floor(Date.now()/1000);
+    await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({
+      reading_id:'e2e-one-card',session_token:'e2e-private',share_token:'e2e-share',
+      expires_at:now+3600,privacy:{question_stored:false,answer_stored:false,symbolic_state_ttl_hours:24},
+      method:'tarot',persona:personaId,question:drawn.question,lang:'zh-TW',
+      method_result:{method:'tarot',deck:{deck_id:deckId,card_count:78,card_back:'/art/card-back.svg'},
+        spread:'single',cards:[{card_id:firstId,position:'guidance',position_label:'核心指引',orientation:'upright',draw_index:1,meaning:'測試專屬正位'}],
+        rules:{draw_mode:'auto',draw_indices:[1],orientation_assigned_at_shuffle_time:true,orientation_hidden_until_reveal:true,draw_indices_are_1_based:true}},
+      reading:'端對端單張抽牌測試'
+    })});
+  });
+  await readPage.locator('#fortune-question').fill('今天適合先整理什麼？');
+  await readPage.locator('#spread-select').selectOption('single');
+  await readPage.locator('#btn-primary-draw').click();
+  await readPage.waitForFunction(() => window.currentReadingState?.cards?.length===1);
+  assert.equal(drawn?.input?.spread,'single');
+  assert.equal(drawn?.persona,personaId,'new deck must send its selected guide');
+  console.log('boyang_persona_single_draw_pipeline=passed');
   console.log('builtin_artwork_creator_publish_e2e=passed',href);
 } finally {await browser.close();}

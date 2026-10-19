@@ -33,3 +33,13 @@ jobs:
             printf 'LIVE_PROBE_PATH=%s ' "$path"
             curl --max-time 12 -L -sS -o /tmp/live-art-probe -w 'HTTP=%{http_code} BYTES=%{size_download} TYPE=%{content_type}\\n' "https://leopardcat-tarot.milkcat.org$path" || echo "CURL_UNAVAILABLE"
           done
+      - name: Observe deployed creator feature (read-only)
+        shell: bash
+        run: |
+          code=$(curl -L -sS --max-time 15 -o /tmp/live-create.html -w '%{http_code}' https://leopardcat-tarot.milkcat.org/create.html || true)
+          echo "LIVE_CREATOR_HTTP=$code"
+          if [ "$code" = "200" ] && grep -q 'value="leopardcat"' /tmp/live-create.html; then
+            echo "LIVE_BUILTIN_CARD_OPTION=present"
+          else
+            echo "LIVE_BUILTIN_CARD_OPTION=missing_or_unreachable"
+          fi

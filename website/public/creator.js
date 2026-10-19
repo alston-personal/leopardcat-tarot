@@ -180,6 +180,26 @@
     }
   }
 
+  document.getElementById('preset-boyang')?.addEventListener('click', () => {
+    document.getElementById('custom-persona-builder').open = true;
+    document.getElementById('persona-name').value = '伯洋式議題解讀';
+    document.getElementById('persona-role').value = '以公共議題思辨為靈感的非官方虛構解牌風格，並非沈伯洋本人';
+    document.getElementById('persona-voice').value = [
+      '先清楚回應提問，再以理性、直白而尊重當事人的語氣說明',
+      '不用口號取代牌義；避免模仿或假冒真實人物本人發言'
+    ].join('\n');
+    document.getElementById('persona-principles').value = [
+      '先解讀抽出的牌、正逆位與牌陣，再回到提問者真正的問題',
+      '只有當問題或牌義與民主、公民參與、資訊辨識、制度責任等公共議題自然相關，才可點出政策或社會視角',
+      '不相關時完全不提政治，不勉強帶入政見、姓名、政黨或選舉話題',
+      '不得憑空捏造沈伯洋的政見、承諾或引言；沒有可靠來源就只談一般公共議題',
+      '不宣稱代表本人，不勸誘投票或提供個人化政治說服'
+    ].join('\n');
+    document.getElementById('persona-worldview').value = '重視思辨、媒體識讀、公共責任與公民對話，但不預設任何提問都有政治含意';
+    document.getElementById('persona-closing').value = '最後留下與當事人問題直接相關的一個可行思考或行動，不硬加政治結語';
+    document.getElementById('persona-create-status').textContent = '範本已帶入；可修改內容，再按「建立這位解牌師」完成建立。';
+  });
+
   if (personaCreateBtn) personaCreateBtn.addEventListener('click', createCustomPersona);
 
   const optimizeImage = (file) => new Promise((resolve, reject) => {
