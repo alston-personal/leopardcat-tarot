@@ -33,3 +33,27 @@ def test_builtin_artwork_rejects_non_manifest_reference(tmp_path, image_ref):
             "name": "Rejected",
             "cards": [{"title": "Card", "upright": "Meaning", "image_ref": image_ref}],
         })
+
+
+def test_all_78_builtin_images_are_reusable(tmp_path):
+    import json
+    manifest_path = Path(__file__).resolve().parents[1] / "public" / "manifest.json"
+    cards = json.loads(manifest_path.read_text(encoding="utf-8"))
+    assert len(cards) == 78
+    payload_cards = [
+        {
+            "title": card["title"]["zh"],
+            "upright": "伯洋主題牌義測試",
+            "reversed": "伯洋主題逆位測試",
+            "image_ref": card["id"],
+        }
+        for card in cards
+    ]
+    publisher = DeckPublisher(tmp_path)
+    result = publisher.publish({"name": "78-card reuse acceptance", "cards": payload_cards, "reversals": True})
+    saved = json.loads((tmp_path / result["deck_id"] / "deck.json").read_text(encoding="utf-8"))
+    assert saved["card_count"] == 78
+    assert len({card["image"] for card in saved["cards"]}) == 78
+    assert all(card["image"].startswith("/art/renders/") for card in saved["cards"])
+    assert all(card["meanings"]["reversed"] == "伯洋主題逆位測試" for card in saved["cards"])
+    assert not list((tmp_path / result["deck_id"] / "images").iterdir())
