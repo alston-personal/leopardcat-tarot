@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - run: cd website && npm ci && npm run build
+      - run: cd website && npm ci && find public -xtype l -delete && npm run build
       - run: npm install --no-save playwright@1.55.0 && npx playwright install --with-deps chromium
       - run: cd website && python fortune_server.py > /tmp/leopardcat-e2e.log 2>&1 & 
       - run: node website/tests/builtin_artwork_creator_e2e.mjs
