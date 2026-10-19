@@ -9,6 +9,16 @@ try {
   assert.equal(await page.locator('#cards .item').count(),78);
   assert.equal(await page.locator('input[name="image-source"]:checked').inputValue(),'leopardcat');
   assert.equal(await page.locator('#cards .item img').count(),78);
+  // Unofficial contextual persona preset must remain optional and editable.
+  await page.locator('#custom-persona-builder > summary').click();
+  await page.locator('#preset-boyang').click();
+  assert.equal(await page.locator('#persona-name').inputValue(),'伯洋式議題解讀');
+  const guidance=await page.locator('#persona-principles').inputValue();
+  assert.ok(guidance.includes('不相關時完全不提政治'));
+  assert.ok(guidance.includes('不得憑空捏造'));
+  assert.equal(guidance.split('\\n').length,5,'preset instructions must be separate lines');
+  // Do not actually publish a persona during deck baseline regression;
+  // independent persona publication will be validated separately.
   await page.locator('#deck-name').fill('Builtin Source E2E');
   await page.locator('#reversals').check();
   await page.locator('#cards textarea[data-k="upright"]').first().fill('測試專屬正位');
