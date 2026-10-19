@@ -117,6 +117,11 @@ class DeckPublisher:
         if len(cards) > _MAX_CARDS:
             raise DivinationError(f"一次最多 {_MAX_CARDS} 張牌")
 
+        builtin = {}
+        if any(card.get("image_ref") for card in cards):
+            manifest = Path(__file__).resolve().parents[1] / "public" / "manifest.json"
+            builtin = {item["id"]: item for item in json.loads(manifest.read_text(encoding="utf-8"))}
+
         requested_slug = _clean_text(payload.get("slug"), 64).lower()
         if requested_slug:
             check = self.slug_available(requested_slug)
@@ -145,17 +150,28 @@ class DeckPublisher:
                 reversed_meaning = _clean_text(card.get("reversed"), 2000)
                 if not upright:
                     raise DivinationError(f"「{title}」還沒有填牌義")
-                image = str(card.get("image") or "")
-                match = re.fullmatch(r"data:(image/(?:jpeg|png|webp));base64,([A-Za-z0-9+/=\s]+)", image)
-                if not match:
-                    raise DivinationError(f"「{title}」的圖片格式不支援")
-                mime, encoded = match.groups()
-                raw = base64.b64decode(encoded, validate=False)
-                if not raw or len(raw) > _MAX_IMAGE_BYTES:
-                    raise DivinationError(f"「{title}」的圖片過大，單張請小於 8MB")
-                ext = _ALLOWED_MIME[mime]
-                filename = f"card-{idx:03d}{ext}"
-                (image_dir / filename).write_bytes(raw)
+                ref = str(card.get("image_ref") or "")
+                if ref:
+                    source = builtin.get(ref)
+                    if not source or card.get("image"):
+                        raise DivinationError("無效的石虎牌圖引用")
+                    artwork = str(source.get("image") or "")
+                    if not re.fullmatch(r"art/renders/[A-Za-z0-9_-]+[.](png|jpg|webp)", artwork):
+                        raise DivinationError("內建牌圖路徑不受支援")
+                    saved_image = "/" + artwork
+                else:
+                    image = str(card.get("image") or "")
+                    match = re.fullmatch(r"data:(image/(?:jpeg|png|webp));base64,([A-Za-z0-9+/=\\s]+)", image)
+                    if not match:
+                        raise DivinationError(f"「{title}」的圖片格式不支援")
+                    mime, encoded = match.groups()
+                    raw = base64.b64decode(encoded, validate=False)
+                    if not raw or len(raw) > _MAX_IMAGE_BYTES:
+                        raise DivinationError(f"「{title}」的圖片過大，單張請小於 8MB")
+                    ext = _ALLOWED_MIME[mime]
+                    filename = f"card-{idx:03d}{ext}"
+                    (image_dir / filename).write_bytes(raw)
+                    saved_image = f"/api/v1/decks/{deck_id}/images/{filename}"
                 saved_cards.append({
                     "id": f"card-{idx:03d}",
                     "title": {"zh": title, "zh-TW": title, "en": title},
@@ -163,7 +179,7 @@ class DeckPublisher:
                         "upright": upright,
                         "reversed": reversed_meaning if reversals and reversed_meaning else upright,
                     },
-                    "image": f"/api/v1/decks/{deck_id}/images/{filename}",
+                    "image": saved_image,
                 })
 
             manifest = {
