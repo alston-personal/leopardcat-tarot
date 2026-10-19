@@ -36,8 +36,10 @@
   </section>
 
   <section class="card">
-    <h2>2. 一次選取所有牌圖</h2>
-    <div class="drop">
+    <h2>2. 選擇牌圖來源</h2>
+    <label><input type="radio" name="image-source" value="leopardcat" style="width:auto" checked> 使用石虎塔羅（帶入既有牌圖）</label>
+    <label><input type="radio" name="image-source" value="upload" style="width:auto"> 上傳我的牌圖</label>
+    <div class="drop hidden" id="upload-images">
       <p><strong>22 張、78 張或其他張數都可以。</strong></p>
       <p class="muted">支援 JPG、PNG、WebP。建議先把檔名改成牌名，系統會自動帶入。</p>
       <input id="images" type="file" accept="image/jpeg,image/png,image/webp" multiple>
