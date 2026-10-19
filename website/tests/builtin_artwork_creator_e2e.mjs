@@ -51,5 +51,33 @@ try {
   const art=await page.request.get('https://leopardcat-tarot.milkcat.org'+imagePath);
   assert.equal(art.status(),200,'published image URL must be retrievable');
   assert.ok((await art.body()).length>100,'published image must have nonempty image content');
+  // One-card draw acceptance: exercise the published deck UI + selected persona.
+  // The LLM response is mocked to keep CI deterministic; it does not prove model style.
+  const readPage=await browser.newPage();
+  await readPage.addInitScript(() => localStorage.setItem('leopard-lang','zh'));
+  await readPage.goto(base+'/?deck='+encodeURIComponent(deckId),{waitUntil:'domcontentloaded'});
+  await readPage.waitForFunction(() => Array.isArray(window.cardData) && window.cardData.length===78);
+  const firstId=await readPage.evaluate(() => window.cardData[0].id);
+  let drawn=null;
+  await readPage.route('**/api/v1/readings', async route => {
+    drawn=route.request().postDataJSON();
+    const now=Math.floor(Date.now()/1000);
+    await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({
+      reading_id:'e2e-one-card',session_token:'e2e-private',share_token:'e2e-share',
+      expires_at:now+3600,privacy:{question_stored:false,answer_stored:false,symbolic_state_ttl_hours:24},
+      method:'tarot',persona:personaId,question:drawn.question,lang:'zh-TW',
+      method_result:{method:'tarot',deck:{deck_id:deckId,card_count:78,card_back:'/art/card-back.svg'},
+        spread:'single',cards:[{card_id:firstId,position:'guidance',position_label:'核心指引',orientation:'upright',draw_index:1,meaning:'測試專屬正位'}],
+        rules:{draw_mode:'auto',draw_indices:[1],orientation_assigned_at_shuffle_time:true,orientation_hidden_until_reveal:true,draw_indices_are_1_based:true}},
+      reading:'端對端單張抽牌測試'
+    })});
+  });
+  await readPage.locator('#fortune-question').fill('今天適合先整理什麼？');
+  await readPage.locator('#spread-select').selectOption('single');
+  await readPage.locator('#btn-primary-draw').click();
+  await readPage.waitForFunction(() => window.currentReadingState?.cards?.length===1);
+  assert.equal(drawn?.input?.spread,'single');
+  assert.equal(drawn?.persona,personaId,'new deck must send its selected guide');
+  console.log('boyang_persona_single_draw_pipeline=passed');
   console.log('builtin_artwork_creator_publish_e2e=passed',href);
 } finally {await browser.close();}
