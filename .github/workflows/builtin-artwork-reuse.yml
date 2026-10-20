@@ -25,7 +25,7 @@ jobs:
       - run: python -m pip install pytest
       - run: python -m compileall -q website/divination
       - run: node --check website/public/creator.js
-      - run: cd website && python -m pytest -q tests/test_builtin_artwork_reuse.py
+      - run: cd website && python -m pytest -q tests/test_builtin_artwork_reuse.py tests/test_ocean_current_master.py
       - name: Observe real production artwork availability
         shell: bash
         run: |

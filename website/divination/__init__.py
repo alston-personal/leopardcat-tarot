@@ -18,6 +18,7 @@ def build_default_engine(base_dir: str | Path) -> DivinationEngine:
     personas = PersonaRegistry()
     personas.register(ConfigurablePersona(base / "oracle_packs" / "leopardcat" / "pack.json"))
     personas.register(GenericMasterPersona())
+    personas.register(ConfigurablePersona(base / "oracle_packs" / "ocean-current-master" / "pack.json"))
 
     custom_persona_root = base / "data" / "custom_personas"
     if custom_persona_root.exists():
