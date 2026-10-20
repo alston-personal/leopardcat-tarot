@@ -43,3 +43,13 @@ jobs:
           else
             echo "LIVE_BUILTIN_CARD_OPTION=missing_or_unreachable"
           fi
+      - name: Verify live guide catalog (read only)
+        run: |
+          curl -fLsS --max-time 20 'https://leopardcat-tarot.milkcat.org/api/v1/personas?deck=leopardcat' -o /tmp/personas.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/personas.json'))
+          ids=[p.get('persona_id') for p in d.get('personas',[])]
+          print('LIVE_PERSONA_IDS='+','.join(ids))
+          print('LIVE_OCEAN_CURRENT_MASTER='+str('ocean-current-master' in ids))
+          PY
