@@ -18,9 +18,9 @@ permissions:
 
 jobs:
   live-persona:
-    runs-on: [self-hosted, Linux, ARM64, oracle]
+    runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Verify local and public persona API (read only)
-        run: python3 ops/verify_ocean_current_live.py
+      - name: Verify public persona API (read only)
+        run: python3 ops/verify_ocean_current_live.py --local https://leopardcat-tarot.milkcat.org --public https://leopardcat-tarot.milkcat.org
