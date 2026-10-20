@@ -7,6 +7,10 @@ on:
     paths:
       - ops/verify_ocean_current_live.py
       - .github/workflows/ocean-current-live-acceptance.yml
+  pull_request:
+    paths:
+      - ops/verify_ocean_current_live.py
+      - .github/workflows/ocean-current-live-acceptance.yml
   workflow_dispatch:
 
 permissions:
