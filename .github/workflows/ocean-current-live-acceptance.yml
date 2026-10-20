@@ -1,0 +1,22 @@
+name: Ocean Current live backend acceptance
+
+on:
+  push:
+    branches:
+      - fix/ocean-current-live-acceptance-20261020
+    paths:
+      - ops/verify_ocean_current_live.py
+      - .github/workflows/ocean-current-live-acceptance.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-persona:
+    runs-on: [self-hosted, Linux, ARM64, oracle]
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify local and public persona API (read only)
+        run: python3 ops/verify_ocean_current_live.py
