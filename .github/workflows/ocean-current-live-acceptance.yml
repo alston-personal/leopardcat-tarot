@@ -24,3 +24,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify public persona API (read only)
         run: python3 ops/verify_ocean_current_live.py --local https://leopardcat-tarot.milkcat.org --public https://leopardcat-tarot.milkcat.org
+      - name: Report coverage boundary
+        if: always()
+        run: echo 'Public API only; Oracle-local parity still requires a trusted Oracle executor.'
