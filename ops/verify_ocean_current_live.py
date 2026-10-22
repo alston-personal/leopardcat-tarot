@@ -37,9 +37,14 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--local", default="http://127.0.0.1:8088")
     parser.add_argument("--public", default="https://leopardcat-tarot.milkcat.org")
+    parser.add_argument("--public-only", action="store_true", help="Check public API only; never claim Oracle-local parity")
     args = parser.parse_args()
+    if not args.public_only and args.local.rstrip("/") == args.public.rstrip("/"):
+        print("FAIL: local and public origins must differ; use --public-only for hosted checks", file=sys.stderr)
+        return 2
+    probes = (("public", args.public),) if args.public_only else (("local", args.local), ("public", args.public))
     passed = True
-    for name, origin in (("local", args.local), ("public", args.public)):
+    for name, origin in probes:
         try:
             found = has_persona(fetch(origin))
             print(json.dumps({"probe": name, "persona": PERSONA, "present": found}))
@@ -50,7 +55,8 @@ def main():
     if not passed:
         print("FAIL: backend persona parity is not proven", file=sys.stderr)
         return 1
-    print("PASS: persona listed on local and public backend; single-card reading NOT verified")
+    scope = "public only; Oracle-local parity NOT verified" if args.public_only else "local and public backend"
+    print(f"PASS: persona listed on {scope}; single-card reading NOT verified")
     return 0
 
 
