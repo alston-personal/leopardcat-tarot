@@ -27,6 +27,7 @@ from divination.persona_publishing import PersonaPublisher
 from divination.capsules import build_capsule, public_handoff
 from divination.lenormand import public_method_info as lenormand_public_method_info
 from divination.threads_publishing import ThreadsPublishingService, ThreadsPublishingError
+from print_service import handle_print_get
 from divination.tarot import plan_spread, spread_catalog
 from divination.analytics import ReadingAnalyticsStore, classify_question, normalize_source
 
@@ -243,6 +244,9 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         url_parts = self.path.split('?', 1)
         path = url_parts[0]
         query = url_parts[1] if len(url_parts) > 1 else ""
+
+        if handle_print_get(self, path, query, CARD_MANIFEST):
+            return
 
         # 👑 API Endpoints
         if path == '/api/v1/threads/oauth/status':

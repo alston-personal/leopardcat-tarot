@@ -44,9 +44,26 @@ class ConfigurablePersona:
         identity = self.config.get("identity", {})
         voice = self.config.get("voice", [])
         principles = self.config.get("interpretation_principles", [])
-        domain_context = self.config.get("domain_context", [])
+        domain_context = list(self.config.get("domain_context", []))
         closing = self.config.get("closing_instruction", "")
         safety = self.config.get("safety", [])
+
+        canonical_ir = self.config.get("canonical_persona_ir")
+        if canonical_ir:
+            ir_path = Path(canonical_ir)
+            if ir_path.is_file():
+                try:
+                    ir_data = json.loads(ir_path.read_text(encoding="utf-8"))
+                    active_focus = ir_data.get("active_policy_focus") or []
+                    if active_focus:
+                        domain_context.extend([f"當前重點政策焦點：{x}" for x in active_focus])
+                    pol_file = ir_path.parent / "policies" / "core_policies.json"
+                    if pol_file.is_file():
+                        pol_data = json.loads(pol_file.read_text(encoding="utf-8"))
+                        for item in pol_data.get("policies") or []:
+                            domain_context.append(f"政策方針【{item.get('topic')}】：{item.get('stance')}")
+                except Exception:
+                    pass
 
         def bullets(items: Any) -> str:
             if not isinstance(items, list):

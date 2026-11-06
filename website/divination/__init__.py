@@ -16,7 +16,13 @@ def build_default_engine(base_dir: str | Path) -> DivinationEngine:
     methods.register(LenormandMethod())
 
     personas = PersonaRegistry()
-    personas.register(ConfigurablePersona(base / "oracle_packs" / "leopardcat" / "pack.json"))
+    oracle_pack_root = base / "oracle_packs"
+    if oracle_pack_root.exists():
+        for pack_path in sorted(oracle_pack_root.glob("*/pack.json")):
+            try:
+                personas.register(ConfigurablePersona(pack_path))
+            except Exception:
+                continue
     personas.register(GenericMasterPersona())
 
     custom_persona_root = base / "data" / "custom_personas"

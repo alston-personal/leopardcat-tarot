@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>石虎塔羅 — 列印排版 /admin/print</title>
+<style>
+/* ═══════════════════════════════
+   SCREEN STYLES
+═══════════════════════════════ */
+@media screen {
+  :root {
+    --gold: #c9a84c;
+    --dark: #0d1510;
+    --mid:  #162019;
+    --panel: #1b2d1f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--dark);
+    color: #e0d8c0;
+    font-family: system-ui, 'Segoe UI', sans-serif;
+    font-size: 14px;
+  }
+
+  /* ── Topbar ── */
+  #topbar {
+    background: var(--panel);
+    border-bottom: 1px solid #2d4530;
+    padding: 10px 20px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  #topbar h1 { margin:0; font-size:17px; color:var(--gold); flex:1; white-space:nowrap; }
+  .btn-group { display:flex; gap:8px; flex-wrap:wrap; }
+  .btn {
+    padding: 7px 16px; border-radius: 6px; border: 1px solid #3a5040;
+    cursor: pointer; font-size: 13px; font-weight: 600;
+    transition: all 0.15s;
+  }
+  .btn-primary { background: var(--gold); color: #111; border-color: var(--gold); }
+  .btn-ghost   { background: transparent; color: #9db89a; }
+  .btn-ghost:hover, .btn.active { background: #2a4030; color: #ddd; }
+  .btn-print   { background: #3a7a50; color: #fff; border-color: #3a7a50; }
+
+  /* ── Status ── */
+  #statusbar {
+    background: #111d14; padding: 5px 20px;
+    font-size: 11px; color: #6a8a6a;
+    border-bottom: 1px solid #1e3020;
+  }
+
+  /* ── Preview area ── */
+  #preview-area {
+    padding: 30px 40px; display: flex; flex-direction: column; gap: 40px;
+  }
+  .sheet-group { display: flex; flex-direction: column; gap: 12px; }
+  .sheet-title {
+    font-size: 11px; color: #556655; text-transform: uppercase;
+    letter-spacing: .1em;
+  }
+
+  /*
+    A4 = 210mm × 297mm
+    At 96 dpi → 1mm ≈ 3.7795px
+    We scale down for screen preview: 0.35 scale factor
+    so 210mm × 0.35 × 3.7795 ≈ 277px wide
+  */
+  .a4-sheet {
+    position: relative;
+    width:  277px;  /* 210mm × 3.7795 × 0.35 */
+    height: 393px;  /* 297mm × 3.7795 × 0.35 */
+    background: white;
+    box-shadow: 0 3px 16px #0009;
+    flex-shrink: 0;
+  }
+
+  .card-slot {
+    position: absolute;
+    overflow: hidden;
+  }
+  .card-slot img {
+    width: 100%; height: 100%;
+    object-fit: fill;
+    display: block;
+  }
+
+  /* crop mark lines (screen) */
+  .cm-h, .cm-v {
+    position: absolute; background: #999; pointer-events: none;
+  }
+  .cm-h { height: 1px; }
+  .cm-v { width: 1px;  }
+
+  .page-foot {
+    position: absolute; bottom: 3px; left: 0; right: 0;
+    text-align: center; font-size: 6px; color: #bbb;
+    font-family: monospace;
+  }
+}
+
+/* ═══════════════════════════════
+   PRINT STYLES
+═══════════════════════════════ */
+@media print {
+  body { margin: 0; background: white; }
+  #topbar, #statusbar, #preview-area { display: none !important; }
+
+  /* Each .print-sheet is one physical page */
+  .print-sheet {
+    width: 210mm; height: 297mm;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+    background: white;
+  }
+  .print-sheet:last-child { page-break-after: avoid; }
+
+  .card-slot {
+    position: absolute;
+    overflow: hidden;
+  }
+  .card-slot img {
+    width: 100%; height: 100%;
+    object-fit: fill;
+    display: block;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* crop marks */
+  .cm-h { position:absolute; height:0.2mm; background:#888; }
+  .cm-v { position:absolute; width:0.2mm;  background:#888; }
+
+  .page-foot {
+    position: absolute; bottom: 4mm; left: 0; right: 0;
+    text-align: center; font-size: 5.5pt; color: #aaa;
+    font-family: monospace;
+  }
+}
+
+/* Print area hidden on screen */
+#print-area { display: none; }
+@media print { #print-area { display: block; } }
+</style>
+</head>
+<body>
+
+<!-- ── Controls ── -->
+<div id="topbar">
+  <h1>🎴 石虎塔羅 列印排版</h1>
+  <div class="btn-group" id="range-btns">
+    <button class="btn btn-ghost" id="btn4"  onclick="selectRange(4,  this)">前 4 張（測試）</button>
+    <button class="btn btn-ghost" id="btn22" onclick="selectRange(22, this)">大阿卡納 22 張</button>
+    <button class="btn btn-ghost" id="btn78" onclick="selectRange(78, this)">全套 78 張</button>
+  </div>
+  <button class="btn btn-print" onclick="window.print()">🖨️ 列印 / 存 PDF</button>
+</div>
+<div id="statusbar">正在載入牌組…</div>
+
+<!-- ── Screen preview ── -->
+<div id="preview-area"></div>
+
+<!-- ── Print-only pages ── -->
+<div id="print-area"></div>
+
+<script>
+'use strict';
+
+/* ─── Layout constants ─── */
+// Paper
+const PW = 210, PH = 297;   // mm
+// Card
+const CW = 70,  CH = 120;   // mm
+// Grid
+const COLS = 2, ROWS = 2, CPP = COLS * ROWS;
+// Margins (centred)
+const MX = (PW - COLS * CW) / 2;   // 35 mm
+const MY = (PH - ROWS * CH) / 2;   // 28.5 mm
+// Crop mark
+const CM_LEN = 3, CM_GAP = 1;      // mm
+
+/* Screen scale: 1mm → px
+   A4 width 210mm → 277px  ⟹  277/210 ≈ 1.3195 */
+const S = 277 / 210;
+const mm = v => (v * S).toFixed(2) + 'px';
+
+/* ─── Build one A4 sheet DOM node ─── */
+function buildSheet(cards, isFront, sheetIdx, totalSheets, forPrint) {
+  const sheet = document.createElement('div');
+  sheet.className = forPrint ? 'print-sheet' : 'a4-sheet';
+
+  const toUnit = forPrint
+    ? v => v + 'mm'
+    : v => (v * S).toFixed(2) + 'px';
+
+  /* ── Card slots ── */
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+
+    let col = i % COLS;
+    const row = Math.floor(i / COLS);
+
+    // Back side: mirror columns for long-edge duplex alignment
+    if (!isFront) col = (COLS - 1) - col;
+
+    const x = MX + col * CW;
+    const y = MY + row * CH;
+
+    const slot = document.createElement('div');
+    slot.className = 'card-slot';
+    slot.style.left   = toUnit(x);
+    slot.style.top    = toUnit(y);
+    slot.style.width  = toUnit(CW);
+    slot.style.height = toUnit(CH);
+
+    const img = document.createElement('img');
+    if (isFront) {
+      // Use the webp variant for faster loading
+      const base = card.image || '';
+      img.src = '/' + base.replace(/\.png$/, '.webp');
+      img.alt = card.title?.zh || card.id || '';
+    } else {
+      img.src = '/art/card-back.svg';
+      img.alt = '牌背';
+    }
+    img.loading = 'eager';
+    img.decoding = 'sync';
+
+    slot.appendChild(img);
+    sheet.appendChild(slot);
+  }
+
+  /* ── Crop marks ── */
+  // X cut positions: left-margin, middle, right-margin
+  const xCuts = [MX, MX + CW, MX + 2 * CW];
+  // Y cut positions: top-margin, middle, bottom-margin
+  const yCuts = [MY, MY + CH, MY + 2 * CH];
+
+  // Vertical ticks (above and below the card grid)
+  for (const x of xCuts) {
+    // Above grid
+    addLine(sheet, 'v', toUnit(x), null, toUnit(MY - CM_GAP - CM_LEN), toUnit(CM_LEN));
+    // Below grid
+    addLine(sheet, 'v', toUnit(x), null, toUnit(MY + 2*CH + CM_GAP),   toUnit(CM_LEN));
+  }
+
+  // Horizontal ticks (left and right of the card grid)
+  for (const y of yCuts) {
+    // Left of grid
+    addLine(sheet, 'h', null, toUnit(MY*0 + MX - CM_GAP - CM_LEN), toUnit(y), toUnit(CM_LEN));
+    // Right of grid
+    addLine(sheet, 'h', null, toUnit(MX + 2*CW + CM_GAP),          toUnit(y), toUnit(CM_LEN));
+  }
+
+  /* ── Footer ── */
+  const nums = cards.map((_, i) => `#${sheetIdx * CPP + i + 1}`).join(' ');
+  const foot = document.createElement('div');
+  foot.className = 'page-foot';
+  foot.textContent =
+    `石虎塔羅 LeopardCat Tarot · ${isFront ? '正面' : '背面'} · 第 ${sheetIdx+1}/${totalSheets} 張紙 · A4 · 70×120mm · ${nums}`;
+  sheet.appendChild(foot);
+
+  return sheet;
+}
+
+function addLine(parent, dir, left, right, top, size) {
+  const el = document.createElement('div');
+  el.className = dir === 'v' ? 'cm-v' : 'cm-h';
+  if (left  !== null) el.style.left   = left;
+  if (right !== null) el.style.left   = right;
+  if (top   !== null) el.style.top    = top;
+  if (dir === 'v') { el.style.height = size; }
+  else             { el.style.width  = size; }
+  parent.appendChild(el);
+}
+
+/* ─── Render sheets ─── */
+let ALL_CARDS = [];
+
+function renderSheets(cards) {
+  const totalSheets = Math.ceil(cards.length / CPP);
+
+  document.getElementById('preview-area').innerHTML = '';
+  document.getElementById('print-area').innerHTML   = '';
+
+  for (let si = 0; si < totalSheets; si++) {
+    const chunk = cards.slice(si * CPP, (si + 1) * CPP);
+
+    /* Screen preview: show front + back side-by-side in a group */
+    const grp = document.createElement('div');
+    grp.className = 'sheet-group';
+
+    const lf = document.createElement('div');
+    lf.className = 'sheet-title';
+    lf.textContent = `第 ${si+1} 張紙 — 正面`;
+    grp.appendChild(lf);
+    grp.appendChild(buildSheet(chunk, true,  si, totalSheets, false));
+
+    const lb = document.createElement('div');
+    lb.className = 'sheet-title';
+    lb.style.marginTop = '10px';
+    lb.textContent = `第 ${si+1} 張紙 — 背面（長邊翻轉雙面）`;
+    grp.appendChild(lb);
+    grp.appendChild(buildSheet(chunk, false, si, totalSheets, false));
+
+    document.getElementById('preview-area').appendChild(grp);
+
+    /* Print: front page then back page */
+    document.getElementById('print-area').appendChild(
+      buildSheet(chunk, true,  si, totalSheets, true));
+    document.getElementById('print-area').appendChild(
+      buildSheet(chunk, false, si, totalSheets, true));
+  }
+
+  document.getElementById('statusbar').textContent =
+    `已排版 ${cards.length} 張卡牌 · 共 ${totalSheets} 張 A4 紙 · ${totalSheets*2} 列印頁面 ` +
+    `· 雙面長邊翻轉 · 紙張 A4 · 縮放 100%（實際大小）· 勿勾「符合頁面」`;
+}
+
+function selectRange(n, btn) {
+  document.querySelectorAll('#range-btns .btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSheets(ALL_CARDS.slice(0, n));
+}
+
+async function init() {
+  try {
+    const r = await fetch('/manifest.json');
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    ALL_CARDS = await r.json();
+    document.getElementById('statusbar').textContent =
+      `✅ 已載入 ${ALL_CARDS.length} 張牌 · 請點選上方按鈕選擇列印範圍`;
+  } catch (e) {
+    document.getElementById('statusbar').textContent = `❌ 載入失敗：${e.message}`;
+  }
+}
+
+init();
+</script>
+</body>
+</html>
